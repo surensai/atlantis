@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('resetPasswordCtrl', ['$scope', 'UserService', '$state', '$timeout', 'flashService', 'auth', function ($scope, UserService, $state, $timeout, flashService, auth) {
+angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', '$state', '$timeout', 'flashService', 'auth', function ($scope, UserService, $state, $timeout, flashService, auth) {
 
   var resetPassword = this;
   resetPassword.scope = $scope;
@@ -29,7 +29,7 @@ app.controller('resetPasswordCtrl', ['$scope', 'UserService', '$state', '$timeou
         angular.element('.custom-error:first').focus();
       }, 200);
     }
-  }
+  };
 
   function stuctureFormData() {
     var data = { };

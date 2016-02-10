@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('settingsCtrl', [ function () {
+angular.module("app").controller('settingsCtrl', [ function () {
 
 
 

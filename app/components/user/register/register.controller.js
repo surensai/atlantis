@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('registerCtrl', ['$scope', 'AuthenticationService', 'UserService', '$state', '$timeout', 'flashService' ,function ($scope, AuthenticationService, UserService, $state, $timeout, flashService) {
+angular.module("app").controller('registerCtrl', ['$scope', 'AuthenticationService', 'UserService', '$state', '$timeout', 'flashService' ,function ($scope, AuthenticationService, UserService, $state, $timeout, flashService) {
 
     var register = this;
     register.scope = $scope;
@@ -42,10 +42,10 @@ app.controller('registerCtrl', ['$scope', 'AuthenticationService', 'UserService'
         var handleError = function (error) {
           var message = "";
           if(error.status === 400){
-            message = "Password is small"
+            message = "Password is small";
           }
           if(error.error === "E_UNKNOWN"){
-            message = "Email already registered"
+            message = "Email already registered";
           }else{
             message = error.error;
           }

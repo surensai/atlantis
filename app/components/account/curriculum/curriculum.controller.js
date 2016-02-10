@@ -1,5 +1,5 @@
 'use strict';
-app.controller('curriculumCtrl', [ function ( ) {
+angular.module("app").controller('curriculumCtrl', [ function ( ) {
 
 
 }]);

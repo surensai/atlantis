@@ -38,5 +38,5 @@ angular.module('app').factory('$remember', function() {
             cookie += values + ';';
         }
         document.cookie = cookie;
-    }
+    };
 });

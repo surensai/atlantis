@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('loginCtrl', ['$rootScope','$scope', '$state', 'AuthenticationService', 'flashService', '$timeout' , function ($rootScope, $scope, $state, AuthenticationService, flashService, $timeout ) {
+angular.module("app").controller('loginCtrl', ['$rootScope','$scope', '$state', 'AuthenticationService', 'flashService', '$timeout' , function ($rootScope, $scope, $state, AuthenticationService, flashService, $timeout ) {
 
 	var login = this;
 	login.scope = $scope;
@@ -39,7 +39,7 @@ app.controller('loginCtrl', ['$rootScope','$scope', '$state', 'AuthenticationSer
   function loginAction(){
     var formData = stuctureFormData();
 
-    var handleSuccess = function(data, status) {
+    var handleSuccess = function(data) {
         login.service.SetCredentials(data, formData);
         login.scope.signinForm.$valid = true;
         $state.go('account.dashboard');

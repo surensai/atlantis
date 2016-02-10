@@ -5,3 +5,4 @@
 /app/assets/libs
 .idea/
 /build
+/test

@@ -34,7 +34,7 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
   service.getObjById = function(data, id) {
     var obj = {};
     _.each(data, function(item){
-        if( item.id == id ){
+        if( item.id === id ){
           obj = item;
         }
     });

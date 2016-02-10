@@ -1,5 +1,5 @@
 'use strict';
 
-app.controller('staticCtrl', ['$scope', function ($scope) {
-   
+angular.module("app").controller('staticCtrl', [ function () {
+
 }]);

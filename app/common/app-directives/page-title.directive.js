@@ -1,5 +1,5 @@
-"use-strict";
-app.directive('pageTitle', ['$rootScope', '$timeout',
+"use strict";
+angular.module("app").directive('pageTitle', ['$rootScope', '$timeout',
   function($rootScope, $timeout) {
     return {
       link: function(scope, element) {

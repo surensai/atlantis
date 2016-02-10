@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('changePasswordCtrl', ['$scope', 'UserService','AuthenticationService', '$state', '$timeout', 'flashService' ,function ($scope, UserService, AuthenticationService, $state, $timeout, flashService) {
+angular.module("app").controller('changePasswordCtrl', ['$scope', 'UserService','AuthenticationService', '$state', '$timeout', 'flashService' ,function ($scope, UserService, AuthenticationService, $state, $timeout, flashService) {
 
   var changePassword = this;
   changePassword.scope = $scope;

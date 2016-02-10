@@ -1,5 +1,5 @@
 'use strict';
 
-app.controller('dashboardCtrl', [ function ( ) {
+angular.module("app").controller('dashboardCtrl', [ function ( ) {
 
 }]);

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('editProfileCtrl', ['$scope', 'UserService', '$state', '$timeout', 'flashService', '$rootScope', function ($scope, UserService, $state, $timeout, flashService, $rootScope) {
+angular.module("app").controller('editProfileCtrl', ['$scope', 'UserService', '$state', '$timeout', 'flashService', '$rootScope', function ($scope, UserService, $state, $timeout, flashService, $rootScope) {
 
   var editProfile = this;
   editProfile.scope = $scope;
@@ -47,9 +47,9 @@ app.controller('editProfileCtrl', ['$scope', 'UserService', '$state', '$timeout'
       flashService.Success(data.message, true);
      $timeout(function(){
       editProfile.scope.userClicked=false;
-       flashService.Success(data.message, true)
+       flashService.Success(data.message, true);
        $rootScope.globals.flash = {};
-     },1000)
+     },1000);
 
 
     };

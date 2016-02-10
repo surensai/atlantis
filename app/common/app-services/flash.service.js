@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').factory('flashService', ['$rootScope','$timeout', function ($rootScope,$timeout) {
+angular.module('app').factory('flashService', ['$rootScope', function ($rootScope) {
 
 	 var service = {};
 

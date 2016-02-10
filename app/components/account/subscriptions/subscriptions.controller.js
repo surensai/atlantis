@@ -1,5 +1,5 @@
 'use strict';
 
-app.controller('subscriptionsCtrl', [ function () {
+angular.module("app").controller('subscriptionsCtrl', [ function () {
 
 }]);

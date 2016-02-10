@@ -1,5 +1,5 @@
 'use strict';
-app.directive('dob', function () {
+angular.module("app").directive('dob', function () {
     return {
         restrict: 'EA',
         scope: {

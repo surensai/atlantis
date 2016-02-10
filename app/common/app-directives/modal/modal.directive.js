@@ -1,5 +1,5 @@
 'use strict';
-app.directive('modal', function () {
+angular.module("app").directive('modal', function () {
     return {
         restrict: 'EA',
         scope: {

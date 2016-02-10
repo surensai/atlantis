@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('playerCtrl', ['$scope', '$state', 'PlayerService', 'flashService', 'playersListData', '$translate', function ($scope, $state, PlayerService, flashService, playersListData, $translate) {
+angular.module("app").controller('playerCtrl', ['$scope', '$state', 'PlayerService', 'flashService', 'playersListData', function ($scope, $state, PlayerService, flashService, playersListData) {
 
   var player = this;
   player.scope = $scope;
@@ -67,12 +67,12 @@ app.controller('playerCtrl', ['$scope', '$state', 'PlayerService', 'flashService
 
   function addAction() {
     var formData = stuctureFormData();
-    var handleSuccess = function (data, status) {
-      flashService.Success("Player added successfully!", true); //($translate('add_success') try to use this
+    var handleSuccess = function () {
+      flashService.Success("Player added successfully!", true);
       $state.go('account.players');
     };
 
-    var handleError = function (error) {
+    var handleError = function () {
       flashService.Error("Invalid player credentials", false);
     };
 
@@ -84,11 +84,11 @@ app.controller('playerCtrl', ['$scope', '$state', 'PlayerService', 'flashService
 
   function updateAction() {
     var formData = stuctureFormData();
-    var handleSuccess = function (data, status) {
+    var handleSuccess = function () {
       $state.go('account.players');
     };
 
-    var handleError = function (error) {
+    var handleError = function () {
       flashService.Error("Invalid player credentials", false);
     };
 
@@ -104,13 +104,13 @@ app.controller('playerCtrl', ['$scope', '$state', 'PlayerService', 'flashService
 
   player.scope.deleteAction = function(){
 
-    var handleSuccess = function (data, status) {
+    var handleSuccess = function () {
       player.service.removeItem(player.data.playersList, player.data.deleteObj);
       angular.element('#pop').modal('hide');
       flashService.Success("Player deleted successfully!", false);
     };
 
-    var handleError = function (error) {
+    var handleError = function () {
       flashService.Error("Error in deleting", false);
     };
 
