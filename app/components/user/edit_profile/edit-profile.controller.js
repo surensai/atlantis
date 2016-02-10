@@ -21,7 +21,7 @@ app.controller('editProfileCtrl', ['$scope', 'UserService', '$state', '$timeout'
         angular.element('.custom-error:first').focus();
       }, 200);
     }
-  }
+  };
 
   function stuctureFormData() {
     var data = {};

@@ -18,7 +18,7 @@ app.controller('forgotPasswordCtrl', ['$scope','UserService','flashService', fun
               angular.element('.custom-error:first').focus();
           }, 200);
       }
- 	}
+ 	};
 
  	function stuctureFormData (){
       var data = { };

@@ -28,9 +28,7 @@ angular.module('app').factory('UserService', ['$http','$rootScope', function ($h
 
   service.resetPasswordAPI = function(user,token){
     return $http.post(base_url + '/user/reset-password?token='+token, user);
-  }
-
-
+  };
 
   return service;
 

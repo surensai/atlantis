@@ -89,7 +89,7 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
 
     service.loginApi = function (data) {
         return $http.post(base_url + '/user/login', data);
-    }
+    };
 
     service.SetCredentials = function (user, formData) {
         var authdata = Base64.encode(formData.identifier + ':' + formData.password);
@@ -100,7 +100,7 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
 
         $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
         $cookieStore.put('globals', $rootScope.globals);
-    }
+    };
 
     service.updateCredentials = function (data) {
         var user = $rootScope.globals.currentUser;
@@ -112,13 +112,13 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
         };
         $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
         $cookieStore.put('globals', $rootScope.globals);
-    }
+    };
 
     service.ClearCredentials = function () {
         $rootScope.globals = {};
         $cookieStore.remove('globals');
         $http.defaults.headers.common.Authorization = 'Basic';
-    }
+    };
 
     service.setRememberMe = function (data) {
         if (data.remember) {
@@ -128,7 +128,7 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
             $remember('7ZXYZ@L', '');
             $remember('UU@#90', '');
         }
-    }
+    };
 
     service.getRememberMe = function () {
         var data = {};
@@ -138,7 +138,7 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
             data.password = $remember('UU@#90');
         }
         return data;
-    }
+    };
 
     return service;
 

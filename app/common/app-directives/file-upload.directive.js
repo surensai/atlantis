@@ -1,3 +1,4 @@
+'use strict';
 app.directive('fileModel', ['$parse', function ($parse) {
   return {
     restrict: 'A',

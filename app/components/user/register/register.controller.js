@@ -19,7 +19,7 @@ app.controller('registerCtrl', ['$scope', 'AuthenticationService', 'UserService'
                 angular.element('.custom-error:first').focus();
             }, 200);
         }
-    }
+    };
 
     function stuctureFormData() {
         var data = { };

@@ -9,14 +9,15 @@ app.controller('resetPasswordCtrl', ['$scope', 'UserService', '$state', '$timeou
   resetPassword.service = UserService;
   resetPassword.scope.dob = "";
 
-  function init(){
+  (function initController() {
     if(auth.data.message === "success"){
       $scope.valid = true;
     }else{
       $scope.valid = false;
       flashService.Error("Your session has expired", false);
     }
-  }
+  })();
+
 
   resetPassword.scope.submitForm = function (valid) {
     resetPassword.scope.submitted = true;
@@ -56,6 +57,5 @@ app.controller('resetPasswordCtrl', ['$scope', 'UserService', '$state', '$timeou
       .success(handleSuccess)
       .error(handleError);
   }
-  init();
 
 }]);

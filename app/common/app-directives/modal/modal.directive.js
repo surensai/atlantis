@@ -1,3 +1,4 @@
+'use strict';
 app.directive('modal', function () {
     return {
         restrict: 'EA',
@@ -14,6 +15,6 @@ app.directive('modal', function () {
         transclude: true,
         controller: function ($scope) {
             $scope.handler = 'pop';
-        },
+        }
     };
 });

@@ -55,7 +55,7 @@ app.controller('playerCtrl', ['$scope', '$state', 'PlayerService', 'flashService
       }, 200);
     }
 
-  }
+  };
 
   function stuctureFormData() {
     var data = {};
@@ -100,7 +100,7 @@ app.controller('playerCtrl', ['$scope', '$state', 'PlayerService', 'flashService
 
   player.scope.deleteListener = function (obj) {
     player.data.deleteObj = obj;
-  }
+  };
 
   player.scope.deleteAction = function(){
 
@@ -117,7 +117,7 @@ app.controller('playerCtrl', ['$scope', '$state', 'PlayerService', 'flashService
     player.service.deleteApi(player.data.deleteObj.id)
       .success(handleSuccess)
       .error(handleError);
-  }
+  };
 
 
   init();

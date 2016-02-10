@@ -19,9 +19,6 @@ module.exports = function (grunt) {
     cdnify: 'grunt-google-cdn'
   });
 
-  grunt.loadNpmTasks('grunt-json-angular-translate');
-
-
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
@@ -227,7 +224,7 @@ module.exports = function (grunt) {
         src: ['<%= root.app %>/assets/styles/{,*/}*.{scss,sass}'],
         ignorePath: /(\.\.\/){1,2}bower_components\//
       }
-    }, 
+    },
 
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
@@ -248,7 +245,7 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          generatedImagesDir: '<%= root.dist %>/images/generated'
+          generatedImagesDir: '<%= root.dist %>/assets/images/generated'
         }
       },
       server: {
@@ -301,7 +298,7 @@ module.exports = function (grunt) {
           '<%= root.dist %>/assets/styles'
         ],
         patterns: {
-          js: [[/(images\/[^''""]*\.(png|jpg|jpeg|gif|webp|svg))/g, 'Replacing references to images']]
+          js: [[/(assets\/images\/[^''""]*\.(png|jpg|jpeg|gif|webp|svg))/g, 'Replacing references to images']]
         }
       }
     },
@@ -459,29 +456,7 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
-    },
-
-    angular_i18n_finder: {
-      files: ['components/**/*.html','common/**/*.html', 'layout/{,*/}*.html'],
-      options: {
-        pathToJSON: [ "assets/i18n/*.json" ],
-        ignoreKeys: [ "Blah", "just a var key name", "what does the fox say" ],
-      },
-    },
-
-    jsonAngularTranslate: {
-    dist: {
-      options: {},
-      files: [{
-        expand: true,
-        cwd: 'app/assets/i18n',
-        src: '*.json',
-        dest: '<%= root.dist %>/assets/i18n',
-        ext: '.json'
-      }]
     }
-  },
-
 
   });
 
@@ -530,8 +505,7 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin',
-    //'jsonAngularTranslate'
+    'htmlmin'
   ]);
 
   grunt.registerTask('default', [

@@ -1,12 +1,22 @@
+'use strict';
 app.directive('dob', function () {
     return {
         restrict: 'EA',
         scope: {
            source: '='
-        },        
+        },
         templateUrl: 'common/app-directives/dob/dob.view.html',
         transclude: true,
         controller: function ($scope) {
+
+            function daysInMonth(month, year) {
+              return new Date(year, month, 0).getDate();
+            }
+
+            function setDOBFormate(month, day, year){
+              return month + "-" + day + "-" + year;
+            }
+
             $scope.days = ($scope.dob) ? daysInMonth($scope.dob.year, $scope.dob.month) :30;
             $scope.dob = {};
             $scope.dob.year = 1;
@@ -33,44 +43,36 @@ app.directive('dob', function () {
 
                 while ( startYear <= currentYear ) {
                         years.push(startYear++);
-                } 
+                }
                 return years;
-            }
+            };
 
             $scope.getDays = function() {
                 var days = [], i = 1;
                 while ( i <= $scope.days ) {
                         days.push(i++);
-                } 
+                }
                 return days;
-            }
-
-            function daysInMonth(month, year) {
-                return new Date(year, month, 0).getDate();
-            }
-
-            function setDOBFormate(month, day, year){
-              return month + "-" + day + "-" + year;
-            }
+            };
 
             $scope.$watchGroup(['dob.year', 'dob.month', 'dob.day'], function(newValues, oldValues, scope) {
                 if (newValues[0]){
-                  scope.source = setDOBFormate(scope.dob.month, scope.dob.day, scope.dob.year)
-                } 
+                  scope.source = setDOBFormate(scope.dob.month, scope.dob.day, scope.dob.year);
+                }
 
                 if (newValues[1]){
-                  scope.source = setDOBFormate(scope.dob.month, scope.dob.day, scope.dob.year)
+                  scope.source = setDOBFormate(scope.dob.month, scope.dob.day, scope.dob.year);
                 }
 
                 if (newValues[2]){
-                  scope.source = setDOBFormate(scope.dob.month, scope.dob.day, scope.dob.year)
-                }              
+                  scope.source = setDOBFormate(scope.dob.month, scope.dob.day, scope.dob.year);
+                }
             });
 
 
-        },
+        }
     };
 });
 
 //
-            //$scope.source = ($scope.dob) ? $scope.dob.year : ""; 
+            //$scope.source = ($scope.dob) ? $scope.dob.year : "";

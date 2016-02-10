@@ -15,7 +15,7 @@ app.controller('loginCtrl', ['$rootScope','$scope', '$state', 'AuthenticationSer
 
 	login.scope.submitForm = function(valid){
  		login.scope.submitted = true;
- 		if (valid || (login.data.email && login.data.password)) {         
+ 		if (valid || (login.data.email && login.data.password)) {
           loginAction();
           login.scope.signinForm.$setPristine();
       } else {
@@ -23,7 +23,7 @@ app.controller('loginCtrl', ['$rootScope','$scope', '$state', 'AuthenticationSer
               angular.element('.custom-error:first').focus();
           }, 200);
       }
- 	}
+ 	};
 
   login.scope.rememberMe = function() {
       login.service.setRememberMe(login.data);
@@ -39,9 +39,9 @@ app.controller('loginCtrl', ['$rootScope','$scope', '$state', 'AuthenticationSer
   function loginAction(){
     var formData = stuctureFormData();
 
-    var handleSuccess = function(data, status) {       
+    var handleSuccess = function(data, status) {
         login.service.SetCredentials(data, formData);
-        login.scope.signinForm.$valid = true;        
+        login.scope.signinForm.$valid = true;
         $state.go('account.dashboard');
     };
 
@@ -54,6 +54,6 @@ app.controller('loginCtrl', ['$rootScope','$scope', '$state', 'AuthenticationSer
         .error(handleError);
   }
 
-  
+
 
 }]);

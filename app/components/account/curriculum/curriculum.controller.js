@@ -1,6 +1,5 @@
 'use strict';
+app.controller('curriculumCtrl', [ function ( ) {
 
-app.controller('curriculumCtrl', ['$scope',  function ( $scope ) {
 
-    
 }]);

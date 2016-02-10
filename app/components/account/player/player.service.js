@@ -17,11 +17,11 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
 
   service.deleteApi = function (id) {
     return $http.delete(base_url + '/user/' + userID + '/student/' + id);
-  }
+  };
 
   service.updateApi = function (childID, child) {
     return $http.put(base_url + '/user/' + userID + '/student/' + childID + '/edit', child);
-  }
+  };
 
   service.uploadFileApi = function (file) {
     fd.append('content', file);
@@ -29,7 +29,7 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
       transformRequest: angular.identity,
       headers: {'Content-Type': undefined}
     });
-  }
+  };
 
   service.getObjById = function(data, id) {
     var obj = {};
@@ -44,8 +44,6 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
   service.removeItem = function(data, obj){
     data.splice(data.indexOf(obj),1);
   };
-
-
 
   return service;
 

@@ -1,6 +1,6 @@
 'use strict';
-angular.module('app').factory('utilsFactory', ['$filter', function ($filter) {	
-	
+angular.module('app').factory('utilsFactory', ['$filter', function ($filter) {
+
 	function getUTCDate(date, format){
 		if(!date) {
 			return null;
@@ -9,8 +9,8 @@ angular.module('app').factory('utilsFactory', ['$filter', function ($filter) {
 			return new Date($filter('date')(date, 'MM/dd/yyyy','UTC'));
 		}
 		return $filter('date')(date, format,'UTC');
-	};
-	
+	}
+
 	function validateObjectById (obj) {
         if (angular.isUndefined(obj) || jQuery.isEmptyObject(obj)) {
             return true;
@@ -19,18 +19,18 @@ angular.module('app').factory('utilsFactory', ['$filter', function ($filter) {
         } else {
             return false;
         }
-    };
-	
+  }
+
 	function isDefinedAndNotNull(textVal) {
 		return !_.isUndefined(textVal) && !_.isNull(textVal);
-	};
+	}
 
 	function utcDateFromString(string){
 		if(!string){
 			return null;
 		}
 		return new Date($filter('date')(string, 'MM/dd/yyyy','UTC'));
-	};
+	}
 
 	function stringFromUtcDate(dateObject,format){
 		if(!dateObject){
@@ -40,14 +40,14 @@ angular.module('app').factory('utilsFactory', ['$filter', function ($filter) {
 			return $filter('date')(dateObject, 'yyyy-MM-dd','UTC');
 		}
 		return $filter('date')(dateObject, format,'UTC');
-	};
+	}
 
 	function utcDateTimeFromString(string){
 		if(!string){
 			return null;
 		}
 		return new Date($filter('date')(string, 'yyyy-MM-ddTHH:mm:ssZ','UTC'));
-	};
+	}
 
 	function stringFromUtcDateTime(dateTimeObject,format){
 		if(!dateTimeObject){
@@ -57,7 +57,7 @@ angular.module('app').factory('utilsFactory', ['$filter', function ($filter) {
 			return $filter('date')(dateTimeObject, 'yyyy-MM-ddTHH:mm:ssZ','UTC');
 		}
 		return $filter('date')(dateTimeObject, format,'UTC');
-	};	
+	}
 
 	return {
 		validateObjectById: validateObjectById,

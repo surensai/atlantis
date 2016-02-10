@@ -19,7 +19,7 @@ app.controller('changePasswordCtrl', ['$scope', 'UserService','AuthenticationSer
         angular.element('.custom-error:first').focus();
       }, 200);
     }
-  }
+  };
 
   function stuctureFormData() {
     var data = { };
@@ -37,11 +37,11 @@ app.controller('changePasswordCtrl', ['$scope', 'UserService','AuthenticationSer
     var handleSuccess = function (data) {
 
       AuthenticationService.updateCredentials({password:changePassword.data.newPassword});
-       flashService.Success(data.message, true)
+       flashService.Success(data.message, true);
     };
 
     var handleError = function (error) {
-      flashService.Error(error.error, false)
+      flashService.Error(error.error, false);
 
     };
 

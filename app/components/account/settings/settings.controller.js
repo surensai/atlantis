@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('settingsCtrl', ['$scope', function ($scope) {
+app.controller('settingsCtrl', [ function () {
 
 
 

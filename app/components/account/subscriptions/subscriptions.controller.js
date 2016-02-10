@@ -1,7 +1,5 @@
 'use strict';
 
-app.controller('subscriptionsCtrl', ['$scope', function ($scope) {
-
-
+app.controller('subscriptionsCtrl', [ function () {
 
 }]);
