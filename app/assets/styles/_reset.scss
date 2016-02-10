@@ -1,0 +1,92 @@
+.reset-padding-margin {
+	padding: 0px;
+	margin: 0px;
+}
+
+.btn-primary {
+	background-color: $sp-green;
+	border: 0px;
+}
+
+body {
+  background-color: $white-color;
+}
+
+body, html {
+  height: 100%;
+}
+
+.navbar {
+	border-radius: 0px;
+}
+
+.navbar-default {
+	background-color: transparent;
+	border: none;	
+}
+
+.navbar {
+	min-height: 82px;
+}
+
+.has-error .help-block{
+  color: #FF8D8B!important;
+}
+
+.spinner {
+  display: inline-block;
+  opacity: 0;
+  width: 0;
+
+  -webkit-transition: opacity 0.25s, width 0.25s;
+  -moz-transition: opacity 0.25s, width 0.25s;
+  -o-transition: opacity 0.25s, width 0.25s;
+  transition: opacity 0.25s, width 0.25s;
+}
+
+.has-spinner.active {
+  cursor:progress;
+}
+
+.has-spinner.active .spinner {
+  opacity: 1;
+  width: auto; /* This doesn't work, just fix for unkown width elements */
+}
+
+.has-spinner.btn-mini.active .spinner {
+    width: 10px;
+}
+
+.has-spinner.btn-small.active .spinner {
+    width: 13px;
+}
+
+.has-spinner.btn.active .spinner {
+    width: 16px;
+}
+
+.has-spinner.btn-large.active .spinner {
+    width: 19px;
+}
+
+.alert-danger {
+  background-color: #D62C29;
+  border: none;
+  border-radius: 0px;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 0px;
+}
+
+.alert-success {
+  background-color: #3c763d;
+  color: #fff;
+  border: 0px;
+  margin-bottom: 0px;
+  border-radius: 0px;
+  text-align: center;
+}
+
+.width50-per{
+  width: 50%;
+}
