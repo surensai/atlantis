@@ -16,15 +16,14 @@ angular.module("app").controller('playerCtrl', ['$scope', '$state', 'PlayerServi
 
   player.model = {};
 
-
-  function init(){
+  (function initController() {
     player.data.playersList = playersListData.data;
 
     if($state.params.id){
       player.scope.isUpdate = true;
       player.data.playerItem = player.model.playerItem = player.service.getObjById(player.data.playersList, $state.params.id);
     }
-  }
+  })();
 
   player.scope.submitForm = function () {
 
@@ -118,8 +117,5 @@ angular.module("app").controller('playerCtrl', ['$scope', '$state', 'PlayerServi
       .success(handleSuccess)
       .error(handleError);
   };
-
-
-  init();
 
 }]);

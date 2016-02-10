@@ -423,7 +423,7 @@ module.exports = function (grunt) {
         }, {
           expand: true,
           cwd: '.',
-          src: 'libs/bootstrap-sass-official/assets/fonts/bootstrap/*',
+          src: 'assets/libs/bootstrap-sass-official/assets/fonts/bootstrap/*',
           dest: '<%= root.dist %>'
         }]
       },

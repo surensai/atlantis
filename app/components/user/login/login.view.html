@@ -13,16 +13,16 @@
 
         <div class="form-group has-feedback" data-ng-class="{ 'has-error' : (submitted && !login.data.email) || (signinForm.name.$invalid && !signinForm.name.$pristine) }">
             <input type="email" name="email" class="form-control" data-ng-model="login.data.email" placeholder="{{ 'user.email' | translate }}"  required >
-            <!--<i class="glyphicon glyphicon-user form-control-feedback"></i>-->
+            <i class="glyphicon glyphicon-user form-control-feedback"></i>
         </div>
 
         <div class="form-group has-feedback" data-ng-class="{ 'has-error' : (submitted && !login.data.password) || (signinForm.name.$invalid && !signinForm.name.$pristine) }">
             <input type="password" name="password" class="form-control" data-ng-model="login.data.password" placeholder="{{ 'user.password' | translate }}"  required >
-            <!--<i class="glyphicon glyphicon-lock form-control-feedback"></i>-->
+            <i class="glyphicon glyphicon-lock form-control-feedback"></i>
         </div>
 
         <button class="btn btn-large btn-block btn-primary" type="submit" data-ng-disabled="!login.data.email || !login.data.password" data-translate="common.buttons.submit">Sign in</button>
-        
+
         <div class="checkbox">
           <label  data-ng-click="rememberMe()">
             <input type="checkbox" data-ng-disabled="!login.data.email || !login.data.password" value="remember-me" data-ng-model="login.data.remember" data-translate="user.login.remember_me"> Remember me

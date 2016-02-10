@@ -1,0 +1,32 @@
+<div id="account-nav-wrapper">
+  <div class="container">
+    <ul class="account-nav">
+        <li>
+            <a ui-sref="account.dashboard">
+              <span class="glyphicon glyphicon-home"></span>
+              <span data-translate="nav.sidebar.dashboard">Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a ui-sref='account.players'>
+              <span class="glyphicon glyphicon-user"> </span>
+              <span data-translate="nav.sidebar.players"> Players </span>
+            </a>
+        </li>
+        <li>
+            <a ui-sref="account.curriculum" >
+              <span class="glyphicon glyphicon-list-alt"></span>
+              <span data-translate="nav.sidebar.curriculum"> My Curriculum </span>
+            </a>
+        </li>
+        <li>
+            <a ui-sref="account.settings" >
+              <span class="glyphicon glyphicon-cog"></span>
+              <span data-translate="nav.sidebar.settings"> My Settings </span>
+            </a>
+        </li>
+    </ul>
+  </div>
+</div>
+
+<div ui-view ></div>

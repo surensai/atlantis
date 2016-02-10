@@ -158,7 +158,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
 
     .state('account', {
       url: '/account',
-      templateUrl: "layout/sidebar.html",
+      templateUrl: "layout/account-nav.html",
       data: {
         pageTitle: 'Square Panda - Account'
       }
@@ -183,7 +183,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
         pageTitle: 'Square Panda - Dashboard'
       }
     })
-    
+
     .state('account.players', {
       url: '/players',
       templateUrl: urlBuilder('account/player', 'players'),
