@@ -1,0 +1,66 @@
+.error-mesasage{
+  color:red;
+}
+
+.login-wrapper {
+	background-color:rgba(0, 0, 0, 0.8);
+	padding-top: 50px;
+}
+
+.login-bg {
+	background-image: url('../images/login-bg.jpg');
+	background-repeat: no-repeat;
+    background-size: 100% ;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    z-index: -999;    
+}
+
+.login-form {
+ 	h2{ 
+ 		color: $white-color;
+ 		text-align: center;
+ 	}
+
+	input {
+		border-radius: 0px;
+		background-color: #efefef;
+		border: 0px;
+		color: #222;
+	}
+
+	input::-webkit-input-placeholder{
+	  color:    #948e8a;
+	}
+
+	input:-moz-placeholder {
+	  color:    #948e8a;
+	}
+
+	input::-moz-placeholder	{
+	  color:    #948e8a;
+	}
+
+	input:-ms-input-placeholder {
+	  color:    #948e8a;
+	}
+
+	button {
+		border-radius: 0px;
+	}
+
+	label {
+		color: #fff;
+	}
+
+	.btn-primary {
+		height: 45px;
+	}
+
+	input[type="email"], input[type="password"], input[type="text"] {
+		height: 45px;
+	}
+}

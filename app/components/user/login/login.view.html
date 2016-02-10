@@ -1,0 +1,39 @@
+<div class="login-bg"></div>
+<div class="alert alert-success" data-ng-if="globals.flash && globals.flash.type == 'success'">
+    {{globals.flash.message}}
+</div>
+<div class="alert alert-danger" data-ng-if="globals.flash && globals.flash.type !== 'success'">
+    {{globals.flash.message}}
+</div>
+<div class="content login-wrapper">
+  <div class="col-lg-4"></div>
+  <div class="col-lg-4">
+      <form name="signinForm" class="login-form" data-ng-submit="login.scope.submitForm(signinForm.$valid)" novalidate>
+        <h2 class="form-signin-heading" data-translate="user.login.sign_in">Sign in</h2>
+
+        <div class="form-group has-feedback" data-ng-class="{ 'has-error' : (submitted && !login.data.email) || (signinForm.name.$invalid && !signinForm.name.$pristine) }">
+            <input type="email" name="email" class="form-control" data-ng-model="login.data.email" placeholder="{{ 'user.email' | translate }}"  required >
+            <i class="glyphicon glyphicon-user form-control-feedback"></i>
+        </div>
+
+        <div class="form-group has-feedback" data-ng-class="{ 'has-error' : (submitted && !login.data.password) || (signinForm.name.$invalid && !signinForm.name.$pristine) }">
+            <input type="password" name="password" class="form-control" data-ng-model="login.data.password" placeholder="{{ 'user.password' | translate }}"  required >
+            <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+        </div>
+
+        <button class="btn btn-large btn-block btn-primary" type="submit" data-ng-disabled="!login.data.email || !login.data.password" data-translate="common.buttons.submit">Sign in</button>
+
+        <div class="checkbox">
+          <label  data-ng-click="rememberMe()">
+            <input type="checkbox" data-ng-disabled="!login.data.email || !login.data.password" value="remember-me" data-ng-model="login.data.remember" data-translate="user.login.remember_me"> Remember me
+          </label>
+        </div>
+        <div class="">
+            <a href="#/forgot_password" class="pull-left" data-translate="user.login.forgot_password">Forgot password?</a>
+            <a href="#/register" class="pull-right" data-translate="user.login.register">Not registered yet? Sign Up</a>
+        </div>
+
+    </form>
+  </div>
+  <div class="col-lg-4"></div>
+</div>

@@ -1,0 +1,62 @@
+#account-nav-wrapper {
+  background: #4CBC96;
+  overflow: auto;
+}
+
+#page-content-wrapper {
+  width: 100%;
+}
+
+
+.account-nav {
+  @extend .reset-padding-margin;
+  li{
+    list-style: none;
+    a {
+      color: #fff;
+      display: block;
+      float: left;
+      text-decoration: none;
+      padding: 10px;
+      list-style: none;
+    }
+    a:hover {
+      text-decoration: none;
+
+      background: rgba(255,255,255,0.2);
+    }
+
+    .sidebar-nav li a:active,
+    .sidebar-nav li a:focus {
+      text-decoration: none;
+    }
+  }
+}
+
+.glyphiconsize{
+  font-size: 20px;;
+}
+.dashboarddiv{
+  margin-top: 15px;
+}
+.imgdiv{
+  padding-right: 0px;
+}
+.paneldiv{
+  padding-left: 0px;
+  .panelcolor{
+    background-color: #FCFAFA;
+    p{
+      text-align: justify;
+    }
+    .fontsize{
+     font-size: 24px;
+    }
+    .panel-footer{
+      padding-bottom: 0px;
+    }
+  }
+}
+
+
+

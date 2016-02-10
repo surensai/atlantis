@@ -1,0 +1,30 @@
+<div class="alert alert-success" data-ng-if="globals.flash && globals.flash.type">
+  <strong>{{globals.flash.type}}!</strong> {{globals.flash.message}}
+</div>
+<table class="table table-hover">
+  <tr>
+    <td colspan="3">
+        <button type="button" class="btn btn-primary btn-lg" ui-sref="account.addplayer" data-translate="player.add_new_player">Add New Player</button>
+    </td>
+  </tr>
+  <tr data-ng-repeat="player in player.data.playersList">
+    <td width="110">
+      <img data-ng-if="!player.profileURL" src="assets/images/fallback-img.png" alt="player" width="100" height="100" class="img-circle" />
+      <img data-ng-if="player.profileURL" data-ng-src="{{player.profileURL}}" alt="player" width="100" height="100" class="img-circle" />
+    </td>
+    <td>
+      {{player.firstName}}
+    </td>
+    <td>
+      <a ui-sref="account.editPlayer({ id: player.id })"> <i class="glyphicon glyphicon-edit"></i></a>
+      <span data-target="#{{modal}}" role="button" class="glyphicon glyphicon-trash" data-toggle="modal" data-ng-click="deleteListener(player)"></span>
+      <a href="javascript:;"data-translate="player.more">more</a>
+    </td>
+  </tr>
+</table>
+
+
+<modal my-handler="modal" modal-body="modalBody" modal-footer="modalFooter" modal-header="modalTitle" data-ng-click-right-button="deleteAction()"></modal>
+
+
+
