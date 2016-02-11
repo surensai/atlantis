@@ -63,26 +63,6 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
       }
     })
 
-    .state('edit_profile', {
-      url: '/edit',
-      templateUrl: urlBuilder('user/edit_profile', 'edit-profile'),
-      controller: 'editProfileCtrl',
-      controllerAs: "editProfile",
-      data: {
-        pageTitle: 'Square Panda - Edit Profile'
-      }
-    })
-
-    .state('change_password', {
-      url: '/change_password',
-      templateUrl: urlBuilder('user/change_password', 'change-password'),
-      controller: 'changePasswordCtrl',
-      controllerAs: "changePassword",
-      data: {
-        pageTitle: 'Square Panda - Change Password'
-      }
-    })
-
     .state('reset_password', {
       url: '/reset_password/:token',
       templateUrl: urlBuilder('user/reset_password', 'reset-password'),
@@ -246,6 +226,26 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
       controllerAs: "listplayer",
       data: {
         pageTitle: 'Square Panda - Settings'
+      }
+    })
+
+    .state('account.edit_profile', {
+      url: '/edit',
+      templateUrl: urlBuilder('account/edit_profile', 'edit-profile'),
+      controller: 'editProfileCtrl',
+      controllerAs: "editProfile",
+      data: {
+        pageTitle: 'Square Panda - Edit Profile'
+      }
+    })
+
+    .state('account.change_password', {
+      url: '/change_password',
+      templateUrl: urlBuilder('account/change_password', 'change-password'),
+      controller: 'changePasswordCtrl',
+      controllerAs: "changePassword",
+      data: {
+        pageTitle: 'Square Panda - Change Password'
       }
     })
     // this code will rid # in urls

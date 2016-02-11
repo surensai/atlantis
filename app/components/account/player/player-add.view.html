@@ -1,8 +1,8 @@
 <div class="col-lg-2"></div>
 <div class="col-lg-8">
-  <form name="playerForm"  ng-submit="submitForm(playerForm.$valid)" novalidate>
-    <h2 class="form-signin-heading" data-translate="nav.edit_player.header" data-ng-if="player.scope.isUpdate">Edit Profile</h2>
-    <h2 class="form-signin-heading" data-translate="nav.add_player.header" data-ng-if="!player.scope.isUpdate">Add Player</h2>
+  <form name="playerForm"  ng-submit="player.submitForm(playerForm)" novalidate>
+    <h2 class="form-signin-heading" data-translate="nav.edit_player.header" data-ng-if="player.isUpdate">Edit Profile</h2>
+    <h2 class="form-signin-heading" data-translate="nav.add_player.header" data-ng-if="!player.isUpdate">Add Player</h2>
     <div class="form-group"
          ng-class="{ 'has-error' : (submitted && !playerForm.firstName) || (playerForm.firstName.$invalid && !playerForm.firstName.$pristine) }">
       <input type="text" name="firstName" class="form-control" ng-model="player.model.playerItem.firstName"
