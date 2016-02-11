@@ -92,25 +92,13 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
     };
 
     service.SetCredentials = function (user, formData) {
-        var authdata = Base64.encode(formData.identifier + ':' + formData.password);
-        user.authdata = authdata;
+        if(formData){
+          user.authdata = Base64.encode(formData.identifier + ':' + formData.password);
+          $http.defaults.headers.common['Authorization'] = 'Basic ' + user.authdata; // jshint ignore:line
+        }
         $rootScope.globals = {
             currentUser: user
         };
-
-        $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
-        $cookieStore.put('globals', $rootScope.globals);
-    };
-
-    service.updateCredentials = function (data) {
-        var user = $rootScope.globals.currentUser;
-        $rootScope.globals.currentUser = {};
-        var authdata = Base64.encode(user.email + ':' + data.password);
-        user.authdata = authdata;
-        $rootScope.globals = {
-            currentUser: user
-        };
-        $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
         $cookieStore.put('globals', $rootScope.globals);
     };
 

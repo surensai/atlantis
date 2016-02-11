@@ -3,10 +3,9 @@
 angular.module("app").controller('playerCtrl', ['$scope', '$state', 'PlayerService', 'flashService', 'playersListData', function ($scope, $state, PlayerService, flashService, playersListData) {
 
   var player = this;
-  player.scope = $scope;
-  player.scope.modalTitle = 'Warning!';
-  player.scope.modalBody = 'Are you sure do you want to delete player?';
-  player.scope.isUpdate = false;
+  player.modalTitle = 'Warning!';
+  player.modalBody = 'Are you sure do you want to delete player?';
+  player.isUpdate = false;
   player.service = PlayerService;
 
   player.data = {};
@@ -20,23 +19,23 @@ angular.module("app").controller('playerCtrl', ['$scope', '$state', 'PlayerServi
     player.data.playersList = playersListData.data;
 
     if($state.params.id){
-      player.scope.isUpdate = true;
+      player.isUpdate = true;
       player.data.playerItem = player.model.playerItem = player.service.getObjById(player.data.playersList, $state.params.id);
     }
   })();
 
-  player.scope.submitForm = function () {
+  player.submitForm = function (form) {
 
-    player.scope.submitted = true;
-    if (player.scope.playerForm.$valid) {
-      var handleSuccess = function (data, status) {
+    player.submitted = true;
+    if (form.$valid) {
+      var handleSuccess = function (data) {
         player.model.playerItem.profileURL = data.files[0].url;
-        if(player.scope.isUpdate) {
+        if(player.isUpdate) {
           updateAction();
         } else {
           addAction();
         }
-        player.scope.playerForm.$setPristine();
+        form.$setPristine();
         flashService.Success("File uploaded successfully!", false);
       };
 
@@ -49,7 +48,7 @@ angular.module("app").controller('playerCtrl', ['$scope', '$state', 'PlayerServi
         .success(handleSuccess)
         .error(handleError);
     } else {
-      player.scope.timeout(function () {
+      player.timeout(function () {
         angular.element('.custom-error:first').focus();
       }, 200);
     }
@@ -97,11 +96,11 @@ angular.module("app").controller('playerCtrl', ['$scope', '$state', 'PlayerServi
   }
 
 
-  player.scope.deleteListener = function (obj) {
+  player.deleteListener = function (obj) {
     player.data.deleteObj = obj;
   };
 
-  player.scope.deleteAction = function(){
+  player.deleteAction = function(){
 
     var handleSuccess = function () {
       player.service.removeItem(player.data.playersList, player.data.deleteObj);

@@ -3,27 +3,20 @@
 angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', '$state', '$timeout', 'flashService', 'auth', function ($scope, UserService, $state, $timeout, flashService, auth) {
 
   var resetPassword = this;
-  resetPassword.scope = $scope;
-  resetPassword.data = {};
   resetPassword.model = {};
-  resetPassword.service = UserService;
-  resetPassword.scope.dob = "";
 
   (function initController() {
-    if(auth.data.message === "success"){
-      $scope.valid = true;
-    }else{
-      $scope.valid = false;
-      flashService.Error("Your session has expired", false);
+    if (auth.data.message !== "success") {
+      flashService.Error("Your session has expired", true);
+      $state.go('messages');
     }
   })();
 
-
-  resetPassword.scope.submitForm = function (valid) {
-    resetPassword.scope.submitted = true;
-    if (valid) {
+  resetPassword.submitForm = function (form) {
+    resetPassword.submitted = true;
+    if (form.$valid) {
       save();
-      resetPassword.scope.userForm.$setPristine();
+      form.$setPristine();
     } else {
       $timeout(function () {
         angular.element('.custom-error:first').focus();
@@ -31,29 +24,18 @@ angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', 
     }
   };
 
-  function stuctureFormData() {
-    var data = { };
-    data.password = resetPassword.data.newPassword;
-    data.confirmPassword = resetPassword.data.confirmPassword;
-
-    return data;
-  }
-
   function save() {
-
-    var formData = stuctureFormData();
-
     var handleSuccess = function (data) {
-      resetPassword.data ={};
-      flashService.Success(data.message, true);
+      resetPassword.data = {};
       $state.go('login');
+      flashService.Success(data.message, true);
     };
 
     var handleError = function (error) {
       flashService.Error(error.error, false);
     };
 
-    resetPassword.service.resetPasswordAPI(formData,$state.params.token)
+    UserService.resetPasswordAPI(resetPassword.model, $state.params.token)
       .success(handleSuccess)
       .error(handleError);
   }
