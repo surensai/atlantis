@@ -420,11 +420,16 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= root.dist %>/assets/images',
           src: ['generated/*']
-        }, {
+        },{
           expand: true,
-          cwd: '.',
+          cwd: '<%= root.app %>',
           src: 'assets/libs/bootstrap-sass-official/assets/fonts/bootstrap/*',
           dest: '<%= root.dist %>'
+        },{
+            expand: true,
+            cwd: '<%= root.app %>',
+            src: 'assets/i18n/*',
+            dest: '<%= root.dist %>'
         }]
       },
       styles: {
