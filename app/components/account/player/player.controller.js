@@ -14,6 +14,12 @@ angular.module("app").controller('playerCtrl', ['$scope', '$state', 'PlayerServi
   player.data.playerItem = {};
   player.data.deleteObj = {};
 
+  player.scope.show = true;
+
+  player.scope.closeAlert = function(index) {
+    player.scope.show = false;
+  };
+
   player.model = {};
 
   (function initController() {
@@ -45,7 +51,7 @@ angular.module("app").controller('playerCtrl', ['$scope', '$state', 'PlayerServi
       };
       var file = $scope.myFile;
 
-      player.service.uploadFileApi(file)
+      $scope.myPromise = player.service.uploadFileApi(file)
         .success(handleSuccess)
         .error(handleError);
     } else {

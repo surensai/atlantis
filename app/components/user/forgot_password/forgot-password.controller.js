@@ -7,6 +7,7 @@ angular.module("app").controller('forgotPasswordCtrl', ['$scope','UserService','
 	forgot.data = {};
 	forgot.model = {};
   forgot.service = UserService;
+  forgot.scope.spinIt = false;
 
 	forgot.scope.submitForm = function(){
  		forgot.scope.submitted = true;
@@ -29,13 +30,16 @@ angular.module("app").controller('forgotPasswordCtrl', ['$scope','UserService','
   	function forgotAction(){
 
   		var formData = stuctureFormData();
+      forgot.scope.spinIt = true;
 
       var handleSuccess = function (data) {
         forgot.data ={};
+        forgot.scope.spinIt = false;
         flashService.Success(data.message, true);
       };
 
       var handleError = function (error) {
+        forgot.scope.spinIt = false;
         flashService.Error(error.error, false);
       };
 

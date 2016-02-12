@@ -9,5 +9,7 @@ var app = angular.module('app', [
     'ngTouch',
     'pascalprecht.translate',
     'angular-momentjs',
-    'underscore'
+    'underscore',
+    'ui.bootstrap',
+    'cgBusy'
 ]);

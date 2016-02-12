@@ -2,10 +2,10 @@
   <div class="pull-left width50-per header-bg">
     <div class="navbar navbar-default" role="navigation">
       <div class="container">
-        <div class="navbar-header header_left">          
+        <div class="navbar-header header_left">
           <a class="navbar-brand" href="#/home"><img src="assets/images/header_logo.png" width="50%" /></a>
         </div>
-        
+
     </div>
     </div>
   </div>
@@ -25,11 +25,12 @@
         </div>
         <div class="top-header">
           <ul data-ng-if="!globals.currentUser">
-            <li ng-class="{active: $state.includes('login')}"><a href="#/login" translate="nav.login.title">Login</a><span>|</span>
+            <li ng-class="{active: $state.includes('login')}"><a ui-sref="login" translate="nav.login.title">Login</a><span>|</span>
             </li>
             <li ng-class="{active: $state.includes('register')}"><a ng-href="#/register" translate="nav.register.title">Register</a>
             </li>
           </ul>
+        </div>
         </div>
 
       </div>
