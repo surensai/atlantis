@@ -3,21 +3,17 @@
 angular.module("app").controller('loginCtrl', ['$rootScope','$scope', '$state', 'AuthenticationService', 'flashService', '$timeout' , function ($rootScope, $scope, $state, AuthenticationService, flashService, $timeout ) {
 
 	var login = this;
-	login.scope = $scope;
-	login.data = {};
 	login.model = {};
-	login.service = AuthenticationService;
 
 	(function initController() {
-      login.service.ClearCredentials();
-      login.data = login.service.getRememberMe();
+    AuthenticationService.ClearCredentials();
+    login.model = AuthenticationService.getRememberMe();
   })();
 
-	login.scope.submitForm = function(valid){
- 		login.scope.submitted = true;
- 		if (valid || (login.data.email && login.data.password)) {
+	login.submitForm = function(form){
+ 		if (form.$valid || (login.model.email && login.model.password)) {
           loginAction();
-          login.scope.signinForm.$setPristine();
+          form.$setPristine();
       } else {
           $timeout(function() {
               angular.element('.custom-error:first').focus();
@@ -25,35 +21,25 @@ angular.module("app").controller('loginCtrl', ['$rootScope','$scope', '$state', 
       }
  	};
 
-  login.scope.rememberMe = function() {
-      login.service.setRememberMe(login.data);
-  };
-
- 	function stuctureFormData (){
+  function stuctureFormData (){
     var data = { };
-    data.identifier = login.data.email;
-    data.password = login.data.password;
+    data.identifier = login.model.email;
+    data.password = login.model.password;
     return data;
   }
 
   function loginAction(){
-    var formData = stuctureFormData();
-
     var handleSuccess = function(data) {
-        login.service.SetCredentials(data, formData);
-        login.scope.signinForm.$valid = true;
+        AuthenticationService.setRememberMe(login.model);
+        AuthenticationService.SetCredentials(data, login.model);
         $state.go('account.dashboard');
     };
-
     var handleError = function(error) {
         flashService.Error(error.error, false);
     };
-
-    login.service.loginApi(formData)
+    AuthenticationService.loginApi(stuctureFormData())
         .success(handleSuccess)
         .error(handleError);
   }
-
-
 
 }]);
