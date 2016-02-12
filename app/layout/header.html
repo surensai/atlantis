@@ -25,11 +25,12 @@
         </div>
         <div class="top-header">
           <ul data-ng-if="!globals.currentUser">
-            <li ng-class="{active: $state.includes('login')}"><a href="#/login" translate="nav.login.title">Login</a><span>|</span>
+            <li ng-class="{active: $state.includes('login')}"><a ui-sref="login" translate="nav.login.title">Login</a><span>|</span>
             </li>
             <li ng-class="{active: $state.includes('register')}"><a ng-href="#/register" translate="nav.register.title">Register</a>
             </li>
           </ul>
+        </div>
         </div>
 
       </div>

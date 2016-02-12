@@ -1,5 +1,6 @@
-<div class="alert alert-success" data-ng-if="globals.flash && globals.flash.type">
-  <strong>{{globals.flash.type}}!</strong> {{globals.flash.message}}
+<div>
+  <uib-alert type="{{globals.flash.type}}" close="closeAlert()" data-ng-if="globals.flash && globals.flash.type && show"
+             dismiss-on-timeout="4000">{{globals.flash.message}}</uib-alert>
 </div>
 <table class="table table-hover">
   <tr>
