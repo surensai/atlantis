@@ -6,7 +6,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   player.modalTitle = 'Warning!';
   player.modalBody = 'Are you sure do you want to delete player?';
   player.isUpdate = false;
-
+  player.model = {};
   player.data = {};
   player.data.playersList = [];
   player.data.playerItem = {};
@@ -18,11 +18,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
     player.show = false;
   };
 
-  player.model = {};
-
   (function initController() {
     player.data.playersList = playersListData.data;
-
     if($state.params.id){
       player.isUpdate = true;
       player.data.playerItem = player.model.playerItem = player.service.getObjById(player.data.playersList, $state.params.id);
