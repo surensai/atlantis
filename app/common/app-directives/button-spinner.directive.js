@@ -5,7 +5,7 @@ app.directive('spinner', function() {
       spinner: '=',
       doIt: "&doIt"
     },
-    link: function(scope, element, attrs) {
+    link: function(scope, element) {
       var spinnerButton = angular.element("<button class='btn btn-lg btn-primary btn-block disabled'><i class='glyphicon glyphicon-repeat spinning'></i>Loading...</button>");
       element.after(spinnerButton);
 

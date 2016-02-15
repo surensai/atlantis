@@ -7,7 +7,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     $rootScope.globals = $cookieStore.get('globals') || {};
 
     if ($rootScope.globals.currentUser) {
-      $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+      $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
     }
   }
 ]).config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {

@@ -20,7 +20,9 @@ angular.module('app').factory('$remember', function () {
   }
 
   return function (name, values) {
-    if (arguments.length === 1) { return fetchValue(name); }
+    if (arguments.length === 1) {
+      return fetchValue(name);
+    }
     var cookie = name + '=';
     if (typeof values === 'object') {
       var expires = '';

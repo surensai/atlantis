@@ -1,7 +1,4 @@
 'use strict';
-angular.module('app').factory('utilsFactory', [ function () {
+angular.module('app').factory('utilsFactory', [function () {
 
-	return {
-
-	};
 }]);
