@@ -1,0 +1,15 @@
+.dashboard-container{
+  margin-top: 15px;
+  .feed-row{
+    .panel{
+      border: solid 1px #c2ccd1;
+      .panel-footer{
+        .icons-block{
+          i{
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}

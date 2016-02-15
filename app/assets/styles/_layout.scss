@@ -39,16 +39,21 @@
         margin-top: 38px;
       }
   	}
-
   }
-
 }
 
 .top-header{
   float: right;
   padding: 25% 20px;
+
   ul, li {
     @extend .reset-padding-margin;
+  }
+  ul.dropdown-menu{
+    left: -50px;
+    li a {
+      color: #333333;
+    }
   }
 
   li {
