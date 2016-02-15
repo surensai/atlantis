@@ -2,25 +2,25 @@
   <div class="container">
     <ul class="account-nav">
         <li>
-            <a ui-sref="account.dashboard">
+            <a ui-sref="account.dashboard" ng-class="{active: $state.includes('account.dashboard')}">
               <span class="glyphicon glyphicon-home"></span>
               <span data-translate="nav.sidebar.dashboard">Dashboard</span>
             </a>
         </li>
         <li>
-            <a ui-sref='account.players'>
+            <a ui-sref='account.players' ng-class="{active: $state.includes('account.players')}">
               <span class="glyphicon glyphicon-user"> </span>
               <span data-translate="nav.sidebar.players"> Players </span>
             </a>
         </li>
         <li>
-            <a ui-sref="account.curriculum" >
+            <a ui-sref="account.curriculum" ng-class="{active: $state.includes('account.curriculum')}">
               <span class="glyphicon glyphicon-list-alt"></span>
               <span data-translate="nav.sidebar.curriculum"> My Curriculum </span>
             </a>
         </li>
         <li>
-            <a ui-sref="account.settings" >
+            <a ui-sref="account.settings" ng-class="{active: $state.includes('account.settings')}">
               <span class="glyphicon glyphicon-cog"></span>
               <span data-translate="nav.sidebar.settings"> My Settings </span>
             </a>
