@@ -202,23 +202,23 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         src: ['<%= root.app %>/index.html'],
-        ignorePath:  /\.\.\//
+        ignorePath: /\.\.\//
       },
       test: {
         devDependencies: true,
         src: '<%= karma.unit.configFile %>',
-        ignorePath:  /\.\.\//,
-        fileTypes:{
+        ignorePath: /\.\.\//,
+        fileTypes: {
           js: {
             block: /(([\s\t]*)\/{2}\s*?bower:\s*?(\S*))(\n|\r|.)*?(\/{2}\s*endbower)/gi,
-              detect: {
-                js: /'(.*\.js)'/gi
-              },
-              replace: {
-                js: '\'{{filePath}}\','
-              }
+            detect: {
+              js: /'(.*\.js)'/gi
+            },
+            replace: {
+              js: '\'{{filePath}}\','
             }
           }
+        }
       },
       sass: {
         src: ['<%= root.app %>/assets/styles/{,*/}*.{scss,sass}'],
@@ -376,7 +376,7 @@ module.exports = function (grunt) {
           usemin: 'scripts/scripts.js'
         },
         cwd: '<%= root.app %>',
-        src: ['components/**/*.html','common/**/*.html', 'layout/{,*/}*.html'],
+        src: ['components/**/*.html', 'common/**/*.html', 'layout/{,*/}*.html'],
         dest: '.tmp/templateCache.js'
       }
     },
@@ -420,16 +420,21 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= root.dist %>/assets/images',
           src: ['generated/*']
-        },{
+        }, {
           expand: true,
           cwd: '<%= root.app %>',
           src: 'assets/libs/bootstrap-sass-official/assets/fonts/bootstrap/*',
           dest: '<%= root.dist %>'
-        },{
-            expand: true,
-            cwd: '<%= root.app %>',
-            src: 'assets/i18n/*',
-            dest: '<%= root.dist %>'
+        }, {
+          expand: true,
+          cwd: '<%= root.app %>',
+          src: 'assets/libs/font-awesome/fonts/*',
+          dest: '<%= root.dist %>'
+        }, {
+          expand: true,
+          cwd: '<%= root.app %>',
+          src: 'assets/i18n/*',
+          dest: '<%= root.dist %>'
         }]
       },
       styles: {
