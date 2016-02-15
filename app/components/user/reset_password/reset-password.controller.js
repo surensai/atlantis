@@ -5,7 +5,7 @@ angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', 
   var resetPassword = this;
   resetPassword.model = {};
 
-  (function initController() {
+  (function () {
     if (auth.data.message !== "success") {
       flashService.Error("Your session has expired", true);
       $state.go('messages');
