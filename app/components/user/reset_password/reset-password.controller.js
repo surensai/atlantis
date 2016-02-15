@@ -7,7 +7,7 @@ angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', 
 
   (function () {
     if (auth.data.message !== "success") {
-      flashService.Error("Your session has expired", true);
+      flashService.showError("Your session has expired", true);
       $state.go('messages');
     }
   })();
@@ -28,11 +28,11 @@ angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', 
     var handleSuccess = function (data) {
       resetPassword.data = {};
       $state.go('login');
-      flashService.Success(data.message, true);
+      flashService.showSuccess(data.message, true);
     };
 
     var handleError = function (error) {
-      flashService.Error(error.error, false);
+      flashService.showError(error.error, false);
     };
 
     UserService.resetPasswordAPI(resetPassword.model, $state.params.token)
