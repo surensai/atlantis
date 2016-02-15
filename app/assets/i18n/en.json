@@ -1,148 +1,149 @@
 {
-    "nav": {
-        "home": {
-            "title": "Home",
-            "Header": "Home"
-        },
-      "header":{
-        "dashboard":"Dashboard",
-        "edit_profile":"Edit Profile",
-        "change_password":"Change Password",
-        "subscriptions":"My Subscriptions",
-        "logout":"Logout"
-      },
-      "sidebar":{
-        "dashboard":"Dashboard",
-        "players":"Players",
-        "curriculum":"My Curriculum",
-        "settings":"My Settings"
-      },
-      "footer":{
-        "glyphicon":"square panda"
-      },
-        "login": {
-            "title": "Login",
-            "header": "Login"
-        },
-        "register": {
-            "title": "Register",
-            "header": "Register"
-        },
-        "edit_profile": {
-          "title": "Edit Profile",
-          "header": "Edit Profile"
-        },
-        "change_password": {
-          "title": "Change Password",
-          "header": "Change Password"
-        },
-        "reset_password": {
-          "title": "Reset Password",
-          "header": "Reset Password"
-        },
-        "forgot_password": {
-            "title": "Forgot Password",
-            "header": "Forgot Password"
-        },
-        "about_us": {
-            "title": "About us",
-            "header": "About us"
-        },
-        "updates": {
-            "title": "Updates",
-            "header": "Updates"
-        },
-        "faqs": {
-            "title": "FAQs",
-            "header": "FAQs"
-        },
-        "pre_order": {
-            "title": "Pre-Order",
-            "header": "Pre-Order"
-        },
-        "add_player": {
-            "title": "Add Player",
-            "header": "Add Player"
-        },
-        "edit_player": {
-            "title": "Edit Player",
-            "header": "Edit Player"
-        }
+  "nav": {
+    "home": {
+      "title": "Home",
+      "Header": "Home"
     },
-    "common": {
-        "buttons": {
-            "submit": "Submit",
-            "save": "Save",
-            "cancle": "Cancle"
-        },
-      "dob_year":"Year",
-      "dob_month":"Month",
-      "dob-day":"Day",
-      "modal_ok_button":"Ok",
-      "modal_cancel_button":"Close",
-        "validationMessages": {}
+    "header": {
+      "dashboard": "Dashboard",
+      "edit_profile": "Edit Profile",
+      "change_password": "Change Password",
+      "subscriptions": "My Subscriptions",
+      "logout": "Logout"
     },
-    "user": {
-        "first_name": "First name",
-        "last_name": "Last Name",
-        "password": "Password",
-        "email": "Email",
-        "male": "Male",
-        "female": "Female",
-        "others": "Others",
-        "register": {
-            "confirm_password": "Confirm Password",
-            "dob": "DOB",
-            "mobile": "Mobile",
-            "gender": "Gender",
-            "role": "Role",
-            "grade": "Grade",
-            "school": "School",
-            "sign_up": "Sign up",
-            "profile_picture": "Profile Picture",
-          "signIn":"Already registered? Sign in"
-        },
-        "login": {
-           "remember_me": "Remember me",
-           "forgot_password": "Forgot Password",
-           "sign_in": "Login",
-          "forgot_password":"Forgot password?",
-          "register":"Not registered yet? Sign Up"
-        },
-        "forgot_password": {
-
-        },
-        "validationMessages": {
-            "first_name_require": "First name is required",
-            "last_name_require": "Last name is required",
-            "password_mismatch":"Password mismatch",
-            "email_require":"Email is required",
-            "email_valid" : "Email is not valid",
-            "password_require" : "Password is required",
-            "cpassword_require" : "Confirm password is required"
-        },
-        "change_password": {
-            "old_password":"Old Password",
-            "new_password":"New Password",
-            "confirm_new_password":"Confirm New Password"
-        }
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "players": "Players",
+      "curriculum": "My Curriculum",
+      "settings": "My Settings"
     },
-    "player": {
-        "first_name": "First Name",
-        "last_name": "Last Name",
-        "mobile": "Mobile",
-        "gender": "Gender",
-        "dateofBirth": "DOB",
-      "more":"more",
-        "view_players":"Back to view Players",
-        "add_new_player":"Add New Player",
-        "messages": {
-            "add_success" : "Player added successfully!",
-            "update_success" : "Player updated sucessfully!",
-            "delete_success" : "Player deleted successfully!",
-            "add_error" : "Player added successfully!",
-            "update_error" : "Player updated sucessfully!",
-            "delete_error" : "Player deleted successfully!"
-        }
+    "footer": {
+      "glyphicon": "square panda"
+    },
+    "login": {
+      "title": "Login",
+      "header": "Login"
+    },
+    "register": {
+      "title": "Register",
+      "header": "Register"
+    },
+    "edit_profile": {
+      "title": "Edit Profile",
+      "header": "Edit Profile"
+    },
+    "change_password": {
+      "title": "Change Password",
+      "header": "Change Password"
+    },
+    "reset_password": {
+      "title": "Reset Password",
+      "header": "Reset Password"
+    },
+    "forgot_password": {
+      "title": "Forgot Password",
+      "header": "Forgot Password"
+    },
+    "about_us": {
+      "title": "About us",
+      "header": "About us"
+    },
+    "updates": {
+      "title": "Updates",
+      "header": "Updates"
+    },
+    "faqs": {
+      "title": "FAQs",
+      "header": "FAQs"
+    },
+    "pre_order": {
+      "title": "Pre-Order",
+      "header": "Pre-Order"
+    },
+    "add_player": {
+      "title": "Add Player",
+      "header": "Add Player"
+    },
+    "edit_player": {
+      "title": "Edit Player",
+      "header": "Edit Player"
     }
+  },
+  "common": {
+    "buttons": {
+      "submit": "Submit",
+      "save": "Save",
+      "cancle": "Cancle"
+    },
+    "dob_year": "Year",
+    "dob_month": "Month",
+    "dob-day": "Day",
+    "modal_ok_button": "Ok",
+    "modal_cancel_button": "Close",
+    "validationMessages": {}
+  },
+  "user": {
+    "first_name": "First name",
+    "last_name": "Last Name",
+    "password": "Password",
+    "email": "Email",
+    "male": "Male",
+    "female": "Female",
+    "others": "Others",
+    "register": {
+      "confirm_password": "Confirm Password",
+      "dob": "DOB",
+      "mobile": "Mobile",
+      "gender": "Gender",
+      "role": "Role",
+      "grade": "Grade",
+      "school": "School",
+      "sign_up": "Sign up",
+      "profile_picture": "Profile Picture",
+      "signIn": "Already registered? Sign in"
+    },
+    "login": {
+      "remember_me": "Remember me",
+      "forgot_password": "Forgot Password",
+      "sign_in": "Login",
+      "forgot_password": "Forgot password?",
+      "register": "Not registered yet? Sign Up"
+    },
+    "forgot_password": {
+    },
+    "validationMessages": {
+      "first_name_require": "First name is required",
+      "last_name_require": "Last name is required",
+      "password_mismatch": "Password mismatch",
+      "email_require": "Email is required",
+      "email_valid": "Email is not valid",
+      "password_require": "Password is required",
+      "cpassword_require": "Confirm password is required",
+      "email_password_mismatch": "Username or password invalid",
+      "Email_notverified": "Email not verified"
+    },
+    "change_password": {
+      "old_password": "Old Password",
+      "new_password": "New Password",
+      "confirm_new_password": "Confirm New Password"
+    }
+  },
+  "player": {
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "mobile": "Mobile",
+    "gender": "Gender",
+    "dateofBirth": "DOB",
+    "more": "more",
+    "view_players": "Back to view Players",
+    "add_new_player": "Add New Player",
+    "messages": {
+      "add_success": "Player added successfully!",
+      "update_success": "Player updated sucessfully!",
+      "delete_success": "Player deleted successfully!",
+      "add_error": "Player added successfully!",
+      "update_error": "Player updated sucessfully!",
+      "delete_error": "Player deleted successfully!"
+    }
+  }
 }
