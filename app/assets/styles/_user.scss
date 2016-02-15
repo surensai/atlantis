@@ -16,11 +16,11 @@
     right: 0px;
     bottom: 0px;
     top: 0px;
-    z-index: -999;    
+    z-index: -999;
 }
 
 .login-form {
- 	h2{ 
+ 	h2{
  		color: $white-color;
  		text-align: center;
  	}
@@ -63,4 +63,13 @@
 	input[type="email"], input[type="password"], input[type="text"] {
 		height: 45px;
 	}
+}
+.login-footer{
+  background-color: $black-color;
+  opacity: 0.9;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  a{
+    color: $white-color;
+  }
 }
