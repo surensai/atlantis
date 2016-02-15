@@ -1,12 +1,11 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$scope', '$state', 'PlayerService', 'flashService', 'playersListData', function ($scope, $state, PlayerService, flashService, playersListData) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerService', 'flashService', 'playersListData', function ($timeout, $state, PlayerService, flashService, playersListData) {
 
   var player = this;
   player.modalTitle = 'Warning!';
   player.modalBody = 'Are you sure do you want to delete player?';
   player.isUpdate = false;
-  player.service = PlayerService;
 
   player.data = {};
   player.data.playersList = [];
@@ -34,27 +33,14 @@ angular.module("app").controller('playerCtrl', ['$scope', '$state', 'PlayerServi
 
     player.submitted = true;
     if (form.$valid) {
-      var handleSuccess = function (data) {
-        player.model.playerItem.profileURL = data.files[0].url;
-        if(player.isUpdate) {
-          updateAction();
-        } else {
-          addAction();
-        }
-        form.$setPristine();
-        flashService.Success("File uploaded successfully!", false);
-      };
-
-      var handleError = function (error) {
-        flashService.Error("Error in deleting", false);
-      };
-      var file = $scope.myFile;
-
-      $scope.myPromise = player.service.uploadFileApi(file)
-        .success(handleSuccess)
-        .error(handleError);
+      uploadProfilePic();
+      if(player.isUpdate) {
+        updateAction();
+      } else {
+        addAction();
+      }
     } else {
-      player.timeout(function () {
+      $timeout(function () {
         angular.element('.custom-error:first').focus();
       }, 200);
     }
@@ -102,6 +88,24 @@ angular.module("app").controller('playerCtrl', ['$scope', '$state', 'PlayerServi
   }
 
 
+  function uploadProfilePic (){
+    var handleSuccess = function (data) {
+      player.model.playerItem.profileURL = data.files[0].url;
+      form.$setPristine();
+      flashService.Success("File uploaded successfully!", false);
+    };
+
+    var handleError = function (error) {
+      flashService.Error("Error in deleting", false);
+    };
+    var file = $scope.myFile;
+
+    player.myPromise = PlayerService.uploadFileApi(file)
+      .success(handleSuccess)
+      .error(handleError);
+  }
+
+
   player.deleteListener = function (obj) {
     player.data.deleteObj = obj;
   };
@@ -118,7 +122,7 @@ angular.module("app").controller('playerCtrl', ['$scope', '$state', 'PlayerServi
       flashService.Error("Error in deleting", false);
     };
 
-    player.service.deleteApi(player.data.deleteObj.id)
+    PlayerService.deleteApi(player.data.deleteObj.id)
       .success(handleSuccess)
       .error(handleError);
   };

@@ -1,17 +1,16 @@
-<div class="container content">
+<div class="login-bg"></div>
+<div class="alert alert-success" data-ng-if="globals.flash && globals.flash.type == 'success'">
+  {{globals.flash.message}}
+</div>
+<div class="alert alert-danger" data-ng-if="globals.flash && globals.flash.type !== 'success'">
+  {{globals.flash.message}}
+</div>
+<div class="content login-wrapper">
 
-  <div class="col-lg-2"></div>
-  <div class="col-lg-8">
-    <div ng-show="userClicked">
-    <div class="alert alert-danger" data-ng-if="globals.flash.type === 'error'">
-      <strong>{{globals.flash.type}}!</strong> {{globals.flash.message}}
-    </div>
+  <div class="col-lg-4"></div>
+  <div class="col-lg-4">
 
-    <div class="alert alert-success" data-ng-if="globals.flash.type === 'success'">
-      <strong>{{globals.flash.type}}!</strong> {{globals.flash.message}}
-    </div>
-    </div>
-    <form name="userForm" ng-submit="editProfile.submitForm(userForm)" novalidate>
+    <form name="userForm" class="login-form" ng-submit="editProfile.submitForm(userForm)" novalidate>
       <h2 class="form-signin-heading" data-translate="nav.edit_profile.header">Edit Profile</h2>
       <div class="form-group" ng-class="{ 'has-error' : (submitted && !userForm.firstName) || (userForm.firstName.$invalid && !userForm.firstName.$pristine) }">
         <input type="text" name="firstName" class="form-control" data-ng-model="editProfile.model.firstName" placeholder="{{ 'user.first_name' | translate }}"  required>
@@ -26,12 +25,12 @@
       <div class="form-group">
         <input type="text" name="mobileNumber" data-ng-model="editProfile.model.mobileNumber" placeholder="{{ 'user.register.mobile' | translate }}" class="form-control" required>
       </div>
-      <button type="submit" class="btn btn-primary" data-translate="common.buttons.submit" data-ng-disabled="userForm.$invalid">Submit</button>
+      <button type="submit" class="btn btn-large btn-block btn-primary" data-translate="common.buttons.submit" data-ng-disabled="userForm.$invalid">Submit</button>
 
     </form>
 
   </div>
-  <div class="col-lg-2"></div>
+  <div class="col-lg-4"></div>
 
 </div>
 </div>
