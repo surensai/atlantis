@@ -1,9 +1,13 @@
 $icon-font-path: "../libs/bootstrap-sass-official/assets/fonts/bootstrap/";
+$fa-font-path: "../libs/font-awesome/fonts";
+@import "font-awesome/scss/font-awesome";
 // bower:scss
 @import "../libs/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "../libs/font-awesome/scss/font-awesome.scss";
 // endbower
 @import "_base.scss";
 @import "_layout.scss";
 @import "_reset.scss";
 @import "_account-nav.scss";
 @import "_user.scss";
+@import "_dashboard.scss";

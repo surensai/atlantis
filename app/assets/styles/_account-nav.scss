@@ -7,7 +7,6 @@
   width: 100%;
 }
 
-
 .account-nav {
   @extend .reset-padding-margin;
   li{
@@ -25,31 +24,6 @@
       background: #000000;
     }
 
-  }
-}
-
-.glyphiconsize{
-  font-size: 20px;;
-}
-.dashboarddiv{
-  margin-top: 15px;
-}
-.imgdiv{
-  padding-right: 0px;
-}
-.paneldiv{
-  padding-left: 0px;
-  .panelcolor{
-    background-color: #FCFAFA;
-    p{
-      text-align: justify;
-    }
-    .fontsize{
-     font-size: 24px;
-    }
-    .panel-footer{
-      padding-bottom: 0px;
-    }
   }
 }
 
