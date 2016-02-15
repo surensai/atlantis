@@ -11,5 +11,6 @@ var app = angular.module('app', [
     'angular-momentjs',
     'underscore',
     'ui.bootstrap',
-    'cgBusy'
+    'cgBusy',
+    'base64'
 ]);

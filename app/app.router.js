@@ -9,22 +9,6 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     if ($rootScope.globals.currentUser) {
       $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
     }
-
-    $rootScope.$on('$locationChangeStart', function (event, next, current) {
-      var restrictedPage = $.inArray($location.path(), ['/home', '/login', '/register', '/about', '/updates', '/FAQs', '/pre-order', '/dashboard', '/players']) === -1;
-      var sessionRestricted = $.inArray($location.path(), ['/home', '/login']) === -1;
-      var loggedIn = $rootScope.globals.currentUser;
-
-      /*if (restrictedPage && !loggedIn) {
-       $location.path('/login');
-       }
-
-       if (loggedIn && !sessionRestricted) {
-       $location.path('/home');
-       }*/
-    });
-
-
   }
 ]).config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 

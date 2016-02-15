@@ -18,7 +18,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
     player.show = false;
   };
 
-  (function initController() {
+  (function () {
     player.data.playersList = playersListData.data;
     if($state.params.id){
       player.isUpdate = true;

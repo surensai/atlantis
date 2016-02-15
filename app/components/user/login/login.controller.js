@@ -5,7 +5,7 @@ angular.module("app").controller('loginCtrl', ['$rootScope','$scope', '$state', 
 	var login = this;
 	login.model = {};
 
-	(function initController() {
+	(function () {
     AuthenticationService.ClearCredentials();
     login.model = AuthenticationService.getRememberMe();
   })();
