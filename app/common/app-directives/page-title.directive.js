@@ -7,7 +7,7 @@ angular.module("app").directive('pageTitle', ['$rootScope', '$timeout',
         var listener = function(event, toState) {
 
           var title = 'Default Title';
-          if (toState.data && toState.data.pageTitle) title = toState.data.pageTitle;
+          if (toState.data && toState.data.pageTitle) { title = toState.data.pageTitle; }
 
           $timeout(function() {
             element.text(title);

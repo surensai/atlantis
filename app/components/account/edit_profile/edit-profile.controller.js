@@ -22,11 +22,11 @@ angular.module("app").controller('editProfileCtrl', ['$scope', 'UserService', '$
 
     var handleSuccess = function (data) {
       AuthenticationService.SetCredentials(editProfile.model);
-      flashService.Success(data.message, true);
+      flashService.showSuccess(data.message, true);
     };
 
     var handleError = function (error) {
-      flashService.Error(error.error, false);
+      flashService.showError(error.error, false);
     };
 
     editProfile.service.Update(editProfile.model)
