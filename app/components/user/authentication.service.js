@@ -29,8 +29,8 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
 
   service.setRememberMe = function (data) {
     if (data.remember) {
-      $remember('7ZXYZ@L', data.email);
-      $remember('UU@#90', data.password);
+      $remember('7ZXYZ@L', $base64.encode(data.email));
+      $remember('UU@#90', $base64.encode(data.password));
     } else {
       $remember('7ZXYZ@L', '');
       $remember('UU@#90', '');
@@ -41,8 +41,8 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
     var data = {};
     if ($remember('7ZXYZ@L') && $remember('UU@#90')) {
       data.remember = true;
-      data.email = $remember('7ZXYZ@L');
-      data.password = $remember('UU@#90');
+      data.email = $base64.decode($remember('7ZXYZ@L') + "==");
+      data.password = $base64.decode($remember('UU@#90') + "=");
     }
     return data;
   };

@@ -40,8 +40,8 @@ angular.module('app').factory('flashService', ['$rootScope', function ($rootScop
 
   initService();
 
-  service.Success = showSuccess;
-  service.Error = showError;
+  service.showSuccess = showSuccess;
+  service.showError = showError;
   return service;
 
 }]);
