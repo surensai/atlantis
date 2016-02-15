@@ -13,7 +13,7 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
   service.SetCredentials = function (user, formData) {
     if (formData) {
       user.authdata = $base64.encode(formData.email + ':' + formData.password);
-      $http.defaults.headers.common['Authorization'] = 'Basic ' + user.authdata; // jshint ignore:line
+      $http.defaults.headers.common['Authorization'] = 'Basic ' + user.authdata;
     }
     $rootScope.globals = {
       currentUser: user
