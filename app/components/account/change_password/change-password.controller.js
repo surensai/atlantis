@@ -23,7 +23,6 @@ angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout
     };
     var handleError = function (error) {
       flashService.showError(error.error, false);
-
     };
     UserService.changePasswordAPI(changePassword.model)
       .success(handleSuccess)

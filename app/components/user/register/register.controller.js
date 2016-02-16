@@ -29,7 +29,7 @@ angular.module("app").controller('registerCtrl', ['AuthenticationService', 'User
   function save() {
     var formData = stuctureFormData();
     var handleSuccess = function (data) {
-      messagesFactory.registerErrorMessages(data);
+      messagesFactory.registerSuccessMessages(data);
       $state.go('messages');
     };
 

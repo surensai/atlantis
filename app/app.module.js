@@ -8,9 +8,9 @@ var app = angular.module('app', [
   'ngSanitize',
   'ngTouch',
   'pascalprecht.translate',
-  'angular-momentjs',
   'underscore',
   'ui.bootstrap',
   'cgBusy',
-  'base64'
+  'base64',
+  'angularMoment'
 ]);
