@@ -1,3 +1,4 @@
+{{moment()}}
 <div class="container dashboard-container">
   <div class="feed-row" data-ng-repeat="feedItem in dashboard.data.newsFeedsList">
     <div class="panel clearfix">
@@ -7,7 +8,7 @@
       <div class="col-md-8 nopadding">
         <div class="panel-body">
           <h3>{{feedItem.title}}</h3>
-          <p>{{feedItem.updatedAt}}</p>
+          <p am-time-ago="feedItem.updatedAt"></p>
           <p>{{feedItem.description}}</p>
         </div>
         <div class="panel-footer">
