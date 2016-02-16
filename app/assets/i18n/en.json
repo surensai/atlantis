@@ -119,8 +119,11 @@
       "email_valid": "Email is not valid",
       "password_require": "Password is required",
       "cpassword_require": "Confirm password is required",
-      "email_password_mismatch": "Username or password invalid",
-      "Email_notverified": "Email not verified"
+      "email_password_mismatch": "Incorrect username or password.",
+      "email_notverified": "Email not verified",
+      "email_registered":"Email already existed, try with different email.",
+      "password_strength":"Passwords must be between 8 and 20 characters."
+
     },
     "change_password": {
       "old_password": "Old Password",

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('loginCtrl', ['$scope', '$state', 'AuthenticationService', 'flashService', '$timeout', '$translate', function ($scope, $state, AuthenticationService, flashService, $timeout, $translate) {
+angular.module("app").controller('loginCtrl', ['$scope', '$state', 'AuthenticationService', '$timeout', 'messagesFactory', function ($scope, $state, AuthenticationService, $timeout, messagesFactory) {
 
   var login = this;
   login.model = {};
@@ -35,15 +35,11 @@ angular.module("app").controller('loginCtrl', ['$scope', '$state', 'Authenticati
       $state.go('account.dashboard');
     };
     var handleError = function (error, status) {
-      var message;
-      if (status === 424) {
-        message = $translate.instant('user.validationMessages.Email_notverified');
-      } else {
-        message = $translate.instant('user.validationMessages.email_password_mismatch');
+      if (error && status) {
+        messagesFactory.loginErrorMessages(status);
       }
-      flashService.showError(message, false);
     };
-    AuthenticationService.loginApi(stuctureFormData())
+    login.loadPromise = AuthenticationService.loginApi(stuctureFormData())
       .success(handleSuccess)
       .error(handleError);
   }

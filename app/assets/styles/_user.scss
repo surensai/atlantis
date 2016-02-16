@@ -4,7 +4,7 @@
 
 .login-wrapper {
 	background-color:rgba(0, 0, 0, 0.8);
-	padding-top: 50px;
+	padding-top: 30px;
 }
 
 .login-bg {
@@ -64,7 +64,7 @@
 		height: 45px;
 	}
 }
-.login-footer{
+.login-footer, .register-footer{
   background-color: $black-color;
   opacity: 0.9;
   padding-top: 20px;

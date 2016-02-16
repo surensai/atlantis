@@ -1,112 +1,79 @@
 <div class="login-bg"></div>
 <div class="alert alert-success" data-ng-if="globals.flash && globals.flash.type == 'success'">
-    {{globals.flash.message}}
+  {{globals.flash.message}}
 </div>
 <div class="alert alert-danger" data-ng-if="globals.flash && globals.flash.type !== 'success'">
-    {{globals.flash.message}}
+  {{globals.flash.message}}
 </div>
 <div class="content login-wrapper clearfix">
+  <div class="col-lg-4"></div>
+  <div class="col-lg-4">
+    <form name="userForm" class="login-form" data-ng-submit="register.submitForm(userForm)" novalidate>
+      <h2 class="form-signin-heading" data-translate="nav.register.header">Register</h2>
 
-<div class="col-lg-4"></div>
-<div class="col-lg-4">
-<form name="userForm" class="login-form" data-ng-submit="register.scope.submitForm(userForm.$valid)" novalidate>
-   <h2 class="form-signin-heading" data-translate="nav.register.header">Register</h2>
+      <div class="form-group has-feedback"
+           data-ng-class="{ 'has-error' : (register.submitted && !register.model.firstName) || (userForm.firstName.$invalid && !userForm.firstName.$pristine) }">
+        <input type="text" name="firstName" class="form-control" data-ng-model="register.model.firstName"
+               placeholder="{{ 'user.first_name' | translate }}" required>
+        <p
+          ng-show="(register.submitted && !register.model.firstName) || (userForm.firstName.$invalid && !userForm.firstName.$pristine)"
+          class="help-block" data-translate="user.validationMessages.first_name_require">First name is required.</p>
+        <i class="glyphicon glyphicon-user form-control-feedback"></i>
+      </div>
 
-   <div class="form-group" data-ng-class="{ 'has-error' : (submitted && !register.data.firstName) || (userForm.firstName.$invalid && !userForm.firstName.$pristine) }">
-      <input type="text" name="firstName" class="form-control" data-ng-model="register.data.firstName" placeholder="{{ 'user.first_name' | translate }}"  required>
-      <p ng-show="(submitted && !register.data.firstName) || (userForm.firstName.$invalid && !userForm.firstName.$pristine)" class="help-block" data-translate="user.validationMessages.first_name_require">First name is required.</p>
-   </div>
+      <div class="form-group has-feedback"
+           data-ng-class="{ 'has-error' : (register.submitted && !register.model.lastName) || (userForm.lastName.$invalid && !userForm.lastName.$pristine) }">
+        <input type="text" name="lastName" class="form-control" data-ng-model="register.model.lastName"
+               placeholder="{{ 'user.last_name' | translate }}" required>
 
-   <div class="form-group" data-ng-class="{ 'has-error' : (submitted && !register.data.lastName) || (userForm.lastName.$invalid && !userForm.lastName.$pristine) }">
-      <input type="text" name="lastName" class="form-control" data-ng-model="register.data.lastName" placeholder="{{ 'user.last_name' | translate }}"  required>
-      <p ng-show="(submitted && !register.data.lastName) || (userForm.lastName.$invalid && !userForm.lastName.$pristine)" class="help-block" data-translate="user.validationMessages.last_name_require">Last name is required.</p>
-   </div>
+        <p ng-show="(register.submitted && !register.model.lastName) || (userForm.lastName.$invalid && !userForm.lastName.$pristine)"
+          class="help-block" data-translate="user.validationMessages.last_name_require">Last name is required.</p>
+        <i class="glyphicon glyphicon-user form-control-feedback"></i>
+      </div>
 
-   <div class="form-group" data-ng-class="{ 'has-error' : (submitted && !register.data.email) || (userForm.email.$invalid && !userForm.email.$pristine) }">
-      <input type="email" name="email" class="form-control" data-ng-model="register.data.email" placeholder="{{ 'user.email' | translate }}" >      
-      <p ng-show="(submitted && !register.data.email) || (userForm.email.$invalid && !userForm.email.$pristine)" class="help-block" data-translate="user.validationMessages.email_valid">Enter a valid email</p>      
-   </div>
+      <div class="form-group has-feedback"
+           data-ng-class="{ 'has-error' : (register.submitted && !register.model.email) || (userForm.email.$invalid && !userForm.email.$pristine) }">
+        <input type="email" name="email" class="form-control" data-ng-model="register.model.email" required
+               placeholder="{{ 'user.email' | translate }}">
 
-   <div class="form-group" data-ng-class="{ 'has-error' : (submitted && !register.data.password) || (userForm.password.$invalid && !userForm.password.$pristine) }">
-      <input type="password" name="passsword" data-ng-model="register.data.password" class="form-control"  placeholder="{{ 'user.password' | translate }}">
-      <p ng-show="(submitted && !register.data.password) || (userForm.password.$invalid && !userForm.password.$pristine)" class="help-block" data-translate="user.validationMessages.password_require">Password is required</p>
-   </div>
+        <p ng-show="(register.submitted && !register.model.email) || (userForm.email.$invalid && !userForm.email.$pristine)"
+           class="help-block" data-translate="user.validationMessages.email_valid">Enter a valid email</p>
+        <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
+      </div>
 
-   <div class="form-group" data-ng-class="{ 'has-error' : (submitted && !register.data.confirmPassword) || (userForm.confirmPassword.$invalid && !userForm.confirmPassword.$pristine) || (register.data.password !== register.data.confirmPassword) }">
-      <input type="password" name="confirmPassword" data-ng-model="register.data.confirmPassword" placeholder="{{ 'user.register.confirm_password' | translate }}" class="form-control">
-       <p ng-show="register.data.confirmPassword && (register.data.password !== register.data.confirmPassword)" class="help-block" data-translate="user.validationMessages.password_mismatch">Password mismatch.</p>
-       <p ng-show="(submitted && !register.data.confirmPassword)" class="help-block" data-translate="user.validationMessages.cpassword_require">Password mismatch.</p>
-   </div>
- 
-   <!--<div>
-    <label><input type="checkbox" /> I agree to Square panda Terms & Conditions </label>
-  </div>-->
+      <div class="form-group has-feedback"
+           data-ng-class="{ 'has-error' : (register.submitted && !register.model.password) || (userForm.password.$invalid && !userForm.password.$pristine) }">
+        <input type="password" name="passsword" data-ng-model="register.model.password" class="form-control" required
+               placeholder="{{ 'user.password' | translate }}">
 
-   <button type="submit" class="btn btn-large btn-block btn-primary" data-translate="common.buttons.submit">Submit</button>
+        <p  ng-show="(register.submitted && !register.model.password) || (userForm.password.$invalid && !userForm.password.$pristine)"
+          class="help-block" data-translate="user.validationMessages.password_require">Password is required</p>
+        <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+      </div>
 
-   <div>
-      <a href="#/login" class="pull-right" data-translate="user.register.signIn">Already registered? Sign in</a>
-   </div>
-</form>
+      <div class="form-group has-feedback"
+           data-ng-class="{ 'has-error' : (register.submitted && !register.model.confirmPassword) || (userForm.confirmPassword.$invalid && !userForm.confirmPassword.$pristine) || (register.model.password !== register.model.confirmPassword) }">
+        <input type="password" name="confirmPassword" data-ng-model="register.model.confirmPassword"
+               placeholder="{{ 'user.register.confirm_password' | translate }}" class="form-control" required>
+
+        <p ng-show="register.model.confirmPassword && (register.model.password !== register.model.confirmPassword)"
+           class="help-block" data-translate="user.validationMessages.password_mismatch">Password mismatch.</p>
+
+        <p ng-show="(register.submitted && !register.model.confirmPassword)" class="help-block"
+           data-translate="user.validationMessages.cpassword_require">Password mismatch.</p>
+        <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+      </div>
+      <button type="submit" class="btn btn-large btn-block btn-primary" data-translate="common.buttons.submit">Submit
+      </button>
+    </form>
+  </div>
+  <div class="col-lg-4"></div>
+
 
 </div>
-<div class="col-lg-4"></div>
-
-  <!--<div class="col-lg-12">
-       <form name="userForm" ng-submit="register.scope.submitForm(userForm.$valid)" novalidate>
-
-
-              <div class="form-group">
-                <label data-translate="user.register.mobile">Mobile Number</label>
-                <input type="text" name="mobileNumber" data-ng-model="register.data.mobileNumber" placeholder="{{ 'user.register.mobile' | translate }}" class="form-control">
-              </div>
-
-              <div class="form-group">
-                <label data-translate="user.register.dob">DOB</label>
-                <dob data-source="register.scope.dob"></dob>
-              </div>
-
-
-              <div class="form-group">
-                  <label class="col-xs-3 control-label" data-translate="user.register.gender">Gender</label>
-                  <div class="col-xs-9">
-                      <div class="btn-group" data-toggle="buttons">
-                          <label class="btn btn-default">
-                              <input type="radio" name="gender" data-ng-model="register.data.gender" value="m" /> {{ 'user.male' | translate }}
-                          </label>
-                          <label class="btn btn-default">
-                              <input type="radio" name="gender" data-ng-model="register.data.gender" value="f" /> {{ 'user.female' | translate }}
-                          </label>
-                          <label class="btn btn-default">
-                              <input type="radio" name="gender" data-ng-model="register.data.gender" value="other" />  {{ 'user.other' | translate }}
-                          </label>
-                      </div>
-                  </div>
-              </div>
-
-
-              <div class="form-group">
-                <label data-translate="user.register.profile_picture">Profile Picture</label>
-                <input type="file"  class="form-control">
-              </div>
-
-              <div class="form-group">
-                <label data-translate="user.register.role">Role</label>
-                <input type="text" name="role" data-ng-model="register.data.role" placeholder="{{ 'user.register.role' | translate }}" class="form-control">
-              </div>
-
-              <div class="form-group">
-                <label data-translate="user.register.grade">Grade</label>
-                <input type="text" name="grade" data-ng-model="register.data.grade" placeholder="{{ 'user.register.grade' | translate }}" class="form-control">
-              </div>
-
-              <div class="form-group">
-                <label data-translate="user.register.school">School Name</label>
-                <input type="text" name="schoolName" data-ng-model="register.data.schoolName" placeholder="{{ 'user.register.school' | translate }}" class="form-control">
-              </div>
-
-              <button type="submit" class="btn btn-primary" data-translate="common.buttons.submit">Submit</button>
-        </form>
-        </div> -->
+</div>
+<div class="container-fluid register-footer">
+  <div class="col-lg-offset-5 col-lg-4">
+    <a href="#/login" class="text-center" data-translate="user.register.signIn">Already registered? Sign in</a>
   </div>
-  </div>
+</div>

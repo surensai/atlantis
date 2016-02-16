@@ -1,19 +1,14 @@
 'use strict';
 
-angular.module("app").controller('registerCtrl', ['$scope', 'AuthenticationService', 'UserService', '$state', '$timeout', 'flashService', function ($scope, AuthenticationService, UserService, $state, $timeout, flashService) {
+angular.module("app").controller('registerCtrl', ['AuthenticationService', 'UserService', '$timeout', 'messagesFactory','$state', function (AuthenticationService, UserService, $timeout, messagesFactory, $state) {
 
   var register = this;
-  register.scope = $scope;
-  register.data = {};
-  register.model = {};
-  register.service = UserService;
-  register.scope.dob = "";
 
-  register.scope.submitForm = function () {
-    register.scope.submitted = true;
-    if (register.scope.userForm.$valid) {
+  register.submitForm = function (form) {
+    register.submitted = true;
+    if (form.$valid && (register.model.password === register.model.confirmPassword)) {
       save();
-      register.scope.userForm.$setPristine();
+      form.$setPristine();
     } else {
       $timeout(function () {
         angular.element('.custom-error:first').focus();
@@ -23,35 +18,27 @@ angular.module("app").controller('registerCtrl', ['$scope', 'AuthenticationServi
 
   function stuctureFormData() {
     var data = {};
-    data.firstName = register.data.firstName;
-    data.lastName = register.data.lastName;
-    data.email = register.data.email;
-    data.password = register.data.password;
+    data.firstName = register.model.firstName;
+    data.lastName = register.model.lastName;
+    data.email = register.model.email;
+    data.password = register.model.password;
     data.role = "TEACHER";
     return data;
   }
 
   function save() {
-
     var formData = stuctureFormData();
-
     var handleSuccess = function (data) {
-      flashService.showSuccess(data.message, true);
+      messagesFactory.registerErrorMessages(data);
+      $state.go('messages');
     };
 
-    var handleError = function (error) {
-      var message = "";
-      if (error.status === 400) {
-        message = "Password is small";
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.registerErrorMessages(status);
       }
-      if (error.error === "E_UNKNOWN") {
-        message = "Email already registered";
-      } else {
-        message = error.error;
-      }
-      flashService.showError(message, false);
     };
-    register.service.Create(formData)
+    UserService.Create(formData)
       .success(handleSuccess)
       .error(handleError);
   }
