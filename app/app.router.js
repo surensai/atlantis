@@ -97,6 +97,13 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
   }).state('messages', {
     url: '/messages',
     templateUrl: "layout/messages.html",
+    controller: function(flashService, $rootScope, $state){
+      if($rootScope.globals.flash){
+        $rootScope.globals.flash.keepAfterLocationChange = true;
+      } else {
+        $state.go("home");
+      }
+    },
     data: {
       pageTitle: 'Square Panda - Successfully Registered'
     }
