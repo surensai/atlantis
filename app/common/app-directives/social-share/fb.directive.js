@@ -24,7 +24,7 @@ angular.module("app").directive('fbShare', ['$window', function ($window) {
           picture: scope.item.files,
           name: scope.item.title,
           description: scope.item.description
-        }, function (response) {
+        }, function () {
 
         });
       });

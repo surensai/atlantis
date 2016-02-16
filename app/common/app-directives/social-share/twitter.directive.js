@@ -6,9 +6,7 @@ angular.module("app").directive('twitterShare', ['$window', function ($window) {
       index: '=index',
       item: '=itemdata'
     },
-    link: function (scope, element, attr) {
-
-
+    link: function () {
     }
   };
 }]);
