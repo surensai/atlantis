@@ -1,5 +1,5 @@
 'use strict';
-angular.module("app").directive('twitterShare', ['$window', function ($window) {
+angular.module("app").directive('twitterShare', [ function () {
   return {
     restrict: 'A',
     scope: {

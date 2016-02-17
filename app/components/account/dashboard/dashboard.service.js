@@ -17,4 +17,3 @@ angular.module('app').factory('DashboardService', ['$http', '$rootScope', functi
   return service;
 
 }]);
-
