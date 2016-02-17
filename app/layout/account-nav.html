@@ -1,32 +1,51 @@
 <div id="account-nav-wrapper">
   <div class="container">
     <ul class="account-nav">
-        <li>
-            <a ui-sref="account.dashboard" ng-class="{active: $state.includes('account.dashboard')}">
-              <span class="glyphicon glyphicon-home"></span>
-              <span data-translate="nav.sidebar.dashboard">Dashboard</span>
-            </a>
-        </li>
-        <li>
-            <a ui-sref='account.players' ng-class="{active: $state.includes('account.players')}">
-              <span class="glyphicon glyphicon-user"> </span>
-              <span data-translate="nav.sidebar.players"> Players </span>
-            </a>
-        </li>
-        <li>
-            <a ui-sref="account.curriculum" ng-class="{active: $state.includes('account.curriculum')}">
-              <span class="glyphicon glyphicon-list-alt"></span>
-              <span data-translate="nav.sidebar.curriculum"> My Curriculum </span>
-            </a>
-        </li>
-        <li>
-            <a ui-sref="account.settings" ng-class="{active: $state.includes('account.settings')}">
-              <span class="glyphicon glyphicon-cog"></span>
-              <span data-translate="nav.sidebar.settings"> My Settings </span>
-            </a>
-        </li>
+      <li>
+        <a ui-sref="account.dashboard" ng-class="{active: $state.includes('account.dashboard')}">
+          <span class="glyphicon glyphicon-home"></span>
+          <span data-translate="nav.sidebar.dashboard">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref='account.players' ng-class="{active: $state.includes('account.players')}">
+          <span class="glyphicon glyphicon-user"> </span>
+          <span data-translate="nav.sidebar.players"> Players </span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="account.curriculum" ng-class="{active: $state.includes('account.curriculum')}">
+          <span class="glyphicon glyphicon-list-alt"></span>
+          <span data-translate="nav.sidebar.curriculum"> My Curriculum </span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="account.settings" ng-class="{active: $state.includes('account.settings')}">
+          <span class="glyphicon glyphicon-cog"></span>
+          <span data-translate="nav.sidebar.settings"> My Settings </span>
+        </a>
+      </li>
     </ul>
   </div>
 </div>
 
-<div ui-view ></div>
+<div id="sidebar">
+  <div data-ng-if="globals.currentUser">
+    <h4 type="button" data-toggle="dropdown">{{globals.currentUser.firstName}}
+      {{globals.currentUser.lastName}}
+      </h4>
+  </div>
+  <ul>
+    <li><a ui-sref="account.dashboard" ng-class="{active: $state.includes('account.dashboard')}"
+           data-translate="nav.sidebar.dashboard">Dashboard</a></li>
+    <li><a ui-sref="account.players" ng-class="{active: $state.includes('account.players')}"
+           data-translate="nav.sidebar.players">Players</a></li>
+    <li><a ui-sref="account.curriculum" ng-class="{active: $state.includes('account.curriculum')}"
+           data-translate="nav.sidebar.curriculum">My Curriculum</a></li>
+    <li><a ui-sref="account.settings" ng-class="{active: $state.includes('account.settings')}"
+           data-translate="nav.sidebar.settings">My Settings</a></li>
+  </ul>
+</div>
+
+
+<div ui-view></div>
