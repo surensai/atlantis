@@ -1,13 +1,19 @@
-.reset-padding-margin {
-	padding: 0px;
-	margin: 0px;
+body {
+  overflow-x: hidden;
 }
+
+.reset-padding-margin {
+  padding: 0px;
+  margin: 0px;
+}
+
 .nopadding {
   padding: 0px;
 }
+
 .btn-primary {
-	background-color: $sp-green;
-	border: 0px;
+  background-color: $sp-green;
+  border: 0px;
 }
 
 body {
@@ -19,27 +25,26 @@ body, html {
 }
 
 .navbar {
-	border-radius: 0px;
+  border-radius: 0px;
 }
 
 .navbar-default {
-	background-color: transparent;
-	border: none;
+  background-color: transparent;
+  border: none;
 }
 
 .navbar {
-	min-height: 82px;
+  min-height: 82px;
 }
 
-.has-error .help-block{
-  color: #FF8D8B!important;
+.has-error .help-block {
+  color: #FF8D8B !important;
 }
 
 .spinner {
   display: inline-block;
   opacity: 0;
   width: 0;
-
   -webkit-transition: opacity 0.25s, width 0.25s;
   -moz-transition: opacity 0.25s, width 0.25s;
   -o-transition: opacity 0.25s, width 0.25s;
@@ -47,7 +52,7 @@ body, html {
 }
 
 .has-spinner.active {
-  cursor:progress;
+  cursor: progress;
 }
 
 .has-spinner.active .spinner {
@@ -56,19 +61,19 @@ body, html {
 }
 
 .has-spinner.btn-mini.active .spinner {
-    width: 10px;
+  width: 10px;
 }
 
 .has-spinner.btn-small.active .spinner {
-    width: 13px;
+  width: 13px;
 }
 
 .has-spinner.btn.active .spinner {
-    width: 16px;
+  width: 16px;
 }
 
 .has-spinner.btn-large.active .spinner {
-    width: 19px;
+  width: 19px;
 }
 
 .alert-danger {
@@ -89,12 +94,12 @@ body, html {
   text-align: center;
 }
 
-.width50-per{
+.width50-per {
   width: 50%;
 }
 
-.form-control-feedback{
-  left:0px;
+.form-control-feedback {
+  left: 0px;
   line-height: 45px;
 }
 
@@ -102,3 +107,11 @@ body, html {
   padding-right: 10px;
   padding-left: 30px;
 }
+
+.navbar-toggle {
+  border: none;
+  span.icon-bar {
+    background-color: #ffffff;
+  }
+}
+

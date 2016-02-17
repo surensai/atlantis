@@ -9,7 +9,7 @@ angular.module("app").controller('subscriptionsCtrl', ['SubscriptionsService', '
   })();
 
   subscription.submitForm = function () {
-    var handleSuccess = function (data) {
+    var handleSuccess = function () {
     };
     var handleError = function (error) {
       flashService.showError(error.error, false);
