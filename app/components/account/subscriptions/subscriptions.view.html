@@ -1,16 +1,16 @@
-
-
-<div class="container">
+<div class="container" cg-busy="{promise:subscription.loadPromise, message:'Loading...'}">
+  {{subscription.model}}
   <h2>My Subscriptions</h2>
-  <form role="form">
+  <form role="form" data-ng-submit="subscription.submitForm()" novalidate>
     <div class="checkbox">
-      <label><input type="checkbox" value="" checked>Player Updates</label>
+      <label><input type="checkbox" data-ng-model="subscription.model.player_updates">Player updates</label>
     </div>
     <div class="checkbox">
-      <label><input type="checkbox" value="">Game Updates</label>
+      <label><input type="checkbox" data-ng-model="subscription.model.sp_updates">Square Panda news</label>
     </div>
-    <div class="checkbox disabled">
-      <label><input type="checkbox" value="" disabled>Educational News feed</label>
+    <div class="checkbox">
+      <label><input type="checkbox" data-ng-model="subscription.model.educational_updates">Educational News feed</label>
     </div>
+    <button class="btn btn-primary" type="submit" data-translate="common.buttons.submit">Sign in</button>
   </form>
 </div>

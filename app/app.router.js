@@ -130,7 +130,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     url: '/subscriptions',
     templateUrl: urlBuilder('account/subscriptions', 'subscriptions'),
     controller: 'subscriptionsCtrl',
-    controllerAs: "subscriptions",
+    controllerAs: "subscription",
     data: {
       pageTitle: 'Square Panda - Dashboard'
     }
