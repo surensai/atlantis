@@ -1,5 +1,5 @@
 'use strict';
-angular.module("app").directive('sideBar', ['$window', function ($window) {
+angular.module("app").directive('sideBar', [ function () {
   return {
     restrict: 'A',
     scope: {},
