@@ -25,7 +25,8 @@ body {
 }
 
 body.body-toggle {
-  padding-right: 180px;
+  padding-right: 196px;
+  margin-left: -196px;
 }
 
 .account-nav {
@@ -52,10 +53,10 @@ body.body-toggle {
 }
 
 #sidebar {
-  width: 180px;
+  width: 196px;
   position: fixed;
   top: 0;
-  right: -180px;
+  right: -196px;
   background: $primary-color;
   color: white;
   height: 100%;
@@ -64,7 +65,7 @@ body.body-toggle {
 
   .sidebarheader {
     border-bottom: 1px solid #502D88;
-    padding-bottom: 15%;
+
   }
   a {
     color: white;
@@ -80,7 +81,7 @@ body.body-toggle {
       a {
         display: block;
         color: white;
-        line-height: 2em;
+        line-height: 1em;
         text-decoration: none;
         padding: 10px 30px;
         a:hover {
@@ -91,18 +92,52 @@ body.body-toggle {
   }
   .sidebarfooter{
     border-top: 1px solid #502D88;
-
+    padding-top: 7px;
+    a{
+      text-transform: uppercase;
+    }
   }
 }
-
 @media(min-width: 768px) {
   #account-nav-wrapper {
     display: block;
   }
   body.body-toggle {
     padding-right: 0px;
+    margin-left: 0px;
   }
   #sidebar.sidebar-toggle {
-    right: -180px;
+    right: -196px;
   }
 }
+@media(min-width: 768px) {
+  #sidebar ul{
+    padding-bottom: 125%;
+  }
+}
+@media  (max-width: 768px){
+#sidebar .sidebarheader {
+  padding-bottom: 10%;
+}
+}
+@media only screen and (min-device-width : 375px) {
+  #sidebar .sidebarheader {
+    padding-bottom: 12%;
+  }
+}
+@media only screen and (min-device-width : 375px) {
+  #sidebar ul {
+    padding-bottom: 143%;
+  }
+}
+@media only screen and (min-device-width : 320px)and (max-device-width : 340px) {
+  #sidebar ul {
+    padding-bottom: 115%;
+  }
+}
+@media only screen and (min-device-width : 400px)and (max-device-width : 414px) {
+  #sidebar ul {
+    padding-bottom: 193%;
+  }
+}
+
