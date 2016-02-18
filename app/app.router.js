@@ -9,6 +9,20 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     if ($rootScope.globals.currentUser) {
       $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
     }
+
+    $rootScope.$on('$locationChangeStart', function (event, next, current) {
+      var restrictedPagesArray = ['/login', '/register', '/home'];
+      var restrictedPage = $.inArray($location.path(), restrictedPagesArray) === -1;
+      var loggedIn = $rootScope.globals.currentUser;
+      if (restrictedPage && !loggedIn) {
+        $state.go('home');
+      }
+      var afterLoginRestrictions = ['/login', '/register'];
+      var loginRestrictions = $.inArray($location.path(), afterLoginRestrictions) !== -1;
+      if (loginRestrictions && loggedIn) {
+        $state.go('account.dashboard');
+      }
+    });
   }
 ]).config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
