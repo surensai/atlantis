@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').factory('flashService', ['$rootScope', function ($rootScope) {
+angular.module('app').factory('flashService', ['$rootScope','$cookieStore', function ($rootScope, $cookieStore) {
 
   var service = {};
 
@@ -12,7 +12,7 @@ angular.module('app').factory('flashService', ['$rootScope', function ($rootScop
     function clearFlashMessage() {
       var flash = $rootScope.globals.flash;
       if (flash) {
-        if (!flash.keepAfterLocationChange) {
+        if (!flash.keepAfterLocationChange && !flash.isClear) {
           delete $rootScope.globals.flash;
         } else {
           // only keep for a single location change
@@ -22,12 +22,20 @@ angular.module('app').factory('flashService', ['$rootScope', function ($rootScop
     }
   }
 
-  function showSuccess(message, keepAfterLocationChange) {
+  function showSuccess(message, keepAfterLocationChange, isClear) {
     $rootScope.globals.flash = {
       message: message,
       type: 'success',
       keepAfterLocationChange: keepAfterLocationChange
     };
+  }
+
+  function showCustomMessage(type, isClear) {
+    $rootScope.messages = {
+      type: type,
+      isClear: isClear
+    };
+    $cookieStore.put('noSesMes', $rootScope.messages);
   }
 
   function showError(message, keepAfterLocationChange) {
@@ -42,6 +50,7 @@ angular.module('app').factory('flashService', ['$rootScope', function ($rootScop
 
   service.showSuccess = showSuccess;
   service.showError = showError;
+  service.showCustomMessage = showCustomMessage;
   return service;
 
 }]);
