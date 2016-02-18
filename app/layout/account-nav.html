@@ -29,9 +29,9 @@
   </div>
 </div>
 
-<div id="sidebar">
+<div id="sidebar" >
   <div data-ng-if="globals.currentUser">
-    <h4 type="button" data-toggle="dropdown">{{globals.currentUser.firstName}}
+    <h4 class="text-center sidebarheader" type="button" data-toggle="dropdown" >{{globals.currentUser.firstName}}
       {{globals.currentUser.lastName}}
       </h4>
   </div>
@@ -44,7 +44,15 @@
            data-translate="nav.sidebar.curriculum">My Curriculum</a></li>
     <li><a ui-sref="account.settings" ng-class="{active: $state.includes('account.settings')}"
            data-translate="nav.sidebar.settings">My Settings</a></li>
+    <li><a ui-sref="account.edit_profile" data-translate="nav.header.edit_profile">Edit Profile</a></li>
+    <li><a ui-sref="account.change_password" data-translate="nav.header.change_password">Change Password</a>
+    </li>
+    <li><a ui-sref="account.subscriptions" data-translate="nav.header.subscriptions">My Subscriptions</a></li>
   </ul>
+  <div class="sidebarfooter">
+    <a  href="javascript:;" data-ng-click="logout()" data-translate="nav.header.logout" >LOGOUT</a>
+    <i class="fa fa-sign-out"></i>
+  </div>
 </div>
 
 <div ui-view></div>

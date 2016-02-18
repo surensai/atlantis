@@ -45,7 +45,7 @@
 .top-header{
   float: right;
   padding: 25% 20px;
-
+  display: none;
   ul, li {
     @extend .reset-padding-margin;
   }
@@ -78,7 +78,7 @@
   padding: 15px;
   color: $white-color;
   border: none;
-  background-color: $primary-color;
+  background-color:$primary-color;
   clear: both;
   ul, li {
     @extend .reset-padding-margin;
@@ -120,5 +120,10 @@
   }
   to {
     -webkit-transform: rotate(360deg);
+  }
+}
+@media(min-width: 768px) {
+  .top-header{
+    display: block;
   }
 }
