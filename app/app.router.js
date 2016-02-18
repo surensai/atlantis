@@ -10,14 +10,14 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
       $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
     }
 
-    $rootScope.$on('$locationChangeStart', function (event, next, current) {
-      var restrictedPagesArray = ['/login', '/register', '/home'];
+    $rootScope.$on('$locationChangeStart', function () {
+      var restrictedPagesArray = ['/login', '/register', '/home', '/forgot_password'];
       var restrictedPage = $.inArray($location.path(), restrictedPagesArray) === -1;
       var loggedIn = $rootScope.globals.currentUser;
       if (restrictedPage && !loggedIn) {
         $state.go('home');
       }
-      var afterLoginRestrictions = ['/login', '/register'];
+      var afterLoginRestrictions = ['/login', '/register', '/forgot_password'];
       var loginRestrictions = $.inArray($location.path(), afterLoginRestrictions) !== -1;
       if (loginRestrictions && loggedIn) {
         $state.go('account.dashboard');
