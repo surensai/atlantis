@@ -2,7 +2,8 @@
   <div class="feed-row" data-ng-repeat="feedItem in dashboard.data.newsFeedsList">
     <div class="panel clearfix">
       <div class="col-md-4 nopadding">
-        <img src="assets/images/no-image.png" class="img-responsive">
+        <img data-ng-if="!feedItem.files" src="assets/images/no-image.png" class="img-responsive" />
+        <img data-ng-if="feedItem.files" data-ng-src="{{feedItem.files}}" class="img-responsive" />
       </div>
       <div class="col-md-8 nopadding">
         <div class="panel-body">

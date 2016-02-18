@@ -4,7 +4,7 @@ body {
 
 .reset-padding-margin {
   padding: 0px;
-  margin: 0px;
+  margin: 0px!important;
 }
 
 .nopadding {
@@ -31,10 +31,6 @@ body, html {
 .navbar-default {
   background-color: transparent;
   border: none;
-}
-
-.navbar {
-  min-height: 82px;
 }
 
 .has-error .help-block {
@@ -113,10 +109,4 @@ body, html {
   span.icon-bar {
     background-color: #ffffff;
   }
-}
-
-.fa{
-  padding-left: 23%;
-  font-size: 24px;
-  padding-top: 8%
 }
