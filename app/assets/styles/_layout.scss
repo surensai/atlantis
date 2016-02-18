@@ -11,26 +11,18 @@
   max-height: 100px;
   position: relative;
   .width30-per, .width70-per {
-    width: 50%;
+    width: 51%;
   }
 
   .header-bg {
     background: $primary-color url('../images/header-design.png') no-repeat 7px;
   }
-  .navbar-brand-reponsive{
-    display: block;
-  }
-
-  .navbar-brand {
+    .navbar-brand {
     height: auto;
     img {
       min-width: 125px;
       min-height: 50px;
     }
-  }
-
-  .navbar-brand-reponsive{
-    display: none;
   }
 
   .header-left, .header-right {
@@ -151,15 +143,6 @@
   .header .width30-per {
     width: 30%;
   }
-
-  .navbar-brand{
-    display: none;
-  }
-
-  .navbar-brand-reponsive{
-    display: block!important;
-  }
-
 
 }
 
