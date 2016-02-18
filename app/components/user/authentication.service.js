@@ -4,7 +4,6 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
 
   var service = {};
   var base_url = "http://ec2-54-159-195-71.compute-1.amazonaws.com";
-  // Base64 encoding service used by AuthenticationService
 
   service.loginApi = function (data) {
     return $http.post(base_url + '/user/login', data);

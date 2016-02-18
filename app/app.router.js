@@ -11,16 +11,20 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     }
 
     $rootScope.$on('$locationChangeStart', function () {
-      var restrictedPagesArray = ['/login', '/register', '/home', '/forgot_password'];
-      var restrictedPage = $.inArray($location.path(), restrictedPagesArray) === -1;
       var loggedIn = $rootScope.globals.currentUser;
-      if (restrictedPage && !loggedIn) {
-        $state.go('home');
+      if(!loggedIn && $location.path().indexOf("account") > 0){
+        $state.go('login');
       }
+
       var afterLoginRestrictions = ['/login', '/register', '/forgot_password'];
       var loginRestrictions = $.inArray($location.path(), afterLoginRestrictions) !== -1;
       if (loginRestrictions && loggedIn) {
         $state.go('account.dashboard');
+      }
+
+      if(($location.path().indexOf("messages") === -1) && $rootScope.messages){
+        delete $rootScope.messages;
+        $cookieStore.remove('noSesMes');
       }
     });
   }
@@ -111,10 +115,9 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
   }).state('messages', {
     url: '/messages',
     templateUrl: "layout/messages.html",
-    controller: function(flashService, $rootScope, $state){
-      if($rootScope.globals.flash){
-        $rootScope.globals.flash.keepAfterLocationChange = true;
-      } else {
+    controller: function($cookieStore, $rootScope, $state){
+      $rootScope.messages = $cookieStore.get('noSesMes');
+      if(!$rootScope.messages){
         $state.go("home");
       }
     },
