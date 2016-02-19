@@ -64,7 +64,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   service.registerSuccessMessages = registerSuccessMessages;
   service.forgotErrorMessages = forgotErrorMessages;
   service.forgotSuccessMessages = forgotSuccessMessages;
-  service.editprofileErrorMessages = forgotErrorMessages;
+  service.editprofileErrorMessages = editprofileErrorMessages;
   service.editprofileSuccessMessages = editprofileSuccessMessages;
   return service;
 }]);
