@@ -14,7 +14,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   }
 
   function registerSuccessMessages(successObj) {
-    if(successObj){
+    if (successObj) {
       flashService.showCustomMessage("register", true);
     }
   }
@@ -32,7 +32,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   }
 
   function forgotSuccessMessages(successObj) {
-    if(successObj){
+    if (successObj) {
       flashService.showSuccess(successObj.message, true);
     }
   }
@@ -40,29 +40,31 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   function forgotErrorMessages(status) {
     var message;
     if (status === 500) {
-      message= $translate.instant('user.validationMessages.email_valid ');
+      message = $translate.instant('user.validationMessages.email_valid ');
     }
     flashService.showError(message, false);
   }
 
   function editprofileSuccessMessages(successObj) {
-    if(successObj){
+    if (successObj) {
       flashService.showSuccess(successObj.message, true);
     }
   }
-  function forgotErrorMessages(status) {
+
+  function editprofileErrorMessages(status) {
     var message;
-    if (status != "") {
-      message= error.error;
+    if (status !== "") {
+      message = error.error;
     }
     flashService.showError(message, false);
   }
+
   service.loginErrorMessages = loginErrorMessages;
   service.registerErrorMessages = registerErrorMessages;
   service.registerSuccessMessages = registerSuccessMessages;
   service.forgotErrorMessages = forgotErrorMessages;
   service.forgotSuccessMessages = forgotSuccessMessages;
-  service.editprofileErrorMessages = forgotErrorMessages;
-   service.editprofileSuccessMessages = editprofileSuccessMessages;
+  service.editprofileErrorMessages = editprofileErrorMessages;
+  service.editprofileSuccessMessages = editprofileSuccessMessages;
   return service;
 }]);

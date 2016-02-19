@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('editProfileCtrl', ['$scope', 'UserService', '$state', '$timeout', 'flashService', '$rootScope', 'AuthenticationService','messagesFactory', function ($scope, UserService, $state, $timeout, flashService, $rootScope, AuthenticationService,messagesFactory) {
+angular.module("app").controller('editProfileCtrl', ['$scope', 'UserService', '$state', '$timeout', 'flashService', '$rootScope', 'AuthenticationService', 'messagesFactory', function ($scope, UserService, $state, $timeout, flashService, $rootScope, AuthenticationService, messagesFactory) {
 
   var editProfile = this;
   editProfile.service = UserService;

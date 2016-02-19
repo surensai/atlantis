@@ -2,19 +2,23 @@
   <div class="feed-row" data-ng-repeat="feedItem in dashboard.data.newsFeedsList">
     <div class="panel clearfix">
       <div class="col-md-4 nopadding">
-        <img data-ng-if="!feedItem.files" src="assets/images/no-image.png" class="img-responsive" />
-        <img data-ng-if="feedItem.files" data-ng-src="{{feedItem.files}}" class="img-responsive" />
+        <img data-ng-if="!feedItem.files" src="assets/images/no-image.png" class="img-responsive"/>
+        <img data-ng-if="feedItem.files" data-ng-src="{{feedItem.files}}" class="img-responsive"/>
       </div>
       <div class="col-md-8 nopadding">
         <div class="panel-body">
           <h3>{{feedItem.title}}</h3>
+
           <p am-time-ago="feedItem.updatedAt"></p>
+
           <p ng-class="{ 'first-element': $index == 1,'second-element':$index == 2 }">{{feedItem.description}}</p>
         </div>
         <div class="panel-footer">
           <div class="icons-block">
             <i itemdata="feedItem" index="$index" data-twitter-share></i>
-            <i itemdata="feedItem" index="$index" data-fb-share  data-lang="en" data-count='horizontal' data-url='http://google.com' data-via='notsosleepy' data-size="medium" data-text='Testing Twitter Share'></i>
+            <i itemdata="feedItem" index="$index" data-fb-share data-lang="en" data-count='horizontal'
+               data-url='http://google.com' data-via='notsosleepy' data-size="medium"
+               data-text='Testing Twitter Share'></i>
             <i itemdata="feedItem" index="$index" gplus-share></i>
           </div>
         </div>
