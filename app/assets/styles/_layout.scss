@@ -146,3 +146,20 @@
 
 }
 
+.messages-container {
+  margin-top: 8%;
+  margin-bottom: 8%;
+}
+.messages-panel{
+  border: 1px solid #4CBC96;
+  .panel-heading{
+    background-color: #4CBC96;
+    span{
+      color: white;
+    }
+  }
+  .panel-body{
+    background-color:#FAFAFA;
+    color: #B3B3B3;
+  }
+}

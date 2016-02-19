@@ -12,7 +12,7 @@ angular.module('app').factory('flashService', ['$rootScope','$cookieStore', func
     function clearFlashMessage() {
       var flash = $rootScope.globals.flash;
       if (flash) {
-        if (!flash.keepAfterLocationChange && !flash.isClear) {
+        if (!flash.keepAfterLocationChange) {
           delete $rootScope.globals.flash;
         } else {
           // only keep for a single location change
@@ -22,7 +22,7 @@ angular.module('app').factory('flashService', ['$rootScope','$cookieStore', func
     }
   }
 
-  function showSuccess(message, keepAfterLocationChange, isClear) {
+  function showSuccess(message, keepAfterLocationChange) {
     $rootScope.globals.flash = {
       message: message,
       type: 'success',

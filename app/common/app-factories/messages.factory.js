@@ -14,7 +14,9 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   }
 
   function registerSuccessMessages(successObj) {
-    flashService.showCustomMessage("register", true);
+    if(successObj){
+      flashService.showCustomMessage("register", true);
+    }
   }
 
   function registerErrorMessages(status) {
