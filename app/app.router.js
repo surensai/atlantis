@@ -16,7 +16,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
         $state.go('login');
       }
 
-      var afterLoginRestrictions = ['/login', '/register', '/forgot_password'];
+      var afterLoginRestrictions = ['/login', '/register', '/forgot-password'];
       var loginRestrictions = $.inArray($location.path(), afterLoginRestrictions) !== -1;
       if (loginRestrictions && loggedIn) {
         $state.go('account.dashboard');
@@ -88,37 +88,13 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     data: {
       pageTitle: 'Square Panda - About'
     }
-  }).state('updates', {
-    url: '/updates',
-    templateUrl: urlBuilder('static', 'updates'),
-    controller: 'staticCtrl',
-    controllerAs: "static",
-    data: {
-      pageTitle: 'Square Panda - Updates'
-    }
-  }).state('FAQs', {
-    url: '/FAQs',
-    templateUrl: urlBuilder('static', 'faqs'),
-    controller: 'staticCtrl',
-    controllerAs: "static",
-    data: {
-      pageTitle: 'Square Panda - Faqs'
-    }
-  }).state('pre-order', {
-    url: '/pre-order',
-    templateUrl: urlBuilder('static', 'pre_order'),
-    controller: 'staticCtrl',
-    controllerAs: "static",
-    data: {
-      pageTitle: 'Square Panda - Pre order'
-    }
   }).state('messages', {
     url: '/messages',
     templateUrl: "layout/messages.html",
     controller: function($cookieStore, $rootScope, $state){
       $rootScope.messages = $cookieStore.get('noSesMes');
       if(!$rootScope.messages){
-        $state.go("home");
+        $state.go("login");
       }
     },
     data: {
@@ -206,7 +182,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     }
   }).state('account.edit_profile', {
     url: '/edit',
-    templateUrl: urlBuilder('account/edit_profile', 'edit-profile'),
+    templateUrl: urlBuilder('account/edit-profile', 'edit-profile'),
     controller: 'editProfileCtrl',
     controllerAs: "editProfile",
     data: {
@@ -214,7 +190,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     }
   }).state('account.change_password', {
     url: '/change_password',
-    templateUrl: urlBuilder('account/change_password', 'change-password'),
+    templateUrl: urlBuilder('account/change-password', 'change-password'),
     controller: 'changePasswordCtrl',
     controllerAs: "changePassword",
     data: {
