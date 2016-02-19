@@ -29,7 +29,7 @@
   </div>
 </div>
 
-<div id="sidebar" >
+<div id="sidebar" side-bar>
   <div data-ng-if="globals.currentUser">
     <h4 class="text-center sidebarheader" type="button" data-toggle="dropdown" >{{globals.currentUser.firstName}}
       {{globals.currentUser.lastName}}
@@ -50,7 +50,7 @@
     <li><a ui-sref="account.subscriptions" data-translate="nav.header.subscriptions">My Subscriptions</a></li>
   </ul>
   <div class="sidebarfooter">
-    <a  href="javascript:;" data-ng-click="logout()" data-translate="nav.header.logout" >LOGOUT</a>
+    <a  href="javascript:;" data-translate="nav.header.logout" id="side-bar-logout" >LOGOUT</a>
     <i class="fa fa-sign-out fa-2x pull-right"></i>
   </div>
 </div>
