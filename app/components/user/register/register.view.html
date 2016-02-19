@@ -15,8 +15,8 @@
            data-ng-class="{ 'has-error' : (register.submitted && !register.model.firstName) || (userForm.firstName.$invalid && !userForm.firstName.$pristine) }">
         <input type="text" name="firstName" class="form-control" data-ng-model="register.model.firstName"
                placeholder="{{ 'user.first_name' | translate }}" required>
-        <p
-          ng-show="(register.submitted && !register.model.firstName) || (userForm.firstName.$invalid && !userForm.firstName.$pristine)"
+
+        <p ng-show="(register.submitted && !register.model.firstName) || (userForm.firstName.$invalid && !userForm.firstName.$pristine)"
           class="help-block" data-translate="user.validationMessages.first_name_require">First name is required.</p>
         <i class="glyphicon glyphicon-user form-control-feedback"></i>
       </div>
@@ -37,7 +37,7 @@
                placeholder="{{ 'user.email' | translate }}">
 
         <p ng-show="(register.submitted && !register.model.email) || (userForm.email.$invalid && !userForm.email.$pristine)"
-           class="help-block" data-translate="user.validationMessages.email_valid">Enter a valid email</p>
+          class="help-block" data-translate="user.validationMessages.email_valid">Enter a valid email</p>
         <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
       </div>
 
@@ -46,7 +46,7 @@
         <input type="password" name="passsword" data-ng-model="register.model.password" class="form-control" required
                placeholder="{{ 'user.password' | translate }}">
 
-        <p  ng-show="(register.submitted && !register.model.password) || (userForm.password.$invalid && !userForm.password.$pristine)"
+        <p ng-show="(register.submitted && !register.model.password) || (userForm.password.$invalid && !userForm.password.$pristine)"
           class="help-block" data-translate="user.validationMessages.password_require">Password is required</p>
         <i class="glyphicon glyphicon-lock form-control-feedback"></i>
       </div>
@@ -68,7 +68,6 @@
     </form>
   </div>
   <div class="col-lg-4"></div>
-
 
 </div>
 </div>

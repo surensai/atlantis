@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('registerCtrl', ['AuthenticationService', 'UserService', '$timeout', 'messagesFactory','$state', function (AuthenticationService, UserService, $timeout, messagesFactory, $state) {
+angular.module("app").controller('registerCtrl', ['AuthenticationService', 'UserService', '$timeout', 'messagesFactory', '$state', function (AuthenticationService, UserService, $timeout, messagesFactory, $state) {
 
   var register = this;
 
