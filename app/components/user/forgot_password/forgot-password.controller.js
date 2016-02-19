@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('forgotPasswordCtrl', ['$scope', 'UserService', 'flashService', function ($scope, UserService, flashService) {
+angular.module("app").controller('forgotPasswordCtrl', ['$scope', 'UserService', 'flashService','messagesFactory', function ($scope, UserService, flashService,messagesFactory) {
 
   var forgot = this;
   forgot.model = {};
@@ -23,11 +23,13 @@ angular.module("app").controller('forgotPasswordCtrl', ['$scope', 'UserService',
     var handleSuccess = function (data) {
       forgot.data = {};
       forgot.spinIt = false;
-      flashService.showSuccess(data.message, true);
+      messagesFactory.forgotSuccessMessages(data);
     };
-    var handleError = function (error) {
+    var handleError = function (error,status) {
       forgot.spinIt = false;
-      flashService.showError(error.error, false);
+      if (error && status) {
+        messagesFactory.forgotErrorMessages(status);
+      }
     };
     UserService.forgotPasswordAPI(forgot.model)
       .success(handleSuccess)

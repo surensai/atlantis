@@ -6,7 +6,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   function loginErrorMessages(status) {
     var message;
     if (status === 424) {
-      message = $translate.instant('user.validationMessages.Email_notverified');
+      message = $translate.instant('user.validationMessages.email_notverified');
     } else {
       message = $translate.instant('user.validationMessages.email_password_mismatch');
     }
@@ -31,8 +31,38 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     flashService.showError(message, false);
   }
 
+  function forgotSuccessMessages(successObj) {
+    if(successObj){
+      flashService.showSuccess(successObj.message, true);
+    }
+  }
+
+  function forgotErrorMessages(status) {
+    var message;
+    if (status === 500) {
+      message= $translate.instant('user.validationMessages.email_valid ');
+    }
+    flashService.showError(message, false);
+  }
+
+  function editprofileSuccessMessages(successObj) {
+    if(successObj){
+      flashService.showSuccess(successObj.message, true);
+    }
+  }
+  function forgotErrorMessages(status) {
+    var message;
+    if (status != "") {
+      message= error.error;
+    }
+    flashService.showError(message, false);
+  }
   service.loginErrorMessages = loginErrorMessages;
   service.registerErrorMessages = registerErrorMessages;
   service.registerSuccessMessages = registerSuccessMessages;
+  service.forgotErrorMessages = forgotErrorMessages;
+  service.forgotSuccessMessages = forgotSuccessMessages;
+  service.editprofileErrorMessages = forgotErrorMessages;
+   service.editprofileSuccessMessages = editprofileSuccessMessages;
   return service;
 }]);

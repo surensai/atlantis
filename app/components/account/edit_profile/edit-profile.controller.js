@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('editProfileCtrl', ['$scope', 'UserService', '$state', '$timeout', 'flashService', '$rootScope', 'AuthenticationService', function ($scope, UserService, $state, $timeout, flashService, $rootScope, AuthenticationService) {
+angular.module("app").controller('editProfileCtrl', ['$scope', 'UserService', '$state', '$timeout', 'flashService', '$rootScope', 'AuthenticationService','messagesFactory', function ($scope, UserService, $state, $timeout, flashService, $rootScope, AuthenticationService,messagesFactory) {
 
   var editProfile = this;
   editProfile.service = UserService;
@@ -22,13 +22,14 @@ angular.module("app").controller('editProfileCtrl', ['$scope', 'UserService', '$
 
     var handleSuccess = function (data) {
       AuthenticationService.SetCredentials(editProfile.model);
-      flashService.showSuccess(data.message, true);
+      messagesFactory.editprofileSuccessMessages(data);
     };
 
-    var handleError = function (error) {
-      flashService.showError(error.error, false);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.forgotErrorMessages(status);
+      }
     };
-
     editProfile.service.Update(editProfile.model)
       .success(handleSuccess)
       .error(handleError);

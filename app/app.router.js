@@ -34,7 +34,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     return 'components/' + viewFolderPath + '/' + viewPath + '.view.html';
   }
 
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/login');
   $stateProvider.state('home', {
     url: '/home',
     templateUrl: urlBuilder('home', 'home'),

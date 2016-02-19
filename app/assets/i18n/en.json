@@ -107,22 +107,24 @@
       "forgot_password": "Forgot Password",
       "sign_in": "Login",
       "forgot_password": "Forgot password?",
-      "register": "Not registered yet? Sign Up"
+      "register": "Not registered yet? Sign Up",
+      "login_page":"Go to login page"
     },
     "forgot_password": {
     },
     "validationMessages": {
-      "first_name_require": "First name is required",
-      "last_name_require": "Last name is required",
-      "password_mismatch": "Password mismatch",
-      "email_require": "Email is required",
-      "email_valid": "Email is not valid",
-      "password_require": "Password is required",
-      "cpassword_require": "Confirm password is required",
+      "first_name_require": "First name is required.",
+      "last_name_require": "Last name is required.",
+      "password_mismatch": "Password mismatch.",
+      "email_require": "Email is required.",
+      "email_valid": "Email is not valid.",
+      "password_require": "Password is required.",
+      "cpassword_require": "Confirm password is required.",
       "email_password_mismatch": "Incorrect username or password.",
-      "email_notverified": "Email not verified",
+      "email_notverified": "Email not verified.",
       "email_registered":"Email already existed, try with different email.",
-      "password_strength":"Passwords must be between 8 and 20 characters."
+      "password_strength":"Passwords must be between 8 and 20 characters.",
+      "mobile_num_require":"mobile number is required."
 
     },
     "change_password": {
