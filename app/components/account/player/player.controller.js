@@ -86,7 +86,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
     var handleError = function () {
       flashService.showError("Invalid player credentials", false);
     };
-    console.log(player.data.playerItem.id);
+
     player.loadPromise = PlayerService.updateApi(player.data.playerItem.id, formData)
       .success(handleSuccess)
       .error(handleError);

@@ -24,7 +24,7 @@ angular.module("app").controller('forgotPasswordCtrl', ['$scope', 'UserService',
       forgot.data = {};
       forgot.spinIt = false;
       messagesFactory.forgotSuccessMessages(data);
-      $state.go('messages')
+      $state.go('messages');
     };
     var handleError = function (error, status) {
       forgot.spinIt = false;
