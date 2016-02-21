@@ -1,8 +1,8 @@
 <uib-alert type="{{globals.flash.type}}" close="closeAlert()" data-ng-if="globals.flash && globals.flash.type && show"
              dismiss-on-timeout="4000">{{globals.flash.message}}</uib-alert>
 
-<div class="container">
-  <table class="table table-hover">
+<div >
+  <table class="table table-hover" cg-busy="{promise:player.loadPromise,message:'Loading Your Data'}">
     <tr>
       <td colspan="3">
           <button type="button" class="btn btn-primary btn-lg" ui-sref="account.addplayer" data-translate="player.add_new_player">Add New Player</button>

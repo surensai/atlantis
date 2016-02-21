@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout', 'flashService', function (UserService, $timeout, flashService) {
+angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout', 'flashService', 'AuthenticationService', '$state',function (UserService, $timeout, flashService, AuthenticationService, $state) {
 
   var changePassword = this;
   changePassword.model = {};
@@ -19,12 +19,15 @@ angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout
 
   function save() {
     var handleSuccess = function (data) {
-      flashService.showSuccess(data.message, true);
+      AuthenticationService.ClearCredentials();
+      var message = "Your password has changed. Please try to login"
+      flashService.showSuccess(message, true);
+      $state.go('login');
     };
     var handleError = function (error) {
       flashService.showError(error.error, false);
     };
-    UserService.changePasswordAPI(changePassword.model)
+    changePassword.loadPromise = UserService.changePasswordAPI(changePassword.model)
       .success(handleSuccess)
       .error(handleError);
   }

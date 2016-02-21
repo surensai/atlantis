@@ -2,7 +2,7 @@
 <div class="alert alert-success" data-ng-if="globals.flash && globals.flash.type == 'success'">
   {{globals.flash.message}}
 </div>
-<div class="content login-wrapper">
+<div class="content login-wrapper" cg-busy="{promise:editProfile.loadPromise,message:'Submitting Your Data'}">
 
   <div class="col-lg-4"></div>
   <div class="col-lg-4">

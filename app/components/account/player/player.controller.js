@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerService', 'flashService', 'playersListData', function ($timeout, $state, PlayerService, flashService, playersListData) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerService', 'flashService', function ($timeout, $state, PlayerService, flashService) {
 
   var player = this;
   player.modalTitle = 'Warning!';
@@ -19,23 +19,31 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   };
 
   (function () {
-    player.data.playersList = playersListData.data;
-    if ($state.params.id) {
-      player.isUpdate = true;
-      player.data.playerItem = player.model.playerItem = player.service.getObjById(player.data.playersList, $state.params.id);
-    }
+
+    var handleSuccess = function (data) {
+      player.data.playersList = data;
+      if ($state.params.id) {
+        player.isUpdate = true;
+        player.data.playerItem = player.model.playerItem = PlayerService.getObjById(player.data.playersList, $state.params.id);
+      }
+    };
+
+    var handleError = function () {
+      flashService.showError("Error in getting players", false);
+    };
+
+    player.loadPromise = PlayerService.getAllApi()
+      .success(handleSuccess)
+      .error(handleError);
+
+
   })();
 
   player.submitForm = function (form) {
 
     player.submitted = true;
     if (form.$valid) {
-      uploadProfilePic();
-      if (player.isUpdate) {
-        updateAction();
-      } else {
-        addAction();
-      }
+      uploadProfilePic(form);
     } else {
       $timeout(function () {
         angular.element('.custom-error:first').focus();
@@ -63,7 +71,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
       flashService.showError("Invalid player credentials", false);
     };
 
-    player.service.createApi(formData)
+    player.loadPromise = PlayerService.createApi(formData)
       .success(handleSuccess)
       .error(handleError);
   }
@@ -78,24 +86,34 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
     var handleError = function () {
       flashService.showError("Invalid player credentials", false);
     };
-
-    player.service.updateApi(player.data.playerItem.id, formData)
+    console.log(player.data.playerItem.id);
+    player.loadPromise = PlayerService.updateApi(player.data.playerItem.id, formData)
       .success(handleSuccess)
       .error(handleError);
   }
 
 
-  function uploadProfilePic() {
+  function uploadProfilePic(form) {
     var handleSuccess = function (data) {
       player.model.playerItem.profileURL = data.files[0].url;
+      if (player.isUpdate) {
+        updateAction();
+      } else {
+        addAction();
+      }
       form.$setPristine();
       flashService.showSuccess("File uploaded successfully!", false);
     };
 
     var handleError = function () {
-      flashService.showError("Error in deleting", false);
+      if (player.isUpdate) {
+        updateAction();
+      } else {
+        addAction();
+      }
+      flashService.showError("Error in file uploading", false);
     };
-    var file = $scope.myFile;
+    var file = player.myFile;
 
     player.loadPromise = PlayerService.uploadFileApi(file)
       .success(handleSuccess)
@@ -110,7 +128,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   player.deleteAction = function () {
 
     var handleSuccess = function () {
-      player.service.removeItem(player.data.playersList, player.data.deleteObj);
+      PlayerService.removeItem(player.data.playersList, player.data.deleteObj);
       angular.element('#pop').modal('hide');
       flashService.showSuccess("Player deleted successfully!", false);
     };

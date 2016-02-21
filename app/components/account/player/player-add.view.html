@@ -22,14 +22,14 @@
     <div class="row">
       <div class="form-group col-md-6">
 
-        <div class="thumbnail" ng-show="!player.model.playerItem.profileURL">
+        <div  data-ng-if="player.isUpdate" class="thumbnail" ng-show="!player.model.playerItem.profileURL">
           <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image">
         </div>
-        <div class="thumbnail" ng-show="player.model.playerItem.profileURL">
+        <div data-ng-if="player.isUpdate" class="thumbnail" ng-show="player.model.playerItem.profileURL">
           <img ng-src="{{player.model.playerItem.profileURL}}">
         </div>
         <div>
-          <input type="file"  file-model="myFile">
+          <input type="file"  file-model="player.myFile">
           <!--<input type="file" ng-show="myFile" file-model="myFile" style=" position: absolute;">-->
           <!--<span class="btn btn-danger " ng-show="myFile">Remove</span>-->
         </div>

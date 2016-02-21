@@ -113,11 +113,6 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     controllerAs: "dashboard",
     data: {
       pageTitle: 'Square Panda - Dashboard'
-    },
-    resolve: {
-      newsFeedData: function (DashboardService) {
-        return DashboardService.getAllApi();
-      }
     }
   }).state('account.subscriptions', {
     url: '/subscriptions',
@@ -134,11 +129,6 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     controllerAs: "player",
     data: {
       pageTitle: 'Square Panda - Players'
-    },
-    resolve: {
-      playersListData: function (PlayerService) {
-        return PlayerService.getAllApi();
-      }
     }
   }).state('account.addplayer', {
     url: '/player/add',
