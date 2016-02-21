@@ -1,7 +1,7 @@
 <div class="col-lg-2"></div>
 <div class="col-lg-8">
 
-  <div cg-busy="{promise:player.myPromise,message:'Loading Your Data'}"></div>
+  <div cg-busy="{promise:player.loadPromise, message:'Loading Your Data'}"></div>
   <form name="playerForm"  ng-submit="player.submitForm(playerForm)" novalidate>
     <h2 class="form-signin-heading" data-translate="nav.edit_player.header" data-ng-if="player.isUpdate">Edit Profile</h2>
     <h2 class="form-signin-heading" data-translate="nav.add_player.header" data-ng-if="!player.isUpdate">Add Player</h2>

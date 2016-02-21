@@ -38,7 +38,7 @@ angular.module("app").controller('registerCtrl', ['AuthenticationService', 'User
         messagesFactory.registerErrorMessages(status);
       }
     };
-    UserService.Create(formData)
+    register.loadPromise = UserService.Create(formData)
       .success(handleSuccess)
       .error(handleError);
   }

@@ -5,7 +5,7 @@
 <div class="alert alert-danger" data-ng-if="globals.flash && globals.flash.type !== 'success'">
   {{globals.flash.message}}
 </div>
-<div class="content login-wrapper clearfix">
+<div class="content login-wrapper clearfix" cg-busy="{promise:register.loadPromise, message:'Submitting Your Data'}">
   <div class="col-lg-4"></div>
   <div class="col-lg-4">
     <form name="userForm" class="login-form" data-ng-submit="register.submitForm(userForm)" novalidate>

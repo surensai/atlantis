@@ -97,7 +97,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
     };
     var file = $scope.myFile;
 
-    player.myPromise = PlayerService.uploadFileApi(file)
+    player.loadPromise = PlayerService.uploadFileApi(file)
       .success(handleSuccess)
       .error(handleError);
   }
