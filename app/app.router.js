@@ -72,9 +72,9 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
         return UserService.authorizeTokenAPI($stateParams.token);
       }
     }
-  }).state('forgot_password', {
-    url: '/forgot_password',
-    templateUrl: urlBuilder('user/forgot_password', 'forgot-password'),
+  }).state('forgot-password', {
+    url: '/forgot-password',
+    templateUrl: urlBuilder('user/forgot-password', 'forgot-password'),
     controller: 'forgotPasswordCtrl',
     controllerAs: "forgot",
     data: {
