@@ -124,7 +124,8 @@
       "email_notverified": "Email not verified.",
       "email_registered":"Email already existed, try with different email.",
       "password_strength":"Passwords must be between 8 and 20 characters.",
-      "mobile_num_require":"mobile number is required."
+      "mobile_num_require":"mobile number is required.",
+      "password_change_new_login":"Your password has changed. Please try to login"
 
     },
     "change_password": {

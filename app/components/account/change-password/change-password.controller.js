@@ -18,9 +18,9 @@ angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout
   };
 
   function save() {
-    var handleSuccess = function (data) {
+    var handleSuccess = function () {
       AuthenticationService.ClearCredentials();
-      var message = "Your password has changed. Please try to login"
+      var message = $translate.instant('user.validationMessages.password_change_new_login');
       flashService.showSuccess(message, true);
       $state.go('login');
     };
