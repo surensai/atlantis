@@ -5,7 +5,7 @@
 <div class="alert alert-danger" data-ng-if="globals.flash && globals.flash.type !== 'success'">
   {{globals.flash.message}}
 </div>
-<div class="content login-wrapper clearfix">
+<div class="content login-wrapper clearfix" cg-busy="{promise:register.loadPromise,message:'Submitting Your Data'}">
   <div class="col-lg-4"></div>
   <div class="col-lg-4">
     <form name="userForm" class="login-form" data-ng-submit="register.submitForm(userForm)" novalidate>
@@ -42,21 +42,24 @@
       </div>
 
       <div class="form-group has-feedback"
-           data-ng-class="{ 'has-error' : (register.submitted && !register.model.password) || (userForm.password.$invalid && !userForm.password.$pristine) }">
-        <input type="password" name="passsword" data-ng-model="register.model.password" class="form-control" required
+           data-ng-class="{ 'has-error' : (register.submitted && !register.model.password) || (userForm.password.$invalid && !userForm.password.$pristine) && userForm.password.$error.minlength}">
+        <input type="password" name="password" data-ng-model="register.model.password" class="form-control" ng-minlength="8" required
                placeholder="{{ 'user.password' | translate }}">
 
-        <p ng-show="(register.submitted && !register.model.password) || (userForm.password.$invalid && !userForm.password.$pristine)"
-          class="help-block" data-translate="user.validationMessages.password_require">Password is required</p>
+        <p ng-show="(register.submitted && !register.model.password) || (userForm.password.$invalid && !userForm.password.$pristine) || !userForm.password.$error.minlength"
+          ng-hide="userForm.password.$dirty" class="help-block" data-translate="user.validationMessages.password_require">Password is required</p>
+        <p ng-show="userForm.password.$error.minlength" ng-hide="!userForm.password.$dirty"  class="help-block">Passwords must be 8</p>
+        {{userForm.password.$error.minlength}}
+
         <i class="glyphicon glyphicon-lock form-control-feedback"></i>
       </div>
 
       <div class="form-group has-feedback"
-           data-ng-class="{ 'has-error' : (register.submitted && !register.model.confirmPassword) || (userForm.confirmPassword.$invalid && !userForm.confirmPassword.$pristine) || (register.model.password !== register.model.confirmPassword) }">
+           data-ng-class="{ 'has-error' : (register.submitted && !register.model.confirmPassword) || (userForm.confirmPassword.$invalid && !userForm.confirmPassword.$pristine)  }">
         <input type="password" name="confirmPassword" data-ng-model="register.model.confirmPassword"
-               placeholder="{{ 'user.register.confirm_password' | translate }}" class="form-control" required>
+               placeholder="{{ 'user.register.confirm_password' | translate }}" class="form-control" valid-password-c required>
 
-        <p ng-show="register.model.confirmPassword && (register.model.password !== register.model.confirmPassword)"
+        <p ng-show="!userForm.confirmPassword.$error.required && userForm.confirmPassword.$error.noMatch && userForm.password.$dirty"
            class="help-block" data-translate="user.validationMessages.password_mismatch">Password mismatch.</p>
 
         <p ng-show="(register.submitted && !register.model.confirmPassword)" class="help-block"

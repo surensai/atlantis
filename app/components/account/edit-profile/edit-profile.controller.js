@@ -30,7 +30,7 @@ angular.module("app").controller('editProfileCtrl', ['$scope', 'UserService', '$
         messagesFactory.forgotErrorMessages(status);
       }
     };
-    editProfile.service.Update(editProfile.model)
+    editProfile.loadPromise = editProfile.service.Update(editProfile.model)
       .success(handleSuccess)
       .error(handleError);
   }
