@@ -33,7 +33,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
 
   function forgotSuccessMessages(successObj) {
     if (successObj) {
-      flashService.showSuccess(successObj.message, true);
+      flashService.showCustomMessage('forgot', true);
     }
   }
 

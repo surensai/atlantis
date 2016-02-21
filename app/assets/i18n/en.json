@@ -44,21 +44,21 @@
       "title": "Forgot Password",
       "header": "Forgot Password"
     },
-    "about_us": {
-      "title": "About us",
-      "header": "About us"
+    "press": {
+      "title": "Press",
+      "header": "Press"
     },
-    "updates": {
-      "title": "Updates",
-      "header": "Updates"
+    "warrenty_info": {
+      "title": "Warrenty Information",
+      "header": "Warrenty Information"
     },
-    "faqs": {
-      "title": "FAQs",
-      "header": "FAQs"
+    "privacy_policy": {
+      "title": "Privacy policy ",
+      "header": "Privacy policy "
     },
-    "pre_order": {
-      "title": "Pre-Order",
-      "header": "Pre-Order"
+    "terms_services": {
+      "title": "Terms and Services",
+      "header": "Terms and Services"
     },
     "add_player": {
       "title": "Add Player",
