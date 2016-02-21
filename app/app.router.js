@@ -11,12 +11,12 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     }
 
     $rootScope.$on('$locationChangeStart', function () {
-      var loggedIn = $rootScope.globals.currentUser;
+     var loggedIn = $rootScope.globals.currentUser;
       if(!loggedIn && $location.path().indexOf("account") > 0){
         $state.go('login');
       }
 
-      var afterLoginRestrictions = ['/login', '/register', '/forgot_password'];
+      var afterLoginRestrictions = ['/login', '/register', '/forgot-password'];
       var loginRestrictions = $.inArray($location.path(), afterLoginRestrictions) !== -1;
       if (loginRestrictions && loggedIn) {
         $state.go('account.dashboard');
@@ -35,15 +35,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
   }
 
   $urlRouterProvider.otherwise('/login');
-  $stateProvider.state('home', {
-    url: '/home',
-    templateUrl: urlBuilder('home', 'home'),
-    controller: 'homeCtrl',
-    controllerAs: "home",
-    data: {
-      pageTitle: 'Square Panda Inc.'
-    }
-  }).state('login', {
+  $stateProvider.state('login', {
     url: '/login',
     templateUrl: urlBuilder('user/login', 'login'),
     controller: 'loginCtrl',
@@ -59,9 +51,9 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     data: {
       pageTitle: 'Square Panda - Register'
     }
-  }).state('reset_password', {
-    url: '/reset_password/:token',
-    templateUrl: urlBuilder('user/reset_password', 'reset-password'),
+  }).state('reset-password', {
+    url: '/reset-password/:token',
+    templateUrl: urlBuilder('user/reset-password', 'reset-password'),
     controller: 'resetPasswordCtrl',
     controllerAs: "resetPassword",
     data: {
@@ -72,45 +64,13 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
         return UserService.authorizeTokenAPI($stateParams.token);
       }
     }
-  }).state('forgot_password', {
-    url: '/forgot_password',
-    templateUrl: urlBuilder('user/forgot_password', 'forgot-password'),
+  }).state('forgot-password', {
+    url: '/forgot-password',
+    templateUrl: urlBuilder('user/forgot-password', 'forgot-password'),
     controller: 'forgotPasswordCtrl',
     controllerAs: "forgot",
     data: {
       pageTitle: 'Square Panda - Forgot password'
-    }
-  }).state('about', {
-    url: '/about',
-    templateUrl: urlBuilder('static', 'about'),
-    controller: 'staticCtrl',
-    controllerAs: "static",
-    data: {
-      pageTitle: 'Square Panda - About'
-    }
-  }).state('updates', {
-    url: '/updates',
-    templateUrl: urlBuilder('static', 'updates'),
-    controller: 'staticCtrl',
-    controllerAs: "static",
-    data: {
-      pageTitle: 'Square Panda - Updates'
-    }
-  }).state('FAQs', {
-    url: '/FAQs',
-    templateUrl: urlBuilder('static', 'faqs'),
-    controller: 'staticCtrl',
-    controllerAs: "static",
-    data: {
-      pageTitle: 'Square Panda - Faqs'
-    }
-  }).state('pre-order', {
-    url: '/pre-order',
-    templateUrl: urlBuilder('static', 'pre_order'),
-    controller: 'staticCtrl',
-    controllerAs: "static",
-    data: {
-      pageTitle: 'Square Panda - Pre order'
     }
   }).state('messages', {
     url: '/messages',
@@ -204,21 +164,59 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     data: {
       pageTitle: 'Square Panda - Settings'
     }
-  }).state('account.edit_profile', {
+  }).state('account.edit-profile', {
     url: '/edit',
-    templateUrl: urlBuilder('account/edit_profile', 'edit-profile'),
+    templateUrl: urlBuilder('account/edit-profile', 'edit-profile'),
     controller: 'editProfileCtrl',
     controllerAs: "editProfile",
     data: {
       pageTitle: 'Square Panda - Edit Profile'
     }
-  }).state('account.change_password', {
-    url: '/change_password',
-    templateUrl: urlBuilder('account/change_password', 'change-password'),
+  }).state('account.change-password', {
+    url: '/change-password',
+    templateUrl: urlBuilder('account/change-password', 'change-password'),
     controller: 'changePasswordCtrl',
     controllerAs: "changePassword",
     data: {
       pageTitle: 'Square Panda - Change Password'
+    }
+  }).state('page', {
+    url: '/page',
+    templateUrl: urlBuilder('static', 'page'),
+    data: {
+      pageTitle: 'Square Panda Inc.'
+    }
+  }).state('page.press', {
+    url: '/press',
+    templateUrl: urlBuilder('static', 'press'),
+    controller: 'staticCtrl',
+    controllerAs: "static",
+    data: {
+      pageTitle: 'Square Panda - Press'
+    }
+  }).state('page.warrentyinfo', {
+    url: '/warrentyinfo',
+    templateUrl: urlBuilder('static', 'warrentyinfo'),
+    controller: 'staticCtrl',
+    controllerAs: "static",
+    data: {
+      pageTitle: 'Square Panda - warrentyinfo'
+    }
+  }).state('page.privacy-policy', {
+      url: '/privacy-policy',
+      templateUrl: urlBuilder('static', 'privacy-policy'),
+      controller: 'staticCtrl',
+      controllerAs: "static",
+      data: {
+        pageTitle: 'Square Panda - privacy-policy'
+      }
+    }).state('page.terms-services', {
+    url: '/terms-services',
+    templateUrl: urlBuilder('static', 'terms-services'),
+    controller: 'staticCtrl',
+    controllerAs: "static",
+    data: {
+      pageTitle: 'Square Panda - terms-services'
     }
   });
 
