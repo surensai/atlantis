@@ -30,8 +30,8 @@
 
       <div class="form-group"
            ng-class="{ 'has-error' : (submitted && !userForm.mobileNumber) || (userForm.mobileNumber.$invalid && !userForm.mobileNumber.$pristine) }">
-        <input type="text" name="mobileNumber" data-ng-model="editProfile.model.mobileNumber"
-               placeholder="{{ 'user.register.mobile' | translate }}" class="form-control" required>
+        <input type="number" name="mobileNumber" data-ng-model="editProfile.model.mobileNumber"
+               placeholder="{{ 'user.register.mobile' | translate }}"  class="form-control" required>
 
         <p ng-show="userForm.mobileNumber.$invalid && !userForm.mobileNumber.$pristine" class="help-block"
            data-translate="user.validationMessages.mobile_num_require">mobile number is required.</p>
