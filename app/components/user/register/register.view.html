@@ -42,14 +42,12 @@
       </div>
 
       <div class="form-group has-feedback"
-           data-ng-class="{ 'has-error' : (register.submitted && !register.model.password) || (userForm.password.$invalid && !userForm.password.$pristine) && userForm.password.$error.minlength}">
-        <input type="password" name="password" data-ng-model="register.model.password" class="form-control" ng-minlength="8" required
+           data-ng-class="{ 'has-error' : (register.submitted && !register.model.password) || (userForm.password.$invalid && !userForm.password.$pristine)}">
+        <input type="password" name="password" data-ng-model="register.model.password" class="form-control" required
                placeholder="{{ 'user.password' | translate }}">
 
-        <p ng-show="(register.submitted && !register.model.password) || (userForm.password.$invalid && !userForm.password.$pristine) || !userForm.password.$error.minlength"
-          ng-hide="userForm.password.$dirty" class="help-block" data-translate="user.validationMessages.password_require">Password is required</p>
-        <p ng-show="userForm.password.$error.minlength" ng-hide="!userForm.password.$dirty"  class="help-block">Passwords must be 8</p>
-        {{userForm.password.$error.minlength}}
+        <p ng-show="(register.submitted && !register.model.password) || (userForm.password.$invalid && !userForm.password.$pristine)"
+           class="help-block" data-translate="user.validationMessages.password_require">Password is required</p>
 
         <i class="glyphicon glyphicon-lock form-control-feedback"></i>
       </div>
