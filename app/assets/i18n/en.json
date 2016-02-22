@@ -18,7 +18,7 @@
       "settings": "My Settings"
     },
     "footer": {
-      "glyphicon": "square panda"
+      "glyphicon": "Square Panda"
     },
     "login": {
       "title": "Login",
@@ -48,9 +48,9 @@
       "title": "Press",
       "header": "Press"
     },
-    "warrenty_info": {
-      "title": "Warrenty Information",
-      "header": "Warrenty Information"
+    "warranty_info": {
+      "title": "Warranty Information",
+      "header": "Warranty Information"
     },
     "privacy_policy": {
       "title": "Privacy policy ",
@@ -73,7 +73,7 @@
     "buttons": {
       "submit": "Submit",
       "save": "Save",
-      "cancle": "Cancle"
+      "cancel": "Cancel"
     },
     "dob_year": "Year",
     "dob_month": "Month",
@@ -83,7 +83,7 @@
     "validationMessages": {}
   },
   "user": {
-    "first_name": "First name",
+    "first_name": "First Name",
     "last_name": "Last Name",
     "password": "Password",
     "email": "Email",
@@ -113,18 +113,18 @@
     "forgot_password": {
     },
     "validationMessages": {
-      "first_name_require": "First name is required.",
-      "last_name_require": "Last name is required.",
+      "first_name_require": "First Name is required",
+      "last_name_require": "Last Name is required",
       "password_mismatch": "Password mismatch.",
-      "email_require": "Email is required.",
-      "email_valid": "Email is not valid.",
-      "password_require": "Password is required.",
-      "cpassword_require": "Confirm password is required.",
-      "email_password_mismatch": "Incorrect username or password.",
-      "email_notverified": "Email not verified.",
-      "email_registered":"Email already existed, try with different email.",
-      "password_strength":"Passwords must be between 8 and 20 characters.",
-      "mobile_num_require":"mobile number is required.",
+      "email_require": "Email address is required",
+      "email_valid": "Email address is not valid",
+      "password_require": "Password is required",
+      "cpassword_require": "Confirm Password is required",
+      "email_password_mismatch": "Incorrect username or password",
+      "email_notverified": "Email address not verified",
+      "email_registered":"Email already exists, please try with different email address",
+      "password_strength":"Password must be between 8 and 20 characters",
+      "mobile_num_require":"Mobile Number is required",
       "password_change_new_login":"Your password has changed. Please try to login"
 
     },
@@ -139,16 +139,16 @@
     "last_name": "Last Name",
     "mobile": "Mobile",
     "gender": "Gender",
-    "dateofBirth": "DOB",
+    "dateOfBirth": "DOB",
     "more": "more",
     "view_players": "Back to view Players",
     "add_new_player": "Add New Player",
     "messages": {
       "add_success": "Player added successfully!",
-      "update_success": "Player updated sucessfully!",
+      "update_success": "Player updated successfully!",
       "delete_success": "Player deleted successfully!",
       "add_error": "Player added successfully!",
-      "update_error": "Player updated sucessfully!",
+      "update_error": "Player updated successfully!",
       "delete_error": "Player deleted successfully!"
     }
   }
