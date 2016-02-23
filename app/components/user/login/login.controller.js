@@ -10,6 +10,10 @@ angular.module("app").controller('loginCtrl', ['$scope', '$state', 'Authenticati
     login.model = AuthenticationService.getRememberMe();
   })();
 
+  login.closeAlert = function(index) {
+    login.show = false;
+  };
+
   login.submitForm = function (form) {
     if (form.$valid || (login.model.email && login.model.password)) {
       loginAction();
@@ -35,6 +39,7 @@ angular.module("app").controller('loginCtrl', ['$scope', '$state', 'Authenticati
       $state.go('account.dashboard');
     };
     var handleError = function (error, status) {
+      login.show = true;
       if (error && status) {
         messagesFactory.loginErrorMessages(status);
       }

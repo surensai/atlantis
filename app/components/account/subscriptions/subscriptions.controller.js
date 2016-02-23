@@ -8,11 +8,16 @@ angular.module("app").controller('subscriptionsCtrl', ['SubscriptionsService', '
     getData();
   })();
 
+  subscription.closeAlert = function(index) {
+    subscription.show = false;
+  };
+
   subscription.submitForm = function () {
     var handleSuccess = function (data) {
       flashService.showSuccess(data.message, false);
     };
     var handleError = function (error) {
+      subscription.show = true;
       flashService.showError(error.error, false);
     };
     subscription.loadPromise = SubscriptionsService.updateApi(subscription.model)
@@ -31,6 +36,7 @@ angular.module("app").controller('subscriptionsCtrl', ['SubscriptionsService', '
       subscription.model.player_updates = player_updates;
     };
     var handleError = function (error) {
+      subscription.show = true;
       flashService.showError(error.error, false);
     };
     subscription.loadPromise = SubscriptionsService.getApi()

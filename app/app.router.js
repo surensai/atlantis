@@ -121,11 +121,6 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     controllerAs: "player",
     data: {
       pageTitle: 'Square Panda - Add Player'
-    },
-    resolve: {
-      playersListData: function (PlayerService) {
-        return PlayerService.getAllApi();
-      }
     }
   }).state('account.editPlayer', {
     url: '/player/:id/edit',
@@ -134,11 +129,6 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     controllerAs: "player",
     data: {
       pageTitle: 'Square Panda - Edit Player'
-    },
-    resolve: {
-      playersListData: function (PlayerService) {
-        return PlayerService.getAllApi();
-      }
     }
   }).state('account.curriculum', {
     url: '/curriculum',

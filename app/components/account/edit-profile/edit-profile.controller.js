@@ -6,8 +6,13 @@ angular.module("app").controller('editProfileCtrl', ['$scope', 'UserService', '$
   editProfile.service = UserService;
   editProfile.model = angular.copy($rootScope.globals.currentUser);
 
+  editProfile.closeAlert = function(index) {
+    editProfile.show = false;
+  };
+
   editProfile.submitForm = function (form) {
     editProfile.submitted = true;
+    editProfile.show = true;
     if (form.$valid) {
       save();
       form.$setPristine();

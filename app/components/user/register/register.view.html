@@ -1,10 +1,12 @@
 <div class="login-bg"></div>
-<div class="alert alert-success" data-ng-if="globals.flash && globals.flash.type == 'success'">
-  {{globals.flash.message}}
-</div>
-<div class="alert alert-danger" data-ng-if="globals.flash && globals.flash.type !== 'success'">
-  {{globals.flash.message}}
-</div>
+<uib-alert type="success" class="alert-success" close="register.closeAlert()"
+           data-ng-if="globals.flash && globals.flash.type === 'success' && register.show"
+           dismiss-on-timeout="4000">{{globals.flash.message}}
+</uib-alert>
+<uib-alert type="warning" class="alert-danger" close="register.closeAlert()"
+           data-ng-if="globals.flash && globals.flash.type !== 'success' && register.show"
+           dismiss-on-timeout="5000">{{globals.flash.message}}
+</uib-alert>
 <div class="content login-wrapper clearfix" cg-busy="{promise:register.loadPromise,message:'Submitting Your Data'}">
   <div class="col-lg-4"></div>
   <div class="col-lg-4">
@@ -55,15 +57,15 @@
       </div>
 
       <div class="form-group has-feedback"
-           data-ng-class="{ 'has-error' : (register.submitted && !register.model.confirmPassword) || (userForm.confirmPassword.$invalid && !userForm.confirmPassword.$pristine)  }">
+           data-ng-class="{ 'has-error' : (register.submitted && !register.model.confirmPassword) || (userForm.confirmPassword.$invalid && !userForm.confirmPassword.$pristine) || (register.model.password !== register.model.confirmPassword) }">
         <input type="password" name="confirmPassword" data-ng-model="register.model.confirmPassword"
-               placeholder="{{ 'user.register.confirm_password' | translate }}" class="form-control" valid-password-c required>
+               placeholder="{{ 'user.register.confirm_password' | translate }}" class="form-control" required>
 
-        <p ng-show="!userForm.confirmPassword.$error.required && userForm.confirmPassword.$error.noMatch && userForm.password.$dirty"
+        <p ng-show="register.model.confirmPassword && (register.model.password !== register.model.confirmPassword)"
            class="help-block" data-translate="user.validationMessages.password_mismatch">Password mismatch</p>
 
         <p ng-show="(register.submitted && !register.model.confirmPassword)" class="help-block"
-           data-translate="user.validationMessages.cpassword_require">Confirm Password is required</p>
+           data-translate="user.validationMessages.cpassword_require">Password is required</p>
         <i class="glyphicon glyphicon-lock form-control-feedback"></i>
       </div>
       <button type="submit" class="btn btn-large btn-block btn-primary" data-translate="common.buttons.submit">Submit

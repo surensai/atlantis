@@ -1,10 +1,13 @@
 <div class="login-bg"></div>
-<div class="alert alert-success" data-ng-if="globals.flash && globals.flash.type == 'success'">
-  {{globals.flash.message}}
-</div>
-<div class="alert alert-danger" data-ng-if="globals.flash && globals.flash.type !== 'success'">
-  {{globals.flash.message}}
-</div>
+
+<uib-alert type="success" class="alert-success" close="login.closeAlert()"
+           data-ng-if="globals.flash && globals.flash.type === 'success' && login.show"
+           dismiss-on-timeout="4000">{{globals.flash.message}}
+</uib-alert>
+<uib-alert type="warning" class="alert-danger" close="login.closeAlert()"
+           data-ng-if="globals.flash && globals.flash.type !== 'success' && login.show"
+           dismiss-on-timeout="5000">{{globals.flash.message}}
+</uib-alert>
 <div class="content login-wrapper" cg-busy="{promise:login.loadPromise, message:'Loading...'}">
   <div class="col-lg-4"></div>
   <div class="col-lg-4">
