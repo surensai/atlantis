@@ -7,7 +7,7 @@ angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout
 
   changePassword.submitForm = function (form) {
     changePassword.submitted = true;
-    if (form.$valid) {
+    if (form.$valid && changePassword.model.password == changePassword.model.confirmPassword) {
       save();
       form.$setPristine();
     } else {
@@ -31,5 +31,4 @@ angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout
       .success(handleSuccess)
       .error(handleError);
   }
-
 }]);

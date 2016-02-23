@@ -14,7 +14,7 @@ angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', 
 
   resetPassword.submitForm = function (form) {
     resetPassword.submitted = true;
-    if (form.$valid) {
+    if (form.$valid && resetPassword.model.password == resetPassword.model.confirmPassword) {
       save();
       form.$setPristine();
     } else {
