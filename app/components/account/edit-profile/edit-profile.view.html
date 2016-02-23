@@ -1,7 +1,12 @@
 <div class="login-bg"></div>
-<div class="alert alert-success" data-ng-if="globals.flash && globals.flash.type == 'success'">
-  {{globals.flash.message}}
-</div>
+<uib-alert type="success" class="alert-success" close="editProfile.closeAlert()"
+           data-ng-if="globals.flash && globals.flash.type === 'success' && editProfile.show"
+           dismiss-on-timeout="4000">{{globals.flash.message}}
+</uib-alert>
+<uib-alert type="warning" class="alert-danger" close="editProfile.closeAlert()"
+           data-ng-if="globals.flash && globals.flash.type !== 'success' && editProfile.show"
+           dismiss-on-timeout="4000">{{globals.flash.message}}
+</uib-alert>
 <div class="content login-wrapper" cg-busy="{promise:editProfile.loadPromise,message:'Submitting Your Data'}">
 
   <div class="col-lg-4"></div>
@@ -30,8 +35,8 @@
 
       <div class="form-group"
            ng-class="{ 'has-error' : (submitted && !userForm.mobileNumber) || (userForm.mobileNumber.$invalid && !userForm.mobileNumber.$pristine) }">
-        <input type="number" name="mobileNumber" data-ng-model="editProfile.model.mobileNumber"
-               placeholder="{{ 'user.register.mobile' | translate }}"  class="form-control" required>
+        <input type="text" name="mobileNumber" data-ng-model="editProfile.model.mobileNumber"
+               placeholder="{{ 'user.register.mobile' | translate }}" class="form-control" required>
 
         <p ng-show="userForm.mobileNumber.$invalid && !userForm.mobileNumber.$pristine" class="help-block"
            data-translate="user.validationMessages.mobile_num_require">mobile number is required.</p>

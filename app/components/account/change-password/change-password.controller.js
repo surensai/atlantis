@@ -5,8 +5,14 @@ angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout
   var changePassword = this;
   changePassword.model = {};
 
+  changePassword.closeAlert = function(index) {
+    changePassword.show = false;
+  };
+
+
   changePassword.submitForm = function (form) {
     changePassword.submitted = true;
+    changePassword.show = true;
     if (form.$valid) {
       save();
       form.$setPristine();
@@ -22,7 +28,6 @@ angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout
       var message = $translate.instant('user.validationMessages.password_change_new_login');
       flashService.showSuccess(message, true);
       $state.go('login');
-      AuthenticationService.ClearCredentials();
     };
     var handleError = function (error) {
       flashService.showError(error.error, false);
