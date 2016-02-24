@@ -57,7 +57,7 @@
 .top-header {
   float: right;
   padding: 0px 20px;
-  margin: 27% 0px;
+  margin: 15px 0px;
   .dropdown {
     display: none;
   }
@@ -143,7 +143,8 @@
   }
 
   .navbar-brand img {
-    margin: 10px;
+    margin: 10px 0px;
+    padding-right: 44px;
   }
   .header-right, .header-left {
     max-height: 96px;
@@ -188,7 +189,25 @@ and (orientation : portrait) {
     height: 10%;
   }
   .app{
-    height: 84%;
+    height: 86%;
+  }
+  .login-wrapper{
+    height: 80%;
+  }
+  .login-bg{
+    background-size: auto 100% !important;
+  }
+}
+
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+  .header{
+    height: 10%;
+  }
+  .app{
+    height: 80%;
   }
   .login-wrapper{
     height: 80%;

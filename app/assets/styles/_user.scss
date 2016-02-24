@@ -11,7 +11,8 @@
 .login-bg {
 	background-image: url('../images/login-bg.jpg');
 	background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-position: center;
+  background-size: 100% auto;
   position: absolute;
   left: 0px;
   right: 0px;
@@ -28,7 +29,7 @@
 
 	input {
 		border-radius: 0px;
-		background-color: #efefef;
+    background-color: rgba(85, 85, 85, 0.71);
 		border: 0px;
 		color: #222;
 	}
