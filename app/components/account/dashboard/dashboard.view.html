@@ -3,8 +3,8 @@
   <div class="feed-row" data-ng-repeat="feedItem in dashboard.data.newsFeedsList">
     <div class="panel clearfix">
       <div class="col-md-4 nopadding">
-        <img data-ng-if="!feedItem.files" src="assets/images/no-image.png" class="img-responsive"/>
-        <img data-ng-if="feedItem.files" data-ng-src="{{feedItem.files}}" class="img-responsive"
+        <img data-ng-if="!feedItem.files" src="assets/images/no-image.png" class="img-responsive img-min-width"/>
+        <img data-ng-if="feedItem.files" data-ng-src="{{feedItem.files}}" class="img-responsive img-min-width"
              ng-class="{ 'first-imgsize': $index == 0}"/>
       </div>
       <div class="col-md-8 nopadding">
