@@ -5,7 +5,10 @@ angular.module("app").controller('forgotPasswordCtrl', ['$scope', 'UserService',
   var forgot = this;
   forgot.model = {};
   forgot.service = UserService;
-  forgot.spinIt = false;
+
+  forgot.closeAlert = function(index) {
+    forgot.show = false;
+  };
 
   forgot.submitForm = function (form) {
     if (form.$valid) {
@@ -19,20 +22,18 @@ angular.module("app").controller('forgotPasswordCtrl', ['$scope', 'UserService',
   };
 
   function forgotAction() {
-    forgot.spinIt = true;
     var handleSuccess = function (data) {
       forgot.data = {};
-      forgot.spinIt = false;
       messagesFactory.forgotSuccessMessages(data);
       $state.go('messages');
     };
     var handleError = function (error, status) {
-      forgot.spinIt = false;
       if (error && status) {
+        forgot.show = true;
         messagesFactory.forgotErrorMessages(status);
       }
     };
-    UserService.forgotPasswordAPI(forgot.model)
+    forgot.loadPromise = UserService.forgotPasswordAPI(forgot.model)
       .success(handleSuccess)
       .error(handleError);
   }

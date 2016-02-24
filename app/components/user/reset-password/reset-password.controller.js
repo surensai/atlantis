@@ -12,6 +12,10 @@ angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', 
     }
   })();
 
+  resetPassword.closeAlert = function(index) {
+    resetPassword.show = false;
+  };
+
   resetPassword.submitForm = function (form) {
     resetPassword.submitted = true;
     if (form.$valid && resetPassword.model.password == resetPassword.model.confirmPassword) {
@@ -27,11 +31,13 @@ angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', 
   function save() {
     var handleSuccess = function (data) {
       resetPassword.data = {};
+      resetPassword.show = true;
       $state.go('login');
       flashService.showSuccess(data.message, true);
     };
 
     var handleError = function (error) {
+      resetPassword.show = true;
       flashService.showError(error.error, false);
     };
 
