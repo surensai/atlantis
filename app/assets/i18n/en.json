@@ -26,7 +26,7 @@
     },
     "register": {
       "title": "Register",
-      "header": "Register"
+      "header": "REGISTER"
     },
     "edit_profile": {
       "title": "Edit Profile",
@@ -105,7 +105,7 @@
     "login": {
       "remember_me": "Remember me",
       "forgot_password": "Forgot Password",
-      "sign_in": "Login",
+      "sign_in": "LOGIN",
       "forgot_password": "Forgot password?",
       "register": "Not registered yet? Sign Up",
       "login_page":"Go to login page"
