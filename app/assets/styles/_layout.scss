@@ -197,6 +197,13 @@ and (orientation : portrait) {
   .login-bg{
     background-size: auto 100% !important;
   }
+  .content{
+    min-height: 840px;
+  }
+  .dashboard-container{
+    overflow: scroll;
+    height: 804px;
+  }
 }
 
 @media only screen
@@ -212,4 +219,8 @@ and (orientation : landscape) {
   .login-wrapper{
     height: 80%;
   }
+  .content {
+    min-height: 574px;
+  }
 }
+
