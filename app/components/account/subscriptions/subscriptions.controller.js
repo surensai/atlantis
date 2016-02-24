@@ -8,7 +8,7 @@ angular.module("app").controller('subscriptionsCtrl', ['SubscriptionsService', '
     getData();
   })();
 
-  subscription.closeAlert = function(index) {
+  subscription.closeAlert = function() {
     subscription.show = false;
   };
 

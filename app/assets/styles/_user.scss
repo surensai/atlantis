@@ -5,18 +5,20 @@
 .login-wrapper {
 	background-color:rgba(0, 0, 0, 0.8);
 	padding-top: 30px;
+  height: 100%;
 }
 
 .login-bg {
 	background-image: url('../images/login-bg.jpg');
 	background-repeat: no-repeat;
-    background-size: 100% ;
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    top: 0px;
-    z-index: -999;
+  background-position: center;
+  background-size: 100% auto;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  top: 0px;
+  z-index: -999;
 }
 
 .login-form {
@@ -27,9 +29,9 @@
 
 	input {
 		border-radius: 0px;
-		background-color: #efefef;
+    background-color: rgba(85, 85, 85, 0.71);
 		border: 0px;
-		color: #222;
+		color: white;
 	}
 
 	input::-webkit-input-placeholder{
@@ -65,10 +67,12 @@
 	}
 }
 .login-footer, .register-footer{
-  background-color: $black-color;
-  opacity: 0.9;
+  background-color:rgba(0, 0, 0, 0.8);
   padding-top: 20px;
   padding-bottom: 20px;
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
   a{
     color: $white-color;
   }

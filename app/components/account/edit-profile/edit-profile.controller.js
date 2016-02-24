@@ -6,7 +6,7 @@ angular.module("app").controller('editProfileCtrl', ['$scope', 'UserService', '$
   editProfile.service = UserService;
   editProfile.model = angular.copy($rootScope.globals.currentUser);
 
-  editProfile.closeAlert = function(index) {
+  editProfile.closeAlert = function() {
     editProfile.show = false;
   };
 
