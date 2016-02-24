@@ -10,7 +10,7 @@ angular.module("app").controller('loginCtrl', ['$scope', '$state', 'Authenticati
     login.model = AuthenticationService.getRememberMe();
   })();
 
-  login.closeAlert = function(index) {
+  login.closeAlert = function() {
     login.show = false;
   };
 
