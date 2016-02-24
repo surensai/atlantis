@@ -43,27 +43,14 @@
         <span ng-show="userForm.$submitted && userForm.password.$error.required" class="error-mesasage">Password is required</span>
         <i class="glyphicon glyphicon-lock form-control-feedback"></i>
       </div>
-
-
       <div class="form-group has-feedback">
         <input type="password" name="confirmPassword" data-ng-model="register.model.confirmPassword"
                placeholder="{{ 'user.register.confirm_password' | translate }}" class="form-control" required>
 
-        <p ng-show="(register.model.password !== register.model.confirmPassword)"
-           class="help-block error-mesasage" data-translate="user.validationMessages.password_mismatch">Password mismatch.</p>
-
-        <p ng-show="(register.submitted && userForm.confirmPassword.$error.required )" class="help-block error-mesasage"
-           data-translate="user.validationMessages.cpassword_require">Confirm Password is required.</p>
-
-      <div class="form-group has-feedback"
-           data-ng-class="{ 'has-error' : (register.submitted && !register.model.confirmPassword) || (userForm.confirmPassword.$invalid && !userForm.confirmPassword.$pristine) || (register.model.password !== register.model.confirmPassword) }">
-        <input type="password" name="confirmPassword" data-ng-model="register.model.confirmPassword"
-               placeholder="{{ 'user.register.confirm_password' | translate }}" class="form-control" required>
-
         <p ng-show="register.model.confirmPassword && (register.model.password !== register.model.confirmPassword)"
-           class="help-block" data-translate="user.validationMessages.password_mismatch">Password mismatch</p>
+           class="help-block error-mesasage" data-translate="user.validationMessages.password_mismatch">Password mismatch</p>
 
-        <p ng-show="(register.submitted && !register.model.confirmPassword)" class="help-block"
+        <p ng-show="(register.submitted && !register.model.confirmPassword)" class="help-block error-mesasage"
            data-translate="user.validationMessages.cpassword_require">Password is required</p>
 
         <i class="glyphicon glyphicon-lock form-control-feedback"></i>
