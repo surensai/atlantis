@@ -5,7 +5,7 @@ angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout
   var changePassword = this;
   changePassword.model = {};
 
-  changePassword.closeAlert = function(index) {
+  changePassword.closeAlert = function() {
     changePassword.show = false;
   };
 

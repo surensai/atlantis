@@ -4,7 +4,7 @@ angular.module("app").controller('registerCtrl', ['AuthenticationService', 'User
 
   var register = this;
 
-  register.closeAlert = function(index) {
+  register.closeAlert = function() {
     register.show = false;
   };
   register.submitForm = function (form) {

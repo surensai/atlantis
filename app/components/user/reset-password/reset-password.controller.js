@@ -12,7 +12,7 @@ angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', 
     }
   })();
 
-  resetPassword.closeAlert = function(index) {
+  resetPassword.closeAlert = function() {
     resetPassword.show = false;
   };
 

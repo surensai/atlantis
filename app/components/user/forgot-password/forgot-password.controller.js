@@ -6,7 +6,7 @@ angular.module("app").controller('forgotPasswordCtrl', ['$scope', 'UserService',
   forgot.model = {};
   forgot.service = UserService;
 
-  forgot.closeAlert = function(index) {
+  forgot.closeAlert = function() {
     forgot.show = false;
   };
 
