@@ -78,7 +78,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     controller: function($cookieStore, $rootScope, $state){
       $rootScope.messages = $cookieStore.get('noSesMes');
       if(!$rootScope.messages){
-        $state.go("messages");
+        $state.go("login");
       }
     },
     data: {

@@ -12,15 +12,20 @@ angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout
 
   changePassword.submitForm = function (form) {
     changePassword.submitted = true;
-    changePassword.show = true;
-    if (form.$valid) {
-      save();
-      form.$setPristine();
-    } else {
-      $timeout(function () {
-        angular.element('.custom-error:first').focus();
-      }, 200);
-    }
+
+    if (form.$valid && changePassword.model.password == changePassword.model.confirmPassword) {
+
+      changePassword.show = true;
+      if (form.$valid) {
+
+        save();
+        form.$setPristine();
+      } else {
+        $timeout(function () {
+          angular.element('.custom-error:first').focus();
+        }, 200);
+      }
+    };
   };
 
   function save() {
@@ -36,5 +41,4 @@ angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout
       .success(handleSuccess)
       .error(handleError);
   }
-
 }]);
