@@ -13,48 +13,47 @@
     <form name="userForm" class="login-form" data-ng-submit="register.submitForm(userForm)" novalidate>
       <h2 class="form-signin-heading" data-translate="nav.register.header">Register</h2>
 
-      <div class="form-group has-feedback"
-           data-ng-class="{ 'has-error' : (register.submitted && !register.model.firstName) || (userForm.firstName.$invalid && !userForm.firstName.$pristine) }">
+      <div class="form-group has-feedback">
         <input type="text" name="firstName" class="form-control" data-ng-model="register.model.firstName"
                placeholder="{{ 'user.first_name' | translate }}" required>
-
-        <p ng-show="(register.submitted && !register.model.firstName) || (userForm.firstName.$invalid && !userForm.firstName.$pristine)"
-          class="help-block" data-translate="user.validationMessages.first_name_require">First Name is required</p>
+        <span ng-show="userForm.$submitted && userForm.firstName.$error.required" class="error-mesasage" data-translate="user.validationMessages.first_name_require">First Name is required.</span>
         <i class="glyphicon glyphicon-user form-control-feedback"></i>
       </div>
 
-      <div class="form-group has-feedback"
-           data-ng-class="{ 'has-error' : (register.submitted && !register.model.lastName) || (userForm.lastName.$invalid && !userForm.lastName.$pristine) }">
+      <div class="form-group has-feedback">
         <input type="text" name="lastName" class="form-control" data-ng-model="register.model.lastName"
                placeholder="{{ 'user.last_name' | translate }}" required>
-
-        <p ng-show="(register.submitted && !register.model.lastName) || (userForm.lastName.$invalid && !userForm.lastName.$pristine)"
-          class="help-block" data-translate="user.validationMessages.last_name_require">Last Name is required</p>
+        <span ng-show="userForm.$submitted && userForm.lastName.$error.required" class="error-mesasage" data-translate="user.validationMessages.last_name_require">Last Name is required.</span>
         <i class="glyphicon glyphicon-user form-control-feedback"></i>
       </div>
 
-      <div class="form-group has-feedback"
-           data-ng-class="{ 'has-error' : (register.submitted && !register.model.email) || (userForm.email.$error.email && userForm.email.$invalid) }">
-        <input type="email" name="email" class="form-control" data-ng-model="register.model.email" required
-               placeholder="{{ 'user.email' | translate }}">
-        <p ng-show="(register.submitted && !register.model.email) || (userForm.email.$invalid && !userForm.email.$pristine)"
-           class="help-block" data-translate="user.validationMessages.email_require">Email address is required</p>
+      <div class="form-group has-feedback">
+        <input type="email" name="email" class="form-control" data-ng-model="register.model.email"
+               placeholder="{{ 'user.email' | translate }}" ng-pattern="/^[a-zA-Z0-9._]+[+]?[a-zA-Z0-9._]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/" required>
 
-        <p ng-show="userForm.email.$error.email"
-           class="help-block" data-translate="user.validationMessages.email_valid">Email address is not valid</p>
+        <span ng-show="userForm.$submitted && userForm.email.$error.required" class="error-mesasage" data-translate="user.validationMessages.email_require">Email address is required.</span>
+        <span class="error-mesasage" ng-show='userForm.email.$error.pattern && userForm.email.$dirty' data-translate="user.validationMessages.email_valid">Email address is not valid.</span>
         <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
       </div>
 
-      <div class="form-group has-feedback"
-           data-ng-class="{ 'has-error' : (register.submitted && !register.model.password) || (userForm.password.$invalid && !userForm.password.$pristine)}">
-        <input type="password" name="password" data-ng-model="register.model.password" class="form-control" required
-               placeholder="{{ 'user.password' | translate }}">
-
-        <p ng-show="(register.submitted && !register.model.password) || (userForm.password.$invalid && !userForm.password.$pristine)"
-           class="help-block" data-translate="user.validationMessages.password_require">Password is required</p>
-
+      <div class="form-group has-feedback">
+        <input type="password"  class="form-control " name="password" ng-model="register.model.password"
+               pattern="[A-Za-z0-9]{8,}" placeholder="{{ 'user.password' | translate }}" required>
+        <span class="error-mesasage" ng-show='userForm.password.$error.pattern && userForm.password.$dirty' data-translate="user.validationMessages.password_strength">Password must be between 8 and 20 characters.</span>
+        <span ng-show="userForm.$submitted && userForm.password.$error.required" class="error-mesasage">Password is required</span>
         <i class="glyphicon glyphicon-lock form-control-feedback"></i>
       </div>
+
+
+      <div class="form-group has-feedback">
+        <input type="password" name="confirmPassword" data-ng-model="register.model.confirmPassword"
+               placeholder="{{ 'user.register.confirm_password' | translate }}" class="form-control" required>
+
+        <p ng-show="(register.model.password !== register.model.confirmPassword)"
+           class="help-block error-mesasage" data-translate="user.validationMessages.password_mismatch">Password mismatch.</p>
+
+        <p ng-show="(register.submitted && userForm.confirmPassword.$error.required )" class="help-block error-mesasage"
+           data-translate="user.validationMessages.cpassword_require">Confirm Password is required.</p>
 
       <div class="form-group has-feedback"
            data-ng-class="{ 'has-error' : (register.submitted && !register.model.confirmPassword) || (userForm.confirmPassword.$invalid && !userForm.confirmPassword.$pristine) || (register.model.password !== register.model.confirmPassword) }">
@@ -66,14 +65,15 @@
 
         <p ng-show="(register.submitted && !register.model.confirmPassword)" class="help-block"
            data-translate="user.validationMessages.cpassword_require">Password is required</p>
+
         <i class="glyphicon glyphicon-lock form-control-feedback"></i>
       </div>
+
       <button type="submit" class="btn btn-large btn-block btn-primary" data-translate="common.buttons.submit">Submit
       </button>
     </form>
   </div>
   <div class="col-lg-4"></div>
-
 </div>
 </div>
 <div class="container-fluid register-footer">
