@@ -28,9 +28,9 @@ angular.module("app").controller('subscriptionsCtrl', ['SubscriptionsService', '
   function getData() {
     var handleSuccess = function (data) {
       subscription.model = data;
-      var sp_updates = data.sp_updates === "true";
-      var educational_updates =  data.educational_updates === "true";
-      var player_updates = data.player_updates === "true";
+      var sp_updates = data.sp_updates;
+      var educational_updates =  data.educational_updates;
+      var player_updates = data.player_updates;
       subscription.model.sp_updates = sp_updates;
       subscription.model.educational_updates = educational_updates;
       subscription.model.player_updates = player_updates;
