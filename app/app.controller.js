@@ -13,6 +13,6 @@ $scope.headerLogoNavigation=function(){
 else{
     $state.go('account.dashboard');
   }
-}
+};
 
 }]);
