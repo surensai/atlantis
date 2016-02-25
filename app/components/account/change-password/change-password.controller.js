@@ -13,7 +13,7 @@ angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout
   changePassword.submitForm = function (form) {
     changePassword.submitted = true;
 
-    if (form.$valid && changePassword.model.password == changePassword.model.confirmPassword) {
+    if (form.$valid && changePassword.model.password === changePassword.model.confirmPassword) {
 
       changePassword.show = true;
       if (form.$valid) {
@@ -36,7 +36,7 @@ angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout
     var handleError = function (error,status) {
       if (error && status) {
         changePassword.show = true;
-        messagesFactory.changepasswordErrorMessages(error);
+        messagesFactory.changepasswordErrorMessages(status);
       }
     };
     changePassword.loadPromise = UserService.changePasswordAPI(changePassword.model)
