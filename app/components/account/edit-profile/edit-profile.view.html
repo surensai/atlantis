@@ -1,5 +1,5 @@
 <div class="login-bg"></div>
-<div class="content login-wrapper" cg-busy="{promise:editProfile.loadPromise,message:'Submitting Your Data'}">
+<div class="content login-wrapper account-container" cg-busy="{promise:editProfile.loadPromise,message:'Submitting Your Data'}">
   <uib-alert type="success" class="alert-success success-padding" close="editProfile.closeAlert()"
              data-ng-if="globals.flash && globals.flash.type === 'success' && editProfile.show"
              dismiss-on-timeout="4000">{{globals.flash.message}}

@@ -13,13 +13,18 @@
     }
   }
 }
-.first-element{
+.first-element {
+  margin: -10px 0 10px !important;
+}
+.second-element{
+  padding-bottom: 7.7%;
+}
+.third-element{
   padding-bottom: 0%;
 }
-.first-imgsize{
-  min-height: 150px;
-  max-width: 150px;
+.third-imgsize{
+  min-width: 60%;
 }
-.img-min-width{
+.first-imgsize{
   min-width: 100%;
 }
