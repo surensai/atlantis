@@ -22,10 +22,11 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   function registerErrorMessages(status) {
     var message;
     if (status === 400) {
-      message = $translate.instant('user.validationMessages.password_strength ');
-    } else if (status === 500) {
       message = $translate.instant('user.validationMessages.email_registered');
-    } else {
+    }
+    else if (status === 500) {
+      message = $translate.instant('user.validationMessages.password_strength ');
+    }  else {
       message = $translate.instant('user.validationMessages.password_require ');
     }
     flashService.showError(message, false);
@@ -51,14 +52,28 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     }
   }
 
-  function editprofileErrorMessages(status) {
+  function editprofileErrorMessages(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
     }
     flashService.showError(message, false);
   }
+  function changepasswordSuccessMessages(successObj) {
+    if (successObj) {
+      flashService.showSuccess($translate.instant('user.validationMessages.password_change_new_login '), true);
+    }
+  }
 
+  function changepasswordErrorMessages(error) {
+    var message;
+      if (status === 500) {
+        message = $translate.instant('user.validationMessages.old_passwpord_require ');
+    } else {
+        message = $translate.instant('user.validationMessages.old_passwpord_wrong');
+    }
+    flashService.showError(message, false);
+  }
   service.loginErrorMessages = loginErrorMessages;
   service.registerErrorMessages = registerErrorMessages;
   service.registerSuccessMessages = registerSuccessMessages;
@@ -66,5 +81,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   service.forgotSuccessMessages = forgotSuccessMessages;
   service.editprofileErrorMessages = editprofileErrorMessages;
   service.editprofileSuccessMessages = editprofileSuccessMessages;
+  service.changepasswordSuccessMessages = changepasswordSuccessMessages;
+  service.changepasswordErrorMessages = changepasswordErrorMessages;
   return service;
 }]);

@@ -113,19 +113,21 @@
     "forgot_password": {
     },
     "validationMessages": {
-      "first_name_require": "First Name is required",
-      "last_name_require": "Last Name is required",
+      "first_name_require": "First Name is required.",
+      "last_name_require": "Last Name is required.",
       "password_mismatch": "Password mismatch.",
-      "email_require": "Email address is required",
-      "email_valid": "Email address is not valid",
-      "password_require": "Password is required",
-      "cpassword_require": "Confirm Password is required",
-      "email_password_mismatch": "Incorrect username or password",
-      "email_notverified": "Email address not verified",
-      "email_registered":"Email already exists, please try with different email address",
-      "password_strength":"Password must be between 8 and 20 characters",
-      "mobile_num_require":"Mobile Number is required",
-      "password_change_new_login":"Your password has changed. Please try to login"
+      "email_require": "Email address is required.",
+      "email_valid": "Email address is not valid.",
+      "password_require": "Password is required.",
+      "cpassword_require": "Confirm Password is required.",
+      "email_password_mismatch": "Incorrect username or password.",
+      "email_notverified": "Email address not verified.",
+      "email_registered":"Email already exists, please try with different email address.",
+      "password_strength":"Password must be between 8 and 20 characters.",
+      "mobile_num_require":"Mobile Number is required.",
+      "password_change_new_login":"Your password has changed. Please try to login.",
+      "old_passwpord_wrong":"Old password is wrong.",
+      "old_passwpord_require":"Old password is required."
 
     },
     "change_password": {
