@@ -3,7 +3,7 @@
 angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore', '$rootScope', 'UserService', '$remember', '$base64', function ($http, $cookieStore, $rootScope, UserService, $remember, $base64) {
 
   var service = {};
-  var base_url = "http://ec2-54-159-195-71.compute-1.amazonaws.com";
+  var base_url = "http://ec2-52-71-125-138.compute-1.amazonaws.com";
 
   service.loginApi = function (data) {
     return $http.post(base_url + '/user/login', data);

@@ -3,7 +3,7 @@
 angular.module('app').factory('UserService', ['$http', '$rootScope', function ($http, $rootScope) {
 
   var service = {};
-  var base_url = "http://ec2-54-159-195-71.compute-1.amazonaws.com";
+  var base_url = "http://ec2-52-71-125-138.compute-1.amazonaws.com";
 
   function getUserID() {
     return $rootScope.globals.currentUser.id;
