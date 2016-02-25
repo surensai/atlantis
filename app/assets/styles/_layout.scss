@@ -88,7 +88,9 @@
 .content {
   min-height: 510px;
 }
-
+.register-container{
+  min-height: 620px;
+}
 .footer {
   padding: 15px;
   color: $white-color;
@@ -197,12 +199,8 @@ and (orientation : portrait) {
   .login-bg{
     background-size: auto 100% !important;
   }
-  .content{
+  .account-container{
     min-height: 840px;
-  }
-  .dashboard-container{
-    overflow: scroll;
-    height: 804px;
   }
 }
 
@@ -219,8 +217,24 @@ and (orientation : landscape) {
   .login-wrapper{
     height: 80%;
   }
-  .content {
+  .account-container {
     min-height: 574px;
+  }
+  .dashboard-container{
+    overflow: scroll;
+    height: 540px;
+  }
+  .container-min-height{
+    min-height: 540px;
+  }
+  .first-imgsize {
+    height: 247px !important;
+  }
+  .second-element {
+    padding-bottom: 0%;
+  }
+  .second-imgsize {
+    height: 291px !important;
   }
 }
 

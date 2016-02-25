@@ -14,7 +14,7 @@ angular.module("app").controller('subscriptionsCtrl', ['SubscriptionsService', '
 
   subscription.submitForm = function () {
     var handleSuccess = function (data) {
-      flashService.showSuccess(data.message, false);
+      flashService.showSuccess(data.message, true);
     };
     var handleError = function (error) {
       subscription.show = true;

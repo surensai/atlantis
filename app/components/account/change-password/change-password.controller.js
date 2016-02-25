@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout', 'flashService', 'AuthenticationService', '$state','$translate', function (UserService, $timeout, flashService, AuthenticationService, $state, $translate) {
+angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout', 'flashService', 'AuthenticationService', '$state','$translate','messagesFactory', function (UserService, $timeout, flashService, AuthenticationService, $state, $translate,messagesFactory) {
 
   var changePassword = this;
   changePassword.model = {};
@@ -13,7 +13,7 @@ angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout
   changePassword.submitForm = function (form) {
     changePassword.submitted = true;
 
-    if (form.$valid && changePassword.model.password === changePassword.model.confirmPassword) {
+    if (form.$valid && changePassword.model.password == changePassword.model.confirmPassword) {
 
       changePassword.show = true;
       if (form.$valid) {
@@ -29,16 +29,19 @@ angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout
   };
 
   function save() {
-    var handleSuccess = function () {
-      var message = $translate.instant('user.validationMessages.password_change_new_login');
-      flashService.showSuccess(message, true);
+    var handleSuccess = function (data) {
+      messagesFactory.changepasswordSuccessMessages(data);
       $state.go('login');
     };
-    var handleError = function (error) {
-      flashService.showError(error.error, false);
+    var handleError = function (error,status) {
+      if (error && status) {
+        changePassword.show = true;
+        messagesFactory.changepasswordErrorMessages(error);
+      }
     };
     changePassword.loadPromise = UserService.changePasswordAPI(changePassword.model)
       .success(handleSuccess)
       .error(handleError);
   }
+
 }]);
