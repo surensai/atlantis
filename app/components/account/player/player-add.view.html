@@ -2,45 +2,50 @@
 <div class="col-lg-8 container-min-height">
 
   <div cg-busy="{promise:player.loadPromise, message:'Loading Your Data'}"></div>
-  <form name="playerForm"  ng-submit="player.submitForm(playerForm)" novalidate>
-    <h2 class="form-signin-heading" data-translate="nav.edit_player.header" data-ng-if="player.isUpdate">Edit Profile</h2>
-    <h2 class="form-signin-heading" data-translate="nav.add_player.header" data-ng-if="!player.isUpdate">Add Player</h2>
-    <div class="form-group"
-         ng-class="{ 'has-error' : (submitted && !playerForm.firstName) || (playerForm.firstName.$invalid && !playerForm.firstName.$pristine) }">
-      <input type="text" name="firstName" class="form-control" ng-model="player.model.playerItem.firstName"
-             placeholder="{{ 'player.first_name' | translate }}" required>
-      <p ng-show="playerForm.firstName.$invalid && !playerForm.firstName.$pristine" class="help-block"
-         data-translate="user.validationMessages.first_name_require">First name is required.</p>
-    </div>
-    <div class="form-group"
-         ng-class="{ 'has-error' : (submitted && !playerForm.lastName) || (playerForm.lastName.$invalid && !playerForm.lastName.$pristine) }">
-      <input type="text" name="lastName" class="form-control" ng-model="player.model.playerItem.lastName"
-             placeholder="{{ 'player.last_name' | translate }}" required>
-      <p ng-show="playerForm.lastName.$invalid && !playerForm.lastName.$pristine" class="help-block"
-         data-translate="user.validationMessages.last_name_require">Last name is required.</p>
-    </div>
-    <div class="row">
-      <div class="form-group col-md-6">
 
-        <div  class="thumbnail" ng-show="!player.model.playerItem.profileURL">
-          <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image">
-        </div>
-        <div  class="thumbnail" ng-show="player.model.playerItem.profileURL">
-          <img ng-src="{{player.model.playerItem.profileURL}}">
-        </div>
-        <div>
-          <input type="file"  file-model="player.myFile" onchange="angular.element(this).scope().photoChanged(this.files)">
-          <!--<input type="file" ng-show="myFile" file-model="myFile" style=" position: absolute;">-->
-          <!--<span class="btn btn-danger " ng-show="myFile">Remove</span>-->
-        </div>
+  <div class="col-lg-4 col-md-6 col-sm-6">
+    <form name="playerForm"  ng-submit="player.submitForm(playerForm)" novalidate>
+      <h2 class="form-signin-heading" data-translate="nav.edit_player.header" data-ng-if="player.isUpdate">Edit Profile</h2>
+      <h2 class="form-signin-heading" data-translate="nav.add_player.header" data-ng-if="!player.isUpdate">Add Player</h2>
+      <div class="form-group has-feedback"
+           ng-class="{ 'has-error' : (submitted && !playerForm.firstName) || (playerForm.firstName.$invalid && !playerForm.firstName.$pristine) }">
+        <input type="text" name="firstName" class="form-control" ng-model="player.model.playerItem.firstName"
+               placeholder="{{ 'player.first_name' | translate }}" required>
+      <span ng-show="playerForm.$submitted && playerForm.firstName.$error.required" class="error-mesasage"
+            data-translate="user.validationMessages.first_name_require">First Name is required.</span>
       </div>
-      <div class="col-md-6"></div>
-    </div>
+      <div class="form-group has-feedback"
+           ng-class="{ 'has-error' : (submitted && !playerForm.lastName) || (playerForm.lastName.$invalid && !playerForm.lastName.$pristine) }">
+        <input type="text" name="lastName" class="form-control" ng-model="player.model.playerItem.lastName"
+               placeholder="{{ 'player.last_name' | translate }}" required>
+        <p ng-show="playerForm.$submitted && playerForm.lastName.$error.required" class="error-mesasage"
+           data-translate="user.validationMessages.last_name_require">Last name is required.</p>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
 
-    <button type="submit" class="btn btn-primary" data-translate="common.buttons.submit">Submit</button>
-    <div class="">
-      <a ui-sref="account.players" class="pull-right" data-translate="player.view_players" >Back to view Players</a>
-    </div>
-  </form>
+          <div  class="thumbnail" ng-show="!player.model.playerItem.profileURL">
+            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image">
+          </div>
+          <div  class="thumbnail" ng-show="player.model.playerItem.profileURL">
+            <img ng-src="{{player.model.playerItem.profileURL}}">
+          </div>
+          <div>
+            <input type="file"  file-model="player.myFile" onchange="angular.element(this).scope().photoChanged(this.files)">
+            <!--<input type="file" ng-show="myFile" file-model="myFile" style=" position: absolute;">-->
+            <!--<span class="btn btn-danger " ng-show="myFile">Remove</span>-->
+          </div>
+        </div>
+        <div class="col-md-6"></div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" data-ng-disabled="playerForm.$submitted" data-translate="common.buttons.submit">Submit</button>
+      <div class="">
+        <a ui-sref="account.players" class="pull-right" data-translate="player.view_players" >Back to view Players</a>
+      </div>
+    </form>
+  </div>
+  <div class="col-lg-4 col-md-3 col-sm-3"></div>
+
 </div>
 <div class="col-lg-2"></div>
