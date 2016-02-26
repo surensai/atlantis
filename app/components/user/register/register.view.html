@@ -18,7 +18,7 @@
                placeholder="{{ 'user.first_name' | translate }}" required>
         <span ng-show="userForm.$submitted && userForm.firstName.$error.required" class="error-mesasage"
               data-translate="user.validationMessages.first_name_require">First Name is required.</span>
-        <i class="glyphicon glyphicon-user form-control-feedback"></i>
+        <i class="fa fa-user form-control-feedback "></i>
       </div>
 
       <div class="form-group has-feedback">
@@ -26,7 +26,7 @@
                placeholder="{{ 'user.last_name' | translate }}" required>
         <span ng-show="userForm.$submitted && userForm.lastName.$error.required" class="error-mesasage"
               data-translate="user.validationMessages.last_name_require">Last Name is required.</span>
-        <i class="glyphicon glyphicon-user form-control-feedback"></i>
+        <i class="fa fa-user form-control-feedback "></i>
       </div>
 
       <div class="form-group has-feedback">
@@ -38,7 +38,7 @@
               data-translate="user.validationMessages.email_require">Email address is required.</span>
         <span class="error-mesasage" ng-show='userForm.email.$error.pattern && userForm.email.$dirty'
               data-translate="user.validationMessages.email_valid">Email address is not valid.</span>
-        <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
+        <i class="fa fa-envelope-o form-control-feedback"></i>
       </div>
 
       <div class="form-group has-feedback">
@@ -47,7 +47,7 @@
         <span class="error-mesasage" ng-show='userForm.password.$error.pattern && userForm.password.$dirty'
               data-translate="user.validationMessages.password_strength">Password must be between 8 and 20 characters.</span>
         <span ng-show="userForm.$submitted && userForm.password.$error.required" class="error-mesasage">Password is required</span>
-        <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+        <i class="fa fa-lock form-control-feedback"></i>
       </div>
 
 
@@ -60,7 +60,7 @@
 
         <p ng-show="(userForm.$submitted && userForm.confirmPassword.$error.required )" class="help-block error-mesasage"
            data-translate="user.validationMessages.cpassword_require">Confirm Password is required.</p>
-        <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+        <i class="fa fa-lock form-control-feedback"></i>
       </div>
 
           <button type="submit" class="btn btn-large btn-block btn-primary" data-translate="common.buttons.sign_up">SIGNUP

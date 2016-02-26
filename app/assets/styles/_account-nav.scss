@@ -51,7 +51,12 @@ nav .account-nav {
       list-style: none;
       width: 25%;
       text-align: center;
+      font-family: $font-family;
+      font-size: 20px;
       border-right: solid 1px #ffffff;
+    }
+    img span{
+      width:24px; height:24px;
     }
     a:hover, .active {
       text-decoration: none;
@@ -61,6 +66,8 @@ nav .account-nav {
 }
 
 #sidebar {
+  font-size: 20px;
+  font-family: $font-family;
   width: 196px;
   position: fixed;
   top: 0;

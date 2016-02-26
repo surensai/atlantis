@@ -62,6 +62,8 @@
   float: right;
   padding: 0px 20px;
   margin: 15px 0px;
+  font-family: $font-family;
+  font-size: 20px;
   .dropdown {
     display: none;
   }
@@ -70,6 +72,7 @@
   }
   ul.dropdown-menu {
     left: -50px;
+
     li a {
       color: #333333;
     }

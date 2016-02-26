@@ -32,27 +32,25 @@
 	input {
 		border-radius: 0px;
     opacity: 0.5;
-    color: white;
-
+    color: black;
 		border: 0px;
-		color: white;
 	}
 
 	input::-webkit-input-placeholder{
-	  color:    #d1cdcb;
+	  color: black;
     opacity: 1 !important;
 	}
 
 	input:-moz-placeholder {
-	  color:    #948e8a;
+	  color: black;
 	}
 
 	input::-moz-placeholder	{
-	  color:    #948e8a;
+	  color: black;
 	}
 
 	input:-ms-input-placeholder {
-	  color:    #948e8a;
+	  color:black;
 	}
 
 	button {
@@ -93,7 +91,7 @@
 .login-footer, .register-footer{
   background-color: #000000;
   padding-top: 20px;
-  opacity: .5;
+  opacity: .45;
   padding-bottom: 20px;
   position: absolute;
   width: 100%;

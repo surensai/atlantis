@@ -13,9 +13,11 @@
     },
     "sidebar": {
       "dashboard": "Dashboard",
-      "players": "Players",
-      "curriculum": "My Curriculum",
-      "settings": "My Settings"
+      "players": "PLAYERS",
+      "curriculum": "My CURRICULUM",
+      "settings": "MY SETTING",
+      "home":"HOME"
+
     },
     "footer": {
       "glyphicon": "Square Panda"
