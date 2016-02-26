@@ -93,7 +93,7 @@
   min-height: 510px;
 }
 .register-container{
-  min-height: 620px;
+  min-height: 700px;
 }
 .footer-container{
   margin-left: 15px;
@@ -115,6 +115,8 @@
     a {
       color: #fff;
       padding-top: 10px;
+      font-family: $font-family;
+      font-size: 12px;
       text-decoration: none;
       margin: 0px;
       display: block;
@@ -127,7 +129,7 @@
   }
 }
 .imgmargin{
-  margin-top: -4px;
+  margin-top: -10px;
 }
 .messages-container {
   margin-top: 8%;
