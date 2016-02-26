@@ -71,9 +71,11 @@
   },
   "common": {
     "buttons": {
-      "submit": "Submit",
+      "submit": "SUBMIT",
       "save": "Save",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "forgot_password":"REQUEST PASSWORD",
+      "sign_up":"SIGNUP"
     },
     "dob_year": "Year",
     "dob_month": "Month",
@@ -87,11 +89,12 @@
     "last_name": "Last Name",
     "password": "Password",
     "email": "Email",
+    "username":"Username",
     "male": "Male",
     "female": "Female",
     "others": "Others",
     "register": {
-      "confirm_password": "Confirm Password",
+      "confirm_password": "Retype Password",
       "dob": "DOB",
       "mobile": "Mobile",
       "gender": "Gender",
