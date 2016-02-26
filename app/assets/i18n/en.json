@@ -42,7 +42,7 @@
     },
     "forgot_password": {
       "title": "Forgot Password",
-      "header": "Forgot Password"
+      "header": "FORGOT PASSWORD"
     },
     "press": {
       "title": "Press",
@@ -114,6 +114,7 @@
       "login_page":"Go to login page"
     },
     "forgot_password": {
+      "username":"User Name"
     },
     "validationMessages": {
       "first_name_require": "First Name is required.",

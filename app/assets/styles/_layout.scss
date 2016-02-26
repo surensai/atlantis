@@ -9,10 +9,14 @@
 .navbar-brand, .navbar {
   @extend .reset-padding-margin;
 }
+.navbar-brand img {
+  margin: 10px 0px 10px 30px;
+  padding-right: 44px;
+}
 
 .header {
   min-height: 40px;
-  max-height: 100px;
+  max-height: 117px;
   position: relative;
   .width30-per, .width70-per {
     width: 51%;
@@ -91,6 +95,9 @@
 .register-container{
   min-height: 620px;
 }
+.footer-container{
+  margin-left: 15px;
+}
 .footer {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -149,7 +156,7 @@
   }
 
   .navbar-brand img {
-    margin: 10px 0px;
+    margin: 10px 0px 10px 30px;
     padding-right: 44px;
   }
   .header-right, .header-left {

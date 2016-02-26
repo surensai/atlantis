@@ -14,7 +14,7 @@
   }
 }
 .first-element {
-  margin: -10px 0 10px !important;
+  margin: 0px 0 10px !important;
 }
 .second-element{
   padding-bottom: 7.7%;
@@ -27,4 +27,8 @@
 }
 .first-imgsize{
   min-width: 100%;
+}
+.reduce-margin{
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
 }
