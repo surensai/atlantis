@@ -65,7 +65,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     }
   }
 
-  function changepasswordErrorMessages(error) {
+  function changepasswordErrorMessages(status) {
     var message;
       if (status === 500) {
         message = $translate.instant('user.validationMessages.old_passwpord_require ');

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerService', 'flashService', function ($timeout, $state, PlayerService, flashService) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerService', 'flashService','$scope', function ($timeout, $state, PlayerService, flashService, $scope) {
 
   var player = this;
   player.modalTitle = 'Warning!';
@@ -11,6 +11,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   player.data.playersList = [];
   player.data.playerItem = {};
   player.data.deleteObj = {};
+  player.model.playerItem = {};
 
   player.show = true;
 
@@ -140,6 +141,24 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
     PlayerService.deleteApi(player.data.deleteObj.id)
       .success(handleSuccess)
       .error(handleError);
+  };
+
+  player.fileReaderSupported = window.FileReader != null;
+  $scope.photoChanged = function(files){
+    if (files != null) {
+      var file = files[0];
+      if (player.fileReaderSupported && file.type.indexOf('image') > -1) {
+        $timeout(function() {
+          var fileReader = new FileReader();
+          fileReader.readAsDataURL(file);
+          fileReader.onload = function(e) {
+            $timeout(function(){
+              player.model.playerItem.profileURL = e.target.result;
+            });
+          }
+        });
+      }
+    }
   };
 
 }]);

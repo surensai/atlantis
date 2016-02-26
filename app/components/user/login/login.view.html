@@ -16,7 +16,7 @@
       <div class="form-group has-feedback"
            data-ng-class="{ 'has-error' : (submitted && !login.model.email) || (signinForm.name.$invalid && !signinForm.name.$pristine) }">
         <input type="email" name="email" class="form-control" data-ng-model="login.model.email"
-               placeholder="{{ 'user.email' | translate }}" required>
+               placeholder="{{ 'user.username' | translate }}" required>
         <i class="glyphicon glyphicon-user form-control-feedback"></i>
       </div>
 
