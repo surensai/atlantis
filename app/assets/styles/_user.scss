@@ -25,6 +25,7 @@
  	h2{
  		color: $white-color;
  		text-align: center;
+    margin-bottom: 40px;
  	}
 
 	input {
@@ -75,8 +76,8 @@
   padding-left: 8px;
   margin: 6px 0 10px;
 }
-.applymargin{
-  margin-bottom: 22px;
+.apply-margin{
+  margin-bottom: 10px;
 }
 .login-footer, .register-footer{
   background-color: #000000;
@@ -89,7 +90,4 @@
   a{
     color: $white-color;
   }
-}
-.form-signin-heading{
-  font-family: $font-family
 }
