@@ -106,7 +106,7 @@
       "signIn": "Already registered? Sign in"
     },
     "login": {
-      "remember_me": "Remember me",
+      "remember_password": "Remember password",
       "forgot_password": "Forgot Password",
       "sign_in": "LOGIN",
       "forgot_password": "Forgot password?",
