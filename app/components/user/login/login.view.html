@@ -9,7 +9,7 @@
              dismiss-on-timeout="5000">{{globals.flash.message}}
   </uib-alert>
   <div class="col-lg-4 col-md-3 col-sm-3"></div>
-  <div class="col-lg-4 col-md-6 col-sm-6">
+  <div class="col-lg-4 col-md-6 col-sm-6 login-top-margin">
     <form name="signinForm" class="login-form" data-ng-submit="login.submitForm(signinForm)" novalidate>
       <h2 class="form-signin-heading" data-translate="user.login.sign_in">Sign in</h2>
 
@@ -22,7 +22,7 @@
 
       <div class="form-group has-feedback"
            data-ng-class="{ 'has-error' : (submitted && !login.model.password) || (signinForm.name.$invalid && !signinForm.name.$pristine) }">
-        <input type="password" name="password" class="form-control applymargin" data-ng-model="login.model.password"
+        <input type="password" name="password" class="form-control" data-ng-model="login.model.password"
                placeholder="{{ 'user.password' | translate }}" required>
         <i class="glyphicon glyphicon-lock form-control-feedback"></i>
       </div>
@@ -33,7 +33,7 @@
         </label>
       </div>
 
-      <button class="btn btn-large btn-block btn-primary" type="submit" style="margin-top: 20px;"
+      <button class="btn btn-large btn-block btn-primary apply-margin" type="submit"
               data-ng-disabled="!login.model.email || !login.model.password" data-translate="common.buttons.submit">Sign
         in
       </button>
