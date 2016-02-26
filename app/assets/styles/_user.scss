@@ -26,17 +26,21 @@
  		color: $white-color;
  		text-align: center;
     margin-bottom: 40px;
+    font-size: 35px;
  	}
 
 	input {
 		border-radius: 0px;
-    background-color: rgba(85, 85, 85, 0.71);
+    opacity: 0.5;
+    color: white;
+
 		border: 0px;
 		color: white;
 	}
 
 	input::-webkit-input-placeholder{
-	  color:    #948e8a;
+	  color:    #d1cdcb;
+    opacity: 1 !important;
 	}
 
 	input:-moz-placeholder {
@@ -61,11 +65,16 @@
 
 	.btn-primary {
 		height: 45px;
+    font-size: 20px;
+    font-family: $font-family;
 	}
 
 	input[type="email"], input[type="password"], input[type="text"] {
 		height: 45px;
 	}
+}
+.form-signin-heading{
+  font-family: $font-family;
 }
 .custom-checkbox{
   width: 20px;
@@ -75,6 +84,8 @@
 .custom-checkbox-span{
   padding-left: 8px;
   margin: 6px 0 10px;
+  font-family: $font-family;
+  font-size: 15px;
 }
 .apply-margin{
   margin-bottom: 10px;
@@ -87,7 +98,11 @@
   position: absolute;
   width: 100%;
   bottom: 0px;
-  a{
+  a {
+    font-family: $font-family;
+    font-size: 15px;
     color: $white-color;
+    opacity: 1;
+
   }
 }

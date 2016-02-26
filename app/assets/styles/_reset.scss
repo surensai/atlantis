@@ -99,10 +99,15 @@ body, html {
   left: 0px;
   line-height: 45px;
 }
-
+.form-group {
+  margin-bottom: 20px;
+}
 .has-feedback .form-control {
   padding-right: 10px;
   padding-left: 30px;
+  font-family: $font-family;
+  font-size: 15px;
+  color:#d1cdcb !important;
 }
 
 .navbar-toggle {
