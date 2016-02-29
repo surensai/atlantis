@@ -27,7 +27,7 @@ angular.module("app").controller('firmwareCtrl', ['$timeout', '$state', 'firmwar
       flashService.showError("Invalid firmware credentials", false);
     };
 
-    firmware.loadPromise = firmwareService.createApi(formData)
+    firmware.loadPromise = firmwareService.createApi(firmware.model)
       .success(handleSuccess)
       .error(handleError);
   }
