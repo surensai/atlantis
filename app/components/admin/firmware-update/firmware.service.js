@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", function ($http, $rootScope, _) {
+angular.module('app').factory('firmwareService', ['$http', '$rootScope', function ($http, $rootScope) {
 
   var service = {};
   var base_url = "http://ec2-52-71-125-138.compute-1.amazonaws.com";
