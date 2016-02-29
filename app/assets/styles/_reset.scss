@@ -15,7 +15,9 @@ body {
   background-color: $sp-green;
   border: 0px;
 }
-
+.login-form input{
+  color: black ;
+}
 body {
   background-color: $white-color;
 }
@@ -99,10 +101,15 @@ body, html {
   left: 0px;
   line-height: 45px;
 }
-
+.form-group {
+  margin-bottom: 20px;
+}
 .has-feedback .form-control {
   padding-right: 10px;
   padding-left: 30px;
+  font-family: $font-family;
+  font-size: 15px;
+  color:black !important;
 }
 
 .navbar-toggle {
