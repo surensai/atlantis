@@ -11,8 +11,8 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     }
 
     $rootScope.$on('$locationChangeStart', function () {
-     var loggedIn = $rootScope.globals.currentUser;
-      if(!loggedIn && $location.path().indexOf("account") > 0){
+      var loggedIn = $rootScope.globals.currentUser;
+      if (!loggedIn && $location.path().indexOf("account") > 0) {
         $state.go('login');
       }
 
@@ -22,7 +22,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
         $state.go('account.dashboard');
       }
 
-      if(($location.path().indexOf("messages") === -1) && $rootScope.messages){
+      if (($location.path().indexOf("messages") === -1) && $rootScope.messages) {
         delete $rootScope.messages;
         $cookieStore.remove('noSesMes');
       }
@@ -75,9 +75,9 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
   }).state('messages', {
     url: '/messages',
     templateUrl: "layout/messages.html",
-    controller: function($cookieStore, $rootScope, $state){
+    controller: function ($cookieStore, $rootScope, $state) {
       $rootScope.messages = $cookieStore.get('noSesMes');
-      if(!$rootScope.messages){
+      if (!$rootScope.messages) {
         $state.go("login");
       }
     },
@@ -183,20 +183,32 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
       pageTitle: 'Square Panda - warrentyinfo'
     }
   }).state('page.privacy-policy', {
-      url: '/privacy-policy',
-      templateUrl: urlBuilder('static', 'privacy-policy'),
-      controller: 'staticCtrl',
-      controllerAs: "static",
-      data: {
-        pageTitle: 'Square Panda - privacy-policy'
-      }
-    }).state('page.terms-services', {
+    url: '/privacy-policy',
+    templateUrl: urlBuilder('static', 'privacy-policy'),
+    controller: 'staticCtrl',
+    controllerAs: "static",
+    data: {
+      pageTitle: 'Square Panda - privacy-policy'
+    }
+  }).state('page.terms-services', {
     url: '/terms-services',
     templateUrl: urlBuilder('static', 'terms-services'),
     controller: 'staticCtrl',
     controllerAs: "static",
     data: {
       pageTitle: 'Square Panda - terms-services'
+    }
+  }).state('admin', {
+    url: '/admin',
+    templateUrl: "layout/account-nav.html",
+    data: {
+      pageTitle: 'Square Panda Inc.'
+    }
+  }).state('admin.firmware-update', {
+    url: '/firmware-update',
+    templateUrl: urlBuilder('admin/firmware-update', 'firmware'),
+    data: {
+      pageTitle: 'Square Panda Inc.'
     }
   });
 
