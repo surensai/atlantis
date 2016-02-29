@@ -18,9 +18,13 @@
   min-height: 40px;
   max-height: 117px;
   position: relative;
-  .width30-per, .width70-per {
-    width: 51%;
+  .width30-per{
+    width: 20%;
   }
+ .width70-per {
+   width: 80%;
+ }
+
 
   .header-bg {
     background: $primary-color url('../images/header-design.png') no-repeat 7px;
@@ -53,7 +57,6 @@
         list-style: none;
         display: inline;
       }
-
     }
   }
 }
@@ -66,6 +69,9 @@
   font-size: 16px;
   .dropdown {
     display: none;
+    a{
+      color:$white-color;
+    }
   }
   ul, li {
     @extend .reset-padding-margin;
@@ -171,11 +177,11 @@
   }
 
   .width30-per {
-    width: 30%;
+    width: 10%;
   }
 
   .width70-per {
-    width: 70%;
+    width: 90%;
   }
 
 }
@@ -183,11 +189,11 @@
 @media(max-width: 400px) {
 
   .header .width70-per {
-    width: 70%;
+    width: 90%;
   }
 
   .header .width30-per {
-    width: 30%;
+    width: 10%;
   }
 
 }

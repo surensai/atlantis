@@ -110,10 +110,18 @@ body, html {
   padding-left: 30px;
   font-family: $font-family;
   font-size: 15px;
+  color:#222;
+
 }
 .btn.disabled, .btn[disabled], fieldset[disabled] .btn {
   cursor: not-allowed;
   opacity: 1;
+}
+.btn-primary.disabled:hover, .btn-primary.disabled:focus{
+  background-color: darken($sp-green, 10%);
+}
+.btn-primary:hover{
+  background-color: darken($sp-green, 10%);
 }
 .navbar-toggle {
   border: none;
