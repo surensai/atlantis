@@ -21,7 +21,6 @@ angular.module("app").controller('firmwareCtrl', ['$timeout', '$state', 'firmwar
   function addAction() {
     var handleSuccess = function () {
       flashService.showSuccess("firmware added successfully!", true);
-      $state.go('account.firmwares');
     };
 
     var handleError = function () {
@@ -35,17 +34,16 @@ angular.module("app").controller('firmwareCtrl', ['$timeout', '$state', 'firmwar
 
   function uploadFirmware(form) {
     var handleSuccess = function (data) {
-      firmware.model.firmwareItem.profileURL = data.files[0].url;
+      firmware.model.firmware_update_url = data.files[0].url;
       addAction();
       form.$setPristine();
-      flashService.showSuccess("File uploaded successfully!", false);
     };
 
     var handleError = function () {
       flashService.showError("Error in file uploading", false);
     };
 
-    var file = firmware.myFile;
+    var file = firmware.model.firmware_update_url;
 
     firmware.loadPromise = firmwareService.uploadFileApi(file)
       .success(handleSuccess)

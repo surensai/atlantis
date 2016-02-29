@@ -5,27 +5,22 @@
 
   <div class="col-lg-4 col-md-6 col-sm-6">
     <form name="firmwareForm"  ng-submit="firmware.submitForm(firmwareForm)" novalidate>
-      <h2 class="form-signin-heading" data-translate="nav.edit_firmware.header" data-ng-if="firmware.isUpdate">Firmware Update</h2>
-      <div class="form-group has-feedback"
-           ng-class="{ 'has-error' : (submitted && !firmwareForm.version) || (firmwareForm.version.$invalid && !firmwareForm.version.$pristine) }">
-        <input type="text" name="firmware_revision_string" class="form-control" ng-model="firmware.model.version"
-               placeholder="{{ 'firmware.last_name' | translate }}" required>
-        <p ng-show="firmwareForm.$submitted && firmwareForm.lastName.$error.required" class="error-mesasage"
-           data-translate="user.validationMessages.last_name_require">Last name is required.</p>
+      <h2 class="form-signin-heading" data-translate="admin.firmware.header">Firmware Update</h2>
+      <div class="form-group has-feedback">
+        <input type="text" name="firmware_revision_string" class="form-control" ng-model="firmware.model.firmware_revision_string"
+               placeholder="{{ 'admin.firmware.firmware_version' | translate }}" required>
       </div>
       <div class="row">
         <div class="form-group col-md-6">
           <div>
-            <input type="file"  file-model="firmware.myFile" onchange="angular.element(this).scope().photoChanged(this.files)">
+            <input type="file"  file-model="firmware.model.firmware_update_url">
           </div>
         </div>
         <div class="col-md-6"></div>
       </div>
 
-      <button type="submit" class="btn btn-primary" data-ng-disabled="firmwareForm.$submitted" data-translate="common.buttons.submit">Submit</button>
-      <div class="">
-        <a ui-sref="account.firmwares" class="pull-right" data-translate="firmware.view_firmwares" >Back to view firmwares</a>
-      </div>
+      <button type="submit" class="btn btn-primary" data-translate="common.buttons.submit">Submit</button>
+
     </form>
   </div>
   <div class="col-lg-4 col-md-3 col-sm-3"></div>
