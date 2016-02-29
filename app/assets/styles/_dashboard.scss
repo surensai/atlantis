@@ -1,22 +1,22 @@
 .dashboard-container {
-  margin-top: 20px;
   background-color: #f6f6f6;
+  padding-top: 40px;
   .feed-row {
     .panel {
       margin-bottom: 20px;
-      max-height: 311px;
+      //min-height: 311px;
       border: solid 1px #e9e9e9;
       border-radius: 10px;
       background-color: #fcfafa;
-      .panel-body{
+      .panel-body {
         font-family: $font-family;
-        h3{
+        h3 {
           font-size: 22px;
-          color:#5d5d5d;
+          color: #5d5d5d;
         }
-        p{
+        p {
           font-size: 15px;
-          color:#9a9a9a;
+          color: #9a9a9a;
         }
       }
       .panel-footer {
@@ -28,9 +28,12 @@
             li {
               display: inline;
               padding-right: 16%;
+              a{
+                text-decoration: none;
+              }
             }
             li:first-child {
-              padding-left:  0px;
+              padding-left: 0px;
             }
           }
         }
@@ -38,6 +41,7 @@
     }
   }
 }
+
 .first-element {
   margin: 0px 0 10px !important;
 }

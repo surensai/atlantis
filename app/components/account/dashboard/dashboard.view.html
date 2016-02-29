@@ -1,4 +1,5 @@
-<div class="container container-min-height dashboard-container"
+<div class="dashboard-container">
+<div class="container container-min-height "
      cg-busy="{promise:dashboard.loadPromise,message:'Loading Your Data'}">
   <div class="feed-row" data-ng-repeat="feedItem in dashboard.data.newsFeedsList">
     <div class="panel clearfix">
@@ -16,19 +17,20 @@
           <p ng-class="{'first-element':$index ==0,'second-element': $index == 1,'third-element':$index == 2}">{{feedItem.description}}</p>
         </div>
         <div class="panel-footer">
-          <div class="icons-block" >
+          <div class="icons-block">
             <ul>
             <li><a href=""><i itemdata="feedItem" index="$index" data-twitter-share></i></a></li>
-              <li><a href=""><i itemdata="feedItem" index="$index" data-fb-share data-lang="en" data-count='horizontal'
+              <li><a href="" style="color:#DD4F43"><i itemdata="feedItem" index="$index" data-fb-share data-lang="en" data-count='horizontal'
                data-url='http://google.com' data-via='notsosleepy' data-size="medium"
-               data-text='Testing Twitter Share'></i></a></li>
-              <li><a href=""><img src="assets/images/blog.png"></a></li>
-              <li><a href=""><i itemdata="feedItem" index="$index" gplus-share></i></a></li>
-              <li><a href=""><img src="assets/images/readmore.png" class="pull-right"></a></li>
+               data-text='Testing Twitter Share' style="color:#DD4F43"></i></a></li>
+              <!--<li><a href=""><img src="assets/images/blog.png"></a></li>-->
+              <li><a href=""><i itemdata="feedItem" index="$index" gplus-share ></i></a></li>
+              <li><a href=""><img src="assets/images/readmore.png" width="20px;" class="pull-right"></a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>
