@@ -3,7 +3,7 @@
 angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore', '$rootScope', 'UserService', '$remember', '$base64','$localStorage', function ($http, $cookieStore, $rootScope, UserService, $remember, $base64, $localStorage) {
 
   var service = {};
-  var base_url = "http://ec2-52-71-125-138.compute-1.amazonaws.com";
+  var base_url = $rootScope.base_url;
 
 
     function changeUser(user) {
@@ -46,8 +46,6 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
   service.SetCredentials = function (user, formData) {
     if (formData) {
       $localStorage.token =  user.tokenId;
-     // user.authdata = $base64.encode(formData.email + ':' + formData.password);
-     // $http.defaults.headers.common['Authorization'] = 'Bearer ' + $localStorage.token;
     }
     $rootScope.globals = {
       currentUser: user
@@ -77,8 +75,8 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
     var data = {};
     if ($remember('7ZXYZ@L') && $remember('UU@#90')) {
       data.remember = true;
-      data.email = $base64.decode($remember('7ZXYZ@L') + "==");
-      data.password = $base64.decode($remember('UU@#90') + "=");
+      data.email = $base64.decode($remember('7ZXYZ@L'));
+      data.password = $base64.decode($remember('UU@#90'));
     }
     return data;
   };
