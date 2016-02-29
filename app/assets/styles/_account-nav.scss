@@ -98,6 +98,7 @@ nav .account-nav {
         text-decoration: none;
         padding: 10px 30px;
         font-size: 15px;
+        text-transform: lowercase;
         a:hover {
           background: lighten($primary-color, 10%);
         }
