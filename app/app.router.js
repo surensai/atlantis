@@ -1,13 +1,13 @@
 'use strict';
-angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', '$cookieStore', '$http',
-  function ($rootScope, $state, $stateParams, $location, $cookieStore, $http) {
+angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', '$cookieStore', '$http','$localStorage',
+  function ($rootScope, $state, $stateParams, $location, $cookieStore, $http, $localStorage) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
     $rootScope.globals = $cookieStore.get('globals') || {};
 
     if ($rootScope.globals.currentUser) {
-      $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
+      $http.defaults.headers.common['Authorization'] = 'Bearer ' + $localStorage.token;
     }
 
     $rootScope.$on('$locationChangeStart', function () {
@@ -207,6 +207,8 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
   }).state('admin.firmware-update', {
     url: '/firmware-update',
     templateUrl: urlBuilder('admin/firmware-update', 'firmware'),
+    controller: 'firmwareCtrl',
+    controllerAs: "firmware",
     data: {
       pageTitle: 'Square Panda Inc.'
     }

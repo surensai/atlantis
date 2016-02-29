@@ -69,6 +69,10 @@
     "edit_player": {
       "title": "Edit Player",
       "header": "Edit Player"
+    },
+    "firmware_update":{
+      "title": "Firmware Update",
+      "header": "Firmware Update"
     }
   },
   "common": {
@@ -158,6 +162,12 @@
       "add_error": "Player added successfully!",
       "update_error": "Player updated successfully!",
       "delete_error": "Player deleted successfully!"
+    }
+  },
+  "admin": {
+    "firmware": {
+      "header": "Firmware update",
+      "firmware_version": "Firmware Version"
     }
   }
 }
