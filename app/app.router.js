@@ -207,6 +207,8 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
   }).state('admin.firmware-update', {
     url: '/firmware-update',
     templateUrl: urlBuilder('admin/firmware-update', 'firmware'),
+    controller: 'firmwareCtrl',
+    controllerAs: "firmware",
     data: {
       pageTitle: 'Square Panda Inc.'
     }
