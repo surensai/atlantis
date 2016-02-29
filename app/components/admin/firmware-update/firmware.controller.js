@@ -25,7 +25,6 @@ angular.module("app").controller('firmwareCtrl', ['$timeout', '$state', 'firmwar
   };
 
   function addAction() {
-    firmware.show = true;
     var handleSuccess = function () {
       flashService.showSuccess("firmware added successfully!", true);
     };
