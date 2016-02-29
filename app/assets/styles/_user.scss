@@ -9,7 +9,7 @@
 }
 
 .login-bg {
-	background-image: url('../images/login-bg.jpg');
+	background-image: url('../images/bg-2.png');
 	background-repeat: no-repeat;
   background-position: center;
   background-size: 100% auto;
@@ -20,7 +20,9 @@
   top: 0px;
   z-index: -999;
 }
-
+.login-container{
+  min-height: 565px;
+}
 .login-form {
  	h2{
  		color: $white-color;
@@ -31,26 +33,24 @@
 
 	input {
 		border-radius: 0px;
-    opacity: 0.5;
-    color: black;
 		border: 0px;
+    background-color: rgba(255, 255, 255, 0.5);;
 	}
 
 	input::-webkit-input-placeholder{
-	  color: black;
-    opacity: 1 !important;
+    color: rgba(0, 0, 0, 0.6);
 	}
 
 	input:-moz-placeholder {
-	  color: black;
+	  color: rgba(0, 0, 0, 0.6);
 	}
 
 	input::-moz-placeholder	{
-	  color: black;
+	  color: rgba(0, 0, 0, 0.6);
 	}
 
 	input:-ms-input-placeholder {
-	  color:black;
+	  color: rgba(0, 0, 0, 0.6);
 	}
 
 	button {
@@ -89,10 +89,9 @@
   margin-bottom: 10px;
 }
 .login-footer, .register-footer{
-  background-color: #000000;
+  background-color:rgba(0, 0, 0, 0.4);
   padding-top: 20px;
-  opacity: .45;
-  padding-bottom: 20px;
+   padding-bottom: 20px;
   position: absolute;
   width: 100%;
   bottom: 0px;
@@ -100,9 +99,7 @@
     font-family: $font-family;
     font-size: 15px;
     color: $white-color;
-    opacity: 1;
-
-  }
+    }
 }
 .login-top-margin{
   margin-top: 30px;

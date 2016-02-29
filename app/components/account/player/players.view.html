@@ -1,13 +1,13 @@
-<uib-alert type="success" class="alert-success" close="player.closeAlert()"
-           data-ng-if="globals.flash && globals.flash.type === 'success' && player.show"
-           dismiss-on-timeout="4000">{{globals.flash.message}}
-</uib-alert>
-<uib-alert type="warning" class="alert-danger" close="player.closeAlert()"
-           data-ng-if="globals.flash && globals.flash.type !== 'success' && player.show"
-           dismiss-on-timeout="4000">{{globals.flash.message}}
-</uib-alert>
-
 <div class="container container-min-height">
+  <uib-alert type="success" class="alert-success" close="player.closeAlert()"
+             data-ng-if="globals.flash && globals.flash.type === 'success' && player.show"
+             dismiss-on-timeout="4000">{{globals.flash.message}}
+  </uib-alert>
+  <uib-alert type="warning" class="alert-danger" close="player.closeAlert()"
+             data-ng-if="globals.flash && globals.flash.type !== 'success' && player.show"
+             dismiss-on-timeout="4000">{{globals.flash.message}}
+  </uib-alert>
+
   <table class="table table-hover" cg-busy="{promise:player.loadPromise,message:'Loading Your Data'}">
     <tr>
       <td colspan="3">

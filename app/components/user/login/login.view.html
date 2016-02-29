@@ -1,6 +1,6 @@
 <div class="login-bg"></div>
-<div class="content login-wrapper" cg-busy="{promise:login.loadPromise, message:'Loading...'}">
-  <uib-alert type="success" class="alert-success" close="login.closeAlert()"
+<div class="content login-wrapper login-container" cg-busy="{promise:login.loadPromise, message:'Loading...'}">
+  <uib-alert type="success" class="alert-success"
              data-ng-if="globals.flash && globals.flash.type === 'success' && login.show"
              dismiss-on-timeout="4000">{{globals.flash.message}}
   </uib-alert>
