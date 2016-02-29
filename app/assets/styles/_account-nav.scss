@@ -29,8 +29,16 @@ body.body-toggle {
   margin-left: -196px;
 }
 
-.account-nav {
+nav {
+  width: 100%;
+  background: #4CBC96;
+  border-right: none;
+}
+nav .account-nav {
   @extend .reset-padding-margin;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
   li {
     list-style: none;
     a {
@@ -42,10 +50,11 @@ body.body-toggle {
       list-style: none;
       width: 25%;
       text-align: center;
+      font-family: $font-family;
+      font-size: 16px;
       border-right: solid 1px #ffffff;
-      border-left: solid 1px #ffffff;
     }
-    a:hover, .active {
+        a:hover, .active {
       text-decoration: none;
       background: darken(#4CBC96, 10%);
     }
@@ -53,6 +62,7 @@ body.body-toggle {
 }
 
 #sidebar {
+   font-family: $font-family;
   width: 196px;
   position: fixed;
   top: 0;
@@ -84,6 +94,7 @@ body.body-toggle {
         line-height: 1em;
         text-decoration: none;
         padding: 10px 30px;
+        font-size: 15px;
         a:hover {
           background: lighten($primary-color, 10%);
         }

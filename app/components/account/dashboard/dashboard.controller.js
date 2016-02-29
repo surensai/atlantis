@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('dashboardCtrl', ['DashboardService', function (DashboardService) {
+angular.module("app").controller('dashboardCtrl', ['DashboardService','flashService', function (DashboardService,flashService) {
   var dashboard = this;
   dashboard.model = {};
   dashboard.data = {};

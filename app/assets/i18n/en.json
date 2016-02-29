@@ -13,9 +13,11 @@
     },
     "sidebar": {
       "dashboard": "Dashboard",
-      "players": "Players",
-      "curriculum": "My Curriculum",
-      "settings": "My Settings"
+      "players": "PLAYERS",
+      "curriculum": "My CURRICULUM",
+      "settings": "MY SETTING",
+      "home":"HOME"
+
     },
     "footer": {
       "glyphicon": "Square Panda"
@@ -67,6 +69,10 @@
     "edit_player": {
       "title": "Edit Player",
       "header": "Edit Player"
+    },
+    "firmware_update":{
+      "title": "Firmware Update",
+      "header": "Firmware Update"
     }
   },
   "common": {
@@ -156,6 +162,12 @@
       "add_error": "Player added successfully!",
       "update_error": "Player updated successfully!",
       "delete_error": "Player deleted successfully!"
+    }
+  },
+  "admin": {
+    "firmware": {
+      "header": "Firmware update",
+      "firmware_version": "Firmware Version"
     }
   }
 }

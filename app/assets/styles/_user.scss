@@ -9,7 +9,7 @@
 }
 
 .login-bg {
-	background-image: url('../images/login-bg.jpg');
+	background-image: url('../images/bg-2.png');
 	background-repeat: no-repeat;
   background-position: center;
   background-size: 100% auto;
@@ -20,35 +20,37 @@
   top: 0px;
   z-index: -999;
 }
-
+.login-container{
+  min-height: 565px;
+}
 .login-form {
  	h2{
  		color: $white-color;
  		text-align: center;
     margin-bottom: 40px;
+    font-size: 35px;
  	}
 
 	input {
 		border-radius: 0px;
-    background-color: rgba(85, 85, 85, 0.71);
 		border: 0px;
-		color: white;
+    background-color: rgba(255, 255, 255, 0.5);;
 	}
 
 	input::-webkit-input-placeholder{
-	  color:    #948e8a;
+    color: rgba(0, 0, 0, 0.6);
 	}
 
 	input:-moz-placeholder {
-	  color:    #948e8a;
+	  color: rgba(0, 0, 0, 0.6);
 	}
 
 	input::-moz-placeholder	{
-	  color:    #948e8a;
+	  color: rgba(0, 0, 0, 0.6);
 	}
 
 	input:-ms-input-placeholder {
-	  color:    #948e8a;
+	  color: rgba(0, 0, 0, 0.6);
 	}
 
 	button {
@@ -61,11 +63,16 @@
 
 	.btn-primary {
 		height: 45px;
+    font-size: 20px;
+    font-family: $font-family;
 	}
 
 	input[type="email"], input[type="password"], input[type="text"] {
 		height: 45px;
 	}
+}
+.form-signin-heading{
+  font-family: $font-family;
 }
 .custom-checkbox{
   width: 20px;
@@ -75,27 +82,26 @@
 .custom-checkbox-span{
   padding-left: 8px;
   margin: 6px 0 10px;
-
+  font-family: $font-family;
+  font-size: 15px;
 }
 .apply-margin{
   margin-bottom: 10px;
 }
 .login-footer, .register-footer{
-  background-color: #000000;
+  background-color:rgba(0, 0, 0, 0.4);
   padding-top: 20px;
-  opacity: .5;
-  padding-bottom: 20px;
+   padding-bottom: 20px;
   position: absolute;
   width: 100%;
   bottom: 0px;
-  a{
+  a {
+    font-family: $font-family;
+    font-size: 15px;
     color: $white-color;
-  }
+    }
 }
 .login-top-margin{
   margin-top: 30px;
 }
-.remember-me-margin{
-  margin-top: -10px;
-  margin-bottom: 0px;
-}
+
