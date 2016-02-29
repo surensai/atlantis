@@ -1,4 +1,12 @@
 <div class="col-lg-2"></div>
+<uib-alert type="success" class="alert-success" close="player.closeAlert()"
+           data-ng-if="globals.flash && globals.flash.type === 'success' && firmware.show"
+           dismiss-on-timeout="5000">{{globals.flash.message}}
+</uib-alert>
+<uib-alert type="warning" class="alert-danger" close="player.closeAlert()"
+           data-ng-if="globals.flash && globals.flash.type !== 'success' && player.show"
+           dismiss-on-timeout="5000">{{globals.flash.message}}
+</uib-alert>
 <div class="col-lg-8 container-min-height">
 
   <div cg-busy="{promise:firmware.loadPromise, message:'Loading Your Data'}"></div>
