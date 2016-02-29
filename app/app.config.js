@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('app').config(['$windowProvider', '$translateProvider', function ($windowProvider, $translateProvider) {
+var app = angular.module('app').config(['$windowProvider', '$translateProvider','$httpProvider', function ($windowProvider, $translateProvider, $httpProvider) {
 
   $translateProvider.useStaticFilesLoader({
     prefix: 'assets/i18n/',
@@ -14,5 +14,23 @@ var app = angular.module('app').config(['$windowProvider', '$translateProvider',
   }
 
   $translateProvider.preferredLanguage('en');
+
+  $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
+        return {
+            'request': function (config) {
+                config.headers = config.headers || {};
+                if ($localStorage.token) {
+                    config.headers.Authorization = 'Bearer ' + $localStorage.token;
+                }
+                return config;
+            },
+            'responseError': function (response) {
+                if (response.status === 401 || response.status === 403) {
+                    $location.path('/login');
+                }
+                return $q.reject(response);
+            }
+        };
+  }]);
 
 }]);

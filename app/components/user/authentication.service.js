@@ -1,9 +1,43 @@
 'use strict';
 
-angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore', '$rootScope', 'UserService', '$remember', '$base64', function ($http, $cookieStore, $rootScope, UserService, $remember, $base64) {
+angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore', '$rootScope', 'UserService', '$remember', '$base64','$localStorage', function ($http, $cookieStore, $rootScope, UserService, $remember, $base64, $localStorage) {
 
   var service = {};
   var base_url = "http://ec2-52-71-125-138.compute-1.amazonaws.com";
+
+
+    function changeUser(user) {
+        angular.extend(currentUser, user);
+    }
+
+    function urlBase64Decode(str) {
+        var output = str.replace('-', '+').replace('_', '/');
+        switch (output.length % 4) {
+            case 0:
+                break;
+            case 2:
+                output += '==';
+                break;
+            case 3:
+                output += '=';
+                break;
+            default:
+                throw 'Illegal base64url string!';
+        }
+        return window.atob(output);
+    }
+
+    function getUserFromToken() {
+        var token = $localStorage.token;
+        var user = {};
+        if (typeof token !== 'undefined') {
+            var encoded = token.split('.')[1];
+            user = JSON.parse(urlBase64Decode(encoded));
+        }
+        return user;
+    }
+
+    var currentUser = getUserFromToken();
 
   service.loginApi = function (data) {
     return $http.post(base_url + '/user/login', data);
@@ -11,8 +45,9 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
 
   service.SetCredentials = function (user, formData) {
     if (formData) {
-      user.authdata = $base64.encode(formData.email + ':' + formData.password);
-      $http.defaults.headers.common['Authorization'] = 'Basic ' + user.authdata;
+      $localStorage.token =  user.tokenId;
+     // user.authdata = $base64.encode(formData.email + ':' + formData.password);
+     // $http.defaults.headers.common['Authorization'] = 'Bearer ' + $localStorage.token;
     }
     $rootScope.globals = {
       currentUser: user
@@ -23,7 +58,9 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
   service.ClearCredentials = function () {
     $rootScope.globals = {};
     $cookieStore.remove('globals');
-    $http.defaults.headers.common.Authorization = 'Basic';
+    changeUser({});
+    delete $localStorage.token;
+    $http.defaults.headers.common.Authorization = 'Bearer';
   };
 
   service.setRememberMe = function (data) {

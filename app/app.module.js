@@ -3,6 +3,7 @@
 var app = angular.module('app', [
   'ngAnimate',
   'ngCookies',
+  'ngStorage',
   'ngResource',
   'ui.router',
   'ngSanitize',
