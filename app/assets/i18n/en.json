@@ -119,9 +119,6 @@
       "register": "Not registered yet? Sign Up",
       "login_page":"Go to login page"
     },
-    "forgot_password": {
-      "username":"User Name"
-    },
     "validationMessages": {
       "first_name_require": "First Name is required.",
       "last_name_require": "Last Name is required.",
