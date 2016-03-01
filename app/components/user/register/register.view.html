@@ -1,5 +1,5 @@
 <div class="login-bg"></div>
-<div class="content login-wrapper clearfix register-container" cg-busy="{promise:register.loadPromise,message:'Submitting Your Data'}">
+<div class="content login-wrapper clearfix register-container " cg-busy="{promise:register.loadPromise,message:'Submitting Your Data'}">
   <uib-alert type="success" class="alert-success" close="register.closeAlert()"
              data-ng-if="globals.flash && globals.flash.type === 'success' && register.show"
              dismiss-on-timeout="4000">{{globals.flash.message}}
@@ -9,7 +9,7 @@
              dismiss-on-timeout="5000">{{globals.flash.message}}
   </uib-alert>
   <div class="col-lg-4 col-md-3 col-sm-3"></div>
-  <div class="col-lg-4 col-md-6 col-sm-6">
+  <div class="col-lg-4 col-md-6 col-sm-6 login-top-margin">
     <form name="userForm" class="login-form" data-ng-submit="register.submitForm(userForm)" novalidate>
       <h2 class="form-signin-heading" data-translate="nav.register.header">Register</h2>
 
@@ -38,7 +38,7 @@
               data-translate="user.validationMessages.email_require">Email address is required.</span>
         <span class="error-mesasage" ng-show='userForm.email.$error.pattern && userForm.email.$dirty'
               data-translate="user.validationMessages.email_valid">Email address is not valid.</span>
-        <i class="fa fa-envelope-o form-control-feedback"></i>
+        <i class="fa fa-envelope form-control-feedback"></i>
       </div>
 
       <div class="form-group has-feedback">
@@ -63,7 +63,7 @@
         <i class="fa fa-lock form-control-feedback"></i>
       </div>
 
-          <button type="submit" class="btn btn-large btn-block btn-primary" data-translate="common.buttons.sign_up">SIGNUP
+          <button type="submit" class="btn btn-large btn-block btn-primary signup-btn" data-translate="common.buttons.sign_up">SIGNUP
         </button>
     </form>
   </div>
@@ -72,6 +72,7 @@
 
 <div class="container-fluid register-footer">
   <div class="col-lg-offset-5 col-lg-4 col-md-offset-5 col-md-4 col-sm-offset-4 col-sm-4">
-    <a href="#/login" class="text-center" data-translate="user.register.signIn">Already registered? Sign in</a>
+    <a href="#/login" class="text-center" data-translate="user.register.signIn">
+      Already registered? Sign in</a>
   </div>
 </div>

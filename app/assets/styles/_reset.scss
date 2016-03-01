@@ -14,7 +14,10 @@ body {
 .btn-primary {
   background-color: $sp-green;
   border: 0px;
+  font-size: 18px;
+  font-family: $font-family;
 }
+
 .login-form input{
   color: $white-color;
 }
@@ -99,7 +102,7 @@ body, html {
 
 .form-control-feedback {
   left: 0px;
-  line-height: 45px;
+  line-height: 40px;
   color:#222;
 }
 .form-group {
@@ -111,17 +114,13 @@ body, html {
   font-family: $font-family;
   font-size: 15px;
   color:#222;
+}
 
-}
-.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
-  cursor: not-allowed;
-  opacity: 1;
-}
 .btn-primary.disabled:hover, .btn-primary.disabled:focus{
   background-color: darken($sp-green, 10%);
 }
 .btn-primary:hover{
-  background-color: darken($sp-green, 10%);
+  background-color: darken($sp-green, 10%)!important;
 }
 .navbar-toggle {
   border: none;
@@ -143,4 +142,9 @@ margin-top: -31px;
 .success-padding{
   margin-top: -31px;
 }
+
+.container{
+  width: 1280px;
+}
+
 

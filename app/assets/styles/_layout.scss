@@ -100,9 +100,11 @@
 .content {
   min-height: 510px;
 }
+
 .register-container{
-  min-height: 700px;
+  min-height: 650px;
 }
+
 .footer-container{
   margin-left: 15px;
 }
@@ -117,6 +119,15 @@
     @extend .reset-padding-margin;
   }
 
+  .footer-left{
+    float: left;
+  }
+
+  .footer-logo{
+    float: right;
+    margin: 10px 15px 0 0px;
+  }
+
   li {
     list-style: none;
     display: inline;
@@ -124,7 +135,7 @@
       color: #fff;
       padding-top: 10px;
       font-family: $font-family;
-      font-size: 14px;
+      font-size: 12px;
       text-decoration: none;
       margin: 0px;
       display: block;
