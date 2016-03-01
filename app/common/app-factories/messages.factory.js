@@ -21,7 +21,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
 
   function registerErrorMessages(status) {
     var message;
-    if (status === 400) {
+    if (status === 412) {
       message = $translate.instant('user.validationMessages.email_registered');
     }
     else if (status === 500) {
