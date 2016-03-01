@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore', '$rootScope', 'UserService', 'rememberFactory', '$base64','$localStorage', function ($http, $cookieStore, $rootScope, UserService, rememberFactory, $base64, $localStorage) {
+angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore', '$rootScope', 'UserService', 'rememberFactory','$localStorage', function ($http, $cookieStore, $rootScope, UserService, rememberFactory, $localStorage) {
 
   var service = {};
   var base_url = $rootScope.base_url;
@@ -75,7 +75,6 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
     var data = {};
     if (rememberFactory('7ZXYZ@L') && rememberFactory('UU@#90')) {
       data.remember = true;
-        console.log(rememberFactory('7ZXYZ@L'));
       data.email = atob(rememberFactory('7ZXYZ@L'));
       data.password = atob(rememberFactory('UU@#90').toString());
     }

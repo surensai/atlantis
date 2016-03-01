@@ -24,7 +24,6 @@ angular.module('app').factory('rememberFactory', function () {
         if(arguments.length === 1) return fetchValue(name);
         var cookie = name + '=';
         if(typeof values === 'object') {
-            console.log(typeof values.value);
             var expires = '';
             cookie += (typeof values.value === 'object' || typeof values.value === 'number' ) ? angular.toJson(values.value) + ';' : values.value + ';';
             if(values.expires) {
