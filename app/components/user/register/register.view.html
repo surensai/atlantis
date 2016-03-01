@@ -46,7 +46,8 @@
                pattern="[A-Za-z0-9]{8,}" placeholder="{{ 'user.password' | translate }}" required>
         <span class="error-mesasage" ng-show='userForm.password.$error.pattern && userForm.password.$dirty'
               data-translate="user.validationMessages.password_strength">Password must be between 8 and 20 characters.</span>
-        <span ng-show="userForm.$submitted && userForm.password.$error.required" class="error-mesasage">Password is required</span>
+        <span ng-show="userForm.$submitted && userForm.password.$error.required" class="error-mesasage"
+              data-translate="user.validationMessages.password_require">Password is required</span>
         <i class="fa fa-lock form-control-feedback"></i>
       </div>
 
