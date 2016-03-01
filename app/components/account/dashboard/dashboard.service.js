@@ -3,7 +3,7 @@
 angular.module('app').factory('DashboardService', ['$http', '$rootScope', function ($http, $rootScope) {
 
   var service = {};
-  var base_url = "http://ec2-52-71-125-138.compute-1.amazonaws.com";
+  var base_url = $rootScope.base_url;
   var userID = $rootScope.globals.currentUser.id;
 
   service.getAllApi = function () {
