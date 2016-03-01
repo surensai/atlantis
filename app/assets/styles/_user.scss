@@ -1,16 +1,16 @@
-.error-mesasage{
-  color:#E07C72;
+.error-mesasage {
+  color: #E07C72;
 }
 
 .login-wrapper {
-	background-color:rgba(0, 0, 0, 0.8);
-	padding-top: 30px;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding-top: 30px;
   height: 100%;
 }
 
 .login-bg {
-	background-image: url('../images/bg-2.png');
-	background-repeat: no-repeat;
+  background-image: url('../images/bg-2.png');
+  background-repeat: no-repeat;
   background-position: center;
   background-size: 100% auto;
   position: absolute;
@@ -20,78 +20,80 @@
   top: 0px;
   z-index: -999;
 }
-.login-container{
+
+.login-container {
   min-height: 565px;
 }
+
 .login-form {
- 	h2{
- 		color: $white-color;
- 		text-align: center;
+  h2 {
+    color: $white-color;
+    text-align: center;
     margin-bottom: 40px;
-    font-size: 35px;
- 	}
+    font-size: 27px;
+  }
+  input {
+    border-radius: 0px;
+    border: 0px;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
 
-	input {
-		border-radius: 0px;
-		border: 0px;
-    background-color: rgba(255, 255, 255, 0.5);;
-	}
-
-	input::-webkit-input-placeholder{
+  input::-webkit-input-placeholder {
     color: rgba(0, 0, 0, 0.6);
-	}
+  }
 
-	input:-moz-placeholder {
-	  color: rgba(0, 0, 0, 0.6);
-	}
+  input:-moz-placeholder{
+    color: rgba(0, 0, 0, 0.6);
+  }
 
-	input::-moz-placeholder	{
-	  color: rgba(0, 0, 0, 0.6);
-	}
+  input::-moz-placeholder{
+    color: rgba(0, 0, 0, 0.6);
+  }
 
-	input:-ms-input-placeholder {
-	  color: rgba(0, 0, 0, 0.6);
-	}
+  input:-ms-input-placeholder {
+    color: rgba(0, 0, 0, 0.6);
+  }
 
-	button {
-		border-radius: 0px;
-	}
+  button {
+    border-radius: 0px;
+  }
 
-	label {
-		color: #fff;
-	}
+  label {
+    color: #fff;
+  }
 
-	.btn-primary {
-		height: 45px;
-    font-size: 20px;
-    font-family: $font-family;
-	}
-
-	input[type="email"], input[type="password"], input[type="text"] {
-		height: 45px;
-	}
+  input[type="email"],
+  input[type="password"],
+  input[type="text"],.btn-primary {
+    height: 40px;
+  }
 }
-.form-signin-heading{
+
+.form-signin-heading {
   font-family: $font-family;
 }
-.custom-checkbox{
+
+.custom-checkbox {
   width: 20px;
   height: 20px;
   margin-top: 0px;
 }
-.custom-checkbox-span{
+
+.custom-checkbox-span {
   padding-left: 8px;
   margin: 6px 0 10px;
   font-family: $font-family;
   font-size: 15px;
 }
-.apply-margin{
+
+.apply-margin {
   margin-bottom: 10px;
 }
-.login-footer, .register-footer{
-  background-color:rgba(0, 0, 0, 0.4);
+
+.login-footer, .register-footer {
+  background-color: rgba(0, 0, 0, 0.4);
   padding-top: 20px;
-   padding-bottom: 20px;
+  padding-bottom: 20px;
   position: absolute;
   width: 100%;
   bottom: 0px;
@@ -99,9 +101,20 @@
     font-family: $font-family;
     font-size: 15px;
     color: $white-color;
-    }
+    text-decoration: underline;
+  }
 }
-.login-top-margin{
+
+.login-top-margin {
   margin-top: 30px;
 }
 
+.signup-btn{
+  margin-top: 30px;
+}
+
+@-moz-document url-prefix() {
+  .custom-checkbox-span {
+    margin: 2px 0px 10px;
+  }
+}
