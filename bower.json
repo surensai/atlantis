@@ -19,7 +19,8 @@
     "angular-base64": "2.0.4",
     "font-awesome": "~4.5.0",
     "angular-moment": "~0.10.3",
-    "moment": "~2.11.2"
+    "moment": "~2.11.2",
+    "ngStorage":"*"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0",
