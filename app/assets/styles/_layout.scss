@@ -239,33 +239,6 @@ and (orientation : portrait) {
 and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation : landscape) {
-  .header{
-    height: 10%;
-  }
-  .app{
-    height: 80%;
-  }
-  .login-wrapper{
-    height: 80%;
-  }
-  .account-container {
-    min-height: 574px;
-  }
-  .dashboard-container{
-    overflow: scroll;
-    height: 540px;
-  }
-  .container-min-height{
-    min-height: 540px;
-  }
-  .first-imgsize {
-    height: 247px !important;
-  }
-  .second-element {
-    padding-bottom: 0%;
-  }
-  .second-imgsize {
-    height: 291px !important;
-  }
+
 }
 
