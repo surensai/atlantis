@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore', '$rootScope', 'UserService', '$remember', '$base64','$localStorage', function ($http, $cookieStore, $rootScope, UserService, $remember, $base64, $localStorage) {
+angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore', '$rootScope', 'UserService', 'rememberFactory','$localStorage', function ($http, $cookieStore, $rootScope, UserService, rememberFactory, $localStorage) {
 
   var service = {};
   var base_url = $rootScope.base_url;
@@ -63,20 +63,20 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
 
   service.setRememberMe = function (data) {
     if (data.remember) {
-      $remember('7ZXYZ@L', $base64.encode(data.email));
-      $remember('UU@#90', $base64.encode(data.password));
+        rememberFactory('7ZXYZ@L', btoa(data.email));
+        rememberFactory('UU@#90', btoa(data.password));
     } else {
-      $remember('7ZXYZ@L', '');
-      $remember('UU@#90', '');
+        rememberFactory('7ZXYZ@L', '');
+        rememberFactory('UU@#90', '');
     }
   };
 
   service.getRememberMe = function () {
     var data = {};
-    if ($remember('7ZXYZ@L') && $remember('UU@#90')) {
+    if (rememberFactory('7ZXYZ@L') && rememberFactory('UU@#90')) {
       data.remember = true;
-      data.email = $base64.decode($remember('7ZXYZ@L'));
-      data.password = $base64.decode($remember('UU@#90'));
+      data.email = atob(rememberFactory('7ZXYZ@L'));
+      data.password = atob(rememberFactory('UU@#90').toString());
     }
     return data;
   };
