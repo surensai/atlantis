@@ -32,13 +32,12 @@
            data-translate="user.validationMessages.last_name_require">Last name is required.</p>
       </div>
 
-      <div class="form-group"
-           ng-class="{ 'has-error' : (submitted && !userForm.mobileNumber) || (userForm.mobileNumber.$invalid && !userForm.mobileNumber.$pristine) }">
+      <div class="form-group">
         <input type="text" name="mobileNumber" data-ng-model="editProfile.model.mobileNumber"
-               placeholder="{{ 'user.register.mobile' | translate }}" class="form-control" required>
+               class="form-control" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" placeholder="{{ 'user.register.mobile' | translate }}" required>
+          <span class="error-mesasage" ng-show='userForm.mobileNumber.$error.pattern && userForm.mobileNumber.$dirty'
+                data-translate="user.validationMessages.mobile_num_invalid">Mobile Number is not valid</span>
 
-        <p ng-show="userForm.mobileNumber.$invalid && !userForm.mobileNumber.$pristine" class="help-block"
-           data-translate="user.validationMessages.mobile_num_require">mobile number is required.</p>
       </div>
       <button type="submit" class="btn btn-large btn-block btn-primary" data-translate="common.buttons.submit"
               data-ng-disabled="userForm.$invalid">Submit
