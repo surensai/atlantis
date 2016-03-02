@@ -4,7 +4,6 @@ angular.module('app').factory('firmwareService', ['$http', '$rootScope', functio
 
   var service = {};
   var base_url = $rootScope.base_url;
-  var userID = $rootScope.globals.currentUser.id;
   var fd = new FormData();
 
   service.createApi = function (child) {

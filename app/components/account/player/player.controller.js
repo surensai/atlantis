@@ -155,7 +155,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
             $timeout(function(){
               player.model.playerItem.profileURL = e.target.result;
             });
-          }
+          };
         });
       }
     }
