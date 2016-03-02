@@ -150,3 +150,18 @@ body {
 .success-padding {
   margin-top: -31px;
 }
+.nav-tabs > li > a:hover {
+  border-color: #eeeeee #eeeeee #ddd;
+  background-color: #D6921D;
+  height: 110px;
+  border-right: 0px solid lightcyan;
+}
+.nav-tabs > li {
+  border-color: #eeeeee #eeeeee #ddd;
+  height: 110px;
+  border-right: 1px solid lightcyan;
+}
+.nav-tabs{
+  height: 110px;
+  background-color: #f9a61a;
+}

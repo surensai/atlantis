@@ -23,7 +23,7 @@
       </div>
       <div class="row">
         <div class="form-group col-md-6 has-feedback">
-            <input type="file" name="firmware_file" file-model="firmware.model.firmware_update_url" valid-file ng-required="true">
+            <input type="file" name="firmware_file" file-model="firmware.model.firmware_update_url" required>
             <span ng-show="firmwareForm.$submitted && firmwareForm.firmware_file.$error.required" class="error-mesasage"
                   data-translate="user.validationMessages.file_require">File is required.</span>
           </div>
