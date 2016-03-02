@@ -36,6 +36,7 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
         return user;
     }
 
+    var currentUser = getUserFromToken();
 
   service.loginApi = function (data) {
     return $http.post(base_url + '/user/login', data);
