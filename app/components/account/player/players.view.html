@@ -9,7 +9,7 @@
            dismiss-on-timeout="4000">{{globals.flash.message}}
 </uib-alert>
 
-<div class="container container-min-height">
+<div class="container container-min-height" cg-busy="{promise:player.loadPromise,message:'Loading Your Data'}">
 
 
 <!--<div class="container container-min-height">-->
@@ -39,11 +39,13 @@
 
 <!--<modal my-handler="modal" modal-body="player.modalBody" modal-footer="player.modalFooter" modal-header="player.modalTitle" data-ng-click-right-button="player.deleteAction()"></modal>-->
     <ul class="nav nav-tabs">
-        <li ><a ui-sref="account.addplayer">Add Player</a></li>
+        <li ><a ui-sref="account.addplayer">
+            <img data-ng-if="!playerItem.profileURL" src="assets/images/add-player.png" class="img-circle" alt="player" width="80" height="80" /> <p class="para-align-center">Add Player</p>
+        </a></li>
         <li data-ng-repeat="playerItem in player.data.playersList" > <a ui-sref="account.players.details({ id: playerItem.id })">
             <img data-ng-if="!playerItem.profileURL" src="assets/images/fallback-img.png" class="img-circle" alt="player" width="80" height="80" />
             <img data-ng-if="playerItem.profileURL" data-ng-src="{{playerItem.profileURL}}" class="img-circle" alt="player" width="80" height="80" />
-            <p>{{ playerItem.firstName }}</p>
+            <p class="para-align-center">{{ playerItem.firstName }}</p>
         </a>
         </li>
     </ul>
