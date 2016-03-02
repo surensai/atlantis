@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', '$state', '$timeout', 'flashService', 'auth', function ($scope, UserService, $state, $timeout, flashService, auth) {
+angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', '$state', '$timeout', 'flashService', 'auth', 'messagesFactory','AuthenticationService', function ($scope, UserService, $state, $timeout, flashService, auth, messagesFactory, AuthenticationService) {
 
   var resetPassword = this;
   resetPassword.model = {};
@@ -32,8 +32,9 @@ angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', 
     var handleSuccess = function (data) {
       resetPassword.data = {};
       resetPassword.show = true;
-      $state.go('login');
-      flashService.showSuccess(data.message, true);
+      AuthenticationService.ClearCredentials();
+      messagesFactory.changepasswordSuccessMessages(data);
+      $state.go('messages');
     };
 
     var handleError = function (error) {
