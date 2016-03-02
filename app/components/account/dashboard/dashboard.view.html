@@ -3,12 +3,12 @@
      cg-busy="{promise:dashboard.loadPromise,message:'Loading Your Data'}">
   <div class="feed-row" data-ng-repeat="feedItem in dashboard.data.newsFeedsList">
     <div class="panel clearfix">
-      <div class="col-md-4 nopadding">
+      <div class="col-md-6 nopadding">
         <img data-ng-if="!feedItem.image_url" src="assets/images/no-image.png" class="img-responsive"/>
         <img data-ng-if="feedItem.image_url" data-ng-src="{{feedItem.image_url}}" class="img-responsive"
              ng-class="{ 'first-imgsize':$index ==0, 'second-imgsize': $index == 1}"/>
       </div>
-      <div class="col-md-8 nopadding">
+      <div class="col-md-6 nopadding">
         <div class="panel-body">
           <h3 class="reduce-margin">{{feedItem.title}}</h3>
 
