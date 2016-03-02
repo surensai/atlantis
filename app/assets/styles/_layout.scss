@@ -2,13 +2,18 @@
   clear: both;
 }
 
-.app{
+.app {
   position: relative;
+}
+
+.bg-color-white{
+  background-color: $white-color;
 }
 
 .navbar-brand, .navbar {
   @extend .reset-padding-margin;
 }
+
 .navbar-brand img {
   margin: 10px 0px 10px 30px;
   padding-right: 44px;
@@ -18,14 +23,12 @@
   min-height: 40px;
   max-height: 117px;
   position: relative;
-  .width30-per{
+  .width30-per {
     width: 20%;
   }
- .width70-per {
-   width: 80%;
- }
-
-
+  .width70-per {
+    width: 80%;
+  }
   .header-bg {
     background: $primary-color url('../images/header-design.png') no-repeat 7px;
   }
@@ -68,8 +71,8 @@
   font-size: 16px;
   .dropdown {
     display: none;
-    a{
-      color:$white-color;
+    a {
+      color: $white-color;
     }
   }
   ul, li {
@@ -101,29 +104,29 @@
   min-height: 510px;
 }
 
-.register-container{
+.register-container {
   min-height: 650px;
 }
 
-.footer-container{
+.footer-container {
   margin-left: 15px;
 }
+
 .footer {
   padding-top: 10px;
   padding-bottom: 10px;
   color: $white-color;
   border: none;
-  background-color: $primary-color;
   clear: both;
   ul, li {
     @extend .reset-padding-margin;
   }
 
-  .footer-left{
+  .footer-left {
     float: left;
   }
 
-  .footer-logo{
+  .footer-logo {
     float: right;
     margin: 10px 15px 0 0px;
   }
@@ -147,9 +150,11 @@
     }
   }
 }
-.imgmargin{
+
+.imgmargin {
   margin-top: -10px;
 }
+
 .messages-container {
   margin-top: 8%;
   margin-bottom: 8%;
@@ -196,50 +201,28 @@
 
 }
 
-@media(max-width: 400px) {
-
-  .header .width70-per {
-    width: 90%;
-  }
-
-  .header .width30-per {
-    width: 10%;
-  }
-
-}
-
-@media(min-width: 320px) {
-  .top-header {
-    display: block;
-  }
-}
-
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)
-and (orientation : portrait) {
-  .header{
+@media only screen and
+(min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .header {
     height: 10%;
   }
-  .app{
+  .app {
     height: 86%;
   }
-  .login-wrapper{
+  .login-wrapper {
     height: 80%;
   }
-  .login-bg{
+  .login-bg {
     background-size: auto 100% !important;
   }
-  .account-container{
+  .account-container {
     min-height: 840px;
   }
 }
 
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)
-and (orientation : landscape) {
-  .login-bg{
+@media only screen and
+(min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .login-bg {
     background-size: 100% 100% !important;
   }
 }

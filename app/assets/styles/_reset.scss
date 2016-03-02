@@ -1,5 +1,10 @@
+body, html {
+  height: 100%;
+}
+
 body {
   overflow-x: hidden;
+  background-color: $primary-color;
 }
 
 .reset-padding-margin {
@@ -11,22 +16,15 @@ body {
   padding: 0px;
 }
 
+.center-align{
+  text-align: center;
+}
+
 .btn-primary {
   background-color: $sp-green;
   border: 0px;
   font-size: 18px;
   font-family: $font-family;
-}
-
-.login-form input{
-  color: $white-color;
-}
-body {
-  background-color: $white-color;
-}
-
-body, html {
-  height: 100%;
 }
 
 .navbar {
