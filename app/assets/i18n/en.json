@@ -32,7 +32,11 @@
     },
     "edit_profile": {
       "title": "Edit Profile",
-      "header": "Edit Profile"
+      "header": "Edit Profile",
+      "first_name":"First Name:",
+      "last_name":"Last Name:",
+      "email":"Email:",
+      "mobile_num":"Mobile Number:"
     },
     "change_password": {
       "title": "Change Password",
@@ -140,7 +144,8 @@
       "old_passwpord_wrong":"Old password is wrong.",
       "old_passwpord_require":"Old password is required.",
       "version_require":"Version is required.",
-      "file_require": "File is required."
+      "file_require": "File is required.",
+      "data_updatede_success":"Data updated successfully."
     },
     "change_password": {
       "old_password": "Old Password",

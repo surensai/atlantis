@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService','messagesFactory', '$timeout', 'settingsService', function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService) {
+angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService', function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService) {
   var settings = this;
   settings.model = {};
   settings.model.userData = angular.copy($rootScope.globals.currentUser);
@@ -8,9 +8,12 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   (function () {
     getNotificationData();
   })();
-
+  settings.closeAlert = function () {
+    settings.show = false;
+  };
   settings.submitForm = function (form) {
     settings.submitted = true;
+    settings.show = true;
     if (form.$valid) {
       saveProfile();
       form.$setPristine();
@@ -25,12 +28,12 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
 
     var handleSuccess = function (data) {
       AuthenticationService.SetCredentials(settings.model.userData);
-      messagesFactory.editprofileSuccessMessages(data);
+      messagesFactory.settingseditprofileSuccessMessages(data);
     };
 
     var handleError = function (error, status) {
       if (error && status) {
-        messagesFactory.forgotErrorMessages(status);
+        messagesFactory.settingseditprofileSuccessMessages(status);
       }
     };
     settings.loadPromise = UserService.Update(settings.model.userData)
@@ -62,6 +65,5 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       .success(handleSuccess)
       .error(handleError);
   }
-
 
 }]);
