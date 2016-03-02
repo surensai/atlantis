@@ -46,13 +46,13 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     flashService.showError(message, false);
   }
 
-  function editprofileSuccessMessages(successObj) {
+  function settingseditprofileSuccessMessages(successObj) {
     if (successObj) {
-      flashService.showSuccess(successObj.message, true);
+      flashService.showSuccess( $translate.instant('user.validationMessages.data_updatede_success '), true);
     }
   }
 
-  function editprofileErrorMessages(status,error) {
+  function settingseditprofileErrorMessages(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -61,7 +61,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   }
   function changepasswordSuccessMessages(successObj) {
     if (successObj) {
-      flashService.showCustomMessage('change_password', true);
+      flashService.showCustomMessage('change_password', false);
     }
   }
 
@@ -79,8 +79,8 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   service.registerSuccessMessages = registerSuccessMessages;
   service.forgotErrorMessages = forgotErrorMessages;
   service.forgotSuccessMessages = forgotSuccessMessages;
-  service.editprofileErrorMessages = editprofileErrorMessages;
-  service.editprofileSuccessMessages = editprofileSuccessMessages;
+  service.settingseditprofileErrorMessages = settingseditprofileErrorMessages;
+  service.settingseditprofileSuccessMessages = settingseditprofileSuccessMessages;
   service.changepasswordSuccessMessages = changepasswordSuccessMessages;
   service.changepasswordErrorMessages = changepasswordErrorMessages;
   return service;

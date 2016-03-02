@@ -1,11 +1,131 @@
-<div class="container container-min-height">
-  <div class="pull-left">
-    <h1>Settings</h1>
-    <ul>
-      <li> News Feeds</li>
-      <li> New badge eraned</li>
-      <li> Spelled correctly</li>
-      <li> SP Educational news articles</li>
-    </ul>
+<div class="container container-min-height settings-container">
+  <uib-alert type="success" class="alert-success success-padding" close="settings.closeAlert()"
+             data-ng-if="globals.flash && globals.flash.type === 'success' && settings.show"
+             dismiss-on-timeout="4000">{{globals.flash.message}}
+  </uib-alert>
+  <uib-alert type="warning" class="alert-danger" close="editProfile.closeAlert()"
+             data-ng-if="globals.flash && globals.flash.type !== 'success' && settings.show"
+             dismiss-on-timeout="4000">{{globals.flash.message}}
+  </uib-alert>
+  <div class="panel">
+    <div class="panel-heading accrodin-heading">
+      SETTINGS
+    </div>
+    <div class="panel-body">
+      <uib-accordion>
+        <uib-accordion-group is-open="status.open">
+          <uib-accordion-heading>
+            <i class="glyphicon"
+               ng-class="{'glyphicon-triangle-bottom': status.open, 'glyphicon-triangle-right': !status.open}"></i>
+            <span class="accordion-header-gap">Edit Profile</span>
+          </uib-accordion-heading>
+          <form name="settingsForm" ng-submit="settings.submitForm(settingsForm)" novalidate>
+            <div class="form-horizontal">
+
+              <div class="form-group"
+                   ng-class="{ 'has-error' : (submitted && !settingsForm.firstName) || (settingsForm.firstName.$invalid && !settingsForm.firstName.$pristine) }">
+                <label class="col-md-2 control-label" data-translate="nav.edit_profile.first_name">First Name:</label>
+
+                <div class="col-md-3">
+                  <input type="text" name="firstName" class="form-control"
+                         data-ng-model="settings.model.userData.firstName"
+                         placeholder="{{ 'user.first_name' | translate }}" required>
+                </div>
+                <p ng-show="settingsForm.firstName.$invalid && !settingsForm.firstName.$pristine" class="help-block"
+                   data-translate="user.validationMessages.first_name_require">First name is required.</p>
+              </div>
+
+              <div class="form-group"
+                   ng-class="{ 'has-error' : (submitted && !settingsForm.lastName) || (settingsForm.lastName.$invalid && !settingsForm.lastName.$pristine) }">
+                <label class="col-md-2 control-label" data-translate="nav.edit_profile.last_name">Last Name:</label>
+
+                <div class="col-md-3">
+                  <input type="text" name="lastName" class="form-control"
+                         data-ng-model="settings.model.userData.lastName"
+                         placeholder="{{ 'user.last_name' | translate }}" required>
+                </div>
+                <p
+                  ng-show="!settingsForm.lastName && settingsForm.lastName.$invalid && !settingsForm.lastName.$pristine"
+                  class="help-block"
+                  data-translate="user.validationMessages.last_name_require">Last name is required.</p>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-2 control-label" data-translate="nav.edit_profile.email">Email:</label>
+
+                <div class="col-md-3">
+                  <input type="text" name="lastName" class="form-control" data-ng-model="settings.model.userData.email"
+                         placeholder="{{ 'user.email' | translate }}" disabled>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-2 control-label" data-translate="nav.edit_profile.mobile_num">Mobile
+                  Number:</label>
+
+                <div class="col-md-3">
+                  <input type="text" name="mobileNumber" data-ng-model="settings.model.userData.mobileNumber"
+                         class="form-control" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
+                         placeholder="{{ 'user.register.mobile' | translate }}"></div>
+                  <span class="error-mesasage"
+                        ng-show='settingsForm.mobileNumber.$error.pattern && settingsForm.mobileNumber.$dirty'
+                        data-translate="user.validationMessages.mobile_num_invalid">Mobile Number is not valid</span>
+                  <span ng-show="settingsForm.mobileNumber.$error.required" class="error-mesasage"
+                        data-translate="user.validationMessages.mobile_num_require">Mobile Number is required</span>
+              </div>
+
+            </div>
+            <button type="submit" data-ng-disabled="settingsForm.$invalid" class="btn btn-large btn-block btn-primary"
+                    data-translate="common.buttons.submit">Submit
+            </button>
+          </form>
+
+        </uib-accordion-group>
+      </uib-accordion>
+      <uib-accordion>
+        <uib-accordion-group is-open="status.open">
+          <uib-accordion-heading>
+            <i class="glyphicon"
+               ng-class="{'glyphicon-triangle-bottom': status.open, 'glyphicon-triangle-right': !status.open}"></i><span
+            class="accordion-header-gap">Report Setting</span>
+          </uib-accordion-heading>
+          Report Setting
+        </uib-accordion-group>
+      </uib-accordion>
+      <uib-accordion>
+        <uib-accordion-group is-open="status.open">
+          <uib-accordion-heading>
+            <i class="glyphicon"
+               ng-class="{'glyphicon-triangle-bottom': status.open, 'glyphicon-triangle-right': !status.open}"></i><span
+            class="accordion-header-gap">Notifications</span>
+          </uib-accordion-heading>
+          <form name="notificationsForm" role="form" data-ng-submit="settings.submitNotifications(notificationsForm)"
+                novalidate>
+            <div class="checkbox">
+              <label><input type="checkbox" data-ng-model="settings.model.notificationObj.player_updates">Player updates</label>
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" data-ng-model="settings.model.notificationObj.sp_updates">Square Panda news</label>
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" data-ng-model="settings.model.notificationObj.educational_updates">Educational
+                News feed</label>
+            </div>
+            <button class="btn btn-primary" type="submit" data-translate="common.buttons.submit">Sign in</button>
+          </form>
+        </uib-accordion-group>
+      </uib-accordion>
+      <uib-accordion>
+        <uib-accordion-group is-open="status.open">
+          <uib-accordion-heading>
+            <i class="glyphicon"
+               ng-class="{'glyphicon-triangle-bottom': status.open, 'glyphicon-triangle-right': !status.open}"></i><span
+            class="accordion-header-gap">My devices</span>
+          </uib-accordion-heading>
+          My devices
+        </uib-accordion-group>
+      </uib-accordion>
+    </div>
   </div>
+
 </div>

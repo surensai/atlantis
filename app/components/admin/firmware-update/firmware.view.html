@@ -11,7 +11,7 @@
 <div class="col-lg-8 container-min-height">
 
   <div cg-busy="{promise:firmware.loadPromise, message:'Loading Your Data'}"></div>
-
+  {{firmware.model.firmware_update_url}}
   <div class="col-lg-4 col-md-6 col-sm-6">
     <form name="firmwareForm"  ng-submit="firmware.submitForm(firmwareForm)" novalidate>
       <h2 class="form-signin-heading" data-translate="admin.firmware.header">Firmware Update</h2>
@@ -22,8 +22,9 @@
                 data-translate="user.validationMessages.version_require">Version is required.</span>
       </div>
       <div class="row">
+
         <div class="form-group col-md-6 has-feedback">
-            <input type="file" name="firmware_file" file-model="firmware.model.firmware_update_url" required>
+            <input type="file" name="firmware_file" file-model="firmware.model.firmware_update_url" ng-required="true">
             <span ng-show="firmwareForm.$submitted && firmwareForm.firmware_file.$error.required" class="error-mesasage"
                   data-translate="user.validationMessages.file_require">File is required.</span>
           </div>

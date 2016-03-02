@@ -156,6 +156,8 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
   }).state('account.settings', {
     url: '/settings',
     templateUrl: urlBuilder('account/settings', 'settings'),
+    controller: 'settingsCtrl',
+    controllerAs: "settings",
     data: {
       pageTitle: 'Square Panda - Settings'
     }

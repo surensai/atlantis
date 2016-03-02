@@ -1,0 +1,28 @@
+.settings-container{
+  padding-top: 40px;
+  .panel{
+    border:1px solid #DFDFDF;
+    .accrodin-heading{
+      background-color: #F9A61A;
+      color: white;
+    }
+    .accordion-header-gap{
+      padding-left: 10px;
+    }
+    .editprofile-button{
+      background-color: $sp-green !important;
+    }
+    .editprofile-button:hover{
+      background-color: $sp-green !important;
+    }
+    .form-horizontal input,label{
+      color:grey;
+    }
+  }
+}
+
+
+
+
+
+
