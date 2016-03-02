@@ -33,7 +33,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
 
     var handleError = function (error, status) {
       if (error && status) {
-        messagesFactory.settingseditprofileSuccessMessages(status);
+        messagesFactory.settingseditprofileErrorMessages(status);
       }
     };
     settings.loadPromise = UserService.Update(settings.model.userData)

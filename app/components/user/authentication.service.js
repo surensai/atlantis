@@ -4,8 +4,7 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
 
   var service = {};
   var base_url = $rootScope.base_url;
-
-
+  var currentUser;
     function changeUser(user) {
         angular.extend(currentUser, user);
     }
