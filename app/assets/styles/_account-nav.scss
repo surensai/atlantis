@@ -9,7 +9,7 @@
   background: #4CBC96;
   display: none;
   overflow: auto;
-  border-top: solid 1px #ffffff;
+  border-top: solid 1px #f6f6f6;
 }
 
 #page-content-wrapper {
@@ -52,7 +52,7 @@ nav .account-nav {
       text-align: center;
       font-family: $font-family;
       font-size: 15px;
-      border-right: solid 1px #ffffff;
+      border-right: solid 1px #f6f6f6;
       line-height: 9px;
     }
         a:hover, .active {
