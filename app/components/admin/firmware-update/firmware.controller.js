@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('firmwareCtrl', ['$timeout', '$state', 'firmwareService', 'flashService','$scope', function ($timeout, $state, firmwareService, flashService, $scope) {
+angular.module("app").controller('firmwareCtrl', ['$timeout', 'firmwareService', 'flashService', function ($timeout, firmwareService, flashService) {
 
   var firmware = this;
   firmware.isUpdate = false;
