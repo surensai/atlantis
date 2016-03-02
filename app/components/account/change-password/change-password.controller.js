@@ -30,8 +30,9 @@ angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout
 
   function save() {
     var handleSuccess = function (data) {
+      AuthenticationService.ClearCredentials();
       messagesFactory.changepasswordSuccessMessages(data);
-      $state.go('login');
+      $state.go('messages');
     };
     var handleError = function (error,status) {
       if (error && status) {

@@ -61,7 +61,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   }
   function changepasswordSuccessMessages(successObj) {
     if (successObj) {
-      flashService.showSuccess($translate.instant('user.validationMessages.password_change_new_login '), true);
+      flashService.showCustomMessage('change_password', true);
     }
   }
 

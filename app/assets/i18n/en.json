@@ -138,8 +138,9 @@
       "mobile_num_invalid":"Mobile Number is not valid",
       "password_change_new_login":"Your password has changed. Please try to login.",
       "old_passwpord_wrong":"Old password is wrong.",
-      "old_passwpord_require":"Old password is required."
-
+      "old_passwpord_require":"Old password is required.",
+      "version_require":"Version is required.",
+      "file_require": "File is required."
     },
     "change_password": {
       "old_password": "Old Password",
