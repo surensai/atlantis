@@ -1,6 +1,6 @@
 <uib-alert type="success" class="alert-success" close="firmware.closeAlert()"
            data-ng-if="globals.flash && globals.flash.type === 'success' && firmware.show"
-           dismiss-on-timeout="2000">{{globals.flash.message}}
+           dismiss-on-timeout="200000">{{globals.flash.message}}
 </uib-alert>
 <uib-alert type="warning" class="alert-danger" close="firmware.closeAlert()"
            data-ng-if="globals.flash && globals.flash.type !== 'success' && firmware.show"
@@ -18,13 +18,15 @@
       <div class="form-group has-feedback">
         <input type="text" name="firmware_revision_string" class="form-control" ng-model="firmware.model.firmware_revision_string"
                placeholder="{{ 'admin.firmware.firmware_version' | translate }}" required>
+          <span ng-show="firmwareForm.$submitted && firmwareForm.firmware_revision_string.$error.required" class="error-mesasage"
+                data-translate="user.validationMessages.version_require">Version is required.</span>
       </div>
       <div class="row">
-        <div class="form-group col-md-6">
-          <div>
-            <input type="file"  file-model="firmware.model.firmware_update_url">
+        <div class="form-group col-md-6 has-feedback">
+            <input type="file" name="firmware_file" file-model="firmware.model.firmware_update_url" valid-file ng-required="true">
+            <span ng-show="firmwareForm.$submitted && firmwareForm.firmware_file.$error.required" class="error-mesasage"
+                  data-translate="user.validationMessages.file_require">File is required.</span>
           </div>
-        </div>
         <div class="col-md-6"></div>
       </div>
 

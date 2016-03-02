@@ -37,6 +37,8 @@
                class="form-control" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" placeholder="{{ 'user.register.mobile' | translate }}" required>
           <span class="error-mesasage" ng-show='userForm.mobileNumber.$error.pattern && userForm.mobileNumber.$dirty'
                 data-translate="user.validationMessages.mobile_num_invalid">Mobile Number is not valid</span>
+          <span ng-show="userForm.mobileNumber.$error.required" class="error-mesasage"
+                data-translate="user.validationMessages.mobile_num_require">Mobile Number is required</span>
 
       </div>
       <button type="submit" class="btn btn-large btn-block btn-primary" data-translate="common.buttons.submit"

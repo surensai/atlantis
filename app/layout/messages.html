@@ -3,7 +3,7 @@
     <div class="col-lg-offset-1 col-lg-8">
       <div class="panel panel-default messages-panel">
         <div class="panel-heading text-center">
-          <img src="assets/images/pandalogo.png" width="6%">&nbsp;
+          <img src="assets/images/footer_logo.png" width="6%">&nbsp;
           <span>SUCCESS!</span></div>
         <div class="panel-body">
           <div data-ng-if="messages && messages.type === 'register'">
@@ -17,6 +17,11 @@
             <p>check your email for a link to reset your password.If it doesn't appear within a few minutes, check your
               spam folder.</p>
           </div>
+           <div data-ng-if="messages && messages.type === 'change_password'">
+                <h3>Changed your password successfully </h3>
+
+                <p>{{ 'user.validationMessages.password_change_new_login' | translate}}</p>
+           </div>
           <button ui-sref="login" class="btn btn-primary center-block">Return to signin</button>
         </div>
       </div>
