@@ -1,25 +1,22 @@
-<div class="messages-container bg-color-white">
+<div class="messages-container">
   <div class="container">
     <div class="col-lg-offset-1 col-lg-8">
       <div class="panel panel-default messages-panel">
         <div class="panel-heading text-center">
-          <img src="assets/images/pandalogo.png" width="6%">&nbsp;
-          <span>SUCCESS!</span></div>
+          <img src="assets/images/success-message.png" width="6%">
+        </div>
         <div class="panel-body">
           <div data-ng-if="messages && messages.type === 'register'">
-            <h3>Thank you for registering with us</h3>
-
-            <h3>Soon you will get a confirmation email to verify your account</h3>
+            <p> Thank you for registering with us </p>
+            <p> Soon you will get a confirmation email to verify your account </p>
           </div>
           <div data-ng-if="messages && messages.type === 'forgot'">
-            <h3>Reset your password</h3>
-
             <p>check your email for a link to reset your password.If it doesn't appear within a few minutes, check your
               spam folder.</p>
           </div>
-          <button ui-sref="login" class="btn btn-primary center-block">Return to signin</button>
         </div>
       </div>
+      <button ui-sref="login" class="btn sp-pur-btn center-block">Return to signin</button>
     </div>
   </div>
 </div>
