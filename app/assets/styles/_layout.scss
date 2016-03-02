@@ -157,19 +157,34 @@
 
 .messages-container {
   padding: 10%;
+  background-color: $account-bg-color;
 }
 
 .messages-panel {
-  border: 1px solid #4CBC96;
+  border: 1px solid $sp-green;
+  border-radius: 0px;
   .panel-heading {
-    background-color: #4CBC96;
+    background-color: $sp-green;
+    border-radius: 0px;
     span {
       color: white;
     }
   }
   .panel-body {
-    background-color: #FAFAFA;
     color: #B3B3B3;
+    p{
+      font-size: 17px;
+    }
+  }
+}
+
+.sp-pur-btn {
+  background-color: $primary-color;
+  border-radius: 0px;
+  color: $white-color;
+  &:hover {
+    background-color: lighten($primary-color, 10%);
+    color: $white-color;
   }
 }
 

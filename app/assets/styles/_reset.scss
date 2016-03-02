@@ -4,7 +4,7 @@ body, html {
 
 body {
   overflow-x: hidden;
-  background-color: $primary-color;
+  background-color: $bg-color;
 }
 
 .reset-padding-margin {
@@ -14,6 +14,10 @@ body {
 
 .nopadding {
   padding: 0px;
+}
+
+.noborders {
+  border: 0px;
 }
 
 .center-align {

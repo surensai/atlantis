@@ -3,17 +3,15 @@
      cg-busy="{promise:dashboard.loadPromise,message:'Loading Your Data'}">
   <div class="feed-row" data-ng-repeat="feedItem in dashboard.data.newsFeedsList">
     <div class="panel clearfix">
-      <div class="col-md-6 nopadding">
-        <img data-ng-if="!feedItem.image_url" src="assets/images/no-image.png" class="img-responsive"/>
-        <img data-ng-if="feedItem.image_url" data-ng-src="{{feedItem.image_url}}" class="img-responsive"
+      <div class="col-md-5 nopadding">
+        <img data-ng-if="!feedItem.image_url" src="assets/images/no-image.png" class="img-responsive feed-img"  />
+        <img data-ng-if="feedItem.image_url" data-ng-src="{{feedItem.image_url}}" class="img-responsive feed-img"
              ng-class="{ 'first-imgsize':$index ==0, 'second-imgsize': $index == 1}"/>
       </div>
-      <div class="col-md-6 nopadding">
+      <div class="col-md-7 nopadding">
         <div class="panel-body">
           <h3 class="reduce-margin">{{feedItem.title}}</h3>
-
-          <p am-time-ago="feedItem.updatedAt"></p>
-
+          <p class="time-ago" am-time-ago="feedItem.updatedAt"></p>
           <p ng-class="{'first-element':$index ==0,'second-element': $index == 1,'third-element':$index == 2}">{{feedItem.description}}</p>
         </div>
         <div class="panel-footer">
