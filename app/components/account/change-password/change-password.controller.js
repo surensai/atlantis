@@ -27,7 +27,6 @@ angular.module("app").controller('changePasswordCtrl', ['UserService', '$timeout
       }
     };
   };
-
   function save() {
     var handleSuccess = function (data) {
       AuthenticationService.ClearCredentials();

@@ -15,7 +15,7 @@ angular.module("app").controller('firmwareCtrl', ['$timeout', 'firmwareService',
 
   firmware.submitForm = function (form) {
     firmware.submitted = true;
-    if (form.$valid) {
+    if (form.$valid && firmware.model.firmware_update_url.name) {
       uploadFirmware(form);
     } else {
       $timeout(function () {
@@ -24,13 +24,14 @@ angular.module("app").controller('firmwareCtrl', ['$timeout', 'firmwareService',
     }
   };
 
-  function addAction() {
+  function addAction(form) {
     var handleSuccess = function () {
       flashService.showSuccess("firmware added successfully!", true);
     };
 
     var handleError = function () {
       flashService.showError("Invalid firmware credentials", false);
+      form.$setPristine();
     };
 
     firmware.loadPromise = firmwareService.createApi(firmware.model)
@@ -41,8 +42,7 @@ angular.module("app").controller('firmwareCtrl', ['$timeout', 'firmwareService',
   function uploadFirmware(form) {
     var handleSuccess = function (data) {
       firmware.model.firmware_update_url = data.files[0].url;
-      addAction();
-      form.$setPristine();
+      addAction(form);
     };
 
     var handleError = function () {

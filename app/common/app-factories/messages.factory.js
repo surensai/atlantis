@@ -59,21 +59,23 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     }
     flashService.showError(message, false);
   }
-  function changepasswordSuccessMessages(successObj) {
+
+  function settingschangepasswordSuccessMessages(successObj) {
     if (successObj) {
       flashService.showCustomMessage('change_password', false);
     }
   }
 
-  function changepasswordErrorMessages(status) {
+  function settingschangepasswordErrorMessages(status) {
     var message;
       if (status === 500) {
-        message = $translate.instant('user.validationMessages.old_passwpord_require ');
-    } else {
         message = $translate.instant('user.validationMessages.old_passwpord_wrong');
+    } else {
+        message = $translate.instant('user.validationMessages.old_passwpord_require');
     }
     flashService.showError(message, false);
   }
+
   service.loginErrorMessages = loginErrorMessages;
   service.registerErrorMessages = registerErrorMessages;
   service.registerSuccessMessages = registerSuccessMessages;
@@ -81,7 +83,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   service.forgotSuccessMessages = forgotSuccessMessages;
   service.settingseditprofileErrorMessages = settingseditprofileErrorMessages;
   service.settingseditprofileSuccessMessages = settingseditprofileSuccessMessages;
-  service.changepasswordSuccessMessages = changepasswordSuccessMessages;
-  service.changepasswordErrorMessages = changepasswordErrorMessages;
+  service.settingschangepasswordSuccessMessages = settingschangepasswordSuccessMessages;
+  service.settingschangepasswordErrorMessages = settingschangepasswordErrorMessages;
   return service;
 }]);
