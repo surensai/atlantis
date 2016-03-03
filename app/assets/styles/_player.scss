@@ -1,0 +1,25 @@
+.sub-content{
+  margin: 15px;
+  padding: 10px;
+  height: 173px;
+  border: 1px solid #D4D4D4;
+}
+.main-content{
+  border: 1px solid #D4D4D4;
+}
+.text-over{
+  position: absolute;
+  bottom: 0px;
+  width: 66.5%;
+  color: white;
+  font: bold 14px/25px Helvetica, Sans-Serif;
+  letter-spacing: 0;
+  background: #392B21;
+  opacity: 0.6;
+  padding: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.img-border-radius{
+  border-radius: 5px;
+}

@@ -151,21 +151,27 @@ body {
   margin-top: -31px;
 }
 .nav-tabs > li > a:hover {
-  background-color: #D6921D;
+  background-color: #EC990F;
   height: 120px;
   width: 120px;
-  border: 1px !important;
+  border: 0px !important;
 }
-.nav-tabs > li {
+.nav-tabs > li >a{
   height: 120px;
   width: 120px;
   border-right: 1px solid lightcyan;
 }
+.nav-tabs > li.active > a{
+  background-color: #EC990F !important;;
+  height: 120px;
+  width: 120px;
+  border: 0px !important;
+}
 .nav-tabs{
   height: 120px;
-  background-color: #f9a61a;
+  background-color: #F9AB28;
 }
 .para-align-center{
   text-align: center;
-  color: white;
+  color: #F9E1C7;
 }

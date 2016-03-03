@@ -1,16 +1,8 @@
 'use strict';
 
-angular.module("app").controller('playerDetailsCtrl', ['$timeout', '$state', 'PlayerService', 'flashService','$scope', function ($timeout, $state, PlayerService, flashService, $scope) {
-
+angular.module("app").controller('playerDetailsCtrl', ['$scope','$state', function ($scope, $state) {
     var playerDetails = this;
-    playerDetails.modalTitle = 'Warning!';
-    playerDetails.modalBody = 'Are you sure do you want to delete player?';
-    playerDetails.isUpdate = false;
     playerDetails.model = {};
-    playerDetails.data = {};
-
-    (function () {
-
-    })();
+    playerDetails.model.id = $state.params.id;
 }]);
 
