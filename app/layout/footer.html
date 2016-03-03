@@ -1,4 +1,4 @@
-<div class="footer">
+<div class="footer" ng-class="{'footer-fixed': !globals.currentUser}">
   <div class="container-fluid footer-container">
     <ul class="footer-left">
     	<li><a ui-sref="page.press">Press</a></li>
@@ -10,4 +10,5 @@
       <a href="http://squarepanda.com" class="pull-right" target="_blank" ><img class="imgmargin" src="assets/images/footer-logo.png"></a>
     </div>
   </div>
+  <div data-ng-include=" 'layout/footer-links.html' " data-ng-if="!globals.currentUser"></div>
 </div>

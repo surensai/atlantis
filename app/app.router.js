@@ -99,12 +99,12 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     data: {
       pageTitle: 'Square Panda - Successfully Registered'
     }
-  }).state('underconstruction-page', {
-    url: '/underconstruction-page',
+  }).state('progress', {
+    url: '/progress',
     templateUrl: "layout/underconstructionpage.html",
 
     data: {
-      pageTitle: 'Square Panda - Underconstruction-page'
+      pageTitle: 'Square Panda - In Progress'
     }
   }).state('account', {
     url: '/account',

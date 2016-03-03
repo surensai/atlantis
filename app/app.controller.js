@@ -1,6 +1,6 @@
 "use strict";
-angular.module("app").controller("appCtrl", ['$scope', '$rootScope', '$translate', 'AuthenticationService', '$state', function ($scope, $rootScope, $translate, AuthenticationService, $state) {
-
+angular.module("app").controller("appCtrl", ['$scope', '$rootScope', '$location', 'AuthenticationService', '$state', function ($scope, $rootScope, $location, AuthenticationService, $state) {
+  $scope.curUrl = "";
   $scope.logout = function () {
     AuthenticationService.ClearCredentials();
     $state.go('login');
@@ -15,5 +15,9 @@ angular.module("app").controller("appCtrl", ['$scope', '$rootScope', '$translate
       $state.go('account.dashboard');
     }
   };
+
+  $rootScope.$on('$locationChangeStart', function () {
+    $scope.curUrl =$location.path();
+  });
 
 }]);
