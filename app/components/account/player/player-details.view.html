@@ -1,39 +1,73 @@
 <div class="tab-content content main-content">
-    <div  class="tab-pane fade in active">
+    <div class="tab-pane fade in active">
         <div class="sub-content">
             <div class="col-lg-2 col-md-3 col-sm-3 nopadding">
-                <img data-ng-if="!playerItem.profileURL" src="https://zugworks-dev.s3.amazonaws.com/611e80f6-65f2-451d-b4de-2b958a5180c2.jpg" class="img-rectangle img-border-radius" alt="player" width="150" height="180" >
-                <div class="text-over" ui-sref="account.editPlayer({ id: playerDetails.model.id })"><i class="glyphicon glyphicon-edit"></i> Edit profile</div>
+                <img data-ng-if="!playerItem.profileURL"
+                     src="https://zugworks-dev.s3.amazonaws.com/611e80f6-65f2-451d-b4de-2b958a5180c2.jpg"
+                     class="img-rectangle img-border-radius" alt="player" width="150" height="180">
+
+                <div class="text-over" ui-sref="account.editPlayer({ id: playerDetails.model.id })"><i
+                        class="glyphicon glyphicon-edit"></i> Edit profile
+                </div>
             </div>
             <div class="col-lg-10 col-md-9 col-sm-9 nopadding">
-                <p>{{ playerDetails.model.id }}  <i class="fa fa-share-alt pull-right"></i>
+                <p>{{ playerDetails.model.id }} <i class="fa fa-share-alt pull-right"></i>
+
                 <p><i class="fa fa-heart" style="color: #F9AB28;"></i> Fav game 01, Fav game 02, Fav game 03 </p>
                 <hr class="hr-underline">
-                <p><img src="assets/images/badge1.png" width="15px" > Rosci learned words like <strong>Bird </strong>and<strong> Cat.</strong></p>
-                <p><img src="assets/images/badge2.png" width="15px;" > Rosci achieved 02 Milestones in <strong>Word Jumble.</strong></p>
-                <p><img src="assets/images/badge1.png" width="15px;" >  Rosci consectetur adipscing <strong>elit.</strong></p>
+                <p><img src="assets/images/badge1.png" width="15px"> Rosci learned words like
+                    <strong>Bird </strong>and<strong> Cat.</strong></p>
+
+                <p><img src="assets/images/badge2.png" width="15px;"> Rosci achieved 02 Milestones in <strong>Word
+                    Jumble.</strong></p>
+
+                <p><img src="assets/images/badge1.png" width="15px;"> Rosci consectetur adipscing <strong>elit.</strong>
+                </p>
             </div>
         </div>
-        <div class="sub-content">
-            <ul class="nav nav-tabs">
-                <li ng-class="{active : player.activeMenu === playerItem.id}">
-                    <a ng-click="player.getPlayerInfo(playerItem.id)">
-                    <p class="para-align-center">Badges</p>
-                </a>
-                </li>
-                <li ng-class="{active : player.activeMenu === playerItem.id}">
-                    <a ng-click="player.getPlayerInfo(playerItem.id)">
-                        <p class="para-align-center">Words</p>
-                    </a>
-                </li>
-                <li ng-class="{active : player.activeMenu === playerItem.id}">
-                    <a ng-click="player.getPlayerInfo(playerItem.id)">
-                        <p class="para-align-center">Activity</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <div class="badge-content">
+            <div class="player-activity-menu">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a class="badge-element" ng-click="player.getPlayerInfo(playerItem.id)">
+                            <p>Badges</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="player.getPlayerInfo(playerItem.id)">
+                            <p>Words</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="player.getPlayerInfo(playerItem.id)">
+                            <p>Activity</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content content">
 
+               <p>Big Badges</p>
+                <div class="row">
+                    <div class="badge-width">
+                        <img  src="assets/images/gold-badge.png"  width="80" height="80">
+                    </div>
+                    <div class="badge-width">
+                        <img  src="assets/images/silver-badge.png"  width="80" height="80">
+                    </div>
+                    <div class="badge-width">
+                        <img  src="assets/images/bronze-badge.png"  width="80" height="80">
+                    </div>
+                    <div class="badge-width">
+                        <img  src="assets/images/gold-badge.png"  width="80" height="80">
+                    </div>
+                    <div class="badge-width">
+                        <img  src="assets/images/bronze-badge.png"  width="80" height="80">
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
     </div>
 </div>

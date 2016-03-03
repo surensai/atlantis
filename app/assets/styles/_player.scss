@@ -67,3 +67,53 @@
   border-top: 1px solid #EC990F;
 }
 
+.player-activity-menu {
+  .nav-tabs > li >a {
+    background-color: #F9AB28 !important;
+    border-radius: 0px;
+    height: 40px;
+    -webkit-transform: skew(15deg);
+    -moz-transform: skew(15deg);
+    transform: skew(15deg);
+    width: 100px;
+
+  }
+  .nav-tabs > li.active >a {
+    background-color: #FFFFFF !important;
+  }
+  .nav-tabs > li >a:hover {
+    background-color: #FFFFFF !important;
+    color: #D8D8D8;
+  }
+  .nav-tabs > li >a > p{
+    text-align: center;
+    font-size: 17px;
+    color: #FFFFFF;
+    font-style: normal;
+  }
+  .nav-tabs > li.active >a > p{
+    text-align: center;
+    font-size: 17px;
+    color: #D8D8D8;
+  }
+  .nav-tabs > li >a:hover > p{
+    color: #D8D8D8;
+  }
+}
+.badge-element{
+  border-bottom: 0px !important;
+  border-left: 0px !important;
+}
+.badge-content{
+  margin: 15px;
+  padding: 10px;
+  height: 200px;
+  border: 1px solid #D4D4D4;
+}
+.badge-width{
+  width: 25%;
+  display: inline;
+  margin: 5%;
+}
+
+
