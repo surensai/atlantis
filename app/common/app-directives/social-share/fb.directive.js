@@ -22,7 +22,7 @@ angular.module("app").directive('fbShare', ['$window', function ($window) {
           method: 'feed',
           link: 'http://google.com',
           caption: scope.item.title,
-          picture: scope.item.files,
+          picture: scope.item.image_url,
           name: scope.item.title,
           description: scope.item.description
         }, function () {
