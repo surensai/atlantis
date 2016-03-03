@@ -184,6 +184,14 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     data: {
       pageTitle: 'Square Panda - Change Password'
     }
+  }).state('account.players.details', {
+    url: '/details/:id',
+    templateUrl: urlBuilder('account/player', 'player-details'),
+    controller: 'playerDetailsCtrl',
+    controllerAs:'playerDetails',
+    data: {
+      pageTitle: 'Square Panda - Player Details'
+    }
   }).state('page', {
     url: '/page',
     templateUrl: urlBuilder('static', 'page'),
