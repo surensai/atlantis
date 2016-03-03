@@ -102,7 +102,6 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
   }).state('progress', {
     url: '/progress',
     templateUrl: "layout/underconstructionpage.html",
-
     data: {
       pageTitle: 'Square Panda - In Progress'
     }
