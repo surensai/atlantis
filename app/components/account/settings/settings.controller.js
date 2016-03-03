@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService', function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService) {
+angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService','$state','flashService', function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService,$state,flashService) {
   var settings = this;
   settings.model = {};
   settings.model.userData = angular.copy($rootScope.globals.currentUser);
@@ -37,6 +37,38 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       }
     };
     settings.loadPromise = UserService.Update(settings.model.userData)
+      .success(handleSuccess)
+      .error(handleError);
+  }
+
+  settings.submitchangepassword = function (form) {
+    settings.submitted = true;
+    settings.show = true;
+    if (form.$valid && settings.model.password === settings.model.confirmPassword) {
+      if (form.$valid) {
+
+        changePassword();
+        form.$setPristine();
+      } else {
+        $timeout(function () {
+          angular.element('.custom-error:first').focus();
+        }, 200);
+      }
+    };
+  };
+
+  function changePassword() {
+    var handleSuccess = function (data) {
+      AuthenticationService.ClearCredentials(settings.model.userData);
+      messagesFactory.settingschangepasswordSuccessMessages(data);
+      $state.go('messages');
+    };
+    var handleError = function (error,status) {
+      if (error && status) {
+        messagesFactory.settingschangepasswordErrorMessages(status);
+      }
+    };
+    settings.loadPromise = UserService.changePasswordAPI(settings.model.userData)
       .success(handleSuccess)
       .error(handleError);
   }

@@ -99,6 +99,13 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     data: {
       pageTitle: 'Square Panda - Successfully Registered'
     }
+  }).state('underconstruction-page', {
+    url: '/underconstruction-page',
+    templateUrl: "layout/underconstructionpage.html",
+
+    data: {
+      pageTitle: 'Square Panda - Underconstruction-page'
+    }
   }).state('account', {
     url: '/account',
     templateUrl: "layout/account-nav.html",

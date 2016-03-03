@@ -15,11 +15,9 @@
               spam folder.</p>
           </div>
            <div data-ng-if="messages && messages.type === 'change_password'">
-                <h3>Changed your password successfully </h3>
-
+                <p>Changed your password successfully </p>
                 <p>{{ 'user.validationMessages.password_change_new_login' | translate}}</p>
            </div>
-          <button ui-sref="login" class="btn btn-primary center-block">Return to signin</button>
         </div>
       </div>
       <button ui-sref="login" class="btn sp-pur-btn center-block">Return to signin</button>
