@@ -15,7 +15,7 @@
       "dashboard": "Dashboard",
       "players": "PLAYERS",
       "curriculum": "MY CURRICULUM",
-      "settings": "MY SETTINGS",
+      "settings": "MY ACCOUNT",
       "home":"HOME"
 
     },
@@ -28,7 +28,7 @@
     },
     "register": {
       "title": "Register",
-      "header": "REGISTERATION"
+      "header": "REGISTRATION"
     },
     "edit_profile": {
       "title": "Edit Profile",
