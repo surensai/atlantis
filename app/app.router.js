@@ -99,6 +99,13 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     data: {
       pageTitle: 'Square Panda - Successfully Registered'
     }
+  }).state('underconstruction-page', {
+    url: '/underconstruction-page',
+    templateUrl: "layout/underconstructionpage.html",
+
+    data: {
+      pageTitle: 'Square Panda - Underconstruction-page'
+    }
   }).state('account', {
     url: '/account',
     templateUrl: "layout/account-nav.html",
@@ -176,6 +183,14 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     controllerAs: "changePassword",
     data: {
       pageTitle: 'Square Panda - Change Password'
+    }
+  }).state('account.players.details', {
+    url: '/details/:id',
+    templateUrl: urlBuilder('account/player', 'player-details'),
+    controller: 'playerDetailsCtrl',
+    controllerAs:'playerDetails',
+    data: {
+      pageTitle: 'Square Panda - Player Details'
     }
   }).state('page', {
     url: '/page',

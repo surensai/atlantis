@@ -149,3 +149,28 @@ body {
 .success-padding {
   margin-top: -31px;
 }
+.nav-tabs > li > a:hover {
+  background-color: #EC990F;
+  height: 120px;
+  width: 120px;
+  border: 0px !important;
+}
+.nav-tabs > li >a{
+  height: 120px;
+  width: 120px;
+  border-right: 1px solid lightcyan;
+}
+.nav-tabs > li.active > a{
+  background-color: #EC990F !important;;
+  height: 120px;
+  width: 120px;
+  border: 0px !important;
+}
+.nav-tabs{
+  height: 120px;
+  background-color: #F9AB28;
+}
+.para-align-center{
+  text-align: center;
+  color: #F9E1C7;
+}

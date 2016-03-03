@@ -82,6 +82,58 @@
 
         </uib-accordion-group>
       </uib-accordion>
+
+      <uib-accordion>
+        <uib-accordion-group is-open="status.open">
+          <uib-accordion-heading>
+            <i class="glyphicon"
+               ng-class="{'glyphicon-triangle-bottom': status.open, 'glyphicon-triangle-right': !status.open}"></i><span
+            class="accordion-header-gap">Change password</span>
+          </uib-accordion-heading>
+          <form name="changepasswordForm" ng-submit="settings.submitchangepassword(changepasswordForm)" novalidate>
+            <div class="form-horizontal">
+
+              <div class="form-group ">
+                <label class="col-md-2 control-label">Old password:</label>
+                <div class="col-md-3">
+                  <input type="password"  class="form-control " name="oldPassword" ng-model="settings.model.userData.oldPassword"
+                     pattern="[A-Za-z0-9\W]{8,20}" placeholder="{{ 'user.change_password.old_password' | translate }}" required>
+                </div>
+                <span ng-show="changepasswordForm.$submitted && changepasswordForm.oldPassword.$error.required" class="error-mesasage">Password is required</span>
+                <span class="error-mesasage" ng-show='changepasswordForm.oldPassword.$error.pattern && changepasswordForm.oldPassword.$dirty' data-translate="user.validationMessages.password_strength">Password must be between 8 and 20 characters.</span>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-2 control-label">New password:</label>
+                <div class="col-md-3">
+                  <input type="password"  class="form-control " name="password" ng-model="settings.model.userData.password"
+                       pattern="[A-Za-z0-9\W]{8,20}" placeholder="{{ 'user.password' | translate }}" required>
+                </div>
+                <span class="error-mesasage" ng-show='changepasswordForm.password.$error.pattern && changepasswordForm.password.$dirty' data-translate="user.validationMessages.password_strength">Password must be between 8 and 20 characters.</span>
+                <span ng-show="changepasswordForm.$submitted && changepasswordForm.password.$error.required" class="error-mesasage">Password is required</span>
+              </div>
+
+              <div class="form-group ">
+                <label class="col-md-2 control-label">Confirm password:</label>
+                <div class="col-md-3">
+                  <input type="password" name="confirmPassword" data-ng-model="settings.model.userData.confirmPassword"
+                       placeholder="{{ 'user.register.confirm_password' | translate }}" class="form-control" required>
+                </div>
+                <span ng-show=" (settings.model.userData.password !== settings.model.userData.confirmPassword) "
+                   class="help-block error-mesasage" data-translate="user.validationMessages.password_mismatch">Password mismatch.</span>
+
+                <span ng-show="(changepasswordForm.$submitted && changepasswordForm.confirmPassword.$error.required )" class="help-block error-mesasage"
+                   data-translate="user.validationMessages.cpassword_require">Confirm Password is required.</span>
+              </div>
+
+              <button type="submit" class="btn btn-large btn-block btn-primary" data-translate="common.buttons.submit">Submit
+              </button>
+            </div>
+          </form>
+
+        </uib-accordion-group>
+      </uib-accordion>
+
       <uib-accordion>
         <uib-accordion-group is-open="status.open">
           <uib-accordion-heading>

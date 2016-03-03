@@ -1,13 +1,13 @@
+<uib-alert type="success" class="alert-success"
+           data-ng-if="globals.flash && globals.flash.type === 'success' && login.show"
+           dismiss-on-timeout="4000">{{globals.flash.message}}
+</uib-alert>
+<uib-alert type="warning" class="alert-danger" close="login.closeAlert()"
+           data-ng-if="globals.flash && globals.flash.type !== 'success' && login.show"
+           dismiss-on-timeout="5000">{{globals.flash.message}}
+</uib-alert>
 <div class="bg-img"></div>
 <div class="content content-bg clearfix" cg-busy="{promise:login.loadPromise, message:'Loading...'}">
-  <uib-alert type="success" class="alert-success"
-             data-ng-if="globals.flash && globals.flash.type === 'success' && login.show"
-             dismiss-on-timeout="4000">{{globals.flash.message}}
-  </uib-alert>
-  <uib-alert type="warning" class="alert-danger" close="login.closeAlert()"
-             data-ng-if="globals.flash && globals.flash.type !== 'success' && login.show"
-             dismiss-on-timeout="5000">{{globals.flash.message}}
-  </uib-alert>
   <div class="col-lg-4 col-md-3 col-sm-3"></div>
   <div class="col-lg-4 col-md-6 col-sm-6 login-top-margin">
     <form name="signinForm" class="login-form" data-ng-submit="login.submitForm(signinForm)" novalidate>
@@ -19,7 +19,6 @@
                placeholder="{{ 'user.username' | translate }}" required>
         <i class="fa fa-user form-control-feedback "></i>
       </div>
-
       <div class="form-group has-feedback"
            data-ng-class="{ 'has-error' : (submitted && !login.model.password) || (signinForm.name.$invalid && !signinForm.name.$pristine) }">
         <input type="password" name="password" class="form-control" data-ng-model="login.model.password"
@@ -32,7 +31,6 @@
                  data-ng-model="login.model.remember"><p class="custom-checkbox-span" data-translate="user.login.remember_password">Remember password</p>
         </label>
       </div>
-
       <button class="btn btn-large btn-block btn-primary apply-margin" type="submit"
               data-ng-disabled="!login.model.email || !login.model.password" data-translate="common.buttons.submit">Sign
         in
