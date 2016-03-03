@@ -1,11 +1,11 @@
-<div class="container-fluid user-links" data-ng-if="curUrl === '/register'" ng-class="{'user-links-fixed': !globals.currentUser }">
+<div class="container-fluid user-links" data-ng-if="$state.includes('register')" ng-class="{'user-links-fixed': !globals.currentUser }">
   <div class="center-align">
     <a href="#/login" class="text-center" data-translate="user.register.signIn">
       Already registered? Sign in</a>
   </div>
 </div>
 
-<div class="container-fluid user-links" data-ng-if="curUrl === '/login'"  ng-class="{'user-links-fixed': '!globals.currentUser'}">
+<div class="container-fluid user-links" data-ng-if="$state.includes('login')"  ng-class="{'user-links-fixed': '!globals.currentUser'}">
   <div class="col-lg-4 col-md-3 col-sm-2"></div>
   <div class="col-lg-4 col-md-6 col-sm-8">
     <a href="#/forgot-password" data-translate="user.login.forgot_password" >Forgot password?</a>
@@ -14,7 +14,7 @@
   <div class="col-lg-4 col-md-3 col-sm-2"></div>
 </div>
 
-<div class="container-fluid user-links" data-ng-if="curUrl === '/forgot-password'" ng-class="{'user-links-fixed': '!globals.currentUser'}">
+<div class="container-fluid user-links" data-ng-if="$state.includes('forgot-password')" ng-class="{'user-links-fixed': '!globals.currentUser'}">
   <div class="center-align">
     <a href="#/login" class="text-center" data-translate="user.forgot_password.back_to_login">
       Back to login</a>

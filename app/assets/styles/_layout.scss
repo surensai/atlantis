@@ -111,6 +111,7 @@
 }
 
 .footer {
+  background-color: $bg-color;
   padding-top: 10px;
   padding-bottom: 10px;
   color: $white-color;
@@ -150,7 +151,6 @@
 }
 
 .footer-fixed {
-  background-color: $bg-color;
   position: fixed;
   bottom: 0px;
   width: 100%;
