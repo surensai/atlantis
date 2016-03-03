@@ -1,5 +1,5 @@
-<div class="login-bg"></div>
-<div class="content login-wrapper clearfix register-container " cg-busy="{promise:register.loadPromise,message:'Submitting Your Data'}">
+<div class="bg-img"></div>
+<div class="content content-bg clearfix clearfix" cg-busy="{promise:register.loadPromise,message:'Submitting Your Data'}">
   <uib-alert type="success" class="alert-success" close="register.closeAlert()"
              data-ng-if="globals.flash && globals.flash.type === 'success' && register.show"
              dismiss-on-timeout="4000">{{globals.flash.message}}
@@ -71,9 +71,4 @@
   <div class="col-lg-4 col-md-3 col-sm-3"></div>
 </div>
 
-<div class="container-fluid register-footer">
-  <div class="center-align">
-    <a href="#/login" class="text-center" data-translate="user.register.signIn">
-      Already registered? Sign in</a>
-  </div>
-</div>
+
