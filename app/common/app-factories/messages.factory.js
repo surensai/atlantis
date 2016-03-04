@@ -45,6 +45,18 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     }
     flashService.showError(message, false);
   }
+  function resetpasswordSuccessMessages(successObj) {
+    if (successObj) {
+      flashService.showCustomMessage("reset", true);
+    }
+  }
+  function resetpasswordErrorMessages(status) {
+    var message;
+    if (status === 500) {
+      flashService.showError(error.error, false);
+    }
+
+  }
 
   function settingseditprofileSuccessMessages(successObj) {
     if (successObj) {
@@ -81,9 +93,12 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   service.registerSuccessMessages = registerSuccessMessages;
   service.forgotErrorMessages = forgotErrorMessages;
   service.forgotSuccessMessages = forgotSuccessMessages;
+  service.resetpasswordSuccessMessages = resetpasswordSuccessMessages;
+  service.resetpasswordErrorMessages = resetpasswordErrorMessages;
   service.settingseditprofileErrorMessages = settingseditprofileErrorMessages;
   service.settingseditprofileSuccessMessages = settingseditprofileSuccessMessages;
   service.settingschangepasswordSuccessMessages = settingschangepasswordSuccessMessages;
   service.settingschangepasswordErrorMessages = settingschangepasswordErrorMessages;
+
   return service;
 }]);

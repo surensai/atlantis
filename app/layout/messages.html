@@ -14,8 +14,10 @@
             <p>check your email for a link to reset your password.If it doesn't appear within a few minutes, check your
               spam folder.</p>
           </div>
+          <div data-ng-if="messages && messages.type === 'reset'">
+            <p>Your password changed successfully.</p>
+          </div>
            <div data-ng-if="messages && messages.type === 'change_password'">
-                <p>Changed your password successfully </p>
                 <p>{{ 'user.validationMessages.password_change_new_login' | translate}}</p>
            </div>
         </div>
