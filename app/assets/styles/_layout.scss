@@ -18,6 +18,10 @@
   @extend .reset-padding-margin;
 }
 
+.content-min-height{
+  min-height: 550px;
+}
+
 .error-text-message{
   position: absolute;
   top: 40px;
@@ -93,6 +97,7 @@
   .dropdown {
     display: none;
     a {
+      text-decoration: none;
       color: $white-color;
     }
   }
@@ -100,8 +105,8 @@
     @extend .reset-padding-margin;
   }
   ul.dropdown-menu {
-    left: -50px;
-
+    left:0px;
+    right: 0px;
     li a {
       color: #333333;
     }
@@ -215,7 +220,7 @@
 @media(min-width: 768px) {
   .top-header .dropdown {
     display: block;
-    padding-top: 12px;
+    padding-top: 18px;
   }
 
   .header .navbar-brand{
