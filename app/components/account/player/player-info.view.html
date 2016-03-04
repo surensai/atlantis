@@ -1,0 +1,162 @@
+<div class="tab-content content main-content">
+    <div class="tab-pane fade in active">
+        <div class="sub-content">
+            <div class="col-lg-2 col-md-3 col-sm-3 nopadding">
+                <img data-ng-if="!playerItem.profileURL"
+                     src="https://zugworks-dev.s3.amazonaws.com/611e80f6-65f2-451d-b4de-2b958a5180c2.jpg"
+                     class="img-rectangle img-border-radius" alt="player" width="150" height="180">
+
+                <div class="text-over" ui-sref="account.editPlayer({ id: playerInfo.model.id })"><i
+                        class="glyphicon glyphicon-edit"></i> Edit profile
+                </div>
+            </div>
+            <div class="col-lg-10 col-md-9 col-sm-9 nopadding">
+                <p>{{ playerInfo.model.id }} <i class="fa fa-share-alt pull-right"></i>
+
+                <p><i class="fa fa-heart" style="color: #F9AB28;"></i> Fav game 01, Fav game 02, Fav game 03 </p>
+                <hr class="hr-underline">
+                <p><img src="assets/images/badge1.png" width="15px"> Rosci learned words like
+                    <strong>Bird </strong>and<strong> Cat.</strong></p>
+
+                <p><img src="assets/images/badge2.png" width="15px;"> Rosci achieved 02 Milestones in <strong>Word
+                    Jumble.</strong></p>
+
+                <p><img src="assets/images/badge1.png" width="15px;"> Rosci consectetur adipscing <strong>elit.</strong>
+                </p>
+            </div>
+        </div>
+        <div class="badge-content">
+            <div class="player-activity-menu">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a class="badge-element" ng-click="player.getPlayerInfo(playerItem.id)">
+                            <p>Badges</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="player.getPlayerInfo(playerItem.id)">
+                            <p>Words</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="player.getPlayerInfo(playerItem.id)">
+                            <p>Activity</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content content">
+
+                <h3>Big Badges</h3>
+
+                <div class="row badge-row">
+                    <div class="badge-width">
+                        <img src="assets/images/gold-badge.png">
+                    </div>
+                    <div class="badge-width">
+                        <img src="assets/images/silver-badge.png">
+                    </div>
+                    <div class="badge-width">
+                        <img src="assets/images/bronze-badge.png">
+                    </div>
+                    <div class="badge-width">
+                        <img src="assets/images/silver-badge.png">
+                    </div>
+                    <div class="badge-width">
+                        <img src="assets/images/silver-badge.png">
+                    </div>
+                </div>
+                <div class="row badge-row">
+                    <div class="badge-width">
+                        <img src="assets/images/bronze-badge.png">
+                    </div>
+                    <div class="badge-width">
+                        <img src="assets/images/strt-badge.png">
+                    </div>
+                    <div class="badge-width">
+                        <img src="assets/images/inactive-badge.png">
+                    </div>
+                    <div class="badge-width">
+                        <img src="assets/images/inactive-badge.png">
+                    </div>
+                    <div class="badge-width">
+                        <img src="assets/images/inactive-badge.png">
+                    </div>
+                </div>
+                <div class="row badge-row">
+                    <div class="badge-width">
+                        <img src="assets/images/inactive-badge.png">
+                    </div>
+                    <div class="badge-width">
+                        <img src="assets/images/inactive-badge.png">
+                    </div>
+                    <div class="badge-width">
+                        <img src="assets/images/inactive-badge.png">
+                    </div>
+                    <div class="badge-width">
+                        <img src="assets/images/inactive-badge.png">
+                    </div>
+                    <div class="badge-width">
+                        <img src="assets/images/inactive-badge.png">
+                    </div>
+                </div>
+                <div class="row badge-row">
+                    <div class="badge-width">
+                        <img src="assets/images/inactive-badge.png">
+                    </div>
+                    <div class="badge-width">
+                        <img src="assets/images/inactive-badge.png">
+                    </div>
+                    <div class="badge-width">
+                        <img src="assets/images/inactive-badge.png">
+                    </div>
+                    <div class="badge-width">
+                        <img src="assets/images/inactive-badge.png">
+                    </div>
+                    <div class="badge-width">
+                        <img src="assets/images/inactive-badge.png">
+                    </div>
+                </div>
+
+            </div>
+            <hr class="hr-underline">
+            <div>
+                <h3>Mini Badges</h3>
+
+                <div class="badge-top-margin">
+                    <div class="list-group-item mini-badge-width mini-badge-first">
+                        <div class="mini-badge-rounded">
+                            <img src="assets/images/mini-elephant.png">
+                        </div>
+                        <span class="badge-detail-inline">
+                            <span>NumberBadge</span>
+                            <span class="clear">Sed ut perspiciatis unde omnis.</span>
+                        </span>
+
+                    </div>
+                    <div class="list-group-item mini-badge-width">
+                        <div class="mini-badge-rounded">
+                            <img src="assets/images/mini-elephant.png">
+                        </div>
+                        <span class="badge-detail-inline">
+                            <span>NumberBadge</span>
+                            <span class="clear">Sed ut perspiciatis unde omnis.</span>
+                        </span>
+
+                    </div>
+                    <div class="list-group-item mini-badge-width">
+                        <div class="mini-badge-rounded">
+                            <img src="assets/images/mini-elephant.png">
+                        </div>
+                        <span class="badge-detail-inline">
+                            <span>NumberBadge</span>
+                            <span class="clear">Sed ut perspiciatis unde omnis.</span>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
