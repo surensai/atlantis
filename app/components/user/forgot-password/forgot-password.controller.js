@@ -6,10 +6,6 @@ angular.module("app").controller('forgotPasswordCtrl', ['$scope', 'UserService',
   forgot.model = {};
   forgot.service = UserService;
 
-  forgot.closeAlert = function() {
-    forgot.show = false;
-  };
-
   forgot.submitForm = function (form) {
     if (form.$valid) {
       forgotAction();
@@ -29,7 +25,6 @@ angular.module("app").controller('forgotPasswordCtrl', ['$scope', 'UserService',
     };
     var handleError = function (error, status) {
       if (error && status) {
-        forgot.show = true;
         messagesFactory.forgotErrorMessages(status);
       }
     };
