@@ -27,7 +27,8 @@
     background-color: #F9AB28;
   }
 }
-.badge-row{
+
+.badge-row {
   margin: 15px 10px 15px 15px;
 }
 
@@ -88,35 +89,77 @@
     background-color: #FFFFFF !important;
     color: #D8D8D8;
   }
-  .nav-tabs > li >a > p{
+  .nav-tabs > li >a > p {
     text-align: center;
     font-size: 17px;
     color: #FFFFFF;
     font-style: normal;
   }
-  .nav-tabs > li.active >a > p{
+  .nav-tabs > li.active >a > p {
     text-align: center;
     font-size: 17px;
     color: #D8D8D8;
   }
-  .nav-tabs > li >a:hover > p{
+  .nav-tabs > li >a:hover > p {
     color: #D8D8D8;
   }
 }
-.badge-element{
+
+.badge-element {
   border-bottom: 0px !important;
   border-left: 0px !important;
 }
-.badge-content{
+
+.badge-content {
   margin: 15px;
   padding: 10px;
-  height: 500px;
+  height: 900px;
   border: 1px solid #D4D4D4;
 }
-.badge-width{
+
+.badge-width {
   width: 25%;
   display: inline;
   margin: 5%;
 }
+
+.badge-row {
+  .badge-width > img {
+    width: 10%;
+    height: 7.5em;
+  }
+}
+
+.mini-badge-rounded {
+  background-color: red;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+}
+
+.mini-badge-width {
+  width: 30%;
+  display: inline;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  margin-right: 1%;
+  border-radius: 10px;
+}
+
+.badge-detail-inline {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.clear {
+  display: block;
+  overflow: hidden;
+}
+
+.badge-top-margin{
+  position: relative;
+  margin: 5% 0% 3% 5%;
+  }
 
 
