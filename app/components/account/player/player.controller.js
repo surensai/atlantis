@@ -14,7 +14,10 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   player.model.playerItem = {};
 
   player.show = true;
-
+    player.getPlayerInfo = function(playerId){
+        $state.go('account.players.details',{id:playerId});
+        player.activeMenu = playerId;
+    }
   player.closeAlert = function () {
     player.show = false;
   };
@@ -26,6 +29,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
       if ($state.params.id) {
         player.isUpdate = true;
         player.data.playerItem = player.model.playerItem = PlayerService.getObjById(player.data.playersList, $state.params.id);
+      }else{
+        player.getPlayerInfo(data[0].id);
       }
     };
 
