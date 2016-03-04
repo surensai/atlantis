@@ -18,6 +18,14 @@
   @extend .reset-padding-margin;
 }
 
+.error-text-message{
+  position: absolute;
+  top: 40px;
+  color: #E07C72;
+  text-align: center;
+  width: 100%;
+}
+
 .header {
   min-height: 40px;
   max-height: 117px;
@@ -33,7 +41,7 @@
   }
 
   .header-bg {
-    background: $primary-color url('../images/header-design.png') no-repeat 7px;
+    background: $primary-color url('../images/header-design.png') no-repeat right;
   }
 
   .header .navbar-brand-responsive{
@@ -43,7 +51,7 @@
   .navbar-brand {
     height: auto;
     display: none;
-    margin: 10px 0px 10px 30px!important;
+    margin: 10px 0px 10px 0px!important;
     padding-right: 44px;
     img {
       min-width: 125px;
@@ -62,6 +70,8 @@
     height: 100%;
     .top-nav {
       float: right;
+      position: relative;
+      z-index: 1;
       ul, li {
         @extend .reset-padding-margin;
       }
@@ -219,9 +229,6 @@
   .header-right, .header-left {
     max-height: 96px;
   }
-  .header .header-bg {
-    background-position: right;
-  }
 
   .width30-per {
     width: 10%;
@@ -231,24 +238,16 @@
     width: 90%;
   }
 
+  .bg-img {
+    background-size: 100% auto!important;
+  }
+
 }
 
 @media only screen and
 (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
   .header {
     height: 10%;
-  }
-  .app {
-    height: 86%;
-  }
-  .login-wrapper {
-    height: 80%;
-  }
-  .login-bg {
-    background-size: auto 100% !important;
-  }
-  .account-container {
-    min-height: 840px;
   }
 
   .top-header .dropdown, #account-nav-wrapper{
@@ -272,9 +271,6 @@
 
 @media only screen and
 (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .login-bg {
-    background-size: 100% 100% !important;
-  }
 
   .top-header .dropdown, #account-nav-wrapper {
     display: none!important;
@@ -297,7 +293,6 @@
 
 @media(max-height: 670px) {
   .footer-fixed {
-    background-color: $bg-color;
     position: relative;
   }
 

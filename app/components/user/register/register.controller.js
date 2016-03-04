@@ -4,9 +4,6 @@ angular.module("app").controller('registerCtrl', ['AuthenticationService', 'User
 
   var register = this;
 
-  register.closeAlert = function() {
-    register.show = false;
-  };
   register.submitForm = function (form) {
     register.submitted = true;
     if (form.$valid && (register.model.password === register.model.confirmPassword)) {
@@ -38,7 +35,6 @@ angular.module("app").controller('registerCtrl', ['AuthenticationService', 'User
 
     var handleError = function (error, status) {
       if (error && status) {
-        register.show = true;
         messagesFactory.registerErrorMessages(status);
       }
     };
