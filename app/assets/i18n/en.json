@@ -134,7 +134,7 @@
       "email_require": "Email address is required.",
       "email_valid": "Email address is not valid.",
       "password_require": "Password is required.",
-      "cpassword_require": "Confirm Password is required.",
+      "cpassword_require": "Retype Password is required.",
       "email_password_mismatch": "Incorrect username or password.",
       "email_notverified": "Email address not verified.",
       "email_registered":"Email already exists, please try with different email address.",

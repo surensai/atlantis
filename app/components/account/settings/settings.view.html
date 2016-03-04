@@ -4,7 +4,7 @@
              data-ng-if="globals.flash && globals.flash.type === 'success' && settings.show"
              dismiss-on-timeout="4000">{{globals.flash.message}}
   </uib-alert>
-  <uib-alert type="warning" class="alert-danger" close="editProfile.closeAlert()"
+  <uib-alert type="warning" class="alert-danger" close="settings.closeAlert()"
              data-ng-if="globals.flash && globals.flash.type !== 'success' && settings.show"
              dismiss-on-timeout="4000">{{globals.flash.message}}
   </uib-alert>
