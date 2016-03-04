@@ -18,26 +18,33 @@
   @extend .reset-padding-margin;
 }
 
-.navbar-brand img {
-  margin: 10px 0px 10px 30px;
-  padding-right: 44px;
-}
-
 .header {
   min-height: 40px;
   max-height: 117px;
   position: relative;
   .width30-per {
-    width: 20%;
+    width: 60%;
   }
+
   .width70-per {
     width: 81%;
+    position: relative;
+    z-index: 1;
   }
+
   .header-bg {
     background: $primary-color url('../images/header-design.png') no-repeat 7px;
   }
+
+  .header .navbar-brand-responsive{
+    display: block;
+  }
+
   .navbar-brand {
     height: auto;
+    display: none;
+    margin: 10px 0px 10px 30px!important;
+    padding-right: 44px;
     img {
       min-width: 125px;
       min-height: 50px;
@@ -201,10 +208,14 @@
     padding-top: 12px;
   }
 
-  .navbar-brand img {
-    margin: 10px 0px 10px 30px;
-    padding-right: 44px;
+  .header .navbar-brand{
+    display: block;
   }
+
+  .header .navbar-brand-responsive{
+    display: none;
+  }
+
   .header-right, .header-left {
     max-height: 96px;
   }
@@ -241,7 +252,7 @@
   }
 
   .top-header .dropdown, #account-nav-wrapper{
-    display: none;
+    display: none!important;
   }
 
   .navbar-toggle {
@@ -266,7 +277,7 @@
   }
 
   .top-header .dropdown, #account-nav-wrapper {
-    display: none;
+    display: none!important;
   }
 
   .navbar-toggle {

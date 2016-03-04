@@ -1,60 +1,61 @@
 <div id="account-nav-wrapper">
-    <nav class="container">
-        <ul class="account-nav">
-            <li>
-                <a ui-sref="account.dashboard" ng-class="{active: $state.includes('account.dashboard')}">
-                    <img src="assets/images/home.png" >
-                    <span data-translate="nav.sidebar.home">HOME</span>
-                </a>
-
-            </li>
-            <li>
-                <a ui-sref='account.progress' ng-class="{active: $state.includes('account.progress')}">
-                    <img src="assets/images/player.png" >
-                    <span data-translate="nav.sidebar.players"> PLAYERS </span>
-                </a>
-            </li>
-            <li>
-                <a ui-sref="account.progress" ng-class="{active: $state.includes('account.progress')}">
-                    <img src="assets/images/curriculum.png" >
-                    <span data-translate="nav.sidebar.curriculum"> MY CURRICULUM </span>
-                </a>
-            </li>
-            <li>
-                <a ui-sref="account.settings" class="noborders" ng-class="{active: $state.includes('account.settings')}">
-                    <img src="assets/images/settings.png" >
-                    <span data-translate="nav.sidebar.settings"> My ACCOUNT </span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
+  <nav class="container">
+    <ul class="account-nav">
+      <li>
+        <a ui-sref="account.dashboard" ng-class="{active: $state.includes('account.dashboard')}">
+          <img src="assets/images/home.png" >
+          <span data-translate="nav.sidebar.home">HOME</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref='progress' ng-class="{active: $state.includes('account.players')}">
+          <img src="assets/images/player.png" >
+          <span data-translate="nav.sidebar.players"> PLAYERS </span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="progress">
+          <img src="assets/images/curriculum.png" >
+          <span data-translate="nav.sidebar.curriculum"> MY CURRICULUM </span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="account.settings" class="noborders" ng-class="{active: $state.includes('account.settings')}">
+          <img src="assets/images/settings.png" >
+          <span data-translate="nav.sidebar.settings"> My ACCOUNT </span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  </div>
 </div>
 
 <div id="sidebar" side-bar>
-    <div data-ng-if="globals.currentUser">
-        <h4 class="text-center sidebarheader" type="button" data-toggle="dropdown" >{{globals.currentUser.firstName}}
-            {{globals.currentUser.lastName}}
-        </h4>
-    </div>
-    <ul>
-        <li><a ui-sref="account.dashboard" ng-class="{active: $state.includes('account.dashboard')}"
-               data-translate="nav.sidebar.dashboard">Dashboard</a></li>
-        <li><a ui-sref="account.players" ng-class="{active: $state.includes('account.players')}"
-               data-translate="nav.sidebar.players">Players</a></li>
-        <li><a ui-sref="account.progress" ng-class="{active: $state.includes('account.progress')}"
-               data-translate="nav.sidebar.curriculum">My Curriculum</a></li>
-        <li><a ui-sref="account.settings" ng-class="{active: $state.includes('account.settings')}"
-               data-translate="nav.sidebar.settings">My Settings</a></li>
-        <li><a ui-sref="account.edit-profile" data-translate="nav.header.edit_profile">Edit Profile</a></li>
-        <li><a ui-sref="account.change-password" data-translate="nav.header.change_password">Change Password</a>
-        </li>
-        <li><a ui-sref="account.subscriptions" data-translate="nav.header.subscriptions">My Subscriptions</a></li>
-    </ul>
-    <div class="sidebarfooter">
-        <a href="javascript:;" data-translate="nav.header.logout" id="side-bar-logout" >LOGOUT</a>
-        <i class="fa fa-sign-out fa-2x pull-right"></i>
-    </div>
+  <div data-ng-if="globals.currentUser">
+    <h4 class="text-center sidebarheader" type="button" data-toggle="dropdown" >{{globals.currentUser.firstName}}
+      {{globals.currentUser.lastName}}
+      </h4>
+  </div>
+  <ul>
+    <li>
+      <a ui-sref="account.dashboard" ng-class="{active: $state.includes('account.dashboard')}"
+           data-translate="nav.sidebar.dashboard">Dashboard</a>
+    </li>
+    <li>
+      <a ui-sref="progress" ng-class="{active: $state.includes('progress')}"
+           data-translate="nav.sidebar.players">Players</a>
+    </li>
+    <li>
+      <a ui-sref="progress" ng-class="{active: $state.includes('progress')}"
+           data-translate="nav.sidebar.curriculum">My Curriculum</a>
+    </li>
+    <li><a ui-sref="account.settings" ng-class="{active: $state.includes('account.settings')}"
+           data-translate="nav.sidebar.settings">My Account</a></li>
+  </ul>
+  <div class="sidebarfooter">
+   <a href="javascript:;" data-translate="nav.header.logout" id="side-bar-logout" >LOGOUT</a>
+    <i class="fa fa-sign-out fa-2x pull-right"></i>
+  </div>
 </div>
 
 <div class="bg-color-white clearfix" ui-view></div>
