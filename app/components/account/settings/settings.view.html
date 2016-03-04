@@ -13,12 +13,12 @@
       SETTINGS
     </div>
     <div class="panel-body">
-      <uib-accordion>
+      <uib-accordion class="accordion-classes">
         <uib-accordion-group is-open="status.open">
-          <uib-accordion-heading>
+          <uib-accordion-heading >
             <i class="glyphicon"
                ng-class="{'glyphicon-triangle-bottom': status.open, 'glyphicon-triangle-right': !status.open}"></i>
-            <span class="accordion-header-gap">Edit Profile</span>
+           <span class="accordion-header-gap">Edit profile</span>
           </uib-accordion-heading>
           <form name="settingsForm" ng-submit="settings.submitForm(settingsForm)" novalidate>
             <div class="form-horizontal">
@@ -84,7 +84,7 @@
         </uib-accordion-group>
       </uib-accordion>
 
-      <uib-accordion>
+      <uib-accordion class="accordion-classes">
         <uib-accordion-group is-open="status.open">
           <uib-accordion-heading>
             <i class="glyphicon"
@@ -134,7 +134,7 @@
 
         </uib-accordion-group>
       </uib-accordion>
-      <uib-accordion>
+      <uib-accordion class="accordion-classes">
         <uib-accordion-group is-open="status.open">
           <uib-accordion-heading>
             <i class="glyphicon"
