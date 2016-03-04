@@ -109,6 +109,9 @@ nav .account-nav {
   .sidebarfooter{
     border-top: 1px solid #502D88;
     padding-top: 7px;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
     a{
       text-transform: uppercase;
     }
@@ -126,34 +129,3 @@ nav .account-nav {
     right: -196px;
   }
 }
-@media(min-width: 768px) {
-  #sidebar ul{
-    padding-bottom: 125%;
-  }
-}
-@media  (max-width: 768px){
-#sidebar .sidebarheader {
-  padding-bottom: 10%;
-}
-}
-@media only screen and (min-device-width : 375px) {
-  #sidebar .sidebarheader {
-    padding-bottom: 12%;
-  }
-}
-@media only screen and (min-device-width : 375px) {
-  #sidebar ul {
-    padding-bottom: 143%;
-  }
-}
-@media only screen and (min-device-width : 320px)and (max-device-width : 340px) {
-  #sidebar ul {
-    padding-bottom: 115%;
-  }
-}
-@media only screen and (min-device-width : 400px)and (max-device-width : 414px) {
-  #sidebar ul {
-    padding-bottom: 193%;
-  }
-}
-
