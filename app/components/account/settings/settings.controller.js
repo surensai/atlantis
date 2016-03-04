@@ -1,19 +1,19 @@
 'use strict';
 
-angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService','$state','flashService','$scope', function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService,$state,flashService,$scope) {
+angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService','$state','flashService', function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService,$state,flashService) {
   var settings = this;
   settings.model = {};
   settings.model.userData = angular.copy($rootScope.globals.currentUser);
-  $scope.isEditClicked = false;
+  settings.isEditClicked = false;
 
-  $scope.edit=function(){
+  settings.edit=function(){
     settings.model.userData = angular.copy($rootScope.globals.currentUser);
-    $scope.isEditClicked = true;
+    settings.isEditClicked = true;
   };
-  $scope.cancel=function(){
-    settings.model.userData = angular.copy($rootScope.globals.currentUser);
-    $scope.isEditClicked = false;
 
+  settings.cancel=function(){
+    settings.model.userData = $rootScope.globals.currentUser;
+    settings.isEditClicked = false;
   };
 
   (function () {
@@ -23,7 +23,6 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
     settings.show = false;
   };
   settings.submitForm = function (form) {
-    $scope.isEditClicked = true;
     settings.submitted = true;
     settings.show = true;
     if (form.$valid) {
@@ -39,6 +38,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   function saveProfile() {
 
     var handleSuccess = function (data) {
+      settings.isEditClicked = false;
       AuthenticationService.SetCredentials(settings.model.userData);
       messagesFactory.settingseditprofileSuccessMessages(data);
     };

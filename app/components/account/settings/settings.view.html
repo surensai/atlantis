@@ -29,7 +29,7 @@
 
                 <div class="col-md-3">
                   <input type="text" name="firstName" class="form-control" data-ng-model="settings.model.userData.firstName"
-                         placeholder="{{ 'user.first_name' | translate }}" required ng-disabled="button" ng-init="button=true">
+                         placeholder="{{ 'user.first_name' | translate }}" required ng-disabled="!settings.isEditClicked">
                 </div>
                 <p ng-show="settingsForm.firstName.$invalid && !settingsForm.firstName.$pristine" class="help-block"
                    data-translate="user.validationMessages.first_name_require">First name is required.</p>
@@ -42,7 +42,7 @@
                 <div class="col-md-3">
                   <input type="text" name="lastName" class="form-control"
                          data-ng-model="settings.model.userData.lastName"
-                         placeholder="{{ 'user.last_name' | translate }}" required ng-disabled="button" ng-init="button=true">
+                         placeholder="{{ 'user.last_name' | translate }}" required ng-disabled="!settings.isEditClicked">
                 </div>
                 <p
                   ng-show="!settingsForm.lastName && settingsForm.lastName.$invalid && !settingsForm.lastName.$pristine"
@@ -66,7 +66,7 @@
                 <div class="col-md-3">
                   <input type="text" name="mobileNumber" data-ng-model="settings.model.userData.mobileNumber"
                          class="form-control" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
-                         placeholder="{{ 'user.register.mobile' | translate }}" ng-disabled="button" ng-init="button=true"></div>
+                         placeholder="{{ 'user.register.mobile' | translate }}" ng-disabled="!settings.isEditClicked"></div>
                   <span class="error-mesasage"
                         ng-show='settingsForm.mobileNumber.$error.pattern && settingsForm.mobileNumber.$dirty'
                         data-translate="user.validationMessages.mobile_num_invalid">Mobile Number is not valid</span>
@@ -76,19 +76,18 @@
 
             </div>
             <div class="col-md-2"></div>
-            <div class="col-md-3">
-            <button type="submit" data-ng-disabled="settingsForm.$invalid" class="btn btn-primary"
-                    data-translate="common.buttons.save" data-ng-show="isEditClicked">Save
-            </button>
+            <div class="col-md-6">
+              <button class="btn btn-primary" type="button" data-ng-click="settings.edit();" data-ng-hide="settings.isEditClicked">Edit
+              </button>
+              <button type="submit" data-ng-disabled="settingsForm.$invalid" class="btn btn-primary margin-right-20"
+                      data-translate="common.buttons.save" data-ng-show="settings.isEditClicked">Save
+              </button>
+              <button type="button" data-ng-disabled="settingsForm.$invalid" class="btn btn-primary "
+                      data-translate="common.buttons.cancel" ng-click="settings.cancel()" data-ng-show="settings.isEditClicked">Cancel
+              </button>
             </div>
           </form>
-          <div class="col-md-3">
-            <button type="submit" data-ng-disabled="settingsForm.$invalid" class="btn btn-primary pull-left"
-                    data-translate="common.buttons.cancel" ng-click="cancel()" data-ng-show="isEditClicked">Cancel
-            </button>
-            <button class="btn btn-primary" ng-click="edit(); button=false" data-ng-hide="isEditClicked">Edit
-            </button>
-          </div>
+
         </uib-accordion-group>
       </uib-accordion>
 
