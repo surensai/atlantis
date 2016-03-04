@@ -28,12 +28,12 @@ angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', 
     var handleSuccess = function (data) {
       resetPassword.data = {};
       AuthenticationService.ClearCredentials();
-      messagesFactory.changepasswordSuccessMessages(data);
+      messagesFactory.resetpasswordSuccessMessages(data);
       $state.go('messages');
     };
 
     var handleError = function (error) {
-      flashService.showError(error.error, false);
+      messagesFactory.resetpasswordErrorMessages(error);
     };
 
     UserService.resetPasswordAPI(resetPassword.model, $state.params.token)
