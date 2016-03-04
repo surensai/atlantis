@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerService', 'flashService','$scope', function ($timeout, $state, PlayerService, flashService, $scope) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerService', 'flashService', '$scope', function ($timeout, $state, PlayerService, flashService, $scope) {
 
   var player = this;
   player.modalTitle = 'Warning!';
@@ -14,10 +14,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   player.model.playerItem = {};
 
   player.show = true;
-    player.getPlayerInfo = function(playerId){
-        $state.go('account.players.details',{id:playerId});
-        player.activeMenu = playerId;
-    }
+
   player.closeAlert = function () {
     player.show = false;
   };
@@ -26,11 +23,10 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
 
     var handleSuccess = function (data) {
       player.data.playersList = data;
-      if ($state.params.id) {
-        player.isUpdate = true;
-        player.data.playerItem = player.model.playerItem = PlayerService.getObjById(player.data.playersList, $state.params.id);
-      }else{
-        player.getPlayerInfo(data[0].id);
+      PlayerService.setPlayers(data);
+      var playerId = ($state.params.id) ? $state.params.id : data[0].id;
+      if (data && !$state.params.id) {
+        $state.go('account.players.details', {id: playerId});
       }
     };
 
@@ -41,8 +37,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
     player.loadPromise = PlayerService.getAllApi()
       .success(handleSuccess)
       .error(handleError);
-
-
   })();
 
   player.submitForm = function (form) {
@@ -149,15 +143,15 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   };
 
   player.fileReaderSupported = window.FileReader != null;
-  $scope.photoChanged = function(files){
+  $scope.photoChanged = function (files) {
     if (files != null) {
       var file = files[0];
       if (player.fileReaderSupported && file.type.indexOf('image') > -1) {
-        $timeout(function() {
+        $timeout(function () {
           var fileReader = new FileReader();
           fileReader.readAsDataURL(file);
-          fileReader.onload = function(e) {
-            $timeout(function(){
+          fileReader.onload = function (e) {
+            $timeout(function () {
               player.model.playerItem.profileURL = e.target.result;
             });
           };

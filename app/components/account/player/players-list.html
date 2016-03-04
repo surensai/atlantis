@@ -1,0 +1,18 @@
+<div class="players-tab-list">
+  <ul>
+    <li>
+      <a ui-sref="account.addplayer">
+        <img data-ng-if="!playerItem.profileURL" src="assets/images/add-player.png" class="img-circle" alt="player" width="80" height="80" />
+        <span> Add Player </span>
+      </a>
+    </li>
+    <li data-ng-repeat="playerItem in player.data.playersList" >
+      <a ui-sref="account.players.details({ id: playerItem.id })"
+         ng-class="{ active: $state.includes('account.players.details', { id: playerItem.id })}">
+        <img data-ng-if="!playerItem.profileURL" src="assets/images/fallback-img.png" class="img-circle" alt="player" width="80" height="80" />
+        <img data-ng-if="playerItem.profileURL" data-ng-src="{{playerItem.profileURL}}" class="img-circle" alt="player" width="80" height="80" />
+        <span>{{ playerItem.firstName }}</span>
+      </a>
+    </li>
+  </ul>
+</div>

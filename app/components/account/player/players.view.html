@@ -1,62 +1,6 @@
-<div class="player-container">
-
-<uib-alert type="success" class="alert-success" close="player.closeAlert()"
-           data-ng-if="globals.flash && globals.flash.type === 'success' && player.show"
-           dismiss-on-timeout="4000">{{globals.flash.message}}
-</uib-alert>
-<uib-alert type="warning" class="alert-danger" close="player.closeAlert()"
-           data-ng-if="globals.flash && globals.flash.type !== 'success' && player.show"
-           dismiss-on-timeout="4000">{{globals.flash.message}}
-</uib-alert>
-
-<div class="container container-min-height" cg-busy="{promise:player.loadPromise,message:'Loading Your Data'}">
-
-
-<!--<div class="container container-min-height">-->
-  <!--<table class="table table-hover" cg-busy="{promise:player.loadPromise,message:'Loading Your Data'}">-->
-    <!--<tr>-->
-      <!--<td colspan="3">-->
-          <!--<button type="button" class="btn btn-primary btn-lg" ui-sref="account.addplayer" data-translate="player.add_new_player">Add New Player</button>-->
-      <!--</td>-->
-    <!--</tr>-->
-    <!--<tr data-ng-repeat="playerItem in player.data.playersList">-->
-      <!--<td width="110">-->
-        <!--<img data-ng-if="!playerItem.profileURL" src="assets/images/fallback-img.png" alt="player" width="100" height="100" />-->
-        <!--<img data-ng-if="playerItem.profileURL" data-ng-src="{{playerItem.profileURL}}" alt="player" width="100" height="100" />-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--{{playerItem.firstName}} {{playerItem.lastName}}-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--<a ui-sref="account.editPlayer({ id: playerItem.id })"> <i class="glyphicon glyphicon-edit"></i></a>-->
-        <!--<span data-target="#{{modal}}" role="button" class="glyphicon glyphicon-trash" data-toggle="modal" data-ng-click="player.deleteListener(playerItem)"></span>-->
-        <!--<a href="javascript:;"data-translate="player.more">more</a>-->
-      <!--</td>-->
-    <!--</tr>-->
-  <!--</table>-->
-<!--</div>-->
-
-
-<!--<modal my-handler="modal" modal-body="player.modalBody" modal-footer="player.modalFooter" modal-header="player.modalTitle" data-ng-click-right-button="player.deleteAction()"></modal>-->
-    <div>
-        <div class="players-menu">
-            <ul class="nav nav-tabs">
-                <li ui-sref-active="active" ><a ui-sref="account.addplayer">
-                    <img data-ng-if="!playerItem.profileURL" src="assets/images/add-player.png" class="img-circle" alt="player" width="80" height="80" /> <p class="para-align-center">Add Player</p>
-                </a></li>
-                <li ng-class="{active : player.activeMenu === playerItem.id}" data-ng-repeat="playerItem in player.data.playersList" > <a ng-click="player.getPlayerInfo(playerItem.id)">
-                    <img data-ng-if="!playerItem.profileURL" src="assets/images/fallback-img.png" class="img-circle" alt="player" width="80" height="80" />
-                    <img data-ng-if="playerItem.profileURL" data-ng-src="{{playerItem.profileURL}}" class="img-circle" alt="player" width="80" height="80" />
-                    <p class="para-align-center">{{ playerItem.firstName }}</p>
-                </a>
-                </li>
-            </ul>
-        </div>
-        <div ui-view></div>
-    </div>
-
-
-</div>
-
-
+<div class="container container-min-height players-container" cg-busy="{promise:player.loadPromise,message:'Loading Your Data'}">
+  <div class="players-panel">
+    <div data-ng-include=" 'components/account/player/players-list.html' "></div>
+    <div ui-view></div>
+  </div>
 </div>

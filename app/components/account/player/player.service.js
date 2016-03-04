@@ -4,8 +4,9 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
 
   var service = {};
   var base_url = $rootScope.base_url;
-  var userID = $rootScope.globals.currentUser.id;
+  var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
   var fd = new FormData();
+  var playersData = [];
 
   service.getAllApi = function () {
     return $http.get(base_url + '/user/' + userID + '/child');
@@ -39,6 +40,20 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
         }
     });
     return obj;
+  };
+
+  service.setPlayers = function(data){
+    playersData = data;
+  };
+
+  service.getPlayers = function(data){
+    return playersData;
+  };
+
+  service.getPlayerById = function(id){
+    if(playersData.length > 0){
+      return service.getObjById(playersData, id);
+    }
   };
 
   service.removeItem = function(data, obj){
