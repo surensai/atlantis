@@ -31,7 +31,7 @@
     width: 20%;
   }
   .width70-per {
-    width: 80%;
+    width: 81%;
   }
   .header-bg {
     background: $primary-color url('../images/header-design.png') no-repeat 7px;
@@ -239,6 +239,23 @@
   .account-container {
     min-height: 840px;
   }
+
+  .top-header .dropdown, #account-nav-wrapper{
+    display: none;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+
+  #sidebar.sidebar-toggle{
+    right: 0px!important;
+  }
+
+  body.body-toggle {
+    padding-right: 196px;
+    margin-left: -196px;
+  }
 }
 
 @media only screen and
@@ -246,6 +263,24 @@
   .login-bg {
     background-size: 100% 100% !important;
   }
+
+  .top-header .dropdown, #account-nav-wrapper {
+    display: none;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+
+  #sidebar.sidebar-toggle{
+    right: 0px!important;
+  }
+
+  body.body-toggle {
+    padding-right: 196px!important;
+    margin-left: -196px!important;
+  }
+
 }
 
 @media(max-height: 670px) {
