@@ -83,6 +83,7 @@
     "buttons": {
       "submit": "SUBMIT",
       "save": "Save",
+      "edit":"Edit",
       "cancel": "Cancel",
       "forgot_password":"REQUEST PASSWORD",
       "sign_up":"SIGNUP"
