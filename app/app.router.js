@@ -185,9 +185,9 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     }
   }).state('account.players.details', {
     url: '/details/:id',
-    templateUrl: urlBuilder('account/player', 'player-details'),
-    controller: 'playerDetailsCtrl',
-    controllerAs:'playerDetails',
+    templateUrl: urlBuilder('account/player', 'player-info'),
+    controller: 'playerInfoCtrl',
+    controllerAs:'playerInfo',
     data: {
       pageTitle: 'Square Panda - Player Details'
     }

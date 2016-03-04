@@ -3,18 +3,18 @@
     background-color: #EC990F;
     height: 120px;
     width: 120px;
-    border: 0px !important;
+    border-right: 1px !important;
   }
   .nav-tabs > li >a {
     height: 120px;
     width: 120px;
-    border-right: 1px solid lightcyan;
+    border-right: 1px solid #EC990F;
   }
   .nav-tabs > li.active > a {
     background-color: #EC990F !important;;
     height: 120px;
     width: 120px;
-    border: 0px !important;
+    border-right: 1px !important;
   }
   .nav-tabs > li > a:hover {
     background-color: #EC990F !important;;
@@ -26,6 +26,9 @@
     height: 120px;
     background-color: #F9AB28;
   }
+}
+.badge-row{
+  margin: 15px 10px 15px 15px;
 }
 
 .para-align-center {
@@ -107,7 +110,7 @@
 .badge-content{
   margin: 15px;
   padding: 10px;
-  height: 200px;
+  height: 500px;
   border: 1px solid #D4D4D4;
 }
 .badge-width{
