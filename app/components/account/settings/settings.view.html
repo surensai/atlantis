@@ -1,4 +1,4 @@
-<div class="settings-container">
+<div class="settings-container" cg-busy="{promise:settings.loadPromise,message:'Loading Your Data'}">
   <div class="container container-min-height ">
   <uib-alert type="success" class="alert-success success-padding" close="settings.closeAlert()"
              data-ng-if="globals.flash && globals.flash.type === 'success' && settings.show"
@@ -13,12 +13,12 @@
       SETTINGS
     </div>
     <div class="panel-body">
-      <uib-accordion>
+      <uib-accordion class="accordion-classes">
         <uib-accordion-group is-open="status.open">
-          <uib-accordion-heading>
+          <uib-accordion-heading >
             <i class="glyphicon"
                ng-class="{'glyphicon-triangle-bottom': status.open, 'glyphicon-triangle-right': !status.open}"></i>
-            <span class="accordion-header-gap">Edit Profile</span>
+           <span class="accordion-header-gap">Edit profile</span>
           </uib-accordion-heading>
           <form name="settingsForm" ng-submit="settings.submitForm(settingsForm)" novalidate>
             <div class="form-horizontal">
@@ -28,9 +28,8 @@
                 <label class="col-md-2 control-label" data-translate="nav.edit_profile.first_name">First Name:</label>
 
                 <div class="col-md-3">
-                  <input type="text" name="firstName" class="form-control"
-                         data-ng-model="settings.model.userData.firstName"
-                         placeholder="{{ 'user.first_name' | translate }}" required>
+                  <input type="text" name="firstName" class="form-control" data-ng-model="settings.model.userData.firstName"
+                         placeholder="{{ 'user.first_name' | translate }}" required ng-disabled="button" ng-init="button=true">
                 </div>
                 <p ng-show="settingsForm.firstName.$invalid && !settingsForm.firstName.$pristine" class="help-block"
                    data-translate="user.validationMessages.first_name_require">First name is required.</p>
@@ -43,7 +42,7 @@
                 <div class="col-md-3">
                   <input type="text" name="lastName" class="form-control"
                          data-ng-model="settings.model.userData.lastName"
-                         placeholder="{{ 'user.last_name' | translate }}" required>
+                         placeholder="{{ 'user.last_name' | translate }}" required ng-disabled="button" ng-init="button=true">
                 </div>
                 <p
                   ng-show="!settingsForm.lastName && settingsForm.lastName.$invalid && !settingsForm.lastName.$pristine"
@@ -67,7 +66,7 @@
                 <div class="col-md-3">
                   <input type="text" name="mobileNumber" data-ng-model="settings.model.userData.mobileNumber"
                          class="form-control" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
-                         placeholder="{{ 'user.register.mobile' | translate }}"></div>
+                         placeholder="{{ 'user.register.mobile' | translate }}" ng-disabled="button" ng-init="button=true"></div>
                   <span class="error-mesasage"
                         ng-show='settingsForm.mobileNumber.$error.pattern && settingsForm.mobileNumber.$dirty'
                         data-translate="user.validationMessages.mobile_num_invalid">Mobile Number is not valid</span>
@@ -76,15 +75,24 @@
               </div>
 
             </div>
-            <button type="submit" data-ng-disabled="settingsForm.$invalid" class="btn btn-large btn-block btn-primary"
-                    data-translate="common.buttons.submit">Submit
+            <div class="col-md-2"></div>
+            <div class="col-md-3">
+            <button type="submit" data-ng-disabled="settingsForm.$invalid" class="btn btn-primary"
+                    data-translate="common.buttons.save" data-ng-show="isEditClicked">Save
             </button>
+            </div>
           </form>
-
+          <div class="col-md-3">
+            <button type="submit" data-ng-disabled="settingsForm.$invalid" class="btn btn-primary pull-left"
+                    data-translate="common.buttons.cancel" ng-click="cancel()" data-ng-show="isEditClicked">Cancel
+            </button>
+            <button class="btn btn-primary" ng-click="edit(); button=false" data-ng-hide="isEditClicked">Edit
+            </button>
+          </div>
         </uib-accordion-group>
       </uib-accordion>
 
-      <uib-accordion>
+      <uib-accordion class="accordion-classes">
         <uib-accordion-group is-open="status.open">
           <uib-accordion-heading>
             <i class="glyphicon"
@@ -126,15 +134,15 @@
                 <span ng-show="(changepasswordForm.$submitted && changepasswordForm.confirmPassword.$error.required )" class="help-block error-mesasage"
                    data-translate="user.validationMessages.cpassword_require">Confirm Password is required.</span>
               </div>
-
-              <button type="submit" class="btn btn-large btn-block btn-primary" data-translate="common.buttons.submit">Submit
-              </button>
+              <div class="col-md-3">
+              <button type="submit" class="btn " data-translate="common.buttons.submit">Submit
+              </button></div>
             </div>
           </form>
 
         </uib-accordion-group>
       </uib-accordion>
-      <uib-accordion>
+      <uib-accordion class="accordion-classes">
         <uib-accordion-group is-open="status.open">
           <uib-accordion-heading>
             <i class="glyphicon"
