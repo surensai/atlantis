@@ -20,23 +20,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   };
 
   (function () {
-
-    var handleSuccess = function (data) {
-      player.data.playersList = data;
-      PlayerService.setPlayers(data);
-      var playerId = ($state.params.id) ? $state.params.id : data[0].id;
-      if (data && !$state.params.id) {
-        $state.go('account.players.details', {id: playerId});
-      }
-    };
-
-    var handleError = function () {
-      flashService.showError("Error in getting players", false);
-    };
-
-    player.loadPromise = PlayerService.getAllApi()
-      .success(handleSuccess)
-      .error(handleError);
+      getPlayers();
   })();
 
   player.submitForm = function (form) {
@@ -143,6 +127,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   };
 
   player.fileReaderSupported = window.FileReader != null;
+
   $scope.photoChanged = function (files) {
     if (files != null) {
       var file = files[0];
@@ -159,5 +144,24 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
       }
     }
   };
+
+  function getPlayers () {
+    var handleSuccess = function (data) {
+      player.data.playersList = data;
+      PlayerService.setPlayers(data);
+      var playerId = data[0].id;
+      if (data) {
+        $state.go('account.players.details', {id: playerId});
+      }
+    };
+
+    var handleError = function () {
+      flashService.showError("Error in getting players", false);
+    };
+
+    player.loadPromise = PlayerService.getAllApi()
+      .success(handleSuccess)
+      .error(handleError);
+  }
 
 }]);
