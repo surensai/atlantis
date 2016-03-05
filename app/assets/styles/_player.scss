@@ -55,3 +55,76 @@
     }
   }
 }
+
+.player-tabs{
+  margin: 10px;
+  ul{
+    li{
+      a{
+        border-radius: 0px!important;
+        background-color: #f7ab31;
+        color: #ffffff;
+        &:hover{
+          background-color: #ffffff;
+          color: #8c8c8c;
+        }
+      }
+    }
+  }
+  .tab-content{
+    background-color: #ffffff;
+    .badge-item{
+      width: 168px;
+      height: 256px;
+      padding-top: 143px;
+      span, h3{
+        display: block;
+        text-align: center;
+        color: #ffffff;
+        border-top: dotted 1px #ffffff;
+      }
+      h3{
+        @extend .reset-padding-margin;
+      }
+    }
+    .badge-inactive{
+      color: #000000!important;
+      background: url("../images/inactive-badge.png") no-repeat center;
+    }
+    .badge-start{
+      background: url("../images/strt-badge.png") no-repeat center;
+    }
+    .badge-bronze{
+      background: url("../images/bronze-badge.png") no-repeat center;
+    }
+    .badge-silver{
+      background: url("../images/silver-badge.png") no-repeat center;
+    }
+    .badge-gold{
+      background: url("../images/gold-badge.png") no-repeat center;
+    }
+    .mini-badges-container{
+      .mini-badge-item{
+        border: 1px solid #ed4a70;
+        border-radius: 5px;
+        padding: 10px;
+        .mb-left{
+          float: left;
+          .mb-icon-con{
+            padding: 5px;
+            background-color: #ed4a70;
+            border-radius: 50px;
+            .mb-icon{
+              border-radius: 50px;
+              background-color: #ed4a70;
+              border: 1px solid #ffffff;
+            }
+          }
+        }
+        .mb-right{
+
+        }
+      }
+    }
+  }
+}

@@ -53,6 +53,11 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
   service.getPlayerById = function(id){
     if(playersData.length > 0){
       return service.getObjById(playersData, id);
+    } else {
+      service.getAllApi().then(function(data){
+        service.setPlayers(data.data);
+        return service.getObjById(playersData, id);
+      });
     }
   };
 
