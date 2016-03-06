@@ -137,17 +137,17 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     }
   }).state('account.addplayer', {
     url: '/player/add',
-    templateUrl: urlBuilder('account/player', 'player-add'),
-    controller: 'playerCtrl',
-    controllerAs: "player",
+    templateUrl: urlBuilder('account/player', 'player-action'),
+    controller: 'playerActionCtrl',
+    controllerAs: "playerAction",
     data: {
       pageTitle: 'Square Panda - Add Player'
     }
   }).state('account.editPlayer', {
     url: '/player/:id/edit',
-    templateUrl: urlBuilder('account/player', 'player-add'),
-    controller: 'playerCtrl',
-    controllerAs: "player",
+    templateUrl: urlBuilder('account/player', 'player-action'),
+    controller: 'playerActionCtrl',
+    controllerAs: "playerAction",
     data: {
       pageTitle: 'Square Panda - Edit Player'
     }
@@ -186,8 +186,8 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
   }).state('account.players.details', {
     url: '/details/:id',
     templateUrl: urlBuilder('account/player', 'player-info'),
-    controller: 'playerInfoCtrl',
-    controllerAs:'playerInfo',
+    controller: 'playerCtrl',
+    controllerAs:'player',
     data: {
       pageTitle: 'Square Panda - Player Details'
     }

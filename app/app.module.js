@@ -13,5 +13,6 @@ var app = angular.module('app', [
   'ui.bootstrap',
   'cgBusy',
   'base64',
-  'angularMoment'
+  'angularMoment',
+  'highcharts-ng'
 ]);
