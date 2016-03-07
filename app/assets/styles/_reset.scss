@@ -154,9 +154,17 @@ body {
   margin-top: -31px;
 }
 
-.accordion-classes{
+.accordion-classes, .accordion-word{
   a:focus {
     outline: none;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+.accordion-word{
+  a:focus {
     outline: none;
     text-decoration: none;
   }
@@ -166,4 +174,11 @@ body {
 }
 .cancel-button{
   background-color: #7E7E7E;
+}
+.pagination li  a,
+.pagination  li  span{
+  border: none;
+}
+.pagination  li  a:hover,.pagination .active a{
+  background-color: $sp-green !important;
 }
