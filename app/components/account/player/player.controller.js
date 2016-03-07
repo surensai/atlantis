@@ -73,7 +73,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
             .success(handleSuccess)
             .error(handleError);
     };
-    player.bigBadges =  [[{
+
+    player.bigBadges =  [{
         milestone: 'Milestone 01',
         percentage: '130%',
         type: 'badge-gold'
@@ -89,58 +90,56 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
         milestone: 'Milestone 04',
         percentage: '120%',
         type: 'badge-silver'
-    }],
-        [{
-            milestone: 'Milestone 05',
-            percentage: '115%',
-            type: 'badge-silver'
-        },{
-            milestone: 'Milestone 06',
-            percentage: '90%',
-            type: 'badge-bronze'
-        },{
-            milestone: 'Milestone 07',
-            percentage: '50%',
-            type: 'badge-inactive'
-        },{
-            milestone: 'Milestone 08',
-            percentage: '0%',
-            type: 'badge-inactive'
-        }],
-        [{
-            milestone: 'Milestone 09',
-            percentage: '0%',
-            type: 'badge-inactive'
-        },{
-            milestone: 'Milestone 10',
-            percentage: '0%',
-            type: 'badge-inactive'
-        },{
-            milestone: 'Milestone 11',
-            percentage: '0%',
-            type: 'badge-inactive'
-        },{
-            milestone: 'Milestone 12',
-            percentage: '0%',
-            type: 'badge-inactive'
-        }],
-        [{
-            milestone: 'Milestone 13',
-            percentage: '0%',
-            type: 'badge-inactive'
-        },{
-            milestone: 'Milestone 14',
-            percentage: '0%',
-            type: 'badge-inactive'
-        },{
-            milestone: 'Milestone 15',
-            percentage: '0%',
-            type: 'badge-inactive'
-        },{
-            milestone: 'Milestone 16',
-            percentage: '0%',
-            type: 'badge-inactive'
-        }]]
+    }, {
+      milestone: 'Milestone 05',
+      percentage: '115%',
+      type: 'badge-silver'
+    },{
+      milestone: 'Milestone 06',
+      percentage: '90%',
+      type: 'badge-bronze'
+    },{
+      milestone: 'Milestone 07',
+      percentage: '50%',
+      type: 'badge-inactive'
+    },{
+      milestone: 'Milestone 08',
+      percentage: '0%',
+      type: 'badge-inactive'
+    }, {
+      milestone: 'Milestone 09',
+      percentage: '0%',
+      type: 'badge-inactive'
+    },{
+      milestone: 'Milestone 10',
+      percentage: '0%',
+      type: 'badge-inactive'
+    },{
+      milestone: 'Milestone 11',
+      percentage: '0%',
+      type: 'badge-inactive'
+    },{
+      milestone: 'Milestone 12',
+      percentage: '0%',
+      type: 'badge-inactive'
+    }, {
+      milestone: 'Milestone 13',
+      percentage: '0%',
+      type: 'badge-inactive'
+    },{
+      milestone: 'Milestone 14',
+      percentage: '0%',
+      type: 'badge-inactive'
+    },{
+      milestone: 'Milestone 15',
+      percentage: '0%',
+      type: 'badge-inactive'
+    },{
+      milestone: 'Milestone 16',
+      percentage: '0%',
+      type: 'badge-inactive'
+    }];
+
     player.wordsData = [
         {
             'Sno': 1,
@@ -190,7 +189,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
     player.drop = 'drop feedback';
 
     player.showGraph = function (index) {
-        player.displayChart = index;
+        player.displayChartIndex = index;
     }
 
     player.randomize = function (onlyHistory) {

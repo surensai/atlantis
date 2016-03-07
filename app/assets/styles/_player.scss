@@ -93,11 +93,15 @@
   }
   p{
     color: #838383;
+    font-size: 16px;
+    line-height: 27px;
   }
+
   .player-favorites{
     border-bottom: 1px solid #f9ae30;
     padding-bottom: 10px;
     margin-bottom: 30px;
+    line-height: 28px;
     i{
       color: #f9ae30
     }
@@ -121,8 +125,13 @@
   }
   .tab-content {
     background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-top: none;
     .badges-container {
       padding-top: 25px;
+      .graph-container{
+        background-color: #fcfcfc;
+      }
       .badges-row {
         margin-left: 34px;
         margin-right: -50px;
@@ -229,8 +238,8 @@
   }
 
   .pd-right {
-    width: 79%;
-    float: right;
+    width: 100%;
+    padding-left: 239px !important;
   }
 
 }

@@ -14,6 +14,7 @@ var app = angular.module('app').config(['$windowProvider', '$translateProvider',
   }
 
   $translateProvider.preferredLanguage('en');
+  $translateProvider.useSanitizeValueStrategy('escape');
 
   $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
         return {
