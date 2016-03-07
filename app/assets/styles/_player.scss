@@ -64,17 +64,42 @@
   border: solid 1px #cccccc;
   padding: 10px;
   margin: 10px;
+  .pd-right{
+    padding-left: 20px;
+    h3{
+      @extend .reset-padding-margin;
+      line-height: 43px;
+    }
+  }
   .profile-pic{
     position: relative;
     margin: 5px;
+    width: 100%;
+    height: 100%;
+    img{
+      border-radius: 10px;
+    }
     a{
       position: absolute;
       bottom: 0px;
+      left: 0px;
       width: 100%;
       background-color: rgba(0, 0, 0, 0.8);
       padding: 8px;
       color: white;
       text-align: center;
+      border-radius: 0px 0px 10px 10px;
+    }
+  }
+  p{
+    color: #838383;
+  }
+  .player-favorites{
+    border-bottom: 1px solid #f9ae30;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    i{
+      color: #f9ae30
     }
   }
 }
@@ -173,4 +198,22 @@
       }
     }
   }
+}
+
+@media(min-width: 768px) {
+  .profile-pic, .profile-pic img{
+    width: 212px !important;
+    height: 244px !important;
+  }
+
+  .pd-left {
+    width: 20%;
+    float: left;
+  }
+
+  .pd-right {
+    width: 79%;
+    float: right;
+  }
+
 }
