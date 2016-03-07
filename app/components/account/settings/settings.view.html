@@ -82,7 +82,7 @@
               <button type="submit" data-ng-disabled="settingsForm.$invalid" class="btn btn-primary margin-right-20"
                       data-translate="common.buttons.save" data-ng-show="settings.isEditClicked">Save
               </button>
-              <button type="button" data-ng-disabled="settingsForm.$invalid" class="btn btn-primary "
+              <button type="button" data-ng-disabled="settingsForm.$invalid" class="btn btn-primary cancel-button"
                       data-translate="common.buttons.cancel" ng-click="settings.cancel()" data-ng-show="settings.isEditClicked">Cancel
               </button>
             </div>
@@ -133,8 +133,9 @@
                 <span ng-show="(changepasswordForm.$submitted && changepasswordForm.confirmPassword.$error.required )" class="help-block error-mesasage"
                    data-translate="user.validationMessages.cpassword_require">Confirm Password is required.</span>
               </div>
+              <div class="col-md-2"></div>
               <div class="col-md-3">
-              <button type="submit" class="btn " data-translate="common.buttons.submit">Submit
+              <button type="submit" class="btn btn-primary" data-translate="common.buttons.submit">Submit
               </button></div>
             </div>
           </form>
