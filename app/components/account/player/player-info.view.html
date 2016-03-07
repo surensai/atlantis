@@ -301,42 +301,34 @@
 </uib-tab>
 <uib-tab index="1" heading="Words">
     <div class="badges-container clearfix">
-        <h4 class="badges-row">Words</h4>
-
-        <div class="panel panel-default">
-
-            <div>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th ng-repeat="key in player.getKeysOfCollection(player.wordsData[0])"
-                            ng-click="player.predicate = key; player.reverse=!player.reverse;">
-                            {{key}}
-                            <span class="fa fa-sort columnSortIcons" ng-if="key !== player.predicate"></span>
-                            <span class="fa fa-sort-down columnSortIcons"
-                                  ng-if="!(player.reverse) && key === player.predicate"></span>
-                            <span class="fa fa-sort-up columnSortIcons"
-                                  ng-if="player.reverse && key === player.predicate"></span>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr data-ng-repeat="word in player.wordsData | orderBy:player.predicate:player.reverse">
-                        <td>{{ word.Sno}}</td>
-                        <td>{{ word.Words}}</td>
-                        <td>{{ word.Attempts}}</td>
-                        <td>{{ word.LastPlayed | date:"MM/dd/yyyy '' h:mma"}}</td>
-                        <td>{{word.LastAttempt}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
+      <table class="table table-striped borderless">
+        <thead>
+          <tr>
+            <th ng-repeat="key in player.getKeysOfCollection(player.wordsData[0])"
+                ng-click="player.predicate = key; player.reverse=!player.reverse;">
+                {{key}}
+                <span class="fa fa-sort columnSortIcons" ng-if="key !== player.predicate"></span>
+                <span class="fa fa-sort-down columnSortIcons"
+                      ng-if="!(player.reverse) && key === player.predicate"></span>
+                <span class="fa fa-sort-up columnSortIcons"
+                      ng-if="player.reverse && key === player.predicate"></span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="word in player.wordsData | orderBy:player.predicate:player.reverse">
+          <td>{{ word.Sno}}</td>
+          <td>{{ word.Words}}</td>
+          <td>{{ word.Attempts}}</td>
+          <td>{{ word.LastPlayed | date:"MM/dd/yyyy '' h:mma"}}</td>
+          <td>{{word.LastAttempt}}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
-
 </uib-tab>
-<uib-tab index="2" heading="Activity">Activity
-</uib-tab>
+<!--</uib-tab>-->
+<!--<uib-tab index="2" heading="Activity">Activity-->
+<!--</uib-tab>-->
 </uib-tabset>
 </div>

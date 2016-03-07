@@ -160,7 +160,24 @@
       .badge-gold {
         background: url("../images/gold-badge.png") no-repeat center;
       }
-    }
+        .table {
+          border: 1px solid $sp-green;
+          thead th {
+            background-color: $sp-green;
+            padding-top: 25px;
+            padding-bottom: 25px;
+            color: $white-color;
+            font-weight: normal;
+          }
+        }
+        tr, th {
+          text-align: center;
+        }
+      td{
+        border-top: none;
+      }
+      }
+
     .hr-minbadge{
       border:1px solid #BAE5D7;
       margin-left: 15px;
