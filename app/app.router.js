@@ -119,14 +119,6 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     data: {
       pageTitle: 'Square Panda - Dashboard'
     }
-  }).state('account.subscriptions', {
-    url: '/subscriptions',
-    templateUrl: urlBuilder('account/subscriptions', 'subscriptions'),
-    controller: 'subscriptionsCtrl',
-    controllerAs: "subscription",
-    data: {
-      pageTitle: 'Square Panda - Dashboard'
-    }
   }).state('account.players', {
     url: '/players',
     templateUrl: urlBuilder('account/player', 'players'),
@@ -166,22 +158,6 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     controllerAs: "settings",
     data: {
       pageTitle: 'Square Panda - Settings'
-    }
-  }).state('account.edit-profile', {
-    url: '/edit',
-    templateUrl: urlBuilder('account/edit-profile', 'edit-profile'),
-    controller: 'editProfileCtrl',
-    controllerAs: "editProfile",
-    data: {
-      pageTitle: 'Square Panda - Edit Profile'
-    }
-  }).state('account.change-password', {
-    url: '/change-password',
-    templateUrl: urlBuilder('account/change-password', 'change-password'),
-    controller: 'changePasswordCtrl',
-    controllerAs: "changePassword",
-    data: {
-      pageTitle: 'Square Panda - Change Password'
     }
   }).state('account.players.details', {
     url: '/details/:id',
