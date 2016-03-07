@@ -1,3 +1,103 @@
+.curriculum-container {
+  margin-top: 20px;
+  .curriculum-milestone-panel {
+    .curriculum-milestonepanel-heading {
+      background-color: #F9A61A;
+      color: $white-color;
+    }
+    .milestone-row {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+      .milestone-items {
+        width: 168px;
+        height: 256px;
+        padding-top: 41px;
+        padding-left: 63px;
+        color: red;
+        h1{
+          color: #4CBC96;
+        }
+      }
+      .curriculum-badge {
+        background: url("../images/curriculumbadge.png") no-repeat center;
+      }
+    .curriculum-emptybadge{
+      background: url("../images/curriculum--empty-badge.png") no-repeat center;
+
+    }
+    .milestone-details {
+      background-color: #EFEFEF;
+      border-radius: 5px;
+      padding-bottom: 20px;
+      padding-top: 10px;
+      h4 {
+        color: $sp-green;
+      }
+      .padding-left-right {
+        span {
+          padding: 0px 15px 0px 10px;
+        }
+      }
+      .btn-padding-right{
+        @extend  .btn-padding-left-right;
+        margin-left: 0px!important;
+      }
+      .btn-padding-left-right {
+        color: gray;
+        padding: 0px 40px 0px 40px;
+        border-radius: 0px;
+        background-color: #DCDCDC;
+        margin-left: 10px;
+      }
+    }
+  }
+   .curriculum-customword-panel{
+    .curriculum-customwordpanel-heading{
+      background-color:#F9A61A;
+      color: $white-color;
+    }
+    .custom-word-list{
+      .table {
+        border: 1px solid $sp-green;
+        thead th {
+          background-color: $sp-green;
+          padding-top: 25px;
+          padding-bottom: 25px;
+          color: $white-color;
+          font-weight: normal;
+        }
+      }
+      tr, th {
+        text-align: center;
+      }
+      td{
+        border-top: none;
+        color: #B0B0B0;
+      }
+      .left-padding{
+        padding-left: 20px;
+      }
+    }
+     .accordion-word{
+       background-color: gray;
+       .accordion-header-gap{
+         padding-left: 10px;
+       }
+       .fruit-checkbox{
+         width: 20px;
+         height: 20px;
+       }
+       .checkbox-span{
+         vertical-align: 30%;
+         padding-left: 10px;
+       }
+     }
+  }
+}
+
 .left-inner-addon input {
   padding-left: 30px;
 }
