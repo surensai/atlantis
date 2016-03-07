@@ -86,7 +86,8 @@
       "edit":"Edit",
       "cancel": "Cancel",
       "forgot_password":"REQUEST PASSWORD",
-      "sign_up":"SIGNUP"
+      "sign_up":"SIGNUP",
+      "addpalyer":"Add Player"
     },
     "dob_year": "Year",
     "dob_month": "Month",
