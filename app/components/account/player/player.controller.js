@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerService', 'flashService', '$scope', function ($timeout, $state, PlayerService, flashService, $scope) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerService', 'flashService', function ($timeout, $state, PlayerService, flashService) {
 
     var player = this;
     player.model = {};
