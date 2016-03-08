@@ -51,11 +51,9 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     }
   }
   function resetpasswordErrorMessages(status) {
-    var message;
     if (status === 500) {
       flashService.showError(error.error, false);
     }
-
   }
 
   function settingseditprofileSuccessMessages(successObj) {
