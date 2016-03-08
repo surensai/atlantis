@@ -12,8 +12,8 @@ angular.module("app").directive('badgeItem', function () {
               '<h3>{{item.percentage}}</h3></div>' +
               '</div>',
 
-    controller: function($scope) {
+    controller: function() {
 
     }
-  }
+  };
 });

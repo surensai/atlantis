@@ -22,7 +22,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
             return [];
         }
         return Object.keys(obj);
-    }
+    };
 
     player.closeAlert = function () {
         player.show = false;
@@ -191,15 +191,15 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
 
     player.showGraph = function (index) {
         player.displayChartIndex = index;
-    }
+    };
 
     player.randomize = function (onlyHistory) {
-        var seriesArray = player.highchartsNG.series
+        var seriesArray = player.highchartsNG.series;
         for (i in seriesArray[0].data) {
             var random = Math.floor(Math.random() * 250);
             seriesArray[0].data[i] = random;
             if (!onlyHistory) seriesArray[1].data[i] = random;
-        }
+        };
     };
 
     player.highchartsNG = {
@@ -277,6 +277,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
             text: ''
         },
         loading: false
-    }
+    };
 
 }]);

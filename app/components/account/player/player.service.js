@@ -46,7 +46,7 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
     playersData = data;
   };
 
-  service.getPlayers = function(data){
+  service.getPlayers = function(){
     return playersData;
   };
 
