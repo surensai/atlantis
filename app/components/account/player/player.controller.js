@@ -13,7 +13,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
     player.show = true;
     player.reverse = false;
     player.displayChartIndex = 0;
-
     player.predicate = 'Sno';
 
     player.getKeysOfCollection = function (obj) {
@@ -191,92 +190,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
 
     player.showGraph = function (index) {
         player.displayChartIndex = index;
-    };
-
-    player.randomize = function (onlyHistory) {
-        var seriesArray = player.highchartsNG.series;
-        for (i in seriesArray[0].data) {
-            var random = Math.floor(Math.random() * 250);
-            seriesArray[0].data[i] = random;
-            if (!onlyHistory) seriesArray[1].data[i] = random;
-        };
-    };
-
-    player.highchartsNG = {
-        options: {
-            chart: {
-                type: 'line'
-            },
-            legend: {
-                enabled: false
-            },
-            plotOptions: {
-                series: {
-                    cursor: 'ns-resize',
-                    point: {
-                        events: {
-                            drag: function (e) {
-                                player.drag = this.series.name + ' = ' + Highcharts.numberFormat(e.newY, 2);
-                                $scope.$apply();
-                            },
-                            drop: function () {
-                                player.drop = this.series.name + ' = ' + Highcharts.numberFormat(this.y, 2);
-                                $scope.$apply();
-                            }
-                        }
-                    },
-                    stickyTracking: false
-                },
-                column: {
-                    stacking: 'normal'
-                }
-            },
-
-            tooltip: {
-                yDecimals: 2
-            }
-
-        },
-
-        xAxis: {
-            title: {
-                text: 'DAYS'
-            },
-            categories: ['Day 01', 'Day 02', 'Day 03', 'Day 04', 'Day 05', 'Day 06', 'Day 07', 'Day 08'],
-            gridLineWidth: 1
-        },
-        yAxis: {
-
-            title: {
-                text: 'PROGRESS'
-            },
-            labels: {
-                formatter: function () {
-                    return this.value + ' %';
-                }
-            },
-            max: 25,
-            plotLines: [
-                {
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }
-            ]
-        },
-
-        series: [
-            {
-                data: [1.0, 1.5, 10.4, 19.2, 14.0, 16.0, 13.6, 14.5],
-                name: 'Draggable',
-                draggableY: true,
-                lineColor: '#6E4D9F'
-            }
-        ],
-        title: {
-            text: ''
-        },
-        loading: false
     };
 
 }]);
