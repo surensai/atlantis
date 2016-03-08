@@ -12,6 +12,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
     player.data.deleteObj = {};
     player.show = true;
     player.reverse = false;
+    player.displayChartIndex = 0;
 
     player.predicate = 'Sno';
 

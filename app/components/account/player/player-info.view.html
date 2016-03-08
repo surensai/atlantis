@@ -33,14 +33,18 @@
   <div class="badges-container clearfix">
       <h4 class="badges-row">Big Badges</h4>
       <div class="badges-row" >
-        <data-badge-item item-data="badge"
-                         display-index="player.displayChartIndex"
-                         index="$index" data-ng-repeat="badge in player.bigBadges"
-                         data-ng-click="player.showGraph($index)">
-        </data-badge-item>
+        <div class="col-md-3 col-sm-6" data-ng-repeat="badge in player.bigBadges" data-ng-click="player.showGraph($index)">
+            <data-badge-item item-data="badge"
+                             display-index="player.displayChartIndex"
+                             index="$index">
+            </data-badge-item>
+        </div>
+        <div class="graph-container clearfix" data-ng-show="player.displayChartIndex === $index">
+          {{player.displayChartIndex}}  === {{$index}}
+        </div>
       </div>
   </div>
-<!-- <highchart config="player.highchartsNG"></highchart> -->
+  <!--<highchart config="player.highchartsNG"></highchart>-->
 
 
 <div class="mini-badges-container clearfix">
