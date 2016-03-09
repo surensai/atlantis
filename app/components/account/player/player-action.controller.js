@@ -102,7 +102,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
   playerAction.deleteAction = function () {
 
     var handleSuccess = function () {
-      //PlayerService.removeItem(playerAction.data.playersList, playerAction.data.deleteObj);
       angular.element('#pop').modal('hide');
       flashService.showSuccess("Player deleted successfully!", false);
       $state.go("account.players");
