@@ -147,7 +147,8 @@
       "old_passwpord_require":"Old password is required.",
       "version_require":"Version is required.",
       "file_require": "File is required.",
-      "data_updatede_success":"Data updated successfully."
+      "data_updatede_success":"Data updated successfully.",
+      "settings_updated":"Settings updated."
     },
     "change_password": {
       "old_password": "Old Password",
