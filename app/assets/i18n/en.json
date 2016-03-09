@@ -77,7 +77,12 @@
     "firmware_update":{
       "title": "Firmware Update",
       "header": "Firmware Update"
+    },
+    "add_custom_word":{
+      "title": "Add Custom Word",
+      "header":"Add Custom Word"
     }
+
   },
   "common": {
     "buttons": {
@@ -87,7 +92,8 @@
       "cancel": "Cancel",
       "forgot_password":"REQUEST PASSWORD",
       "sign_up":"SIGNUP",
-      "addpalyer":"Add Player"
+      "addpalyer":"Add Player",
+      "addword": "Add Word"
     },
     "dob_year": "Year",
     "dob_month": "Month",
@@ -147,7 +153,8 @@
       "old_passwpord_require":"Old password is required.",
       "version_require":"Version is required.",
       "file_require": "File is required.",
-      "data_updatede_success":"Data updated successfully."
+      "data_updatede_success":"Data updated successfully.",
+      "curriculum_word_notExists":"The word does not exists."
     },
     "change_password": {
       "old_password": "Old Password",
@@ -178,5 +185,9 @@
       "header": "Firmware update",
       "firmware_version": "Firmware Version"
     }
+  },
+  "curriculum":{
+    "word": "word"
   }
+
 }

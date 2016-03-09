@@ -28,7 +28,7 @@
 </div>
 
 <div class="player-tabs">
-<uib-tabset active="activeJustified">
+<uib-tabset active="activeJustified" cg-busy="{promise:player.loadPromise,message:'Loading Your Data'}">
 <uib-tab index="0" heading="Badges">
   <div class="badges-container clearfix">
       <h4 class="badges-row">Big Badges</h4>
@@ -197,7 +197,7 @@
     </div>
 </div>
 </uib-tab>
-<uib-tab index="1" heading="Words">
+<uib-tab index="1" heading="Words" ng-click="player.getWords(player.playerObj.id)">
     <div class="badges-container clearfix">
       <table class="table table-striped borderless">
         <thead>
@@ -217,9 +217,9 @@
         <tr data-ng-repeat="word in player.wordsData | orderBy:player.predicate:player.reverse">
           <td>{{ word.Sno}}</td>
           <td>{{ word.Words}}</td>
-          <td>{{ word.Attempts}}</td>
-          <td>{{ word.LastPlayed | date:"MM/dd/yyyy '' h:mma"}}</td>
-          <td>{{word.LastAttempt}}</td>
+          <td>{{ word.attempts}}</td>
+          <td>{{ word.lastPlayed | date:"MM/dd/yyyy '' h:mma"}}</td>
+          <td>{{word.lastAttempt}}</td>
         </tr>
         </tbody>
       </table>

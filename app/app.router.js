@@ -10,9 +10,10 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
       $http.defaults.headers.common['Authorization'] = 'Bearer ' + $localStorage.token;
     }
 
-    $rootScope.$on('$locationChangeStart', function () {
+    $rootScope.$on('$locationChangeStart', function (event) {
       var loggedIn = $rootScope.globals.currentUser;
       if (!loggedIn && $location.path().indexOf("account") > 0) {
+        event.preventDefault();
         $state.go('login');
       }
 
@@ -146,6 +147,14 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
   }).state('account.curriculum', {
     url: '/curriculum',
     templateUrl: urlBuilder('account/curriculum', 'curriculum'),
+    controller: 'curriculumCtrl',
+    controllerAs: "curriculum",
+    data: {
+      pageTitle: 'Square Panda - Curriculum'
+    }
+  }).state('account.addCustomWord', {
+    url: '/curriculum/addword',
+    templateUrl: urlBuilder('account/curriculum', 'curriculum.addword'),
     controller: 'curriculumCtrl',
     controllerAs: "curriculum",
     data: {

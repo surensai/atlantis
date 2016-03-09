@@ -11,6 +11,9 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
   service.getAllApi = function () {
     return $http.get(base_url + '/user/' + userID + '/child');
   };
+  service.getWordsApi = function(childId){
+    return $http.get(base_url + '/activity/'+ userID  +'/'+childId);
+  };
 
   service.createApi = function (child) {
     return $http.post(base_url + '/user/' + userID + '/student', child);
@@ -22,6 +25,10 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
 
   service.updateApi = function (childID, child) {
     return $http.put(base_url + '/user/' + userID + '/student/' + childID + '/edit', child);
+  };
+
+  service.saveWordApi = function (wordData) {
+    return $http.post(base_url + '/private/' + userID + '/createword', wordData);
   };
 
   service.uploadFileApi = function (file) {
