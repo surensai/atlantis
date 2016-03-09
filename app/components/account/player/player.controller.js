@@ -5,11 +5,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   var player = this;
   player.model = {};
   player.data = {};
-  player.modalTitle = 'Warning!';
-  player.modalBody = 'Are you sure do you want to delete player?';
   player.data.playersList = [];
   player.playerObj = {};
-  player.data.deleteObj = {};
   player.show = true;
   player.reverse = false;
   player.displayChartIndex = 0;
@@ -52,27 +49,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
       .success(handleSuccess)
       .error(handleError);
   }
-
-  player.deleteListener = function (obj) {
-    player.data.deleteObj = obj;
-  };
-
-  player.deleteAction = function () {
-
-    var handleSuccess = function () {
-      PlayerService.removeItem(player.data.playersList, player.data.deleteObj);
-      angular.element('#pop').modal('hide');
-      flashService.showSuccess("Player deleted successfully!", false);
-    };
-
-    var handleError = function () {
-      flashService.showError("Error in deleting", false);
-    };
-
-    PlayerService.deleteApi(player.data.deleteObj.id)
-      .success(handleSuccess)
-      .error(handleError);
-  };
 
   player.bigBadges = [
     {

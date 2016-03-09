@@ -104,14 +104,17 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
     var handleSuccess = function () {
       angular.element('#pop').modal('hide');
       flashService.showSuccess("Player deleted successfully!", false);
-      $state.go("account.players");
+      $timeout(function () {
+         $state.go("account.players");
+      }, 200);
+
     };
 
     var handleError = function () {
       flashService.showError("Error in deleting", false);
     };
 
-    PlayerService.deleteApi(playerAction.data.deleteObj.id)
+    playerAction.loaderPromise = PlayerService.deleteApi(playerAction.data.deleteObj.id)
       .success(handleSuccess)
       .error(handleError);
   };

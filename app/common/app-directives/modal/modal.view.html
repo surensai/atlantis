@@ -1,4 +1,4 @@
-<div id="{{handler}}" class="modal fade">
+<div id="{{handler}}" class="modal fade" cg-busy="{promise:myPromise, message:'Deleting Player'}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,7 +11,7 @@
             <div class="modal-footer">
                 <h4 class="text-warning">{{footer}}</h4>
                 <button type="button" class="btn btn-default" data-dismiss="modal" data-translate="common.modal_cancel_button">Close</button>
-                <button type="button" class="btn btn-primary" data-ng-click="callbackbuttonright(); $event.stopPropagation()" data-translate="common.modal_ok_button">Ok</button>
+                <button type="button" class="btn btn-primary"  data-ng-click="callbackbuttonright(); $event.stopPropagation()" data-translate="common.modal_ok_button">Ok</button>
             </div>
         </div>
     </div>
