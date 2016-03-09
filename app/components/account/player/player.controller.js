@@ -176,6 +176,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
     player.loadPromise = PlayerService.getWordsApi(childId)
       .success(handleSuccess)
       .error(handleError);
-  }
+  };
 
 }]);

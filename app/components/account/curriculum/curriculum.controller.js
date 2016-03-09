@@ -59,7 +59,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'PlayerService',
     };
 
     var handleError = function () {
-        addAction();
+      addAction();
       flashService.showError("Error in file uploading", false);
     };
     var file = curriculum.myFile;
@@ -68,22 +68,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'PlayerService',
       .success(handleSuccess)
       .error(handleError);
   }
-
-  curriculum.searchWord = function(){
-    var handleSuccess = function (data) {
-      if (data) {
-
-      }
-    };
-
-    var handleError = function () {
-      flashService.showError("Error in getting words", false);
-    };
-
-    curriculum.loadPromise = PlayerService.searchWordApi()
-      .success(handleSuccess)
-      .error(handleError);
-  };
 
   $scope.photoChanged = function (files) {
     if (files != null) {
