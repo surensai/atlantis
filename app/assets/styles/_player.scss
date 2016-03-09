@@ -13,6 +13,16 @@
 .add-profile-pic{
   padding-top: 40px;
 }
+  .radio-button-sizes{
+    width: 20px;
+    height: 20px;
+  }
+  .gender-icon-size{
+    padding-left: 5px;
+  }
+  .radio-label-sizes{
+    margin-right: 20px;
+  }
 }
 
 .players-container {
@@ -129,6 +139,8 @@
     border-top: none;
     .badges-container {
       padding-top: 25px;
+      margin-left: 25px;
+      margin-right: 25px;
       .graph-container{
         background-color: #fcfcfc;
       }

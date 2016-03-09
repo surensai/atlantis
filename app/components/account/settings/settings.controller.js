@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService','$state','flashService', function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService,$state,flashService) {
+angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService','$state', function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService,$state) {
   var settings = this;
   settings.model = {};
   settings.model.userData = angular.copy($rootScope.globals.currentUser);
@@ -87,11 +87,14 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
 
 
   settings.submitNotifications = function () {
+    settings.show = true;
     var handleSuccess = function (data) {
-      flashService.showSuccess(data.message, true);
+      messagesFactory.settingsNotificationsSuccessMessages(data);
     };
-    var handleError = function (error) {
-      flashService.showError(error.error, false);
+    var handleError = function (error,status) {
+      if (error && status) {
+        messagesFactory.settingsNotificationsErrorMessages(status);
+      }
     };
     settings.loadPromise = settingsService.updateApi(settings.model.notificationObj)
       .success(handleSuccess)
@@ -102,8 +105,10 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
     var handleSuccess = function (data) {
       settings.model.notificationObj = data;
     };
-    var handleError = function (error) {
-      flashService.showError(error.error, false);
+      var handleError = function (error,status) {
+      if (error && status) {
+        messagesFactory.settingsgetNotifictaionsErrorMessages(status);
+      }
     };
     settings.loadPromise = settingsService.getApi()
       .success(handleSuccess)

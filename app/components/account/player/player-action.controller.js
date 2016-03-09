@@ -56,7 +56,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
     function updateAction() {
         var formData = stuctureFormData();
         var handleSuccess = function () {
-            $state.go('account.players');
+          $state.go('account.players.details', {id: playerAction.model.playerItem.id});
         };
 
         var handleError = function () {
