@@ -5,13 +5,16 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
   var service = {};
   var base_url = $rootScope.base_url;
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
-  var fd = new FormData();
   var playersData = [];
 
   service.getAllApi = function () {
     return $http.get(base_url + '/user/' + userID + '/child');
   };
   service.getWordsApi = function(childId){
+    return $http.get(base_url + '/activity/'+ userID  +'/'+childId);
+  };
+
+  service.searchWordApi = function(childId){
     return $http.get(base_url + '/activity/'+ userID  +'/'+childId);
   };
 
@@ -32,7 +35,9 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
   };
 
   service.uploadFileApi = function (file) {
+    var fd = new FormData();
     fd.append('content', file);
+    console.log(fd);
     return $http.post(base_url + '/file/uploads3',fd,{
       transformRequest: angular.identity,
       headers: {'Content-Type': undefined}

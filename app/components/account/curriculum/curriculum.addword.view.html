@@ -13,9 +13,10 @@
                ng-class="{ 'has-error' : (submitted && !playerForm.firstName) || (playerForm.firstName.$invalid && !playerForm.firstName.$pristine) }">
             <label class="col-md-2 control-label" data-translate="curriculum.word">Word</label>
 
-            <div class="col-md-3">
+            <div class="col-md-3" style="display: inline-flex;">
               <input type="text" name="word" class="form-control" data-ng-model="curriculum.model.wordItem.word"
                      placeholder="{{ 'curriculum.word' | translate }}" required>
+              <span class="btn btn-default" ng-click="curriculum.searchWord()" style="margin-left:5%"><i class="fa fa-search"></i></span>
             </div>
             <p ng-show="playerForm.$submitted && playerForm.word.$error.required" class="error-mesasage"
                data-translate="user.validationMessages.curriculum_word_notExists">The word does not exists.</p>

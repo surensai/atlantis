@@ -90,6 +90,7 @@
       "save": "Save",
       "edit":"Edit",
       "cancel": "Cancel",
+      "delete":"delete",
       "forgot_password":"REQUEST PASSWORD",
       "sign_up":"SIGNUP",
       "addpalyer":"Add Player",
@@ -154,7 +155,8 @@
       "version_require":"Version is required.",
       "file_require": "File is required.",
       "data_updatede_success":"Data updated successfully.",
-      "curriculum_word_notExists":"The word does not exists."
+      "curriculum_word_notExists":"The word does not exists.",
+      "file_type_wrong":"File Type is wrong. It only allows images type PNG/JPEG"
     },
     "change_password": {
       "old_password": "Old Password",
