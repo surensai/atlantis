@@ -20,6 +20,7 @@ angular.module("app").directive('fbShare', ['$window', function ($window) {
       element.bind('click', function () {
         FB.ui({
           method: 'feed',
+          size: {width:500,height:300}, width:500, height:300,
           link: 'http://google.com',
           caption: scope.item.title,
           picture: scope.item.image_url,

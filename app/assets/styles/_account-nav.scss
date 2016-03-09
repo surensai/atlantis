@@ -55,14 +55,20 @@ nav .account-nav {
       border-right: solid 1px #f6f6f6;
       line-height: 9px;
     }
-        a:hover, .active {
+
+    a:hover, .active {
       text-decoration: none;
       background: darken(#4CBC96, 10%);
     }
+
     span{
       vertical-align: -30%;
     }
   }
+}
+
+.account-nav a:first-child{
+  border-left: solid 1px #f6f6f6;
 }
 
 #sidebar {
