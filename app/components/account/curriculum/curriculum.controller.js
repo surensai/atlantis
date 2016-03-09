@@ -1,11 +1,14 @@
 'use strict';
 
-angular.module("app").controller('curriculumCtrl', ['$timeout', 'PlayerService', 'flashService','$scope', function ($timeout, PlayerService, flashService, $scope) {
+angular.module("app").controller('curriculumCtrl', ['$timeout', 'PlayerService', 'flashService','$scope','$sce', function ($timeout, PlayerService, flashService, $scope, $sce) {
 
   var curriculum = this;
   curriculum.model = {};
   curriculum.show = true;
   curriculum.model.wordItem = {};
+
+  curriculum.fileReaderSupported = window.FileReader != null;
+  var URL = window.URL || window.webkitURL;
 
   curriculum.closeAlert = function () {
     curriculum.show = false;
@@ -28,7 +31,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'PlayerService',
     var data = {};
     data.word = curriculum.model.wordItem.word;
     data.imageURL = curriculum.model.wordItem.imageURL;
-    data.audioURL = curriculum.model.wordItem.audioURL;
+    data.audioURL = $sce.trustAsResourceUrl(curriculum.model.wordItem.audioURL);
     return data;
   }
 
@@ -66,7 +69,21 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'PlayerService',
       .error(handleError);
   }
 
-  curriculum.fileReaderSupported = window.FileReader != null;
+  curriculum.searchWord = function(){
+    var handleSuccess = function (data) {
+      if (data) {
+
+      }
+    };
+
+    var handleError = function () {
+      flashService.showError("Error in getting words", false);
+    };
+
+    curriculum.loadPromise = PlayerService.searchWordApi()
+      .success(handleSuccess)
+      .error(handleError);
+  };
 
   $scope.photoChanged = function (files) {
     if (files != null) {
@@ -80,6 +97,18 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'PlayerService',
               curriculum.model.wordItem.imageURL = e.target.result;
             });
           };
+        });
+      }
+    }
+  };
+
+  $scope.audioFileChanged = function (files) {
+    if (files != null) {
+      var file = files[0];
+      if (file.type.indexOf('audio') > -1) {
+        $timeout(function () {
+          var fileURL = URL.createObjectURL(file);
+          curriculum.model.wordItem.audioURL = $sce.trustAsResourceUrl(fileURL);
         });
       }
     }

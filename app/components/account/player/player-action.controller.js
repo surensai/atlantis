@@ -4,8 +4,12 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
     var playerAction = this;
     playerAction.model = {};
     playerAction.data = {};
+    playerAction.modalTitle = 'Warning!';
+    playerAction.modalBody = 'Are you sure do you want to delete player?';
+    playerAction.data.deleteObj ={};
     playerAction.isUpdate = false;
     playerAction.model.playerItem = {};
+    playerAction.fileError = true;
 
     (function () {
         getPlayerById();
@@ -52,7 +56,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
     function updateAction() {
         var formData = stuctureFormData();
         var handleSuccess = function () {
-            $state.go('account.players');
+          $state.go('account.players.details', {id: playerAction.model.playerItem.id});
         };
 
         var handleError = function () {
@@ -91,12 +95,36 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
             .error(handleError);
     }
 
-    playerAction.fileReaderSupported = window.FileReader != null;
+  playerAction.deleteListener = function (obj) {
+    playerAction.data.deleteObj = obj;
+  };
+
+  playerAction.deleteAction = function () {
+
+    var handleSuccess = function () {
+      //PlayerService.removeItem(playerAction.data.playersList, playerAction.data.deleteObj);
+      angular.element('#pop').modal('hide');
+      flashService.showSuccess("Player deleted successfully!", false);
+      $state.go("account.players");
+    };
+
+    var handleError = function () {
+      flashService.showError("Error in deleting", false);
+    };
+
+    PlayerService.deleteApi(playerAction.data.deleteObj.id)
+      .success(handleSuccess)
+      .error(handleError);
+  };
+
+
+  playerAction.fileReaderSupported = window.FileReader != null;
 
     $scope.photoChanged = function (files) {
         if (files != null) {
             var file = files[0];
             if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
+                playerAction.fileError = true;
                 $timeout(function () {
                     var fileReader = new FileReader();
                     fileReader.readAsDataURL(file);
@@ -106,6 +134,8 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
                         });
                     };
                 });
+            }else{
+              playerAction.fileError = false;
             }
         }
     };

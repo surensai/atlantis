@@ -86,6 +86,26 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     flashService.showError(message, false);
   }
 
+  function settingsNotificationsSuccessMessages(successObj) {
+    if (successObj) {
+      flashService.showSuccess($translate.instant('user.validationMessages.settings_updated'), true);
+    }
+  }
+
+  function settingsNotificationsErrorMessages(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError(message, false);
+  }
+  function settingsgetNotifictaionsErrorMessages(status){
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError(message, false);
+  }
   service.loginErrorMessages = loginErrorMessages;
   service.registerErrorMessages = registerErrorMessages;
   service.registerSuccessMessages = registerSuccessMessages;
@@ -97,6 +117,8 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   service.settingseditprofileSuccessMessages = settingseditprofileSuccessMessages;
   service.settingschangepasswordSuccessMessages = settingschangepasswordSuccessMessages;
   service.settingschangepasswordErrorMessages = settingschangepasswordErrorMessages;
-
+  service.settingsNotificationsSuccessMessages = settingsNotificationsSuccessMessages;
+  service.settingsNotificationsErrorMessages = settingsNotificationsErrorMessages;
+  service.settingsgetNotifictaionsErrorMessages = settingsgetNotifictaionsErrorMessages;
   return service;
 }]);
