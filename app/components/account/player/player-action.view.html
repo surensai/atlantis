@@ -58,6 +58,8 @@
               <div>
                 <input type="file"  file-model="playerAction.myFile" class="img-rectangle img-border-radius " onchange="angular.element(this).scope().photoChanged(this.files)">
             </div>
+              <p ng-show="playerForm.$submitted && !playerAction.fileError" class="error-mesasage"
+                 data-translate="user.validationMessages.file_type_wrong">File Type is wrong. It only allows images type PNG/JPEG</p>
           </div>
           </div>
           <div class="col-md-2"></div>
@@ -65,11 +67,18 @@
           <button type="submit"class="btn btn-primary" data-translate="common.buttons.save" data-ng-if="playerAction.isUpdate">Save </button>
           <a  ui-sref="account.players" type="button" class="btn btn-primary cancel-button" data-translate="common.buttons.cancel" >Cancel
           </a>
+          <!--<button type="button"class="btn btn-primary" data-target="#{{modal}}"  data-toggle="modal" data-ng-click="playerAction.deleteListener(playerAction.model.playerItem)" data-translate="common.buttons.delete" data-ng-if="playerAction.isUpdate">Delete </button>-->
         </div>
       </form>
     </div>
   </div>
 </div>
+
+<modal  my-handler="modal" modal-body="playerAction.modalBody" modal-footer="playerAction.modalFooter" modal-header="playerAction.modalTitle" data-ng-click-right-button="playerAction.deleteAction()"></modal>
+
+
+
+
 
   <!--<div cg-busy="{promise:playerAction.loadPromise, message:'Loading Your Data'}"></div>-->
 
