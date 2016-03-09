@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('curriculumCtrl', ['$timeout', 'PlayerService', 'flashService','$scope', function ($timeout, PlayerService, flashService, $scope) {
+angular.module("app").controller('curriculumCtrl', ['$timeout', 'PlayerService', 'flashService','$scope','$sce', function ($timeout, PlayerService, flashService, $scope, $sce) {
 
   var curriculum = this;
   curriculum.model = {};
@@ -28,7 +28,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'PlayerService',
     var data = {};
     data.word = curriculum.model.wordItem.word;
     data.imageURL = curriculum.model.wordItem.imageURL;
-    data.audioURL = curriculum.model.wordItem.audioURL;
+    data.audioURL = $sce.trustAsResourceUrl(curriculum.model.wordItem.audioURL);
     return data;
   }
 
@@ -80,6 +80,20 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'PlayerService',
               curriculum.model.wordItem.imageURL = e.target.result;
             });
           };
+        });
+      }
+    }
+  };
+
+  var URL = window.URL || window.webkitURL;
+
+  $scope.audioFileChanged = function (files) {
+    if (files != null) {
+      var file = files[0];
+      if (file.type.indexOf('audio') > -1) {
+        $timeout(function () {
+          var fileURL = URL.createObjectURL(file);
+          curriculum.model.wordItem.audioURL = $sce.trustAsResourceUrl(fileURL);
         });
       }
     }

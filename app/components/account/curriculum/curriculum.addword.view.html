@@ -23,14 +23,12 @@
           <div class="form-group">
             <label class="col-md-2 control-label add-profile-pic">Pronunciation</label>
             <div class="col-md-2">
-              <div ng-hide="curriculum.model.wordItem.audioURL">
-                <audio controls>
-                  <source src="http://soundbible.com/mp3/1_person_cheering-Jett_Rifkin-1851518140.mp3" type="{{curriculum.model.wordItem.audioType}}">
-                  Your browser does not support the audio element.
+              <div ng-show="curriculum.model.wordItem.audioURL">
+                <audio controls autoplay ng-src="{{curriculum.model.wordItem.audioURL}}">
                 </audio>
               </div>
               <div>
-                <input type="file"  file-model="curriculum.myFile" class="img-rectangle img-border-radius " onchange="angular.element(this).scope().photoChanged(this.files)">
+                <input type="file"  file-model="curriculum.myFile" class="img-rectangle img-border-radius " accept="audio/*"  onchange="angular.element(this).scope().audioFileChanged(this.files)">
               </div>
             </div>
 
