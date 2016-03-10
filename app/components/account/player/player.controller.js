@@ -42,7 +42,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
     };
 
     var handleError = function () {
-      flashService.showError("Error in getting players", false);
+      flashService.showError($translate.instant("player.messages.error_getting_players"), false);
     };
 
     player.loadPromise = PlayerService.getAllApi()
@@ -146,7 +146,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
     };
 
     var handleError = function () {
-      flashService.showError("Error in getting words", false);
+      flashService.showError($translate.instant("player.messages.error_getting_words"), false);
     };
 
     player.loadPromise = PlayerService.getWordsApi(childId)
