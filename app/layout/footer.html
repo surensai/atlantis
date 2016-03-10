@@ -1,5 +1,5 @@
-<div class="footer" ng-class="{'footer-fixed': !globals.currentUser}">
-  <div class="container-fluid footer-container">
+<div class="footer" ng-class="{'footer-fixed': !globals.currentUser || isFooterFixed}">
+  <div class="container footer-container">
     <ul class="footer-left">
     	<li><a ui-sref="progress">Press</a></li>
     	<li><a ui-sref="progress">Warranty Information</a></li>

@@ -1,5 +1,5 @@
 "use strict";
-angular.module("app").controller("appCtrl", ['$scope', '$rootScope', '$location', 'AuthenticationService', '$state', function ($scope, $rootScope, $location, AuthenticationService, $state) {
+angular.module("app").controller("appCtrl", ['$scope', '$rootScope', '$location', 'AuthenticationService', '$state','appService', function ($scope, $rootScope, $location, AuthenticationService, $state, appService) {
   $scope.curUrl = "";
   $scope.logout = function () {
     AuthenticationService.ClearCredentials();
@@ -7,7 +7,8 @@ angular.module("app").controller("appCtrl", ['$scope', '$rootScope', '$location'
   };
 
   $rootScope.$on('$locationChangeStart', function () {
-    $scope.curUrl =$location.path();
+    $scope.curUrl = $location.path();
+    $scope.isFooterFixed = appService.isFooterFixed($scope.curUrl);
   });
 
 }]);

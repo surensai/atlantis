@@ -2,7 +2,7 @@
   <nav class="container">
     <ul class="account-nav">
       <li>
-        <a ui-sref="account.dashboard" ng-class="{active: $state.includes('account.dashboard')}">
+        <a class="nav-border-left" ui-sref="account.dashboard" ng-class="{active: $state.includes('account.dashboard')}">
           <img src="assets/images/home.png" >
           <span data-translate="nav.sidebar.home">HOME</span>
         </a>
@@ -14,7 +14,7 @@
         </a>
       </li>
       <li>
-        <a ui-sref="progress">
+        <a ui-sref="account.curriculum" ng-class="{active: $state.includes('account.curriculum')}">
           <img src="assets/images/curriculum.png" >
           <span data-translate="nav.sidebar.curriculum"> MY CURRICULUM </span>
         </a>
@@ -46,7 +46,7 @@
            data-translate="nav.sidebar.players">Players</a>
     </li>
     <li>
-      <a ui-sref="progress" ng-class="{active: $state.includes('progress')}"
+      <a ui-sref="account.curriculum" ng-class="{active: $state.includes('account.curriculum')}"
            data-translate="nav.sidebar.curriculum">My Curriculum</a>
     </li>
     <li><a ui-sref="account.settings" ng-class="{active: $state.includes('account.settings')}"
