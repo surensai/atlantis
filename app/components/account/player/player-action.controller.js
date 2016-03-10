@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flashService', 'PlayerService', '$timeout', function ($scope, $state, flashService, PlayerService, $timeout) {
+angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flashService', 'PlayerService', '$timeout','$translate',function ($scope, $state, flashService, PlayerService, $timeout,$translate) {
 
     var playerAction = this;
     playerAction.model = {};
     playerAction.data = {};
     playerAction.modalTitle = 'Warning!';
-    playerAction.modalBody = 'Are you sure do you want to delete player?';
+    playerAction.modalBody = $translate.instant("user.validationMessages.model_delete_player");
     playerAction.data.deleteObj ={};
     playerAction.isUpdate = false;
     playerAction.model.playerItem = {};
@@ -47,12 +47,12 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
     function addAction() {
       var formData = stuctureFormData();
         var handleSuccess = function () {
-            flashService.showSuccess("Player added successfully!", true);
+            flashService.showSuccess($translate.instant("player.messages.add_success"), true);
             $state.go('account.players');
         };
 
         var handleError = function () {
-            flashService.showError("Invalid player credentials", false);
+            flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
         };
 
         playerAction.loadPromise = PlayerService.createApi(formData)
@@ -67,7 +67,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
         };
 
         var handleError = function () {
-            flashService.showError("Invalid player credentials", false);
+            flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
         };
 
         playerAction.loadPromise = PlayerService.updateApi(playerAction.data.playerItem.id, formData)
@@ -84,7 +84,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
                 addAction();
             }
             form.$setPristine();
-            flashService.showSuccess("File uploaded successfully!", false);
+            flashService.showSuccess($translate.instant("player.messages.file_upload_success"), false);
         };
 
         var handleError = function () {
@@ -93,7 +93,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
             } else {
                 addAction();
             }
-            flashService.showError("Error in file uploading", false);
+            flashService.showError($translate.instant("player.messages.error_file_upload"), false);
         };
         var file = playerAction.myFile;
 
@@ -110,13 +110,13 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
 
     var handleSuccess = function () {
       angular.element('#pop').modal('hide');
-      flashService.showSuccess("Player deleted successfully!", false);
+      flashService.showSuccess($translate.instant("player.messages.delete_success"), false);
       $state.go("account.players");
 
     };
 
     var handleError = function () {
-      flashService.showError("Error in deleting", false);
+      flashService.showError($translate.instant("player.messages.error_deleting_players"), false);
     };
 
     playerAction.loadPromise = PlayerService.deleteApi(playerAction.data.deleteObj.id)
@@ -155,7 +155,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
             };
 
             var handleError = function () {
-                flashService.showError("Error in getting player", false);
+                flashService.showError($translate.instant("player.messages.error_getting_players"), false);
             };
 
             playerAction.loadPromise = PlayerService.getPlayerById($state.params.id)

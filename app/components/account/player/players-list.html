@@ -3,7 +3,7 @@
     <li>
       <a ui-sref="account.addplayer">
         <img data-ng-if="!playerItem.profileURL" src="assets/images/add-player.png" class="img-circle" alt="player" width="80" height="80" />
-        <span> Add Player </span>
+        <span data-translate="player.add_player"> Add Player </span>
       </a>
     </li>
     <li data-ng-repeat="playerItem in player.data.playersList | orderBy:'createdAt'" >

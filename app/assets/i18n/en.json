@@ -93,7 +93,6 @@
       "delete":"delete",
       "forgot_password":"REQUEST PASSWORD",
       "sign_up":"SIGNUP",
-      "addpalyer":"Add Player",
       "addword": "Add Word"
     },
     "dob_year": "Year",
@@ -158,7 +157,8 @@
       "settings_updated": "Settings updated.",
       "curriculum_word_notExists": "The word does not exists.",
       "file_type_wrong": "File Type is wrong. Only allow Images.",
-      "age_require":"Age is required."
+      "age_require":"Age is required.",
+      "model_delete_player":"Are you sure do you want to delete player?"
     },
     "change_password": {
       "old_password": "Old Password",
@@ -170,18 +170,45 @@
     "first_name": "First Name",
     "last_name": "Last Name",
     "mobile": "Mobile",
-    "gender": "Gender",
+    "gender": "Gender :",
     "dateOfBirth": "DOB",
+    "age":"Age :",
     "more": "more",
+    "add_player":"Add Player",
+    "edit_player":"Edit Player",
     "view_players": "Back to view Players",
     "add_new_player": "Add New Player",
+    "add_picture":"Add a picture :",
+    "fav_game1":"Fav game 01,",
+    "fav_game2":"Fav game 02,",
+    "fav_game3":"Fav game 03",
+    "bird":"Bird ",
+    "cat":" Cat.",
+    "learn_words":"learned words like",
+    "word_jumble":"Word Jumble.",
+    "milestone_achieved":" achieved 02 Milestones in",
+    "elit":" elit.",
+    "consectetur":" consectetur adipscing",
     "messages": {
       "add_success": "Player added successfully!",
       "update_success": "Player updated successfully!",
       "delete_success": "Player deleted successfully!",
       "add_error": "Player added successfully!",
       "update_error": "Player updated successfully!",
-      "delete_error": "Player deleted successfully!"
+      "delete_error": "Player deleted successfully!",
+      "file_upload_success":"File uploaded successfully!",
+      "error_file_upload":"Error in file uploading",
+      "invalid_credentials":"Invalid player credentials",
+      "error_deleting_players":"Error in deleting",
+      "error_getting_players":"Error in getting player",
+      "error_getting_words":"Error in getting words"
+    },
+    "buttons":{
+      "add_palyer":"Add Player"
+    },
+    "badges":{
+      "big_badges":"Big badges",
+      "mini_badges":"Mini babges"
     }
   },
   "admin": {
