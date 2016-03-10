@@ -37,7 +37,6 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
   service.uploadFileApi = function (file) {
     var fd = new FormData();
     fd.append('content', file);
-    console.log(fd);
     return $http.post(base_url + '/file/uploads3',fd,{
       transformRequest: angular.identity,
       headers: {'Content-Type': undefined}

@@ -9,7 +9,8 @@ angular.module("app").directive('modal', function () {
             footer: '=modalFooter',
             callbackbuttonleft: '&ngClickLeftButton',
             callbackbuttonright: '&ngClickRightButton',
-            handler: '=myHandler'
+            handler: '=myHandler',
+            myPromise: '=myPromise'
         },
         templateUrl: 'common/app-directives/modal/modal.view.html',
         transclude: true,

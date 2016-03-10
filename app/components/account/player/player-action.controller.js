@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flashService', 'PlayerService', '$timeout', function ($scope, $state, flashService, PlayerService, $timeout) {
+
     var playerAction = this;
     playerAction.model = {};
     playerAction.data = {};
@@ -19,7 +20,8 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
     playerAction.submitForm = function (form) {
 
         playerAction.submitted = true;
-        if (form.$valid) {
+        if (form.$valid && playerAction.fileError) {
+            playerAction.added = true;
             uploadProfilePic(form);
         } else {
             $timeout(function () {
@@ -104,14 +106,17 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
     var handleSuccess = function () {
       angular.element('#pop').modal('hide');
       flashService.showSuccess("Player deleted successfully!", false);
-      $state.go("account.players");
+      $timeout(function () {
+         $state.go("account.players");
+      }, 200);
+
     };
 
     var handleError = function () {
       flashService.showError("Error in deleting", false);
     };
 
-    PlayerService.deleteApi(playerAction.data.deleteObj.id)
+    playerAction.modalPromise = PlayerService.deleteApi(playerAction.data.deleteObj.id)
       .success(handleSuccess)
       .error(handleError);
   };
@@ -119,7 +124,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
 
   playerAction.fileReaderSupported = window.FileReader != null;
 
-    $scope.photoChanged = function (files) {
+  $scope.photoChanged = function (files) {
         if (files != null) {
             var file = files[0];
             if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
