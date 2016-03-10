@@ -96,12 +96,19 @@
   margin-bottom: 10px;
 }
 
+.user-links-col1{
+  top: -70px;
+}
+
+.user-links-col2{
+  top: -102px;
+}
+
 .user-links {
   background-color: rgba(0, 0, 0, 0.4);
   padding-top: 20px;
   padding-bottom: 20px;
   position: absolute;
-  top: -102px;
   width: 100%;
   .pull-right, .pull-left{
     float: none!important;
@@ -137,5 +144,29 @@
 @-moz-document url-prefix() {
   .custom-checkbox-span {
     margin: 2px 0px 10px;
+  }
+}
+
+@media(min-width: 768px) {
+  .user-links {
+    a{
+      display: inline!important;
+      text-align: left;
+      line-height: normal;
+      &:nth-child(1){
+        float: left;
+      }
+      &:nth-child(2){
+        float: right;
+      }
+    }
+  }
+
+  .user-links-col1{
+    top: -60px!important;
+  }
+
+  .user-links-col2{
+    top: -58px!important;
   }
 }

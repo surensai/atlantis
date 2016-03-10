@@ -92,14 +92,51 @@
   }
 }
 
+.account-header {
+  min-height: 40px;
+  max-height: 117px;
+  position: relative;
+
+  .header .navbar-brand-responsive{
+    display: block;
+  }
+
+  .navbar-brand {
+    height: auto;
+    display: none;
+    margin: 10px 0px 10px 0px!important;
+    padding-right: 44px;
+    img {
+      min-width: 125px;
+      min-height: 50px;
+    }
+  }
+
+  .header-left{
+    background: $primary-color;
+    position: absolute;
+    left: 0px;
+    height: 100%;
+    z-index: -1;
+    width: 50%;
+  }
+
+  .header-right {
+    background: $sp-yellow url("../images/header-design.png") no-repeat left;
+    position: absolute;
+    right: 0px;
+    height: 100%;
+    width: 80%;
+  }
+}
+
 .top-header {
   float: right;
-  padding: 0px 20px;
-  margin: 15px 0px;
+  margin: 33px 0px;
   font-family: $font-family;
   font-size: 16px;
+  display: none;
   .dropdown {
-    display: none;
     a {
       text-decoration: none;
       color: $white-color;
@@ -132,9 +169,6 @@
 .font-style{
   font-family: $font-family;
 }
-.footer-container {
-  margin-left: 15px;
-}
 
 .footer {
   background-color: $bg-color;
@@ -149,11 +183,12 @@
 
   .footer-left {
     float: left;
+    margin-top: 8px!important;
   }
 
   .footer-logo {
     float: right;
-    margin: 10px 15px 0 0px;
+    margin: 10px 0px 0 0px;
   }
 
   li {
@@ -165,10 +200,8 @@
       font-family: $font-family;
       font-size: 12px;
       text-decoration: none;
-      margin: 0px;
       display: block;
-      float: left;
-      padding-right: 39px;
+      padding-right: 30px;
     }
     a:hover {
       text-decoration: underline;
@@ -224,17 +257,20 @@
   }
 }
 
+
+
 @media(min-width: 768px) {
-  .top-header .dropdown {
-    display: block;
-    padding-top: 18px;
-  }
-
-  .header .navbar-brand{
+  .top-header {
     display: block;
   }
 
-  .header .navbar-brand-responsive{
+  .header .navbar-brand,
+  .account-header .navbar-brand{
+    display: block;
+  }
+
+  .header .navbar-brand-responsive,
+  .account-header .navbar-brand-responsive{
     display: none;
   }
 
@@ -242,32 +278,16 @@
     max-height: 96px;
   }
 
-  .width30-per {
-    width: 10%;
-  }
-
-  .width70-per {
-    width: 90%;
-  }
-
   .bg-img {
     background-size: 100% auto!important;
   }
 
-  .user-links {
-    top: -70px!important;
+  .footer li a{
+    display: inline;
+  }
 
-    a{
-      display: inline!important;
-      text-align: left;
-      line-height: normal;
-      &:nth-child(1){
-        float: left;
-      }
-      &:nth-child(2){
-        float: right;
-      }
-    }
+  .account-header .header-right {
+    width: 51%;
   }
 
 }
@@ -295,6 +315,10 @@
     margin-left: -196px!important;
   }
 
+  .bg-img {
+    background-size: auto 100% !important;
+  }
+
 }
 
 @media only screen and
@@ -315,6 +339,10 @@
   body.body-toggle {
     padding-right: 196px!important;
     margin-left: -196px!important;
+  }
+
+  .bg-img {
+    background-size: auto 100% !important;
   }
 
 }
