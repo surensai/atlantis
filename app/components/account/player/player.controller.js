@@ -12,15 +12,13 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   player.displayChartIndex = 0;
   player.predicate = 'Sno';
 
-  player.wordsHeaders = [
-    {
+  player.wordsHeaders = {
       Sno:"Sno",
       Words:"Word",
       attempts:"attempts",
       lastPlayed:"lastPlayed",
       lastAttempt:"lastAttempt"
-    }
-  ]
+    };
 
   player.getKeysOfCollection = function (obj) {
     obj = angular.copy(obj);

@@ -6,7 +6,7 @@
         <span data-translate="player.add_player"> Add Player </span>
       </a>
     </li>
-    <li data-ng-repeat="playerItem in player.data.playersList | orderBy:'createdAt'" >
+    <li data-ng-repeat="playerItem in player.data.playersList " >
       <a ui-sref="account.players.details({ id: playerItem.id })"
          ng-class="{ active: $state.includes('account.players.details', { id: playerItem.id })}">
         <img data-ng-if="!playerItem.profileURL" src="assets/images/fallback-img.png" class="img-circle" alt="player" width="80" height="80" />
