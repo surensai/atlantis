@@ -157,7 +157,8 @@
       "data_updatede_success": "Data updated successfully.",
       "settings_updated": "Settings updated.",
       "curriculum_word_notExists": "The word does not exists.",
-      "file_type_wrong": "File Type is wrong. It only allows images type PNG/JPEG"
+      "file_type_wrong": "File Type is wrong. Only allow Images.",
+      "age_require":"Age is required."
     },
     "change_password": {
       "old_password": "Old Password",

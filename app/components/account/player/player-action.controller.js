@@ -11,6 +11,9 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
     playerAction.isUpdate = false;
     playerAction.model.playerItem = {};
     playerAction.fileError = true;
+    playerAction.model.playerItem.gender = 'M';
+    playerAction.model.playerItem.age = 5;
+
 
     (function () {
         getPlayerById();
@@ -36,11 +39,13 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
         data.firstName = playerAction.model.playerItem.firstName;
         data.lastName = playerAction.model.playerItem.lastName;
         data.profileURL = playerAction.model.playerItem.profileURL;
+        data.age =  playerAction.model.playerItem.age;
+        data.gender = playerAction.model.playerItem.gender;
         return data;
     }
 
     function addAction() {
-        var formData = stuctureFormData();
+      var formData = stuctureFormData();
         var handleSuccess = function () {
             flashService.showSuccess("Player added successfully!", true);
             $state.go('account.players');
@@ -106,9 +111,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
     var handleSuccess = function () {
       angular.element('#pop').modal('hide');
       flashService.showSuccess("Player deleted successfully!", false);
-      $timeout(function () {
-         $state.go("account.players");
-      }, 200);
+      $state.go("account.players");
 
     };
 
@@ -116,7 +119,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
       flashService.showError("Error in deleting", false);
     };
 
-    playerAction.modalPromise = PlayerService.deleteApi(playerAction.data.deleteObj.id)
+    playerAction.loadPromise = PlayerService.deleteApi(playerAction.data.deleteObj.id)
       .success(handleSuccess)
       .error(handleError);
   };

@@ -202,7 +202,7 @@
       <table class="table table-striped borderless">
         <thead>
           <tr>
-            <th ng-repeat="key in player.getKeysOfCollection(player.wordsData[0])"
+            <th ng-repeat="key in player.getKeysOfCollection(player.wordsHeaders[0])"
                 ng-click="player.predicate = key; player.reverse=!player.reverse;">
                 {{key}}
                 <span class="fa fa-sort columnSortIcons" ng-if="key !== player.predicate"></span>
@@ -220,6 +220,9 @@
           <td>{{ word.attempts}}</td>
           <td>{{ word.lastPlayed | date:"MM/dd/yyyy '' h:mma"}}</td>
           <td>{{word.lastAttempt}}</td>
+        </tr>
+        <tr data-ng-if="player.wordsData.length === 0">
+         <td colspan="5"> No Data</td>
         </tr>
         </tbody>
       </table>
