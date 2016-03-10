@@ -256,9 +256,10 @@
     color: $white-color;
   }
 }
+.uc-left, .uc-right{
+  text-align: center;
 
-
-
+}
 @media(min-width: 768px) {
   .top-header {
     display: block;
