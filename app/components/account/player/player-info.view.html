@@ -201,7 +201,7 @@
       <table class="table table-striped borderless">
         <thead>
           <tr>
-            <th ng-repeat="key in player.getKeysOfCollection(player.wordsHeaders[0])"
+            <th ng-repeat="key in player.getKeysOfCollection(player.wordsHeaders)"
                 ng-click="player.predicate = key; player.reverse=!player.reverse;">
                 {{key}}
                 <span class="fa fa-sort columnSortIcons" ng-if="key !== player.predicate"></span>

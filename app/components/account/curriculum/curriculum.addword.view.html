@@ -39,7 +39,7 @@
             <label class="col-md-2 control-label add-profile-pic">Picture</label>
             <div class="col-md-2">
               <div  class="thumbnail" ng-show="!curriculum.model.wordItem.imageURL">
-                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image">
+                <img src="assets/images/fallback-img.png">
               </div>
               <div  class="thumbnail" ng-show="curriculum.model.wordItem.imageURL">
                 <img ng-src="{{curriculum.model.wordItem.imageURL}}">
