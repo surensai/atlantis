@@ -56,6 +56,10 @@ nav .account-nav {
       line-height: 9px;
     }
 
+    .nav-border-left{
+      border-left: solid 1px #f6f6f6;
+    }
+
     a:hover, .active {
       text-decoration: none;
       background: darken(#4CBC96, 10%);
@@ -65,10 +69,6 @@ nav .account-nav {
       vertical-align: -30%;
     }
   }
-}
-
-.account-nav a:first-child{
-  border-left: solid 1px #f6f6f6;
 }
 
 #sidebar {
