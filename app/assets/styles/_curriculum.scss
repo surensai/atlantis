@@ -15,10 +15,15 @@
         width: 168px;
         height: 256px;
         padding-top: 41px;
-        padding-left: 63px;
-        color: red;
+        padding-left: 48px;
+        margin-top: -15px;
         h1{
           color: #4CBC96;
+          padding-left: 19px;
+          padding-bottom: 23px;
+        }
+        span{
+          color: $white-color;
         }
       }
       .curriculum-badge {
@@ -29,28 +34,37 @@
 
     }
     .milestone-details {
+      font-family: $font-family;
       background-color: #EFEFEF;
       border-radius: 5px;
       padding-bottom: 20px;
       padding-top: 10px;
-      h4 {
+      p{
+        color: #BCBCBC;
+      }
+      h5 {
         color: $sp-green;
       }
       .padding-left-right {
         span {
           padding: 0px 15px 0px 10px;
+          color:#BCBCBC;
         }
       }
       .btn-padding-right{
+        color: #BCBCBC;
         @extend  .btn-padding-left-right;
         margin-left: 0px!important;
       }
       .btn-padding-left-right {
-        color: gray;
+        color: #BCBCBC;
         padding: 0px 40px 0px 40px;
         border-radius: 0px;
         background-color: #DCDCDC;
         margin-left: 10px;
+      }
+      span{
+        color: #BCBCBC;
       }
     }
   }
