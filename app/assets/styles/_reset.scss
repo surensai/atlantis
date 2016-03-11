@@ -187,3 +187,9 @@ body {
 .pagination  li  a:hover,.pagination .active a{
   background-color: $sp-green !important;
 }
+.thumbnail{
+  padding: 0px;
+  border: 1px solid #E9EEF1;
+  border-radius: 5px;
+
+}

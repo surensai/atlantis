@@ -12,7 +12,33 @@
   }
 .add-profile-pic{
   padding-top: 40px;
+  .thumbnail{
+    position: absolute;
+  }
 }
+  .myLabel {
+    position: relative;
+  }
+  .myLabel input {
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+  }
+  .myLabel {
+    color: white;
+    background: black;
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    border-radius: 0px 0px 5px 5px;
+  }
+  .myLabel:hover {
+    background: black;
+  }
+  .myLabel:active {
+    background: black;
+  }
   .radio-button-sizes{
     width: 20px;
     height: 20px;
