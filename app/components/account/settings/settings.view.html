@@ -29,10 +29,14 @@
 
                 <div class="col-md-3">
                   <input type="text" name="firstName" class="form-control" data-ng-model="settings.model.userData.firstName"
-                         placeholder="{{ 'user.first_name' | translate }}" required ng-disabled="!settings.isEditClicked">
+                         ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/"  placeholder="{{ 'user.first_name' | translate }}" required ng-disabled="!settings.isEditClicked">
                 </div>
-                <p ng-show="settingsForm.firstName.$invalid && !settingsForm.firstName.$pristine" class="help-block"
-                   data-translate="user.validationMessages.first_name_require">First name is required.</p>
+                <p ng-show="settingsForm.firstName.$error.required" class="error-mesasage"
+                   data-translate="user.validationMessages.first_name_require">First Name is required.</p>
+                <p ng-show="(!settingsForm.firstName.$error.minLength || !settingsForm.firstName.$error.maxLength) && settingsForm.firstName.$error.pattern && settingsForm.firstName.$dirty"
+                   class="error-mesasage" data-translate="user.validationMessages.user_name_pattern"> Must start with a letter and be alphanumeric.</p>
+                <p ng-show="!settingsForm.firstName.$error.pattern && !settingsForm.firstName.$error.required && (settingsForm.firstName.$error.minlength || settingsForm.firstName.$error.maxlength) && settingsForm.firstName.$dirty"
+                   class="error-mesasage" data-translate="user.validationMessages.user_name_length"> Must be between 5 and 20 characters.</p>
               </div>
 
               <div class="form-group"
@@ -40,21 +44,22 @@
                 <label class="col-md-2 control-label" data-translate="nav.edit_profile.last_name">Last Name:</label>
 
                 <div class="col-md-3">
-                  <input type="text" name="lastName" class="form-control"
-                         data-ng-model="settings.model.userData.lastName"
-                         placeholder="{{ 'user.last_name' | translate }}" required ng-disabled="!settings.isEditClicked">
+                  <input type="text" name="lastName" class="form-control" data-ng-model="settings.model.userData.lastName"
+                         ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/"  placeholder="{{ 'user.last_name' | translate }}" required ng-disabled="!settings.isEditClicked">
                 </div>
-                <p
-                  ng-show="!settingsForm.lastName && settingsForm.lastName.$invalid && !settingsForm.lastName.$pristine"
-                  class="help-block"
-                  data-translate="user.validationMessages.last_name_require">Last name is required.</p>
+                <p ng-show="settingsForm.lastName.$error.required" class="error-mesasage"
+                   data-translate="user.validationMessages.last_name_require">First Name is required.</p>
+                <p ng-show="(!settingsForm.lastName.$error.minLength || !settingsForm.lastName.$error.maxLength) && settingsForm.lastName.$error.pattern && settingsForm.lastName.$dirty"
+                   class="error-mesasage" data-translate="user.validationMessages.user_name_pattern"> Must start with a letter and be alphanumeric.</p>
+                <p ng-show="!settingsForm.lastName.$error.pattern && !settingsForm.lastName.$error.required && (settingsForm.lastName.$error.minlength || settingsForm.lastName.$error.maxlength) && settingsForm.lastName.$dirty"
+                   class="error-mesasage" data-translate="user.validationMessages.user_name_length"> Must be between 5 and 20 characters.</p>
               </div>
 
               <div class="form-group">
                 <label class="col-md-2 control-label" data-translate="nav.edit_profile.email">Email:</label>
 
                 <div class="col-md-3">
-                  <input type="text" name="lastName" class="form-control" data-ng-model="settings.model.userData.email"
+                  <input type="text" name="email" class="form-control" data-ng-model="settings.model.userData.email"
                          placeholder="{{ 'user.email' | translate }}" disabled>
                 </div>
               </div>

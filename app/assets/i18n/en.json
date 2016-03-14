@@ -158,7 +158,9 @@
       "curriculum_word_notExists": "The word does not exists.",
       "file_type_wrong": "File Type is wrong. Only allow Images.",
       "age_require":"Age is required.",
-      "model_delete_player":"Are you sure do you want to delete player?"
+      "model_delete_player":"Are you sure do you want to delete player?",
+      "user_name_pattern":"Must start with a letter and be alphanumeric.",
+      "user_name_length":"Must be between 5 and 20 characters."
     },
     "change_password": {
       "old_password": "Old Password",
