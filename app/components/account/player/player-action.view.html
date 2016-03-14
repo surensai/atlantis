@@ -59,16 +59,16 @@
             <div class="col-md-2">
               <div  class="thumbnail">
                 <img src="{{playerAction.model.playerItem.profileURL}}">
+                <div class="myLabel text-center" href="">
+                  <input type="file" name="file" file-model="playerAction.myFile" class="img-rectangle img-border-radius " accept='image/*' onchange="angular.element(this).scope().photoChanged(this.files)"/>
+                  <i class="glyphicon glyphicon-edit"></i>
+                  <span>Choose image</span>
+                </div>
               </div>
-              <!--<div  class="thumbnail" ng-if="playerAction.model.playerItem.profileURL">-->
-                <!--<img src="{{playerAction.model.playerItem.profileURL}}">-->
-              <!--</div>-->
-              <div>
-                <input type="file"  name="file" file-model="playerAction.myFile" class="img-rectangle img-border-radius " accept='image/*' onchange="angular.element(this).scope().photoChanged(this.files)">
-            </div>
+
               <p ng-show="!playerAction.fileError" class="error-mesasage"
                  data-translate="user.validationMessages.file_type_wrong">File Type is wrong. Only allows images</p>
-          </div>
+            </div>
           </div>
           <div class="col-md-2"></div>
           <button type="submit" data-ng-disabled="playerAction.added" class="btn btn-primary" data-translate="player.buttons.add_palyer" data-ng-if="!playerAction.isUpdate">Add Player </button>
