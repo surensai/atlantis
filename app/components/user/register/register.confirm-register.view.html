@@ -1,0 +1,28 @@
+<div class="messages-container content-min-height">
+  <div class="container">
+    <div class="col-md-2"></div>
+    <div class=" col-md-8">
+      <div class="panel panel-default messages-panel">
+        <div class="panel-body">
+          <div data-ng-if= " confirmRegister.message === 'success' ">
+            <p> Thank you for registering with us </p>
+
+            <p>Your email got activated.
+              Now you can login in application with email and password which you provided at register time.</p>
+          </div>
+          <div data-ng-if= " confirmRegister.message === 'error' ">
+            <p> Thank you for registering with us </p>
+
+            <p> User already verified</p>
+          </div>
+
+        </div>
+      </div>
+      <button ui-sref="login" class="btn sp-pur-btn center-block">Return to Sign in</button>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+
+
+

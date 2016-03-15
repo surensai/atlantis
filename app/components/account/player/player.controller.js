@@ -13,11 +13,11 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   player.predicate = 'Sno';
 
   player.wordsHeaders = {
-      Sno:"Sno",
-      Words:"Word",
-      attempts:"attempts",
-      lastPlayed:"lastPlayed",
-      lastAttempt:"lastAttempt"
+      Sno:"S.No.",
+      Words:"Words",
+      Attempts:"Attempts",
+      LastPlayed:"Last Played",
+      LastAttempt:"Last Attempt"
     };
 
   player.getKeysOfCollection = function (obj) {
@@ -38,7 +38,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
 
   function getPlayers() {
     var handleSuccess = function (data) {
-      if (data.length > 0) {
+      //if (data.length > 0) {
         var playerId = data[0].id;
         if ($state.params.id) {
           playerId = $state.params.id;
@@ -46,9 +46,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
         player.data.playersList = data;
         player.playerObj = PlayerService.getObjById(data, playerId);
         $state.go('account.players.details', {id: playerId});
-      }else{
-        $state.go('account.players');
-      }
+     // }
 
     };
 
@@ -142,12 +140,12 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
         var newWord = {};
         angular.forEach(data, function (word, key) {
           if(word){
-            newWord.Sno = key + 1;
+            newWord.SNo = key + 1;
             newWord.Words = word.word;
-            newWord.lastPlayed = word.endtime;
+            newWord.LastPlayed = word.endtime;
             if(word.activity){
-              newWord.attempts = word.activity.length;
-              newWord.lastAttempt = word.activity[word.activity.length - 1].answer;
+              newWord.Attempts = word.activity.length;
+              newWord.LastAttempt = word.activity[word.activity.length - 1].answer;
             }
             player.wordsData.push(newWord);
             newWord = {};
