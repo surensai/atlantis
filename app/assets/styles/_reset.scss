@@ -191,9 +191,11 @@ body {
 .thumbnail{
   padding: 0px;
   border: 1px solid #E9EEF1;
+img{
+  margin-bottom: -43px;
   border-radius: 5px;
-
 }
-.radio + .radio, .checkbox + .checkbox{
+}
+.radio + .radio, .checkbox + .checkbox {
   margin-top: 16px;
 }

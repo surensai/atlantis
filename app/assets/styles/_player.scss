@@ -17,6 +17,9 @@
   .thumbnail{
     position: absolute;
   }
+  img{
+    margin-bottom: -43px !important;
+  }
 }
   .myLabel {
     position: relative;
@@ -28,7 +31,7 @@
   }
   .myLabel {
     color: white;
-    background: black;
+    background: rgba(0, 0, 0, 0.6);
     display: inline-block;
     width: 100%;
     padding-bottom: 12px;
@@ -36,12 +39,12 @@
     border-radius: 0px 0px 5px 5px;
   }
   .myLabel:hover {
-    background: black;
+    background: rgba(0, 0, 0, 0.6);
   }
   .myLabel:active {
-    background: black;
+    background: rgba(0, 0, 0, 0.6);
   }
-  
+
   .gender-icon-size{
     padding-left: 5px;
   }
@@ -223,6 +226,12 @@
           }
         }
       }
+      .last-attempt-green{
+        color: green;
+      }
+      .last-attempt-blue{
+        color: blue;
+      }
       .badge-inactive {
         color: #000000 !important;
         background: url("../images/inactive-badge.png") no-repeat center;
@@ -241,19 +250,26 @@
       }
         .table {
           border: 1px solid $sp-green;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
           thead th {
             background-color: $sp-green;
             padding-top: 25px;
             padding-bottom: 25px;
             color: $white-color;
             font-weight: normal;
+            font-size: 15px;
           }
         }
         tr, th {
           text-align: center;
         }
       td{
+        color: #B0B0B0;
+        font-size: 15px;
         border-top: none;
+      }
+      .player-words{
+        text-transform: lowercase;
       }
       }
 
