@@ -1,7 +1,3 @@
-<uib-alert type="success" class="alert-success success-padding"
-           data-ng-if="globals.flash && globals.flash.type === 'success' && settings.changepasword"
-           dismiss-on-timeout="4000">{{globals.flash.message}}
-</uib-alert>
 <div class="settings-container" cg-busy="{promise:settings.loadPromise,message:'Loading Your Data'}">
   <div class="container container-min-height">
     <div class="panel settiings-panel">
@@ -177,6 +173,10 @@
                 <div class="modal-content">
                   <uib-alert type="warning" class="alert-danger"
                              data-ng-if="globals.flash && globals.flash.type !== 'success' && settings.changepasword"
+                             dismiss-on-timeout="4000">{{globals.flash.message}}
+                  </uib-alert>
+                  <uib-alert type="success" class="alert-success success-padding"
+                             data-ng-if="globals.flash && globals.flash.type === 'success' && settings.changepasword"
                              dismiss-on-timeout="4000">{{globals.flash.message}}
                   </uib-alert>
                   <div class="modal-footer">
