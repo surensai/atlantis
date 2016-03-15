@@ -14,5 +14,6 @@ var app = angular.module('app', [
   'cgBusy',
   'base64',
   'angularMoment',
-  'highcharts-ng'
+  'highcharts-ng',
+  'toaster'
 ]);

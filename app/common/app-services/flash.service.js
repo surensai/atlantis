@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').factory('flashService', ['$rootScope','$cookieStore', function ($rootScope, $cookieStore) {
+angular.module('app').factory('flashService', ['$rootScope','$cookieStore','toaster', function ($rootScope, $cookieStore,toaster) {
 
   var service = {};
 
@@ -23,6 +23,7 @@ angular.module('app').factory('flashService', ['$rootScope','$cookieStore', func
   }
 
   function showSuccess(message, keepAfterLocationChange) {
+    toaster.pop({type:'success', title:"Success", body:message, timeout: 3000});
     $rootScope.globals.flash = {
       message: message,
       type: 'success',
@@ -39,6 +40,7 @@ angular.module('app').factory('flashService', ['$rootScope','$cookieStore', func
   }
 
   function showError(message, keepAfterLocationChange) {
+    toaster.pop({type:'error', title:"Error", body:message, timeout: 5000});
     $rootScope.globals.flash = {
       message: message,
       type: 'error',
