@@ -1,28 +1,54 @@
 .settings-container{
   padding-top: 40px;
-  background-color: $account-bg-color;
-  .panel{
-    border:1px solid #DFDFDF;
-    .accrodin-heading{
-      background-color: #F9A61A;
+  background-color: #F6F6F6;
+  .settiings-panel{
+    border: none;
+    .settiings-panel-heading{
+      background-color: #f7ab31;
       color: white;
       text-align: center;
+      font-size: 18px;
     }
-    .accordion-header-gap{
-      padding-left: 10px;
-    }
-    .editprofile-button{
-      background-color: $sp-green !important;
-    }
-    .editprofile-button:hover{
-      background-color: $sp-green !important;
-    }
-    .form-horizontal input,label{
-      color:grey;
+    .settiings-panel-body{
+      border: 1px solid #E9E9E9;
+      .settings-edit-button{
+        padding: 5px 55px;
+      }
+      .settings-save-button{
+        padding: 5px 55px;
+        margin-right: 10px;
+      }
+      .settings-submit-button{
+        padding: 5px 35px;
+      }
+      .form-horizontal input,label{
+        color:grey;
+        font-weight: normal;
+      }
+      .settings-custom-checkbox{
+        width: 20px;
+        height: 20px;
+      }
+      .settings-custom-span{
+        margin-left:10px;
+        vertical-align: -30%;
+      }
+      .notification-submit-button{
+        @extend .settings-submit-button;
+        margin-top: 30px;
+      }
+      .checkbox{
+        span{
+          color:gray;
+        }
+      }
+      p{
+      color:lighten( gray, 10% )
+      }
     }
   }
-}
 
+}
 
 
 
