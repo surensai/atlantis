@@ -9,17 +9,25 @@
     </div>
       <div class="form-group has-feedback">
         <input type="text" name="firstName" class="form-control" data-ng-model="register.model.firstName"
-               placeholder="{{ 'user.first_name' | translate }}" required>
+               ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/" placeholder="{{ 'user.first_name' | translate }}" required>
         <span ng-show="userForm.$submitted && userForm.firstName.$error.required" class="error-mesasage"
               data-translate="user.validationMessages.first_name_require">First Name is required.</span>
+        <span ng-show="(!userForm.firstName.$error.minLength || !userForm.firstName.$error.maxLength) && userForm.firstName.$error.pattern && userForm.firstName.$dirty"
+              class="error-mesasage" data-translate="user.validationMessages.user_name_pattern"> Must start with a letter and be alphanumeric.</span>
+        <span ng-show="!userForm.firstName.$error.pattern && !userForm.firstName.$error.required && (userForm.firstName.$error.minlength || userForm.firstName.$error.maxlength) && userForm.firstName.$dirty"
+              class="error-mesasage" data-translate="user.validationMessages.user_name_length"> Must be between 5 and 20 characters.</span>
         <i class="fa fa-user form-control-feedback "></i>
       </div>
 
       <div class="form-group has-feedback">
         <input type="text" name="lastName" class="form-control" data-ng-model="register.model.lastName"
-               placeholder="{{ 'user.last_name' | translate }}" required>
+               ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/" placeholder="{{ 'user.last_name' | translate }}" required>
         <span ng-show="userForm.$submitted && userForm.lastName.$error.required" class="error-mesasage"
               data-translate="user.validationMessages.last_name_require">Last Name is required.</span>
+        <span ng-show="(!userForm.lastName.$error.minLength || !userForm.lastName.$error.maxLength) && userForm.lastName.$error.pattern && userForm.lastName.$dirty"
+              class="error-mesasage" data-translate="user.validationMessages.user_name_pattern"> Must start with a letter and be alphanumeric.</span>
+        <span ng-show="!userForm.lastName.$error.pattern && !userForm.lastName.$error.required && (userForm.lastName.$error.minlength || userForm.lastName.$error.maxlength) && userForm.lastName.$dirty"
+              class="error-mesasage" data-translate="user.validationMessages.user_name_length"> Must be between 5 and 20 characters.</span>
         <i class="fa fa-user form-control-feedback "></i>
       </div>
 
