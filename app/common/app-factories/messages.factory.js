@@ -88,7 +88,8 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
 
   function settingsNotificationsSuccessMessages(successObj) {
     if (successObj) {
-      flashService.showSuccess($translate.instant('user.validationMessages.settings_updated'), true);
+      flashService.showSuccess(successObj.message, true);
+      console.log('successObj',successObj.message)
     }
   }
 

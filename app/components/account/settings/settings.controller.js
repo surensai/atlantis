@@ -5,7 +5,9 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   settings.model = {};
   settings.model.userData = angular.copy($rootScope.globals.currentUser);
   settings.isEditClicked = false;
-
+  settings.editprofile = false;
+  settings.changepasword = false;
+  settings.notification = false;
   settings.edit = function () {
     settings.model.userData = angular.copy($rootScope.globals.currentUser);
     settings.isEditClicked = true;
@@ -24,7 +26,8 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   };
   settings.submitForm = function (form) {
     settings.submitted = true;
-    settings.show = true;
+    settings.editprofile = true;
+    $rootScope.globals.flash="";
     if (form.$valid) {
       saveProfile();
       form.$setPristine();
@@ -55,7 +58,8 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
 
   settings.submitchangepassword = function (form) {
     settings.submitted = true;
-    settings.show = true;
+    settings.changepasword = true;
+    $rootScope.globals.flash="";
     if (form.$valid && (settings.model.userData.password === settings.model.userData.confirmPassword)) {
       changePassword();
       form.$setPristine();
@@ -85,7 +89,8 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
 
 
   settings.submitNotifications = function () {
-    settings.show = true;
+    settings.notification = true;
+    $rootScope.globals.flash="";
     var handleSuccess = function (data) {
       messagesFactory.settingsNotificationsSuccessMessages(data);
     };
