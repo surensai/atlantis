@@ -1,29 +1,18 @@
 'use strict';
 
-angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService', '$state', function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService, $state) {
+angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService', '$state', 'toaster',function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService, $state, toaster) {
+
   var settings = this;
   settings.model = {};
   settings.model.userData = angular.copy($rootScope.globals.currentUser);
   settings.isEditClicked = false;
   settings.editprofile = false;
-  settings.changepasword = false;
   settings.notification = false;
-  settings.edit = function () {
-    settings.model.userData = angular.copy($rootScope.globals.currentUser);
-    settings.isEditClicked = true;
-  };
-
-  settings.cancel = function () {
-    settings.model.userData = $rootScope.globals.currentUser;
-    settings.isEditClicked = false;
-  };
 
   (function () {
     getNotificationData();
   })();
-  settings.closeAlert = function () {
-    settings.show = false;
-  };
+
   settings.submitForm = function (form) {
     settings.submitted = true;
     settings.editprofile = true;
@@ -44,6 +33,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       settings.isEditClicked = false;
       AuthenticationService.SetCredentials(settings.model.userData);
       messagesFactory.settingseditprofileSuccessMessages(data);
+
     };
 
     var handleError = function (error, status) {
@@ -56,9 +46,18 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       .error(handleError);
   }
 
+  settings.edit = function () {
+    settings.model.userData = angular.copy($rootScope.globals.currentUser);
+    settings.isEditClicked = true;
+  };
+
+  settings.cancel = function () {
+    settings.model.userData = $rootScope.globals.currentUser;
+    settings.isEditClicked = false;
+  };
+
   settings.submitchangepassword = function (form) {
     settings.submitted = true;
-    settings.changepasword = true;
     $rootScope.globals.flash="";
     if (form.$valid && (settings.model.passwordData.password === settings.model.passwordData.confirmPassword)) {
       changePassword();
@@ -82,7 +81,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
         messagesFactory.settingschangepasswordErrorMessages(status);
       }
     };
-    settings.loadPromise = UserService.changePasswordAPI(settings.model.passwordData)
+    settings.changePromise = UserService.changePasswordAPI(settings.model.passwordData)
       .success(handleSuccess)
       .error(handleError);
   }
@@ -99,7 +98,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
         messagesFactory.settingsNotificationsErrorMessages(status);
       }
     };
-    settings.loadPromise = settingsService.updateApi(settings.model.notificationObj)
+    settings.notificationPromise = settingsService.updateApi(settings.model.notificationObj)
       .success(handleSuccess)
       .error(handleError);
   };

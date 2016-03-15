@@ -35,7 +35,7 @@
                         years.push(startYear++);
                 }
                 return years;
-            }
+            };
 
             $scope.getDays = function() {
                 var days = [], i = 1;
@@ -43,7 +43,7 @@
                         days.push(i++);
                 }
                 return days;
-            }
+            };
 
             function daysInMonth(month, year) {
                 return new Date(year, month, 0).getDate();
@@ -55,22 +55,20 @@
 
             $scope.$watchGroup(['dob.year', 'dob.month', 'dob.day'], function(newValues, oldValues, scope) {
                 if (newValues[0]){
-                  scope.source = setDOBFormate(scope.dob.month, scope.dob.day, scope.dob.year)
+                  scope.source = setDOBFormate(scope.dob.month, scope.dob.day, scope.dob.year);
                 }
 
                 if (newValues[1]){
-                  scope.source = setDOBFormate(scope.dob.month, scope.dob.day, scope.dob.year)
+                  scope.source = setDOBFormate(scope.dob.month, scope.dob.day, scope.dob.year);
                 }
 
                 if (newValues[2]){
-                  scope.source = setDOBFormate(scope.dob.month, scope.dob.day, scope.dob.year)
+                  scope.source = setDOBFormate(scope.dob.month, scope.dob.day, scope.dob.year);
                 }
             });
 
 
-        },
+        }
     };
 });
 
-//
-            //$scope.source = ($scope.dob) ? $scope.dob.year : "";
