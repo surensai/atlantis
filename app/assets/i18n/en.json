@@ -21,6 +21,9 @@
     "notification":{
       "notifications":"Notifications"
     },
+    "missing_letters":{
+      "title":"Order Missing Letters"
+    },
     "footer": {
       "glyphicon": "Square Panda"
     },
@@ -95,6 +98,7 @@
       "save": "Save",
       "edit":"Edit",
       "cancel": "Cancel",
+      "clear":"Clear",
       "delete":"delete",
       "forgot_password":"REQUEST PASSWORD",
       "sign_up":"SIGNUP",
