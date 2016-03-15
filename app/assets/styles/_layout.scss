@@ -129,7 +129,12 @@
     width: 80%;
   }
 }
-
+.panda-iamge-class{
+  background: url("../images/panda.png") no-repeat right;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
 .top-header {
   float: right;
   margin: 33px 0px;

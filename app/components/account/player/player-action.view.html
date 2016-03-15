@@ -47,11 +47,18 @@
             <p ng-show="playerForm.$submitted && playerForm.age.$error.required" class="error-mesasage"
                data-translate="user.validationMessages.age_require">Age is required.</p>
           </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" data-translate="user.register.dob">DOB</label>
+            <div class="col-md-5">
+              <dob data-source="playerAction.model.playerItem.dob"></dob>
+            </div>
+          </div>
+
           <div class="form-group ">
             <label class="col-md-4 control-label" data-translate="player.gender">Gender :</label>
             <div class="col-md-5">
-              <label class="radio-inline radio-label-sizes"><input type="radio" name="gender" value="M" data-ng-model="playerAction.model.playerItem.gender" class="radio-button-sizes"/><img src="assets/images/boy.png" class="gender-icon-size"></label>
-              <label class="radio-inline"><input type="radio" name="gender" value="F" data-ng-model="playerAction.model.playerItem.gender" class="radio-button-sizes"/><img src="assets/images/girl.png"  class="gender-icon-size"></label>
+              <label class="radio-inline radio-label-sizes"><input type="radio" name="gender" value="M" data-ng-model="playerAction.model.playerItem.gender" class="radio-button-sizes"/>Boy</label>
+              <label class="radio-inline"><input type="radio" name="gender" value="F" data-ng-model="playerAction.model.playerItem.gender" class="radio-button-sizes"/>Girl</label>
             </div>
           </div>
           <div class="form-group">
