@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService', '$state', 'toaster',function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService, $state, toaster) {
-
+angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService', '$state',function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService, $state) {
   var settings = this;
   settings.model = {};
   settings.model.userData = angular.copy($rootScope.globals.currentUser);

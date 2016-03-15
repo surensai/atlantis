@@ -28,8 +28,8 @@ angular.module('app').factory('UserService', ['$http', '$rootScope', function ($
     return $http.post(base_url + '/user/reset-password?token=' + token, user);
   };
   service.confirmRegistrationAPI = function(tokenID){
-    return $http.get(base_url + '/user/confirmation/'+ tokenID)
-  }
+    return $http.get(base_url + '/user/confirmation/'+ tokenID);
+  };
 
   return service;
 
