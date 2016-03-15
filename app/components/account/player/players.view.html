@@ -4,8 +4,8 @@
     <div ui-view></div>
   </div>
   <div class="col-md-2"></div>
-  <div class="noplayer-container col-md-8">
-     <div data-ng-if="!player.data.playersList.length > 0">
+  <div class="noplayer-container col-md-8" data-ng-if="!player.data.playersList.length > 0">
+     <div >
         <h4 class="center-align">You don't have any players added.Start adding now..</h4>
         <div class="center-align">
             <a class="btn btn-primary add-player-link" ui-sref="account.addplayer" data-translate="player.add_player">Add Player</a>
