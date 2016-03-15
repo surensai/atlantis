@@ -209,8 +209,9 @@
       "add_palyer":"Add Player"
     },
     "badges":{
-      "big_badges":"Big badges",
-      "mini_badges":"Mini babges"
+      "big_badges":"Big Badges",
+      "mini_badges":"Mini Badges",
+      "activities":"Activities"
     }
   },
   "admin": {

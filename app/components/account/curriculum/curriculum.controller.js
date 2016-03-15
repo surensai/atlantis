@@ -164,7 +164,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'PlayerService',
       milestone: 'Milestone 20'
     }];
 
-  curriculum.viewby = 5;
+  curriculum.viewby = 3;
   curriculum.totalItems = curriculum.curriculumdata.length;
   curriculum.currentPage = 1;
   curriculum.itemsPerPage = curriculum.viewby;

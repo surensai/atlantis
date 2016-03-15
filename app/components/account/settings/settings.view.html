@@ -109,7 +109,7 @@
               <div class="form-group ">
                 <label class="col-md-2 control-label">Old password:</label>
                 <div class="col-md-3">
-                  <input type="password"  class="form-control " name="oldPassword" ng-model="settings.model.userData.oldPassword"
+                  <input type="password"  class="form-control " name="oldPassword" ng-model="settings.model.passwordData.oldPassword"
                       placeholder="{{ 'user.change_password.old_password' | translate }}" required>
                 </div>
                 <span ng-show="changepasswordForm.$submitted && changepasswordForm.oldPassword.$error.required" class="error-mesasage">Old Password is required</span>
@@ -118,7 +118,7 @@
               <div class="form-group">
                 <label class="col-md-2 control-label">New password:</label>
                 <div class="col-md-3">
-                  <input type="password"  class="form-control " name="password" ng-model="settings.model.userData.password"
+                  <input type="password"  class="form-control " name="password" ng-model="settings.model.passwordData.password"
                        pattern="[A-Za-z0-9\W]{8,20}" placeholder="{{ 'user.password' | translate }}" required>
                 </div>
                 <span class="error-mesasage" ng-show='changepasswordForm.password.$error.pattern && changepasswordForm.password.$dirty' data-translate="user.validationMessages.password_strength">Password must be between 8 and 20 characters.</span>
@@ -128,10 +128,10 @@
               <div class="form-group ">
                 <label class="col-md-2 control-label">Confirm password:</label>
                 <div class="col-md-3">
-                  <input type="password" name="confirmPassword" data-ng-model="settings.model.userData.confirmPassword"
+                  <input type="password" name="confirmPassword" data-ng-model="settings.model.passwordData.confirmPassword"
                        placeholder="{{ 'user.register.confirm_password' | translate }}" class="form-control" required>
                 </div>
-                <span ng-show="!changepasswordForm.confirmPassword.$error.required && settings.model.userData.password !== settings.model.userData.confirmPassword "
+                <span ng-show="!changepasswordForm.confirmPassword.$error.required && settings.model.passwordData.password !== settings.model.passwordData.confirmPassword "
                    class="help-block error-mesasage" data-translate="user.validationMessages.password_mismatch">Password mismatch.</span>
 
                 <span ng-show="(changepasswordForm.$submitted && changepasswordForm.confirmPassword.$error.required )" class="help-block error-mesasage"

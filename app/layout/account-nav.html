@@ -8,7 +8,7 @@
         </a>
       </li>
       <li>
-        <a ui-sref='account.players' ng-class="{active: $state.includes('account.players')}">
+        <a ui-sref='account.players' ui-sref-opts="{reload: true}" ng-class="{active: $state.includes('account.players')}">
           <img src="assets/images/player.png" >
           <span data-translate="nav.sidebar.players"> PLAYERS </span>
         </a>
