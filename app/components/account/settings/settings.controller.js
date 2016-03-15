@@ -7,15 +7,6 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   settings.isEditClicked = false;
   settings.editprofile = false;
   settings.notification = false;
-  settings.edit = function () {
-    settings.model.userData = angular.copy($rootScope.globals.currentUser);
-    settings.isEditClicked = true;
-  };
-
-  settings.cancel = function () {
-    settings.model.userData = $rootScope.globals.currentUser;
-    settings.isEditClicked = false;
-  };
 
   (function () {
     getNotificationData();
@@ -41,6 +32,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       settings.isEditClicked = false;
       AuthenticationService.SetCredentials(settings.model.userData);
       messagesFactory.settingseditprofileSuccessMessages(data);
+
     };
 
     var handleError = function (error, status) {
@@ -52,6 +44,16 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       .success(handleSuccess)
       .error(handleError);
   }
+
+  settings.edit = function () {
+    settings.model.userData = angular.copy($rootScope.globals.currentUser);
+    settings.isEditClicked = true;
+  };
+
+  settings.cancel = function () {
+    settings.model.userData = $rootScope.globals.currentUser;
+    settings.isEditClicked = false;
+  };
 
   settings.submitchangepassword = function (form) {
     settings.submitted = true;
