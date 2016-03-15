@@ -177,8 +177,9 @@ body {
     text-decoration: none;
   }
 }
-.cancel-button{
-  background-color: #7E7E7E;
+.cancel-button,.cancel-button:hover{
+  background-color: #7E7E7E !important;
+ padding: 5px 50px;
 }
 .pagination li  a,
 .pagination  li  span{
@@ -192,4 +193,7 @@ body {
   border: 1px solid #E9EEF1;
   border-radius: 5px;
 
+}
+.radio + .radio, .checkbox + .checkbox{
+  margin-top: 16px;
 }

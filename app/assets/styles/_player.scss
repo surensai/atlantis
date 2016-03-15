@@ -4,14 +4,16 @@
   .addpalyer-heading{
     background-color: #f7ab31;
     color: white;
+    font-size: 18px;
   }
   .panel-body{
     label{
       color:#AAAAAA;
+      font-weight: normal;
     }
   }
 .add-profile-pic{
-  padding-top: 40px;
+  padding-top: 0px;
   .thumbnail{
     position: absolute;
   }
@@ -29,8 +31,8 @@
     background: black;
     display: inline-block;
     width: 100%;
-    padding-bottom: 8px;
-    padding-top: 8px;
+    padding-bottom: 12px;
+    padding-top: 12px;
     border-radius: 0px 0px 5px 5px;
   }
   .myLabel:hover {
@@ -49,8 +51,37 @@
   .radio-label-sizes{
     margin-right: 20px;
   }
+  .player-button-padding{
+    padding: 5px 60px;
+    margin-right: 15px;
+  }
+  .player-delete-icon {
+    background-color: $sp-green;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    padding: 10px 15px 10px 15px;
+    font-size: 25px;
+  }
+  .gender-form-group{
+    margin-bottom: 0px;
+  }
 }
-
+.noplayer-container{
+  margin-top: 10%;
+  padding: 7% 0%;
+  border: 3px solid #FDE7C2;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+  h4{
+    color:#8F8F8F;
+  }
+  .add-player-link{
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 25px;
+  }
+}
 .players-container {
   margin-top: 25px;
   margin-bottom: 25px;
@@ -115,6 +146,9 @@
     img{
       border-radius: 10px;
     }
+    .edit-icon-padding{
+      padding-right: 10px;
+    }
     a{
       text-decoration: none;
       position: absolute;
@@ -122,10 +156,10 @@
       left: 0px;
       width: 100%;
       background-color: rgba(0, 0, 0, 0.8);
-      padding: 8px;
+      padding: 12px;
       color: white;
       text-align: center;
-      border-radius: 0px 0px 10px 10px;
+      border-radius: 0px 0px 7px 7px;
     }
   }
   p{

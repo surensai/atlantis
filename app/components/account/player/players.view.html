@@ -1,6 +1,16 @@
 <div class="container container-min-height players-container" cg-busy="{promise:player.loadPromise,message:'Loading Your Data'}">
-  <div class="players-panel">
+  <div class="players-panel" data-ng-if="player.data.playersList.length > 0">
     <div data-ng-include=" 'components/account/player/players-list.html' "></div>
     <div ui-view></div>
   </div>
-</div>
+  <div class="col-md-2"></div>
+  <div class="noplayer-container col-md-8">
+     <div data-ng-if="!player.data.playersList.length > 0">
+        <h4 class="center-align">You don't have any players added.Start adding now..</h4>
+        <div class="center-align">
+            <a class="btn btn-primary add-player-link" ui-sref="account.addplayer" data-translate="player.add_player">Add Player</a>
+        </div>
+     </div>
+  </div>
+  <div class="col-md-2"></div>
+ </div>

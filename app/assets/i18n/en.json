@@ -17,7 +17,9 @@
       "curriculum": "MY CURRICULUM",
       "settings": "MY ACCOUNT",
       "home":"HOME"
-
+    },
+    "notification":{
+      "notifications":"Notifications"
     },
     "footer": {
       "glyphicon": "Square Panda"
@@ -86,7 +88,7 @@
   },
   "common": {
     "buttons": {
-      "submit": "SUBMIT",
+      "submit": "Submit",
       "save": "Save",
       "edit":"Edit",
       "cancel": "Cancel",
