@@ -14,6 +14,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
     playerAction.model.playerItem.gender = 'M';
     playerAction.model.playerItem.age = 5;
     playerAction.model.playerItem.profileURL ="assets/images/fallback-img.png";
+
       (function () {
         getPlayerById();
     })();
