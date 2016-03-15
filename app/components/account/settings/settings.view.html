@@ -1,4 +1,4 @@
-<toaster-container></toaster-container>
+<toaster-container toaster-options="{'position-class': 'toast-top-right'}"></toaster-container>
 <div class="settings-container">
   <div class="container container-min-height">
     <div class="panel settiings-panel" cg-busy="{promise:settings.loadPromise,message:'Loading Your Data'}">
@@ -163,6 +163,28 @@
           <div class="col-md-5">
             <button type="submit" class="btn btn-primary settings-submit-button" data-translate="common.buttons.submit">
               Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="panel settiings-panel" cg-busy="{promise:settings.missingLetterPromise,message:'Loading Your Data'}">
+      <div class="panel-heading settiings-panel-heading" data-translate="nav.missing_letters.title">Order Missing Letters
+      </div>
+      <div class="panel-body settiings-panel-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+
+        <form name="notificationsForm" role="form" data-ng-submit="settings.submitNotifications(notificationsForm)"
+              novalidate>
+          <div class="col-md-4"></div>
+          <div class="col-md-5">
+            <button class="btn btn-primary notification-submit-button" type="submit"
+                    data-translate="common.buttons.submit">SUBMIT
+            </button>
+            <button type="button" class="btn btn-primary cancel-button notification-submit-button"
+                    data-translate="common.buttons.clear" >Clear
             </button>
           </div>
         </form>

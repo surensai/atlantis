@@ -38,7 +38,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
 
   function getPlayers() {
     var handleSuccess = function (data) {
-      //if (data.length > 0) {
+      if (data.length > 0) {
         var playerId = data[0].id;
         if ($state.params.id) {
           playerId = $state.params.id;
@@ -46,7 +46,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
         player.data.playersList = data;
         player.playerObj = PlayerService.getObjById(data, playerId);
         $state.go('account.players.details', {id: playerId});
-     // }
+     }
 
     };
 
