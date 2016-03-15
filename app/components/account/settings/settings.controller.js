@@ -11,9 +11,6 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
 
   (function () {
     getNotificationData();
-    $uibModal.open({
-      templateUrl: 'common/app-directives/modal/modal.view.html'
-    });
   })();
 
   settings.submitForm = function (form) {
@@ -63,7 +60,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
     settings.submitted = true;
     settings.changepasword = true;
     $rootScope.globals.flash="";
-    if (form.$valid && (settings.model.userData.password === settings.model.userData.confirmPassword)) {
+    if (form.$valid && (settings.model.passwordData.password === settings.model.passwordData.confirmPassword)) {
       changePassword();
       form.$setPristine();
     } else {
@@ -85,7 +82,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
         messagesFactory.settingschangepasswordErrorMessages(status);
       }
     };
-    settings.loadPromise = UserService.changePasswordAPI(settings.model.userData)
+    settings.loadPromise = UserService.changePasswordAPI(settings.model.passwordData)
       .success(handleSuccess)
       .error(handleError);
   }

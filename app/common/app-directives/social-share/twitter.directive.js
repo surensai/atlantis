@@ -9,7 +9,7 @@ angular.module("app").directive('twitterShare', ['$window', function ($window) {
     template: '<a class="fa fa-twitter fa-lg" style="color:#28AAE2"></a>',
     link: function (scope, element) {
       element.bind('click', function () {
-        $window.open("https://twitter.com/share?url=" + scope.item.files + "&text=" + scope.item.title, "", "width=500,height=300,left=200,top=150,menubar=0");
+        $window.open("https://twitter.com/share?url=" + scope.item.files + "&text=" + scope.item.title, '_blank');
         return false;
       });
     }

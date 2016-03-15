@@ -8,37 +8,55 @@
         <form name="settingsForm" ng-submit="settings.submitForm(settingsForm)" novalidate>
           <div class="form-horizontal">
 
-            <div class="form-group"
-                 ng-class="{ 'has-error' : (submitted && !settingsForm.firstName) || (settingsForm.firstName.$invalid && !settingsForm.firstName.$pristine) }">
+            <div class="form-group">
               <label class="col-md-4 control-label" data-translate="nav.edit_profile.first_name">First Name:</label>
 
               <div class="col-md-5">
                 <input type="text" name="firstName" class="form-control"
-                       data-ng-model="settings.model.userData.firstName"
+                       ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/"   data-ng-model="settings.model.userData.firstName"
                        placeholder="{{ 'user.first_name' | translate }}" required ng-disabled="!settings.isEditClicked">
               </div>
-              <p ng-show="settingsForm.firstName.$invalid && !settingsForm.firstName.$pristine" class="help-block"
-                 data-translate="user.validationMessages.first_name_require">First name is required.</p>
+              <span ng-show="settingsForm.firstName.$error.required" class="error-mesasage"
+                 data-translate="user.validationMessages.first_name_require">First Name is required.</span>
+
+              <span
+                ng-show="(!settingsForm.firstName.$error.minLength || !settingsForm.firstName.$error.maxLength) && settingsForm.firstName.$error.pattern && settingsForm.firstName.$dirty"
+                class="error-mesasage" data-translate="user.validationMessages.user_name_pattern"> Must start with a
+                letter and be alphanumeric.</span>
+
+              <span
+                ng-show="!settingsForm.firstName.$error.pattern && !settingsForm.firstName.$error.required && (settingsForm.firstName.$error.minlength || settingsForm.firstName.$error.maxlength) && settingsForm.firstName.$dirty"
+                class="error-mesasage" data-translate="user.validationMessages.user_name_length"> Must be between 5
+                and 20 characters.</span>
             </div>
 
-            <div class="form-group"
-                 ng-class="{ 'has-error' : (submitted && !settingsForm.lastName) || (settingsForm.lastName.$invalid && !settingsForm.lastName.$pristine) }">
-              <label class="col-md-4 control-label" >Last Name:</label>
+            <div class="form-group">
+              <label class="col-md-4 control-label" data-translate="nav.edit_profile.last_name">Last Name:</label>
 
               <div class="col-md-5">
-                <input type="text" name="lastName" class="form-control"
-                       data-ng-model="settings.model.userData.lastName"
+                <input type="text" name="lastName" class="form-control" data-ng-model="settings.model.userData.lastName"
+                       ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/"
                        placeholder="{{ 'user.last_name' | translate }}" required ng-disabled="!settings.isEditClicked">
               </div>
-              <p ng-show="settingsForm.lastName.$invalid && !settingsForm.lastName.$pristine" class="help-block"
-                 data-translate="user.validationMessages.last_name_require">Last name is required.</p>
+              <span ng-show="settingsForm.lastName.$error.required" class="error-mesasage"
+                 data-translate="user.validationMessages.last_name_require">Last Name is required.</span>
+
+              <span
+                ng-show="(!settingsForm.lastName.$error.minLength || !settingsForm.lastName.$error.maxLength) && settingsForm.lastName.$error.pattern && settingsForm.lastName.$dirty"
+                class="error-mesasage" data-translate="user.validationMessages.user_name_pattern"> Must start with a
+                letter and be alphanumeric.</span>
+
+              <span
+                ng-show="!settingsForm.lastName.$error.pattern && !settingsForm.lastName.$error.required && (settingsForm.lastName.$error.minlength || settingsForm.lastName.$error.maxlength) && settingsForm.lastName.$dirty"
+                class="error-mesasage" data-translate="user.validationMessages.user_name_length"> Must be between 5 and
+                20 characters.</span>
             </div>
 
             <div class="form-group">
               <label class="col-md-4 control-label" data-translate="nav.edit_profile.email">Email:</label>
 
               <div class="col-md-5">
-                <input type="text" name="lastName" class="form-control" data-ng-model="settings.model.userData.email"
+                <input type="text" name="email" class="form-control" data-ng-model="settings.model.userData.email"
                        placeholder="{{ 'user.email' | translate }}" disabled>
               </div>
             </div>
@@ -55,67 +73,116 @@
                   <span class="error-mesasage"
                         ng-show='settingsForm.mobileNumber.$error.pattern && settingsForm.mobileNumber.$dirty'
                         data-translate="user.validationMessages.mobile_num_invalid">Mobile Number is not valid</span>
-                  <span ng-show="settingsForm.mobileNumber.$error.required" class="error-mesasage"
-                        data-translate="user.validationMessages.mobile_num_require">Mobile Number is required</span>
             </div>
-          </div>
-          <div class="col-md-4"></div>
-          <div class="col-md-6">
-            <button class="btn btn-primary settings-edit-button" type="button" data-ng-click="settings.edit();"
-                    data-ng-hide="settings.isEditClicked">Edit
-            </button>
-            <button type="submit" data-ng-disabled="settingsForm.$invalid" class="btn btn-primary settings-save-button"
-                    data-translate="common.buttons.save" data-ng-show="settings.isEditClicked">Save
-            </button>
-            <button type="button" data-ng-disabled="settingsForm.$invalid" class="btn btn-primary cancel-button"
-                    data-translate="common.buttons.cancel" ng-click="settings.cancel()"
-                    data-ng-show="settings.isEditClicked">Cancel
-            </button>
+
+            <div class="col-md-4"></div>
+            <div class="col-md-6">
+              <button class="btn btn-primary settings-edit-button" type="button" data-ng-click="settings.edit();"
+                      data-ng-hide="settings.isEditClicked">Edit
+              </button>
+              <button type="submit" data-ng-disabled="settingsForm.$invalid" data-toggle="modal" data-target="#myModal"
+                      class="btn btn-primary settings-save-button"
+                      data-translate="common.buttons.save" data-ng-show="settings.isEditClicked">Save
+              </button>
+              <div class="modal fade" id="myModal" role="dialog"
+                   cg-busy="{promise:settings.loadPromise,message:'Loading Your Data'}">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <uib-alert type="success" class="alert-success success-padding"
+                               data-ng-if="globals.flash && globals.flash.type === 'success' && settings.editprofile"
+                               dismiss-on-timeout="4000">{{globals.flash.message}}
+                    </uib-alert>
+                    <uib-alert type="warning" class="alert-danger"
+                               data-ng-if="globals.flash && globals.flash.type !== 'success' && settings.editprofile"
+                               dismiss-on-timeout="4000">{{globals.flash.message}}
+                    </uib-alert>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="button" data-ng-disabled="settingsForm.$invalid" class="btn btn-primary cancel-button"
+                      data-translate="common.buttons.cancel" ng-click="settings.cancel()"
+                      data-ng-show="settings.isEditClicked">Cancel
+              </button>
+            </div>
+
           </div>
         </form>
       </div>
     </div>
     <div class="panel settiings-panel">
-      <div class="panel-heading settiings-panel-heading" data-translate="nav.header.change_password"> Change Password</div>
+      <div class="panel-heading settiings-panel-heading" data-translate="nav.header.change_password"> Change Password
+      </div>
       <div class="panel-body settiings-panel-body">
         <form name="changepasswordForm" ng-submit="settings.submitchangepassword(changepasswordForm)" novalidate>
           <div class="form-horizontal">
 
             <div class="form-group ">
               <label class="col-md-4 control-label">Old password:</label>
+
               <div class="col-md-5">
-                <input type="password"  class="form-control " name="oldPassword" ng-model="settings.model.userData.oldPassword"
+                <input type="password" class="form-control " name="oldPassword"
+                       ng-model="settings.model.userData.oldPassword"
                        placeholder="{{ 'user.change_password.old_password' | translate }}" required>
               </div>
-              <span ng-show="changepasswordForm.$submitted && changepasswordForm.oldPassword.$error.required" class="error-mesasage">Old Password is required</span>
+              <span ng-show="changepasswordForm.$submitted && changepasswordForm.oldPassword.$error.required"
+                    class="error-mesasage">Old Password is required</span>
+
             </div>
 
             <div class="form-group">
               <label class="col-md-4 control-label">New password:</label>
+
               <div class="col-md-5">
-                <input type="password"  class="form-control " name="password" ng-model="settings.model.userData.password"
+                <input type="password" class="form-control " name="password"
+                       ng-model="settings.model.passwordData.password"
                        pattern="[A-Za-z0-9\W]{8,20}" placeholder="{{ 'user.password' | translate }}" required>
               </div>
-              <span class="error-mesasage" ng-show='changepasswordForm.password.$error.pattern && changepasswordForm.password.$dirty' data-translate="user.validationMessages.password_strength">Password must be between 8 and 20 characters.</span>
-              <span ng-show="changepasswordForm.$submitted && changepasswordForm.password.$error.required" class="error-mesasage">Password is required</span>
+              <span class="error-mesasage"
+                    ng-show='changepasswordForm.password.$error.pattern && changepasswordForm.password.$dirty'
+                    data-translate="user.validationMessages.password_strength">Password must be between 8 and 20 characters.</span>
+              <span ng-show="changepasswordForm.$submitted && changepasswordForm.password.$error.required"
+                    class="error-mesasage">Password is required</span>
             </div>
-
             <div class="form-group ">
               <label class="col-md-4 control-label">Confirm password:</label>
+
               <div class="col-md-5">
-                <input type="password" name="confirmPassword" data-ng-model="settings.model.userData.confirmPassword"
+                <input type="password" name="confirmPassword"
+                       data-ng-model="settings.model.passwordData.confirmPassword"
                        placeholder="{{ 'user.register.confirm_password' | translate }}" class="form-control" required>
               </div>
-              <span ng-show="!changepasswordForm.confirmPassword.$error.required && settings.model.userData.password !== settings.model.userData.confirmPassword "
-                class="help-block error-mesasage" data-translate="user.validationMessages.password_mismatch">Password mismatch.</span>
+                <span
+                  ng-show="!changepasswordForm.confirmPassword.$error.required && settings.model.passwordData.password !== settings.model.passwordData.confirmPassword "
+                  class="help-block error-mesasage" data-translate="user.validationMessages.password_mismatch">Password mismatch.</span>
 
-              <span ng-show="(changepasswordForm.$submitted && changepasswordForm.confirmPassword.$error.required )" class="help-block error-mesasage"
-                data-translate="user.validationMessages.cpassword_require">Confirm Password is required.</span>
+                <span ng-show="(changepasswordForm.$submitted && changepasswordForm.confirmPassword.$error.required )"
+                      class="help-block error-mesasage"
+                      data-translate="user.validationMessages.cpassword_require">Confirm Password is required.</span>
             </div>
-            <div class="col-md-4"></div>
-            <div class="col-md-5">
-              <button type="submit" class="btn btn-primary settings-submit-button"  data-translate="common.buttons.submit">Submit
-              </button>
+
+
+          </div>
+          <div class="col-md-4"></div>
+          <div class="col-md-5">
+            <button type="submit" class="btn btn-primary settings-submit-button" data-toggle="modal"
+                    data-target="#myModal1" data-translate="common.buttons.submit">Submit
+            </button>
+            <div class="modal fade" id="myModal1" role="dialog"
+                 cg-busy="{promise:settings.loadPromise,message:'Loading Your Data'}">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <uib-alert type="warning" class="alert-danger"
+                             data-ng-if="globals.flash && globals.flash.type !== 'success' && settings.changepasword"
+                             dismiss-on-timeout="4000">{{globals.flash.message}}
+                  </uib-alert>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
 
             </div>
           </div>
@@ -123,24 +190,53 @@
       </div>
     </div>
     <div class="panel settiings-panel">
-      <div class="panel-heading settiings-panel-heading" data-translate="nav.notification.notifications">Notifications</div>
+      <div class="panel-heading settiings-panel-heading" data-translate="nav.notification.notifications">Notifications
+      </div>
       <div class="panel-body settiings-panel-body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam,
           quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+
         <form name="notificationsForm" role="form" data-ng-submit="settings.submitNotifications(notificationsForm)"
               novalidate>
           <div class="checkbox col-md-4">
-           <input type="checkbox" class="settings-custom-checkbox" data-ng-model="settings.model.notificationObj.player_updates"><span class="settings-custom-span">Player updates</span>
+            <input type="checkbox" class="settings-custom-checkbox"
+                   data-ng-model="settings.model.notificationObj.player_updates"><span class="settings-custom-span">Player updates</span>
           </div>
           <div class="checkbox col-md-4">
-            <input type="checkbox" class="settings-custom-checkbox" data-ng-model="settings.model.notificationObj.sp_updates"><span class="settings-custom-span">Square Panda news</span>
+            <input type="checkbox" class="settings-custom-checkbox"
+                   data-ng-model="settings.model.notificationObj.sp_updates"><span class="settings-custom-span">Square Panda news</span>
           </div>
           <div class="checkbox col-md-4">
-            <input type="checkbox" class="settings-custom-checkbox"data-ng-model="settings.model.notificationObj.educational_updates"><span class="settings-custom-span">Educational News feed</span>
+            <input type="checkbox" class="settings-custom-checkbox"
+                   data-ng-model="settings.model.notificationObj.educational_updates"><span
+            class="settings-custom-span">Educational News feed</span>
           </div>
           <div class="col-md-4"></div>
           <div class="col-md-5">
-            <button class="btn btn-primary notification-submit-button" type="submit" data-translate="common.buttons.submit">SUBMIT</button>
+
+            <button class="btn btn-primary notification-submit-button" type="submit" data-toggle="modal"
+                    data-target="#myModal2" data-translate="common.buttons.submit">SUBMIT
+            </button>
+            <div class="modal fade" id="myModal2" role="dialog"
+                 cg-busy="{promise:settings.loadPromise,message:'Loading Your Data'}">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <uib-alert type="success" class="alert-success success-padding"
+                             data-ng-if="globals.flash && globals.flash.type === 'success' && settings.notification"
+                             dismiss-on-timeout="4000">{{globals.flash.message}}
+                  </uib-alert>
+                  <uib-alert type="warning" class="alert-danger"
+                             data-ng-if="globals.flash && globals.flash.type !== 'success' && settings.notification"
+                             dismiss-on-timeout="4000">{{globals.flash.message}}
+                  </uib-alert>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </form>
       </div>

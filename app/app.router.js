@@ -80,7 +80,23 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
          return UserService.authorizeTokenAPI(base_url, $stateParams.token);
       }
     }
-    }).state('forgot-password', {
+    }).state('user-confirm-register', {
+    url: '/user/confirmation/:token',
+    templateUrl: urlBuilder('user/register', 'register.confirm-register'),
+    controller: function($scope,auth) {
+      if (auth) {
+        $scope.confirmRegister = auth.data;
+      }
+    },
+    data: {
+      pageTitle: 'Square Panda - Confirm Registration'
+    },
+    resolve: {
+      auth: function (UserService, $stateParams) {
+        return UserService.confirmRegistrationAPI($stateParams.token);
+      }
+    }
+  }).state('forgot-password', {
     url: '/forgot-password',
     templateUrl: urlBuilder('user/forgot-password', 'forgot-password'),
     controller: 'forgotPasswordCtrl',
