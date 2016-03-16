@@ -71,16 +71,19 @@
 .noplayer-container{
   margin-top: 10%;
   padding: 7% 0%;
-  border: 3px solid #FDE7C2;
+  border: 1px solid #F9A61A;
   border-radius: 5px;
   background-color: #FFFFFF;
   h4{
     color:#8F8F8F;
   }
   .add-player-link{
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-top: 25px;
+    text-decoration: none;
+    color: #F9A61A;
+    span{
+      display: block;
+      padding: 12px;
+    }
   }
 }
 .players-container {
