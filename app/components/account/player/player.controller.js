@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerService', 'flashService', function ($timeout, $state, PlayerService, flashService) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerService', 'flashService','$translate', function ($timeout, $state, PlayerService, flashService, $translate) {
 
   var player = this;
   player.model = {};
@@ -13,12 +13,12 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   player.predicate = 'Sno';
   player.isNoPlayer = false;
   player.wordsHeaders = {
-      Sno:"S.No.",
-      Words:"Words",
-      Attempts:"Attempts",
-      LastPlayed:"Last Played",
-      LastAttempt:"Last Attempt"
-    };
+    Sno: "S.No.",
+    Words: "Words",
+    Attempts: "Attempts",
+    LastPlayed: "Last Played",
+    LastAttempt: "Last Attempt"
+  };
 
   player.getKeysOfCollection = function (obj) {
     obj = angular.copy(obj);
@@ -45,9 +45,15 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
           playerId = $state.params.id;
         }
         player.data.playersList = data;
-        player.playerObj = PlayerService.getObjById(data, playerId);
+        player.loadPromise = PlayerService.getPlayerById(playerId)
+          .success(function (data) {
+            player.playerObj = data;
+          })
+          .error(function () {
+            flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+          });
         $state.go('account.players.details', {id: playerId});
-     }
+      }
 
     };
 
@@ -140,11 +146,11 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
       if (data) {
         var newWord = {};
         angular.forEach(data, function (word, key) {
-          if(word){
+          if (word) {
             newWord.SNo = key + 1;
             newWord.Words = word.word;
             newWord.LastPlayed = word.endtime;
-            if(word.activity){
+            if (word.activity) {
               newWord.Attempts = word.activity.length;
               newWord.LastAttempt = word.activity[word.activity.length - 1].answer;
             }
@@ -159,7 +165,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
       flashService.showError($translate.instant("player.messages.error_getting_words"), false);
     };
 
-    player.loadPromise = PlayerService.getWordsApi(childId)
+    player.loadWordsPromise = PlayerService.getWordsApi(childId)
       .success(handleSuccess)
       .error(handleError);
   };
