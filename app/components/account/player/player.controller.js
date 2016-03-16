@@ -11,7 +11,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   player.reverse = false;
   player.displayChartIndex = 0;
   player.predicate = 'Sno';
-  player.isNoPlayer=false;
+  player.isNoPlayer = false;
   player.wordsHeaders = {
       Sno:"S.No.",
       Words:"Words",
@@ -37,8 +37,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   })();
 
   function getPlayers() {
-    player.isNoPlayer=true;
     var handleSuccess = function (data) {
+      player.isNoPlayer = true;
       if (data.length > 0) {
         var playerId = data[0].id;
         if ($state.params.id) {
