@@ -68,69 +68,65 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
 
   player.bigBadges = [
     {
-      milestone: 'Milestone 01',
+      milestone: 'Apple',
       percentage: '130%',
-      type: 'badge-gold'
+      type: '120-alphabet'
     }, {
-      milestone: 'Milestone 02',
+      milestone: 'Up',
       percentage: '100%',
-      type: 'badge-silver'
+      type: '100-up'
     }, {
-      milestone: 'Milestone 03',
+      milestone: 'Cat',
       percentage: '80%',
-      type: 'badge-bronze'
+      type: '80-cat'
     }, {
-      milestone: 'Milestone 04',
+      milestone: 'Sight',
       percentage: '120%',
-      type: 'badge-silver'
+      type: 'strted-sight'
     }, {
-      milestone: 'Milestone 05',
+      milestone: 'Pancake',
       percentage: '115%',
-      type: 'badge-silver'
+      type: 'Pancake'
     }, {
-      milestone: 'Milestone 06',
+      milestone: 'Fish',
       percentage: '90%',
-      type: 'badge-bronze'
+      type: 'Fish'
     }, {
-      milestone: 'Milestone 07',
+      milestone: 'Brick',
       percentage: '50%',
-      type: 'badge-inactive'
+      type: 'Brick'
     }, {
-      milestone: 'Milestone 08',
+      milestone: 'Floss',
       percentage: '0%',
-      type: 'badge-inactive'
+      type: 'Floss'
     }, {
-      milestone: 'Milestone 09',
+      milestone: 'Bee',
       percentage: '0%',
-      type: 'badge-inactive'
+      type: 'Bee'
     }, {
-      milestone: 'Milestone 10',
+      milestone: 'Sky',
       percentage: '0%',
-      type: 'badge-inactive'
+      type: 'Sky'
     }, {
-      milestone: 'Milestone 11',
+      milestone: 'Car',
       percentage: '0%',
-      type: 'badge-inactive'
+      type: 'Car'
     }, {
-      milestone: 'Milestone 12',
+      milestone: 'Light',
       percentage: '0%',
-      type: 'badge-inactive'
+      type: 'Light'
     }, {
-      milestone: 'Milestone 13',
+      milestone: 'Bear',
       percentage: '0%',
-      type: 'badge-inactive'
+      type: 'Bear'
     }, {
-      milestone: 'Milestone 14',
+      milestone: 'House',
       percentage: '0%',
-      type: 'badge-inactive'
+      type: 'House'
     }, {
-      milestone: 'Milestone 15',
+      milestone: 'Swan',
       percentage: '0%',
-      type: 'badge-inactive'
-    }, {
-      milestone: 'Milestone 16',
-      percentage: '0%',
-      type: 'badge-inactive'
+      type: 'Swan'
     }];
 
   player.drag = 'drag feedback';
