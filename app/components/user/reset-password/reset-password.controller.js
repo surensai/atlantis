@@ -36,7 +36,7 @@ angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', 
       messagesFactory.resetpasswordErrorMessages(error);
     };
 
-    UserService.resetPasswordAPI(resetPassword.model, $state.params.token)
+    resetPassword.loadPromise = UserService.resetPasswordAPI(resetPassword.model, $state.params.token)
       .success(handleSuccess)
       .error(handleError);
   }
