@@ -39,7 +39,7 @@
             <thead>
             <tr>
               <th ng-repeat="key in curriculum.getKeysOfCollection(curriculum.wordsHeaders)"
-                  ng-click="curriculum.predicate = key; curriculum.reverse=!player.reverse;">
+                  ng-click="curriculum.predicate = key; curriculum.reverse=!curriculum.reverse;">
                 {{curriculum.wordsHeaders[key]}}
                 <span class="fa fa-sort columnSortIcons" ng-if="key !== curriculum.predicate && (key !== 'Sno' && key !== 'actions' )"></span>
                 <span class="fa fa-sort-down columnSortIcons"
