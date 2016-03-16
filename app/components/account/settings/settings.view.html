@@ -1,4 +1,4 @@
-<toaster-container toaster-options="{'position-class': 'toast-top-right'}"></toaster-container>
+<toaster-container toaster-options="{'position-class': 'toast-bottom-center'}"></toaster-container>
 <div class="settings-container">
   <div class="container container-min-height">
     <div class="panel settiings-panel" cg-busy="{promise:settings.loadPromise,message:'Loading Your Data'}">
@@ -19,21 +19,23 @@
                        ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/"
                        data-ng-model="settings.model.userData.firstName"
                        placeholder="{{ 'user.first_name' | translate }}" required ng-disabled="!settings.isEditClicked">
-                <i class="fa fa-exclamation-circle error-mesasage" ng-show="settingsForm.firstName.$error.required">
-                  <span data-translate="user.validationMessages.first_name_require"> First Name is required.</span>
-                </i>
 
-                <i class="fa fa-exclamation-circle error-mesasage"
-                   ng-show="(!settingsForm.firstName.$error.minLength || !settingsForm.firstName.$error.maxLength) && settingsForm.firstName.$error.pattern && settingsForm.firstName.$dirty">
-                <span data-translate="user.validationMessages.user_name_pattern"> Must start with a
+                <div class="error-mesasage"  ng-show="settingsForm.firstName.$error.required">
+                  <i class="fa fa-exclamation-circle"></i>
+                  <span data-translate="user.validationMessages.first_name_require">  First Name is required. </span>
+                </div>
+
+                <div class="error-mesasage" ng-show="(!settingsForm.firstName.$error.minLength || !settingsForm.firstName.$error.maxLength) && settingsForm.firstName.$error.pattern && settingsForm.firstName.$dirty">
+                  <i class="fa fa-exclamation-circle" ></i>
+                  <span data-translate="user.validationMessages.user_name_pattern"> Must start with a
                 letter and be alphanumeric.</span>
-                </i>
+                </div>
 
-                <i class="fa fa-exclamation-circle error-mesasage"
-                   ng-show="!settingsForm.firstName.$error.pattern && !settingsForm.firstName.$error.required && (settingsForm.firstName.$error.minlength || settingsForm.firstName.$error.maxlength) && settingsForm.firstName.$dirty">
-                <span data-translate="user.validationMessages.user_name_length"> Must be between 5
+                <div class="error-mesasage" ng-show="!settingsForm.firstName.$error.pattern && !settingsForm.firstName.$error.required && (settingsForm.firstName.$error.minlength || settingsForm.firstName.$error.maxlength) && settingsForm.firstName.$dirty">
+                  <i class="fa fa-exclamation-circle"></i>
+                  <span data-translate="user.validationMessages.user_name_length"> Must be between 5
                 and 20 characters.</span>
-                </i>
+                </div>
               </div>
 
             </div>
@@ -186,7 +188,8 @@
         </form>
       </div>
     </div>
-    <div class="panel settiings-panel" cg-busy="{promise:settings.missingLetterPromise,message:'Loading Your Data'}">
+
+    <!--<div class="panel settiings-panel" cg-busy="{promise:settings.missingLetterPromise,message:'Loading Your Data'}">
       <div class="panel-heading settiings-panel-heading" data-translate="nav.missing_letters.title">Order Missing
         Letters
       </div>
@@ -208,57 +211,66 @@
           </div>
         </form>
       </div>
-    </div>
+    </div>-->
+
     <div class="panel settiings-panel" cg-busy="{promise:settings.notificationPromise,message:'Loading Your Data'}">
       <div class="panel-heading settiings-panel-heading" data-translate="nav.notification.notifications">Notifications
       </div>
       <div class="panel-body settiings-panel-body">
-        <p class="ntofitication-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-
         <form name="notificationsForm" role="form" data-ng-submit="settings.submitNotifications(notificationsForm)"
               novalidate>
+
+          <p class="ntofitication-text col-md-12" >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+
           <div class="clearfix">
             <div class="col-md-4  clearfix">
               <div class="checkbox checkbox-class">
-                <input type="checkbox" class="settings-custom-checkbox"
-                       data-ng-model="settings.model.notificationObj.player_updates"><span class="settings-custom-span">Player updates</span>
+                <label>
+                  <input type="checkbox" class="settings-custom-checkbox"  data-ng-model="settings.model.notificationObj.player_updates">
+                  <span>Player updates</span>
+                </label>
+              </div>
+                <p class="notification-checkbox-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                </p>
+            </div>
 
-                <div class="col-md-11">
-                  <p class="notification-checkbox-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt</p>
-                </div>
+            <div class="col-md-4  clearfix">
+              <div class="checkbox checkbox-class">
+                <label>
+                  <input type="checkbox" class="settings-custom-checkbox" data-ng-model="settings.model.notificationObj.sp_updates" />
+                  <span>Square Panda news</span>
+                </label>
               </div>
+              <p class="notification-checkbox-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+              </p>
             </div>
-            <div class="checkbox col-md-4">
-              <input type="checkbox" class="settings-custom-checkbox"
-                     data-ng-model="settings.model.notificationObj.sp_updates"><span class="settings-custom-span">Square Panda news</span>
 
-              <div class="col-md-11">
-                <p class="notification-checkbox-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt</p>
+            <div class="col-md-4  clearfix">
+              <div class="checkbox checkbox-class">
+                <label>
+                  <input type="checkbox" class="settings-custom-checkbox" data-ng-model="settings.model.notificationObj.educational_updates">
+                  <span>Educational News feed</span>
+                </label>
               </div>
+              <p class="notification-checkbox-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+              </p>
             </div>
-            <div class=" col-md-4">
-              <div class="checkbox">
-                <input type="checkbox" class="settings-custom-checkbox"
-                       data-ng-model="settings.model.notificationObj.educational_updates"><span
-                class="settings-custom-span">Educational News feed</span>
-              </div>
-              <div class="col-md-11">
-                <p class="notification-checkbox-texts">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 clearfix"></div>
-          <div class="col-md-5">
-            <button class="btn btn-primary notification-submit-button" type="submit"
+
+
+          <div class="col-md-12 margin-top20">
+            <button class="btn btn-primary notification-submit-button center-block" type="submit"
                     data-translate="common.buttons.submit">SUBMIT
             </button>
           </div>
+
         </form>
       </div>
     </div>
