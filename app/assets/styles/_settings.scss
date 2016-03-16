@@ -1,39 +1,40 @@
-.settings-container{
+.settings-container {
   padding-top: 40px;
   background-color: #F6F6F6;
-  .settiings-panel{
+  .settiings-panel {
     border: none;
-    .settiings-panel-heading{
+    .settiings-panel-heading {
       background-color: #f7ab31;
       color: white;
       text-align: center;
       font-size: 18px;
     }
-    .settiings-panel-body{
+    .settiings-panel-body {
       border: 1px solid #E9E9E9;
-      .settings-edit-button{
+      padding: 30px 45px;
+      .settings-edit-button {
         padding: 5px 72px;
       }
-      .settings-save-button{
+      .settings-save-button {
         padding: 5px 55px;
         margin-right: 10px;
       }
-      .settings-submit-button{
+      .settings-submit-button {
         padding: 5px 56px;
       }
-      .form-horizontal input,label{
-        color:grey;
+      .form-horizontal input, label {
+        color: grey;
         font-weight: normal;
       }
-      .settings-custom-checkbox{
+      .settings-custom-checkbox {
         width: 20px;
         height: 20px;
       }
-      .settings-custom-span{
-        margin-left:10px;
+      .settings-custom-span {
+        margin-left: 10px;
         vertical-align: -30%;
       }
-      .notification-submit-button{
+      .notification-submit-button {
         @extend .settings-submit-button;
       }
 
@@ -42,29 +43,31 @@
         margin-left: 10px;
         background-color: #7E7E7E;
       }
-      .notification-cancel-button:hover{
+      .notification-cancel-button:hover {
         background-color: #7E7E7E !important;
       }
-      .checkbox{
-        span{
-          color:gray;
+      .checkbox {
+        margin-bottom: 0px;
+        label {
+          color: gray;
+          line-height: 28px;
+          span{
+            margin-left: 10px;
+            font-size: 16px;
+          }
         }
       }
-      .checkbox-class{
-        padding-left: 15px;
+
+      .ntofitication-text {
+        color: lighten(gray, 10%);
+
       }
-      .ntofitication-text{
-      color:lighten( gray, 10% );
-        margin-left: 10px;
+      .notification-checkbox-text {
+        padding: 0px 0px 0px 30px;
+        color: lighten(gray, 10%);
       }
-      .notification-checkbox-text{
-        margin-top:10px;
-        color:lighten( gray, 10% );
-        text-align: justify;
-      }
-      .notification-checkbox-texts{
-        color:lighten( gray, 10% );
-        text-align: justify;
+      .notification-checkbox-texts {
+        color: lighten(gray, 10%);
       }
     }
   }
