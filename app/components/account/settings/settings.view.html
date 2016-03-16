@@ -10,8 +10,9 @@
           <div class="form-horizontal">
 
             <div class="form-group">
-              <div class="col-md-4 control-label">
-              <label class=" " data-translate="nav.edit_profile.first_name">First Name:</label>
+              <div class="col-md-2"></div>
+              <div class="col-md-2 ">
+              <label class="control-label" data-translate="nav.edit_profile.first_name">First Name:</label>
               </div>
               <div class="col-md-5">
                 <input type="text" name="firstName" class="form-control"
@@ -38,8 +39,9 @@
             </div>
 
             <div class="form-group">
-              <div class="col-md-4 control-label">
-              <label class=" " data-translate="nav.edit_profile.last_name">Last Name:</label>
+              <div class="col-md-2"></div>
+              <div class="col-md-2 ">
+              <label class="control-label " data-translate="nav.edit_profile.last_name">Last Name:</label>
               </div>
               <div class="col-md-5">
                 <input type="text" name="lastName" class="form-control" data-ng-model="settings.model.userData.lastName"
@@ -64,8 +66,9 @@
             </div>
 
             <div class="form-group">
-              <div class="col-md-4 control-label">
-              <label class=" " data-translate="nav.edit_profile.email">Email:</label></div>
+              <div class="col-md-2"></div>
+              <div class="col-md-2 ">
+              <label class="control-label" data-translate="nav.edit_profile.email">Email:</label></div>
               <div class="col-md-5">
                 <input type="text" name="email" class="form-control" data-ng-model="settings.model.userData.email"
                        placeholder="{{ 'user.email' | translate }}" disabled>
@@ -73,8 +76,11 @@
             </div>
 
             <div class="form-group">
-              <label class="col-md-4 control-label" data-translate="nav.edit_profile.mobile_num">Mobile
+              <div class="col-md-2"></div>
+              <div class="col-md-2">
+                <label class=" control-label" data-translate="nav.edit_profile.mobile_num">Mobile
                 Number:</label>
+              </div>
               <div class="col-md-5">
                 <input type="text" name="mobileNumber" data-ng-model="settings.model.userData.mobileNumber"
                        class="form-control" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
@@ -112,10 +118,12 @@
         <form name="changepasswordForm" ng-submit="settings.submitchangepassword(changepasswordForm)" novalidate>
           <div class="form-horizontal">
 
-            <div class="form-group ">
-              <label class="col-md-4 control-label" data-translate="nav.change_password.old_password">Old
-                password:</label>
-
+            <div class="form-group">
+              <div class="col-md-2"></div>
+              <div class="col-md-2">
+                <label class="control-label " data-translate="nav.change_password.old_password">Old
+                  password:</label>
+              </div>
               <div class="col-md-5">
                 <input type="password" class="form-control " name="oldPassword"
                        ng-model="settings.model.passwordData.oldPassword"
@@ -128,9 +136,11 @@
             </div>
 
             <div class="form-group">
-              <label class="col-md-4 control-label" data-translate="nav.change_password.new_password">New
-                Password:</label>
-
+              <div class="col-md-2"></div>
+              <div class="col-md-2">
+                <label class=" control-label" data-translate="nav.change_password.new_password">New
+                  Password:</label>
+              </div>
               <div class="col-md-5">
                 <input type="password" class="form-control " name="password"
                        ng-model="settings.model.passwordData.password"
@@ -147,9 +157,11 @@
 
             </div>
             <div class="form-group ">
-              <label class="col-md-4 control-label" data-translate="nav.change_password.confirm_new_password">Confirm
-                Newe Password:</label>
-
+              <div class="col-md-2"></div>
+              <div class="col-md-2">
+                <label class=" control-label" data-translate="nav.change_password.confirm_new_password">Confirm
+                  Newe Password:</label>
+              </div>
               <div class="col-md-5">
                 <input type="password" name="confirmPassword"
                        data-ng-model="settings.model.passwordData.confirmPassword"
