@@ -7,8 +7,11 @@
   <div class="noplayer-container col-md-8" data-ng-if="!player.data.playersList.length > 0 && player.isNoPlayer">
      <div>
         <h4 class="center-align">You don't have any players added.Start adding now..</h4>
-        <div class="center-align">
-            <a class="btn btn-primary add-player-link" ui-sref="account.addplayer" data-translate="player.add_player">Add Player</a>
+        <div class="center-align margin-top20">
+            <a class="add-player-link" ui-sref="account.addplayer">
+              <img src="assets/images/add-player-noplayers.png" />
+              <span data-translate="player.add_player"> Add Player </span>
+            </a>
         </div>
      </div>
   </div>
