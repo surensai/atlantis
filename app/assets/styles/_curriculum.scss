@@ -74,54 +74,87 @@
       background-color:#F9A61A;
       color: $white-color;
     }
-    .custom-word-list{
-      .table {
-        border: 1px solid $sp-green;
-        thead th {
-          background-color: $sp-green;
-          padding-top: 25px;
-          padding-bottom: 25px;
-          color: $white-color;
-          font-weight: normal;
-        }
-      }
-      tr, th {
-        text-align: center;
-      }
-      td{
-        border-top: none;
-        color: #B0B0B0;
-      }
-      .left-padding{
-        padding-left: 20px;
-      }
-    }
-     .accordion-word{
-       background-color: gray;
-       .accordion-header-gap{
-         padding-left: 10px;
+     .add-customword-panle-body{
+       padding: 30px;
+       .add-custom-word{
+         background-color: #FAFAFA;
+         color: #DADADA;
+         padding: 3%;
+         margin-bottom: 2%;
+         .form-control{
+           height: 45px;
+           font-size: 17px;
+         }
+         input::-webkit-input-placeholder{
+           color: #DADADA;
+         }
+         input:-moz-placeholder{
+           color: #DADADA;
+         }
+
+         input::-moz-placeholder{
+           color: #DADADA;
+         }
+
+         input:-ms-input-placeholder {
+           color: #DADADA;
+         }
+         .add-custom-word-button{
+           padding: 10px 45px 10px 45px;
+         }
        }
-       .fruit-checkbox{
-         width: 20px;
-         height: 20px;
+       .custom-word-list{
+         background-color: #FAFAFA;
+         .panel-default {
+           .panel-heading{
+             background-color: #FAFAFA;
+             padding: 15px;
+           }
+         }
+         .panel-title{
+           color: #AAA9A9;
+           a{
+             text-decoration: none;
+             border: none;
+              }
+           a:focus{
+             text-decoration: none;
+             outline: none;
+             outline-offset: none;
+           }
+         }
+         .panel-body{
+           background-color: #FAFAFA;
+         }
        }
-       .checkbox-span{
-         vertical-align: 30%;
-         padding-left: 10px;
+       .table {
+         border: 1px solid #C7C7C7;
+         background-color: white;
+         thead th {
+           background-color: #C7C7C7;
+           padding-top: 25px;
+           padding-bottom: 25px;
+           color: $white-color;
+           font-weight: normal;
+         }
        }
-     }
-     .add-custom-word{
-       background-color: whitesmoke;
-       padding: 1%;
-       margin-bottom: 3%;
-     }
-     .custom-header-collapse{
-       border: 1px solid #AEC7AE;
-       padding: 0% 0% 0% 1%;
-     }
-     .collapse-down{
-       padding-right: 1%;
-       font-size: 25px;
+       tr, th {
+         text-align: center;
+       }
+       td{
+         border-top: none;
+         color: #B0B0B0;
+         .last-attempt-green{
+           color: $sp-green;
+         }
+         .last-attempt-blue{
+           color: #6E4D9F;
+         }
+
+       }
+       .left-padding{
+         padding-left: 20px;
+       }
      }
   }
 }
@@ -134,4 +167,17 @@
   background-color: whitesmoke;
   padding: 1%;
   margin-bottom: 2%;
+}
+.curriculum-custom-checkbox-span{
+  padding-left: 8px;
+  margin: 3px 0 15px;
+  font-family: $font-family;
+  font-size: 15px;
+  color:#C3C3C3;
+}
+.curriculum-custom-word-button{
+  padding: 10px 95px 10px 97px;
+}
+.curriculum-milestone-text{
+  color: #BCBCBC ;
 }
