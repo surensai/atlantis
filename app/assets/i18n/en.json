@@ -38,17 +38,17 @@
     "edit_profile": {
       "title": "Edit Profile",
       "header": "Edit Profile",
-      "first_name":"First Name:",
-      "last_name":"Last Name:",
-      "email":"Email:",
-      "mobile_num":"Mobile Number:"
+      "first_name":"First Name",
+      "last_name":"Last Name",
+      "email":"Email",
+      "mobile_num":"Mobile Number"
     },
     "change_password": {
       "title": "Change Password",
       "header": "Change Password",
-      "old_password": "Old Password:",
-      "new_password": "New Password:",
-      "confirm_new_password": "Confirm New Password:"
+      "old_password": "Old Password",
+      "new_password": "New Password",
+      "confirm_new_password": "Confirm New Password"
     },
     "reset_password": {
       "title": "Reset Password",
@@ -122,7 +122,7 @@
     "others": "Others",
     "register": {
       "confirm_password": "Retype Password",
-      "dob": "DOB",
+      "dob": "Date of birth",
       "mobile": "Mobile",
       "gender": "Gender",
       "role": "Role",
@@ -170,7 +170,7 @@
       "age_require":"Age is required.",
       "model_delete_player":"Are you sure do you want to delete player?",
       "user_name_pattern":"Must start with a letter and be alphanumeric.",
-      "user_name_length":"Must be between 5 and 20 characters."
+      "user_name_length":"Must be between 2 and 20 characters."
     },
     "change_password": {
       "old_password": "Old Password",
@@ -182,7 +182,7 @@
     "first_name": "First Name",
     "last_name": "Last Name",
     "mobile": "Mobile",
-    "gender": "Gender :",
+    "gender": "Gender",
     "dateOfBirth": "DOB",
     "age":"Age :",
     "more": "more",
@@ -190,7 +190,7 @@
     "edit_player":"Edit Player",
     "view_players": "Back to view Players",
     "add_new_player": "Add New Player",
-    "add_picture":"Add a picture :",
+    "add_picture":"Add a picture",
     "fav_game1":"Fav game 01,",
     "fav_game2":"Fav game 02,",
     "fav_game3":"Fav game 03",

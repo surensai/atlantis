@@ -199,3 +199,11 @@ img{
 .radio + .radio, .checkbox + .checkbox {
   margin-top: 16px;
 }
+
+.panel{
+  border: none;
+}
+
+.form-control{
+  box-shadow: none;
+}
