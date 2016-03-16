@@ -7,10 +7,10 @@ angular.module("app").directive('badgeItem', function () {
       displayIndex: '=displayIndex',
       callFunc: '&'
     },
-    template: '<div class="badge-item" data-ng-class="item.type"> ' +
+    template: '<div class="badge-item center-align"> ' +
+              '<img ng-src="assets/images/{{item.type}}.png" />'+
               '<span>{{item.milestone}}</span>' +
-              '<h3>{{item.percentage}}</h3></div>' +
-              '</div>',
+              '</div></div>',
 
     controller: function() {
 
