@@ -20,9 +20,9 @@
     <p ng-if="player.playerObj.activities.length > 0"><img src="assets/images/badge1.png"> {{player.playerObj.firstName}} <span data-translate="player.learn_words">learned words like</span>
       <strong >{{player.playerObj.activities[0].word}} </strong>and<strong> {{player.playerObj.activities[1].word}}</strong></p>
 
-    <p><img src="assets/images/badge2.png"> {{player.playerObj.firstName}}<span
+    <p ng-if="player.playerObj.game"><img src="assets/images/badge2.png"> {{player.playerObj.firstName}}<span
       data-translate="player.milestone_achieved">achieved 02 Milestones in</span>
-      <strong data-translate="player.word_jumble">Word Jumble.</strong></p>
+      <strong>{{player.playerObj.game[0].gameName}}.</strong></p>
 
     <p><img src="assets/images/badge1.png"> {{player.playerObj.firstName}} <span data-translate="player.consectetur">consectetur adipscing</span>
       <strong data-translate="player.elit">elit.</strong>
