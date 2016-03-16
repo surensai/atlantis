@@ -10,6 +10,53 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'PlayerService',
   curriculum.fileReaderSupported = window.FileReader != null;
   var URL = window.URL || window.webkitURL;
 
+  curriculum.wordsHeaders = {
+    Sno: "S. No.",
+    Words: "Words",
+    dateAdded: "Date Added",
+    picture: "Picture",
+    actions: "Actions"
+  };
+  curriculum.customWords = [
+    {
+      Sno: "01",
+      Words: "Apple",
+      dateAdded: "07.21.2016",
+      picture: true
+    },
+    {
+      Sno: "02",
+      Words: "Ant",
+      dateAdded: "07.21.2016",
+      picture: false
+    },
+    {
+      Sno: "03",
+      Words: "Cat",
+      dateAdded: "07.21.2016",
+      picture: true
+    },
+    {
+      Sno: "04",
+      Words: "Cap",
+      dateAdded: "07.21.2016",
+      picture: false
+    },
+    {
+      Sno: "05",
+      Words: "Chicken",
+      dateAdded: "07.21.2016",
+      picture: true
+    }
+  ];
+  curriculum.getKeysOfCollection = function (obj) {
+    obj = angular.copy(obj);
+    if (!obj) {
+      return [];
+    }
+    return Object.keys(obj);
+  };
+
   curriculum.closeAlert = function () {
     curriculum.show = false;
   };

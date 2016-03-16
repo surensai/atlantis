@@ -1,141 +1,102 @@
 <div class="curriculum-container" xmlns="http://www.w3.org/1999/html">
-<div class="container container-min-height">
-  <div class="panel curriculum-milestone-panel">
-    <div class="panel-heading text-center curriculum-milestonepanel-heading">
-      CURRICULUM
-    </div>
-    <div class="panel-body">
-
-      <div class="row milestone-row"  ng-repeat="data in curriculum.curriculumdata.slice(((curriculum.currentPage-1)*curriculum.itemsPerPage), ((curriculum.currentPage)*curriculum.itemsPerPage))">
-        <div class="col-md-2">
-          <div class="milestone-items curriculum-emptybadge">
-            <h1>{{data.milestoneNum}}</h1>
-            <span>{{data.milestone}}</span>
-          </div>
-        </div>
-        <div class="col-md-10 milestone-details">
-          <h5>Name of Milestone</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  <div class="container container-min-height">
+    <div class="panel curriculum-customword-panel">
+      <div class="panel-heading text-center curriculum-customwordpanel-heading">
+        <h4>Custom Word</h4>
+      </div>
+      <div class="panel-body">
+        <div class="add-custom-word">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore
+            magna aliqua. Ut enim ad minim veniam,
             quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-          <h5>Games</h5>
-          <div class="padding-left-right">
-            <img src="assets/images/gameicon.png" /><span>Game name 01</span>
-            <img src="assets/images/gameicon.png"/><span>Game name 01</span>
-            <img src="assets/images/gameicon.png" /><span>Game name 01</span>
-            <img src="assets/images/gameicon.png" /><span>Game name 01</span>
-          </div>
-          <h5>Words</h5>
-          <button class="btn btn-default btn-padding-right">Cat</button>
-          <button class="btn btn-default btn-padding-left-right">Bat</button>
-          <button class="btn btn-default btn-padding-left-right">cat</button>
-          <button class="btn btn-default btn-padding-left-right">Ball</button>
-          <button class="btn btn-default btn-padding-left-right">Doll</button>
-          <span>...</span>
-        </div>
-      </div>
-      <uib-pagination class="pull-right" total-items="curriculum.totalItems" direction-links="false" ng-model="curriculum.currentPage"  items-per-page="curriculum.itemsPerPage"></uib-pagination>
-    </div>
-  </div>
-  <div class="panel curriculum-customword-panel">
-    <div class="panel-heading text-center curriculum-customwordpanel-heading">
-      <h4>Custom words</h4>
-    </div>
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-md-9">
-          <input type="text" class="form-control" placeholder="Type a word">
-        </div>
-        <div class="col-md-3">
-          <button class=" btn btn-primary" ui-sref="account.addCustomWord">Add Custom word</button>
-        </div>
-      </div>
-      <div class="custom-word-list">
-        <h3>Custom Word List</h3>
-        <table class="table table-striped table-hover">
-          <thead>
-          <tr>
-            <th>S.No</th>
-            <th>Words</th>
-            <th>Date Added</th>
-            <th>Pictures</th>
-            <th>Actions</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>01</td>
-            <td>Apple</td>
-            <td>07.21.2016</td>
-            <td>True</td>
-            <td>view <i class="fa fa-pencil-square-o left-padding"></i> <i class="fa fa-trash left-padding"></i></td>
-          </tr>
-          <tr>
-            <td>02</td>
-            <td>Ant</td>
-            <td>07.21.2016</td>
-            <td>false</td>
-            <td>view <i class="fa fa-pencil-square-o left-padding"></i> <i class="fa fa-trash left-padding"></i></td>
-          </tr>
-          <tr>
-            <td>03</td>
-            <td>cat</td>
-            <td>07.21.2016</td>
-            <td>True</td>
-            <td>view <i class="fa fa-pencil-square-o left-padding"></i> <i class="fa fa-trash left-padding"></i></td>
-          </tr>
-          <tr>
-            <td>04</td>
-            <td>cap</td>
-            <td>07.21.2016</td>
-            <td>True</td>
-            <td>view <i class="fa fa-pencil-square-o left-padding"></i> <i class="fa fa-trash left-padding"></i></td>
-          </tr>
-          <tr>
-            <td>05</td>
-            <td>chicken</td>
-            <td>07.21.2016</td>
-            <td>True</td>
-            <td>view <i class="fa fa-pencil-square-o left-padding"></i> <i class="fa fa-trash left-padding"></i></td>
-          </tr>
-          <tr>
-            <td>06</td>
-            <td>Dog</td>
-            <td>07.21.2016</td>
-            <td>True</td>
-            <td>view <i class="fa fa-pencil-square-o left-padding"></i> <i class="fa fa-trash left-padding"></i></td>
-          </tr>
 
-          </tbody>
-        </table>
+          <form name="curriculumForm" novalidate>
+            <div class="form-horizontal">
+              <div class="form-group">
+                <div class="col-md-12">
+                  <input type="text" class="form-control" placeholder="Type a word">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-5"></div>
+                <div class="col-md-4">
+                  <button class=" btn btn-primary" ui-sref="account.addCustomWord">Add Custom word</button>
+                </div>
+                <div class="col-md-3"></div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="custom-word-list add-custom-word">
+          <h3>Custom Word List</h3>
+          <table class="table table-striped table-hover">
+
+            <thead>
+            <tr>
+              <th ng-repeat="key in curriculum.getKeysOfCollection(curriculum.wordsHeaders)"
+                  ng-click="curriculum.predicate = key; curriculum.reverse=!player.reverse;">
+                {{curriculum.wordsHeaders[key]}}
+                <span class="fa fa-sort columnSortIcons" ng-if="key !== curriculum.predicate && (key !== 'Sno' && key !== 'actions' )"></span>
+                <span class="fa fa-sort-down columnSortIcons"
+                      ng-if="!(curriculum.reverse) && key === curriculum.predicate && (key !== 'Sno'&& key !== 'actions' )"></span>
+                <span class="fa fa-sort-up columnSortIcons"
+                      ng-if="curriculum.reverse && key === curriculum.predicate && (key !== 'Sno'&& key !== 'actions' )"></span>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="word in curriculum.customWords | orderBy:curriculum.predicate:curriculum.reverse">
+              <td>{{ word.Sno}}</td>
+              <td class="player-words">{{ word.Words}}</td>
+              <td>{{ word.dateAdded | date:"MM/dd/yyyy '' h:mma"}}</td>
+              <td data-ng-if="word.picture"><i class="fa fa-check last-attempt-green" ></i></td>
+              <td data-ng-if="!word.picture"><i class="fa fa-close last-attempt-blue" ></i></td>
+              <td><i class="fa fa-eye"></i> <i class="fa fa-pencil-square-o left-padding"></i> <i class="fa fa-trash left-padding"></i></td>
+            </tr>
+            <tr data-ng-if="player.wordsData.length === 0">
+              <td colspan="5"> No Data</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="panel curriculum-milestone-panel">
-    <!--<div class="panel-heading text-center curriculum-customwordpanel-heading">-->
+    <div class="panel curriculum-milestone-panel">
+      <!--<div class="panel-heading text-center curriculum-customwordpanel-heading">-->
       <!---->
-    <!--</div>-->
-    <div class="panel-heading text-center curriculum-milestonepanel-heading">
-      Group Word List
-    </div>
-    <div class="panel-body">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+      <!--</div>-->
+      <div class="panel-heading text-center curriculum-milestonepanel-heading">
+        Group Word List
+      </div>
+      <div class="panel-body">
 
-      <div class="custom-word-list">
+        <div class="custom-word-list bad-words">
 
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" class="custom-checkbox" checked><p class="custom-checkbox-span">Anotomy</p>
-          </label>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" class="custom-checkbox" checked>
+
+              <p class="custom-checkbox-span">Anotomy</p>
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" class="custom-checkbox">
+
+              <p class="custom-checkbox-span">Bathroom</p>
+            </label>
+          </div>
         </div>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" class="custom-checkbox" ><p class="custom-checkbox-span">Bathroom</p>
-          </label>
+        <div class="row">
+          <div class="col-md-5"></div>
+          <div class="col-md-4">
+            <button class=" btn btn-lg btn-primary" ui-sref="account.addCustomWord">Apply</button>
+          </div>
+          <div class="col-md-3"></div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div>
