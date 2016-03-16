@@ -10,8 +10,10 @@
           <div class="form-horizontal">
 
             <div class="form-group">
-              <label class="col-md-4 control-label" data-translate="nav.edit_profile.first_name">First Name:</label>
-
+              <div class="col-md-2"></div>
+              <div class="col-md-2 ">
+              <label class="control-label" data-translate="nav.edit_profile.first_name">First Name:</label>
+              </div>
               <div class="col-md-5">
                 <input type="text" name="firstName" class="form-control"
                        ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/"
@@ -37,14 +39,16 @@
             </div>
 
             <div class="form-group">
-              <label class="col-md-4 control-label" data-translate="nav.edit_profile.last_name">Last Name:</label>
-
+              <div class="col-md-2"></div>
+              <div class="col-md-2 ">
+              <label class="control-label " data-translate="nav.edit_profile.last_name">Last Name:</label>
+              </div>
               <div class="col-md-5">
                 <input type="text" name="lastName" class="form-control" data-ng-model="settings.model.userData.lastName"
                        ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/"
                        placeholder="{{ 'user.last_name' | translate }}" required ng-disabled="!settings.isEditClicked">
-                <i class="fa fa-exclamation-circle error-mesasage" ng-show="settingsForm.lastName.$error.required" >
-                  <span  data-translate="user.validationMessages.last_name_require">Last Name is required.</span>
+                <i class="fa fa-exclamation-circle error-mesasage" ng-show="settingsForm.lastName.$error.required">
+                  <span data-translate="user.validationMessages.last_name_require">Last Name is required.</span>
                 </i>
 
                 <i class="fa fa-exclamation-circle error-mesasage"
@@ -62,8 +66,9 @@
             </div>
 
             <div class="form-group">
-              <label class="col-md-4 control-label" data-translate="nav.edit_profile.email">Email:</label>
-
+              <div class="col-md-2"></div>
+              <div class="col-md-2 ">
+              <label class="control-label" data-translate="nav.edit_profile.email">Email:</label></div>
               <div class="col-md-5">
                 <input type="text" name="email" class="form-control" data-ng-model="settings.model.userData.email"
                        placeholder="{{ 'user.email' | translate }}" disabled>
@@ -71,9 +76,11 @@
             </div>
 
             <div class="form-group">
-              <label class="col-md-4 control-label" data-translate="nav.edit_profile.mobile_num">Mobile
+              <div class="col-md-2"></div>
+              <div class="col-md-2">
+                <label class=" control-label" data-translate="nav.edit_profile.mobile_num">Mobile
                 Number:</label>
-
+              </div>
               <div class="col-md-5">
                 <input type="text" name="mobileNumber" data-ng-model="settings.model.userData.mobileNumber"
                        class="form-control" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
@@ -111,28 +118,36 @@
         <form name="changepasswordForm" ng-submit="settings.submitchangepassword(changepasswordForm)" novalidate>
           <div class="form-horizontal">
 
-            <div class="form-group ">
-              <label class="col-md-4 control-label" data-translate="nav.change_password.old_password">Old password:</label>
-
+            <div class="form-group">
+              <div class="col-md-2"></div>
+              <div class="col-md-2">
+                <label class="control-label " data-translate="nav.change_password.old_password">Old
+                  password:</label>
+              </div>
               <div class="col-md-5">
                 <input type="password" class="form-control " name="oldPassword"
                        ng-model="settings.model.passwordData.oldPassword"
                        placeholder="{{ 'user.change_password.old_password' | translate }}" required>
                 <i ng-show="changepasswordForm.$submitted && changepasswordForm.oldPassword.$error.required"
                    class="fa fa-exclamation-circle error-mesasage">
-                  <span data-translate="user.validationMessages.old_password_require">Old Password is required</span></i>
+                  <span
+                    data-translate="user.validationMessages.old_password_require">Old Password is required</span></i>
               </div>
             </div>
 
             <div class="form-group">
-              <label class="col-md-4 control-label" data-translate="nav.change_password.new_password">New Password:</label>
-
+              <div class="col-md-2"></div>
+              <div class="col-md-2">
+                <label class=" control-label" data-translate="nav.change_password.new_password">New
+                  Password:</label>
+              </div>
               <div class="col-md-5">
                 <input type="password" class="form-control " name="password"
                        ng-model="settings.model.passwordData.password"
                        pattern="[A-Za-z0-9\W]{8,20}" placeholder="{{ 'user.password' | translate }}" required>
 
-                <i class="fa fa-exclamation-circle error-mesasage" ng-show="changepasswordForm.$submitted && changepasswordForm.password.$error.required">
+                <i class="fa fa-exclamation-circle error-mesasage"
+                   ng-show="changepasswordForm.$submitted && changepasswordForm.password.$error.required">
                   <span data-translate="user.validationMessages.password_require">Password is required</span></i>
                 <i class="fa fa-exclamation-circle error-mesasage"
                    ng-show='changepasswordForm.password.$error.pattern && changepasswordForm.password.$dirty'>
@@ -140,27 +155,26 @@
                 </i>
               </div>
 
-
             </div>
             <div class="form-group ">
-              <label class="col-md-4 control-label" data-translate="nav.change_password.confirm_new_password">Confirm Newe Password:</label>
-
+              <div class="col-md-2"></div>
+              <div class="col-md-2">
+                <label class=" control-label" data-translate="nav.change_password.confirm_new_password">Confirm
+                  Newe Password:</label>
+              </div>
               <div class="col-md-5">
                 <input type="password" name="confirmPassword"
                        data-ng-model="settings.model.passwordData.confirmPassword"
                        placeholder="{{ 'user.register.confirm_password' | translate }}" class="form-control" required>
                 <i ng-show="!changepasswordForm.confirmPassword.$error.required && settings.model.passwordData.password !== settings.model.passwordData.confirmPassword "
-                  class="fa fa-exclamation-circle error-mesasage" >
+                  class="fa fa-exclamation-circle error-mesasage">
                   <span data-translate="user.validationMessages.password_mismatch"> Password mismatch.</span></i>
 
                 <i ng-show="(changepasswordForm.$submitted && changepasswordForm.confirmPassword.$error.required )"
-                      class="fa fa-exclamation-circle error-mesasage">
+                   class="fa fa-exclamation-circle error-mesasage">
                   <span data-translate="user.validationMessages.cpassword_require">Confirm Password is required.</span></i>
               </div>
-
             </div>
-
-
           </div>
           <div class="col-md-4"></div>
           <div class="col-md-5">
@@ -173,10 +187,11 @@
       </div>
     </div>
     <div class="panel settiings-panel" cg-busy="{promise:settings.missingLetterPromise,message:'Loading Your Data'}">
-      <div class="panel-heading settiings-panel-heading" data-translate="nav.missing_letters.title">Order Missing Letters
+      <div class="panel-heading settiings-panel-heading" data-translate="nav.missing_letters.title">Order Missing
+        Letters
       </div>
       <div class="panel-body settiings-panel-body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        <p class="ntofitication-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
           magna aliqua. Ut enim ad minim veniam,
           quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
 
@@ -187,8 +202,8 @@
             <button class="btn btn-primary notification-submit-button" type="submit"
                     data-translate="common.buttons.submit">SUBMIT
             </button>
-            <button type="button" class="btn btn-primary cancel-button notification-submit-button"
-                    data-translate="common.buttons.clear" >Clear
+            <button type="button" class="btn btn-primary  notification-cancel-button"
+                    data-translate="common.buttons.clear">Clear
             </button>
           </div>
         </form>
@@ -198,32 +213,51 @@
       <div class="panel-heading settiings-panel-heading" data-translate="nav.notification.notifications">Notifications
       </div>
       <div class="panel-body settiings-panel-body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        <p class="ntofitication-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore
           magna aliqua. Ut enim ad minim veniam,
           quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
 
         <form name="notificationsForm" role="form" data-ng-submit="settings.submitNotifications(notificationsForm)"
               novalidate>
-          <div class="checkbox col-md-4">
-            <input type="checkbox" class="settings-custom-checkbox"
-                   data-ng-model="settings.model.notificationObj.player_updates"><span class="settings-custom-span">Player updates</span>
-          </div>
-          <div class="checkbox col-md-4">
-            <input type="checkbox" class="settings-custom-checkbox"
-                   data-ng-model="settings.model.notificationObj.sp_updates"><span class="settings-custom-span">Square Panda news</span>
-          </div>
-          <div class="checkbox col-md-4">
-            <input type="checkbox" class="settings-custom-checkbox"
-                   data-ng-model="settings.model.notificationObj.educational_updates"><span
-            class="settings-custom-span">Educational News feed</span>
-          </div>
-          <div class="col-md-4"></div>
-          <div class="col-md-5">
+          <div class="clearfix">
+            <div class="col-md-4  clearfix">
+              <div class="checkbox checkbox-class">
+                <input type="checkbox" class="settings-custom-checkbox"
+                       data-ng-model="settings.model.notificationObj.player_updates"><span class="settings-custom-span">Player updates</span>
 
+                <div class="col-md-11">
+                  <p class="notification-checkbox-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                    eiusmod tempor incididunt</p>
+                </div>
+              </div>
+            </div>
+            <div class="checkbox col-md-4">
+              <input type="checkbox" class="settings-custom-checkbox"
+                     data-ng-model="settings.model.notificationObj.sp_updates"><span class="settings-custom-span">Square Panda news</span>
+
+              <div class="col-md-11">
+                <p class="notification-checkbox-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                  eiusmod tempor incididunt</p>
+              </div>
+            </div>
+            <div class=" col-md-4">
+              <div class="checkbox">
+                <input type="checkbox" class="settings-custom-checkbox"
+                       data-ng-model="settings.model.notificationObj.educational_updates"><span
+                class="settings-custom-span">Educational News feed</span>
+              </div>
+              <div class="col-md-11">
+                <p class="notification-checkbox-texts">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                  eiusmod tempor incididunt</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 clearfix"></div>
+          <div class="col-md-5">
             <button class="btn btn-primary notification-submit-button" type="submit"
                     data-translate="common.buttons.submit">SUBMIT
             </button>
-
           </div>
         </form>
       </div>
