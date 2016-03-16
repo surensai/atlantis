@@ -2,101 +2,104 @@
   <div class="container container-min-height">
     <div class="panel curriculum-customword-panel">
       <div class="panel-heading text-center curriculum-customwordpanel-heading">
-        <h4>Custom Word</h4>
+        Custom Word
       </div>
-      <div class="panel-body">
-        <div class="add-custom-word">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore
-            magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+      <div class="panel-body add-customword-panle-body">
 
+        <div class="add-custom-word ">
           <form name="curriculumForm" novalidate>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore
+              magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
             <div class="form-horizontal">
+
               <div class="form-group">
                 <div class="col-md-12">
                   <input type="text" class="form-control" placeholder="Type a word">
                 </div>
               </div>
+
               <div class="form-group">
                 <div class="col-md-5"></div>
                 <div class="col-md-4">
-                  <button class=" btn btn-primary" ui-sref="account.addCustomWord">Add Custom word</button>
+                  <button class=" btn btn-primary add-custom-word-button" ui-sref="account.addCustomWord">Add Custom word</button>
                 </div>
                 <div class="col-md-3"></div>
               </div>
             </div>
           </form>
         </div>
-        <div class="custom-word-list add-custom-word">
-          <div class="custom-header-collapse">
-            <h3>Custom Word List
-              <i class="fa fa-sort-down pull-right collapse-down"></i></h3>
+        <div class="custom-word-list">
+          <uib-accordion>
+            <uib-accordion-group is-open="status.open">
+              <uib-accordion-heading>
+               Custom Word List<i class="pull-right glyphicon" ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>
+              </uib-accordion-heading>
+              <table class="table table-striped table-hover">
 
-          </div>
-          <table class="table table-striped table-hover">
-
-            <thead>
-            <tr>
-              <th ng-repeat="key in curriculum.getKeysOfCollection(curriculum.wordsHeaders)"
-                  ng-click="curriculum.predicate = key; curriculum.reverse=!curriculum.reverse;">
-                {{curriculum.wordsHeaders[key]}}
-                <span class="fa fa-sort columnSortIcons" ng-if="key !== curriculum.predicate && (key !== 'Sno' && key !== 'actions' )"></span>
+                <thead>
+                <tr>
+                  <th ng-repeat="key in curriculum.getKeysOfCollection(curriculum.wordsHeaders)"
+                      ng-click="curriculum.predicate = key; curriculum.reverse=!curriculum.reverse;">
+                    {{curriculum.wordsHeaders[key]}}
+                    <span class="fa fa-sort columnSortIcons" ng-if="key !== curriculum.predicate && (key !== 'Sno' && key !== 'actions' )"></span>
                 <span class="fa fa-sort-down columnSortIcons"
                       ng-if="!(curriculum.reverse) && key === curriculum.predicate && (key !== 'Sno'&& key !== 'actions' )"></span>
                 <span class="fa fa-sort-up columnSortIcons"
                       ng-if="curriculum.reverse && key === curriculum.predicate && (key !== 'Sno'&& key !== 'actions' )"></span>
-              </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr data-ng-repeat="word in curriculum.customWords | orderBy:curriculum.predicate:curriculum.reverse">
-              <td>{{ word.Sno}}</td>
-              <td class="player-words">{{ word.Words}}</td>
-              <td>{{ word.dateAdded | date:"MM/dd/yyyy '' h:mma"}}</td>
-              <td data-ng-if="word.picture"><i class="fa fa-check last-attempt-green" ></i></td>
-              <td data-ng-if="!word.picture"><i class="fa fa-close last-attempt-blue" ></i></td>
-              <td><i class="fa fa-eye"></i> <i class="fa fa-pencil-square-o left-padding"></i> <i class="fa fa-trash left-padding"></i></td>
-            </tr>
-            <tr data-ng-if="curriculum.customWords.length === 0">
-              <td colspan="5"> No Data</td>
-            </tr>
-            </tbody>
-          </table>
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="word in curriculum.customWords | orderBy:curriculum.predicate:curriculum.reverse">
+                  <td>{{ word.Sno}}</td>
+                  <td class="player-words">{{ word.Words}}</td>
+                  <td>{{ word.dateAdded | date:"MM/dd/yyyy '' h:mma"}}</td>
+                  <td data-ng-if="word.picture"><i class="fa fa-check last-attempt-green" ></i></td>
+                  <td data-ng-if="!word.picture"><i class="fa fa-close last-attempt-blue" ></i></td>
+                  <td><i class="fa fa-eye"></i> <i class="fa fa-pencil-square-o left-padding"></i> <i class="fa fa-trash left-padding"></i></td>
+                </tr>
+                <tr data-ng-if="curriculum.customWords.length === 0">
+                  <td colspan="5"> No Data</td>
+                </tr>
+                </tbody>
+              </table>
+            </uib-accordion-group>
+          </uib-accordion>
         </div>
       </div>
     </div>
-
     <div class="panel curriculum-milestone-panel">
-      <!--<div class="panel-heading text-center curriculum-customwordpanel-heading">-->
-      <!---->
-      <!--</div>-->
       <div class="panel-heading text-center curriculum-milestonepanel-heading">
         Group Word List
       </div>
       <div class="panel-body">
-
+        <p class="curriculum-milestone-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+          dolore
+          magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
         <div class="custom-word-list bad-words">
 
           <div class="checkbox">
             <label>
               <input type="checkbox" class="custom-checkbox" checked>
 
-              <p class="custom-checkbox-span">Anotomy</p>
+              <p class="curriculum-custom-checkbox-span ">Anatomy</p>
             </label>
           </div>
           <div class="checkbox">
             <label>
               <input type="checkbox" class="custom-checkbox">
 
-              <p class="custom-checkbox-span">Bathroom</p>
+              <p class="curriculum-custom-checkbox-span ">Bathroom</p>
             </label>
           </div>
         </div>
         <div class="row">
           <div class="col-md-5"></div>
           <div class="col-md-4">
-            <button class=" btn btn-lg btn-primary" ui-sref="account.addCustomWord">Apply</button>
+            <button class=" btn  btn-primary curriculum-custom-word-button" ui-sref="account.addCustomWord">Apply</button>
           </div>
           <div class="col-md-3"></div>
         </div>
