@@ -54,15 +54,7 @@
             }
 
             $scope.$watchGroup(['dob.year', 'dob.month', 'dob.day'], function(newValues, oldValues, scope) {
-                if (newValues[0]){
-                  scope.source = setDOBFormate(scope.dob.month, scope.dob.day, scope.dob.year);
-                }
-
-                if (newValues[1]){
-                  scope.source = setDOBFormate(scope.dob.month, scope.dob.day, scope.dob.year);
-                }
-
-                if (newValues[2]){
+                if (newValues[0] || newValues[1] || newValues[2]){
                   scope.source = setDOBFormate(scope.dob.month, scope.dob.day, scope.dob.year);
                 }
             });

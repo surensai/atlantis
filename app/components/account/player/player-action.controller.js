@@ -39,7 +39,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
         data.firstName = playerAction.model.playerItem.firstName;
         data.lastName = playerAction.model.playerItem.lastName;
         data.profileURL = playerAction.model.playerItem.profileURL;
-        data.age =  playerAction.model.playerItem.age;
+        data.dateofBirth =  playerAction.model.playerItem.dateofBirth;
         data.gender = playerAction.model.playerItem.gender;
         return data;
     }
