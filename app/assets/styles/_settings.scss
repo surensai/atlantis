@@ -12,14 +12,14 @@
     .settiings-panel-body{
       border: 1px solid #E9E9E9;
       .settings-edit-button{
-        padding: 5px 55px;
+        padding: 5px 72px;
       }
       .settings-save-button{
         padding: 5px 55px;
         margin-right: 10px;
       }
       .settings-submit-button{
-        padding: 5px 35px;
+        padding: 5px 56px;
       }
       .form-horizontal input,label{
         color:grey;
@@ -35,15 +35,36 @@
       }
       .notification-submit-button{
         @extend .settings-submit-button;
-        margin-top: 30px;
+      }
+
+      .notification-cancel-button {
+        padding: 5px 66px;
+        margin-left: 10px;
+        background-color: #7E7E7E;
+      }
+      .notification-cancel-button:hover{
+        background-color: #7E7E7E !important;
       }
       .checkbox{
         span{
           color:gray;
         }
       }
-      p{
-      color:lighten( gray, 10% )
+      .checkbox-class{
+        padding-left: 15px;
+      }
+      .ntofitication-text{
+      color:lighten( gray, 10% );
+        margin-left: 10px;
+      }
+      .notification-checkbox-text{
+        margin-top:10px;
+        color:lighten( gray, 10% );
+        text-align: justify;
+      }
+      .notification-checkbox-texts{
+        color:lighten( gray, 10% );
+        text-align: justify;
       }
     }
   }
