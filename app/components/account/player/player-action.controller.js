@@ -64,7 +64,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
       flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
     };
 
-    playerAction.loadPromise = PlayerService.createApi(formData)
+    PlayerService.createApi(formData)
       .success(handleSuccess)
       .error(handleError);
   }
@@ -79,7 +79,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
       flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
     };
 
-    playerAction.loadPromise = PlayerService.updateApi(playerAction.data.playerItem.id, formData)
+    PlayerService.updateApi(playerAction.data.playerItem.id, formData)
       .success(handleSuccess)
       .error(handleError);
   }
@@ -105,7 +105,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
       flashService.showError($translate.instant("player.messages.error_file_upload"), false);
     };
     var file = playerAction.myFile;
-    playerAction.loadPromise = PlayerService.uploadFileApi(file)
+    PlayerService.uploadFileApi(file)
       .success(handleSuccess)
       .error(handleError);
   }
@@ -127,7 +127,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
       flashService.showError($translate.instant("player.messages.error_deleting_players"), false);
     };
 
-    playerAction.loadPromise = PlayerService.deleteApi(playerAction.data.deleteObj.id)
+   PlayerService.deleteApi(playerAction.data.deleteObj.id)
       .success(handleSuccess)
       .error(handleError);
   };
@@ -166,7 +166,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
         flashService.showError($translate.instant("player.messages.error_getting_players"), false);
       };
 
-      playerAction.loadPromise = PlayerService.getPlayerById($state.params.id)
+      PlayerService.getPlayerById($state.params.id)
         .success(handleSuccess)
         .error(handleError);
     }
