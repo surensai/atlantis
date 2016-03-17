@@ -34,7 +34,7 @@ angular.module("app").controller('firmwareCtrl', ['$timeout', 'firmwareService',
       form.$setPristine();
     };
 
-    firmware.loadPromise = firmwareService.createApi(firmware.model)
+    firmwareService.createApi(firmware.model)
       .success(handleSuccess)
       .error(handleError);
   }
@@ -51,7 +51,7 @@ angular.module("app").controller('firmwareCtrl', ['$timeout', 'firmwareService',
 
     var file = firmware.model.firmware_update_url;
 
-    firmware.loadPromise = firmwareService.uploadFileApi(file)
+    firmwareService.uploadFileApi(file)
       .success(handleSuccess)
       .error(handleError);
   }
