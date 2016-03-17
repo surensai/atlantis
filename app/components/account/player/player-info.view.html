@@ -37,20 +37,41 @@
       <div class="badges-container clearfix">
         <h4 class="badges-row" data-translate="player.badges.big_badges">Big Badges</h4>
 
-        <div class="badges-row">
+        <div class="badges-row"  >
           <div class="col-md-3 col-sm-6" data-ng-repeat="badge in player.bigBadges"
                data-ng-init="player.current = $index+1;"
-               data-ng-click="player.showGraph($index)">
+               data-ng-click="player.showGraph($index)" >
+
             <data-badge-item item-data="badge"
                              display-index="player.displayChartIndex"
                              index="$index">
             </data-badge-item>
           </div>
-          <!-- <div data-ng-repeat-end="" class="badge-col4 graph-container clearfix ">
-             <img src="assets/images/graph-img.jpg" />
-            <highchart config="player.highchartsNG"></highchart>
-          </div>-->
+          <!--<div data-ng-repeat-end="" class="badge-col4 graph-container clearfix ">-->
+             <!--<img src="assets/images/graph-img.jpg" />-->
+            <!--<highchart config="player.highchartsNG"></highchart>-->
+          <!--</div>-->
         </div>
+      </div>
+      <div class="  bigbadge-description">
+        <div class="bigbadge-description-text">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            doloremagna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat quis nostrud exercitation ullamco laboris nisi ut aliquip. </p>
+              <button class="btn  bigbadge-buttons">Cat</button>
+              <button class="btn  bigbadge-buttons">Bat</button>
+              <button class="btn  bigbadge-buttons">Mat</button>
+              <button class="btn  bigbadge-buttons">Ball</button>
+              <button class="btn  bigbadge-buttons">Doll</button>
+              <span>...</span>
+        </div>
+        <div class="bigbadge-graph-buttons ">
+          <button class="btn bigbadge-graph-button-style">Day</button>
+          <button class="btn bigbadge-graph-button-style">Week</button>
+          <button class="btn bigbadge-graph-button-style">Month</button>
+          <button class="btn bigbadge-graph-button-style">Year</button>
+        </div>
+        <img src="assets/images/samplegrapg.png" class="img-responsive">
       </div>
     </uib-tab>
     <uib-tab index="1" heading="Mini Badges">

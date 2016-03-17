@@ -66,7 +66,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
       .error(handleError);
   }
 
-  player.bigBadges = [
+    player.bigBadges = [
     {
       milestone: 'Apple',
       percentage: '130%',
