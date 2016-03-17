@@ -2,10 +2,9 @@
   return {
     restrict: 'EA',
     scope: {
-      source: '=birthDate'
+      birthDate: '=birthDate'
     },
     templateUrl: 'common/app-directives/dob/dob.view.html',
-    transclude: true,
     controller: function ($scope, $timeout) {
       $scope.setDOB = function () {
         $scope.days = ($scope.dob) ? daysInMonth($scope.dob.year, $scope.dob.month) : 30;
@@ -53,22 +52,25 @@
           return month + "-" + day + "-" + year;
         }
 
-        $scope.$watchGroup(['dob.year', 'dob.month', 'dob.day'], function (newValues, oldValues, scope) {
+        $scope.$watchGroup(['dob.month', 'dob.day', 'dob.year'], function (newValues, oldValues, scope) {
           if (newValues[0] || newValues[1] || newValues[2]) {
-            scope.source = setDOBFormate(scope.dob.month, scope.dob.day, scope.dob.year);
+            scope.birthDate = setDOBFormate(scope.dob.month, scope.dob.day, scope.dob.year);
+          }
+
+        });
+
+        $scope.$watch('birthDate', function (newValue, oldValue,scope) {
+          if(newValue){
+            var val = newValue.split("-");
+            if(val[0] !== "" && val[1] !== "" && val[2] !== ""){
+              scope.dob.month = new Date(scope.birthDate).getMonth() + 1;
+              scope.dob.day = new Date(scope.birthDate).getDate();
+              scope.dob.year = new Date(scope.birthDate).getFullYear();
+            }
           }
         });
 
       };
-
-      $timeout(function () {
-        if ($scope.source) {
-          $scope.dob.year = new Date($scope.source).getFullYear();
-          $scope.dob.month = new Date($scope.source).getMonth()+1;
-          $scope.dob.day = new Date($scope.source).getDate();
-        }
-      }, 2000);
-
       $scope.setDOB();
 
     }
