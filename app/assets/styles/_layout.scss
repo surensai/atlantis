@@ -10,6 +10,18 @@
   height: 87%;
 }
 
+.load-overlay{
+  background-color: rgba(256, 256, 256, 0.6);
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 9999;
+  text-align: center;
+  padding-top: 20%;
+}
+
 .bg-color-white{
   background-color: $white-color;
 }
