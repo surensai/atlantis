@@ -140,20 +140,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   player.getWords = function (childId) {
     var handleSuccess = function (data) {
       if (data) {
-        var newWord = {};
-        angular.forEach(data, function (word, key) {
-          if (word) {
-            newWord.SNo = key + 1;
-            newWord.Words = word.word;
-            newWord.LastPlayed = word.endtime;
-            if (word.activity) {
-              newWord.Attempts = word.activity.length;
-              newWord.LastAttempt = word.activity[word.activity.length - 1].answer;
-            }
-            player.wordsData.push(newWord);
-            newWord = {};
-          }
-        });
+        player.wordsData = data;
       }
     };
 

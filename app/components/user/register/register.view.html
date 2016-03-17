@@ -4,58 +4,82 @@
   <div class="col-lg-4 col-md-6 col-sm-6 login-top-margin">
     <form name="userForm" class="user-form-container" data-ng-submit="register.submitForm(userForm)" novalidate>
       <h2 class="form-signin-heading" data-translate="nav.register.header">Register</h2>
+
       <div class="error-text-message" data-ng-if="globals.flash && globals.flash.type !== 'success'">
-      {{globals.flash.message}}
-    </div>
+        {{globals.flash.message}}
+      </div>
       <div class="form-group has-feedback">
         <input type="text" name="firstName" class="form-control" data-ng-model="register.model.firstName"
-               ng-minlength="2" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/" placeholder="{{ 'user.first_name' | translate }}" required>
-
-        <span ng-show="userForm.$submitted && userForm.firstName.$error.required" class="error-mesasage"
-              data-translate="user.validationMessages.first_name_require">First Name is required.</span>
-
-        <span ng-show="(!userForm.firstName.$error.minLength || !userForm.firstName.$error.maxLength) && userForm.firstName.$error.pattern && userForm.firstName.$dirty"
-              class="error-mesasage" data-translate="user.validationMessages.user_name_pattern"> Must start with a letter and be alphanumeric.</span>
-
-        <span ng-show="!userForm.firstName.$error.pattern && !userForm.firstName.$error.required && (userForm.firstName.$error.minlength || userForm.firstName.$error.maxlength) && userForm.firstName.$dirty"
-              class="error-mesasage" data-translate="user.validationMessages.user_name_length"> Must be between 2 and 20 characters.</span>
-        <i class="fa fa-user form-control-feedback "></i>
+               ng-minlength="2" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/"
+               placeholder="{{ 'user.first_name' | translate }}" required>
+        <div ng-show="userForm.$submitted && userForm.firstName.$error.required" class="error-mesasage">
+        <i class="fa fa-exclamation-circle"></i>
+        <span data-translate="user.validationMessages.first_name_require">First Name is required.</span>
+        </div>
+        <div ng-show="(!userForm.firstName.$error.minLength || !userForm.firstName.$error.maxLength) && userForm.firstName.$error.pattern && userForm.firstName.$dirty"
+             class="error-mesasage" >
+        <i class="fa fa-exclamation-circle"></i>
+        <span data-translate="user.validationMessages.user_name_pattern"> Must start with a letter and be alphanumeric.</span>
+        </div>
+        <div ng-show="!userForm.firstName.$error.pattern && !userForm.firstName.$error.required && (userForm.firstName.$error.minlength || userForm.firstName.$error.maxlength) && userForm.firstName.$dirty"
+             class="error-mesasage">
+        <i class="fa fa-exclamation-circle"></i>
+        <span data-translate="user.validationMessages.user_name_length"> Must be between 2 and 20 characters.</span>
+        </div>
+          <i class="fa fa-user form-control-feedback "></i>
       </div>
 
       <div class="form-group has-feedback">
         <input type="text" name="lastName" class="form-control" data-ng-model="register.model.lastName"
-               ng-minlength="2" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/" placeholder="{{ 'user.last_name' | translate }}" required>
-
-        <span ng-show="userForm.$submitted && userForm.lastName.$error.required" class="error-mesasage"
-              data-translate="user.validationMessages.last_name_require">Last Name is required.</span>
-
-        <span ng-show="(!userForm.lastName.$error.minLength || !userForm.lastName.$error.maxLength) && userForm.lastName.$error.pattern && userForm.lastName.$dirty"
-              class="error-mesasage" data-translate="user.validationMessages.user_name_pattern"> Must start with a letter and be alphanumeric.</span>
-
-        <span ng-show="!userForm.lastName.$error.pattern && !userForm.lastName.$error.required && (userForm.lastName.$error.minlength || userForm.lastName.$error.maxlength) && userForm.lastName.$dirty"
-              class="error-mesasage" data-translate="user.validationMessages.user_name_length"> Must be between 2 and 20 characters.</span>
-        <i class="fa fa-user form-control-feedback "></i>
+               ng-minlength="2" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/"
+               placeholder="{{ 'user.last_name' | translate }}" required>
+        <div ng-show="userForm.$submitted && userForm.lastName.$error.required" class="error-mesasage">
+        <i class="fa fa-exclamation-circle"></i>
+        <span  data-translate="user.validationMessages.last_name_require">Last Name is required.</span>
+        </div>
+        <div ng-show="(!userForm.lastName.$error.minLength || !userForm.lastName.$error.maxLength) && userForm.lastName.$error.pattern && userForm.lastName.$dirty"
+             class="error-mesasage">
+        <i class="fa fa-exclamation-circle"></i>
+        <span data-translate="user.validationMessages.user_name_pattern"> Must start with a letter and be alphanumeric.</span>
+        </div>
+        <div ng-show="!userForm.lastName.$error.pattern && !userForm.lastName.$error.required && (userForm.lastName.$error.minlength || userForm.lastName.$error.maxlength) && userForm.lastName.$dirty"
+             class="error-mesasage">
+        <i class="fa fa-exclamation-circle"></i>
+        <span data-translate="user.validationMessages.user_name_length"> Must be between 2 and 20 characters.</span>
+        </div>
+          <i class="fa fa-user form-control-feedback "></i>
       </div>
 
       <div class="form-group has-feedback">
         <input type="email" name="email" class="form-control" data-ng-model="register.model.email"
                placeholder="{{ 'user.email' | translate }}"
                ng-pattern="/^[a-zA-Z0-9._]+[+]?[a-zA-Z0-9._]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/" required>
-
-        <span ng-show="userForm.$submitted && userForm.email.$error.required" class="error-mesasage"
+        <div ng-show="userForm.$submitted && userForm.email.$error.required" class="error-mesasage">
+        <i class="fa fa-exclamation-circle"></i>
+        <span
               data-translate="user.validationMessages.email_require">Email address is required.</span>
-        <span class="error-mesasage" ng-show='userForm.email.$error.pattern && userForm.email.$dirty'
-              data-translate="user.validationMessages.email_valid">Email address is not valid.</span>
+        </div>
+        <div class="error-mesasage" ng-show='userForm.email.$error.pattern && userForm.email.$dirty'>
+        <i class="fa fa-exclamation-circle"></i>
+        <span data-translate="user.validationMessages.email_valid">Email address is not valid.</span>
+        </div>
         <i class="fa fa-envelope form-control-feedback"></i>
       </div>
 
       <div class="form-group has-feedback">
         <input type="password" class="form-control " name="password" ng-model="register.model.password"
                pattern="[A-Za-z0-9\W]{8,20}" placeholder="{{ 'user.password' | translate }}" required>
-        <span class="error-mesasage" ng-show='userForm.password.$error.pattern && userForm.password.$dirty'
-              data-translate="user.validationMessages.password_strength">Password must be between 8 and 20 characters.</span>
-        <span ng-show="userForm.$submitted && userForm.password.$error.required" class="error-mesasage"
-              data-translate="user.validationMessages.password_require">Password is required</span>
+
+        <div class="error-mesasage" ng-show='userForm.password.$error.pattern && userForm.password.$dirty'>
+          <i class="fa fa-exclamation-circle"></i>
+          <span
+            data-translate="user.validationMessages.password_strength">Password must be between 8 and 20 characters.</span>
+        </div>
+
+        <div ng-show="userForm.$submitted && userForm.password.$error.required" class="error-mesasage">
+          <i class="fa fa-exclamation-circle"></i>
+          <span data-translate="user.validationMessages.password_require">Password is required</span>
+        </div>
         <i class="fa fa-lock form-control-feedback"></i>
       </div>
 
@@ -64,18 +88,25 @@
         <input type="password" name="confirmPassword" data-ng-model="register.model.confirmPassword"
                placeholder="{{ 'user.register.confirm_password' | translate }}" class="form-control" required>
 
-        <p ng-show=" register.model.confirmPassword && (register.model.password !== register.model.confirmPassword) "
-           class="help-block error-mesasage" data-translate="user.validationMessages.password_mismatch">Password mismatch.</p>
-
-        <p ng-show="(userForm.$submitted && userForm.confirmPassword.$error.required )" class="help-block error-mesasage"
-           data-translate="user.validationMessages.cpassword_require">Confirm Password is required.</p>
+        <div ng-show=" register.model.confirmPassword && (register.model.password !== register.model.confirmPassword) "
+             class="help-block error-mesasage">
+          <i class="fa fa-exclamation-circle"></i>
+          <span data-translate="user.validationMessages.password_mismatch">Password mismatch.</span>
+        </div>
+        <div ng-show="(userForm.$submitted && userForm.confirmPassword.$error.required )"
+             class="help-block error-mesasage">
+          <i class="fa fa-exclamation-circle"></i>
+          <span data-translate="user.validationMessages.cpassword_require">Confirm Password is required.</span>
+        </div>
         <i class="fa fa-lock form-control-feedback"></i>
+
       </div>
 
-          <button type="submit" class="btn btn-large btn-block btn-primary signup-btn"
-                  data-ng-disabled="!register.model.firstName || !register.model.lastName || !register.model.email || !register.model.password || !register.model.confirmPassword" data-translate="common.buttons.submit"
-                  data-translate="common.buttons.sign_up">SIGNUP
-        </button>
+      <button type="submit" class="btn btn-large btn-block btn-primary signup-btn"
+              data-ng-disabled="!register.model.firstName || !register.model.lastName || !register.model.email || !register.model.password || !register.model.confirmPassword"
+              data-translate="common.buttons.submit"
+              data-translate="common.buttons.sign_up">SIGNUP
+      </button>
     </form>
   </div>
   <div class="col-lg-4 col-md-3 col-sm-3"></div>

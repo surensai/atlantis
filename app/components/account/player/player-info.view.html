@@ -1,4 +1,4 @@
-<toaster-container toaster-options="{'position-class': 'toast-top-right'}"></toaster-container>
+
 <div class="player-details clearfix" cg-busy="{promise:player.loadPromise ,message:'Loading Your Data'}">
   <div class="pd-left nopadding">
     <div class="profile-pic">
@@ -206,12 +206,12 @@
           </thead>
           <tbody>
           <tr data-ng-repeat="word in player.wordsData | orderBy:player.predicate:player.reverse">
-            <td>{{ word.SNo}}</td>
-            <td class="player-words">{{ word.Words}}</td>
-            <td>{{ word.Attempts}}</td>
-            <td>{{ word.LastPlayed | date:"MM/dd/yyyy '' h:mma"}}</td>
-            <td data-ng-if="word.LastAttempt"><i class="fa fa-check last-attempt-green" ></i></td>
-            <td data-ng-if="!word.LastAttempt"><i class="fa fa-close last-attempt-blue" ></i></td>
+            <td>{{ $index +1}}</td>
+            <td class="player-words">{{ word.word}}</td>
+            <td>{{ word.activity.length}}</td>
+            <td>{{ word.endtime | date:"MM/dd/yyyy '' h:mma"}}</td>
+            <td data-ng-if="word.activity[word.activity.length - 1].answer"><i class="fa fa-check last-attempt-green" ></i></td>
+            <td data-ng-if="!word.activity[word.activity.length - 1].answer"><i class="fa fa-close last-attempt-blue" ></i></td>
           </tr>
           <tr data-ng-if="player.wordsData.length === 0">
             <td colspan="5"> No Data</td>
