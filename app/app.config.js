@@ -26,17 +26,27 @@ var app = angular.module('app').config(['$windowProvider', '$translateProvider',
     }
     return {
       'request': function (config) {
+        var str = config.url;
         config.headers = config.headers || {};
         if ($localStorage.token) {
           config.headers.Authorization = 'Bearer ' + $localStorage.token;
         }
+
+        $rootScope.ajaxProgress++;
         return config;
       },
-      'responseError': function (response) {
-        if (response.status === 401 || response.status === 403) {
+      'response': function (response) {
+        var str = response.config.url;
+        $rootScope.ajaxProgress--;
+        return response;
+      },
+      'responseError': function (rejection) {
+        var str = rejection.config.url;
+        if (rejection.status === 401 || rejection.status === 403) {
           $location.path('/login');
         }
-        return $q.reject(response);
+        $rootScope.ajaxProgress--;
+        return $q.reject(rejection);
       }
     };
 

@@ -23,11 +23,12 @@
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div data-ng-include=" 'layout/header.html' "></div>
-    <!--<div class="load-overlay" data-ng-show="$root.ajaxProgress!=0"> </div>-->
-    <div id="app" class="app"  ng-class="{'app-height': !globals.currentUser}" ui-view>
-
+    <div class="load-overlay" data-ng-show="$root.ajaxProgress!=0">
+      <!--<img src="assets/images/loader.gif" />-->
+      Loading..
     </div>
+    <div data-ng-include=" 'layout/header.html' "></div>
+    <div id="app" class="app"  ng-class="{'app-height': !globals.currentUser}" ui-view> </div>
     <div data-ng-include=" 'layout/footer.html' "></div>
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->

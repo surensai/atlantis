@@ -28,7 +28,7 @@ angular.module("app").controller('forgotPasswordCtrl', ['$scope', 'UserService',
         messagesFactory.forgotErrorMessages(status);
       }
     };
-    forgot.loadPromise = UserService.forgotPasswordAPI(forgot.model)
+    UserService.forgotPasswordAPI(forgot.model)
       .success(handleSuccess)
       .error(handleError);
   }

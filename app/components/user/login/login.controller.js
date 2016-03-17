@@ -39,7 +39,7 @@ angular.module("app").controller('loginCtrl', ['$scope', '$state', 'Authenticati
         messagesFactory.loginErrorMessages(status);
       }
     };
-    login.loadPromise = AuthenticationService.loginApi(stuctureFormData())
+    AuthenticationService.loginApi(stuctureFormData())
       .success(handleSuccess)
       .error(handleError);
   }
