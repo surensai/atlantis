@@ -15,7 +15,7 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService','flashServ
       flashService.showError("Error in getting feeds", false);
     };
 
-    dashboard.loadPromise = DashboardService.getAllApi()
+    DashboardService.getAllApi()
       .success(handleSuccess)
       .error(handleError);
   })();
