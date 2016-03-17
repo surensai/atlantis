@@ -45,7 +45,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
           playerId = $state.params.id;
         }
         player.data.playersList = data;
-        player.loadPromise = PlayerService.getPlayerById(playerId)
+        PlayerService.getPlayerById(playerId)
           .success(function (data) {
             player.playerObj = data;
           })
@@ -148,7 +148,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
       flashService.showError($translate.instant("player.messages.error_getting_words"), false);
     };
 
-    player.loadWordsPromise = PlayerService.getWordsApi(childId)
+    PlayerService.getWordsApi(childId)
       .success(handleSuccess)
       .error(handleError);
   };

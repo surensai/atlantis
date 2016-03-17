@@ -1,5 +1,5 @@
 <toaster-container toaster-options="{'position-class': 'toast-bottom-center'}"></toaster-container>
-<div class="container container-min-height players-container" cg-busy="{promise:player.loadPromise,message:'Loading Your Data'}">
+<div class="container container-min-height players-container">
   <div class="players-panel" data-ng-if="player.data.playersList.length > 0">
     <div data-ng-include=" 'components/account/player/players-list.html' "></div>
     <div ui-view></div>
