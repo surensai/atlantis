@@ -341,11 +341,18 @@
   }
 }
 
+.bb-arrow{
+  position: absolute;
+  bottom: -10px;
+  text-align: center;
+  width: 100%;
+}
+
 .bb-col-3{
   display: none;
 }
 
-.bb-col-0, .bb-col-1, .bb-col-2{
+.bb-col-0{
   display: block;
 }
 

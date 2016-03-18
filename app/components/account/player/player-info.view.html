@@ -43,18 +43,19 @@
 
           <div class="col-md-3 col-sm-6"
                data-ng-repeat-start="badge in player.bigBadgesData(count)"
-               data-ng-click="player.showGraph(count)">
+               data-ng-click="player.showGraph(count, $index)">
 
               <data-badge-item item-data="badge"
                                display-index="player.displayChartIndex"
                                index="$index">
               </data-badge-item>
-
-           <!-- <p data-ng-if="player.clicked && (player.showRow === count) && ($index === count)"> Arrow </p> -->
+              <p class="bb-arrow" data-ng-if="player.clicked && (player.showRow === count) && (player.showColumn === $index)">
+                <img src="assets/images/arrow-icon.png" />
+              </p>
 
           </div>
 
-          <div class="bb-col-{{$index}} bb-row-{{count}}" data-ng-repeat-end="" data-ng-if="player.clicked && player.showRow === count">
+          <div class="bb-col-{{$index}}" data-ng-repeat-end="" data-ng-if="player.clicked && player.showRow === count">
             <div class="bigbadge-description">
               <div class="bigbadge-description-text">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
