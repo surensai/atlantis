@@ -1,6 +1,6 @@
 {
   "nav": {
-    "home": {
+      "home": {
       "title": "Home",
       "Header": "Home"
     },
@@ -16,7 +16,11 @@
       "players": "PLAYERS",
       "curriculum": "MY CURRICULUM",
       "settings": "MY ACCOUNT",
-      "home":"HOME"
+      "home":"HOME",
+      "Home":"Home",
+      "Players":"Players",
+      "Curriculum":"Curriculum",
+      "my_account":"My account"
     },
     "notification":{
       "notifications":"Notifications"
@@ -191,7 +195,8 @@
     "edit_player":"Edit Player",
     "view_players": "Back to view Players",
     "add_new_player": "Add New Player",
-    "add_picture":"Add a picture",
+    "add_picture":"Add Picture",
+    "change_picture":"Change Picture",
     "fav_game1":"Fav game 01,",
     "fav_game2":"Fav game 02,",
     "fav_game3":"Fav game 03",
