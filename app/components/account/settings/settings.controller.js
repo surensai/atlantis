@@ -119,12 +119,12 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   }
 
   function getMissingLetters() {
-    var handleSuccess = function (data) {
+        var handleSuccess = function (data) {
       settings.selectedMissingLetters = data.list;
     };
     var handleError = function (error, status) {
       if (error && status) {
-        // Add Messages
+        messagesFactory.selectMissinglettesErrorMessages(status);
       }
     };
     settingsService.getMissingCharactersApi()
@@ -135,10 +135,11 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   settings.updateMissingLetters = function() {
     var handleSuccess = function (data) {
       settings.selectedMissingLetters = data.character;
+      messagesFactory.UpadteMissinglettesSuccessMessages(data);
     };
     var handleError = function (error, status) {
       if (error && status) {
-        messagesFactory.settingsgetNotifictaionsErrorMessages(status);
+        messagesFactory.UpadteMissinglettesErrorMessages(status);
       }
     };
     settingsService.updateMissingCharactersApi({ "character" : settings.selectedMissingLetters })

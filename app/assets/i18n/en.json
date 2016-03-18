@@ -20,7 +20,9 @@
       "Home":"Home",
       "Players":"Players",
       "Curriculum":"Curriculum",
-      "my_account":"My account"
+      "my_account":"My account",
+      "customize":"Customize",
+      "Customize":"CUSTOMIZE"
     },
     "notification":{
       "notifications":"Notifications"
