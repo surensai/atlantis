@@ -5,7 +5,7 @@
       birthDate: '=birthDate'
     },
     templateUrl: 'common/app-directives/dob/dob.view.html',
-    controller: function ($scope, $timeout) {
+    controller: function ($scope) {
       $scope.setDOB = function () {
         $scope.days = ($scope.dob) ? daysInMonth($scope.dob.year, $scope.dob.month) : 30;
         $scope.dob = {};

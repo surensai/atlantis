@@ -116,7 +116,9 @@
   .header .navbar-brand-responsive{
     display: block;
   }
-
+  .main-logo-header{
+    margin-left: 20px;
+  }
   .navbar-brand {
     height: auto;
     display: none;
@@ -285,7 +287,9 @@
   .top-header {
     display: block;
   }
-
+  .main-logo-header{
+    margin-left: 20px !important;
+  }
   .header .navbar-brand,
   .account-header .navbar-brand{
     display: block;
@@ -319,7 +323,6 @@
   .header {
     height: 10%;
   }
-
   .top-header .dropdown, #account-nav-wrapper{
     display: none!important;
   }
