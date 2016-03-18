@@ -3,25 +3,21 @@
     <ul class="account-nav">
       <li>
         <a class="nav-border-left" ui-sref="account.dashboard" ng-class="{active: $state.includes('account.dashboard')}">
-          <img src="assets/images/home.png" >
           <span data-translate="nav.sidebar.home">HOME</span>
         </a>
       </li>
       <li>
         <a ui-sref='account.players' ui-sref-opts="{reload: true}" ng-class="{active: $state.includes('account.players')}">
-          <img src="assets/images/player.png" >
           <span data-translate="nav.sidebar.players"> PLAYERS </span>
         </a>
       </li>
       <li>
         <a ui-sref="account.curriculum" ng-class="{active: $state.includes('account.curriculum')}">
-          <img src="assets/images/curriculum.png" >
           <span data-translate="nav.sidebar.curriculum"> MY CURRICULUM </span>
         </a>
       </li>
       <li>
         <a ui-sref="account.settings" ng-class="{active: $state.includes('account.settings')}">
-          <img src="assets/images/settings.png" >
           <span data-translate="nav.sidebar.settings"> My ACCOUNT </span>
         </a>
       </li>

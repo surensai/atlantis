@@ -7,9 +7,11 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   settings.isEditClicked = false;
   settings.editprofile = false;
   settings.notification = false;
+  settings.selectedMissingLetters = [];
 
   (function () {
     getNotificationData();
+    getMissingLetters();
   })();
 
   settings.submitForm = function (form) {
@@ -40,7 +42,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
         messagesFactory.settingseditprofileErrorMessages(status);
       }
     };
-    settings.loadPromise = UserService.Update(settings.model.userData)
+    UserService.Update(settings.model.userData)
       .success(handleSuccess)
       .error(handleError);
   }
@@ -80,7 +82,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
         messagesFactory.settingschangepasswordErrorMessages(status);
       }
     };
-    settings.changePromise = UserService.changePasswordAPI(settings.model.passwordData)
+   UserService.changePasswordAPI(settings.model.passwordData)
       .success(handleSuccess)
       .error(handleError);
   }
@@ -97,7 +99,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
         messagesFactory.settingsNotificationsErrorMessages(status);
       }
     };
-    settings.notificationPromise = settingsService.updateApi(settings.model.notificationObj)
+    settingsService.updateApi(settings.model.notificationObj)
       .success(handleSuccess)
       .error(handleError);
   };
@@ -108,12 +110,68 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
     };
     var handleError = function (error, status) {
       if (error && status) {
-        messagesFactory.settingsgetNotifictaionsErrorMessages(status);
+        // Add messages
       }
     };
-    settings.loadPromise = settingsService.getApi()
+    settingsService.getApi()
       .success(handleSuccess)
       .error(handleError);
   }
+
+  function getMissingLetters() {
+    var handleSuccess = function (data) {
+      settings.selectedMissingLetters = data.list;
+    };
+    var handleError = function (error, status) {
+      if (error && status) {
+        // Add Messages
+      }
+    };
+    settingsService.getMissingCharactersApi()
+      .success(handleSuccess)
+      .error(handleError);
+  }
+
+  settings.updateMissingLetters = function() {
+    var handleSuccess = function (data) {
+      settings.selectedMissingLetters = data.character;
+    };
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.settingsgetNotifictaionsErrorMessages(status);
+      }
+    };
+    settingsService.updateMissingCharactersApi({ "character" : settings.selectedMissingLetters })
+      .success(handleSuccess)
+      .error(handleError);
+  };
+
+  settings.getAlphabets = function(){
+    return "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+  };
+
+  settings.selectCharacter = function(char){
+    var isExistedChar = settings.selectedMissingLetters.indexOf(char);
+    if (isExistedChar > -1) {
+      settings.selectedMissingLetters.splice(isExistedChar, 1);
+    } else {
+      settings.selectedMissingLetters.push(char);
+    }
+  };
+
+  settings.isMissilingLetterSelected = function(char){
+    if(settings.selectedMissingLetters.length > 0){
+      for(var i= 0; i < settings.selectedMissingLetters.length; i++){
+          if(settings.selectedMissingLetters[i] === char){
+             return true;
+          }
+      }
+    }
+  };
+
+  settings.clearAllAlphabets = function(){
+    settings.selectedMissingLetters = [];
+  };
+
 
 }]);
