@@ -1,6 +1,5 @@
 <div class="col-lg-2"></div>
 <div class="container container-min-height addpalyer-container">
-  <div cg-busy="{promise:curriculum.loadPromise, message:'Loading Your Data'}"></div>
   <div class="panel">
     <div class="panel-heading addpalyer-heading text-center">
       <span data-translate="nav.add_custom_word.header" >Add Custom Word</span>
@@ -29,7 +28,7 @@
                 </audio>
               </div>
               <div>
-                <input type="file"  file-model="curriculum.myFile" class="img-rectangle img-border-radius " accept="audio/*"  onchange="angular.element(this).scope().audioFileChanged(this.files)">
+                <input type="file"  file-model="curriculum.myAudioFile" class="img-rectangle img-border-radius " accept="audio/*"  onchange="angular.element(this).scope().audioFileChanged(this.files)">
               </div>
             </div>
 
@@ -45,7 +44,7 @@
                 <img ng-src="{{curriculum.model.wordItem.imageURL}}">
               </div>
               <div>
-                <input type="file"  file-model="curriculum.myFile" class="img-rectangle img-border-radius " onchange="angular.element(this).scope().photoChanged(this.files)">
+                <input type="file"  file-model="curriculum.myImageFile" class="img-rectangle img-border-radius " onchange="angular.element(this).scope().photoChanged(this.files)">
               </div>
             </div>
           </div>

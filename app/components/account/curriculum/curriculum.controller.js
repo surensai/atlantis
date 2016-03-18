@@ -65,7 +65,12 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'PlayerService',
 
     curriculum.submitted = true;
     if (form.$valid) {
-      uploadProfilePic(form);
+      if(curriculum.myAudioFile){
+        uploadProfilePic(form, curriculum.myAudioFile);
+      }
+      if(curriculum.myImageFile){
+        uploadProfilePic(form, curriculum.myImageFile);
+      }
     } else {
       $timeout(function () {
         angular.element('.custom-error:first').focus();
@@ -97,7 +102,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'PlayerService',
       .error(handleError);
   }
 
-  function uploadProfilePic(form) {
+  function uploadProfilePic(form,file) {
     var handleSuccess = function (data) {
       curriculum.model.wordItem.imageURL = data.files[0].url;
       addAction();
@@ -109,7 +114,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'PlayerService',
       addAction();
       flashService.showError("Error in file uploading", false);
     };
-    var file = curriculum.myFile;
 
     curriculum.loadPromise = PlayerService.uploadFileApi(file)
       .success(handleSuccess)
