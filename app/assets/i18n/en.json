@@ -106,7 +106,8 @@
       "delete":"delete",
       "forgot_password":"REQUEST PASSWORD",
       "sign_up":"SIGNUP",
-      "addword": "Add Word"
+      "addword": "Add Word",
+      "clear_all": "Clear All"
     },
     "dob_year": "Year",
     "dob_month": "Month",
