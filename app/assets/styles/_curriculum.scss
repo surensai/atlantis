@@ -1,75 +1,6 @@
 .curriculum-container {
   margin-top: 20px;
-  .curriculum-milestone-panel {
-    .curriculum-milestonepanel-heading {
-      background-color: #F9A61A;
-      color: $white-color;
-      font-size: 20px;
-    }
-    .milestone-row {
-      margin-top: 10px;
-      margin-bottom: 10px;
-      margin-left: 0px;
-      margin-right: 0px;
-    }
-      .milestone-items {
-        width: 168px;
-        height: 256px;
-        padding-top: 41px;
-        padding-left: 48px;
-        margin-top: -15px;
-        h1{
-          color: #4CBC96;
-          padding-left: 19px;
-          padding-bottom: 23px;
-        }
-        span{
-          color: $white-color;
-        }
-      }
-      .curriculum-badge {
-        background: url("../images/curriculumbadge.png") no-repeat center;
-      }
-    .curriculum-emptybadge{
-      background: url("../images/curriculum--empty-badge.png") no-repeat center;
-
-    }
-    .milestone-details {
-      font-family: $font-family;
-      background-color: #EFEFEF;
-      border-radius: 5px;
-      padding-bottom: 20px;
-      padding-top: 10px;
-      p{
-        color: #BCBCBC;
-      }
-      h5 {
-        color: $sp-green;
-      }
-      .padding-left-right {
-        span {
-          padding: 0px 15px 0px 10px;
-          color:#BCBCBC;
-        }
-      }
-      .btn-padding-right{
-        color: #BCBCBC;
-        @extend  .btn-padding-left-right;
-        margin-left: 0px!important;
-      }
-      .btn-padding-left-right {
-        color: #BCBCBC;
-        padding: 0px 40px 0px 40px;
-        border-radius: 0px;
-        background-color: #DCDCDC;
-        margin-left: 10px;
-      }
-      span{
-        color: #BCBCBC;
-      }
-    }
-  }
-   .curriculum-customword-panel{
+  .curriculum-customword-panel{
     .curriculum-customwordpanel-heading{
       background-color:#F9A61A;
       color: $white-color;
@@ -131,7 +62,7 @@
          border: 1px solid #C7C7C7;
          background-color: white;
          thead th {
-           background-color: #C7C7C7;
+           background-color: #9B9B9B;
            padding-top: 25px;
            padding-bottom: 25px;
            color: $white-color;
@@ -157,6 +88,42 @@
        }
      }
   }
+  .curriculum-groupword-panel {
+    font-family: $font-family;
+    .curriculum-groupwordpanel-heading {
+      background-color: #F9A61A;
+      color: $white-color;
+    }
+    .curriculum-groupwordpanel-body{
+      .panel-title{
+        color :#767575;
+        a{
+          text-decoration: none;
+          border: none;
+        }
+        a:focus{
+          text-decoration: none;
+          outline: none;
+          outline-offset: none;
+        }
+      }
+      .panel-heading{
+        background-color: #EDEBEB;
+        i{
+          margin-right: 15px;
+        }
+      }
+      .panel-body{
+        background-color: #FAFAFA;
+      }
+      .curriculum-milestone-text{
+        color: #BCBCBC ;
+      }
+    }
+    .curriculum-groupword-data{
+      color: #A6A5A5;
+    }
+  }
 }
 
 .left-inner-addon input {
@@ -178,6 +145,4 @@
 .curriculum-custom-word-button{
   padding: 10px 95px 10px 97px;
 }
-.curriculum-milestone-text{
-  color: #BCBCBC ;
-}
+
