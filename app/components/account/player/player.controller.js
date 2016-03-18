@@ -6,9 +6,11 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   player.model = {};
   player.data = {};
   player.data.playersList = [];
+  player.splitBadgesData = [];
   player.playerObj = {};
   player.show = true;
   player.reverse = false;
+  player.clicked = false;
   player.displayChartIndex = 0;
   player.predicate = 'Sno';
   player.isNoPlayer = false;
@@ -19,52 +21,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
     LastPlayed: "Last Played",
     LastAttempt: "Last Attempt"
   };
-
-  player.getKeysOfCollection = function (obj) {
-    obj = angular.copy(obj);
-    if (!obj) {
-      return [];
-    }
-    return Object.keys(obj);
-  };
-
-  player.closeAlert = function () {
-    player.show = false;
-  };
-
-  (function () {
-    getPlayers();
-  })();
-
-  function getPlayers() {
-    var handleSuccess = function (data) {
-      player.isNoPlayer = true;
-      if (data.length > 0) {
-        var playerId = data[0].id;
-        if ($state.params.id) {
-          playerId = $state.params.id;
-        }
-        player.data.playersList = data;
-        PlayerService.getPlayerById(playerId)
-          .success(function (data) {
-            player.playerObj = data;
-          })
-          .error(function () {
-            flashService.showError($translate.instant("player.messages.error_getting_players"), false);
-          });
-        $state.go('account.players.details', {id: playerId});
-      }
-
-    };
-
-    var handleError = function () {
-      flashService.showError($translate.instant("player.messages.error_getting_players"), false);
-    };
-
-    player.loadPromise = PlayerService.getAllApi()
-      .success(handleSuccess)
-      .error(handleError);
-  }
 
   player.bigBadges = [
     {
@@ -129,13 +85,73 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
       type: 'Swan'
     }];
 
+  player.getKeysOfCollection = function (obj) {
+    obj = angular.copy(obj);
+    if (!obj) {
+      return [];
+    }
+    return Object.keys(obj);
+  };
+
+  player.closeAlert = function () {
+    player.show = false;
+  };
+
+  (function () {
+    getPlayers();
+    splitBadgesData();
+  })();
+
+  function getPlayers() {
+    var handleSuccess = function (data) {
+      player.isNoPlayer = true;
+      if (data.length > 0) {
+        var playerId = data[0].id;
+        if ($state.params.id) {
+          playerId = $state.params.id;
+        }
+        player.data.playersList = data;
+        PlayerService.getPlayerById(playerId)
+          .success(function (data) {
+            player.playerObj = data;
+          })
+          .error(function () {
+            flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+          });
+        $state.go('account.players.details', {id: playerId});
+      }
+
+    };
+
+    var handleError = function () {
+      flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+    };
+
+   PlayerService.getAllApi()
+      .success(handleSuccess)
+      .error(handleError);
+  }
+
+  player.bigBadgesData = function (index) {
+    var currentIndex =  index * 4;
+    return player.bigBadges.slice(currentIndex, currentIndex+4);
+  };
+
+  function splitBadgesData(){
+    for(var i = 0; i < player.bigBadges.length / 4; i++ ){
+      player.splitBadgesData.push({});
+    }
+  }
+
   player.drag = 'drag feedback';
   player.drop = 'drop feedback';
   player.wordsData = [];
 
   player.showGraph = function (index) {
-    player.displayChartIndex = index;
+    player.clicked = true;
+    player.showRow = index;
   };
+
 
   player.getWords = function (childId) {
     var handleSuccess = function (data) {

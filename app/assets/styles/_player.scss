@@ -298,6 +298,55 @@
       }
     }
   }
+  .bigbadge-description{
+    margin: 34px;
+    background-color: white;
+    clear: both;
+    .bigbadge-description-text{
+      background-color: #85D1C2;
+
+      padding: 30px;
+      p{
+        color: white;
+      }
+      .bigbadge-buttons{
+        padding: 1px 45px 1px 45px;
+        background: #85D1C2;
+        border: 1px solid white;
+        border-radius: 0px;
+        margin-right: 20px;
+        color: white;
+      }
+      span{
+        color: white;
+      }
+    }
+    .bigbadge-graph-buttons{
+      margin-top: 20px;
+      margin-bottom: 20px;
+      float: right;
+      .bigbadge-graph-button-style{
+        padding: 5px 20px 5px 20px;
+        background-color: white;
+        color: #EDA01D;
+        border: 1px solid;
+        margin-right: 10px;
+      }
+      .bigbadge-graph-button-style:hover{
+        background-color: #EDA01D;
+        color: white;
+        border: 1px solid #EDA01D;
+      }
+    }
+  }
+}
+
+.bb-col-3{
+  display: none;
+}
+
+.bb-col-0, .bb-col-1, .bb-col-2{
+  display: block;
 }
 
 @media(min-width: 768px) {
@@ -314,6 +363,14 @@
   .pd-right {
     width: 100%;
     padding-left: 239px !important;
+  }
+
+  .bb-col-0, .bb-col-1, .bb-col-2{
+    display: none;
+  }
+
+  .bb-col-3{
+    display: block;
   }
 
 }
