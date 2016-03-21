@@ -28,10 +28,10 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
       if(playerAction.myFile){
         uploadProfilePic(form);
       }else{
+        playerAction.model.playerItem.profileURL = undefined;
         if (playerAction.isUpdate) {
           updateAction();
         } else {
-          playerAction.model.playerItem.profileURL = undefined;
           addAction();
         }
       }
@@ -161,6 +161,9 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
       playerAction.isUpdate = true;
       var handleSuccess = function (data) {
         playerAction.data.playerItem = playerAction.model.playerItem = data;
+        if(!data.profileURL){
+          playerAction.model.playerItem.profileURL = "assets/images/fallback-img.png";
+        }
       };
 
       var handleError = function () {
