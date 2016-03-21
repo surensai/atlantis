@@ -16,7 +16,7 @@ var app = angular.module('app').config(['$windowProvider', '$translateProvider',
   $translateProvider.preferredLanguage('en');
   $translateProvider.useSanitizeValueStrategy('escape');
 
-  $httpProvider.interceptors.push(['$q', '$location', '$localStorage', '$rootScope', function ($q, $location, $localStorage, $rootScope) {
+  $httpProvider.interceptors.push(['$q', '$location', '$localStorage', '$rootScope', 'appService', function ($q, $location, $localStorage, $rootScope, appService) {
     $rootScope.ajaxProgress = 0;
 
     if (!String.prototype.contains) {
@@ -38,6 +38,7 @@ var app = angular.module('app').config(['$windowProvider', '$translateProvider',
       'response': function (response) {
         var str = response.config.url;
         $rootScope.ajaxProgress--;
+        appService.isFooterFixed();
         return response;
       },
       'responseError': function (rejection) {
@@ -45,6 +46,7 @@ var app = angular.module('app').config(['$windowProvider', '$translateProvider',
         if (rejection.status === 401 || rejection.status === 403) {
           $location.path('/login');
         }
+        appService.isFooterFixed();
         $rootScope.ajaxProgress--;
         return $q.reject(rejection);
       }

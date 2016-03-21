@@ -67,6 +67,9 @@
           }
 
       }
+      .notification-text-missing-letters{
+        color: lighten(gray, 10%);
+      }
       .notification-checkbox-text {
         padding: 0px 0px 0px 30px;
         color: lighten(gray, 10%);
