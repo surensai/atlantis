@@ -126,12 +126,16 @@ nav .account-nav {
   }
   .sidebarfooter{
     border-top: 1px solid #502D88;
-    padding-top: 7px;
     position: absolute;
     width: 100%;
-    bottom: 0px;
+    bottom: 50px;
     a{
       text-transform: uppercase;
+      line-height: 50px;
+    }
+    i{
+      line-height: 50px;
+      margin-right: 10px;
     }
   }
 }
