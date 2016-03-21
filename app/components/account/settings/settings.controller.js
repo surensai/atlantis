@@ -147,7 +147,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   };
 
   settings.getAlphabets = function(){
-    return "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+    return "AABBCCDDEEEFFGGHHIIJKLLMMNNOOPPQRRSSSTTUUVXYZ".split('');
   };
 
   settings.selectCharacter = function(char){
