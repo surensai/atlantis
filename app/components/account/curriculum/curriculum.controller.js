@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', 'flashService','$scope','$sce','$state','$uibModal', function ($timeout, CurriculumService, flashService, $scope, $sce, $state,$uibModal) {
+angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', 'flashService','$scope','$sce','$state','$uibModal','$translate', function ($timeout, CurriculumService, flashService, $scope, $sce, $state,$uibModal,$translate) {
 
   var curriculum = this;
   curriculum.model = {};
@@ -11,7 +11,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   curriculum.fileReaderSupported = window.FileReader != null;
   var URL = window.URL || window.webkitURL;
 
-
   curriculum.trustResourceURL = function(){
     return $sce.trustAsResourceUrl(curriculum.model.wordItem.audioURL);
   };
@@ -21,20 +20,18 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
       var handleSuccess = function (data) {
         if($state.current.name === "account.addCustomWord"){
           if (data.length === 0) {
-            curriculum.model.message = "Word doesn't exists";
+            curriculum.model.message = $translate.instant("curriculum.message.word_notexist");
           } else {
-            curriculum.model.message = "Word already exists";
+            curriculum.model.message = $translate.instant("curriculum.message.word_exist");
           }
         }else {
           var modalInstance = $uibModal.open({
             templateUrl: 'common/app-directives/modal/custom-modal.html',
             controller: function ($scope, $uibModalInstance) {
               if (data.length === 0) {
-                $scope.modalTitle = "Word doesn't exists";
-                $scope.modalBody = "Are you Proceed to create a Word?";
+                $scope.modalBody = $translate.instant("curriculum.message.word_notexist_want_procced");
               } else {
-                $scope.modalTitle = "Word already exists";
-                $scope.modalBody = "Are you Proceed to Edit a Word?";
+                $scope.modalBody =  $translate.instant("curriculum.message.word_exist_want_edit");
               }
               $scope.ok = function () {
                 $uibModalInstance.close();
