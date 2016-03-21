@@ -29,7 +29,7 @@
             <label class="col-md-2 control-label add-profile-pic">Pronunciation :</label>
             <div class="col-md-3">
               <div ng-show="curriculum.model.wordItem.audioURL">
-                <audio controls autoplay ng-src="{{curriculum.trustResourceURL(curriculum.model.wordItem.audioURL)}}">
+                <audio controls ng-src="{{curriculum.trustResourceURL(curriculum.model.wordItem.audioURL)}}">
                 </audio>
               </div>
               <div>
