@@ -1,9 +1,4 @@
-.sidebar-transitions {
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
+
 
 #account-nav-wrapper {
   background: #4CBC96;
@@ -18,15 +13,6 @@
 
 body {
   @extend .sidebar-transitions;
-}
-
-#sidebar.sidebar-toggle {
-  right: 0px;
-}
-
-body.body-toggle {
-  padding-right: 196px;
-  margin-left: -196px;
 }
 
 nav {
@@ -68,21 +54,51 @@ nav .account-nav {
   }
 }
 
-#sidebar {
-   font-family: $font-family;
-  width: 196px;
+.sidebar-transitions {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#sidebar.sidebar-toggle {
+  left: 0px;
+}
+
+.slidebar-overlay{
+  background: rgba(0,0,0,0.4);
   position: fixed;
-  top: 0;
-  right: -196px;
+  top: 50px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 99;
+  display: none;
+}
+
+.slide-overlay-toggle.slidebar-overlay{
+  display: block;
+}
+
+#sidebar {
+  font-family: $font-family;
+  width: 70%;
+  position: fixed;
+  top: 50px;
+  left: -70%;
   background: $primary-color;
   color: white;
   height: 100%;
   overflow: auto;
+  z-index: 999;
   @extend .sidebar-transitions;
 
   .sidebarheader {
     border-bottom: 1px solid #502D88;
 
+  }
+  .active{
+    background-color: lighten($primary-color, 10%);
   }
   a {
     color: white;
@@ -93,7 +109,7 @@ nav .account-nav {
     list-style: none;
     padding: 0;
     margin: 0;
-    padding-bottom: 100%;
+    height: 100%;
     li {
       a {
         display: block;
@@ -123,11 +139,12 @@ nav .account-nav {
   #account-nav-wrapper {
     display: block;
   }
-  body.body-toggle {
-    padding-right: 0px;
-    margin-left: 0px;
-  }
+
   #sidebar.sidebar-toggle {
-    right: -196px;
+    left: -70%;
+  }
+
+  .slide-overlay-toggle.slidebar-overlay{
+    display: none;
   }
 }
