@@ -177,7 +177,9 @@
       "age_require":"Age is required.",
       "model_delete_player":"Are you sure do you want to delete player?",
       "user_name_pattern":"Must start with a letter and be alphanumeric.",
-      "user_name_length":"Must be between 2 and 20 characters."
+      "user_name_length":"Must be between 2 and 20 characters.",
+      "curriculum_word_require":"Word Name is required.",
+      "error_getting_words":"Error in listing Words"
     },
     "change_password": {
       "old_password": "Old Password",
