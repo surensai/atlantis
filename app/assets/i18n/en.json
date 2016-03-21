@@ -241,7 +241,20 @@
     }
   },
   "curriculum":{
-    "word": "word"
+    "wordlabel": "Word :",
+    "word": "word",
+    "pronunciation":"Pronunciation :",
+    "picture":"Picture :",
+    "add_custom_word":"Add Custom word",
+    "nodata":"No data",
+    "custom_word":"Custom Word",
+    "group_word_list":"Group Word List",
+    "message":{
+      "word_notexist_want_procced":"The word doesnot exist, do you want to proceed?",
+      "word_exist_want_edit":"The word already exists, do you want to edit the word?",
+      "word_notexist":"The word doesnot exists.",
+      "word_exist":"The word already exists."
+    }
   }
 
 }

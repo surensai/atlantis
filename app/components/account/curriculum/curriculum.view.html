@@ -2,7 +2,7 @@
   <toaster-container toaster-options="{'position-class': 'toast-bootom-center'}"></toaster-container>
   <div class="container container-min-height">
     <div class="panel curriculum-customword-panel">
-      <div class="panel-heading text-center curriculum-customwordpanel-heading">
+      <div class="panel-heading text-center curriculum-customwordpanel-heading" data-translate="curriculum.custom_word">
         Custom Word
       </div>
       <div class="panel-body add-customword-panle-body">
@@ -29,7 +29,7 @@
                 <div class="col-md-5"></div>
                 <div class="col-md-4">
                   <button class="btn btn-primary add-custom-word-button" data-ng-click="curriculum.searchWord(curriculum.model.wordItem.word)"
-                       data-ng-disabled="!curriculum.model.wordItem.word" >Add Custom word</button>
+                       data-ng-disabled="!curriculum.model.wordItem.word" data-translate="curriculum.add_custom_word">Add Custom word</button>
                 </div>
                 <div class="col-md-3"></div>
               </div>
@@ -67,7 +67,7 @@
                   <td><i class="fa fa-eye"></i> <i class="fa fa-pencil-square-o left-padding"></i> <i class="fa fa-trash left-padding"></i></td>
                 </tr>
                 <tr data-ng-if="curriculum.customWords.length === 0">
-                  <td colspan="5"> No Data</td>
+                  <td colspan="5" data-translate="curriculum.nodata"> No Data</td>
                 </tr>
                 </tbody>
               </table>
@@ -77,7 +77,7 @@
       </div>
     </div>
     <div class="panel curriculum-groupword-panel">
-      <div class="panel-heading text-center curriculum-groupwordpanel-heading">
+      <div class="panel-heading text-center curriculum-groupwordpanel-heading" data-translate="curriculum.group_word_list">
         Group Word List
       </div>
       <div class="panel-body curriculum-groupwordpanel-body">
