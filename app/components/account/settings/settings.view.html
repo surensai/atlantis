@@ -211,7 +211,7 @@
       <div class="panel-body settiings-panel-body">
         <form name="notificationsForm" role="form" data-ng-submit="settings.updateMissingLetters()"
               novalidate>
-          <p class="ntofitication-text col-md-12" >
+          <p class="notification-text-missing-letters col-md-12" >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
             incididunt ut labore et dolore
             magna aliqua. Ut enim ad minim veniam,
@@ -220,7 +220,7 @@
 
           <div class="missing-letter-keyboard col-md-12 clearfix">
             <ul>
-              <li data-ng-repeat="char in settings.getAlphabets()">
+              <li data-ng-repeat="char in settings.getAlphabets() track by $index">
                 <a href="javascript:;" ng-class="{'active': settings.isMissilingLetterSelected(char)}" data-ng-click="settings.selectCharacter(char)"> {{char}} </a>
               </li>
             </ul>
@@ -250,7 +250,7 @@
         <form name="notificationsForm" role="form" data-ng-submit="settings.submitNotifications(notificationsForm)"
               novalidate>
 
-          <p class="ntofitication-text col-md-12" >
+          <p class="notification-text-missing-letters col-md-12" >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
             incididunt ut labore et dolore
             magna aliqua. Ut enim ad minim veniam,
