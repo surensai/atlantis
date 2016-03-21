@@ -204,6 +204,45 @@
       </div>
     </div>
 
+
+    <div class="panel settiings-panel">
+      <div class="panel-heading settiings-panel-heading">Missing Letters
+      </div>
+      <div class="panel-body settiings-panel-body">
+        <form name="notificationsForm" role="form" data-ng-submit="settings.updateMissingLetters()"
+              novalidate>
+          <p class="ntofitication-text col-md-12" >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+
+          <div class="missing-letter-keyboard col-md-12 clearfix">
+            <ul>
+              <li data-ng-repeat="char in settings.getAlphabets()">
+                <a href="javascript:;" ng-class="{'active': settings.isMissilingLetterSelected(char)}" data-ng-click="settings.selectCharacter(char)"> {{char}} </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-12 margin-top20 center-align">
+            <button class="btn btn-primary notification-submit-button" type="submit"
+                    data-translate="common.buttons.submit">SUBMIT
+            </button>
+            <button class="btn btn-primary cancel-button" type="button"
+                    data-translate="common.buttons.clear_all" data-ng-click="settings.clearAllAlphabets()">Clear All
+            </button>
+          </div>
+
+          <p class="notification-text col-md-12 margin-top20" >
+            To order the <b>Character Set</b> please visit <a href="http://squarepanda.com" target="-_blank"> www.squarepanda.com </a>
+          </p>
+
+        </form>
+      </div>
+    </div>
+
     <div class="panel settiings-panel">
       <div class="panel-heading settiings-panel-heading" data-translate="nav.notification.notifications">Notifications
       </div>

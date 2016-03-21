@@ -138,8 +138,15 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   };
 
   function splitBadgesData(){
-    for(var i = 0; i < player.bigBadges.length / 4; i++ ){
-      player.splitBadgesData.push({});
+    if(player.bigBadges.length){
+      var reminderVal = player.bigBadges.length % 4;
+      var repeater = 4 - reminderVal;
+      for(var i = 0; i < repeater; i++ ){
+        player.bigBadges.push({});
+      }
+      for(var ii = 0; ii < player.bigBadges.length / 4; ii++ ){
+        player.splitBadgesData.push({});
+      }
     }
   }
 
@@ -147,9 +154,10 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   player.drop = 'drop feedback';
   player.wordsData = [];
 
-  player.showGraph = function (index) {
+  player.showGraph = function (index, colIndex) {
     player.clicked = true;
     player.showRow = index;
+    player.showColumn = colIndex;
   };
 
 

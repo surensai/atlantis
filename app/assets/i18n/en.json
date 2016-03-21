@@ -1,6 +1,6 @@
 {
   "nav": {
-    "home": {
+      "home": {
       "title": "Home",
       "Header": "Home"
     },
@@ -16,7 +16,13 @@
       "players": "PLAYERS",
       "curriculum": "MY CURRICULUM",
       "settings": "MY ACCOUNT",
-      "home":"HOME"
+      "home":"HOME",
+      "Home":"Home",
+      "Players":"Players",
+      "Curriculum":"Curriculum",
+      "my_account":"My account",
+      "customize":"Customize",
+      "Customize":"CUSTOMIZE"
     },
     "notification":{
       "notifications":"Notifications"
@@ -102,7 +108,8 @@
       "delete":"delete",
       "forgot_password":"REQUEST PASSWORD",
       "sign_up":"SIGNUP",
-      "addword": "Add Word"
+      "addword": "Add Word",
+      "clear_all": "Clear All"
     },
     "dob_year": "Year",
     "dob_month": "Month",
@@ -192,7 +199,8 @@
     "edit_player":"Edit Player",
     "view_players": "Back to view Players",
     "add_new_player": "Add New Player",
-    "add_picture":"Add a picture",
+    "add_picture":"Add Picture",
+    "change_picture":"Change Picture",
     "fav_game1":"Fav game 01,",
     "fav_game2":"Fav game 02,",
     "fav_game3":"Fav game 03",

@@ -99,8 +99,7 @@
 
           <div class="form-group">
             <div class="col-md-2"></div>
-            <label class="col-md-2 control-label add-profile-pic" data-translate="player.add_picture">Add a
-              picture</label>
+            <label class="col-md-2 control-label add-profile-pic" data-translate="player.add_picture">Add Picture</label>
 
             <div class="col-md-2">
               <div class="thumbnail">
@@ -110,7 +109,8 @@
                   <input type="file" name="file" file-model="playerAction.myFile"
                          class="img-rectangle img-border-radius " accept='image/*'
                          onchange="angular.element(this).scope().photoChanged(this.files)"/>
-                  <span>Change Picture</span>
+                  <span data-translate="player.add_picture" data-ng-if="!playerAction.isUpdate">Add Picture</span>
+                  <span data-translate="player.change_picture" data-ng-if="playerAction.isUpdate">Change Picture</span>
                 </div>
               </div>
               <div ng-show="!playerAction.fileError" class="error-mesasage">

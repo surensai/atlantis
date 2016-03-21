@@ -106,6 +106,28 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     }
     flashService.showError(message, false);
   }
+  function UpadteMissinglettesErrorMessages(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError(message, false);
+  }
+  function UpadteMissinglettesSuccessMessages(successObj){
+    if (successObj) {
+      flashService.showSuccess(successObj.message, true);
+    }
+  }
+  function selectMissinglettesErrorMessages(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError(message, false);
+  }
+
+
+
   service.loginErrorMessages = loginErrorMessages;
   service.registerErrorMessages = registerErrorMessages;
   service.registerSuccessMessages = registerSuccessMessages;
@@ -120,5 +142,9 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   service.settingsNotificationsSuccessMessages = settingsNotificationsSuccessMessages;
   service.settingsNotificationsErrorMessages = settingsNotificationsErrorMessages;
   service.settingsgetNotifictaionsErrorMessages = settingsgetNotifictaionsErrorMessages;
+  service.UpadteMissinglettesErrorMessages = UpadteMissinglettesErrorMessages;
+  service.UpadteMissinglettesSuccessMessages = UpadteMissinglettesSuccessMessages;
+  service.selectMissinglettesErrorMessages = selectMissinglettesErrorMessages;
+
   return service;
 }]);

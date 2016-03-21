@@ -58,8 +58,13 @@
         }
       }
 
-      .ntofitication-text {
+      .notification-text {
+        font-size: 18px;
         color: lighten(gray, 10%);
+        a{
+          color:#f7ab31;
+          text-decoration: underline;
+          }
 
       }
       .notification-checkbox-text {
@@ -68,6 +73,33 @@
       }
       .notification-checkbox-texts {
         color: lighten(gray, 10%);
+      }
+    }
+  }
+
+  .missing-letter-keyboard{
+    ul{
+      @extend .reset-padding-margin;
+      li{
+        list-style: none;
+        display: inline;
+        a{
+          display: block;
+          float: left;
+          padding-top: 21px;
+          padding-left: 33px;
+          margin-bottom: 10px;
+          background: url(../images/letter-bg.png) no-repeat;
+          width: 83px;
+          height: 79px;
+          text-decoration: none;
+          font-weight: bold;
+          color: #f7ab31;
+        }
+        .active{
+          color: #ffffff;
+          background: url(../images/active-letter-bg.png) no-repeat;
+        }
       }
     }
   }

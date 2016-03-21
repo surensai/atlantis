@@ -3,25 +3,21 @@
     <ul class="account-nav">
       <li>
         <a class="nav-border-left" ui-sref="account.dashboard" ng-class="{active: $state.includes('account.dashboard')}">
-          <img src="assets/images/home.png" >
           <span data-translate="nav.sidebar.home">HOME</span>
         </a>
       </li>
       <li>
         <a ui-sref='account.players' ui-sref-opts="{reload: true}" ng-class="{active: $state.includes('account.players')}">
-          <img src="assets/images/player.png" >
           <span data-translate="nav.sidebar.players"> PLAYERS </span>
         </a>
       </li>
       <li>
         <a ui-sref="account.curriculum" ng-class="{active: $state.includes('account.curriculum')}">
-          <img src="assets/images/curriculum.png" >
-          <span data-translate="nav.sidebar.curriculum"> MY CURRICULUM </span>
+          <span data-translate="nav.sidebar.Customize"> CUSTOMIZE </span>
         </a>
       </li>
       <li>
         <a ui-sref="account.settings" ng-class="{active: $state.includes('account.settings')}">
-          <img src="assets/images/settings.png" >
           <span data-translate="nav.sidebar.settings"> My ACCOUNT </span>
         </a>
       </li>
@@ -39,18 +35,18 @@
   <ul>
     <li>
       <a ui-sref="account.dashboard" ng-class="{active: $state.includes('account.dashboard')}"
-           data-translate="nav.sidebar.dashboard">Dashboard</a>
+           data-translate="nav.sidebar.Home">Home</a>
     </li>
     <li>
       <a ui-sref="account.players" ng-class="{active: $state.includes('account.players')}"
-           data-translate="nav.sidebar.players">Players</a>
+           data-translate="nav.sidebar.Players">Players</a>
     </li>
     <li>
       <a ui-sref="account.curriculum" ng-class="{active: $state.includes('account.curriculum')}"
-           data-translate="nav.sidebar.curriculum">My Curriculum</a>
+           data-translate="nav.sidebar.customize">Customize</a>
     </li>
     <li><a ui-sref="account.settings" ng-class="{active: $state.includes('account.settings')}"
-           data-translate="nav.sidebar.settings">My Account</a></li>
+           data-translate="nav.sidebar.my_account">My Account</a></li>
   </ul>
   <div class="sidebarfooter">
    <a href="javascript:;" data-translate="nav.header.logout" id="side-bar-logout" >LOGOUT</a>

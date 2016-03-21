@@ -76,39 +76,74 @@
         </div>
       </div>
     </div>
-    <div class="panel curriculum-milestone-panel">
-      <div class="panel-heading text-center curriculum-milestonepanel-heading">
+    <div class="panel curriculum-groupword-panel">
+      <div class="panel-heading text-center curriculum-groupwordpanel-heading">
         Group Word List
       </div>
-      <div class="panel-body">
-        <p class="curriculum-milestone-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-          dolore
-          magna aliqua. Ut enim ad minim veniam,
+      <div class="panel-body curriculum-groupwordpanel-body">
+        <p class="curriculum-milestone-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore etdolore magna aliqua. Ut enim ad minim veniam,
           quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-        <div class="custom-word-list bad-words">
-
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" class="custom-checkbox" checked>
-
-              <p class="curriculum-custom-checkbox-span ">Anatomy</p>
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" class="custom-checkbox">
-
-              <p class="curriculum-custom-checkbox-span ">Bathroom</p>
-            </label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-5"></div>
-          <div class="col-md-4">
-            <button class=" btn  btn-primary curriculum-custom-word-button" ui-sref="account.addCustomWord">Apply</button>
-          </div>
-          <div class="col-md-3"></div>
-        </div>
+        <uib-accordion>
+          <uib-accordion-group is-open="status.open">
+            <uib-accordion-heading>
+              <i class=" glyphicon" ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Anatomy
+            </uib-accordion-heading>
+            <div class="curriculum-groupword-data">
+              <div class="checkbox">
+                <label><input type="checkbox" >Toothbrush</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" >Soap</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" >Towel</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" >Mouthwash</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" >Toilet paper</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" >Tooth paste</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" >Shampoo</label>
+              </div>
+            </div>
+            </uib-accordion-group>
+          </uib-accordion>
+        <uib-accordion>
+          <uib-accordion-group is-open="status.open">
+            <uib-accordion-heading>
+              <i class=" glyphicon" ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Bathroom
+            </uib-accordion-heading>
+            <div class="curriculum-groupword-data">
+                <div class="checkbox">
+                  <label><input type="checkbox" >Toothbrush</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" >Soap</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" >Towel</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" >Mouthwash</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" >Toilet paper</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" >Tooth paste</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" >Shampoo</label>
+                </div>
+            </div>
+            </uib-accordion-group>
+          </uib-accordion>
       </div>
     </div>
   </div>
