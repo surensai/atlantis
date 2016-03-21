@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', 'flashService','$scope','$sce','$state','$uibModal','$translate', function ($timeout, CurriculumService, flashService, $scope, $sce, $state,$uibModal,$translate) {
+angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', 'flashService','$scope','$sce','$state','$uibModal','$translate','ngAudio', function ($timeout, CurriculumService, flashService, $scope, $sce, $state,$uibModal,$translate, ngAudio) {
 
   var curriculum = this;
   curriculum.model = {};
-  curriculum.modalTitle = "Result";
-  curriculum.modalBody = "";
   curriculum.model.wordItem = {};
   curriculum.model.wordItem.imageURL = "assets/images/fallback-img.png";
+  curriculum.imageFileError = true;
+  curriculum.audioFileError = true;
   curriculum.fileReaderSupported = window.FileReader != null;
   var URL = window.URL || window.webkitURL;
 
@@ -118,7 +118,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   curriculum.submitForm = function (form) {
 
     curriculum.submitted = true;
-    if (form.$valid) {
+    if (form.$valid && curriculum.imageFileError && curriculum.audioFileError) {
       if(curriculum.myAudioFile && curriculum.myImageFile){
         uploadMultipleFiles(form,curriculum.myAudioFile,curriculum.myImageFile);
       }
@@ -170,7 +170,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
 
   function uploadMultipleFiles(form,audioFile,imageFile) {
     var handleSuccess = function (data) {
-      curriculum.model.wordItem.audioURL = data.files[0].url;
+      curriculum.model.wordItem.audioURL = ngAudio.load(data.files[0].url);
 
       curriculum.loadPromise = CurriculumService.uploadFileApi(imageFile)
         .success(function(data){
@@ -198,7 +198,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   function uploadProfilePic(form,file) {
     var handleSuccess = function (data) {
       if(data.files[0].type.includes("audio")){
-        curriculum.model.wordItem.audioURL = data.files[0].url;
+        curriculum.model.wordItem.audioURL = ngAudio.load(data.files[0].url);
       }else{
         curriculum.model.wordItem.imageURL = data.files[0].url;
       }
@@ -219,6 +219,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
     if (files != null) {
       var file = files[0];
       if (curriculum.fileReaderSupported && file.type.indexOf('image') > -1) {
+        curriculum.imageFileError = true;
         $timeout(function () {
           var fileReader = new FileReader();
           fileReader.readAsDataURL(file);
@@ -228,6 +229,8 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
             });
           };
         });
+      }else{
+        curriculum.imageFileError = false;
       }
     }
   };
@@ -236,10 +239,13 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
     if (files != null) {
       var file = files[0];
       if (file.type.indexOf('audio') > -1) {
+        curriculum.audioFileError = true;
         $timeout(function () {
           var fileURL = URL.createObjectURL(file);
-          curriculum.model.wordItem.audioURL = fileURL;
+          curriculum.model.wordItem.audioURL = ngAudio.load(fileURL);
         });
+      }else{
+        curriculum.audioFileError = false;
       }
     }
   };
