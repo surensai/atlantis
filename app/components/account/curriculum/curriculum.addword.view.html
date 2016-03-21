@@ -26,13 +26,17 @@
             <div class="col-md-3"></div>
             <label class="col-md-2 control-label add-profile-pic" data-translate="curriculum.pronunciation">Pronunciation :</label>
             <div class="col-md-3">
-              <div ng-show="curriculum.model.wordItem.audioURL">
-                <audio controls ng-src="{{curriculum.trustResourceURL(curriculum.model.wordItem.audioURL)}}">
-                </audio>
-              </div>
-              <div>
+                <span ng-click='curriculum.model.wordItem.audioURL.paused ? curriculum.model.wordItem.audioURL.play() : curriculum.model.wordItem.audioURL.pause()' class="btn btn-default custom-audio-button" ><i class="fa fa-volume-up"></i>
+                </span>
+
                 <input type="file"  file-model="curriculum.myAudioFile" class="img-rectangle img-border-radius " accept="audio/*"  onchange="angular.element(this).scope().audioFileChanged(this.files)">
+
+              <div ng-show="!curriculum.audioFileError" class="error-mesasage">
+                <i class="fa fa-exclamation-circle"></i>
+                  <span
+                    data-translate="user.validationMessages.file_type_wrong"> File Type is Wrong</span>
               </div>
+
             </div>
 
           </div>
@@ -46,9 +50,14 @@
               </div>
               <div>
                 <div class="myLabel text-center" href="">
-                  <input  type="file" name="file" file-model="curriculum.myImageFile" class="img-rectangle img-border-radius  " onchange="angular.element(this).scope().photoChanged(this.files)">
+                  <input  type="file" name="file" file-model="curriculum.myImageFile" accept="image/*" class="img-rectangle img-border-radius  " onchange="angular.element(this).scope().photoChanged(this.files)">
                   <span data-translate="player.change_picture" >Change Picture</span>
                 </div>
+              </div>
+              <div ng-show="!curriculum.imageFileError" class="error-mesasage">
+                <i class="fa fa-exclamation-circle"></i>
+                  <span
+                    data-translate="user.validationMessages.file_type_wrong"> File Type is Wrong</span>
               </div>
             </div>
           </div>

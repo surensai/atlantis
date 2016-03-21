@@ -173,7 +173,7 @@
       "data_updatede_success": "Data updated successfully.",
       "settings_updated": "Settings updated.",
       "curriculum_word_notExists": "The word does not exists.",
-      "file_type_wrong": "File Type is wrong. Only allow Images.",
+      "file_type_wrong": "File Type is Wrong.",
       "age_require":"Age is required.",
       "model_delete_player":"Are you sure do you want to delete player?",
       "user_name_pattern":"Must start with a letter and be alphanumeric.",

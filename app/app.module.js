@@ -15,5 +15,6 @@ var app = angular.module('app', [
   'base64',
   'angularMoment',
   'highcharts-ng',
-  'toaster'
+  'toaster',
+  'ngAudio'
 ]);
