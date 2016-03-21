@@ -160,6 +160,7 @@
   color: white;
   background-color: #7E7E7E;
   border-color: #adadad;
+  margin-left:5%;
 }
 .custom-search-button:hover{
   color: white;
@@ -177,4 +178,7 @@
   .apply-margin-bottom {
     margin-bottom: -64px;
   }
+}
+.custom-message-color{
+  color: lighten(#000, 50%);
 }
