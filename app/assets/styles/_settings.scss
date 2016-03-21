@@ -58,8 +58,13 @@
         }
       }
 
-      .ntofitication-text {
+      .notification-text {
+        font-size: 18px;
         color: lighten(gray, 10%);
+        a{
+          color:#f7ab31;
+          text-decoration: underline;
+          }
 
       }
       .notification-checkbox-text {
