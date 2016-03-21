@@ -334,19 +334,30 @@
     display: block;
   }
 
-  #sidebar.sidebar-toggle{
-    right: 0px!important;
-  }
-
-  body.body-toggle {
-    padding-right: 196px!important;
-    margin-left: -196px!important;
-  }
-
   .bg-img {
     background-size: auto 100% !important;
   }
 
+  .slide-overlay-toggle.slidebar-overlay {
+    display: block;
+  }
+
+  #sidebar.sidebar-toggle{
+    left: 0px;
+  }
+
+  .slidebar-overlay, #sidebar{
+    top: 89px;
+  }
+
+  #sidebar .sidebarfooter{
+    bottom: 87px;
+  }
+
+  .navbar-toggle{
+    margin-right: 0px;
+    margin-top: 27px;
+  }
 }
 
 @media only screen and
@@ -360,17 +371,29 @@
     display: block;
   }
 
-  #sidebar.sidebar-toggle{
-    right: 0px!important;
-  }
-
-  body.body-toggle {
-    padding-right: 196px!important;
-    margin-left: -196px!important;
-  }
-
   .bg-img {
     background-size: auto 100% !important;
+  }
+
+  .slide-overlay-toggle.slidebar-overlay {
+    display: block;
+  }
+
+  .slidebar-overlay, #sidebar{
+    top: 89px;
+  }
+
+  #sidebar.sidebar-toggle{
+    left: 0px;
+  }
+
+  #sidebar .sidebarfooter{
+    bottom: 87px;
+  }
+
+  .navbar-toggle{
+    margin-right: 0px;
+    margin-top: 34px;
   }
 
 }
