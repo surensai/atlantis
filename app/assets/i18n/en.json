@@ -241,6 +241,7 @@
     }
   },
   "curriculum":{
+    "wordlabel": "Word :",
     "word": "word"
   }
 
