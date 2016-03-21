@@ -1,4 +1,5 @@
 <div class="curriculum-container" xmlns="http://www.w3.org/1999/html">
+  <toaster-container toaster-options="{'position-class': 'toast-bootom-center'}"></toaster-container>
   <div class="container container-min-height">
     <div class="panel curriculum-customword-panel">
       <div class="panel-heading text-center curriculum-customwordpanel-heading">
@@ -16,14 +17,19 @@
 
               <div class="form-group">
                 <div class="col-md-12">
-                  <input type="text" class="form-control" placeholder="Type a word">
+                  <input type="text" class="form-control" placeholder="Type a word" data-ng-model="curriculum.model.wordItem.word">
+                  <div ng-show="curriculumForm.$submitted && curriculumForm.word.$error.required" class="error-mesasage">
+                    <i class="fa fa-exclamation-circle"></i>
+                    <span data-translate="user.validationMessages.curriculum_word_require">Word Name is required.</span>
+                  </div>
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col-md-5"></div>
                 <div class="col-md-4">
-                  <button class=" btn btn-primary add-custom-word-button" ui-sref="account.addCustomWord">Add Custom word</button>
+                  <button class="btn btn-primary add-custom-word-button" data-ng-click="curriculum.searchWord(curriculum.model.wordItem.word)"
+                       data-ng-disabled="!curriculum.model.wordItem.word" >Add Custom word</button>
                 </div>
                 <div class="col-md-3"></div>
               </div>
@@ -106,4 +112,5 @@
       </div>
     </div>
   </div>
+
 </div>

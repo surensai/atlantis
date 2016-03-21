@@ -1,4 +1,5 @@
 <div class="col-lg-2"></div>
+<toaster-container toaster-options="{'position-class': 'toast-bootom-center'}"></toaster-container>
 <div class="container container-min-height addpalyer-container">
   <div class="panel">
     <div class="panel-heading addpalyer-heading text-center">
@@ -16,15 +17,17 @@
               <input type="text" name="word" class="form-control" data-ng-model="curriculum.model.wordItem.word"
                      placeholder="{{ 'curriculum.word' | translate }}" required>
               <span class="btn btn-default" ng-click="curriculum.searchWord()" style="margin-left:5%"><i class="fa fa-search"></i></span>
+
             </div>
-            <p ng-show="playerForm.$submitted && playerForm.word.$error.required" class="error-mesasage"
-               data-translate="user.validationMessages.curriculum_word_notExists">The word does not exists.</p>
+            <div class="error-mesasage">
+              <span ng-show="curriculum.model.message">{{curriculum.model.message}}</span>
+            </div>
           </div>
           <div class="form-group">
             <label class="col-md-2 control-label add-profile-pic">Pronunciation</label>
             <div class="col-md-2">
               <div ng-show="curriculum.model.wordItem.audioURL">
-                <audio controls autoplay ng-src="{{curriculum.model.wordItem.audioURL}}">
+                <audio controls autoplay ng-src="{{curriculum.trustResourceURL(curriculum.model.wordItem.audioURL)}}">
                 </audio>
               </div>
               <div>
@@ -37,10 +40,7 @@
           <div class="form-group">
             <label class="col-md-2 control-label add-profile-pic">Picture</label>
             <div class="col-md-2">
-              <div  class="thumbnail" ng-show="!curriculum.model.wordItem.imageURL">
-                <img src="assets/images/fallback-img.png">
-              </div>
-              <div  class="thumbnail" ng-show="curriculum.model.wordItem.imageURL">
+              <div  class="thumbnail">
                 <img ng-src="{{curriculum.model.wordItem.imageURL}}">
               </div>
               <div>
@@ -49,10 +49,10 @@
             </div>
           </div>
           <div class="col-md-2"></div>
-          <button type="submit"class="btn btn-primary "
+          <button type="submit"class="btn btn-primary"
                   data-translate="common.buttons.addword" >Add Word
           </button>
-          <button type="button" class="btn btn-primary cancel-button" data-translate="common.buttons.cancel" >Cancel
+          <button type="button" class="btn btn-primary cancel-button" ui-sref="account.curriculum" data-translate="common.buttons.cancel" >Cancel
           </button>
         </div>
       </form>
