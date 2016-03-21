@@ -173,6 +173,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     templateUrl: urlBuilder('account/curriculum', 'curriculum.addword'),
     controller: 'curriculumCtrl',
     controllerAs: "curriculum",
+    params: {'word': null},
     data: {
       pageTitle: 'Square Panda - Curriculum'
     }

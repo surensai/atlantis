@@ -31,6 +31,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
         if (playerAction.isUpdate) {
           updateAction();
         } else {
+          playerAction.model.playerItem.profileURL = undefined;
           addAction();
         }
       }
