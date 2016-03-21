@@ -6,12 +6,11 @@
       color: $white-color;
     }
      .add-customword-panle-body{
-       padding: 30px;
        .add-custom-word{
-         background-color: #F7F5EB;
-         padding: 3%;
+
+         padding: 0px;
          margin-bottom: 2%;
-         color: #B4A2A8;
+         color: #BCBCBC;
          .form-control{
            height: 45px;
            font-size: 17px;
@@ -73,11 +72,7 @@
            padding-bottom: 17px;
            color: $white-color;
            font-weight: normal;
-           tr{
-             th{
-               border-bottom: none;
-             }
-           }
+           border-bottom: none;
          }
        }
        tr, th {
@@ -85,7 +80,7 @@
        }
        td{
          border-top: none;
-         color: #B0B0B0;
+         color: lighten(#000, 30%);
          .last-attempt-green{
            color: $sp-green;
          }
