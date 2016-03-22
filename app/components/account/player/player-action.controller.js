@@ -86,7 +86,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
 
   function uploadProfilePic(form) {
     var handleSuccess = function (data) {
-      playerAction.model.playerItem.profileURL = data.files[0].url;
+      playerAction.model.playerItem.profileURL = playerAction.model.myCroppedImage;
       if (playerAction.isUpdate) {
         updateAction();
       } else {
@@ -134,7 +134,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
 
 
   playerAction.fileReaderSupported = window.FileReader != null;
-
+  playerAction.model.myCroppedImage = '';
   $scope.photoChanged = function (files) {
     if (files != null) {
       var file = files[0];
