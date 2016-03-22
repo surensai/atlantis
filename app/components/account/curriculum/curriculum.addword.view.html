@@ -11,7 +11,7 @@
 
           <div class="form-group">
             <div class="col-md-3"></div>
-            <label class="col-md-2 control-label" data-translate="curriculum.wordlabel">Word :</label>
+            <label class="col-md-2 control-label" data-translate="curriculum.wordlabel">Word</label>
             <div class="col-md-3">
               <div style="display: inline-flex;">
 
@@ -30,14 +30,14 @@
 
           <div class="form-group">
             <div class="col-md-3"></div>
-            <label class="col-md-2 control-label add-profile-pic" data-translate="curriculum.pronunciation">Pronunciation :</label>
+            <label class="col-md-2 control-label add-profile-pic" data-translate="curriculum.pronunciation">Pronunciation</label>
             <div class="col-md-3 curriculum-custom-audio" >
-                <span  ng-click='curriculum.model.wordItem.audioURL.paused ? curriculum.model.wordItem.audioURL.play() : curriculum.model.wordItem.audioURL.pause()' class="btn btn-default custom-audio-button" ><i class="fa fa-volume-up"></i> </span>
-              <div class="audio-label">
+                <span   ng-disabled="!curriculum.isAudioUploaded" ng-click='curriculum.model.wordItem.audioURL.paused ? curriculum.model.wordItem.audioURL.play() : curriculum.model.wordItem.audioURL.pause()' class="btn  custom-audio-button custom-volume-button" ><i class="fa fa-volume-up"></i> </span>
+              <div class=" btn custom-audio-button custom-audio-file">
               <input type="file"  file-model="curriculum.myAudioFile" class="img-rectangle img-border-radius " accept="audio/*"  onchange="angular.element(this).scope().audioFileChanged(this.files)">
                 <span>Browse</span>
               </div>
-              <span class="btn btn-default custom-searchs-button" ><i class="glyphicon glyphicon-repeat"></i></span>
+              <span class="btn btn-default custom-audio-button repeat-button" ng-disabled="!curriculum.isAudioUploaded"><i class="glyphicon glyphicon-repeat"></i></span>
               <div ng-show="!curriculum.audioFileError" class="error-mesasage">
                 <i class="fa fa-exclamation-circle"></i>
                   <span
@@ -50,7 +50,7 @@
 
           <div class="form-group">
             <div class="col-md-3"></div>
-            <label class="col-md-2 control-label add-profile-pic" data-translate="curriculum.picture">Picture :</label>
+            <label class="col-md-2 control-label add-profile-pic" data-translate="curriculum.picture">Picture</label>
             <div class="col-md-2">
               <div  class="thumbnail ">
                 <img class="apply-margin-bottom" ng-src="{{curriculum.model.wordItem.imageURL}}">

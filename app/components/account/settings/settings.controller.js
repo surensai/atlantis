@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService', '$state',function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService, $state) {
+angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService', function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService) {
   var settings = this;
   settings.model = {};
   settings.model.userData = angular.copy($rootScope.globals.currentUser);
@@ -118,12 +118,17 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   }
 
   function getMissingLetters() {
-        var handleSuccess = function (data) {
+    var handleSuccess = function (data) {
       settings.selectedMissingLetters = data.list;
+      if(data.list.length === 0){
+        for(var i= 0; i < settings.getAlphabets().length; i++){
+          settings.selectedMissingLetters[i] = "";
+        }
+      }
     };
     var handleError = function (error, status) {
       if (error && status) {
-        messagesFactory.selectMissinglettesErrorMessages(status);
+        messagesFactory.selectmissinglettesErrorMessages(status);
       }
     };
     settingsService.getMissingCharactersApi()
@@ -134,11 +139,11 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   settings.updateMissingLetters = function() {
     var handleSuccess = function (data) {
       settings.selectedMissingLetters = data.character;
-      messagesFactory.UpadteMissinglettesSuccessMessages(data);
+      messagesFactory.SettingsupadtemissinglettersSuccessMessages(data);
     };
     var handleError = function (error, status) {
       if (error && status) {
-        messagesFactory.UpadteMissinglettesErrorMessages(status);
+        messagesFactory.SettingsupadtemissinglettersErrorMessages(status);
       }
     };
     settingsService.updateMissingCharactersApi({ "character" : settings.selectedMissingLetters })
@@ -150,23 +155,19 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
     return "AABBCCDDEEEFFGGHHIIJKLLMMNNOOPPQRRSSSTTUUVXYZ".split('');
   };
 
-  settings.selectCharacter = function(char){
-    var isExistedChar = settings.selectedMissingLetters.indexOf(char);
-    if (isExistedChar > -1) {
-      settings.selectedMissingLetters.splice(isExistedChar, 1);
+  settings.selectCharacter = function(char, index){
+    if(settings.selectedMissingLetters[index] === ""){
+      settings.selectedMissingLetters[index] = char;
     } else {
-      settings.selectedMissingLetters.push(char);
+      settings.selectedMissingLetters[index] = "";
     }
   };
 
-  settings.isMissilingLetterSelected = function(char){
-    if(settings.selectedMissingLetters.length > 0){
-      for(var i= 0; i < settings.selectedMissingLetters.length; i++){
-          if(settings.selectedMissingLetters[i] === char){
-             return true;
-          }
-      }
+  settings.isMissilingLetterSelected = function(char, index){
+    if(settings.selectedMissingLetters[index] !== ""){
+      return true;
     }
+
   };
 
   settings.clearAllAlphabets = function(){
