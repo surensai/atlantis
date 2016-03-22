@@ -162,6 +162,14 @@
   border-color: #adadad;
   margin-left:5%;
 }
+.custom-searchs-button{
+  color: white;
+  background-color: #7E7E7E;
+  border-color: #adadad;
+  margin-left:2%;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
 .custom-search-button:hover{
   color: white;
   background-color: #7E7E7E;
@@ -169,8 +177,45 @@
 }
 .custom-audio-button{
   color: white;
-  background-color: #7E7E7E;
-  border-color: #adadad;
+  background-color: #4cbc96;
+  margin-right: 20px;
+}
+.curriculum-custom-audio{
+  display: inline-flex;
+  i{
+    padding-bottom: 5px;
+    padding-top: 5px;
+  }
+  .audio-label {
+    position: relative;
+  }
+  .audio-label input {
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+    width:100%;
+    height:100%;
+  }
+  .audio-label {
+    padding: 7px 37px;
+    margin: 2px;
+    background: #7E7E7E;
+    display: inline-block;
+    border-radius: 4px;
+    color: $white-color;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .audio-label:hover {
+    background: #7E7E7E;
+  }
+  .audio-label:active {
+    background: #7E7E7E;
+  }
+}
+.custom-audio-button:hover{
+  color: white;
+  background-color: #4cbc96;
 }
 .add-word-button{
   padding: 5px 37px 5px 37px;
