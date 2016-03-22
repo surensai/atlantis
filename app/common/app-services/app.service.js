@@ -1,5 +1,5 @@
 'use strict';
-angular.module('app').factory('appService', [ function () {
+angular.module('app').factory('appService', [ '$rootScope', function ($rootScope) {
   var service = {};
 
   service.isFooterFixed = function(paht){
@@ -29,6 +29,17 @@ angular.module('app').factory('appService', [ function () {
       canvas = null;
     };
     img.src = url;
+  };
+
+  service.isFooterFixed = function(){
+    (function($) {
+      $.fn.hasScrollBar = function() {
+        return this.get(0).scrollHeight > this.height();
+      };
+    })(jQuery);
+
+    $rootScope.isFooterFix = $('body').hasScrollBar();
+
   };
 
   return service;
