@@ -45,21 +45,16 @@
                        accept="audio/*" onchange="angular.element(this).scope().audioFileChanged(this.files)">
                 <span>Browse</span>
               </div>
-              <span ng-click="curriculum.refreshFile()" class="btn btn-default custom-search-button"><i
-                class="glyphicon glyphicon-repeat"></i></span>
-
-            </div>
-            <div ng-show="!curriculum.audioFileError" class="error-mesasage">
-              <i class="fa fa-exclamation-circle"></i>
               <span ng-click="curriculum.refreshFile()" class="btn btn-default custom-audio-button repeat-button"
                     ng-disabled="!curriculum.isAudioUploaded"><i class="glyphicon glyphicon-repeat"></i></span>
+
+            </div>
 
               <div ng-show="!curriculum.audioFileError" class="error-mesasage">
                 <i class="fa fa-exclamation-circle"></i>
                   <span
                     data-translate="user.validationMessages.file_type_wrong"> File Type is Wrong</span>
               </div>
-            </div>
 
           </div>
 
