@@ -170,10 +170,18 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     }
   }).state('account.addCustomWord', {
     url: '/curriculum/addword',
-    templateUrl: urlBuilder('account/curriculum', 'curriculum.addword'),
-    controller: 'curriculumCtrl',
+    templateUrl: urlBuilder('account/curriculum', 'curriculum-action'),
+    controller: 'curriculumActionCtrl',
     controllerAs: "curriculum",
     params: {'word': null},
+    data: {
+      pageTitle: 'Square Panda - Curriculum'
+    }
+  }).state('account.editCustomWord', {
+    url: '/curriculum/:id/editword',
+    templateUrl: urlBuilder('account/curriculum', 'curriculum-action'),
+    controller: 'curriculumActionCtrl',
+    controllerAs: "curriculum",
     data: {
       pageTitle: 'Square Panda - Curriculum'
     }
