@@ -28,6 +28,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
       if(playerAction.myFile){
         uploadProfilePic(form);
       }else{
+        playerAction.model.playerItem.profileURL = undefined;
         if (playerAction.isUpdate) {
           updateAction();
         } else {
@@ -93,7 +94,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
         addAction();
       }
       form.$setPristine();
-      flashService.showSuccess($translate.instant("player.messages.file_upload_success"), false);
+      flashService.showSuccess($translate.instant("player.messages.file_upload_success"), true);
     };
 
     var handleError = function () {
@@ -118,7 +119,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
 
     var handleSuccess = function () {
       angular.element('#pop').modal('hide');
-      flashService.showSuccess($translate.instant("player.messages.delete_success"), false);
+      flashService.showSuccess($translate.instant("player.messages.delete_success"), true);
       $state.go("account.players");
 
     };
@@ -160,6 +161,9 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
       playerAction.isUpdate = true;
       var handleSuccess = function (data) {
         playerAction.data.playerItem = playerAction.model.playerItem = data;
+        if(!data.profileURL){
+          playerAction.model.playerItem.profileURL = "assets/images/fallback-img.png";
+        }
       };
 
       var handleError = function () {

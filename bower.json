@@ -24,6 +24,7 @@
     "highcharts-ng": "^0.0.11",
     "highcharts": "^4.2.3",
     "AngularJS-Toaster": "angularjs-toaster#^1.2.0",
+    "angular-audio": "^1.7.1",
     "ng-img-crop": "ngImgCrop#~0.3.2"
   },
   "devDependencies": {

@@ -211,7 +211,7 @@
       <div class="panel-body settiings-panel-body">
         <form name="notificationsForm" role="form" data-ng-submit="settings.updateMissingLetters()"
               novalidate>
-          <p class="ntofitication-text col-md-12" >
+          <p class="notification-text-missing-letters col-md-12" >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
             incididunt ut labore et dolore
             magna aliqua. Ut enim ad minim veniam,
@@ -220,8 +220,8 @@
 
           <div class="missing-letter-keyboard col-md-12 clearfix">
             <ul>
-              <li data-ng-repeat="char in settings.getAlphabets()">
-                <a href="javascript:;" ng-class="{'active': settings.isMissilingLetterSelected(char)}" data-ng-click="settings.selectCharacter(char)"> {{char}} </a>
+              <li data-ng-repeat="char in settings.getAlphabets() track by $index">
+                <a href="javascript:;" ng-class="{'active': settings.isMissilingLetterSelected(char, $index)}" data-ng-click="settings.selectCharacter(char, $index)"> {{char}} </a>
               </li>
             </ul>
           </div>
@@ -235,8 +235,8 @@
             </button>
           </div>
 
-          <p class="ntofitication-text col-md-12 margin-top20" >
-            To order the Character Set please visit <a href="http://squarepanda.com" target="-_blank"> www.squarepanda.com </a>
+          <p class="notification-text col-md-12 margin-top20" >
+            To order the <b>Character Set</b> please visit <a href="http://squarepanda.com" target="-_blank"> www.squarepanda.com </a>
           </p>
 
         </form>
@@ -250,7 +250,7 @@
         <form name="notificationsForm" role="form" data-ng-submit="settings.submitNotifications(notificationsForm)"
               novalidate>
 
-          <p class="ntofitication-text col-md-12" >
+          <p class="notification-text-missing-letters col-md-12" >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
             incididunt ut labore et dolore
             magna aliqua. Ut enim ad minim veniam,

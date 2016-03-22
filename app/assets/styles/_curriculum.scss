@@ -6,12 +6,13 @@
       color: $white-color;
     }
      .add-customword-panle-body{
-       padding: 30px;
+       padding: 20px;
+       padding-bottom: 0px;
        .add-custom-word{
-         background-color: #FAFAFA;
-         color: #DADADA;
-         padding: 3%;
+
+         padding: 0px;
          margin-bottom: 2%;
+         color: #BCBCBC;
          .form-control{
            height: 45px;
            font-size: 17px;
@@ -38,7 +39,7 @@
          background-color: #FAFAFA;
          .panel-default {
            .panel-heading{
-             background-color: #FAFAFA;
+             background-color: #F7F5EB;
              padding: 15px;
            }
          }
@@ -56,17 +57,25 @@
          }
          .panel-body{
            background-color: #FAFAFA;
+           padding: 0px;
+           td{
+             padding-top: 15px;
+             padding-bottom: 15px
+           }
          }
        }
        .table {
          border: 1px solid #C7C7C7;
          background-color: white;
+         margin-bottom: 0px;
+         border-top: 0px;
          thead th {
            background-color: #9B9B9B;
-           padding-top: 25px;
-           padding-bottom: 25px;
+           padding-top: 17px;
+           padding-bottom: 17px;
            color: $white-color;
            font-weight: normal;
+           border-bottom: none;
          }
        }
        tr, th {
@@ -74,7 +83,7 @@
        }
        td{
          border-top: none;
-         color: #B0B0B0;
+         color: lighten(#000, 30%);
          .last-attempt-green{
            color: $sp-green;
          }
@@ -107,8 +116,10 @@
           outline-offset: none;
         }
       }
+
       .panel-heading{
-        background-color: #EDEBEB;
+        background-color: #F7F5EB;
+        padding: 15px;
         i{
           margin-right: 15px;
         }
@@ -145,4 +156,79 @@
 .curriculum-custom-word-button{
   padding: 10px 95px 10px 97px;
 }
-
+.custom-search-button{
+  color: white;
+  background-color: #7E7E7E;
+  border-color: #adadad;
+  margin-left:5%;
+}
+.custom-searchs-button{
+  color: white;
+  background-color: #7E7E7E;
+  border-color: #adadad;
+  margin-left:2%;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+.custom-search-button:hover{
+  color: white;
+  background-color: #7E7E7E;
+  border-color: #adadad;
+}
+.custom-audio-button{
+  color: white;
+  background-color: #4cbc96;
+  margin-right: 20px;
+}
+.curriculum-custom-audio{
+  display: inline-flex;
+  i{
+    padding-bottom: 5px;
+    padding-top: 5px;
+  }
+  .audio-label {
+    position: relative;
+  }
+  .audio-label input {
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+    width:100%;
+    height:100%;
+  }
+  .audio-label {
+    padding: 7px 37px;
+    margin: 2px;
+    background: #7E7E7E;
+    display: inline-block;
+    border-radius: 4px;
+    color: $white-color;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .audio-label:hover {
+    background: #7E7E7E;
+  }
+  .audio-label:active {
+    background: #7E7E7E;
+  }
+}
+.custom-audio-button:hover{
+  color: white;
+  background-color: #4cbc96;
+}
+.add-word-button{
+  padding: 5px 37px 5px 37px;
+  margin-right: 15px;
+}
+.add-cancel-button{
+  padding: 5px 50px 5px 50px;
+}
+.thumbnail {
+  .apply-margin-bottom {
+    margin-bottom: -64px;
+  }
+}
+.custom-message-color{
+  color: lighten(#000, 50%);
+}
