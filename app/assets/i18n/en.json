@@ -247,10 +247,10 @@
     }
   },
   "curriculum":{
-    "wordlabel": "Word :",
+    "wordlabel": "Word",
     "word": "word",
-    "pronunciation":"Pronunciation :",
-    "picture":"Picture :",
+    "pronunciation":"Pronunciation",
+    "picture":"Picture",
     "add_custom_word":"Add Custom word",
     "nodata":"No data",
     "custom_word":"Custom Word",

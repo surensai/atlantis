@@ -8,6 +8,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
   curriculum.model.wordItem.imageURL = "assets/images/fallback-img.png";
   curriculum.imageFileError = true;
   curriculum.audioFileError = true;
+  curriculum.isAudioUploaded = false;
   curriculum.isUpdate = false;
   curriculum.fileReaderSupported = window.FileReader != null;
   var URL = window.URL || window.webkitURL;
@@ -219,7 +220,6 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
       }
     }
   };
-
 
 
 }]);

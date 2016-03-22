@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService', '$state',function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService, $state) {
+angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService', function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService) {
   var settings = this;
   settings.model = {};
   settings.model.userData = angular.copy($rootScope.globals.currentUser);
@@ -128,7 +128,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
     };
     var handleError = function (error, status) {
       if (error && status) {
-        messagesFactory.selectMissinglettesErrorMessages(status);
+        messagesFactory.selectmissinglettesErrorMessages(status);
       }
     };
     settingsService.getMissingCharactersApi()
@@ -139,11 +139,11 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   settings.updateMissingLetters = function() {
     var handleSuccess = function (data) {
       settings.selectedMissingLetters = data.character;
-      messagesFactory.UpadteMissinglettesSuccessMessages(data);
+      messagesFactory.SettingsupadtemissinglettersSuccessMessages(data);
     };
     var handleError = function (error, status) {
       if (error && status) {
-        messagesFactory.UpadteMissinglettesErrorMessages(status);
+        messagesFactory.SettingsupadtemissinglettersErrorMessages(status);
       }
     };
     settingsService.updateMissingCharactersApi({ "character" : settings.selectedMissingLetters })
