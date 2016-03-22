@@ -17,7 +17,7 @@
             <div class="col-md-3">
               <div style="display: inline-flex;">
 
-                <input type="text" name="word" class="form-control" data-ng-model="curriculum.model.wordItem.word"
+                <input type="text" name="word" class="form-control" data-ng-model="curriculum.model.wordItem.wordName"
                        placeholder="{{ 'curriculum.word' | translate }}" required>
 
                 <span class="btn btn-default custom-search-button" ng-click="curriculum.searchWord()"><i
@@ -36,8 +36,7 @@
             <label class="col-md-2 control-label add-profile-pic" data-translate="curriculum.pronunciation">Pronunciation</label>
 
             <div class="col-md-3 curriculum-custom-audio">
-              <span ng-disabled="!curriculum.isAudioUploaded"
-                    ng-click='curriculum.model.wordItem.audioURL.paused ? curriculum.model.wordItem.audioURL.play() : curriculum.model.wordItem.audioURL.pause()'
+              <span ng-click='curriculum.model.wordItem.audioURL.paused ? curriculum.model.wordItem.audioURL.play() : curriculum.model.wordItem.audioURL.pause()'
                     class="btn  custom-audio-button custom-volume-button"><i class="fa fa-volume-up"></i> </span>
 
               <div class=" btn custom-audio-button custom-audio-file">
