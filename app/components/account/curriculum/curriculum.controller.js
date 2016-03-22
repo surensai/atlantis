@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', 'flashService','$scope','$sce','$state','$uibModal','$translate','ngAudio', function ($timeout, CurriculumService, flashService, $scope, $sce, $state,$uibModal,$translate, ngAudio) {
+angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', 'flashService','$scope','$state','$uibModal','$translate','ngAudio', function ($timeout, CurriculumService, flashService, $scope, $state,$uibModal,$translate, ngAudio) {
 
   var curriculum = this;
   curriculum.model = {};
@@ -10,10 +10,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   curriculum.audioFileError = true;
   curriculum.fileReaderSupported = window.FileReader != null;
   var URL = window.URL || window.webkitURL;
-
-  curriculum.trustResourceURL = function(){
-    return $sce.trustAsResourceUrl(curriculum.model.wordItem.audioURL);
-  };
 
   curriculum.searchWord = function(){
       var word = curriculum.model.wordItem.word;
