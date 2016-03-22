@@ -1,30 +1,14 @@
 'use strict';
 
-angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', 'flashService','$scope','$sce','$state','$uibModal','$translate','ngAudio', function ($timeout, CurriculumService, flashService, $scope, $sce, $state,$uibModal,$translate, ngAudio) {
+angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', 'flashService','$scope','$state','$uibModal','$translate', function ($timeout, CurriculumService, flashService, $scope, $state,$uibModal,$translate) {
 
   var curriculum = this;
   curriculum.model = {};
   curriculum.model.wordItem = {};
-  curriculum.model.wordItem.imageURL = "assets/images/fallback-img.png";
-  curriculum.imageFileError = true;
-  curriculum.audioFileError = true;
-  curriculum.fileReaderSupported = window.FileReader != null;
-  var URL = window.URL || window.webkitURL;
-
-  curriculum.trustResourceURL = function(){
-    return $sce.trustAsResourceUrl(curriculum.model.wordItem.audioURL);
-  };
 
   curriculum.searchWord = function(){
       var word = curriculum.model.wordItem.word;
       var handleSuccess = function (data) {
-        if($state.current.name === "account.addCustomWord"){
-          if (data.length === 0) {
-            curriculum.model.message = $translate.instant("curriculum.message.word_notexist");
-          } else {
-            curriculum.model.message = $translate.instant("curriculum.message.word_exist");
-          }
-        }else {
           var modalInstance = $uibModal.open({
             templateUrl: 'common/app-directives/modal/custom-modal.html',
             controller: function ($scope, $uibModalInstance) {
@@ -49,7 +33,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
             $state.go("account.curriculum");
           });
 
-        }
       };
 
       var handleError = function () {
@@ -64,18 +47,16 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
 
   (function () {
     getWords();
-
   })();
   function getWords() {
-    if($state.current.name === "account.addCustomWord"){
-      curriculum.model.wordItem.word = $state.params.word;
-    }else{
+
       var handleSuccess = function (data) {
         if (data.length > 0) {
           curriculum.customWords = [];
 
           angular.forEach(data, function(word,index) {
             var privateWord = {};
+            privateWord.id = word.id;
             privateWord.Sno = index+1;
             privateWord.Words = word.wordName;
             privateWord.dateAdded = word.createdAt;
@@ -95,7 +76,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
       CurriculumService.listWordsApi()
         .success(handleSuccess)
         .error(handleError);
-    }
 
   }
   curriculum.wordsHeaders = {
@@ -115,140 +95,30 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
     return Object.keys(obj);
   };
 
-  curriculum.submitForm = function (form) {
+  curriculum.deleteListener = function(word){
+    var modalInstance = $uibModal.open({
+      templateUrl: 'common/app-directives/modal/custom-modal.html',
+      controller: function ($scope, $uibModalInstance) {
 
-    curriculum.submitted = true;
-    if (form.$valid && curriculum.imageFileError && curriculum.audioFileError) {
-      if(curriculum.myAudioFile && curriculum.myImageFile){
-        uploadMultipleFiles(form,curriculum.myAudioFile,curriculum.myImageFile);
-      }
-      else if(curriculum.myAudioFile){
-        curriculum.model.wordItem.imageURL = undefined;
-        uploadProfilePic(form, curriculum.myAudioFile);
-      }
-      else if(curriculum.myImageFile){
-        curriculum.model.wordItem.audioURL = undefined;
-        uploadProfilePic(form, curriculum.myImageFile);
-      }
-      else{
-        curriculum.model.wordItem.imageURL = undefined;
-        curriculum.model.wordItem.audioURL = undefined;
-        addAction(form);
-      }
-    } else {
-      $timeout(function () {
-        angular.element('.custom-error:first').focus();
-      }, 200);
-    }
+        $scope.modalTitle = "Warning!";
+        $scope.modalBody = $translate.instant("curriculum.message.model_delete_word");
+        $scope.ok = function () {
+          $uibModalInstance.close(word);
+        };
 
+        $scope.cancel = function () {
+          $uibModalInstance.dismiss('cancel');
+        };
+      }
+    });
+
+    modalInstance.result.then(function (word) {
+      curriculum.customWords.splice(curriculum.customWords.indexOf(word),1);
+    }, function () {
+      $state.go("account.curriculum");
+    });
   };
 
-  function stuctureFormData() {
-    var data = {};
-    data.wordName = curriculum.model.wordItem.word;
-    data.imageURL = curriculum.model.wordItem.imageURL;
-    data.audioURL = curriculum.model.wordItem.audioURL;
-    return data;
-  }
-
-  function addAction(form) {
-    form.$setPristine();
-    var formData = stuctureFormData();
-    var handleSuccess = function () {
-      flashService.showSuccess("Word added successfully!", true);
-      $state.go('account.curriculum');
-    };
-
-    var handleError = function () {
-      flashService.showError("Invalid word credentials", false);
-    };
-
-    curriculum.loadPromise = CurriculumService.saveWordApi(formData)
-      .success(handleSuccess)
-      .error(handleError);
-  }
-
-  function uploadMultipleFiles(form,audioFile,imageFile) {
-    var handleSuccess = function (data) {
-      curriculum.model.wordItem.audioURL = ngAudio.load(data.files[0].url);
-
-      curriculum.loadPromise = CurriculumService.uploadFileApi(imageFile)
-        .success(function(data){
-          curriculum.model.wordItem.imageURL = data.files[0].url;
-          addAction(form);
-          flashService.showSuccess("File uploaded successfully!", false);
-        })
-        .error(function(){
-          flashService.showError("Error in file uploading", false);
-        });
-
-    };
-
-    var handleError = function () {
-      flashService.showError("Error in file uploading", false);
-    };
-
-    curriculum.loadPromise = CurriculumService.uploadFileApi(audioFile)
-      .success(handleSuccess)
-      .error(handleError);
-  }
-
-
-
-  function uploadProfilePic(form,file) {
-    var handleSuccess = function (data) {
-      if(data.files[0].type.includes("audio")){
-        curriculum.model.wordItem.audioURL = ngAudio.load(data.files[0].url);
-      }else{
-        curriculum.model.wordItem.imageURL = data.files[0].url;
-      }
-      addAction(form);
-      flashService.showSuccess("File uploaded successfully!", false);
-    };
-
-    var handleError = function () {
-      flashService.showError("Error in file uploading", false);
-    };
-
-    curriculum.loadPromise = CurriculumService.uploadFileApi(file)
-      .success(handleSuccess)
-      .error(handleError);
-  }
-
-  $scope.photoChanged = function (files) {
-    if (files != null) {
-      var file = files[0];
-      if (curriculum.fileReaderSupported && file.type.indexOf('image') > -1) {
-        curriculum.imageFileError = true;
-        $timeout(function () {
-          var fileReader = new FileReader();
-          fileReader.readAsDataURL(file);
-          fileReader.onload = function (e) {
-            $timeout(function () {
-              curriculum.model.wordItem.imageURL = e.target.result;
-            });
-          };
-        });
-      }else{
-        curriculum.imageFileError = false;
-      }
-    }
-  };
-
-  $scope.audioFileChanged = function (files) {
-    if (files != null) {
-      var file = files[0];
-      if (file.type.indexOf('audio') > -1) {
-        curriculum.audioFileError = true;
-        $timeout(function () {
-          var fileURL = URL.createObjectURL(file);
-          curriculum.model.wordItem.audioURL = ngAudio.load(fileURL);
-        });
-      }else{
-        curriculum.audioFileError = false;
-      }
-    }
-  };
 
   curriculum.curriculumdata = [
     {

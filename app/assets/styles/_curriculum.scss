@@ -160,7 +160,7 @@
   color: white;
   background-color: #7E7E7E;
   border-color: #adadad;
-  margin-left:5%;
+  margin-left:5px;
 }
 .custom-searchs-button{
   color: white;
@@ -180,42 +180,45 @@
   background-color: #4cbc96;
   margin-right: 20px;
 }
+.custom-volume-button {
+  background-color: #4cbc96 !important;
+}
+.custom-volume-button :hover{
+  background-color: #4cbc96 !important;
+}
 .curriculum-custom-audio{
   display: inline-flex;
-  i{
-    padding-bottom: 5px;
-    padding-top: 5px;
-  }
-  .audio-label {
+
+  .custom-audio-button {
     position: relative;
   }
-  .audio-label input {
+
+  .custom-audio-button input {
     position: absolute;
     z-index: 2;
     opacity: 0;
     width:100%;
     height:100%;
+    right: 0px !important;
   }
-  .audio-label {
-    padding: 7px 37px;
-    margin: 2px;
-    background: #7E7E7E;
-    display: inline-block;
-    border-radius: 4px;
-    color: $white-color;
-    padding-top: 5px;
-    padding-bottom: 5px;
+  .custom-audio-file{
+    padding: 5px 45px 5px 45px !important;
+    margin-right: 5px;
+    background-color: #7E7E7E;
   }
-  .audio-label:hover {
+  .custom-audio-button:hover {
     background: #7E7E7E;
   }
-  .audio-label:active {
+  .custom-audio-button:active {
     background: #7E7E7E;
   }
 }
 .custom-audio-button:hover{
   color: white;
   background-color: #4cbc96;
+}
+.repeat-button{
+  background-color: #7E7E7E;
 }
 .add-word-button{
   padding: 5px 37px 5px 37px;

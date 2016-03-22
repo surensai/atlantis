@@ -95,7 +95,12 @@
     "add_custom_word":{
       "title": "Add Custom Word",
       "header":"Add Custom Word"
+    },
+    "edit_custom_word":{
+      "title": "Edit Custom Word",
+      "header":"Edit Custom Word"
     }
+
 
   },
   "common": {
@@ -218,7 +223,7 @@
       "delete_success": "Player deleted successfully!",
       "add_error": "Player added successfully!",
       "update_error": "Player updated successfully!",
-      "delete_error": "Player deleted successfully!",
+      "delete_error": "Error While deleting Player",
       "file_upload_success":"File uploaded successfully!",
       "error_file_upload":"Error in file uploading",
       "invalid_credentials":"Invalid player credentials",
@@ -242,10 +247,10 @@
     }
   },
   "curriculum":{
-    "wordlabel": "Word :",
+    "wordlabel": "Word",
     "word": "word",
-    "pronunciation":"Pronunciation :",
-    "picture":"Picture :",
+    "pronunciation":"Pronunciation",
+    "picture":"Picture",
     "add_custom_word":"Add Custom word",
     "nodata":"No data",
     "custom_word":"Custom Word",
@@ -254,7 +259,8 @@
       "word_notexist_want_procced":"The word doesnot exist, do you want to proceed?",
       "word_exist_want_edit":"The word already exists, do you want to edit the word?",
       "word_notexist":"The word doesnot exists.",
-      "word_exist":"The word already exists."
+      "word_exist":"The word already exists.",
+      "model_delete_word":"Are you sure do you want to delete Word?"
     }
   }
 

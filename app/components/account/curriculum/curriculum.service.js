@@ -20,6 +20,14 @@ angular.module('app').factory('CurriculumService', ['$http', '$rootScope', "_", 
     return $http.post(base_url + '/private/' + userID + '/createword', wordData);
   };
 
+  service.updateWordApi = function (wordID, word) {
+    return $http.put(base_url + '/user/' + userID + '/word/' + wordID + '/edit', word);
+  };
+
+  service.getWordById = function(id){
+    return $http.get(base_url + '/user/' + userID + '/word/' +id);
+  };
+
   service.uploadFileApi = function (file) {
     var fd = new FormData();
     fd.append('content', file);

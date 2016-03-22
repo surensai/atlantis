@@ -1,0 +1,104 @@
+<div class="col-lg-2"></div>
+<toaster-container toaster-options="{'position-class': 'toast-bootom-center'}"></toaster-container>
+<div class="container container-min-height addpalyer-container">
+  <div class="panel">
+    <div class="panel-heading addpalyer-heading text-center">
+      <span data-translate="nav.add_custom_word.header" data-ng-if="!curriculum.isUpdate">Add Custom Word</span>
+      <span data-translate="nav.edit_custom_word.header" data-ng-if="curriculum.isUpdate">Edit Custom Word</span>
+    </div>
+    <div class="panel-body">
+      <form name="playerForm" ng-submit="curriculum.submitForm(playerForm)" novalidate>
+        <div class="form-horizontal">
+
+          <div class="form-group">
+            <div class="col-md-3"></div>
+            <label class="col-md-2 control-label" data-translate="curriculum.wordlabel">Word</label>
+
+            <div class="col-md-3">
+              <div style="display: inline-flex;">
+
+                <input type="text" name="word" class="form-control" data-ng-model="curriculum.model.wordItem.word"
+                       placeholder="{{ 'curriculum.word' | translate }}" required>
+
+                <span class="btn btn-default custom-search-button" ng-click="curriculum.searchWord()"><i
+                  class="fa fa-search"></i></span>
+              </div>
+              <div class="custom-message-color" ng-show="curriculum.model.message">{{curriculum.model.message}}</div>
+              <div class="error-mesasage" ng-show="curriculum.submitted && playerForm.word.$error.required">
+                <i class="fa fa-exclamation-circle"></i>
+                <span data-translate="user.validationMessages.word_name_require"> Word is required. </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-3"></div>
+            <label class="col-md-2 control-label add-profile-pic" data-translate="curriculum.pronunciation">Pronunciation</label>
+
+            <div class="col-md-3 curriculum-custom-audio">
+              <span ng-disabled="!curriculum.isAudioUploaded"
+                    ng-click='curriculum.model.wordItem.audioURL.paused ? curriculum.model.wordItem.audioURL.play() : curriculum.model.wordItem.audioURL.pause()'
+                    class="btn  custom-audio-button custom-volume-button"><i class="fa fa-volume-up"></i> </span>
+
+              <div class=" btn custom-audio-button custom-audio-file">
+                <input type="file" file-model="curriculum.myAudioFile" class="img-rectangle img-border-radius "
+                       accept="audio/*" onchange="angular.element(this).scope().audioFileChanged(this.files)">
+                <span>Browse</span>
+              </div>
+              <span ng-click="curriculum.refreshFile()" class="btn btn-default custom-audio-button repeat-button"
+                    ng-disabled="!curriculum.isAudioUploaded"><i class="glyphicon glyphicon-repeat"></i></span>
+
+            </div>
+
+              <div ng-show="!curriculum.audioFileError" class="error-mesasage">
+                <i class="fa fa-exclamation-circle"></i>
+                  <span
+                    data-translate="user.validationMessages.file_type_wrong"> File Type is Wrong</span>
+              </div>
+
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-3"></div>
+            <label class="col-md-2 control-label add-profile-pic" data-translate="curriculum.picture">Picture</label>
+
+            <div class="col-md-2">
+              <div class="thumbnail ">
+                <img class="apply-margin-bottom" ng-src="{{curriculum.model.wordItem.imageURL}}">
+              </div>
+              <div>
+                <div class="myLabel text-center" href="">
+                  <input type="file" name="file" file-model="curriculum.myImageFile" accept="image/*"
+                         class="img-rectangle img-border-radius  "
+                         onchange="angular.element(this).scope().photoChanged(this.files)">
+                  <span data-translate="player.change_picture">Change Picture</span>
+                </div>
+              </div>
+              <div ng-show="!curriculum.imageFileError" class="error-mesasage">
+                <i class="fa fa-exclamation-circle"></i>
+                  <span
+                    data-translate="user.validationMessages.file_type_wrong"> File Type is Wrong</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-3"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-6">
+              <button type="submit" ng-if="!curriculum.isUpdate" class="btn btn-primary add-word-button"
+                      data-translate="common.buttons.addword">Add Word
+              </button>
+              <button ng-if="curriculum.isUpdate" type="submit" class="btn btn-primary add-cancel-button"
+                      data-translate="common.buttons.save">Save
+              </button>
+              <button type="button" class="btn btn-primary cancel-button add-cancel-button" ui-sref="account.curriculum"
+                      data-translate="common.buttons.cancel">Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
