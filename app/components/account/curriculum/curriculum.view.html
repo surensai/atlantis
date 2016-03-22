@@ -90,26 +90,8 @@
               <i class=" glyphicon" ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Anatomy
             </uib-accordion-heading>
             <div class="curriculum-groupword-data">
-              <div class="checkbox">
-                <label><input type="checkbox" >Toothbrush</label>
-              </div>
-              <div class="checkbox">
-                <label><input type="checkbox" >Soap</label>
-              </div>
-              <div class="checkbox">
-                <label><input type="checkbox" >Towel</label>
-              </div>
-              <div class="checkbox">
-                <label><input type="checkbox" >Mouthwash</label>
-              </div>
-              <div class="checkbox">
-                <label><input type="checkbox" >Toilet paper</label>
-              </div>
-              <div class="checkbox">
-                <label><input type="checkbox" >Tooth paste</label>
-              </div>
-              <div class="checkbox">
-                <label><input type="checkbox" >Shampoo</label>
+              <div class="checkbox" data-ng-repeat="word in curriculum.group.anatomyWords">
+                <label><input type="checkbox" data-ng-model="word.groupedflag">{{word.Word}}</label>
               </div>
             </div>
             </uib-accordion-group>
@@ -120,26 +102,8 @@
               <i class=" glyphicon" ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Bathroom
             </uib-accordion-heading>
             <div class="curriculum-groupword-data">
-                <div class="checkbox">
-                  <label><input type="checkbox" >Toothbrush</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" >Soap</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" >Towel</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" >Mouthwash</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" >Toilet paper</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" >Tooth paste</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" >Shampoo</label>
+                <div class="checkbox" data-ng-repeat="word in curriculum.group.bathroomWords">
+                  <label><input type="checkbox" data-ng-model="word.groupedflag" >{{word.Word}}</label>
                 </div>
             </div>
             </uib-accordion-group>

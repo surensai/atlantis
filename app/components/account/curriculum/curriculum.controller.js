@@ -5,13 +5,14 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   var curriculum = this;
   curriculum.model = {};
   curriculum.model.wordItem = {};
+  curriculum.group = {};
 
   curriculum.searchWord = function(){
       var word = curriculum.model.wordItem.wordName;
       var handleSuccess = function (data) {
           var modalInstance = $uibModal.open({
             templateUrl: 'common/app-directives/modal/custom-modal.html',
-            controller: function ($scope, $uibModalInstance) {
+            controller:  ['$scope','$uibModalInstance',function($scope, $uibModalInstance) {
               if (data.length === 0) {
                 $scope.modalBody = $translate.instant("curriculum.message.word_notexist_want_procced");
               } else {
@@ -24,7 +25,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
               $scope.cancel = function () {
                 $uibModalInstance.dismiss('cancel');
               };
-            }
+            }]
           });
 
           modalInstance.result.then(function () {
@@ -47,7 +48,26 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
 
   (function () {
     getWords();
+    getAnatomyWords();
+    getBathroomWords();
   })();
+  function getAnatomyWords(){
+    var handleSuccess = function (data) {
+      curriculum.group.anatomyWords = [];
+      if (data.anatomy.length > 0) {
+          curriculum.group.anatomyWords = data.anatomy;
+      }
+    };
+
+    var handleError = function () {
+      flashService.showError($translate.instant("player.messages.error_getting_words"), false);
+    };
+
+    CurriculumService.getGroupWords(6)
+      .success(handleSuccess)
+      .error(handleError);
+
+  }
   function getWords() {
 
       var handleSuccess = function (data) {
@@ -76,6 +96,23 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
         .error(handleError);
 
   }
+  function getBathroomWords(){
+    var handleSuccess = function (data) {
+      curriculum.group.bathroomWords = [];
+      if (data.bathroom.length > 0) {
+        curriculum.group.bathroomWords = data.bathroom;
+      }
+    };
+
+    var handleError = function () {
+      flashService.showError($translate.instant("player.messages.error_getting_words"), false);
+    };
+
+    CurriculumService.getGroupWords(8)
+      .success(handleSuccess)
+      .error(handleError);
+
+  }
   curriculum.wordsHeaders = {
     Sno: "S. No.",
     Words: "Words",
@@ -96,7 +133,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   curriculum.deleteListener = function(word){
     var modalInstance = $uibModal.open({
       templateUrl: 'common/app-directives/modal/custom-modal.html',
-      controller: function ($scope, $uibModalInstance) {
+      controller: ['$scope','$uibModalInstance', function ($scope, $uibModalInstance) {
 
         $scope.modalTitle = "Warning!";
         $scope.modalBody = $translate.instant("curriculum.message.model_delete_word");
@@ -107,7 +144,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
         $scope.cancel = function () {
           $uibModalInstance.dismiss('cancel');
         };
-      }
+      }]
     });
 
     modalInstance.result.then(function (word) {

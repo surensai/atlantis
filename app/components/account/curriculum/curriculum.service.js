@@ -31,6 +31,10 @@ angular.module('app').factory('CurriculumService', ['$http', '$rootScope', "_", 
     return $http.get(base_url + '/private/' + userID + '/getuserword/' +id);
   };
 
+  service.getGroupWords = function(category){
+    return $http.get(base_url +'/word/' + userID + '/searchCategory/' +category)
+  }
+
   service.uploadFileApi = function (file) {
     var fd = new FormData();
     fd.append('content', file);
