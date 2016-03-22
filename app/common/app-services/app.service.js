@@ -35,7 +35,7 @@ angular.module('app').factory('appService', [ '$rootScope', function ($rootScope
     (function($) {
       $.fn.hasScrollBar = function() {
         return this.get(0).scrollHeight > this.height();
-      }
+      };
     })(jQuery);
 
     $rootScope.isFooterFix = $('body').hasScrollBar();
