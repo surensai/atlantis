@@ -8,6 +8,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   curriculum.model.wordItem.imageURL = "assets/images/fallback-img.png";
   curriculum.imageFileError = true;
   curriculum.audioFileError = true;
+  curriculum.isAudioUploaded = false;
   curriculum.fileReaderSupported = window.FileReader != null;
   var URL = window.URL || window.webkitURL;
 
@@ -236,6 +237,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   };
 
   $scope.audioFileChanged = function (files) {
+    curriculum.isAudioUploaded = true;
     if (files != null) {
       var file = files[0];
       if (file.type.indexOf('audio') > -1) {
