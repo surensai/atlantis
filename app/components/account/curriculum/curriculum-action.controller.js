@@ -207,6 +207,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
 
   $scope.audioFileChanged = function (files) {
     if (files != null) {
+      curriculum.isAudioUploaded = true;
       var file = files[0];
       if (file.type.indexOf('audio') > -1) {
         curriculum.audioFileError = true;
