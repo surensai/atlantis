@@ -8,7 +8,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
   player.data.playersList = [];
   player.splitBadgesData = [];
   player.playerObj = {};
-  player.show = true;
   player.reverse = false;
   player.clicked = false;
   player.displayChartIndex = 0;
@@ -93,9 +92,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
     return Object.keys(obj);
   };
 
-  player.closeAlert = function () {
-    player.show = false;
-  };
 
   (function () {
     getPlayers();

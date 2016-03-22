@@ -94,7 +94,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
         addAction();
       }
       form.$setPristine();
-      flashService.showSuccess($translate.instant("player.messages.file_upload_success"), false);
+      flashService.showSuccess($translate.instant("player.messages.file_upload_success"), true);
     };
 
     var handleError = function () {
@@ -119,7 +119,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
 
     var handleSuccess = function () {
       angular.element('#pop').modal('hide');
-      flashService.showSuccess($translate.instant("player.messages.delete_success"), false);
+      flashService.showSuccess($translate.instant("player.messages.delete_success"), true);
       $state.go("account.players");
 
     };

@@ -14,25 +14,36 @@
             <label class="col-md-2 control-label" data-translate="curriculum.wordlabel">Word :</label>
             <div class="col-md-3">
               <div style="display: inline-flex;">
+
                 <input type="text" name="word" class="form-control" data-ng-model="curriculum.model.wordItem.word"
                        placeholder="{{ 'curriculum.word' | translate }}" required>
+
                 <span class="btn btn-default custom-search-button" ng-click="curriculum.searchWord()" ><i class="fa fa-search"></i></span>
               </div>
               <div class="custom-message-color" ng-show="curriculum.model.message">{{curriculum.model.message}}</div>
+              <div class="error-mesasage"  ng-show="playerForm.word.$error.required">
+                <i class="fa fa-exclamation-circle"></i>
+                <span data-translate="user.validationMessages.word_name_require"> Word is required. </span>
+              </div>
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-md-3"></div>
             <label class="col-md-2 control-label add-profile-pic" data-translate="curriculum.pronunciation">Pronunciation :</label>
-            <div class="col-md-3">
-              <div ng-show="curriculum.model.wordItem.audioURL">
-                <audio controls autoplay ng-src="{{curriculum.trustResourceURL(curriculum.model.wordItem.audioURL)}}">
-                </audio>
+            <div class="col-md-3 curriculum-custom-audio" >
+                <span  ng-click='curriculum.model.wordItem.audioURL.paused ? curriculum.model.wordItem.audioURL.play() : curriculum.model.wordItem.audioURL.pause()' class="btn btn-default custom-audio-button" ><i class="fa fa-volume-up"></i> </span>
+              <div class="audio-label">
+              <input type="file"  file-model="curriculum.myAudioFile" class="img-rectangle img-border-radius " accept="audio/*"  onchange="angular.element(this).scope().audioFileChanged(this.files)">
+                <span>Browse</span>
               </div>
-              <div>
-                <input type="file"  file-model="curriculum.myAudioFile" class="img-rectangle img-border-radius " accept="audio/*"  onchange="angular.element(this).scope().audioFileChanged(this.files)">
+              <span class="btn btn-default custom-searchs-button" ><i class="glyphicon glyphicon-repeat"></i></span>
+              <div ng-show="!curriculum.audioFileError" class="error-mesasage">
+                <i class="fa fa-exclamation-circle"></i>
+                  <span
+                    data-translate="user.validationMessages.file_type_wrong"> File Type is Wrong</span>
               </div>
+
             </div>
 
           </div>
@@ -46,9 +57,14 @@
               </div>
               <div>
                 <div class="myLabel text-center" href="">
-                  <input  type="file" name="file" file-model="curriculum.myImageFile" class="img-rectangle img-border-radius  " onchange="angular.element(this).scope().photoChanged(this.files)">
+                  <input  type="file" name="file" file-model="curriculum.myImageFile" accept="image/*" class="img-rectangle img-border-radius  " onchange="angular.element(this).scope().photoChanged(this.files)">
                   <span data-translate="player.change_picture" >Change Picture</span>
                 </div>
+              </div>
+              <div ng-show="!curriculum.imageFileError" class="error-mesasage">
+                <i class="fa fa-exclamation-circle"></i>
+                  <span
+                    data-translate="user.validationMessages.file_type_wrong"> File Type is Wrong</span>
               </div>
             </div>
           </div>

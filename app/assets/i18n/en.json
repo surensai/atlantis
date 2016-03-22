@@ -173,13 +173,14 @@
       "data_updatede_success": "Data updated successfully.",
       "settings_updated": "Settings updated.",
       "curriculum_word_notExists": "The word does not exists.",
-      "file_type_wrong": "File Type is wrong. Only allow Images.",
+      "file_type_wrong": "File Type is Wrong.",
       "age_require":"Age is required.",
       "model_delete_player":"Are you sure do you want to delete player?",
       "user_name_pattern":"Must start with a letter and be alphanumeric.",
       "user_name_length":"Must be between 2 and 20 characters.",
       "curriculum_word_require":"Word Name is required.",
-      "error_getting_words":"Error in listing Words"
+      "error_getting_words":"Error in listing Words",
+      "word_name_require":"Word is required."
     },
     "change_password": {
       "old_password": "Old Password",
