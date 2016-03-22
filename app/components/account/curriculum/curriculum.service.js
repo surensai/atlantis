@@ -15,17 +15,20 @@ angular.module('app').factory('CurriculumService', ['$http', '$rootScope', "_", 
     return $http.get(base_url + '/word/'+ userID  +'/searchWord/'+word);
   };
 
-
   service.saveWordApi = function (wordData) {
     return $http.post(base_url + '/private/' + userID + '/createword', wordData);
   };
 
   service.updateWordApi = function (wordID, word) {
-    return $http.put(base_url + '/user/' + userID + '/word/' + wordID + '/edit', word);
+    return $http.put(base_url + '/private/' + userID + '/edituserword/' + wordID , word);
+  };
+
+  service.deleteWordApi = function (id) {
+    return $http.delete(base_url + '/private/' + userID + '/deleteuserword/' + id);
   };
 
   service.getWordById = function(id){
-    return $http.get(base_url + '/user/' + userID + '/word/' +id);
+    return $http.get(base_url + '/private/' + userID + '/getuserword/' +id);
   };
 
   service.uploadFileApi = function (file) {

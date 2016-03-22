@@ -7,7 +7,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   curriculum.model.wordItem = {};
 
   curriculum.searchWord = function(){
-      var word = curriculum.model.wordItem.word;
+      var word = curriculum.model.wordItem.wordName;
       var handleSuccess = function (data) {
           var modalInstance = $uibModal.open({
             templateUrl: 'common/app-directives/modal/custom-modal.html',
@@ -51,13 +51,11 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   function getWords() {
 
       var handleSuccess = function (data) {
+        curriculum.customWords = [];
         if (data.length > 0) {
-          curriculum.customWords = [];
-
           angular.forEach(data, function(word,index) {
             var privateWord = {};
             privateWord.id = word.id;
-            privateWord.Sno = index+1;
             privateWord.Words = word.wordName;
             privateWord.dateAdded = word.createdAt;
             privateWord.picture = false;
@@ -114,6 +112,21 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
 
     modalInstance.result.then(function (word) {
       curriculum.customWords.splice(curriculum.customWords.indexOf(word),1);
+
+      var handleSuccess = function () {
+        flashService.showSuccess($translate.instant("curriculum.message.delete_success"), true);
+        $state.go("account.curriculum");
+
+      };
+
+      var handleError = function () {
+        flashService.showError($translate.instant("curriculum.message.error_deleting_word"), false);
+      };
+
+      CurriculumService.deleteWordApi(word.id)
+        .success(handleSuccess)
+        .error(handleError);
+
     }, function () {
       $state.go("account.curriculum");
     });
