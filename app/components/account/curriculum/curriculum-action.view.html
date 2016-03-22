@@ -3,7 +3,8 @@
 <div class="container container-min-height addpalyer-container">
   <div class="panel">
     <div class="panel-heading addpalyer-heading text-center">
-      <span data-translate="nav.add_custom_word.header" >Add Custom Word</span>
+      <span data-translate="nav.add_custom_word.header" data-ng-if="!curriculum.isUpdate">Add Custom Word</span>
+      <span data-translate="nav.edit_custom_word.header" data-ng-if="curriculum.isUpdate">Edit Custom Word</span>
     </div>
     <div class="panel-body">
       <form name="playerForm"  ng-submit="curriculum.submitForm(playerForm)" novalidate>
@@ -21,7 +22,7 @@
                 <span class="btn btn-default custom-search-button" ng-click="curriculum.searchWord()" ><i class="fa fa-search"></i></span>
               </div>
               <div class="custom-message-color" ng-show="curriculum.model.message">{{curriculum.model.message}}</div>
-              <div class="error-mesasage"  ng-show="playerForm.word.$error.required">
+              <div class="error-mesasage"  ng-show="curriculum.submitted && playerForm.word.$error.required">
                 <i class="fa fa-exclamation-circle"></i>
                 <span data-translate="user.validationMessages.word_name_require"> Word is required. </span>
               </div>
@@ -37,13 +38,13 @@
               <input type="file"  file-model="curriculum.myAudioFile" class="img-rectangle img-border-radius " accept="audio/*"  onchange="angular.element(this).scope().audioFileChanged(this.files)">
                 <span>Browse</span>
               </div>
-              <span class="btn btn-default custom-searchs-button" ><i class="glyphicon glyphicon-repeat"></i></span>
-              <div ng-show="!curriculum.audioFileError" class="error-mesasage">
-                <i class="fa fa-exclamation-circle"></i>
+              <span ng-click="curriculum.refreshFile()" class="btn btn-default custom-search-button" ><i class="glyphicon glyphicon-repeat"></i></span>
+
+            </div>
+            <div ng-show="!curriculum.audioFileError" class="error-mesasage">
+              <i class="fa fa-exclamation-circle"></i>
                   <span
                     data-translate="user.validationMessages.file_type_wrong"> File Type is Wrong</span>
-              </div>
-
             </div>
 
           </div>
@@ -72,9 +73,12 @@
           <div class="col-md-3"></div>
           <div class="col-md-2"></div>
             <div class="col-md-6">
-            <button type="submit"class="btn btn-primary add-word-button"
+            <button type="submit"  ng-if="!curriculum.isUpdate" class="btn btn-primary add-word-button"
                     data-translate="common.buttons.addword">Add Word
             </button>
+              <button ng-if="curriculum.isUpdate" type="submit" class="btn btn-primary add-cancel-button"
+                      data-translate="common.buttons.save">Save
+              </button>
             <button type="button" class="btn btn-primary cancel-button add-cancel-button" ui-sref="account.curriculum" data-translate="common.buttons.cancel" >Cancel
             </button>
             </div>
