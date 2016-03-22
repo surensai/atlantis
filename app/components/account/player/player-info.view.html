@@ -14,9 +14,9 @@
   <div class="pd-right">
     <h3>{{player.playerObj.firstName}} {{player.playerObj.lastName}}</h3>
 
-    <div class="player-favorites">
-      <!--<i class="fa fa-heart"></i> <span data-translate="player.fav_game1">Fav game 01,</span><span data-translate="player.fav_game2"> Fav game 02, </span> <span data-translate="player.fav_game3"> Fav game 03 </span>-->
-    </div>
+    <!--<div class="player-favorites">
+      <i class="fa fa-heart"></i> <span data-translate="player.fav_game1">Fav game 01,</span><span data-translate="player.fav_game2"> Fav game 02, </span> <span data-translate="player.fav_game3"> Fav game 03 </span>
+    </div>-->
     <p ng-if="player.playerObj.activities.length > 0"><img src="assets/images/badge1.png"> {{player.playerObj.firstName}} <span data-translate="player.learn_words">learned words like</span>
       <strong >{{player.playerObj.activities[0].word}} </strong>and<strong> {{player.playerObj.activities[1].word}}</strong></p>
 
