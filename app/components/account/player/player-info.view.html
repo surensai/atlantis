@@ -4,8 +4,16 @@
     <div class="profile-pic">
       <img data-ng-if="!player.playerObj.profileURL" src="assets/images/fallback-img.png"
            alt="player" width="100%" height="100%"/>
+      <div class="cropArea" style="display:none;width:160px;height:160px;" ng-init="playerObj.croppedImage=''">
+        <img-crop image="player.playerObj.profileURL"
+                  area-type="square" area-min-size="450"
+                  result-image-format="jpeg"
+                  result-image="playerObj.croppedImage">
+
+        </img-crop>
+      </div>
       <img data-ng-if="player.playerObj.profileURL"
-           data-ng-src="{{player.playerObj.profileURL}}"
+           data-ng-src="{{playerObj.croppedImage}}"
            class="img-rectangle img-border-radius" alt="player" width="100%" height="100%">
       <a ui-sref="account.editPlayer({ id: player.playerObj.id })">
         <i class="glyphicon glyphicon-edit"></i> <span data-translate="player.edit_player">Edit Player</span> </a>
@@ -14,9 +22,9 @@
   <div class="pd-right">
     <h3>{{player.playerObj.firstName}} {{player.playerObj.lastName}}</h3>
 
-    <div class="player-favorites">
-      <!--<i class="fa fa-heart"></i> <span data-translate="player.fav_game1">Fav game 01,</span><span data-translate="player.fav_game2"> Fav game 02, </span> <span data-translate="player.fav_game3"> Fav game 03 </span>-->
-    </div>
+    <!--<div class="player-favorites">
+      <i class="fa fa-heart"></i> <span data-translate="player.fav_game1">Fav game 01,</span><span data-translate="player.fav_game2"> Fav game 02, </span> <span data-translate="player.fav_game3"> Fav game 03 </span>
+    </div>-->
     <p ng-if="player.playerObj.activities.length > 0"><img src="assets/images/badge1.png"> {{player.playerObj.firstName}} <span data-translate="player.learn_words">learned words like</span>
       <strong >{{player.playerObj.activities[0].word}} </strong>and<strong> {{player.playerObj.activities[1].word}}</strong></p>
 

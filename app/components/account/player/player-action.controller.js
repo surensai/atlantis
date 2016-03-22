@@ -56,9 +56,9 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
 
   function addAction() {
     var formData = stuctureFormData();
-    var handleSuccess = function () {
+    var handleSuccess = function (data) {
       flashService.showSuccess($translate.instant("player.messages.add_success"), true);
-      $state.go('account.players');
+      $state.go('account.players.details', {id: data.id});
     };
 
     var handleError = function () {
@@ -87,7 +87,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
 
   function uploadProfilePic(form) {
     var handleSuccess = function (data) {
-      playerAction.model.playerItem.profileURL = playerAction.model.myCroppedImage;
+      playerAction.model.playerItem.profileURL = data.files[0].url;
       if (playerAction.isUpdate) {
         updateAction();
       } else {
