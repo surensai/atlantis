@@ -173,4 +173,5 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
       .error(handleError);
   };
 
+
 }]);
