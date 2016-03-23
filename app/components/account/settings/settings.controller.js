@@ -171,7 +171,11 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   };
 
   settings.clearAllAlphabets = function(){
-    settings.selectedMissingLetters = [];
+    if(settings.selectedMissingLetters.length > 0){
+      for(var i= 0; i < settings.getAlphabets().length; i++){
+        settings.selectedMissingLetters[i] = "";
+      }
+    }
   };
 
 
