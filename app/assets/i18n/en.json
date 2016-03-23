@@ -185,7 +185,8 @@
       "user_name_length":"Must be between 2 and 20 characters.",
       "curriculum_word_require":"Word Name is required.",
       "error_getting_words":"Error in listing Words",
-      "word_name_require":"Word is required."
+      "word_name_require":"Word is required.",
+      "file_size_large":"File size is too large, Try to upload below 2mb."
     },
     "change_password": {
       "old_password": "Old Password",
