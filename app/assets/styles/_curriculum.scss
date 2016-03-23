@@ -1,10 +1,7 @@
 .curriculum-container {
   margin-top: 20px;
   .curriculum-customword-panel{
-    .curriculum-customwordpanel-heading{
-      background-color:#F9A61A;
-      color: $white-color;
-    }
+
      .add-customword-panle-body{
        padding: 20px;
        padding-bottom: 0px;
@@ -32,7 +29,7 @@
            color: #DADADA;
          }
          .add-custom-word-button{
-           padding: 10px 45px 10px 45px;
+           padding: 5px 45px;
          }
        }
        .custom-word-list{
@@ -99,10 +96,7 @@
   }
   .curriculum-groupword-panel {
     font-family: $font-family;
-    .curriculum-groupwordpanel-heading {
-      background-color: #F9A61A;
-      color: $white-color;
-    }
+
     .curriculum-groupwordpanel-body{
       .panel-title{
         color :#767575;
