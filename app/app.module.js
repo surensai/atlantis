@@ -11,7 +11,6 @@ var app = angular.module('app', [
   'pascalprecht.translate',
   'underscore',
   'ui.bootstrap',
-  'cgBusy',
   'base64',
   'angularMoment',
   'highcharts-ng',
