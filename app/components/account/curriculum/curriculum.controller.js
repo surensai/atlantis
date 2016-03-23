@@ -169,11 +169,4 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
     });
   };
 
-
-  curriculum.viewby = 3;
-  curriculum.totalItems = curriculum.curriculumdata.length;
-  curriculum.currentPage = 1;
-  curriculum.itemsPerPage = curriculum.viewby;
-
-
 }]);
