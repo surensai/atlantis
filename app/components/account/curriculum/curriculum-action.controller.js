@@ -69,6 +69,8 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
 
   }
   curriculum.refreshFile = function(){
+
+    angular.element("#audio").val("");
     curriculum.model.wordItem.audioURL = null;
     curriculum.audioFileError = true;
     curriculum.isAudioUploaded = false;

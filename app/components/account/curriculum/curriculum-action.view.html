@@ -44,12 +44,12 @@
                     ng-disabled="!curriculum.isAudioUploaded"   class="btn  custom-audio-button custom-volume-button"><i class="fa fa-volume-up"></i> </span>
 
               <div class=" btn custom-audio-button custom-audio-file">
-                <input type="file" file-model="curriculum.myAudioFile" class="img-rectangle img-border-radius "
+                <input type="file" id="audio" name="file" file-model="curriculum.myAudioFile" class="img-rectangle img-border-radius "
                        accept="audio/*" onchange="angular.element(this).scope().audioFileChanged(this.files)">
                 <span>Browse</span>
               </div>
-              <span ng-click="curriculum.refreshFile()" class="btn btn-default custom-audio-button repeat-button"
-                    ng-disabled="!curriculum.isAudioUploaded"><i class="glyphicon glyphicon-repeat"></i></span>
+              <span ng-disabled="!curriculum.isAudioUploaded" ng-click="curriculum.refreshFile()" class="btn btn-default custom-audio-button repeat-button"
+                    ><i class="glyphicon glyphicon-repeat"></i></span>
 
             </div>
 
