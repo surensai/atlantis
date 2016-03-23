@@ -260,7 +260,9 @@
       "word_exist_want_edit":"The word already exists, do you want to edit the word?",
       "word_notexist":"The word doesnot exists.",
       "word_exist":"The word already exists.",
-      "model_delete_word":"Are you sure do you want to delete Word?"
+      "model_delete_word":"Are you sure do you want to delete Word?",
+      "delete_success":"Word deleted Successfully",
+      "error_deleting_word":"Error in deleting Word"
     }
   }
 

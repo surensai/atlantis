@@ -4,6 +4,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
 
   var curriculum = this;
   curriculum.model = {};
+  curriculum.data = {};
   curriculum.model.wordItem = {};
   curriculum.model.wordItem.imageURL = "assets/images/fallback-img.png";
   curriculum.imageFileError = true;
@@ -14,7 +15,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
   var URL = window.URL || window.webkitURL;
 
   curriculum.searchWord = function(){
-    var word = curriculum.model.wordItem.word;
+    var word = curriculum.model.wordItem.wordName;
     var handleSuccess = function (data) {
         if (data.length === 0) {
           curriculum.model.message = $translate.instant("curriculum.message.word_notexist");
@@ -46,6 +47,9 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
         if(!data.imageURL){
           curriculum.model.wordItem.imageURL = "assets/images/fallback-img.png";
         }
+        if(data.audioURL){
+          curriculum.model.wordItem.audioURL = ngAudio.load(data.audioURL);
+        }
       };
 
       var handleError = function () {
@@ -57,7 +61,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
         .error(handleError);
     }
     else{
-      curriculum.model.wordItem.word = $state.params.word;
+      curriculum.model.wordItem.wordName = $state.params.word;
     }
 
   }
@@ -101,7 +105,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
 
   function structureFormData() {
     var data = {};
-    data.wordName = curriculum.model.wordItem.word;
+    data.wordName = curriculum.model.wordItem.wordName;
     data.imageURL = curriculum.model.wordItem.imageURL;
     data.audioURL = curriculum.model.wordItem.audioURL;
     return data;
@@ -141,12 +145,16 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
 
   function uploadMultipleFiles(form,audioFile,imageFile) {
     var handleSuccess = function (data) {
-      curriculum.model.wordItem.audioURL = ngAudio.load(data.files[0].url);
+      curriculum.model.wordItem.audioURL = data.files[0].url;
 
       curriculum.loadPromise = CurriculumService.uploadFileApi(imageFile)
         .success(function(data){
           curriculum.model.wordItem.imageURL = data.files[0].url;
-          addAction(form);
+          if (curriculum.isUpdate) {
+            updateAction();
+          } else {
+            addAction(form);
+          }
           flashService.showSuccess("File uploaded successfully!", false);
         })
         .error(function(){
@@ -167,11 +175,15 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
   function uploadProfilePic(form,file) {
     var handleSuccess = function (data) {
       if(data.files[0].type.includes("audio")){
-        curriculum.model.wordItem.audioURL = ngAudio.load(data.files[0].url);
+        curriculum.model.wordItem.audioURL = data.files[0].url;
       }else{
         curriculum.model.wordItem.imageURL = data.files[0].url;
       }
-      addAction(form);
+      if (curriculum.isUpdate) {
+        updateAction();
+      } else {
+        addAction(form);
+      }
       flashService.showSuccess("File uploaded successfully!", false);
     };
 
