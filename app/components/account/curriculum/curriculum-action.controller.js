@@ -10,6 +10,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
   curriculum.imageFileError = true;
   curriculum.audioFileError = true;
   curriculum.isAudioUploaded = false;
+  curriculum.audioFilesize = true;
   curriculum.isUpdate = false;
   curriculum.fileReaderSupported = window.FileReader != null;
   var URL = window.URL || window.webkitURL;
@@ -221,15 +222,20 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
     if (files != null) {
       curriculum.isAudioUploaded = true;
       var file = files[0];
-      if (file.type.indexOf('audio') > -1) {
-        curriculum.audioFileError = true;
-        $timeout(function () {
-          var fileURL = URL.createObjectURL(file);
-          curriculum.model.wordItem.audioURL = ngAudio.load(fileURL);
-        });
+      console.log("file",file.size);
+      console.log("file size large");
+      if(file.size <= 2000000) {
+        console.log("file size same");
+        curriculum.audioFilesize = true;
+        if (file.type.indexOf('audio') > -1) {
+          $timeout(function () {
+            var fileURL = URL.createObjectURL(file);
+            curriculum.model.wordItem.audioURL = ngAudio.load(fileURL);
+          });
+        }
       }else{
         curriculum.model.wordItem.audioURL = undefined;
-        curriculum.audioFileError = false;
+        curriculum.audioFilesize = false;
       }
     }
   };
