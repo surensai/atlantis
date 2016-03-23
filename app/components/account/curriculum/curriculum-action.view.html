@@ -18,7 +18,7 @@
               <div style="display: inline-flex;">
 
                 <input type="text" name="word" class="form-control" data-ng-model="curriculum.model.wordItem.wordName"
-                       placeholder="{{ 'curriculum.word' | translate }}" required>
+                       placeholder="{{ 'curriculum.word' | translate }}" required ng-pattern="/^[A-z][A-z]*$/">
 
                 <span class="btn btn-default custom-search-button" ng-click="curriculum.searchWord()"><i
                   class="fa fa-search"></i></span>
@@ -27,6 +27,10 @@
               <div class="error-mesasage" ng-show="curriculum.submitted && playerForm.word.$error.required">
                 <i class="fa fa-exclamation-circle"></i>
                 <span data-translate="user.validationMessages.word_name_require"> Word is required. </span>
+              </div>
+              <div ng-show="playerForm.word.$error.pattern" class="error-mesasage" >
+                <i class="fa fa-exclamation-circle"></i>
+                <span >Allow only Alphabets</span>
               </div>
             </div>
           </div>
