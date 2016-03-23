@@ -37,7 +37,7 @@
 
             <div class="col-md-3 curriculum-custom-audio">
               <span ng-click='curriculum.model.wordItem.audioURL.paused ? curriculum.model.wordItem.audioURL.play() : curriculum.model.wordItem.audioURL.pause()'
-                    class="btn  custom-audio-button custom-volume-button"><i class="fa fa-volume-up"></i> </span>
+                    ng-disabled="!curriculum.isAudioUploaded"   class="btn  custom-audio-button custom-volume-button"><i class="fa fa-volume-up"></i> </span>
 
               <div class=" btn custom-audio-button custom-audio-file">
                 <input type="file" file-model="curriculum.myAudioFile" class="img-rectangle img-border-radius "

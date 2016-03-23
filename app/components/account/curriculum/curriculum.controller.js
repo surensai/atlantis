@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', 'flashService','$scope','$state','$uibModal','$translate', function ($timeout, CurriculumService, flashService, $scope, $state,$uibModal,$translate) {
+angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', 'flashService','$scope','$state','$uibModal','$translate','messagesFactory', function ($timeout, CurriculumService, flashService, $scope, $state,$uibModal,$translate, messagesFactory) {
 
   var curriculum = this;
   curriculum.model = {};
@@ -44,6 +44,36 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
         .success(handleSuccess)
         .error(handleError);
 
+  };
+
+  curriculum.submitGroupWords = function(){
+    var anatomy_words = [];
+    var bathroom_words = [];
+    var data = {};
+    var i =0;
+    for(i=0;i< curriculum.group.anatomyWords.length;i++){
+      if(curriculum.group.anatomyWords[i].groupedflag){
+        anatomy_words.push(curriculum.group.anatomyWords[i].Word);
+      }
+    }
+    for(i=0;i< curriculum.group.bathroomWords.length;i++){
+      if(curriculum.group.bathroomWords[i].groupedflag){
+        bathroom_words.push(curriculum.group.bathroomWords[i].Word);
+      }
+    }
+    data.anatomy_words = anatomy_words;
+    data.bathroom_words = bathroom_words;
+      var handleSuccess = function (data) {
+        messagesFactory.settingsNotificationsSuccessMessages(data);
+      };
+      var handleError = function (error, status) {
+        if (error && status) {
+          messagesFactory.settingsNotificationsErrorMessages(status);
+        }
+      };
+      CurriculumService.updateGroupWordsApi(data)
+        .success(handleSuccess)
+        .error(handleError);
   };
 
   (function () {
