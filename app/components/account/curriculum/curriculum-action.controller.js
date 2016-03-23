@@ -9,6 +9,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
   curriculum.model.wordItem.imageURL = "assets/images/fallback-img.png";
   curriculum.imageFileError = true;
   curriculum.audioFileError = true;
+  curriculum.audioFilesize = true;
   curriculum.isAudioUploaded = false;
   curriculum.audioFilesize = true;
   curriculum.isUpdate = false;
@@ -71,12 +72,13 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
     curriculum.model.wordItem.audioURL = null;
     curriculum.audioFileError = true;
     curriculum.isAudioUploaded = false;
+    curriculum.audioFilesize = true;
   };
 
   curriculum.submitForm = function (form) {
 
     curriculum.submitted = true;
-    if (form.$valid && curriculum.imageFileError && curriculum.audioFileError) {
+    if (form.$valid && curriculum.imageFileError && curriculum.audioFileError && curriculum.audioFilesize) {
 
       if(curriculum.myAudioFile && curriculum.myImageFile){
         uploadMultipleFiles(form,curriculum.myAudioFile,curriculum.myImageFile);
@@ -223,20 +225,26 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
   $scope.audioFileChanged = function (files) {
     if (files != null) {
       curriculum.isAudioUploaded = true;
+      curriculum.audioFilesize = true;
+      curriculum.audioFileError = true;
       var file = files[0];
-      if(file.size <= 2000000) {
-        console.log("file size same");
-        curriculum.audioFilesize = true;
         if (curriculum.fileReaderSupported  && file.type.indexOf('audio') > -1) {
-          $timeout(function () {
-            var fileURL = URL.createObjectURL(file);
-            curriculum.model.wordItem.audioURL = ngAudio.load(fileURL);
-          });
-        }
-      }else{
+          if(file.size <= 2000000) {
+            console.log("file size same");
+            $timeout(function () {
+              var fileURL = URL.createObjectURL(file);
+              curriculum.model.wordItem.audioURL = ngAudio.load(fileURL);
+            });
+          }else{
+            curriculum.audioFilesize = false;
+            curriculum.isAudioUploaded = false;
+            curriculum.model.wordItem.audioURL = undefined;
+          }
+
+        } else{
         curriculum.isAudioUploaded = false;
+          curriculum.audioFileError = false;
         curriculum.model.wordItem.audioURL = undefined;
-        curriculum.audioFilesize = false;
       }
     }
   };
