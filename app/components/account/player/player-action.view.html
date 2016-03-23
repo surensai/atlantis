@@ -102,8 +102,16 @@
             <label class="col-md-2 control-label add-profile-pic" data-translate="player.add_picture">Add Picture</label>
 
             <div class="col-md-2">
+              <div class="cropArea" style="display:none;width:500px;height:350px;">
+                <img-crop image="playerAction.model.playerItem.profileURL"
+                          area-type="square" area-min-size="450"
+                          result-image-format="jpeg"
+                          result-image="playerAction.model.croppedImage">
+
+                </img-crop>
+              </div>
               <div class="thumbnail">
-                <img src="{{playerAction.model.playerItem.profileURL}}">
+                <img src="{{playerAction.model.croppedImage}}">
 
                 <div class="myLabel text-center" href="">
                   <input type="file" name="file" file-model="playerAction.myFile"

@@ -10,16 +10,7 @@
       <a ui-sref="account.players.details({ id: playerItem.id })"
          ng-class="{ active: $state.includes('account.players.details', { id: playerItem.id })}">
         <img data-ng-if="!playerItem.profileURL" src="assets/images/fallback-img.png" class="img-circle" alt="player" width="75" height="75" />
-        <div class="cropArea" style="display:none;width:75px;height:75px;">
-          <img-crop image="playerItem.profileURL"
-                    area-type="square" area-min-size="450"
-                    result-image-format="jpeg"
-                    result-image="playerItem.croppedImage">
-
-          </img-crop>
-        </div>
-
-        <img data-ng-if="playerItem.profileURL" data-ng-src="{{playerItem.croppedImage}}" class="img-circle" alt="player" width="75" height="75" />
+        <img data-ng-if="playerItem.profileURL" data-ng-src="{{playerItem.profileURL}}" class="img-circle" alt="player" width="75" height="75" />
         <span>{{ playerItem.firstName }}</span>
       </a>
     </li>
