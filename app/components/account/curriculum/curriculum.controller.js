@@ -25,6 +25,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
       var modalInstance = $uibModal.open({
         templateUrl: 'common/app-directives/modal/custom-modal.html',
         controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+          $scope.modalTitle = "Confirm";
           if (data.length === 0) {
             $scope.modalBody = $translate.instant("curriculum.message.word_notexist_want_procced");
           } else {

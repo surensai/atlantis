@@ -1,10 +1,12 @@
-<div class='modal-header' data-ng-if="modalTitle">
-  <h3 class='modal-title'>{{modalTitle}}</h3>
-</div>
-<div class='modal-body'>
-  <p class='text-info'>{{modalBody}}</p>
-</div>
-<div class='modal-footer'>
-  <button class='btn btn-default' ng-click='ok()' data-translate='common.buttons.yes'>Yes</button>
-  <button class='btn btn-default' ng-click='cancel()' data-translate='common.buttons.no'>No</button>
+<div class="sp-confirm-modal">
+  <div class='modal-header' data-ng-if="modalTitle">
+    <h3 class='modal-title'>{{modalTitle}}</h3>
+  </div>
+  <div class='modal-body'>
+    {{modalBody}}
+  </div>
+  <div class='modal-footer'>
+    <button class='btn btn-default' ng-click='cancel()' data-translate='common.buttons.no'>No</button>
+    <button class='btn btn-default sp-purple-common-btn' ng-click='ok()' data-translate='common.buttons.yes'>Yes</button>
+  </div>
 </div>
