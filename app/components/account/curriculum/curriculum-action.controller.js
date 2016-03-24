@@ -69,6 +69,8 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
 
   }
   curriculum.refreshFile = function(){
+
+    angular.element("#audio").val("");
     curriculum.model.wordItem.audioURL = null;
     curriculum.audioFileError = true;
     curriculum.isAudioUploaded = false;
@@ -230,7 +232,6 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
       var file = files[0];
         if (curriculum.fileReaderSupported  && file.type.indexOf('audio') > -1) {
           if(file.size <= 2000000) {
-            console.log("file size same");
             $timeout(function () {
               var fileURL = URL.createObjectURL(file);
               curriculum.model.wordItem.audioURL = ngAudio.load(fileURL);
