@@ -1,12 +1,10 @@
-<div class='modal-header'>
+<div class='modal-header' data-ng-if="modalTitle">
   <h3 class='modal-title'>{{modalTitle}}</h3>
 </div>
 <div class='modal-body'>
   <p class='text-info'>{{modalBody}}</p>
 </div>
 <div class='modal-footer'>
-
-  <button class='btn btn-primary modal-success-button' ng-click='ok()' data-translate='common.modal_ok_button'>OK</button>
-
-  <button class='btn btn-warning' ng-click='cancel()' data-translate='common.modal_cancel_button'>Cancel</button>
+  <button class='btn btn-default' ng-click='ok()' data-translate='common.buttons.yes'>Yes</button>
+  <button class='btn btn-default' ng-click='cancel()' data-translate='common.buttons.no'>No</button>
 </div>

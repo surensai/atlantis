@@ -17,7 +17,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   settings.submitForm = function (form) {
     settings.submitted = true;
     settings.editprofile = true;
-    $rootScope.globals.flash="";
+    $rootScope.globals.flash = "";
     if (form.$valid) {
       saveProfile();
       form.$setPristine();
@@ -59,7 +59,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
 
   settings.submitchangepassword = function (form) {
     settings.submitted = true;
-    $rootScope.globals.flash="";
+    $rootScope.globals.flash = "";
     if (form.$valid && (settings.model.passwordData.password === settings.model.passwordData.confirmPassword)) {
       changePassword();
       form.$setPristine();
@@ -81,7 +81,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
         messagesFactory.settingschangepasswordErrorMessages(status);
       }
     };
-   UserService.changePasswordAPI(settings.model.passwordData)
+    UserService.changePasswordAPI(settings.model.passwordData)
       .success(handleSuccess)
       .error(handleError);
   }
@@ -89,7 +89,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
 
   settings.submitNotifications = function () {
     settings.notification = true;
-    $rootScope.globals.flash="";
+    $rootScope.globals.flash = "";
     var handleSuccess = function (data) {
       messagesFactory.settingsNotificationsSuccessMessages(data);
     };
@@ -119,12 +119,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
 
   function getMissingLetters() {
     var handleSuccess = function (data) {
-      settings.selectedMissingLetters = data.list;
-      if(data.list.length === 0){
-        for(var i= 0; i < settings.getAlphabets().length; i++){
-          settings.selectedMissingLetters[i] = "";
-        }
-      }
+      settings.selectedMissingLetters = data;
     };
     var handleError = function (error, status) {
       if (error && status) {
@@ -136,7 +131,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       .error(handleError);
   }
 
-  settings.updateMissingLetters = function() {
+  settings.updateMissingLetters = function () {
     var handleSuccess = function (data) {
       settings.selectedMissingLetters = data.character;
       messagesFactory.SettingsupadtemissinglettersSuccessMessages(data);
@@ -146,34 +141,29 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
         messagesFactory.SettingsupadtemissinglettersErrorMessages(status);
       }
     };
-    settingsService.updateMissingCharactersApi({ "character" : settings.selectedMissingLetters })
+    settingsService.updateMissingCharactersApi({"character": settings.selectedMissingLetters})
       .success(handleSuccess)
       .error(handleError);
   };
 
-  settings.getAlphabets = function(){
-    return "AABBCCDDEEEFFGGHHIIJKLLMMNNOOPPQRRSSSTTUUVXYZ".split('');
-  };
-
-  settings.selectCharacter = function(char, index){
-    if(settings.selectedMissingLetters[index] === ""){
-      settings.selectedMissingLetters[index] = char;
+  settings.selectCharacter = function (index) {
+    if (settings.selectedMissingLetters[index].missingCharacter) {
+      settings.selectedMissingLetters[index].missingCharacter = false;
     } else {
-      settings.selectedMissingLetters[index] = "";
+      settings.selectedMissingLetters[index].missingCharacter = true;
     }
   };
 
-  settings.isMissilingLetterSelected = function(char, index){
-    if(settings.selectedMissingLetters[index] !== ""){
+  settings.isMissilingLetterSelected = function (index) {
+    if (settings.selectedMissingLetters[index].missingCharacter) {
       return true;
     }
-
   };
 
-  settings.clearAllAlphabets = function(){
-    if(settings.selectedMissingLetters.length > 0){
-      for(var i= 0; i < settings.getAlphabets().length; i++){
-        settings.selectedMissingLetters[i] = "";
+  settings.clearAllAlphabets = function () {
+    if (settings.selectedMissingLetters.length > 0) {
+      for (var i = 0; i < settings.selectedMissingLetters.length; i++) {
+        settings.selectedMissingLetters[i].missingCharacter = false;
       }
     }
   };

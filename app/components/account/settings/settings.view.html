@@ -220,8 +220,8 @@
 
           <div class="missing-letter-keyboard col-md-12 clearfix">
             <ul>
-              <li data-ng-repeat="char in settings.getAlphabets() track by $index">
-                <a href="javascript:;" ng-class="{'active': settings.isMissilingLetterSelected(char, $index)}" data-ng-click="settings.selectCharacter(char, $index)"> {{char}} </a>
+              <li data-ng-repeat="char in settings.selectedMissingLetters track by $index">
+                <a href="javascript:;" ng-class="{'active': settings.isMissilingLetterSelected( $index )}" data-ng-click="settings.selectCharacter( $index )"> {{char.letter}} </a>
               </li>
             </ul>
           </div>
