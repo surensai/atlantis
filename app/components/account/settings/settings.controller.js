@@ -7,7 +7,9 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   settings.isEditClicked = false;
   settings.editprofile = false;
   settings.notification = false;
-  settings.selectedMissingLetters = [];
+  settings.missingLetters = [];
+  settings.selectedMisLetters = [];
+
 
   (function () {
     getNotificationData();
@@ -119,7 +121,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
 
   function getMissingLetters() {
     var handleSuccess = function (data) {
-      settings.selectedMissingLetters = data;
+      settings.missingLetters = data;
     };
     var handleError = function (error, status) {
       if (error && status) {
@@ -133,7 +135,6 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
 
   settings.updateMissingLetters = function () {
     var handleSuccess = function (data) {
-      settings.selectedMissingLetters = data.character;
       messagesFactory.SettingsupadtemissinglettersSuccessMessages(data);
     };
     var handleError = function (error, status) {
@@ -141,29 +142,36 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
         messagesFactory.SettingsupadtemissinglettersErrorMessages(status);
       }
     };
-    settingsService.updateMissingCharactersApi({"character": settings.selectedMissingLetters})
+
+    for(var i=0; settings.missingLetters.length > i; i++){
+        if(settings.missingLetters[i].missingCharacter === true){
+          settings.selectedMisLetters.push(settings.missingLetters[i].id);
+        }
+    }
+
+    settingsService.updateMissingCharactersApi({"character": settings.selectedMisLetters})
       .success(handleSuccess)
       .error(handleError);
   };
 
   settings.selectCharacter = function (index) {
-    if (settings.selectedMissingLetters[index].missingCharacter) {
-      settings.selectedMissingLetters[index].missingCharacter = false;
+    if (settings.missingLetters[index].missingCharacter) {
+      settings.missingLetters[index].missingCharacter = false;
     } else {
-      settings.selectedMissingLetters[index].missingCharacter = true;
+      settings.missingLetters[index].missingCharacter = true;
     }
   };
 
   settings.isMissilingLetterSelected = function (index) {
-    if (settings.selectedMissingLetters[index].missingCharacter) {
+    if (settings.missingLetters[index].missingCharacter) {
       return true;
     }
   };
 
   settings.clearAllAlphabets = function () {
-    if (settings.selectedMissingLetters.length > 0) {
-      for (var i = 0; i < settings.selectedMissingLetters.length; i++) {
-        settings.selectedMissingLetters[i].missingCharacter = false;
+    if (settings.missingLetters.length > 0) {
+      for (var i = 0; i < settings.missingLetters.length; i++) {
+        settings.missingLetters[i].missingCharacter = false;
       }
     }
   };

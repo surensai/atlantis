@@ -7,7 +7,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   curriculum.model = {};
   curriculum.model.wordItem = {};
   curriculum.group = {};
-  var groupWordCatagory = '6,8';
   curriculum.wordsHeaders = {
     Words: "Words",
     dateAdded: "Date Added",
@@ -164,12 +163,12 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
 
   function getWordsByCategory(carArr) {
     var handleSuccess = function (data) {
-        if (data.anatomy.length > 0) {
+        if (data.anatomy && data.anatomy.length > 0) {
           curriculum.group.anatomyWords = [];
           curriculum.group.anatomyWords = data.anatomy;
         }
 
-        if(data.bathroom.length > 0) {
+        if(data.bathroom && data.bathroom.length > 0) {
           curriculum.group.bathroomWords = [];
           curriculum.group.bathroomWords = data.bathroom;
         }

@@ -16,6 +16,10 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
   curriculum.fileReaderSupported = window.FileReader != null;
   var URL = window.URL || window.webkitURL;
 
+  (function () {
+    getWordId();
+  })();
+
   curriculum.searchWord = function(){
     var word = curriculum.model.wordItem.wordName;
     var handleSuccess = function (data) {
@@ -36,10 +40,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
 
   };
 
-  (function () {
-    getWordId();
 
-  })();
 
   function getWordId() {
     if ($state.params.id) {
