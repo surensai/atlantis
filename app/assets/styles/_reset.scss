@@ -219,5 +219,31 @@ img{
   background-color: #4cbc96;
   border: 0px;
   font-size: 18px;
-  font-family: verdana;
+}
+
+.sp-purple-common-btn {
+  background-color: #7e49e9;
+  color: #fff;
+  min-width: 75px;
+  &:hover {
+    background-color: darken(#7e49e9, 10%);
+    color: #fff;
+  }
+}
+
+.sp-confirm-modal{
+  .modal-body {
+    padding: 28px;
+    color: #8C8B8B;
+  }
+  .modal-header{
+    background: #efefef;
+    border-radius: 5px 5px 0px 0px;
+    .modal-title {
+      font-size: 18px;
+    }
+  }
+  .modal-footer{
+    padding: 9px;
+  }
 }
