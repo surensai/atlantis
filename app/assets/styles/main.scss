@@ -5,6 +5,7 @@ $fa-font-path: "../libs/font-awesome/fonts";
 @import "../libs/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 @import "../libs/font-awesome/scss/font-awesome.scss";
 // endbower
+@import "toaster.scss";
 @import "_base.scss";
 @import "_reset.scss";
 @import "_account-nav.scss";

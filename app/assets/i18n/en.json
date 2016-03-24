@@ -114,7 +114,9 @@
       "forgot_password":"REQUEST PASSWORD",
       "sign_up":"SIGNUP",
       "addword": "Add Word",
-      "clear_all": "Clear All"
+      "clear_all": "Clear All",
+      "yes": "Yes",
+      "no": "No"
     },
     "dob_year": "Year",
     "dob_month": "Month",
