@@ -196,7 +196,8 @@
       "profile_edit_success":"Your profile edited successfully.",
       "profile_edit_error":"Error in editing profile.",
       "nofifications_success_msg":"Notifications  updated successfully.",
-      "nofifications_error_msg":"Error in updating notifuications."
+      "nofifications_error_msg":"Error in updating notifuications.",
+      "word_length":"Must be between 1 and 24 characters."
     },
     "change_password": {
       "old_password": "Old Password",
