@@ -17,7 +17,7 @@
 
               <div class="form-group">
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="word" placeholder="Type a word" data-ng-model="curriculum.model.wordItem.wordName" ng-pattern="/^[A-z][A-z]*$/">
+                  <input type="text" class="form-control" name="word" placeholder="Type a word" data-ng-model="curriculum.model.wordItem.wordName" ng-pattern="/^[A-z][A-z]*$/"  ng-minlength="1" ng-maxlength="24">
                   <div ng-show="curriculumForm.$submitted && curriculumForm.word.$error.required" class="error-mesasage">
                     <i class="fa fa-exclamation-circle"></i>
                     <span data-translate="user.validationMessages.curriculum_word_require">Word Name is required.</span>
@@ -25,6 +25,12 @@
                   <div ng-show="curriculumForm.word.$error.pattern" class="error-mesasage" >
                     <i class="fa fa-exclamation-circle"></i>
                     <span >Allow only Alphabets</span>
+                  </div>
+                  <div  ng-show="!curriculumForm.word.$error.pattern && !curriculumForm.word.$error.required && (curriculumForm.word.$error.minlength || curriculumForm.word.$error.maxlength) && curriculumForm.word.$dirty"
+                    class="error-mesasage">
+                    <i class="fa fa-exclamation-circle"></i>
+                <span
+                  data-translate="user.validationMessages.word_length"> Must be between 1 and 24 characters.</span>
                   </div>
                 </div>
               </div>
@@ -44,6 +50,7 @@
               <uib-accordion-heading>
                Custom Word List<i class="pull-right glyphicon" ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>
               </uib-accordion-heading>
+              <div class="table-responsive">
               <table class="table table-striped table-hover">
 
                 <thead>
@@ -72,6 +79,7 @@
                 </tr>
                 </tbody>
               </table>
+              </div>
             </uib-accordion-group>
           </uib-accordion>
         </div>

@@ -106,14 +106,14 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     }
     flashService.showError($translate.instant('user.validationMessages.nofifications_error_msg'), false);
   }
-  function SettingsupadtemissinglettersErrorMessages(status) {
+  function SettingsUpdateMissingLettersErrorMessages(status) {
     var message;
     if (status !== "") {
       message = error.error;
     }
     flashService.showError($translate.instant('user.validationMessages.missing_letters_error'), false);
   }
-  function SettingsupadtemissinglettersSuccessMessages(successObj){
+  function SettingsUpdateMissingLettersSuccessMessages(successObj){
     if (successObj) {
       flashService.showSuccess($translate.instant('user.validationMessages.missing_letters_updated'), true);
 
@@ -143,8 +143,8 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   service.settingsNotificationsSuccessMessages = settingsNotificationsSuccessMessages;
   service.settingsNotificationsErrorMessages = settingsNotificationsErrorMessages;
   service.settingsgetNotifictaionsErrorMessages = settingsgetNotifictaionsErrorMessages;
-  service.SettingsupadtemissinglettersErrorMessages = SettingsupadtemissinglettersErrorMessages;
-  service.SettingsupadtemissinglettersSuccessMessages = SettingsupadtemissinglettersSuccessMessages;
+  service.SettingsUpdateMissingLettersErrorMessages = SettingsUpdateMissingLettersErrorMessages;
+  service.SettingsUpdateMissingLettersSuccessMessages = SettingsUpdateMissingLettersSuccessMessages;
   service.selectmissinglettesErrorMessages = selectmissinglettesErrorMessages;
 
   return service;
