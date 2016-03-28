@@ -1,4 +1,4 @@
-<toaster-container toaster-options="{'position-class': 'toast-bottom-center'}"></toaster-container>
+<toaster-container class="custom-toaster-conatiner" toaster-options="{'position-class': 'toast-bottom-center'}"></toaster-container>
 <div class="settings-container">
   <div class="container container-min-height">
     <div class="panel settiings-panel">
@@ -220,7 +220,7 @@
 
           <div class="missing-letter-keyboard col-md-12 clearfix">
             <ul>
-              <li data-ng-repeat="char in settings.missingLetters track by $index">
+              <li data-ng-repeat="char in settings.missingLetters  | orderBy: 'letter'">
                 <a href="javascript:;" ng-class="{'active': settings.isMissilingLetterSelected( $index )}" data-ng-click="settings.selectCharacter( $index )"> {{char.letter}} </a>
               </li>
             </ul>
