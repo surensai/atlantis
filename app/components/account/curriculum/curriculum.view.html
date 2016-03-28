@@ -105,11 +105,11 @@
                  ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Anatomy
             </uib-accordion-heading>
             <div class="curriculum-groupword-data">
-              <div class="checkbox">
-                <label><input type="checkbox" ng-model="curriculum.anatomyWords.selectedAll"
-                              ng-click="curriculum.checkAll(curriculum.anatomyWords.selectedAll,curriculum.group.anatomyWords)"/>Select
-                  All</label>
-              </div>
+              <!--<div class="checkbox">-->
+                <!--<label><input type="checkbox" ng-model="curriculum.anatomyWords.selectedAll"-->
+                              <!--ng-click="curriculum.checkAll(curriculum.anatomyWords.selectedAll,curriculum.group.anatomyWords)"/>Select-->
+                  <!--All</label>-->
+              <!--</div>-->
               <div class="checkbox" data-ng-repeat="word in curriculum.group.anatomyWords">
                 <label><input type="checkbox" data-ng-model="word.groupedflag">{{word.Word}}</label>
               </div>
@@ -123,11 +123,11 @@
                  ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Bathroom
             </uib-accordion-heading>
             <div class="curriculum-groupword-data">
-              <div class="checkbox">
-                <label><input type="checkbox" ng-model="curriculum.bathroomWords.selectedAll"
-                              ng-click="curriculum.checkAll(curriculum.bathroomWords.selectedAll,curriculum.group.bathroomWords)"/>Select
-                  All</label>
-              </div>
+              <!--<div class="checkbox">-->
+                <!--<label><input type="checkbox" ng-model="curriculum.bathroomWords.selectedAll"-->
+                              <!--ng-click="curriculum.checkAll(curriculum.bathroomWords.selectedAll,curriculum.group.bathroomWords)"/>Select-->
+                  <!--All</label>-->
+              <!--</div>-->
               <div class="checkbox" data-ng-repeat="word in curriculum.group.bathroomWords">
                 <label><input type="checkbox" data-ng-model="word.groupedflag">{{word.Word}}</label>
               </div>
