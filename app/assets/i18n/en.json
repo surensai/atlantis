@@ -188,7 +188,15 @@
       "curriculum_word_require":"Word Name is required.",
       "error_getting_words":"Error in listing Words",
       "word_name_require":"Word is required.",
-      "file_size_large":"File size is too large, Try to upload below 2mb."
+      "file_size_large":"File size is too large, Try to upload below 2mb.",
+      "missing_letters_updated":"Missing letters submitted successfully.",
+      "missing_letters_error":"Error in updating missing letters.",
+      "error_selecting-missing_letters":"Error in selecting missing letters.",
+      "error_reset_password":"Error in resetting password.",
+      "profile_edit_success":"Your profile edited successfully.",
+      "profile_edit_error":"Error in editing profile.",
+      "nofifications_success_msg":"Notifications  updated successfully.",
+      "nofifications_error_msg":"Error in updating notifuications."
     },
     "change_password": {
       "old_password": "Old Password",

@@ -52,13 +52,13 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   }
   function resetpasswordErrorMessages(status) {
     if (status === 500) {
-      flashService.showError(error.error, false);
+      flashService.showError($translate.instant('user.validationMessages.error_reset_password '), false);
     }
   }
 
   function settingseditprofileSuccessMessages(successObj) {
     if (successObj) {
-      flashService.showSuccess( $translate.instant('user.validationMessages.data_updatede_success '), true);
+      flashService.showSuccess( $translate.instant('user.validationMessages.profile_edit_success '), true);
     }
   }
 
@@ -67,7 +67,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError(message, false);
+    flashService.showError($translate.instant('user.validationMessages.profile_edit_error '), false);
   }
 
   function settingschangepasswordSuccessMessages(successObj) {
@@ -88,7 +88,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
 
   function settingsNotificationsSuccessMessages(successObj) {
     if (successObj) {
-      flashService.showSuccess(successObj.message, true);
+      flashService.showSuccess($translate.instant('user.validationMessages.nofifications_success_msg'), true);
     }
   }
 
@@ -97,25 +97,26 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError(message, false);
+    flashService.showError($translate.instant('user.validationMessages.nofifications_error_msg'), false);
   }
   function settingsgetNotifictaionsErrorMessages(status){
     var message;
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError(message, false);
+    flashService.showError($translate.instant('user.validationMessages.nofifications_error_msg'), false);
   }
   function MissingLettersErrorMessages(status) {
     var message;
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError(message, false);
+    flashService.showError($translate.instant('user.validationMessages.missing_letters_error'), false);
   }
   function MissingLettersSuccessMessages(successObj){
     if (successObj) {
-      flashService.showSuccess(successObj.message, true);
+      flashService.showSuccess($translate.instant('user.validationMessages.missing_letters_updated'), true);
+
     }
   }
   function selectmissinglettesErrorMessages(status) {
@@ -123,7 +124,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError(message, false);
+    flashService.showError($translate.instant('user.validationMessages.missing_letters_error'), false);
   }
 
 

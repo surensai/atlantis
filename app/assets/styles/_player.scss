@@ -89,7 +89,6 @@
   }
   .players-panel{
     background: #fcf1dd;
-    font-family: $font-family;
     border: solid 1px #f7ab31;
     border-top-left-radius: 5px !important;
     border-top-right-radius: 5px !important;
@@ -255,7 +254,6 @@
       }
         .table {
           border: 1px solid #C7C7C7;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
           thead th {
             background-color: #9B9B9B;
             padding-top: 25px;
