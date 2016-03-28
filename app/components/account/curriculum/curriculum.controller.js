@@ -184,4 +184,15 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
       .error(handleError);
   }
 
+  curriculum.checkAll = function (selectedAll,words) {
+    if (selectedAll) {
+      selectedAll = true;
+    } else {
+      selectedAll = false;
+    }
+    angular.forEach(words, function (item) {
+      item.groupedflag = selectedAll;
+    });
+  };
+
 }]);

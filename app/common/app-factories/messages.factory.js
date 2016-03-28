@@ -106,14 +106,14 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     }
     flashService.showError(message, false);
   }
-  function SettingsUpdateMissingLettersErrorMessages(status) {
+  function MissingLettersErrorMessages(status) {
     var message;
     if (status !== "") {
       message = error.error;
     }
     flashService.showError(message, false);
   }
-  function SettingsUpdateMissingLettersSuccessMessages(successObj){
+  function MissingLettersSuccessMessages(successObj){
     if (successObj) {
       flashService.showSuccess(successObj.message, true);
     }
@@ -142,8 +142,8 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   service.settingsNotificationsSuccessMessages = settingsNotificationsSuccessMessages;
   service.settingsNotificationsErrorMessages = settingsNotificationsErrorMessages;
   service.settingsgetNotifictaionsErrorMessages = settingsgetNotifictaionsErrorMessages;
-  service.SettingsUpdateMissingLettersErrorMessages = SettingsUpdateMissingLettersErrorMessages;
-  service.SettingsUpdateMissingLettersSuccessMessages = SettingsUpdateMissingLettersSuccessMessages;
+  service.MissingLettersErrorMessages = MissingLettersErrorMessages;
+  service.MissingLettersSuccessMessages = MissingLettersSuccessMessages;
   service.selectmissinglettesErrorMessages = selectmissinglettesErrorMessages;
 
   return service;

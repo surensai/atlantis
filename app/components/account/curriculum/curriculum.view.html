@@ -13,26 +13,33 @@
               dolore
               magna aliqua. Ut enim ad minim veniam,
               quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+
             <div class="form-horizontal">
 
               <div class="form-group">
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="word" placeholder="Type a word" data-ng-model="curriculum.model.wordItem.wordName" ng-pattern="/^[A-z][A-z]*$/">
-                  <div ng-show="curriculumForm.$submitted && curriculumForm.word.$error.required" class="error-mesasage">
+                  <input type="text" class="form-control" name="word" placeholder="Type a word"
+                         data-ng-model="curriculum.model.wordItem.wordName" ng-pattern="/^[A-z][A-z]*$/">
+
+                  <div ng-show="curriculumForm.$submitted && curriculumForm.word.$error.required"
+                       class="error-mesasage">
                     <i class="fa fa-exclamation-circle"></i>
                     <span data-translate="user.validationMessages.curriculum_word_require">Word Name is required.</span>
                   </div>
-                  <div ng-show="curriculumForm.word.$error.pattern" class="error-mesasage" >
+                  <div ng-show="curriculumForm.word.$error.pattern" class="error-mesasage">
                     <i class="fa fa-exclamation-circle"></i>
-                    <span >Allow only Alphabets</span>
+                    <span>Allow only Alphabets</span>
                   </div>
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col-md-12 center-align">
-                  <button class="btn btn-primary add-custom-word-button" data-ng-click="curriculum.searchWord(curriculum.model.wordItem.wordName)"
-                       data-ng-disabled="!curriculum.model.wordItem.wordName" data-translate="curriculum.add_custom_word">Add Custom word</button>
+                  <button class="btn btn-primary add-custom-word-button"
+                          data-ng-click="curriculum.searchWord(curriculum.model.wordItem.wordName)"
+                          data-ng-disabled="!curriculum.model.wordItem.wordName"
+                          data-translate="curriculum.add_custom_word">Add Custom word
+                  </button>
                 </div>
               </div>
             </div>
@@ -42,7 +49,8 @@
           <uib-accordion>
             <uib-accordion-group is-open="status.open">
               <uib-accordion-heading>
-               Custom Word List<i class="pull-right glyphicon" ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>
+                Custom Word List<i class="pull-right glyphicon"
+                                   ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>
               </uib-accordion-heading>
               <table class="table table-striped table-hover">
 
@@ -51,7 +59,8 @@
                   <th ng-repeat="key in curriculum.getKeysOfCollection(curriculum.wordsHeaders)"
                       ng-click="curriculum.predicate = key; curriculum.reverse=!curriculum.reverse;">
                     {{curriculum.wordsHeaders[key]}}
-                    <span class="fa fa-sort columnSortIcons" ng-if="key !== curriculum.predicate && (key !== 'Sno' && key !== 'actions' )"></span>
+                    <span class="fa fa-sort columnSortIcons"
+                          ng-if="key !== curriculum.predicate && (key !== 'Sno' && key !== 'actions' )"></span>
                 <span class="fa fa-sort-down columnSortIcons"
                       ng-if="!(curriculum.reverse) && key === curriculum.predicate && (key !== 'Sno'&& key !== 'actions' )"></span>
                 <span class="fa fa-sort-up columnSortIcons"
@@ -63,9 +72,11 @@
                 <tr data-ng-repeat="word in curriculum.customWords | orderBy:curriculum.predicate:curriculum.reverse">
                   <td class="player-words">{{ word.Words}}</td>
                   <td>{{ word.dateAdded | date:"MM/dd/yyyy ' h:mma"}}</td>
-                  <td data-ng-if="word.picture"><i class="fa fa-check last-attempt-green" ></i></td>
-                  <td data-ng-if="!word.picture"><i class="fa fa-close last-attempt-blue" ></i></td>
-                  <td><i class="fa fa-eye"></i> <i ui-sref="account.editCustomWord({ id: word.id })" class="fa fa-pencil-square-o left-padding"></i> <i data-ng-click="curriculum.deleteListener(word)" class="fa fa-trash left-padding"></i></td>
+                  <td data-ng-if="word.picture"><i class="fa fa-check last-attempt-green"></i></td>
+                  <td data-ng-if="!word.picture"><i class="fa fa-close last-attempt-blue"></i></td>
+                  <td><i class="fa fa-eye"></i> <i ui-sref="account.editCustomWord({ id: word.id })"
+                                                   class="fa fa-pencil-square-o left-padding"></i> <i
+                    data-ng-click="curriculum.deleteListener(word)" class="fa fa-trash left-padding"></i></td>
                 </tr>
                 <tr data-ng-if="curriculum.customWords.length === 0">
                   <td colspan="5" data-translate="curriculum.nodata"> No Data</td>
@@ -88,28 +99,40 @@
         <uib-accordion>
           <uib-accordion-group is-open="status.open">
             <uib-accordion-heading>
-              <i class=" glyphicon" ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Anatomy
+              <i class=" glyphicon"
+                 ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Anatomy
             </uib-accordion-heading>
             <div class="curriculum-groupword-data">
+              <div class="checkbox">
+                <label><input type="checkbox" ng-model="curriculum.anatomyWords.selectedAll"
+                              ng-click="curriculum.checkAll(curriculum.anatomyWords.selectedAll,curriculum.group.anatomyWords)"/>Select
+                  All</label>
+              </div>
               <div class="checkbox" data-ng-repeat="word in curriculum.group.anatomyWords">
                 <label><input type="checkbox" data-ng-model="word.groupedflag">{{word.Word}}</label>
               </div>
             </div>
-            </uib-accordion-group>
-          </uib-accordion>
+          </uib-accordion-group>
+        </uib-accordion>
         <uib-accordion>
           <uib-accordion-group is-open="status.open">
             <uib-accordion-heading>
-              <i class=" glyphicon" ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Bathroom
+              <i class=" glyphicon"
+                 ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Bathroom
             </uib-accordion-heading>
             <div class="curriculum-groupword-data">
-                <div class="checkbox" data-ng-repeat="word in curriculum.group.bathroomWords">
-                  <label><input type="checkbox" data-ng-model="word.groupedflag" >{{word.Word}}</label>
-                </div>
+              <div class="checkbox">
+                <label><input type="checkbox" ng-model="curriculum.bathroomWords.selectedAll"
+                              ng-click="curriculum.checkAll(curriculum.bathroomWords.selectedAll,curriculum.group.bathroomWords)"/>Select
+                  All</label>
+              </div>
+              <div class="checkbox" data-ng-repeat="word in curriculum.group.bathroomWords">
+                <label><input type="checkbox" data-ng-model="word.groupedflag">{{word.Word}}</label>
+              </div>
             </div>
 
-            </uib-accordion-group>
-          </uib-accordion>
+          </uib-accordion-group>
+        </uib-accordion>
         <div class="col-md-12 margin-top20">
           <button class="btn btn-primary notification-submit-button center-block" type="submit"
                   data-ng-click="curriculum.submitGroupWords()" data-translate="common.buttons.submit">SUBMIT
