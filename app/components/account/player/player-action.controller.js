@@ -86,8 +86,8 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
   }
 
   function uploadProfilePic(form) {
-    var handleSuccess = function () {
-      playerAction.model.playerItem.profileURL = playerAction.model.croppedImage;
+    var handleSuccess = function (data) {
+      playerAction.model.playerItem.profileURL = data.files[0].url;
       if (playerAction.isUpdate) {
         updateAction();
       } else {
