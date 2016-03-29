@@ -126,9 +126,97 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     }
     flashService.showError($translate.instant('user.validationMessages.missing_letters_error'), false);
   }
+  function customisesearchwordError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("player.messages.error_getting_words"), false);
+  }
 
-
-
+  function submitGroupwordsSuccess(successObj) {
+    if (successObj) {
+      flashService.showSuccess($translate.instant('user.validationMessages.groupword_success_msg'), true);
+    }
+  }
+  function submitGroupwordsError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("user.validationMessages.error_group_words"), false);
+  }
+  function deletewordSuccess(successObj) {
+    if (successObj) {
+      flashService.showSuccess($translate.instant("curriculum.message.delete_success"), true);
+    }
+  }
+  function deletewordError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("curriculum.message.error_deleting_word"), false);
+  }
+  function listwordsError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("player.messages.error_getting_words"), false);
+  }
+  function getGroupwordsError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("player.messages.error_getting_words"), false);
+  }
+  function searchwordsError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("player.messages.error_getting_words"), false);
+  }
+  function getwordsError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+  }
+  function savewordsSuccess(successObj) {
+    if (successObj) {
+      flashService.showSuccess($translate.instant('user.validationMessages.word_success_msg'), true);
+    }
+  }
+  function savewordsError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("player.messages.invalid_word_deatils"), false);
+  }
+  function updatewordSuccess(successObj) {
+    if (successObj) {
+      flashService.showSuccess($translate.instant('user.validationMessages.word_update_msg'), true);
+    }
+  }
+  function updatewordsError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
+  }
+  function uploadfileError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError("Error in file uploading", false);
+  }
   service.loginErrorMessages = loginErrorMessages;
   service.registerErrorMessages = registerErrorMessages;
   service.registerSuccessMessages = registerSuccessMessages;
@@ -146,6 +234,19 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   service.MissingLettersErrorMessages = MissingLettersErrorMessages;
   service.MissingLettersSuccessMessages = MissingLettersSuccessMessages;
   service.selectmissinglettesErrorMessages = selectmissinglettesErrorMessages;
-
+  service.customisesearchwordError =  customisesearchwordError;
+  service.submitGroupwordsSuccess = submitGroupwordsSuccess;
+  service.submitGroupwordsError = submitGroupwordsError;
+  service.deletewordSuccess = deletewordSuccess;
+  service.deletewordError = deletewordError;
+  service.listwordsError = listwordsError;
+  service.getGroupwordsError = getGroupwordsError;
+  service.searchwordsError = searchwordsError;
+  service.getwordsError = getwordsError;
+  service.savewordsSuccess = savewordsSuccess;
+  service.savewordsError = savewordsError;
+  service.updatewordSuccess = updatewordSuccess;
+  service.updatewordsError = updatewordsError;
+  service.uploadfileError = uploadfileError;
   return service;
 }]);

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', 'flashService', '$scope', '$state', '$uibModal', '$translate', 'messagesFactory', function ($timeout, CurriculumService, flashService, $scope, $state, $uibModal, $translate, messagesFactory) {
+angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', '$scope', '$state', '$uibModal', '$translate', 'messagesFactory', function ($timeout, CurriculumService, $scope, $state, $uibModal, $translate, messagesFactory) {
 
   var curriculum = this;
   curriculum.customWords = [];
@@ -49,8 +49,10 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
 
     };
 
-    var handleError = function () {
-      flashService.showError($translate.instant("player.messages.error_getting_words"), false);
+    var handleError = function (error,status) {
+        if (error && status) {
+          messagesFactory.customisesearchwordError(status);
+      }
     };
 
     CurriculumService.searchWordApi(word)
@@ -76,14 +78,16 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
     }
     data.anatomy_words = anatomy_words;
     data.bathroom_words = bathroom_words;
+
     var handleSuccess = function (data) {
-      messagesFactory.settingsNotificationsSuccessMessages(data);
+      messagesFactory.submitGroupwordsSuccess(data);
     };
     var handleError = function (error, status) {
       if (error && status) {
-        messagesFactory.settingsNotificationsErrorMessages(status);
+        messagesFactory.submitGroupwordsError(status);
       }
     };
+
     CurriculumService.updateGroupWordsApi(data)
       .success(handleSuccess)
       .error(handleError);
@@ -117,14 +121,15 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
     modalInstance.result.then(function (word) {
       curriculum.customWords.splice(curriculum.customWords.indexOf(word), 1);
 
-      var handleSuccess = function () {
-        flashService.showSuccess($translate.instant("curriculum.message.delete_success"), true);
+      var handleSuccess = function (data) {
+        messagesFactory.deletewordSuccess(data);
         $state.go("account.curriculum");
-
       };
 
-      var handleError = function () {
-        flashService.showError($translate.instant("curriculum.message.error_deleting_word"), false);
+      var handleError = function (error, status) {
+        if (error && status) {
+          messagesFactory.deletewordError(status);
+        }
       };
 
       CurriculumService.deleteWordApi(word.id)
@@ -151,12 +156,12 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
         });
       }
     };
-
-    var handleError = function () {
-      flashService.showError($translate.instant("player.messages.error_getting_words"), false);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.listwordsError(status);
+      }
     };
-
-    CurriculumService.listWordsApi()
+      CurriculumService.listWordsApi()
       .success(handleSuccess)
       .error(handleError);
 
@@ -174,12 +179,12 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
           curriculum.group.bathroomWords = data.bathroom;
         }
     };
-
-    var handleError = function () {
-      flashService.showError($translate.instant("player.messages.error_getting_words"), false);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.getGroupwordsError(status);
+      }
     };
-
-    CurriculumService.getGroupWords(carArr)
+     CurriculumService.getGroupWords(carArr)
       .success(handleSuccess)
       .error(handleError);
   }

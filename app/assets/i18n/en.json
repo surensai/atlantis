@@ -197,7 +197,12 @@
       "profile_edit_error":"Error in editing profile.",
       "nofifications_success_msg":"Notifications  updated successfully.",
       "nofifications_error_msg":"Error in updating notifuications.",
-      "word_length":"Must be between 1 and 24 characters."
+      "word_length":"Must be between 1 and 24 characters.",
+      "groupword_success_msg":"Group words submitted successfully.",
+      "error_group_words":"Error in submitting group words.",
+      "word_success_msg":"Word added succesfully.",
+      "invalid_word_deatils":"Invalid word credentials.",
+      "word_update_msg":"Word updated successfully."
     },
     "change_password": {
       "old_password": "Old Password",
