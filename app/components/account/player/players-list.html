@@ -2,15 +2,15 @@
   <ul>
     <li>
       <a ui-sref="account.addplayer">
-        <img data-ng-if="!playerItem.profileURL" src="assets/images/add-player.png" alt="player" width="72" height="72" />
+        <img data-ng-if="!playerItem.profileURL" src="assets/images/add-player.png" alt="player" width="55" height="55" />
         <span data-translate="player.add_player"> Add Player </span>
       </a>
     </li>
     <li data-ng-repeat="playerItem in player.data.playersList" data-ng-init="playerItem.croppedImage = ''" >
       <a ui-sref="account.players.details({ id: playerItem.id })"
          ng-class="{ active: $state.includes('account.players.details', { id: playerItem.id })}">
-        <img data-ng-if="!playerItem.profileURL" src="assets/images/fallback-img.png" class="img-circle" alt="player" width="75" height="75" />
-        <img data-ng-if="playerItem.profileURL" data-ng-src="{{playerItem.profileURL}}" class="img-circle" alt="player" width="75" height="75" />
+        <img data-ng-if="!playerItem.profileURL" src="assets/images/fallback-img.png" class="img-circle" alt="player" width="55" height="55" />
+        <img data-ng-if="playerItem.profileURL" data-ng-src="{{playerItem.profileURL}}" class="img-circle" alt="player" width="55" height="55" />
         <span>{{ playerItem.firstName }}</span>
       </a>
     </li>
