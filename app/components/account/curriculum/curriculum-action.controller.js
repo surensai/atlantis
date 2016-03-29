@@ -21,6 +21,38 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
     getWordId();
   })();
 
+
+  curriculum.submitForm = function (form) {
+
+    curriculum.submitted = true;
+    if (form.$valid && curriculum.imageFileError && curriculum.audioFileError && curriculum.audioFilesize) {
+
+      if (curriculum.myAudioFile && curriculum.previousImageObj.length > 0) {
+        uploadMultipleFiles(form, curriculum.myAudioFile, curriculum.previousImageObj[0]);
+      } else if (curriculum.myAudioFile) {
+        curriculum.model.wordItem.imageURL = undefined;
+        uploadProfilePic(form, curriculum.myAudioFile);
+      } else if (curriculum.previousImageObj.length > 0) {
+        curriculum.model.wordItem.audioURL = undefined;
+        uploadProfilePic(form, curriculum.previousImageObj[0]);
+      } else {
+        curriculum.model.wordItem.imageURL = undefined;
+        curriculum.model.wordItem.audioURL = undefined;
+        if (curriculum.isUpdate) {
+          updateAction();
+        } else {
+          addAction(form);
+        }
+      }
+    } else {
+      $timeout(function () {
+        angular.element('.custom-error:first').focus();
+      }, 200);
+    }
+
+  };
+
+
   curriculum.searchWord = function () {
     var word = curriculum.model.wordItem.wordName;
     var handleSuccess = function (data) {
@@ -80,38 +112,6 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
     curriculum.audioFilesize = true;
   };
 
-  curriculum.submitForm = function (form) {
-
-    curriculum.submitted = true;
-    if (form.$valid && curriculum.imageFileError && curriculum.audioFileError && curriculum.audioFilesize) {
-
-      if (curriculum.myAudioFile && curriculum.myImageFile) {
-        uploadMultipleFiles(form, curriculum.myAudioFile, curriculum.myImageFile);
-      }
-      else if (curriculum.myAudioFile) {
-        curriculum.model.wordItem.imageURL = undefined;
-        uploadProfilePic(form, curriculum.myAudioFile);
-      }
-      else if (curriculum.myImageFile) {
-        curriculum.model.wordItem.audioURL = undefined;
-        uploadProfilePic(form, curriculum.myImageFile);
-      }
-      else {
-        curriculum.model.wordItem.imageURL = undefined;
-        curriculum.model.wordItem.audioURL = undefined;
-        if (curriculum.isUpdate) {
-          updateAction();
-        } else {
-          addAction(form);
-        }
-      }
-    } else {
-      $timeout(function () {
-        angular.element('.custom-error:first').focus();
-      }, 200);
-    }
-
-  };
 
   function structureFormData() {
     var data = {};
