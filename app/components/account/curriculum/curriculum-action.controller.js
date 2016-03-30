@@ -13,6 +13,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
   curriculum.isAudioUploaded = false;
   curriculum.audioFilesize = true;
   curriculum.isUpdate = false;
+  curriculum.isView = ($state.current.name === 'account.viewCustomWord') ? true : false;
   curriculum.fileReaderSupported = window.FileReader != null;
   var URL = window.URL || window.webkitURL;
   curriculum.previousImageObj = [];
@@ -20,7 +21,6 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
   (function () {
     getWordId();
   })();
-
 
   curriculum.submitForm = function (form) {
 

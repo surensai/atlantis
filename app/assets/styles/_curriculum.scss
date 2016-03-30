@@ -42,7 +42,7 @@
            }
          }
          .panel-title{
-           color: #AAA9A9;
+           color: #767575;
            a{
              text-decoration: none;
              border: none;
@@ -88,7 +88,10 @@
          .last-attempt-blue{
            color: #6E4D9F;
          }
-
+        a{
+          text-decoration: none;
+          color:black;
+        }
        }
        .left-padding{
          padding-left: 20px;
@@ -227,7 +230,36 @@
 .custom-message-color{
   color: lighten(#000, 50%);
 }
-
+.add-word-cancel-margin :hover{
+  padding: 8px 63px;
+  margin-top: 45px ;
+  background-color: #7E7E7E !important;
+  color: black !important;
+}
+.add-word-cancel-margin{
+  padding: 8px 63px;
+  margin-top: 45px;
+  background-color: #7E7E7E !important;
+  color:black !important;
+}
+.add-save-button {
+  padding: 5px 60px;
+}
+.add-word-cancel-button{
+  padding: 6px 55px;
+  margin-left: 5px;
+  background-color: #7E7E7E !important;
+  color: black !important;
+}
+.add-word-cancel-button :hover{
+  padding: 6px 55px;
+  margin-left: 5px;
+  background-color: #7E7E7E !important;
+  color: black !important;
+}
+.add-word-save-button{
+  padding: 5px 41px;
+}
 @media only screen and
 (min-device-width: 320px) and (max-device-width: 1024px) {
   .add-word-cancel-margin {
