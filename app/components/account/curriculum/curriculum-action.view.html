@@ -98,14 +98,14 @@
           <div class="form-group" data-ng-if="!curriculum.isView">
             <div class="col-md-3"></div>
             <div class="col-md-2"></div>
-            <div class="col-md-6 add-word-cancel-margin">
-              <button type="submit" ng-if="!curriculum.isUpdate" class="btn btn-primary add-word-button add-word-btn-padding"
+            <div class="col-md-6">
+              <button type="submit" ng-if="!curriculum.isUpdate" class="btn btn-primary add-word-save-button"
                       data-translate="common.buttons.addword">Add Word
               </button>
-              <button ng-if="curriculum.isUpdate" type="submit" class="btn btn-primary add-cancel-button add-word-cancel-btn-padding"
+              <button ng-if="curriculum.isUpdate" type="submit" class="btn btn-primary add-save-button "
                       data-translate="common.buttons.save">Save
               </button>
-              <button type="button" class="btn btn-primary cancel-button add-cancel-button add-word-cancel-btn-padding" ui-sref="account.curriculum"
+              <button type="button" class="btn add-word-cancel-button " ui-sref="account.curriculum"
                       data-translate="common.buttons.cancel">Cancel
               </button>
             </div>
@@ -113,8 +113,8 @@
           <div class="form-group clearfix" data-ng-if="curriculum.isView">
             <div class="col-md-3"></div>
             <div class="col-md-2"></div>
-            <div class="col-md-6 add-word-cancel-margin">
-               <a class="btn btn-primary cancel-button add-cancel-button add-word-cancel-btn-padding" ui-sref="account.curriculum"
+            <div class="col-md-6 ">
+               <a class="btn  add-word-cancel-margin" ui-sref="account.curriculum"
                       data-translate="common.buttons.back">Back
               </a>
             </div>

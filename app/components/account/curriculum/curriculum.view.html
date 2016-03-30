@@ -79,7 +79,7 @@
 
                   <td data-ng-if="word.picture">Available</td>
                   <td data-ng-if="!word.picture">Not Available</td>
-                  <td>><a href="#"><i class="fa fa-eye"  ui-sref="account.editCustomWord({ id: word.id})"></i></a> <a href=""> <i ui-sref="account.editCustomWord({ id: word.id})"
+                  <td><a href="#"><i class="fa fa-eye"  ui-sref="account.viewCustomWord({ id: word.id})"></i></a> <a href=""> <i ui-sref="account.editCustomWord({ id: word.id})"
                                                    class="fa fa-pencil-square-o left-padding"></i> </a><a href=""> <i
                     data-ng-click="curriculum.deleteListener(word)" class="fa fa-trash left-padding"></i></a></td>
                 </tr>
