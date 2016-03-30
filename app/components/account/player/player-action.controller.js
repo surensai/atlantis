@@ -14,6 +14,9 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
   playerAction.model.playerItem.gender = 'M';
   playerAction.model.playerItem.age = 5;
   playerAction.model.playerItem.profileURL = "assets/images/fallback-img.png";
+  playerAction.previousSelectedFile = [];
+  playerAction.fileReaderSupported = window.FileReader != null;
+  playerAction.model.croppedImage = '';
 
   (function () {
     getPlayerById();
@@ -25,7 +28,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
     playerAction.submitted = true;
     if (form.$valid && playerAction.fileError) {
       playerAction.added = true;
-      if(playerAction.myFile){
+      if(playerAction.previousSelectedFile.length > 0){
         uploadProfilePic(form);
       }else{
         playerAction.model.playerItem.profileURL = undefined;
@@ -35,7 +38,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
           addAction();
         }
       }
-
     } else {
       $timeout(function () {
         angular.element('.custom-error:first').focus();
@@ -105,8 +107,8 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
       }
       flashService.showError($translate.instant("player.messages.error_file_upload"), false);
     };
-    var file = playerAction.myFile;
-    PlayerService.uploadFileApi(file)
+
+    PlayerService.uploadFileApi(playerAction.previousSelectedFile[0])
       .success(handleSuccess)
       .error(handleError);
   }
@@ -134,11 +136,10 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
   };
 
 
-  playerAction.fileReaderSupported = window.FileReader != null;
-  playerAction.model.croppedImage = '';
   $scope.photoChanged = function (files) {
-    if (files != null) {
-      var file = files[0];
+    if (files.length > 0 || playerAction.previousSelectedFile.length > 0) {
+      playerAction.previousSelectedFile = (files.length > 0) ? files : playerAction.previousSelectedFile;
+      var file = (files.length > 0) ? files[0] : playerAction.previousSelectedFile[0];
       if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
         playerAction.fileError = true;
         $timeout(function () {
