@@ -175,7 +175,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     controllerAs: "curriculum",
     params: {'word': null},
     data: {
-      pageTitle: 'Square Panda - Curriculum'
+      pageTitle: 'Square Panda - Add Word'
     }
   }).state('account.editCustomWord', {
     url: '/curriculum/:id/editword',
@@ -183,7 +183,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     controller: 'curriculumActionCtrl',
     controllerAs: "curriculum",
     data: {
-      pageTitle: 'Square Panda - Curriculum'
+      pageTitle: 'Square Panda - Edit Word'
     }
   }).state('account.settings', {
     url: '/settings',

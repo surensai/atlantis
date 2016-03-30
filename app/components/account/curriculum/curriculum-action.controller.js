@@ -68,7 +68,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
         messagesFactory.searchwordsError(status);
       }
     };
-       CurriculumService.searchWordApi(word)
+    CurriculumService.searchWordApi(word)
       .success(handleSuccess)
       .error(handleError);
 
@@ -94,7 +94,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
           messagesFactory.getwordsError(status);
         }
       };
-        CurriculumService.getWordById($state.params.id)
+      CurriculumService.getWordById($state.params.id)
         .success(handleSuccess)
         .error(handleError);
     }
