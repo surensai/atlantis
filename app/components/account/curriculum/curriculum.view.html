@@ -78,9 +78,11 @@
                   <td>{{ word.dateAdded | date:"MM/dd/yyyy ' h:mma"}}</td>
                   <td data-ng-if="word.picture"><i class="fa fa-check last-attempt-green"></i></td>
                   <td data-ng-if="!word.picture"><i class="fa fa-close last-attempt-blue"></i></td>
-                  <td><i class="fa fa-eye"></i> <i ui-sref="account.editCustomWord({ id: word.id})"
-                                                   class="fa fa-pencil-square-o left-padding"></i> <i
-                    data-ng-click="curriculum.deleteListener(word)" class="fa fa-trash left-padding"></i></td>
+                  <td>
+                    <a ui-sref="account.viewCustomWord({ id: word.id })"><i class="fa fa-eye"></i></a>
+                    <i ui-sref="account.editCustomWord({ id: word.id})" class="fa fa-pencil-square-o left-padding"></i>
+                    <i data-ng-click="curriculum.deleteListener(word)" class="fa fa-trash left-padding"></i>
+                  </td>
                 </tr>
                 <tr data-ng-if="curriculum.customWords.length === 0">
                   <td colspan="5" data-translate="curriculum.nodata"> No Data</td>
