@@ -217,6 +217,84 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     }
     flashService.showError("Error in file uploading", false);
   }
+  function dashboardfeedsError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("user.validationMessages.error_get_feeds"), false);
+  }
+  function firmwarecreateError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("user.validationMessages.invalid_firmware"), false);
+  }
+  function firmwareuploadError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("user.validationMessages.firmware_upload_error"), false);
+  }
+  function firmwarecreateSuccess(successObj) {
+    if (successObj) {
+      flashService.showSuccess($translate.instant('user.validationMessages.firmware_success'), true);
+    }
+  }
+  function getPlayersError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+  }
+  function getPlayerwordsError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("player.messages.error_getting_words"), false);
+  }
+  function createPlayerSuccess(successObj) {
+    if (successObj) {
+      flashService.showSuccess($translate.instant("player.messages.add_success"), true);
+    }
+  }
+  function createPlayerError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
+  }
+  function updatePlayerError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
+  }
+  function deletePlayerSuccess(successObj) {
+    if (successObj) {
+      flashService.showSuccess($translate.instant("player.messages.delete_success"), true);
+    }
+  }
+  function deletePlayerError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("player.messages.error_deleting_players"), false);
+  }
+  function getPlayerbyIDError(status) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+  }
   service.loginErrorMessages = loginErrorMessages;
   service.registerErrorMessages = registerErrorMessages;
   service.registerSuccessMessages = registerSuccessMessages;
@@ -248,5 +326,17 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   service.updatewordSuccess = updatewordSuccess;
   service.updatewordsError = updatewordsError;
   service.uploadfileError = uploadfileError;
+  service.dashboardfeedsError = dashboardfeedsError;
+  service.firmwarecreateError = firmwarecreateError;
+  service.firmwareuploadError = firmwareuploadError;
+  service.firmwarecreateSuccess = firmwarecreateSuccess;
+  service.getPlayersError = getPlayersError;
+  service.getPlayerwordsError = getPlayerwordsError;
+  service.createPlayerSuccess = createPlayerSuccess;
+  service.createPlayerError = createPlayerError;
+  service.updatePlayerError = updatePlayerError;
+  service.deletePlayerSuccess = deletePlayerSuccess;
+  service.deletePlayerError = deletePlayerError;
+  service.getPlayerbyIDError = getPlayerbyIDError;
   return service;
 }]);
