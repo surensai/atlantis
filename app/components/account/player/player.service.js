@@ -69,6 +69,86 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
     data.splice(data.indexOf(obj),1);
   };
 
+  service.getBadges = function(){
+    return [
+      {
+        milestone: 'Apple',
+        percentage: '120%',
+        type: 'active',
+        image:'apple'
+      }, {
+        milestone: 'Up',
+        percentage: '100%',
+        type: 'disabled',
+        image:'up'
+      }, {
+        milestone: 'Cat',
+        percentage: '80%',
+        type: 'disabled',
+        image:'cat'
+      }, {
+        milestone: 'Sight',
+        percentage: '120%',
+        type: 'disabled',
+        image:'sight'
+      }, {
+        milestone: 'Pancake',
+        percentage: '115%',
+        type: 'disabled',
+        image:'pancake'
+      }, {
+        milestone: 'Fish',
+        percentage: '90%',
+        type: 'disabled',
+        image:'fish'
+      }, {
+        milestone: 'Brick',
+        percentage: '50%',
+        type: 'disabled',
+        image:'brick'
+      }, {
+        milestone: 'Floss',
+        percentage: '0%',
+        type: 'disabled',
+        image:'floss'
+      }, {
+        milestone: 'Bee',
+        percentage: '0%',
+        type: 'disabled',
+        image:'bee'
+      }, {
+        milestone: 'Sky',
+        percentage: '0%',
+        type: 'disabled',
+        image:'sky'
+      }, {
+        milestone: 'Car',
+        percentage: '0%',
+        type: 'disabled',
+        image:'car'
+      }, {
+        milestone: 'Light',
+        percentage: '0%',
+        type: 'disabled',
+        image:'light'
+      }, {
+        milestone: 'Bear',
+        percentage: '0%',
+        type: 'disabled',
+        image:'bear'
+      }, {
+        milestone: 'House',
+        percentage: '0%',
+        type: 'disabled',
+        image:'house'
+      }, {
+        milestone: 'Swan',
+        percentage: '0%',
+        type: 'disabled',
+        image:'swan'
+      }];
+  }
+
   return service;
 
 
