@@ -185,6 +185,14 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     data: {
       pageTitle: 'Square Panda - Edit Word'
     }
+  }).state('account.viewCustomWord', {
+    url: '/curriculum/:id/viewword',
+    templateUrl: urlBuilder('account/curriculum', 'curriculum-action'),
+    controller: 'curriculumActionCtrl',
+    controllerAs: "curriculum",
+    data: {
+      pageTitle: 'Square Panda - view Word'
+    }
   }).state('account.settings', {
     url: '/settings',
     templateUrl: urlBuilder('account/settings', 'settings'),
