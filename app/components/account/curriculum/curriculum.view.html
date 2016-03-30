@@ -76,11 +76,11 @@
                 <tr data-ng-repeat="word in curriculum.customWords | orderBy:curriculum.predicate:curriculum.reverse">
                   <td class="player-words">{{ word.Words}}</td>
                   <td>{{ word.dateAdded | date:"MM/dd/yyyy ' h:mma"}}</td>
-                  <td data-ng-if="word.picture"><i class="fa fa-check last-attempt-green"></i></td>
-                  <td data-ng-if="!word.picture"><i class="fa fa-close last-attempt-blue"></i></td>
-                  <td><i class="fa fa-eye"></i> <i ui-sref="account.editCustomWord({ id: word.id})"
-                                                   class="fa fa-pencil-square-o left-padding"></i> <i
-                    data-ng-click="curriculum.deleteListener(word)" class="fa fa-trash left-padding"></i></td>
+                  <td data-ng-if="word.picture">Available</td>
+                  <td data-ng-if="!word.picture">Not Available</td>
+                  <td><a href="#"><i class="fa fa-eye"  ui-sref="account.editCustomWord({ id: word.id})"></i></a> <a href=""> <i ui-sref="account.editCustomWord({ id: word.id})"
+                                                   class="fa fa-pencil-square-o left-padding"></i> </a><a href=""> <i
+                    data-ng-click="curriculum.deleteListener(word)" class="fa fa-trash left-padding"></i></a></td>
                 </tr>
                 <tr data-ng-if="curriculum.customWords.length === 0">
                   <td colspan="5" data-translate="curriculum.nodata"> No Data</td>
