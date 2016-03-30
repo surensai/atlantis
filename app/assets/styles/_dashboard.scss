@@ -30,6 +30,7 @@
           font-size: 14px;
           color: #9a9a9a;
           line-height: 22px;
+          text-align: justify;
         }
       }
       .panel-footer {
@@ -42,7 +43,7 @@
             list-style-type: none;
             li {
               display: inline;
-              padding-right: 16%;
+              padding-right: 15%;
               a{
                 text-decoration: none;
               }
@@ -80,6 +81,9 @@
 .reduce-margin{
   margin-top: 0px !important;
   margin-bottom: 0px !important;
+}
+.read-more-margin{
+  margin-right: 1px;
 }
 
 @media only screen and
