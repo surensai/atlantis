@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'CurriculumService', '$scope', '$state', '$uibModal', 'ngAudio','messagesFactory', function ($timeout, CurriculumService, $scope, $state, $uibModal, ngAudio,messagesFactory) {
+angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'CurriculumService', '$scope', '$state', '$uibModal', 'ngAudio','messagesFactory','$translate', function ($timeout, CurriculumService, $scope, $state, $uibModal, ngAudio,messagesFactory,$translate) {
 
   var curriculum = this;
   curriculum.model = {};

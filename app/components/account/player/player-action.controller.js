@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messagesFactory', 'PlayerService', '$timeout',  function ($scope, $state, messagesFactory, PlayerService, $timeout) {
+angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messagesFactory', 'PlayerService', '$timeout','$translate',  function ($scope, $state, messagesFactory, PlayerService, $timeout,$translate) {
 
   var playerAction = this;
   playerAction.model = {};
