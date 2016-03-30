@@ -13,6 +13,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
   curriculum.isAudioUploaded = false;
   curriculum.audioFilesize = true;
   curriculum.isUpdate = false;
+  curriculum.isView = ($state.current.name === 'account.viewCustomWord') ? true : false;
   curriculum.fileReaderSupported = window.FileReader != null;
   var URL = window.URL || window.webkitURL;
   curriculum.previousImageObj = [];
@@ -20,7 +21,6 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
   (function () {
     getWordId();
   })();
-
 
   curriculum.submitForm = function (form) {
 
@@ -68,7 +68,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
         messagesFactory.searchwordsError(status);
       }
     };
-       CurriculumService.searchWordApi(word)
+    CurriculumService.searchWordApi(word)
       .success(handleSuccess)
       .error(handleError);
 
@@ -94,7 +94,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
           messagesFactory.getwordsError(status);
         }
       };
-        CurriculumService.getWordById($state.params.id)
+      CurriculumService.getWordById($state.params.id)
         .success(handleSuccess)
         .error(handleError);
     }

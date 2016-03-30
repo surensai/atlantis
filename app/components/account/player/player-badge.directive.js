@@ -8,7 +8,7 @@ angular.module("app").directive('badgeItem', function () {
       callFunc: '&'
     },
     template: '<div class="badge-item center-align"> ' +
-              '<img ng-src="assets/images/{{item.type}}.png" />'+
+              '<img ng-src="assets/images/badges/{{item.type}}/{{item.image}}.png" />'+
               '<span>{{item.milestone}}</span>' +
               '</div></div>',
 
