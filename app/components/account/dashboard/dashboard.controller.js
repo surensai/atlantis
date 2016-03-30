@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('dashboardCtrl', ['DashboardService','flashService', function (DashboardService,flashService) {
+angular.module("app").controller('dashboardCtrl', ['DashboardService','messagesFactory', function (DashboardService,messagesFactory) {
   var dashboard = this;
   dashboard.model = {};
   dashboard.data = {};
@@ -11,8 +11,10 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService','flashServ
       dashboard.data.newsFeedsList = data;
     };
 
-    var handleError = function () {
-      flashService.showError("Error in getting feeds", false);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.dashboardfeedsError(status);
+      }
     };
 
     DashboardService.getAllApi()

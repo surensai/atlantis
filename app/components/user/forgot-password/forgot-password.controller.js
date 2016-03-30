@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('forgotPasswordCtrl', ['$scope', 'UserService', 'flashService', 'messagesFactory','$state', function ($scope, UserService, flashService, messagesFactory,$state) {
+angular.module("app").controller('forgotPasswordCtrl', ['$scope', 'UserService', 'messagesFactory','$state', function ($scope, UserService, messagesFactory,$state) {
 
   var forgot = this;
   forgot.model = {};

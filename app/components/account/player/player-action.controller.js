@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flashService', 'PlayerService', '$timeout', '$translate', function ($scope, $state, flashService, PlayerService, $timeout, $translate) {
+angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messagesFactory', 'PlayerService', '$timeout','$translate',  function ($scope, $state, messagesFactory, PlayerService, $timeout,$translate) {
 
   var playerAction = this;
   playerAction.model = {};
@@ -58,13 +58,16 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
 
   function addAction() {
     var formData = stuctureFormData();
+
     var handleSuccess = function (data) {
-      flashService.showSuccess($translate.instant("player.messages.add_success"), true);
+      messagesFactory.createPlayerSuccess(data);
       $state.go('account.players.details', {id: data.id});
     };
 
-    var handleError = function () {
-      flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.createPlayerError(status);
+      }
     };
 
     PlayerService.createApi(formData)
@@ -78,8 +81,10 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
       $state.go('account.players.details', {id: playerAction.model.playerItem.id});
     };
 
-    var handleError = function () {
-      flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.updatePlayerError(status);
+      }
     };
 
     PlayerService.updateApi(playerAction.data.playerItem.id, formData)
@@ -96,7 +101,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
         addAction();
       }
       form.$setPristine();
-      flashService.showSuccess($translate.instant("player.messages.file_upload_success"), true);
     };
 
     var handleError = function () {
@@ -105,7 +109,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
       } else {
         addAction();
       }
-      flashService.showError($translate.instant("player.messages.error_file_upload"), false);
+      messagesFactory.uploadfileError(status);
     };
 
     PlayerService.uploadFileApi(playerAction.previousSelectedFile[0])
@@ -119,15 +123,16 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
 
   playerAction.deleteAction = function () {
 
-    var handleSuccess = function () {
+    var handleSuccess = function (data) {
       angular.element('#pop').modal('hide');
-      flashService.showSuccess($translate.instant("player.messages.delete_success"), true);
+      messagesFactory.deletePlayerSuccess(data)
       $state.go("account.players");
 
     };
-
-    var handleError = function () {
-      flashService.showError($translate.instant("player.messages.error_deleting_players"), false);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.deletePlayerError(status);
+      }
     };
 
    PlayerService.deleteApi(playerAction.data.deleteObj.id)
@@ -167,10 +172,11 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'flash
         }
       };
 
-      var handleError = function () {
-        flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+      var handleError = function (error, status) {
+        if (error && status) {
+          messagesFactory.getPlayerbyIDError(status);
+        }
       };
-
       PlayerService.getPlayerById($state.params.id)
         .success(handleSuccess)
         .error(handleError);
