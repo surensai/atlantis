@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerService', 'flashService','$translate', function ($timeout, $state, PlayerService, flashService, $translate) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerService', 'messagesFactory', function ($timeout, $state, PlayerService, messagesFactory) {
 
   var player = this;
   player.model = {};
@@ -112,15 +112,17 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
             player.playerObj = data;
           })
           .error(function () {
-            flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+            messagesFactory.getPlayersError(status);
           });
         $state.go('account.players.details', {id: playerId});
       }
 
     };
 
-    var handleError = function () {
-      flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.getPlayersError(status);
+      }
     };
 
    PlayerService.getAllApi()
@@ -164,8 +166,10 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
       }
     };
 
-    var handleError = function () {
-      flashService.showError($translate.instant("player.messages.error_getting_words"), false);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.getPlayerwordsError(status);
+      }
     };
 
     PlayerService.getWordsApi(childId)
