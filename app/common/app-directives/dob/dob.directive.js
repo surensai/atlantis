@@ -49,7 +49,7 @@
         }
 
         function setDOBFormate(month, day, year) {
-          return month + "-" + day + "-" + year;
+          return month + "/" + day + "/" + year;
         }
 
         $scope.$watchGroup(['dob.month', 'dob.day', 'dob.year'], function (newValues, oldValues, scope) {
@@ -61,7 +61,7 @@
 
         $scope.$watch('birthDate', function (newValue, oldValue,scope) {
           if(newValue){
-            var val = newValue.split("-");
+            var val = newValue.split("/");
             if(val[0] !== "" && val[1] !== "" && val[2] !== ""){
               scope.dob.month = new Date(scope.birthDate).getMonth() + 1;
               scope.dob.day = new Date(scope.birthDate).getDate();
