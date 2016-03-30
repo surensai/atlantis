@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'CurriculumService', 'flashService', '$scope', '$state', '$uibModal', '$translate', 'ngAudio', function ($timeout, CurriculumService, flashService, $scope, $state, $uibModal, $translate, ngAudio) {
+angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'CurriculumService', 'flashService', '$scope', '$state', '$uibModal', '$translate', 'ngAudio','messagesFactory', function ($timeout, CurriculumService, flashService, $scope, $state, $uibModal, $translate, ngAudio,messagesFactory) {
 
   var curriculum = this;
   curriculum.model = {};
@@ -63,11 +63,12 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
       }
     };
 
-    var handleError = function () {
-      flashService.showError($translate.instant("player.messages.error_getting_words"), false);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.searchwordsError(status);
+      }
     };
-
-    CurriculumService.searchWordApi(word)
+       CurriculumService.searchWordApi(word)
       .success(handleSuccess)
       .error(handleError);
 
@@ -88,12 +89,12 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
           curriculum.isAudioUploaded = true;
         }
       };
-
-      var handleError = function () {
-        flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+      var handleError = function (error, status) {
+        if (error && status) {
+          messagesFactory.getwordsError(status);
+        }
       };
-
-      CurriculumService.getWordById($state.params.id)
+        CurriculumService.getWordById($state.params.id)
         .success(handleSuccess)
         .error(handleError);
     }
@@ -124,13 +125,15 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
   function addAction(form) {
     form.$setPristine();
     var formData = structureFormData();
-    var handleSuccess = function () {
-      flashService.showSuccess("Word added successfully!", true);
-      $state.go('account.curriculum');
-    };
 
-    var handleError = function () {
-      flashService.showError("Invalid word credentials", false);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.savewordsError(status);
+      }
+    };
+    var handleSuccess = function (data) {
+      messagesFactory.savewordsSuccess(data);
+      $state.go('account.curriculum');
     };
 
     CurriculumService.saveWordApi(formData)
@@ -141,14 +144,15 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
   function updateAction() {
     var formData = structureFormData();
 
-    var handleSuccess = function () {
+    var handleSuccess = function (data) {
+      messagesFactory.updatewordSuccess(data);
       $state.go('account.curriculum');
     };
-
-    var handleError = function () {
-      flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.updatewordsError(status);
+      }
     };
-
     CurriculumService.updateWordApi(curriculum.data.wordItem.id, formData)
       .success(handleSuccess)
       .error(handleError);
@@ -166,16 +170,17 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
           } else {
             addAction(form);
           }
-          flashService.showSuccess("File uploaded successfully!", false);
         })
         .error(function () {
-          flashService.showError("Error in file uploading", false);
+          messagesFactory.uploadfileError(status);
         });
 
     };
 
-    var handleError = function () {
-      flashService.showError("Error in file uploading", false);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.uploadfileError(status);
+      }
     };
 
     CurriculumService.uploadFileApi(audioFile)
@@ -195,13 +200,13 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
       } else {
         addAction(form);
       }
-      flashService.showSuccess("File uploaded successfully!", false);
-    };
 
-    var handleError = function () {
-      flashService.showError("Error in file uploading", false);
     };
-
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.uploadfileError(status);
+      }
+    };
     CurriculumService.uploadFileApi(file)
       .success(handleSuccess)
       .error(handleError);
