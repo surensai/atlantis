@@ -3,7 +3,7 @@
 }
 .dashboard-container {
   background-color: $account-bg-color;
-  padding-top: 40px;
+  padding-top: 20px;
   .feed-row {
     .panel {
       margin-bottom: 20px;
@@ -35,7 +35,9 @@
       }
       .panel-footer {
         background-color: #f4f4f4;
-        max-height: 42px;
+        max-height: 43px;
+        margin-right: -1px;
+        border-bottom-right-radius: 10px;
         .icons-block {
           ul {
             list-style-type: none;

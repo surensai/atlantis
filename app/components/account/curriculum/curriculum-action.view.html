@@ -18,7 +18,7 @@
               <div style="display: inline-flex;">
 
                 <input type="text" name="word" class="form-control" data-ng-model="curriculum.model.wordItem.wordName"
-                       placeholder="{{ 'curriculum.word' | translate }}" required ng-pattern="/^[A-z][A-z]*$/">
+                       placeholder="{{ 'curriculum.word' | translate }}" required ng-pattern="/^[A-z][A-z]*$/" ng-minlength="1" ng-maxlength="24">
 
                 <span class="btn btn-default custom-search-button" ng-click="curriculum.searchWord()"><i
                   class="fa fa-search"></i></span>
@@ -31,6 +31,11 @@
               <div ng-show="playerForm.word.$error.pattern" class="error-mesasage" >
                 <i class="fa fa-exclamation-circle"></i>
                 <span >Allow only Alphabets</span>
+              </div>
+              <div ng-show="!playerForm.word.$error.pattern && !playerForm.word.$error.required && (playerForm.word.$error.minlength || playerForm.word.$error.maxlength) && playerForm.word.$dirty"
+                class="error-mesasage">
+                <i class="fa fa-exclamation-circle"></i>
+                <span data-translate="user.validationMessages.word_length"> Must be between 1 and 24 characters.</span>
               </div>
             </div>
           </div>
@@ -77,7 +82,7 @@
                 <div class="myLabel text-center" href="">
                   <input type="file" name="file" file-model="curriculum.myImageFile" accept="image/*"
                          class="img-rectangle img-border-radius  "
-                         onchange="angular.element(this).scope().photoChanged(this.files)">
+                         onchange="angular.element(this).scope().photoChanged(this.files); ">
                   <span data-translate="player.change_picture">Change Picture</span>
                 </div>
               </div>

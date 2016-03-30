@@ -11,7 +11,7 @@ angular.module("app").directive('fbShare', ['$window', function ($window) {
       if (!$window.FB) {
         $.getScript('//connect.facebook.net/en_US/sdk.js', function () {
           FB.init({
-            appId: '1143723928970998',
+            appId: '221526371536033',
             xfbml: true,
             version: 'v2.5'
           });

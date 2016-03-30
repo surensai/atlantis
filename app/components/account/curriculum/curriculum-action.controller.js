@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'CurriculumService', 'flashService','$scope','$state','$uibModal','$translate','ngAudio', function ($timeout, CurriculumService, flashService, $scope, $state,$uibModal,$translate, ngAudio) {
+angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'CurriculumService', 'flashService', '$scope', '$state', '$uibModal', '$translate', 'ngAudio','messagesFactory', function ($timeout, CurriculumService, flashService, $scope, $state, $uibModal, $translate, ngAudio,messagesFactory) {
 
   var curriculum = this;
   curriculum.model = {};
@@ -15,86 +15,27 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
   curriculum.isUpdate = false;
   curriculum.fileReaderSupported = window.FileReader != null;
   var URL = window.URL || window.webkitURL;
+  curriculum.previousImageObj = [];
 
   (function () {
     getWordId();
   })();
 
-  curriculum.searchWord = function(){
-    var word = curriculum.model.wordItem.wordName;
-    var handleSuccess = function (data) {
-        if (data.length === 0) {
-          curriculum.model.message = $translate.instant("curriculum.message.word_notexist");
-        } else {
-          curriculum.model.message = $translate.instant("curriculum.message.word_exist");
-        }
-    };
-
-    var handleError = function () {
-      flashService.showError($translate.instant("player.messages.error_getting_words"), false);
-    };
-
-    CurriculumService.searchWordApi(word)
-      .success(handleSuccess)
-      .error(handleError);
-
-  };
-
-
-
-  function getWordId() {
-    if ($state.params.id) {
-      curriculum.isUpdate = true;
-      var handleSuccess = function (data) {
-        curriculum.data.wordItem = curriculum.model.wordItem = data;
-        if(!data.imageURL){
-          curriculum.model.wordItem.imageURL = "assets/images/fallback-img.png";
-        }
-        if(data.audioURL){
-          curriculum.model.wordItem.audioURL = ngAudio.load(data.audioURL);
-          curriculum.isAudioUploaded = true;
-        }
-      };
-
-      var handleError = function () {
-        flashService.showError($translate.instant("player.messages.error_getting_players"), false);
-      };
-
-      CurriculumService.getWordById($state.params.id)
-        .success(handleSuccess)
-        .error(handleError);
-    }
-    else{
-      curriculum.model.wordItem.wordName = $state.params.word;
-    }
-
-  }
-  curriculum.refreshFile = function(){
-
-    angular.element("#audio").val("");
-    curriculum.model.wordItem.audioURL = null;
-    curriculum.audioFileError = true;
-    curriculum.isAudioUploaded = false;
-    curriculum.audioFilesize = true;
-  };
 
   curriculum.submitForm = function (form) {
 
     curriculum.submitted = true;
     if (form.$valid && curriculum.imageFileError && curriculum.audioFileError && curriculum.audioFilesize) {
 
-      if(curriculum.myAudioFile && curriculum.myImageFile){
-        uploadMultipleFiles(form,curriculum.myAudioFile,curriculum.myImageFile);
-      }
-      else if(curriculum.myAudioFile){
+      if (curriculum.myAudioFile && curriculum.previousImageObj.length > 0) {
+        uploadMultipleFiles(form, curriculum.myAudioFile, curriculum.previousImageObj[0]);
+      } else if (curriculum.myAudioFile) {
         curriculum.model.wordItem.imageURL = undefined;
         uploadProfilePic(form, curriculum.myAudioFile);
-      }
-      else if(curriculum.myImageFile){
+      } else if (curriculum.previousImageObj.length > 0) {
         curriculum.model.wordItem.audioURL = undefined;
-        uploadProfilePic(form, curriculum.myImageFile);
-      }
-      else{
+        uploadProfilePic(form, curriculum.previousImageObj[0]);
+      } else {
         curriculum.model.wordItem.imageURL = undefined;
         curriculum.model.wordItem.audioURL = undefined;
         if (curriculum.isUpdate) {
@@ -111,6 +52,68 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
 
   };
 
+
+  curriculum.searchWord = function () {
+    var word = curriculum.model.wordItem.wordName;
+    var handleSuccess = function (data) {
+      if (data.length === 0) {
+        curriculum.model.message = $translate.instant("curriculum.message.word_notexist");
+      } else {
+        curriculum.model.message = $translate.instant("curriculum.message.word_exist");
+      }
+    };
+
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.searchwordsError(status);
+      }
+    };
+       CurriculumService.searchWordApi(word)
+      .success(handleSuccess)
+      .error(handleError);
+
+  };
+
+
+  function getWordId() {
+    if ($state.params.id) {
+      curriculum.isUpdate = true;
+      var handleSuccess = function (data) {
+        curriculum.data.wordItem = curriculum.model.wordItem = data;
+        curriculum.image = curriculum.data.wordItem.imageURL;
+        if (!data.imageURL) {
+          curriculum.model.wordItem.imageURL = "assets/images/fallback-img.png";
+        }
+        if (data.audioURL) {
+          curriculum.model.wordItem.audioURL = ngAudio.load(data.audioURL);
+          curriculum.isAudioUploaded = true;
+        }
+      };
+      var handleError = function (error, status) {
+        if (error && status) {
+          messagesFactory.getwordsError(status);
+        }
+      };
+        CurriculumService.getWordById($state.params.id)
+        .success(handleSuccess)
+        .error(handleError);
+    }
+    else {
+      curriculum.model.wordItem.wordName = $state.params.word;
+    }
+
+  }
+
+  curriculum.refreshFile = function () {
+
+    angular.element("#audio").val("");
+    curriculum.model.wordItem.audioURL = null;
+    curriculum.audioFileError = true;
+    curriculum.isAudioUploaded = false;
+    curriculum.audioFilesize = true;
+  };
+
+
   function structureFormData() {
     var data = {};
     data.wordName = curriculum.model.wordItem.wordName;
@@ -122,69 +125,74 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
   function addAction(form) {
     form.$setPristine();
     var formData = structureFormData();
-    var handleSuccess = function () {
-      flashService.showSuccess("Word added successfully!", true);
+
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.savewordsError(status);
+      }
+    };
+    var handleSuccess = function (data) {
+      messagesFactory.savewordsSuccess(data);
       $state.go('account.curriculum');
     };
 
-    var handleError = function () {
-      flashService.showError("Invalid word credentials", false);
-    };
-
-    curriculum.loadPromise = CurriculumService.saveWordApi(formData)
+    CurriculumService.saveWordApi(formData)
       .success(handleSuccess)
       .error(handleError);
   }
 
   function updateAction() {
     var formData = structureFormData();
-    var handleSuccess = function () {
+
+    var handleSuccess = function (data) {
+      messagesFactory.updatewordSuccess(data);
       $state.go('account.curriculum');
     };
-
-    var handleError = function () {
-      flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.updatewordsError(status);
+      }
     };
-
     CurriculumService.updateWordApi(curriculum.data.wordItem.id, formData)
       .success(handleSuccess)
       .error(handleError);
   }
 
-  function uploadMultipleFiles(form,audioFile,imageFile) {
+  function uploadMultipleFiles(form, audioFile, imageFile) {
     var handleSuccess = function (data) {
       curriculum.model.wordItem.audioURL = data.files[0].url;
 
-      curriculum.loadPromise = CurriculumService.uploadFileApi(imageFile)
-        .success(function(data){
+      CurriculumService.uploadFileApi(imageFile)
+        .success(function (data) {
           curriculum.model.wordItem.imageURL = data.files[0].url;
           if (curriculum.isUpdate) {
             updateAction();
           } else {
             addAction(form);
           }
-          flashService.showSuccess("File uploaded successfully!", false);
         })
-        .error(function(){
-          flashService.showError("Error in file uploading", false);
+        .error(function () {
+          messagesFactory.uploadfileError(status);
         });
 
     };
 
-    var handleError = function () {
-      flashService.showError("Error in file uploading", false);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.uploadfileError(status);
+      }
     };
 
-    curriculum.loadPromise = CurriculumService.uploadFileApi(audioFile)
+    CurriculumService.uploadFileApi(audioFile)
       .success(handleSuccess)
       .error(handleError);
   }
 
-  function uploadProfilePic(form,file) {
+  function uploadProfilePic(form, file) {
     var handleSuccess = function (data) {
-      if(data.files[0].type.includes("audio")){
+      if (data.files[0].type.includes("audio")) {
         curriculum.model.wordItem.audioURL = data.files[0].url;
-      }else{
+      } else {
         curriculum.model.wordItem.imageURL = data.files[0].url;
       }
       if (curriculum.isUpdate) {
@@ -192,22 +200,24 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
       } else {
         addAction(form);
       }
-      flashService.showSuccess("File uploaded successfully!", false);
-    };
 
-    var handleError = function () {
-      flashService.showError("Error in file uploading", false);
     };
-
-    curriculum.loadPromise = CurriculumService.uploadFileApi(file)
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.uploadfileError(status);
+      }
+    };
+    CurriculumService.uploadFileApi(file)
       .success(handleSuccess)
       .error(handleError);
   }
 
 
-  $scope.photoChanged = function (files) {
-    if (files != null) {
-      var file = files[0];
+  $scope.photoChanged = function (files, data) {
+
+    if (files.length > 0 || curriculum.previousImageObj) {
+      curriculum.previousImageObj = (files.length > 0) ? files : curriculum.previousImageObj;
+      var file = (files[0]) ? files[0] : curriculum.previousImageObj[0];
       if (curriculum.fileReaderSupported && file.type.indexOf('image') > -1) {
         curriculum.imageFileError = true;
         $timeout(function () {
@@ -219,7 +229,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
             });
           };
         });
-      }else{
+      } else {
         curriculum.imageFileError = false;
       }
     }
@@ -231,25 +241,24 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
       curriculum.audioFilesize = true;
       curriculum.audioFileError = true;
       var file = files[0];
-        if (curriculum.fileReaderSupported  && file.type.indexOf('audio') > -1) {
-          if(file.size <= 2000000) {
-            $timeout(function () {
-              var fileURL = URL.createObjectURL(file);
-              curriculum.model.wordItem.audioURL = ngAudio.load(fileURL);
-            });
-          }else{
-            curriculum.audioFilesize = false;
-            curriculum.isAudioUploaded = false;
-            curriculum.model.wordItem.audioURL = undefined;
-          }
+      if (curriculum.fileReaderSupported && file.type.indexOf('audio') > -1) {
+        if (file.size <= 2000000) {
+          $timeout(function () {
+            var fileURL = URL.createObjectURL(file);
+            curriculum.model.wordItem.audioURL = ngAudio.load(fileURL);
+          });
+        } else {
+          curriculum.audioFilesize = false;
+          curriculum.isAudioUploaded = false;
+          curriculum.model.wordItem.audioURL = undefined;
+        }
 
-        } else{
+      } else {
         curriculum.isAudioUploaded = false;
-          curriculum.audioFileError = false;
+        curriculum.audioFileError = false;
         curriculum.model.wordItem.audioURL = undefined;
       }
     }
   };
-
 
 }]);
