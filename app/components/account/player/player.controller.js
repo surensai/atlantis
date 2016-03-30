@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerService', 'flashService','$translate', function ($timeout, $state, PlayerService, flashService, $translate) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerService', 'messagesFactory', function ($timeout, $state, PlayerService, messagesFactory) {
 
   var player = this;
   player.model = {};
@@ -20,69 +20,11 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
     LastPlayed: "Last Played",
     LastAttempt: "Last Attempt"
   };
+  player.drag = 'drag feedback';
+  player.drop = 'drop feedback';
+  player.wordsData = [];
 
-  player.bigBadges = [
-    {
-      milestone: 'Apple',
-      percentage: '130%',
-      type: '120-alphabet'
-    }, {
-      milestone: 'Up',
-      percentage: '100%',
-      type: '100-up'
-    }, {
-      milestone: 'Cat',
-      percentage: '80%',
-      type: '80-cat'
-    }, {
-      milestone: 'Sight',
-      percentage: '120%',
-      type: 'strted-sight'
-    }, {
-      milestone: 'Pancake',
-      percentage: '115%',
-      type: 'Pancake'
-    }, {
-      milestone: 'Fish',
-      percentage: '90%',
-      type: 'Fish'
-    }, {
-      milestone: 'Brick',
-      percentage: '50%',
-      type: 'Brick'
-    }, {
-      milestone: 'Floss',
-      percentage: '0%',
-      type: 'Floss'
-    }, {
-      milestone: 'Bee',
-      percentage: '0%',
-      type: 'Bee'
-    }, {
-      milestone: 'Sky',
-      percentage: '0%',
-      type: 'Sky'
-    }, {
-      milestone: 'Car',
-      percentage: '0%',
-      type: 'Car'
-    }, {
-      milestone: 'Light',
-      percentage: '0%',
-      type: 'Light'
-    }, {
-      milestone: 'Bear',
-      percentage: '0%',
-      type: 'Bear'
-    }, {
-      milestone: 'House',
-      percentage: '0%',
-      type: 'House'
-    }, {
-      milestone: 'Swan',
-      percentage: '0%',
-      type: 'Swan'
-    }];
+  player.bigBadges = PlayerService.getBadges();
 
   player.getKeysOfCollection = function (obj) {
     obj = angular.copy(obj);
@@ -112,15 +54,17 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
             player.playerObj = data;
           })
           .error(function () {
-            flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+            messagesFactory.getPlayersError(status);
           });
         $state.go('account.players.details', {id: playerId});
       }
 
     };
 
-    var handleError = function () {
-      flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.getPlayersError(status);
+      }
     };
 
    PlayerService.getAllApi()
@@ -146,16 +90,11 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
     }
   }
 
-  player.drag = 'drag feedback';
-  player.drop = 'drop feedback';
-  player.wordsData = [];
-
   player.showGraph = function (index, colIndex) {
     player.clicked = true;
     player.showRow = index;
     player.showColumn = colIndex;
   };
-
 
   player.getWords = function (childId) {
     var handleSuccess = function (data) {
@@ -164,8 +103,10 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
       }
     };
 
-    var handleError = function () {
-      flashService.showError($translate.instant("player.messages.error_getting_words"), false);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.getPlayerwordsError(status);
+      }
     };
 
     PlayerService.getWordsApi(childId)

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('firmwareCtrl', ['$timeout', 'firmwareService', 'flashService', function ($timeout, firmwareService, flashService) {
+angular.module("app").controller('firmwareCtrl', ['$timeout', 'firmwareService', 'messagesFactory', function ($timeout, firmwareService, messagesFactory) {
 
   var firmware = this;
   firmware.isUpdate = false;
@@ -25,14 +25,16 @@ angular.module("app").controller('firmwareCtrl', ['$timeout', 'firmwareService',
   };
 
   function addAction(form) {
-    var handleSuccess = function () {
-      flashService.showSuccess("firmware added successfully!", true);
+    var handleSuccess = function (data) {
+      messagesFactory.firmwarecreateSuccess(data);
     };
 
-    var handleError = function () {
-      flashService.showError("Invalid firmware credentials", false);
-      form.$setPristine();
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.firmwarecreateError(status);
+      }
     };
+
 
     firmwareService.createApi(firmware.model)
       .success(handleSuccess)
@@ -45,10 +47,11 @@ angular.module("app").controller('firmwareCtrl', ['$timeout', 'firmwareService',
       addAction(form);
     };
 
-    var handleError = function () {
-      flashService.showError("Error in file uploading", false);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.firmwareuploadError(status);
+      }
     };
-
     var file = firmware.model.firmware_update_url;
 
     firmwareService.uploadFileApi(file)
