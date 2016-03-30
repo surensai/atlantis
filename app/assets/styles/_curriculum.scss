@@ -1,5 +1,6 @@
 .curriculum-container {
   margin-top: 20px;
+  text-align: justify;
   .curriculum-customword-panel{
 
      .add-customword-panle-body{
@@ -225,4 +226,17 @@
 }
 .custom-message-color{
   color: lighten(#000, 50%);
+}
+
+@media only screen and
+(min-device-width: 320px) and (max-device-width: 1024px) {
+  .add-word-cancel-margin {
+    margin-left:10px;
+  }
+  .add-word-btn-padding {
+    padding: 6px 12px;
+  }
+  .add-word-cancel-btn-padding {
+  padding: 5px 30px 5px 30px;
+  }
 }

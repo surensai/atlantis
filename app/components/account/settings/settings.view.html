@@ -99,7 +99,7 @@
 
             <div class="col-md-4"></div>
             <div class="col-md-6">
-              <button class="btn btn-primary settings-edit-button" type="button" data-ng-click="settings.edit();"
+              <button class="btn btn-primary settings-edit-button edit-submit-btn" type="button" data-ng-click="settings.edit();"
                       data-ng-hide="settings.isEditClicked">Edit
               </button>
               <button type="submit" data-ng-disabled="settingsForm.$invalid"
@@ -195,7 +195,7 @@
           </div>
           <div class="col-md-4"></div>
           <div class="col-md-5">
-            <button type="submit" class="btn btn-primary settings-submit-button" data-translate="common.buttons.submit">
+            <button type="submit" class="btn btn-primary settings-submit-button edit-submit-btn" data-translate="common.buttons.submit">
               Submit
             </button>
 
@@ -226,11 +226,11 @@
             </ul>
           </div>
 
-          <div class="col-md-12 margin-top20 center-align">
-            <button class="btn btn-primary notification-submit-button" type="submit"
+          <div class="col-md-12 margin-top20 center-align submit-clear-parent-div">
+            <button class="btn btn-primary notification-submit-button submit-clear-all-padding" type="submit"
                     data-translate="common.buttons.submit">SUBMIT
             </button>
-            <button class="btn btn-primary cancel-button" type="button"
+            <button class="btn btn-primary cancel-button submit-clear-all-padding" type="button"
                     data-translate="common.buttons.clear_all" data-ng-click="settings.clearAllAlphabets()">Clear All
             </button>
           </div>

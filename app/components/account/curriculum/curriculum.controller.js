@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', '$scope', '$state', '$uibModal', '$translate', 'messagesFactory', function ($timeout, CurriculumService, $scope, $state, $uibModal, $translate, messagesFactory) {
+angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', '$scope', '$state', '$uibModal', 'messagesFactory','$translate', function ($timeout, CurriculumService, $scope, $state, $uibModal, messagesFactory,$translate) {
 
   var curriculum = this;
   curriculum.customWords = [];

@@ -202,7 +202,12 @@
       "error_group_words":"Error in submitting group words.",
       "word_success_msg":"Word added succesfully.",
       "invalid_word_deatils":"Invalid word credentials.",
-      "word_update_msg":"Word updated successfully."
+      "word_update_msg":"Word updated successfully.",
+      "error_get_feeds":"Error in getting feeds.",
+      "invalid_firmware":"Invalid firmware credentials",
+      "firmware_upload_error":"Error in file uploading",
+      "firmware_success":"firmware added successfully!"
+
     },
     "change_password": {
       "old_password": "Old Password",
