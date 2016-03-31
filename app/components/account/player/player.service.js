@@ -147,7 +147,7 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
         type: 'disabled',
         image:'swan'
       }];
-  }
+  };
 
   return service;
 

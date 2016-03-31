@@ -1,16 +1,28 @@
 'use strict';
 
-angular.module("app").controller('dashboardCtrl', ['DashboardService','messagesFactory', function (DashboardService,messagesFactory) {
+angular.module("app").controller('dashboardCtrl', ['DashboardService','messagesFactory','$state', '$stateParams', function (DashboardService,messagesFactory,$state,$stateParams) {
   var dashboard = this;
   dashboard.model = {};
   dashboard.data = {};
-  dashboard.data.newsFeedsList = [];
-
+  dashboard.data.newsFeedsList = {};
+  dashboard.data.newsFeeds={};
+  console.log($stateParams);
   (function () {
     var handleSuccess = function (data) {
-      dashboard.data.newsFeedsList = data;
+      console.log($stateParams.id);
+      if($stateParams.id){
+        var tempArr=[];
+        for(var i=0; i<data.length; i++){
+          if($stateParams.id === data[i].id){
+            tempArr.push(data[i]);
+            dashboard.data.newsFeedsList = tempArr;
+            break;
+          }
+        }
+      }else{
+        dashboard.data.newsFeedsList = data;
+      }
     };
-
     var handleError = function (error, status) {
       if (error && status) {
         messagesFactory.dashboardfeedsError(status);
@@ -20,6 +32,7 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService','messagesF
     DashboardService.getAllApi()
       .success(handleSuccess)
       .error(handleError);
+
   })();
 
 }]);

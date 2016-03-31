@@ -102,36 +102,30 @@
         <p class="curriculum-milestone-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore etdolore magna aliqua. Ut enim ad minim veniam,
           quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-        <uib-accordion>
+        <uib-accordion id="href-remove">
           <uib-accordion-group is-open="status.open">
-            <uib-accordion-heading>
+            <uib-accordion-heading >
               <i class=" glyphicon"
-                 ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Anatomy
+                 ng-class="{'glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Anatomy
+              <input type="checkbox" ng-if="status.open" ng-model="curriculum.anatomyWords.selectedAll"
+                     ng-click="curriculum.checkAll($event,curriculum.anatomyWords.selectedAll,curriculum.group.anatomyWords)"/>
             </uib-accordion-heading>
             <div class="curriculum-groupword-data">
-              <!--<div class="checkbox">-->
-                <!--<label><input type="checkbox" ng-model="curriculum.anatomyWords.selectedAll"-->
-                              <!--ng-click="curriculum.checkAll(curriculum.anatomyWords.selectedAll,curriculum.group.anatomyWords)"/>Select-->
-                  <!--All</label>-->
-              <!--</div>-->
               <div class="checkbox" data-ng-repeat="word in curriculum.group.anatomyWords">
                 <label><input type="checkbox" data-ng-model="word.groupedflag">{{word.Word}}</label>
               </div>
             </div>
           </uib-accordion-group>
         </uib-accordion>
-        <uib-accordion>
+        <uib-accordion id="href-remove">
           <uib-accordion-group is-open="status.open">
             <uib-accordion-heading>
               <i class=" glyphicon"
                  ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Bathroom
+              <input type="checkbox" ng-if="status.open" ng-model="curriculum.bathroomWords.selectedAll"
+                     ng-click="curriculum.checkAll($event,curriculum.bathroomWords.selectedAll,curriculum.group.bathroomWords)"/>
             </uib-accordion-heading>
             <div class="curriculum-groupword-data">
-              <!--<div class="checkbox">-->
-                <!--<label><input type="checkbox" ng-model="curriculum.bathroomWords.selectedAll"-->
-                              <!--ng-click="curriculum.checkAll(curriculum.bathroomWords.selectedAll,curriculum.group.bathroomWords)"/>Select-->
-                  <!--All</label>-->
-              <!--</div>-->
               <div class="checkbox" data-ng-repeat="word in curriculum.group.bathroomWords">
                 <label><input type="checkbox" data-ng-model="word.groupedflag">{{word.Word}}</label>
               </div>

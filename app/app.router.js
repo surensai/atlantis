@@ -136,7 +136,15 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     data: {
       pageTitle: 'Square Panda - Dashboard'
     }
-  }).state('account.players', {
+  }).state('account.feeds', {
+      url: '/dashboard/:id/feed',
+      templateUrl: urlBuilder('account/dashboard', 'newsfeeds'),
+      controller: 'dashboardCtrl',
+      controllerAs: "dashboard",
+      data: {
+        pageTitle: 'Square Panda - Dashboard Feeds'
+      }
+    }).state('account.players', {
     url: '/players',
     templateUrl: urlBuilder('account/player', 'players'),
     controller: 'playerCtrl',
