@@ -106,6 +106,7 @@
           border-right: 1px solid #eb9710;
           text-decoration: none;
           text-align: center;
+          width: 10%;
           img{
             margin-bottom: 4px;
           }
@@ -114,6 +115,7 @@
             display: block;
             text-align: center;
             font-size: 14px;
+            width: 100%;
           }
           &:hover {
             background-color: #eb9710;
@@ -381,4 +383,22 @@
     display: block;
   }
 
+}
+
+.word-text {
+  width: 110px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.word-icons {
+  width: 24%;
+}
+
+.word-check {
+  width: 16%;
+}
+.word-date {
+  width: 36%;
 }

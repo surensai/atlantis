@@ -30,7 +30,7 @@
           font-size: 14px;
           color: #9a9a9a;
           line-height: 22px;
-          text-align: justify;
+         // text-align: justify;
         }
       }
       .panel-footer {
@@ -69,6 +69,16 @@
   border-bottom-left-radius: 10px;
 }
 
+.feed-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -moz-box-orient: vertical;
+  height: 110px;
+  -webkit-line-clamp: 5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
 .first-element {
   margin: 0px 0 10px !important;
 }
@@ -82,6 +92,13 @@
   margin-top: 0px !important;
   margin-bottom: 0px !important;
 }
+
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .read-more-margin{
   margin-right: 1px;
 }

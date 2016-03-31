@@ -35,9 +35,9 @@
       <div class="top-nav pull-right">
         <div class="top-header">
           <div class="dropdown" data-ng-if="globals.currentUser">
-            <a href="" class="dropdown-toggle" type="button" data-toggle="dropdown" width="50%">{{globals.currentUser.firstName}}
+            <a href="" class="dropdown-toggle text-ellipsis user-name" type="button" data-toggle="dropdown" width="50%">{{globals.currentUser.firstName}}
               {{globals.currentUser.lastName}}
-              <span class="caret"></span></a>
+            </a><p class="caret" data-toggle="dropdown" ></p>
             <ul class="dropdown-menu">
               <li data-ng-if="globals.currentUser.email === 'admin@squarepanda.com'"><a ui-sref="admin.firmware-update" data-translate="nav.firmware_update.title">Firmware Update</a></li>
               <li><a href="javascript:;" data-ng-click="logout()" data-translate="nav.header.logout" >Logout</a></li>
