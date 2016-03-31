@@ -176,11 +176,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
           messagesFactory.getPlayerbyIDError(status);
         }
       };
-
-      var handleError = function () {
-        flashService.showError($translate.instant("player.messages.error_getting_players"), false);
-      };
-
       PlayerService.getPlayerById($state.params.id)
         .success(handleSuccess)
         .error(handleError);
