@@ -24,7 +24,7 @@ angular.module("app").controller('firmwareCtrl', ['$timeout', 'firmwareService',
     }
   };
 
-  function addAction(form) {
+  function addAction() {
     var handleSuccess = function (data) {
       messagesFactory.firmwarecreateSuccess(data);
     };
