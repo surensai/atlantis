@@ -136,7 +136,15 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     data: {
       pageTitle: 'Square Panda - Dashboard'
     }
-  }).state('account.players', {
+  }).state('account.feeds', {
+      url: '/dashboard/:id/feed',
+      templateUrl: urlBuilder('account/dashboard', 'newsfeeds'),
+      controller: 'dashboardCtrl',
+      controllerAs: "dashboard",
+      data: {
+        pageTitle: 'Square Panda - Dashboard Feeds'
+      }
+    }).state('account.players', {
     url: '/players',
     templateUrl: urlBuilder('account/player', 'players'),
     controller: 'playerCtrl',
@@ -175,7 +183,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     controllerAs: "curriculum",
     params: {'word': null},
     data: {
-      pageTitle: 'Square Panda - Curriculum'
+      pageTitle: 'Square Panda - Add Word'
     }
   }).state('account.editCustomWord', {
     url: '/curriculum/:id/editword',
@@ -183,7 +191,15 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     controller: 'curriculumActionCtrl',
     controllerAs: "curriculum",
     data: {
-      pageTitle: 'Square Panda - Curriculum'
+      pageTitle: 'Square Panda - Edit Word'
+    }
+  }).state('account.viewCustomWord', {
+    url: '/curriculum/:id/viewword',
+    templateUrl: urlBuilder('account/curriculum', 'curriculum-action'),
+    controller: 'curriculumActionCtrl',
+    controllerAs: "curriculum",
+    data: {
+      pageTitle: 'Square Panda - view Word'
     }
   }).state('account.settings', {
     url: '/settings',

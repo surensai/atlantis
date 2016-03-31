@@ -384,6 +384,16 @@
   }
 
 }
+@media only screen and
+(min-device-width: 320px) and (max-device-width: 1024px) {
+  .save-cancel-parent {
+    display: inline;
+  }
+  .save-cancel-player{
+    padding: 6px 12px !important;
+    width: 32%;
+  }
+}
 
 .word-text {
   width: 110px;

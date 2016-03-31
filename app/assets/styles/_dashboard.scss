@@ -1,6 +1,9 @@
 .player-container{
   padding-top: 30px
 }
+.newsfeed-conatiner{
+
+}
 .dashboard-container {
   background-color: $account-bg-color;
   padding-top: 20px;
@@ -30,7 +33,6 @@
           font-size: 14px;
           color: #9a9a9a;
           line-height: 22px;
-         // text-align: justify;
         }
       }
       .panel-footer {
@@ -108,4 +110,8 @@
   .feed-img{
     max-height: none!important;
   }
+}
+.scroll-disabled {
+  overflow: hidden;
+  position: fixed;
 }

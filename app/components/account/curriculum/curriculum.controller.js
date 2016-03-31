@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', '$scope', '$state', '$uibModal', '$translate', 'messagesFactory', function ($timeout, CurriculumService, $scope, $state, $uibModal, $translate, messagesFactory) {
+angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', '$scope', '$state', '$uibModal', 'messagesFactory','$translate', function ($timeout, CurriculumService, $scope, $state, $uibModal, messagesFactory,$translate) {
 
   var curriculum = this;
   curriculum.customWords = [];
@@ -189,7 +189,10 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
       .error(handleError);
   }
 
-  curriculum.checkAll = function (selectedAll,words) {
+  curriculum.checkAll = function (event,selectedAll,words) {
+    angular.element("#href-remove a").removeAttr("href");
+    event.stopPropagation();
+
     if (selectedAll) {
       selectedAll = true;
     } else {

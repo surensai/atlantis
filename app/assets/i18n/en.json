@@ -99,6 +99,10 @@
     "edit_custom_word":{
       "title": "Edit Custom Word",
       "header":"Edit Custom Word"
+    },
+    "view_custom_word":{
+      "title": "View Custom Word",
+      "header":"View Custom Word"
     }
 
 
@@ -116,7 +120,8 @@
       "addword": "Add Word",
       "clear_all": "Clear All",
       "yes": "Yes",
-      "no": "No"
+      "no": "No",
+      "back" : "Back"
     },
     "dob_year": "Year",
     "dob_month": "Month",
@@ -202,7 +207,12 @@
       "error_group_words":"Error in submitting group words.",
       "word_success_msg":"Word added succesfully.",
       "invalid_word_deatils":"Invalid word credentials.",
-      "word_update_msg":"Word updated successfully."
+      "word_update_msg":"Word updated successfully.",
+      "error_get_feeds":"Error in getting feeds.",
+      "invalid_firmware":"Invalid firmware credentials",
+      "firmware_upload_error":"Error in file uploading",
+      "firmware_success":"firmware added successfully!"
+
     },
     "change_password": {
       "old_password": "Old Password",

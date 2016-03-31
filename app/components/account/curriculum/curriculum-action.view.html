@@ -3,8 +3,10 @@
 <div class="container container-min-height addpalyer-container">
   <div class="panel">
     <div class="panel-heading sp-common-panel-header text-center">
-      <span data-translate="nav.add_custom_word.header" data-ng-if="!curriculum.isUpdate">Add Custom Word</span>
-      <span data-translate="nav.edit_custom_word.header" data-ng-if="curriculum.isUpdate">Edit Custom Word</span>
+      <span data-translate="nav.add_custom_word.header" data-ng-if="!curriculum.isView && !curriculum.isUpdate">Add Custom Word</span>
+      <span data-translate="nav.edit_custom_word.header" data-ng-if="!curriculum.isView && curriculum.isUpdate">Edit Custom Word</span>
+      <span data-translate="nav.view_custom_word.header" data-ng-if="curriculum.isView">View Custom Word</span>
+
     </div>
     <div class="panel-body">
       <form name="playerForm" ng-submit="curriculum.submitForm(playerForm)" novalidate>
@@ -12,15 +14,16 @@
 
           <div class="form-group">
             <div class="col-md-3"></div>
-            <label class="col-md-2 control-label" data-translate="curriculum.wordlabel">Word</label>
-
+            <div class="col-md-2">
+              <label class=" control-label" data-translate="curriculum.wordlabel">Word</label>
+            </div>
             <div class="col-md-3">
               <div style="display: inline-flex;">
 
-                <input type="text" name="word" class="form-control" data-ng-model="curriculum.model.wordItem.wordName"
+                <input ng-disabled="curriculum.isView" type="text" name="word" class="form-control" data-ng-model="curriculum.model.wordItem.wordName"
                        placeholder="{{ 'curriculum.word' | translate }}" required ng-pattern="/^[A-z][A-z]*$/" ng-minlength="1" ng-maxlength="24">
 
-                <span class="btn btn-default custom-search-button" ng-click="curriculum.searchWord()"><i
+                <span class="btn btn-default custom-search-button" ng-click="curriculum.searchWord()" data-ng-if="!curriculum.isView"><i
                   class="fa fa-search"></i></span>
               </div>
               <div class="custom-message-color" ng-show="curriculum.model.message">{{curriculum.model.message}}</div>
@@ -48,12 +51,12 @@
               <span ng-click='curriculum.model.wordItem.audioURL.paused ? curriculum.model.wordItem.audioURL.play() : curriculum.model.wordItem.audioURL.pause()'
                     ng-disabled="!curriculum.isAudioUploaded"   class="btn  custom-audio-button custom-volume-button"><i class="fa fa-volume-up"></i> </span>
 
-              <div class=" btn custom-audio-button custom-audio-file">
+              <div class=" btn custom-audio-button custom-audio-file" data-ng-if="!curriculum.isView">
                 <input type="file" id="audio" name="file" file-model="curriculum.myAudioFile" class="img-rectangle img-border-radius "
                        accept="audio/*" onchange="angular.element(this).scope().audioFileChanged(this.files)">
                 <span>Browse</span>
               </div>
-              <span ng-disabled="!curriculum.isAudioUploaded" ng-click="curriculum.refreshFile()" class="btn btn-default custom-audio-button repeat-button"
+              <span data-ng-if="!curriculum.isView" ng-disabled="!curriculum.isAudioUploaded" ng-click="curriculum.refreshFile()" class="btn btn-default custom-audio-button repeat-button"
                     ><i class="glyphicon glyphicon-repeat"></i></span>
 
             </div>
@@ -72,14 +75,14 @@
 
           <div class="form-group">
             <div class="col-md-3"></div>
-            <label class="col-md-2 control-label add-profile-pic" data-translate="curriculum.picture">Picture</label>
+            <label class="col-md-2 col-sm-2 control-label add-profile-pic" data-translate="curriculum.picture">Picture</label>
 
-            <div class="col-md-2">
+            <div class="col-md-2 col-sm-3">
               <div class="thumbnail ">
                 <img class="apply-margin-bottom" ng-src="{{curriculum.model.wordItem.imageURL}}">
               </div>
               <div>
-                <div class="myLabel text-center" href="">
+                <div class="myLabel text-center" href="" data-ng-if="!curriculum.isView">
                   <input type="file" name="file" file-model="curriculum.myImageFile" accept="image/*"
                          class="img-rectangle img-border-radius  "
                          onchange="angular.element(this).scope().photoChanged(this.files); ">
@@ -93,19 +96,29 @@
               </div>
             </div>
           </div>
-          <div class="form-group">
+
+          <div class="form-group" data-ng-if="!curriculum.isView">
             <div class="col-md-3"></div>
             <div class="col-md-2"></div>
-            <div class="col-md-6 add-word-cancel-margin">
-              <button type="submit" ng-if="!curriculum.isUpdate" class="btn btn-primary add-word-button add-word-btn-padding"
+            <div class="col-md-6">
+              <button type="submit" ng-if="!curriculum.isUpdate" class="btn btn-primary add-word-save-button"
                       data-translate="common.buttons.addword">Add Word
               </button>
-              <button ng-if="curriculum.isUpdate" type="submit" class="btn btn-primary add-cancel-button add-word-cancel-btn-padding"
+              <button ng-if="curriculum.isUpdate" type="submit" class="btn btn-primary add-save-button "
                       data-translate="common.buttons.save">Save
               </button>
-              <button type="button" class="btn btn-primary cancel-button add-cancel-button add-word-cancel-btn-padding" ui-sref="account.curriculum"
+              <button type="button" class="btn add-word-cancel-button " ui-sref="account.curriculum"
                       data-translate="common.buttons.cancel">Cancel
               </button>
+            </div>
+          </div>
+          <div class="form-group clearfix" data-ng-if="curriculum.isView">
+            <div class="col-md-3"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-6 ">
+               <a class="btn  add-word-cancel-margin" ui-sref="account.curriculum"
+                      data-translate="common.buttons.back">Back
+              </a>
             </div>
           </div>
         </div>

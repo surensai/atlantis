@@ -98,10 +98,10 @@
           </div>
 
           <div class="form-group">
-            <div class="col-md-2"></div>
-            <label class="col-md-2 control-label add-profile-pic" data-translate="player.add_picture">Add Picture</label>
+            <div class="col-md-2 "></div>
+            <label class="col-md-2 col-sm-2 control-label add-profile-pic" data-translate="player.add_picture">Add Picture</label>
 
-            <div class="col-md-2">
+            <div class="col-md-2 col-sm-3">
               <!--<div class="cropArea" style="display:none;width:500px;height:350px;">-->
                 <!--<img-crop image="playerAction.model.playerItem.profileURL"-->
                           <!--area-type="square" area-min-size="450"-->
@@ -128,14 +128,14 @@
               </div>
             </div>
           </div>
-          <div class="col-md-2"></div>
-          <div class="col-md-2"></div>
-          <div class="col-md-5">
-            <button type="submit" class="btn btn-primary player-button-padding" data-translate="common.buttons.save">
+          <div class="col-md-2 "></div>
+          <div class="col-md-2 col-sm-2"></div>
+          <div class="col-md-5 col-sm-5 save-cancel-parent">
+            <button type="submit" class="btn btn-primary player-button-padding save-cancel-player" data-translate="common.buttons.save">
               Save
             </button>
             <a ui-sref="account.players.details({ id: playerAction.model.playerItem.id })" type="button"
-               class="btn btn-primary cancel-button " data-translate="common.buttons.cancel">Cancel</a>
+               class="btn btn-primary cancel-button save-cancel-player" data-translate="common.buttons.cancel">Cancel</a>
             <img src="assets/images/delete-player.png" class=" player-delete-icon pull-right" data-target="#{{modal}}"
                  data-toggle="modal" data-ng-if="playerAction.isUpdate"
                  data-ng-click="playerAction.deleteListener(playerAction.model.playerItem)">
