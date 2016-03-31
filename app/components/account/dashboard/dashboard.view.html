@@ -9,9 +9,9 @@
       </div>
       <div class="col-md-7 nopadding">
         <div class="panel-body">
-          <h3 class="reduce-margin">{{feedItem.title}}</h3>
+          <h3 class="reduce-margin text-ellipsis">{{feedItem.title}}</h3>
           <p class="time-ago" am-time-ago="feedItem.updatedAt"></p>
-          <p ng-class="{'first-element':$index ==0,'second-element': $index == 1,'third-element':$index == 2}">{{feedItem.description}}</p>
+          <p class="feed-description" ng-class="{'first-element':$index ==0,'second-element': $index == 1,'third-element':$index == 2}">{{feedItem.description}}</p>
         </div>
         <div class="panel-footer">
           <div class="icons-block">

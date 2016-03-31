@@ -74,13 +74,12 @@
                 </thead>
                 <tbody>
                 <tr data-ng-repeat="word in curriculum.customWords | orderBy:curriculum.predicate:curriculum.reverse">
-                  <td class="player-words">{{ word.Words}}</td>
-                  <td>{{ word.dateAdded | date:"MM/dd/yyyy ' h:mma"}}</td>
-
-                  <td data-ng-if="word.picture">Available</td>
-                  <td data-ng-if="!word.picture">Not Available</td>
-                  <td><a href="#"><i class="fa fa-eye"  ui-sref="account.viewCustomWord({ id: word.id})"></i></a> <a href=""> <i ui-sref="account.editCustomWord({ id: word.id})"
-                                                   class="fa fa-pencil-square-o left-padding"></i> </a><a href=""> <i
+                  <td class="player-words text-ellipsis word-text">{{ word.Words}}</td>
+                  <td class="word-date">{{ word.dateAdded | date:"MM/dd/yyyy ' h:mma"}}</td>
+                  <td data-ng-if="word.picture" class="word-check">Available</td>
+                  <td data-ng-if="!word.picture" class="word-check">Not Available</td>
+                  <td class="word-icons"><a href="#"><i class="fa fa-eye"  ui-sref="account.viewCustomWord({ id: word.id})"></i></a> <a href=""> <i ui-sref="account.editCustomWord({ id: word.id})"
+                                                                                                                                                    class="fa fa-pencil-square-o left-padding"></i> </a><a href=""> <i
                     data-ng-click="curriculum.deleteListener(word)" class="fa fa-trash left-padding"></i></a></td>
                 </tr>
                 <tr data-ng-if="curriculum.customWords.length === 0">
@@ -102,30 +101,36 @@
         <p class="curriculum-milestone-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore etdolore magna aliqua. Ut enim ad minim veniam,
           quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-        <uib-accordion id="href-remove">
+        <uib-accordion>
           <uib-accordion-group is-open="status.open">
-            <uib-accordion-heading >
+            <uib-accordion-heading>
               <i class=" glyphicon"
-                 ng-class="{'glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Anatomy
-              <input type="checkbox" ng-if="status.open" ng-model="curriculum.anatomyWords.selectedAll"
-                     ng-click="curriculum.checkAll($event,curriculum.anatomyWords.selectedAll,curriculum.group.anatomyWords)"/>
+                 ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Anatomy
             </uib-accordion-heading>
             <div class="curriculum-groupword-data">
+              <!--<div class="checkbox">-->
+                <!--<label><input type="checkbox" ng-model="curriculum.anatomyWords.selectedAll"-->
+                              <!--ng-click="curriculum.checkAll(curriculum.anatomyWords.selectedAll,curriculum.group.anatomyWords)"/>Select-->
+                  <!--All</label>-->
+              <!--</div>-->
               <div class="checkbox" data-ng-repeat="word in curriculum.group.anatomyWords">
                 <label><input type="checkbox" data-ng-model="word.groupedflag">{{word.Word}}</label>
               </div>
             </div>
           </uib-accordion-group>
         </uib-accordion>
-        <uib-accordion id="href-remove">
+        <uib-accordion>
           <uib-accordion-group is-open="status.open">
             <uib-accordion-heading>
               <i class=" glyphicon"
                  ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Bathroom
-              <input type="checkbox" ng-if="status.open" ng-model="curriculum.bathroomWords.selectedAll"
-                     ng-click="curriculum.checkAll($event,curriculum.bathroomWords.selectedAll,curriculum.group.bathroomWords)"/>
             </uib-accordion-heading>
             <div class="curriculum-groupword-data">
+              <!--<div class="checkbox">-->
+                <!--<label><input type="checkbox" ng-model="curriculum.bathroomWords.selectedAll"-->
+                              <!--ng-click="curriculum.checkAll(curriculum.bathroomWords.selectedAll,curriculum.group.bathroomWords)"/>Select-->
+                  <!--All</label>-->
+              <!--</div>-->
               <div class="checkbox" data-ng-repeat="word in curriculum.group.bathroomWords">
                 <label><input type="checkbox" data-ng-model="word.groupedflag">{{word.Word}}</label>
               </div>

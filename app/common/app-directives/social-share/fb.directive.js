@@ -18,7 +18,7 @@ angular.module("app").directive('fbShare', ['$window', function ($window) {
         });
       }
       element.bind('click', function () {
-        $window.open("https://www.facebook.com/dialog/feed?"+"app_id="+221526371536033+"/caption="+scope.item.title+"/picture="+scope.item.image_url+"/name="+scope.item.title+"/description="+scope.item.description);
+        $window.open("https://www.facebook.com/dialog/feed?app_id=221526371536033&link=https://developers.facebook.com/docs/reference/dialogs/&picture="+scope.item.image_url+"&name="+scope.item.title+"&caption="+scope.item.title+"&description="+scope.item.description);
       });
     }
   };
