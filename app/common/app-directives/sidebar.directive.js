@@ -8,6 +8,12 @@ angular.module("app").directive('sideBar', ['$timeout','AuthenticationService', 
         element.bind('click', function () {
           angular.element(document.querySelector('#sidebar')).toggleClass('sidebar-toggle');
           angular.element(document.querySelector('.slidebar-overlay')).toggleClass('slide-overlay-toggle');
+          if(angular.element(document.querySelector('#sidebar')).hasClass('sidebar-toggle')){
+            $('body').addClass('scroll-disabled');
+          }
+          else{
+            $('body').removeClass('scroll-disabled');
+          }
         });
 
         angular.element(document.querySelector('#side-bar-logout')).bind('click', function () {

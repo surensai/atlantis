@@ -92,3 +92,7 @@
     max-height: none!important;
   }
 }
+.scroll-disabled {
+  overflow: hidden;
+  position: fixed;
+}
