@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messagesFactory', 'PlayerService', '$timeout','$translate',  function ($scope, $state, messagesFactory, PlayerService, $timeout,$translate) {
+angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messagesFactory', 'PlayerService', '$timeout', '$translate', function ($scope, $state, messagesFactory, PlayerService, $timeout, $translate) {
 
   var playerAction = this;
   playerAction.model = {};
@@ -127,7 +127,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       angular.element('#pop').modal('hide');
       messagesFactory.deletePlayerSuccess(data)
       $state.go("account.players");
-
     };
     var handleError = function (error, status) {
       if (error && status) {

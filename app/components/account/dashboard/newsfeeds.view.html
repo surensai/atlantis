@@ -1,0 +1,27 @@
+<div class="container container-margins">
+<div class="col-md-3 clearfix"></div>
+<div class="feed-row " data-ng-repeat="feedItem in dashboard.data.newsFeedsList">
+
+<div class="col-md-6 container-margins">
+  <h3 class="reduce-margin">{{feedItem.title}}</h3>
+  <div class=" nopadding container-margins">
+    <img data-ng-if="!feedItem.image_url" src="assets/images/no-image.png" class="img-responsive feed-img center-align"  />
+    <img data-ng-if="feedItem.image_url" data-ng-src="{{feedItem.image_url}}" class="img-responsive feed-img center-align"
+         ng-class="{ 'first-imgsize':$index ==0, 'second-imgsize': $index == 1}"/>
+  </div>
+
+  <div>
+  <div class=" nopadding col-md-12">
+    <div class="panel-body">
+      <p class="time-ago" am-time-ago="feedItem.updatedAt"></p>
+      <p ng-class="{'first-element':$index ==0,'second-element': $index == 1,'third-element':$index == 2}">{{feedItem.description}}</p>
+    </div>
+
+    </div>
+    <button class="btn btn-primary center-block" ui-sref="account.dashboard">Back to Home</button>
+  </div>
+</div>
+</div>
+
+<div class="col-md-3 clearfix"></div>
+</div>

@@ -92,21 +92,21 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     }
   }
 
-  function settingsNotificationsErrorMessages(status) {
+  function settingsNotificationsErrorMessages(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
     }
     flashService.showError($translate.instant('user.validationMessages.nofifications_error_msg'), false);
   }
-  function settingsgetNotifictaionsErrorMessages(status){
+  function settingsgetNotifictaionsErrorMessages(status,error){
     var message;
     if (status !== "") {
       message = error.error;
     }
     flashService.showError($translate.instant('user.validationMessages.nofifications_error_msg'), false);
   }
-  function MissingLettersErrorMessages(status) {
+  function MissingLettersErrorMessages(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -119,14 +119,14 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
 
     }
   }
-  function selectmissinglettesErrorMessages(status) {
+  function selectmissinglettesErrorMessages(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
     }
     flashService.showError($translate.instant('user.validationMessages.missing_letters_error'), false);
   }
-  function customisesearchwordError(status) {
+  function customisesearchwordError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -139,7 +139,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
       flashService.showSuccess($translate.instant('user.validationMessages.groupword_success_msg'), true);
     }
   }
-  function submitGroupwordsError(status) {
+  function submitGroupwordsError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -151,35 +151,35 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
       flashService.showSuccess($translate.instant("curriculum.message.delete_success"), true);
     }
   }
-  function deletewordError(status) {
+  function deletewordError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
     }
     flashService.showError($translate.instant("curriculum.message.error_deleting_word"), false);
   }
-  function listwordsError(status) {
+  function listwordsError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
     }
     flashService.showError($translate.instant("player.messages.error_getting_words"), false);
   }
-  function getGroupwordsError(status) {
+  function getGroupwordsError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
     }
     flashService.showError($translate.instant("player.messages.error_getting_words"), false);
   }
-  function searchwordsError(status) {
+  function searchwordsError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
     }
     flashService.showError($translate.instant("player.messages.error_getting_words"), false);
   }
-  function getwordsError(status) {
+  function getwordsError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -191,7 +191,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
       flashService.showSuccess($translate.instant('user.validationMessages.word_success_msg'), true);
     }
   }
-  function savewordsError(status) {
+  function savewordsError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -203,35 +203,35 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
       flashService.showSuccess($translate.instant('user.validationMessages.word_update_msg'), true);
     }
   }
-  function updatewordsError(status) {
+  function updatewordsError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
     }
     flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
   }
-  function uploadfileError(status) {
+  function uploadfileError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
     }
     flashService.showError("Error in file uploading", false);
   }
-  function dashboardfeedsError(status) {
+  function dashboardfeedsError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
     }
     flashService.showError($translate.instant("user.validationMessages.error_get_feeds"), false);
   }
-  function firmwarecreateError(status) {
+  function firmwarecreateError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
     }
     flashService.showError($translate.instant("user.validationMessages.invalid_firmware"), false);
   }
-  function firmwareuploadError(status) {
+  function firmwareuploadError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -243,14 +243,14 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
       flashService.showSuccess($translate.instant('user.validationMessages.firmware_success'), true);
     }
   }
-  function getPlayersError(status) {
+  function getPlayersError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
     }
     flashService.showError($translate.instant("player.messages.error_getting_players"), false);
   }
-  function getPlayerwordsError(status) {
+  function getPlayerwordsError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -262,14 +262,14 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
       flashService.showSuccess($translate.instant("player.messages.add_success"), true);
     }
   }
-  function createPlayerError(status) {
+  function createPlayerError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
     }
     flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
   }
-  function updatePlayerError(status) {
+  function updatePlayerError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -281,14 +281,14 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
       flashService.showSuccess($translate.instant("player.messages.delete_success"), true);
     }
   }
-  function deletePlayerError(status) {
+  function deletePlayerError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
     }
     flashService.showError($translate.instant("player.messages.error_deleting_players"), false);
   }
-  function getPlayerbyIDError(status) {
+  function getPlayerbyIDError(status,error) {
     var message;
     if (status !== "") {
       message = error.error;
