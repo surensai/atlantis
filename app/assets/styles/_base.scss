@@ -9,3 +9,11 @@ $black-color: #000000;
 $account-bg-color: #f6f6f6;
 $bg-color: #7e49e9;
 
+@font-face {
+  font-family: 'SquarePanda';
+  src: url('../webfonts/SquarePanda.eot?#iefix') format('embedded-opentype'),  url('../webfonts/SquarePanda.otf')  format('opentype'),
+  url('../webfonts/SquarePanda.woff') format('woff'), url('../webfonts/SquarePanda.ttf')  format('truetype'), url('../webfonts/SquarePanda.svg#SquarePanda') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
