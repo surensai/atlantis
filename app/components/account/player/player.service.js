@@ -7,8 +7,8 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
   var playersData = [];
 
-  service.getAllApi = function () {
-    return $http.get(base_url + '/user/' + userID + '/child');
+  service.getAllApi = function (user_id) {
+    return $http.get(base_url + '/user/' + user_id + '/child');
   };
   service.getWordsApi = function(childId){
     return $http.get(base_url + '/activity/'+ userID  +'/'+childId);
