@@ -1,7 +1,25 @@
-.bold-height{
-  line-height: 46px;
+.press-container{
+  .press-header{
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 50px;
+  }
+  .image-text{
+    text-align: center;
+    margin: 20px 0px;
+  }
+.table-class{
+  margin-bottom: 60px;
+  table{
+    tr {
+      td {
+        padding: 15px 15px;
+      }
+    }
+  }
 }
-.p-font{
-  font-size: 18px;
-text-align: justify;
+  .presskit-text{
+    margin: 20px 0px;
+  }
+
 }
