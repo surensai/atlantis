@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerService', 'messagesFactory', function ($timeout, $state, PlayerService, messagesFactory) {
-
+angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', function ($timeout, $rootScope, $state, PlayerService, messagesFactory) {
+  var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
   var player = this;
   player.model = {};
   player.data = {};
@@ -67,7 +67,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$state', 'PlayerSer
       }
     };
 
-   PlayerService.getAllApi()
+   PlayerService.getAllApi(userID)
       .success(handleSuccess)
       .error(handleError);
   }
