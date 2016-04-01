@@ -75,6 +75,26 @@
   }
 
   .missing-letter-keyboard{
+    .letters_set{
+      float: left;
+      padding: 0px 13px;
+      .ml-letter{
+        color: $primary-color;
+        padding: 10px 15px;
+        border-radius: 5px;
+        border: solid 1px #cccccc;
+        font-size: 15px;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+      .active{
+        background-color: #cccccc!important;
+        color: #ffffff!important;
+      }
+      .vowel{
+        color: #f7ab31;
+      }
+    }
     ul{
       @extend .reset-padding-margin;
       li{
