@@ -213,7 +213,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
   }
 
 
-  $scope.photoChanged = function (files, data) {
+  $scope.photoChanged = function (files) {
 
     if (files.length > 0 || curriculum.previousImageObj) {
       curriculum.previousImageObj = (files.length > 0) ? files : curriculum.previousImageObj;

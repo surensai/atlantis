@@ -125,7 +125,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
 
     var handleSuccess = function (data) {
       angular.element('#pop').modal('hide');
-      messagesFactory.deletePlayerSuccess(data)
+      messagesFactory.deletePlayerSuccess(data);
       $state.go("account.players");
     };
     var handleError = function (error, status) {
