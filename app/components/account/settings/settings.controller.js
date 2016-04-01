@@ -119,9 +119,31 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       .error(handleError);
   }
 
+  function isOdd(n) {
+    return Math.abs(n % 2) == 1;
+  }
+
   function getMissingLetters() {
     var handleSuccess = function (data) {
-      settings.missingLetters = data;
+      if(data.length > 0) {
+        var letterGroups = _.groupBy(data, function(item) {
+          return [item.letter].sort();
+        });
+
+        var keys = [];
+
+        for (var k in letterGroups) {
+          if (letterGroups.hasOwnProperty(k)) {
+            keys.push(k);
+          }
+        }
+        keys.sort();
+        for (var i = 0; i < keys.length; i++) {
+          k = keys[i];
+          settings.missingLetters.push(letterGroups[k]);
+        }
+        settings.missingLetters_row_2 = settings.missingLetters.splice(0,13);
+      }
     };
     var handleError = function (error, status) {
       if (error && status) {
@@ -143,38 +165,70 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       }
     };
 
-    for(var i=0; settings.missingLetters.length > i; i++){
-        if(settings.missingLetters[i].missingCharacter === true){
-          settings.selectedMisLetters.push(settings.missingLetters[i].id);
-        }
-    }
+    addSelectedLetterIds(settings.missingLetters_row_2, 'add');
+    addSelectedLetterIds(settings.missingLetters, 'add');
 
     settingsService.updateMissingCharactersApi({"character": settings.selectedMisLetters})
       .success(handleSuccess)
       .error(handleError);
   };
 
-  settings.selectCharacter = function (index) {
-    if (settings.missingLetters[index].missingCharacter) {
-      settings.missingLetters[index].missingCharacter = false;
+  settings.selectCharacter = function (rowInd, letterInd, type) {
+    if(type === 1){
+      if (settings.missingLetters_row_2[rowInd][letterInd].missingCharacter) {
+        settings.missingLetters_row_2[rowInd][letterInd].missingCharacter = false;
+      } else {
+        settings.missingLetters_row_2[rowInd][letterInd].missingCharacter = true;
+      }
     } else {
-      settings.missingLetters[index].missingCharacter = true;
+      if (settings.missingLetters[rowInd][letterInd].missingCharacter) {
+        settings.missingLetters[rowInd][letterInd].missingCharacter = false;
+      } else {
+        settings.missingLetters[rowInd][letterInd].missingCharacter = true;
+      }
     }
+
   };
 
-  settings.isMissilingLetterSelected = function (index) {
-    if (settings.missingLetters[index].missingCharacter) {
-      return true;
+  settings.isMissilingLetterSelected = function (rowInd, letterInd, type) {
+    if(type === 1){
+      if (settings.missingLetters_row_2[rowInd][letterInd].missingCharacter) {
+        return true;
+      }
+    } else {
+      if (settings.missingLetters[rowInd][letterInd].missingCharacter) {
+        return true;
+      }
     }
   };
 
   settings.clearAllAlphabets = function () {
-    if (settings.missingLetters.length > 0) {
-      for (var i = 0; i < settings.missingLetters.length; i++) {
-        settings.missingLetters[i].missingCharacter = false;
-      }
+    addSelectedLetterIds(settings.missingLetters, 'clear');
+    addSelectedLetterIds(settings.missingLetters_row_2, 'clear')
+  };
+
+  settings.isLetterVowel = function (char) {
+    var vowels = "AEIOU";
+    if(vowels.indexOf(char) !== -1){
+      return true;
     }
   };
+
+  function addSelectedLetterIds(arr, type){
+    for(var i=0; arr.length > i; i++){
+      for(var ii = 0; arr[i].length > ii; ii++ ) {
+        if(type === 'add'){
+          if(arr[i][ii].missingCharacter === true){
+            settings.selectedMisLetters.push(arr[i][ii].id);
+          }
+        } else {
+          arr[i][ii].missingCharacter = false;
+        }
+
+      }
+    }
+  }
+
 
 
 }]);

@@ -219,11 +219,21 @@
           </p>
 
           <div class="missing-letter-keyboard col-md-12 clearfix">
-            <ul>
-              <li data-ng-repeat="char in settings.missingLetters  | orderBy: 'letter'">
-                <a href="javascript:;" ng-class="{'active': settings.isMissilingLetterSelected( $index )}" data-ng-click="settings.selectCharacter( $index )"> {{char.letter}} </a>
-              </li>
-            </ul>
+            <div class="clearfix">
+              <div data-ng-repeat="item in settings.missingLetters_row_2" class="letters_set" data-ng-init="rowInd = $index">
+                  <div data-ng-repeat="letters in item" class="ml-letter" ng-class="{'active': settings.isMissilingLetterSelected(rowInd, $index, 1 ), 'vowel': settings.isLetterVowel(letters.letter)}" data-ng-click="settings.selectCharacter(rowInd, $index, 1)">
+                    {{letters.letter}}
+                  </div>
+              </div>
+            </div>
+
+            <div class="clearfix">
+              <div data-ng-repeat="item in settings.missingLetters" data-ng-init="rowInd1 = $index"  class="letters_set">
+                <div data-ng-repeat="letters in item" class="ml-letter" ng-class="{'active': settings.isMissilingLetterSelected(rowInd1, $index, 2 ), 'vowel': settings.isLetterVowel(letters.letter)}" data-ng-click="settings.selectCharacter(rowInd1, $index, 2)">
+                  {{letters.letter}}
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="col-md-12 margin-top20 center-align submit-clear-parent-div">
