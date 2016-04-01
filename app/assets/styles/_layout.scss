@@ -282,6 +282,10 @@
   text-align: center;
 }
 
+body.body-toggle{
+  overflow: hidden;
+}
+
 @media(min-width: 768px) {
   .top-header {
     display: block;
@@ -313,6 +317,10 @@
 
   .account-header .header-right {
     width: 51%;
+  }
+
+  body.body-toggle{
+    overflow: visible;
   }
 
 }

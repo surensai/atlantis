@@ -3,7 +3,7 @@
     <li>
       <a ui-sref="account.addplayer">
         <img data-ng-if="!playerItem.profileURL" src="assets/images/add-player.png" alt="player" width="55" height="55" />
-        <span data-translate="player.add_player"> Add Player </span>
+        <span data-translate="player.add_player" title="Add Player"> Add Player </span>
       </a>
     </li>
     <li data-ng-repeat="playerItem in player.data.playersList" data-ng-init="playerItem.croppedImage = ''" >
@@ -11,7 +11,7 @@
          ng-class="{ active: $state.includes('account.players.details', { id: playerItem.id })}">
         <img data-ng-if="!playerItem.profileURL" src="assets/images/fallback-img.png" class="img-circle" alt="player" width="55" height="55" />
         <img data-ng-if="playerItem.profileURL" data-ng-src="{{playerItem.profileURL}}" class="img-circle" alt="player" width="55" height="55" />
-        <span class="text-ellipsis">{{ playerItem.firstName }}</span>
+        <span class="text-ellipsis" title='{{ playerItem.firstName }}'>{{ playerItem.firstName }}</span>
       </a>
     </li>
   </ul>

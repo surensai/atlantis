@@ -195,6 +195,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     }
   }).state('account.viewCustomWord', {
     url: '/curriculum/:id/viewword',
+    cache:false,
     templateUrl: urlBuilder('account/curriculum', 'curriculum-action'),
     controller: 'curriculumActionCtrl',
     controllerAs: "curriculum",

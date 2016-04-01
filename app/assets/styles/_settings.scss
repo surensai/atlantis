@@ -79,6 +79,8 @@
       float: left;
       padding: 0px 13px;
       .ml-letter{
+        font-family: 'SquarePanda' !important;
+        font-size: 15px;
         color: $primary-color;
         padding: 10px 15px;
         border-radius: 5px;
@@ -96,30 +98,7 @@
         color: #f7ab31;
       }
     }
-    ul{
-      @extend .reset-padding-margin;
-      li{
-        list-style: none;
-        display: inline;
-        a{
-          display: block;
-          float: left;
-          padding-top: 21px;
-          padding-left: 33px;
-          margin-bottom: 10px;
-          background: url(../images/letter-bg.png) no-repeat;
-          width: 83px;
-          height: 79px;
-          text-decoration: none;
-          font-weight: bold;
-          color: #f7ab31;
-        }
-        .active{
-          color: #ffffff;
-          background: url(../images/active-letter-bg.png) no-repeat;
-        }
-      }
-    }
+
   }
 
 }
