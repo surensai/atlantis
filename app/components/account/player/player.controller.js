@@ -13,6 +13,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.displayChartIndex = 0;
   player.predicate = 'Sno';
   player.isNoPlayer = false;
+  player.miniBadges=[]
   player.wordsHeaders = {
     Sno: "S.No.",
     Words: "Words",
@@ -23,6 +24,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.drag = 'drag feedback';
   player.drop = 'drop feedback';
   player.wordsData = [];
+
 
   player.bigBadges = PlayerService.getBadges();
 
@@ -38,6 +40,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   (function () {
     getPlayers();
     splitBadgesData();
+    getMinibadges();
   })();
 
   function getPlayers() {
@@ -48,6 +51,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         if ($state.params.id) {
           playerId = $state.params.id;
         }
+        getMinibadges(playerId);
         player.data.playersList = data;
         PlayerService.getPlayerById(playerId)
           .success(function (data) {
@@ -60,7 +64,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       }
 
     };
-
     var handleError = function (error, status) {
       if (error && status) {
         messagesFactory.getPlayersError(status);
@@ -114,5 +117,22 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       .error(handleError);
   };
 
+  function getMinibadges (playerId) {
+    var handleSuccess = function (data) {
+      if (data) {
+        player.miniBadges = data;
+      }
+    };
+
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.getPlayerwordsError(status);
+      }
+    };
+
+    PlayerService.getMinibadgesApi(playerId)
+      .success(handleSuccess)
+      .error(handleError);
+  }
 
 }]);

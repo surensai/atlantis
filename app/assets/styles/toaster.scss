@@ -210,7 +210,6 @@ button.toast-close-button {
     }
     .toast-error {
       background-image: url("../images/warningtoast.png") !important;
-      background-color: red;
       border:1px solid red;
     }
     .toast-success {
@@ -233,10 +232,12 @@ button.toast-close-button {
 
 .toast-success {
   background-image: url("../images/successtoast.png") !important;
+  background-color: #51a351;
 }
 
 .toast-error {
   background-image: url("../images/warningtoast.png") !important;
+  background-color: #f89406;
 
 }
 
