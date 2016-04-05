@@ -3,7 +3,7 @@ $primary-color: #552f91;
 $sp-yellow: #f9a61a;
 $sp-green: #4cbc96;
 $sp-pink: #ee486f;
-$sp-purlple : #99669b;
+$sp-purlple: #99669b;
 $white-color: #ffffff;
 $black-color: #000000;
 $account-bg-color: #f6f6f6;
@@ -11,9 +11,22 @@ $bg-color: #7e49e9;
 
 @font-face {
   font-family: 'SquarePanda';
-  src: url('../webfonts/SquarePanda.eot?#iefix') format('embedded-opentype'),  url('../webfonts/SquarePanda.otf')  format('opentype'),
-  url('../webfonts/SquarePanda.woff') format('woff'), url('../webfonts/SquarePanda.ttf')  format('truetype'), url('../webfonts/SquarePanda.svg#SquarePanda') format('svg');
+  src: url('../webfonts/SquarePanda.eot?#iefix') format('embedded-opentype'),
+  url('../webfonts/SquarePanda.otf') format('opentype'),
+  url('../webfonts/SquarePanda.woff') format('woff'),
+  url('../webfonts/SquarePanda.ttf') format('truetype'),
+  url('../webfonts/SquarePanda.svg#SquarePanda') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'AvertaStd-Regular';
+  src: url('../webfonts/AvertaStd-Regular.eot?#iefix') format('embedded-opentype'),
+  url('../webfonts/AvertaStd-Regular.otf') format('opentype'),
+  url('../webfonts/AvertaStd-Regular.woff') format('woff'),
+  url('../webfonts/AvertaStd-Regular.ttf') format('truetype'),
+  url('../webfonts/AvertaStd-Regular.svg#AvertaStd-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
