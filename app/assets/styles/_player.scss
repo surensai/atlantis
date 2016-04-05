@@ -288,12 +288,18 @@
         margin-bottom: 20px;
         .mini-badge-item {
           padding: 10px;
+          img.noimagestyle{
+            width: 164px;
+            margin-top: 14px;
+            height: 164px;
+            border-radius: 50%;
+            border: 10px solid #cad6dd;
+                }
           .mb-des {
             span{
               color: #B0B0B0;
             }
           }
-
         }
       }
     }

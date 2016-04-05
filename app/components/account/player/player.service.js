@@ -10,12 +10,15 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
   service.getAllApi = function (user_id) {
     return $http.get(base_url + '/user/' + user_id + '/child');
   };
-  service.getWordsApi = function(childId){
-    return $http.get(base_url + '/activity/'+ userID  +'/'+childId);
+  service.getWordsApi = function (childId) {
+    return $http.get(base_url + '/activity/' + userID + '/' + childId);
+  };
+  service.getMinibadgesApi = function (playerId) {
+    return $http.get(base_url + '/activity/' + userID + '/' + playerId + '/minibadges');
   };
 
-  service.searchWordApi = function(childId){
-    return $http.get(base_url + '/activity/'+ userID  +'/'+childId);
+  service.searchWordApi = function (childId) {
+    return $http.get(base_url + '/activity/' + userID + '/' + childId);
   };
 
   service.createApi = function (child) {
@@ -37,115 +40,115 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
   service.uploadFileApi = function (file) {
     var fd = new FormData();
     fd.append('content', file);
-    return $http.post(base_url + '/file/uploads3',fd,{
+    return $http.post(base_url + '/file/uploads3', fd, {
       transformRequest: angular.identity,
       headers: {'Content-Type': undefined}
     });
   };
 
-  service.getObjById = function(data, id) {
+  service.getObjById = function (data, id) {
     var obj = {};
-    _.each(data, function(item){
-        if( item.id === id ){
-          obj = item;
-        }
+    _.each(data, function (item) {
+      if (item.id === id) {
+        obj = item;
+      }
     });
     return obj;
   };
 
-  service.setPlayers = function(data){
+  service.setPlayers = function (data) {
     playersData = data;
   };
 
-  service.getPlayers = function(){
+  service.getPlayers = function () {
     return playersData;
   };
 
-  service.getPlayerById = function(id){
-      return $http.get(base_url + '/user/' + userID + '/child/' +id);
+  service.getPlayerById = function (id) {
+    return $http.get(base_url + '/user/' + userID + '/child/' + id);
   };
 
-  service.removeItem = function(data, obj){
-    data.splice(data.indexOf(obj),1);
+  service.removeItem = function (data, obj) {
+    data.splice(data.indexOf(obj), 1);
   };
 
-  service.getBadges = function(){
+  service.getBadges = function () {
     return [
       {
         milestone: 'Apple',
         percentage: '120%',
         type: 'active',
-        image:'apple'
+        image: 'apple'
       }, {
         milestone: 'Up',
         percentage: '100%',
         type: 'disabled',
-        image:'up'
+        image: 'up'
       }, {
         milestone: 'Cat',
         percentage: '80%',
         type: 'disabled',
-        image:'cat'
+        image: 'cat'
       }, {
         milestone: 'Sight',
         percentage: '120%',
         type: 'disabled',
-        image:'sight'
+        image: 'sight'
       }, {
         milestone: 'Pancake',
         percentage: '115%',
         type: 'disabled',
-        image:'pancake'
+        image: 'pancake'
       }, {
         milestone: 'Fish',
         percentage: '90%',
         type: 'disabled',
-        image:'fish'
+        image: 'fish'
       }, {
         milestone: 'Brick',
         percentage: '50%',
         type: 'disabled',
-        image:'brick'
+        image: 'brick'
       }, {
         milestone: 'Floss',
         percentage: '0%',
         type: 'disabled',
-        image:'floss'
+        image: 'floss'
       }, {
         milestone: 'Bee',
         percentage: '0%',
         type: 'disabled',
-        image:'bee'
+        image: 'bee'
       }, {
         milestone: 'Sky',
         percentage: '0%',
         type: 'disabled',
-        image:'sky'
+        image: 'sky'
       }, {
         milestone: 'Car',
         percentage: '0%',
         type: 'disabled',
-        image:'car'
+        image: 'car'
       }, {
         milestone: 'Light',
         percentage: '0%',
         type: 'disabled',
-        image:'light'
+        image: 'light'
       }, {
         milestone: 'Bear',
         percentage: '0%',
         type: 'disabled',
-        image:'bear'
+        image: 'bear'
       }, {
         milestone: 'House',
         percentage: '0%',
         type: 'disabled',
-        image:'house'
+        image: 'house'
       }, {
         milestone: 'Swan',
         percentage: '0%',
         type: 'disabled',
-        image:'swan'
+        image: 'swan'
       }];
   };
 
