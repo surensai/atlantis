@@ -30,3 +30,30 @@ $bg-color: #7e49e9;
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'AvertaStd-Bold';
+  src: url('../webfonts/AvertaStd-Bold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AvertaStd-Thin';
+  src: url('../webfonts/AvertaStd-Thin.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AvertaStd-Extrathin';
+  src: url('../webfonts/AvertaStd-Extrathin.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'AvertaStd-Semibold';
+  src: url('../webfonts/AvertaStd-Semibold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}

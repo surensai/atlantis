@@ -256,7 +256,8 @@
       "invalid_credentials":"Invalid player credentials",
       "error_deleting_players":"Error in deleting",
       "error_getting_players":"Error in getting player",
-      "error_getting_words":"Error in getting words"
+      "error_getting_words":"Error in getting words",
+      "error_getting_minibadges":"Error in getting mini badges."
     },
     "buttons":{
       "add_palyer":"Add Player"

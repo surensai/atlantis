@@ -126,7 +126,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
     var handleError = function (error, status) {
       if (error && status) {
-        messagesFactory.getPlayerwordsError(status);
+        messagesFactory.getminibadgessError(status);
       }
     };
 

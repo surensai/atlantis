@@ -295,6 +295,13 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     }
     flashService.showError($translate.instant("player.messages.error_getting_players"), false);
   }
+  function getminibadgessError(status,error) {
+    var message;
+    if (status !== "") {
+      message = error.error;
+    }
+    flashService.showError($translate.instant("player.messages.error_getting_minibadges"), false);
+  }
   service.loginErrorMessages = loginErrorMessages;
   service.registerErrorMessages = registerErrorMessages;
   service.registerSuccessMessages = registerSuccessMessages;
@@ -338,5 +345,6 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   service.deletePlayerSuccess = deletePlayerSuccess;
   service.deletePlayerError = deletePlayerError;
   service.getPlayerbyIDError = getPlayerbyIDError;
+  service.getminibadgessError = getminibadgessError;
   return service;
 }]);
