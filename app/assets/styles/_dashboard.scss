@@ -19,6 +19,7 @@
         height: 100%;
       }
       .panel-body {
+        padding: 26px;
         min-height: 216px;
         .time-ago {
           font-size: 12px;
@@ -82,7 +83,7 @@
 }
 
 .first-element {
-  margin: 0px 0 10px !important;
+  margin: 0px 0 11px !important;
 }
 .second-element{
   padding-bottom: 0%;
