@@ -6,10 +6,8 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService','messagesF
   dashboard.data = {};
   dashboard.data.newsFeedsList = {};
   dashboard.data.newsFeeds={};
-  console.log($stateParams);
   (function () {
     var handleSuccess = function (data) {
-      console.log($stateParams.id);
       if($stateParams.id){
         var tempArr=[];
         for(var i=0; i<data.length; i++){

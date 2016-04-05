@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', function ($timeout, $rootScope, $state, PlayerService, messagesFactory) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory','flashService', function ($timeout, $rootScope, $state, PlayerService, messagesFactory,flashService) {
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
   var player = this;
   player.model = {};
@@ -54,7 +54,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
             player.playerObj = data;
           })
           .error(function () {
-            messagesFactory.getPlayersError(status);
+            flashService.showError($translate.instant("player.messages.error_getting_players"), false);
           });
         $state.go('account.players.details', {id: playerId});
       }
