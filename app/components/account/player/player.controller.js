@@ -62,7 +62,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           });
         $state.go('account.players.details', {id: playerId});
       }
-
     };
     var handleError = function (error, status) {
       if (error && status) {

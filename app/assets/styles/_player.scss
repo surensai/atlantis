@@ -188,17 +188,50 @@
   margin: 10px;
   ul{
     li{
+      margin-bottom: -2px;
       a{
         border-radius: 0px!important;
-        background-color: #f7ab31;
+        background-color: #f9ae30;
         color: #ffffff;
+        margin-right: 0px;
+        border: 0px!important;
+
         &:hover{
-          background-color: #ffffff;
-          color: #8c8c8c;
+          background-color: #f9ae30;
+          text-decoration: underline;
+          border: 0px!important;
         }
       }
     }
-  }
+
+    .corner-start-bg a {
+      background: #f9ae30 url("../images/p-tab-middle-active-right.png") no-repeat right;
+    }
+
+    .active.corner-start-bg{
+      background: #ffffff url("../images/p-tab-active-bg.png") top;
+    }
+
+    .active.corner-start-bg a{
+      background: url("../images/p-tab-middle-active-left.png") no-repeat right;
+    }
+
+    .corner-middle-bg a{
+      background: #f9ae30 url("../images/p-tab-middle.png") no-repeat right;
+    }
+
+    .active.corner-middle-bg{
+      background: #ffffff url("../images/p-tab-active-bg.png") top;
+    }
+
+    .active.corner-middle-bg a{
+      background: url("../images/p-tab-middle-active-left.png") no-repeat right;
+    }
+    .active.corner-last-bg a{
+      background: #ffffff url("../images/p-tab-middle-active-right.png") no-repeat left;
+      margin-left: -12px;
+    }
+     }
   .tab-content {
     background-color: #ffffff;
     border: 1px solid #ddd;
