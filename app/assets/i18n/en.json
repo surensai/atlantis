@@ -121,7 +121,8 @@
       "clear_all": "Clear All",
       "yes": "Yes",
       "no": "No",
-      "back" : "Back"
+      "back" : "Back",
+      "close" : "Close"
     },
     "dob_year": "Year",
     "dob_month": "Month",
