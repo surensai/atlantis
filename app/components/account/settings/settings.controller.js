@@ -119,10 +119,6 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       .error(handleError);
   }
 
-  function isOdd(n) {
-    return Math.abs(n % 2) == 1;
-  }
-
   function getMissingLetters() {
     var handleSuccess = function (data) {
       if(data.length > 0) {
@@ -204,7 +200,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
 
   settings.clearAllAlphabets = function () {
     addSelectedLetterIds(settings.missingLetters, 'clear');
-    addSelectedLetterIds(settings.missingLetters_row_2, 'clear')
+    addSelectedLetterIds(settings.missingLetters_row_2, 'clear');
   };
 
   settings.isLetterVowel = function (char) {
@@ -218,7 +214,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
     for(var i=0; arr.length > i; i++){
       for(var ii = 0; arr[i].length > ii; ii++ ) {
         if(type === 'add'){
-          if(arr[i][ii].missingCharacter === true){
+          if(arr[i][ii].missingCharacter){
             settings.selectedMisLetters.push(arr[i][ii].id);
           }
         } else {

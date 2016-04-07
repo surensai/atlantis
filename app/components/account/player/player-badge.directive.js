@@ -14,7 +14,7 @@ angular.module("app").directive('badgeItem', function () {
         scope.perValue = 'rect('+value+'px,130px,130px,0px)';
         scope.getStyle = function(obj){
           return {"clip": scope.perValue};
-        }
+        };
       }
     }
   };
