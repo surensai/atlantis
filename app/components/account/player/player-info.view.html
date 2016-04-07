@@ -120,7 +120,6 @@
           </thead>
           <tbody>
           <tr data-ng-repeat="word in player.wordsData | orderBy:player.predicate:player.reverse">
-            <td>{{ $index +1}}</td>
             <td class="player-words text-ellipsis word-text">{{ word.word}}</td>
             <td class="word-icons">{{ word.activity.length}}</td>
             <td class="word-date">{{ word.endtime | date:"MM/dd/yyyy '' h:mma"}}</td>

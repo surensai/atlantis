@@ -16,7 +16,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.miniBadges=[];
   var playerId = $state.params.id;
   player.wordsHeaders = {
-    Sno: "S.No.",
     Words: "Words",
     Attempts: "Attempts",
     LastPlayed: "Last Played",
@@ -25,8 +24,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.drag = 'drag feedback';
   player.drop = 'drop feedback';
   player.wordsData = [];
-
-
   player.bigBadges = PlayerService.getBadges();
 
   player.getKeysOfCollection = function (obj) {
