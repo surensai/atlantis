@@ -238,7 +238,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     controller: 'staticCtrl',
     controllerAs: "static",
     data: {
-      pageTitle: 'Square Panda - warrentyinfo'
+      pageTitle: 'Square Panda - Warranty Information'
     }
   }).state('page.privacy-policy', {
     url: '/privacy-policy',

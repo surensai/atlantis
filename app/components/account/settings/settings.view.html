@@ -97,22 +97,24 @@
               </div>
             </div>
 
-            <div class="col-md-4"></div>
-            <div class="col-md-6">
-              <button class="btn btn-primary settings-edit-button edit-submit-btn" type="button" data-ng-click="settings.edit();"
-                      data-ng-hide="settings.isEditClicked">Edit
-              </button>
-              <button type="submit" data-ng-disabled="settingsForm.$invalid"
-                      class="btn btn-primary settings-save-button"
-                      data-translate="common.buttons.save" data-ng-show="settings.isEditClicked">Save
-              </button>
-              <button type="button"  class="btn btn-primary cancel-button"
-                      data-translate="common.buttons.cancel" ng-click="settings.cancel()"
-                      data-ng-show="settings.isEditClicked">Cancel
-              </button>
-            </div>
+            <div class="form-group">
+              <div class="col-md-4"></div>
+              <div class="col-md-6">
+                <button class="btn btn-primary settings-edit-button edit-submit-btn" type="button" data-ng-click="settings.edit();"
+                        data-ng-hide="settings.isEditClicked">Edit
+                </button>
+                <button type="submit" data-ng-disabled="settingsForm.$invalid"
+                        class="btn btn-primary settings-save-button"
+                        data-translate="common.buttons.save" data-ng-show="settings.isEditClicked">Save
+                </button>
+                <button type="button"  class="btn btn-primary cancel-button"
+                        data-translate="common.buttons.cancel" ng-click="settings.cancel()"
+                        data-ng-show="settings.isEditClicked">Cancel
+                </button>
+              </div>
 
-          </div>
+            </div>
+            </div>
         </form>
       </div>
     </div>
@@ -192,13 +194,16 @@
 
               </div>
             </div>
-          </div>
-          <div class="col-md-4"></div>
-          <div class="col-md-5">
-            <button type="submit" class="btn btn-primary settings-submit-button edit-submit-btn" data-translate="common.buttons.submit">
-              Submit
-            </button>
 
+            <div class="form-group ">
+              <div class="col-md-4"></div>
+              <div class="col-md-5">
+                <button type="submit" class="btn btn-primary settings-submit-button edit-submit-btn" data-translate="common.buttons.submit">
+                  Submit
+                </button>
+
+              </div>
+            </div>
           </div>
         </form>
       </div>
@@ -259,10 +264,7 @@
               novalidate>
 
           <p class="notification-text-missing-letters col-md-12" >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore
-            magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Stay up to date on your child's latest accomplishments, learn new reading readiness tips, and be the first to know about new releases of Square Panda learning apps! Tap on any of the activity notifications to receive email updates.
           </p>
 
           <div class="clearfix">
@@ -270,11 +272,11 @@
               <div class="checkbox checkbox-class">
                 <label>
                   <input type="checkbox" class="settings-custom-checkbox"  data-ng-model="settings.model.notificationObj.player_updates">
-                  <span>Player updates</span>
+                  <span>Player Updates</span>
                 </label>
               </div>
                 <p class="notification-checkbox-text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                  As your child discovers new skills and earns badges you'll receive a realtime update of their activity and progress.
                 </p>
             </div>
 
@@ -282,11 +284,11 @@
               <div class="checkbox checkbox-class">
                 <label>
                   <input type="checkbox" class="settings-custom-checkbox" data-ng-model="settings.model.notificationObj.sp_updates" />
-                  <span>Square Panda news</span>
+                  <span>Square Panda News</span>
                 </label>
               </div>
               <p class="notification-checkbox-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                Be the first to know about the newest Square Panda learning apps (and get special offers too!)
               </p>
             </div>
 
@@ -294,11 +296,11 @@
               <div class="checkbox checkbox-class">
                 <label>
                   <input type="checkbox" class="settings-custom-checkbox" data-ng-model="settings.model.notificationObj.educational_updates">
-                  <span>Educational News feed</span>
+                  <span>Educational New Feed</span>
                 </label>
               </div>
               <p class="notification-checkbox-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                Amplify learning with reading readiness tips and the latest research, articles and videos to help your child be reading ready!
               </p>
             </div>
 
