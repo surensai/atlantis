@@ -2,15 +2,18 @@
   <div class="pull-left width70-per header-bg header-left">
     <div class="navbar navbar-default" role="navigation">
       <div class="navbar-header main-logo-header">
-        <a class="navbar-brand" ui-sref="login" ng-if="!globals.currentUser"  target="_blank" ><img src="assets/images/header_logo.png" /></a>
-        <a class="navbar-brand"  ui-sref="account.dashboard"  ng-if="globals.currentUser" target="_blank" ><img src="assets/images/header_logo.png" /></a>
-        <a class="navbar-brand-responsive"  ui-sref="account.dashboard"  ng-if="globals.currentUser"  target="_blank"><img src="assets/images/logo-responsive.png" /></a>
-        <a class="navbar-brand-responsive"  ui-sref="login"  ng-if="!globals.currentUser"  target="_blank"><img src="assets/images/logo-responsive.png" /></a>
+        <a class="navbar-brand" ui-sref="login" data-ng-if="!globals.currentUser"><img
+          src="assets/images/header_logo.png"/></a>
+        <a class="navbar-brand" ui-sref="account.dashboard" data-ng-if="globals.currentUser"><img
+          src="assets/images/header_logo.png"/></a>
+        <a class="navbar-brand-responsive" ui-sref="account.dashboard" data-ng-if="globals.currentUser" target="_blank"><img
+          src="assets/images/logo-responsive.png"/></a>
+        <a class="navbar-brand-responsive" ui-sref="login" data-ng-if="!globals.currentUser" target="_blank"><img
+          src="assets/images/logo-responsive.png"/></a>
       </div>
     </div>
   </div>
   <div class="pull-right width30-per header-right">
-
   </div>
 </div>
 </div>
@@ -23,10 +26,14 @@
   <div class="container">
     <div class="navbar navbar-default pull-left" role="navigation">
       <div class="navbar-header ">
-        <a class="navbar-brand" ng-if="!globals.currentUser" ui-sref="login" target="_blank" ><img src="assets/images/header_logo.png" /></a>
-        <a class="navbar-brand"  ui-sref="account.dashboard"  ng-if="globals.currentUser" target="_blank" ><img src="assets/images/header_logo.png" /></a>
-        <a class="navbar-brand-responsive" ng-if="!globals.currentUser" ui-sref="login" target="_blank"><img src="assets/images/logo-responsive.png" /></a>
-        <a class="navbar-brand-responsive" ui-sref="account.dashboard"  ng-if="globals.currentUser" target="_blank"><img src="assets/images/logo-responsive.png" /></a>
+        <a class="navbar-brand" ng-if="!globals.currentUser" ui-sref="login"><img
+          src="assets/images/header_logo.png"/></a>
+        <a class="navbar-brand" ui-sref="account.dashboard" ng-if="globals.currentUser"><img
+          src="assets/images/header_logo.png"/></a>
+        <a class="navbar-brand-responsive" ng-if="!globals.currentUser" ui-sref="login"><img
+          src="assets/images/logo-responsive.png"/></a>
+        <a class="navbar-brand-responsive" ui-sref="account.dashboard" ng-if="globals.currentUser"><img
+          src="assets/images/logo-responsive.png"/></a>
       </div>
     </div>
     <div class="pull-right">
@@ -41,10 +48,12 @@
           <div class="dropdown" data-ng-if="globals.currentUser">
             <a href="" class="dropdown-toggle text-ellipsis user-name" type="button" data-toggle="dropdown" width="50%">{{globals.currentUser.firstName}}
               {{globals.currentUser.lastName}}
-            </a><a><p class="caret" data-toggle="dropdown" ></p></a>
+            </a><a><p class="caret" data-toggle="dropdown"></p></a>
             <ul class="dropdown-menu">
-              <li data-ng-if="globals.currentUser.email === 'admin@squarepanda.com'"><a ui-sref="admin.firmware-update" data-translate="nav.firmware_update.title">Firmware Update</a></li>
-              <li><a href="javascript:;" data-ng-click="logout()" data-translate="nav.header.logout" >Logout</a></li>
+              <li data-ng-if="globals.currentUser.email === 'admin@squarepanda.com'"><a ui-sref="admin.firmware-update"
+                                                                                        data-translate="nav.firmware_update.title">Firmware
+                Update</a></li>
+              <li><a href="javascript:;" data-ng-click="logout()" data-translate="nav.header.logout">Logout</a></li>
             </ul>
           </div>
         </div>
@@ -54,5 +63,3 @@
 </div>
 </div>
 </div>
-<!--
--->
