@@ -33,7 +33,7 @@
 
 <div class="player-tabs">
   <uib-tabset active="activeJustified" >
-    <uib-tab index="0" heading="Big Badges" class="shape">
+    <uib-tab index="0" heading="Big Badges">
       <div class="badges-container clearfix">
         <div class="badges-row"
              data-ng-repeat="reptable in player.splitBadgesData"
@@ -79,7 +79,7 @@
         </div>
       </div>
     </uib-tab>
-    <uib-tab index="1" heading="Mini Badges" class="shape">
+    <uib-tab index="1" heading="Mini Badges">
       <div class="mini-badges-container clearfix">
         <div class="row minibadges-row">
           <div class="col-md-4" ng-repeat="minibadge in player.miniBadges">
@@ -101,7 +101,7 @@
         </div>
       </div>
     </uib-tab>
-    <uib-tab index="2" heading="Words" class="shape" ng-click="player.getWords(player.playerObj.id)">
+    <uib-tab index="2" heading="Words">
       <div class="badges-container clearfix">
         <div class="table-responsive">
         <table class="table table-striped table-hover borderless">
