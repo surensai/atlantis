@@ -40,36 +40,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     splitBadgesData();
   })();
 
-  function getPlayers() {
-    var handleSuccess = function (data) {
-      player.isNoPlayer = true;
-      if (data.length > 0) {
-        var playerId = data[0].id;
-        if ($state.params.id) {
-          playerId = $state.params.id;
-        }
-        getMinibadges(playerId);
-        player.data.playersList = data;
-        PlayerService.getPlayerById(playerId)
-          .success(function (data) {
-            player.playerObj = data;
-          })
-          .error(function () {
-            flashService.showError($translate.instant("player.messages.error_getting_players"), false);
-          });
-        $state.go('account.players.details', {id: playerId});
-      }
-    };
-    var handleError = function (error, status) {
-      if (error && status) {
-        messagesFactory.getPlayersError(status);
-      }
-    };
 
-   PlayerService.getAllApi(userID)
-      .success(handleSuccess)
-      .error(handleError);
-  }
 
   player.addPlayer = function(){
     if (player.data.playersList.length >= 5) {
@@ -113,7 +84,40 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     player.showColumn = colIndex;
   };
 
-  player.getWords = function (childId) {
+  function getPlayers() {
+    var handleSuccess = function (data) {
+      player.isNoPlayer = true;
+      if (data.length > 0) {
+        var playerId = data[0].id;
+        if ($state.params.id) {
+          playerId = $state.params.id;
+        }
+        getPlayerHighlights(playerId);
+        getMinibadges(playerId);
+        getWords(playerId);
+        player.data.playersList = data;
+        PlayerService.getPlayerById(playerId)
+          .success(function (data) {
+            player.playerObj = data;
+          })
+          .error(function () {
+            flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+          });
+        $state.go('account.players.details', {id: playerId});
+      }
+    };
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.getPlayersError(status);
+      }
+    };
+
+    PlayerService.getAllApi(userID)
+      .success(handleSuccess)
+      .error(handleError);
+  }
+
+  function getWords(childId) {
     var handleSuccess = function (data) {
       if (data) {
         player.wordsData = data;
@@ -129,7 +133,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     PlayerService.getWordsApi(childId)
       .success(handleSuccess)
       .error(handleError);
-  };
+  }
 
   function getMinibadges (playerId) {
     var handleSuccess = function (data) {
@@ -152,6 +156,22 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     };
 
     PlayerService.getMinibadgesApi(playerId)
+      .success(handleSuccess)
+      .error(handleError);
+  }
+
+  function getPlayerHighlights (playerId) {
+    var handleSuccess = function (data) {
+
+    };
+
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.getminibadgessError(status);
+      }
+    };
+
+    PlayerService.getPlayerHighlightsApi(playerId)
       .success(handleSuccess)
       .error(handleError);
   }

@@ -10,11 +10,17 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
   service.getAllApi = function (user_id) {
     return $http.get(base_url + '/user/' + user_id + '/child');
   };
+
   service.getWordsApi = function (childId) {
     return $http.get(base_url + '/activity/' + userID + '/' + childId);
   };
+
   service.getMinibadgesApi = function (playerId) {
     return $http.get(base_url + '/activity/' + userID + '/' + playerId + '/minibadges');
+  };
+
+  service.getPlayerHighlightsApi = function (playerId) {
+    return $http.get(base_url + '/activity/' + userID + '/' + playerId + '/highlights');
   };
 
   service.searchWordApi = function (childId) {
