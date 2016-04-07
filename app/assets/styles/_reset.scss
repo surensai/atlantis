@@ -250,3 +250,10 @@ img{
   }
 }
 
+.badge-item {
+  .active-big-badge {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

@@ -7,13 +7,16 @@ angular.module("app").directive('badgeItem', function () {
       displayIndex: '=displayIndex',
       callFunc: '&'
     },
-    template: '<div class="badge-item center-align"> ' +
-              '<img ng-src="assets/images/badges/{{item.type}}/{{item.image}}.png" />'+
-              '<span>{{item.milestone}}</span>' +
-              '</div></div>',
-
-    controller: function() {
-
+    templateUrl: 'layout/big-badges-template.html',
+    link: function(scope) {
+      console.log(scope.item);
+      if(scope.item.percentage !== ""){
+        var value = 130-(scope.item.percentage*1.3);
+        scope.perValue = 'rect('+value+'px,130px,130px,0px)';
+        scope.getStyle = function(obj){
+          return {"clip": scope.perValue};
+        }
+      }
     }
   };
 });
