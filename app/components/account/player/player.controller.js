@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory','flashService', function ($timeout, $rootScope, $state, PlayerService, messagesFactory,flashService) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory','flashService','$uibModal', function ($timeout, $rootScope, $state, PlayerService, messagesFactory,flashService, $uibModal) {
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
   var player = this;
   player.model = {};
@@ -70,6 +70,24 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       .success(handleSuccess)
       .error(handleError);
   }
+
+  player.addPlayer = function(){
+    if (player.data.playersList.length >= 5) {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'common/app-directives/modal/custom-modal.html',
+        controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+          $scope.modalTitle = "Error";
+          $scope.modalBody = "You already have the maximum number of players added.";
+          $scope.modalType = "Error";
+          $scope.close = function () {
+            $uibModalInstance.dismiss('cancel');
+          };
+        }]
+      });
+    } else {
+      $state.go("account.addplayer");
+    }
+  };
 
   player.bigBadgesData = function (index) {
     var currentIndex =  index * 4;

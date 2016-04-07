@@ -6,7 +6,8 @@
     {{modalBody}}
   </div>
   <div class='modal-footer'>
-    <button class='btn btn-default' ng-click='cancel()' data-translate='common.buttons.no'>No</button>
-    <button class='btn btn-default sp-purple-common-btn' ng-click='ok()' data-translate='common.buttons.yes'>Yes</button>
+    <button class='btn btn-default' ng-click='cancel()' data-translate='common.buttons.no' data-ng-if="modalType !== 'Error'">No</button>
+    <button class='btn btn-default sp-purple-common-btn' ng-click='ok()' data-translate='common.buttons.yes' data-ng-if="modalType !== 'Error'">Yes</button>
+    <button class='btn btn-default sp-purple-common-btn' ng-click='close()' data-translate='common.buttons.close' data-ng-if="modalType === 'Error'">Close</button>
   </div>
 </div>
