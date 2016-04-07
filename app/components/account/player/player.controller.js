@@ -5,16 +5,20 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   var player = this;
   player.model = {};
   player.data = {};
+  player.playerObj = {};
+  player.highlights = {};
   player.data.playersList = [];
   player.splitBadgesData = [];
-  player.playerObj = {};
+  player.miniBadges=[];
+  player.wordsData = [];
+  player.isNoPlayer = false;
   player.reverse = false;
   player.clicked = false;
+
+
+  var playerId = $state.params.id;
   player.displayChartIndex = 0;
   player.predicate = 'Sno';
-  player.isNoPlayer = false;
-  player.miniBadges=[];
-  var playerId = $state.params.id;
   player.wordsHeaders = {
     Words: "Words",
     Attempts: "Attempts",
@@ -23,7 +27,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   };
   player.drag = 'drag feedback';
   player.drop = 'drop feedback';
-  player.wordsData = [];
+
   player.bigBadges = PlayerService.getBadges();
 
   player.getKeysOfCollection = function (obj) {
@@ -39,8 +43,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     getPlayers();
     splitBadgesData();
   })();
-
-
 
   player.addPlayer = function(){
     if (player.data.playersList.length >= 5) {
@@ -64,19 +66,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     var currentIndex =  index * 4;
     return player.bigBadges.slice(currentIndex, currentIndex+4);
   };
-
-  function splitBadgesData(){
-    if(player.bigBadges.length){
-      var reminderVal = player.bigBadges.length % 4;
-      var repeater = 4 - reminderVal;
-      for(var i = 0; i < repeater; i++ ){
-        player.bigBadges.push({});
-      }
-      for(var ii = 0; ii < player.bigBadges.length / 4; ii++ ){
-        player.splitBadgesData.push({});
-      }
-    }
-  }
 
   player.showGraph = function (index, colIndex) {
     player.clicked = true;
@@ -162,7 +151,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   function getPlayerHighlights (playerId) {
     var handleSuccess = function (data) {
-
+      player.highlights = data;
     };
 
     var handleError = function (error, status) {
@@ -174,6 +163,19 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     PlayerService.getPlayerHighlightsApi(playerId)
       .success(handleSuccess)
       .error(handleError);
+  }
+
+  function splitBadgesData(){
+    if(player.bigBadges.length){
+      var reminderVal = player.bigBadges.length % 4;
+      var repeater = 4 - reminderVal;
+      for(var i = 0; i < repeater; i++ ){
+        player.bigBadges.push({});
+      }
+      for(var ii = 0; ii < player.bigBadges.length / 4; ii++ ){
+        player.splitBadgesData.push({});
+      }
+    }
   }
 
 }]);

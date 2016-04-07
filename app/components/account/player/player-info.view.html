@@ -14,19 +14,26 @@
   <div class="pd-right">
     <h3>{{player.playerObj.firstName}} {{player.playerObj.lastName}}</h3>
 
-    <!--<div class="player-favorites">
-      <i class="fa fa-heart"></i> <span data-translate="player.fav_game1">Fav game 01,</span><span data-translate="player.fav_game2"> Fav game 02, </span> <span data-translate="player.fav_game3"> Fav game 03 </span>
-    </div>-->
-    <p ng-if="player.playerObj.activities.length > 0"><img src="assets/images/badge1.png"> {{player.playerObj.firstName}} <span data-translate="player.learn_words">learned words like</span>
-      <strong >{{player.playerObj.activities[0].word}} </strong>and<strong> {{player.playerObj.activities[1].word}}</strong></p>
-
-    <p ng-if="player.playerObj.game"><img src="assets/images/badge2.png"> {{player.playerObj.firstName}}<span
-      data-translate="player.milestone_achieved">achieved 02 Milestones in</span>
-      <strong>{{player.playerObj.game[0].gameName}}.</strong></p>
-
-    <p><img src="assets/images/badge1.png"> {{player.playerObj.firstName}} <span data-translate="player.consectetur">consectetur adipscing</span>
-      <strong data-translate="player.elit">elit.</strong>
+    <p><img src="assets/images/badge1.png">
+      <span data-ng-if="!highlights.earnedBadges"> <strong>{{highlights.earnedBadges}}</strong> No badges earned so far </span>
+      <span data-ng-if="highlights.earnedBadges"> <strong>{{highlights.earnedBadges}}</strong> badges earned in the past 7 days</span>
     </p>
+
+    <p><img src="assets/images/badge2.png">
+      <span data-ng-if="!highlights.totalPlayedTime"> You haven't played</span>
+      <span data-ng-if="highlights.totalPlayedTime"> <strong>{{highlights.totalPlayedTime}}</strong> played in square panda for past 7 days</span>
+    </p>
+
+    <p><img src="assets/images/badge2.png">
+      <span data-ng-if="highlights.correctWord"> Most recent word <strong>"{{highlights.correctWord}}"</strong> marked as Correct</span>
+      <span data-ng-if="!highlights.correctWord"> No recent word marked as correct</span>
+    </p>
+
+    <p><img src="assets/images/badge2.png">
+      <span data-ng-if="!highlights.favourites.word || !highlights.favourites.count"> No favorite word </span>
+      <span data-ng-if="highlights.favourites.word && highlights.favourites.count"> My Favourite Word : {{highlights.favourites.word}} (I spelled {{highlights.favourites.word}} {{highlights.favourites.count}} times)</span>
+    </p>
+
 
   </div>
 </div>
