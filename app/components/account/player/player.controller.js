@@ -15,8 +15,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.reverse = false;
   player.clicked = false;
 
-
-  var playerId = $state.params.id;
   player.displayChartIndex = 0;
   player.predicate = 'Sno';
   player.wordsHeaders = {
@@ -46,7 +44,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   player.addPlayer = function(){
     if (player.data.playersList.length >= 5) {
-      var modalInstance = $uibModal.open({
+     $uibModal.open({
         templateUrl: 'common/app-directives/modal/custom-modal.html',
         controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
           $scope.modalTitle = "Error";
