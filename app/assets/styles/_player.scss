@@ -242,6 +242,10 @@
       border-left:1px solid #ddd;
     }
 
+    li:first-child{
+      border-left:1px solid #f9ae30;
+    }
+
     li.active{
       border-top: solid 1px #ddd;
       &:first-child{
