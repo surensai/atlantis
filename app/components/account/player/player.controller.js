@@ -26,7 +26,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.drag = 'drag feedback';
   player.drop = 'drop feedback';
 
-  player.bigBadges = PlayerService.getBadges();
+
 
   player.getKeysOfCollection = function (obj) {
     obj = angular.copy(obj);
@@ -39,7 +39,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   (function () {
     getPlayers();
-    splitBadgesData();
   })();
 
   player.addPlayer = function(){
@@ -70,7 +69,16 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     player.showRow = index;
     player.showColumn = colIndex;
   };
-
+  function getBigBadges(playerId) {
+    PlayerService.getBadges(userID,playerId)
+      .success(function (data) {
+        player.bigBadges = data;
+        splitBadgesData();
+      })
+      .error(function () {
+        flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+      });
+  }
   function getPlayers() {
     var handleSuccess = function (data) {
       player.isNoPlayer = true;
@@ -81,6 +89,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         }
         getPlayerHighlights(playerId);
         getMinibadges(playerId);
+        getBigBadges(playerId);
         getWords(playerId);
         player.data.playersList = data;
         PlayerService.getPlayerById(playerId)
@@ -102,6 +111,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     PlayerService.getAllApi(userID)
       .success(handleSuccess)
       .error(handleError);
+
   }
 
   function getWords(childId) {
