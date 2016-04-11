@@ -1,6 +1,7 @@
 <div class="badge-item center-align" style="position:relative;">
-  <img class="disabled-big-badge" ng-src="assets/images/badges/disabled/{{item.image}}.png"/>
+  <img class="disabled-big-badge" ng-src="{{item.disabledassetURL}}" data-ng-class="badgeSelection()"/>
   <img class="active-big-badge" ng-style="getStyle()"
-       ng-src="assets/images/badges/active/{{item.image}}.png"/>
-  <span>{{item.milestone}}</span>
+       ng-src="{{item.assetURL}}"/>
+  <img class="active-big-badge" style="bottom:25px;" data-ng-show="displayStar" data-ng-src="assets/images/badges/active/star.png"/>
+  <span>{{item.badgeName}}</span>
 </div></div>
