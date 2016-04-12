@@ -153,11 +153,11 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
 
   settings.updateMissingLetters = function () {
     var handleSuccess = function (data) {
-      messagesFactory.MissingLettersSuccessMessages(data);
+      messagesFactory.updateMissingLettersSuccessMessages(data);
     };
     var handleError = function (error, status) {
       if (error && status) {
-        messagesFactory.MissingLettersErrorMessages(status);
+        messagesFactory.updateMissingLettersErrorMessages(status);
       }
     };
 
