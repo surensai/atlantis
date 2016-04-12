@@ -48,8 +48,9 @@
           <div class="dropdown" data-ng-if="globals.currentUser">
             <a href="" class="dropdown-toggle text-ellipsis user-name" type="button" data-toggle="dropdown" width="50%">{{globals.currentUser.firstName}}
               {{globals.currentUser.lastName}}
-            </a><a><p class="caret" data-toggle="dropdown"></p></a>
-            <ul class="dropdown-menu">
+              <span class="caret custom-caret" ></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-logout">
               <li data-ng-if="globals.currentUser.email === 'admin@squarepanda.com'"><a ui-sref="admin.firmware-update"
                                                                                         data-translate="nav.firmware_update.title">Firmware
                 Update</a></li>

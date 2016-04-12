@@ -174,17 +174,32 @@ body{
       text-transform: capitalize;
     }
   }
+  .dropdown-menu{
+    left:-27px !important;
+    border-radius: 0px;
+    border: none !important;
+    right: 0 !important;
+    min-width: 140px !important;
+    text-align:center !important;
+  }
   ul, li {
     @extend .reset-padding-margin;
   }
   ul.dropdown-menu {
     left:0px;
     right: 0px;
+
     li a {
       color: #333333;
     }
   }
+.custom-caret{
+  width: 10px;
+  height: 10px;
+  vertical-align: -15%;
+  margin-left: 10px;
 
+}
   li {
     list-style: none;
     display: inline;

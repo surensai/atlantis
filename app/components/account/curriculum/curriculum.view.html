@@ -1,5 +1,5 @@
 <div class="curriculum-container" xmlns="http://www.w3.org/1999/html">
-  <toaster-container toaster-options="{'position-class': 'toast-bottom-center'}"></toaster-container>
+  <toaster-container toaster-options="{'position-class': 'toast-top-center'}"></toaster-container>
   <div class="container container-min-height">
     <div class="panel curriculum-customword-panel">
       <div class="panel-heading text-center sp-common-panel-header" data-translate="curriculum.custom_word">
@@ -109,8 +109,8 @@
       </div>
     </div>
     <div class="panel curriculum-groupword-panel">
-      <div class="panel-heading text-center sp-common-panel-header" data-translate="curriculum.group_word_list">
-        Parent's Choice
+      <div class="panel-heading text-center sp-common-panel-header" data-translate="curriculum.parent_choice">
+        Parent's Choice - Word Filter
       </div>
       <div class="panel-body curriculum-groupwordpanel-body">
         <p class="curriculum-milestone-text">At Square Panda, parents and teachers rule! Not all parents and teachers
@@ -128,24 +128,6 @@
           <uib-accordion-group is-open="status.open">
             <uib-accordion-heading>
               <i class=" glyphicon"
-                 ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Anatomy
-            </uib-accordion-heading>
-            <div class="curriculum-groupword-data">
-              <!--<div class="checkbox">-->
-              <!--<label><input type="checkbox" ng-model="curriculum.anatomyWords.selectedAll"-->
-              <!--ng-click="curriculum.checkAll(curriculum.anatomyWords.selectedAll,curriculum.group.anatomyWords)"/>Select-->
-              <!--All</label>-->
-              <!--</div>-->
-              <div class="checkbox" data-ng-repeat="word in curriculum.group.anatomyWords">
-                <label><input type="checkbox" data-ng-model="word.groupedflag">{{word.Word}}</label>
-              </div>
-            </div>
-          </uib-accordion-group>
-        </uib-accordion>
-        <uib-accordion>
-          <uib-accordion-group is-open="status.open">
-            <uib-accordion-heading>
-              <i class=" glyphicon"
                  ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Bathroom
             </uib-accordion-heading>
             <div class="curriculum-groupword-data">
@@ -154,13 +136,39 @@
               <!--ng-click="curriculum.checkAll(curriculum.bathroomWords.selectedAll,curriculum.group.bathroomWords)"/>Select-->
               <!--All</label>-->
               <!--</div>-->
-              <div class="checkbox" data-ng-repeat="word in curriculum.group.bathroomWords">
-                <label><input type="checkbox" data-ng-model="word.groupedflag">{{word.Word}}</label>
+              <div class="col-md-3" data-ng-repeat="words in curriculum.group.bathroomWords ">
+                <div class="checkbox" ng-repeat="word in words track by $index">
+                  <label><input type="checkbox" data-ng-model="word.groupedflag">{{word.Word}}</label>
+                </div>
               </div>
+
+
             </div>
 
           </uib-accordion-group>
         </uib-accordion>
+
+        <uib-accordion>
+          <uib-accordion-group is-open="status.open">
+            <uib-accordion-heading>
+              <i class=" glyphicon"
+                 ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Anatomy
+            </uib-accordion-heading>
+            <div class="curriculum-groupword-data">
+              <!--<div class="checkbox">-->
+              <!--<label><input type="checkbox" ng-model="curriculum.anatomyWords.selectedAll"-->
+              <!--ng-click="curriculum.checkAll(curriculum.anatomyWords.selectedAll,curriculum.group.anatomyWords)"/>Select-->
+              <!--All</label>-->
+              <!--</div>-->
+              <div class="col-md-3" data-ng-repeat="words in curriculum.group.anatomyWords">
+                <div class="checkbox"  data-ng-repeat="word in words track by $index">
+                  <label><input type="checkbox" data-ng-model="word.groupedflag">{{word.Word}}</label>
+                </div>
+              </div>
+            </div>
+          </uib-accordion-group>
+        </uib-accordion>
+
         <div class="col-md-12 margin-top20">
           <button class="btn btn-primary notification-submit-button center-block" type="submit"
                   data-ng-click="curriculum.submitGroupWords()" data-translate="common.buttons.submit">SUBMIT
