@@ -1,4 +1,4 @@
-<toaster-container class="custom-toaster-conatiner" toaster-options="{'position-class': 'toast-bottom-center'}"></toaster-container>
+<toaster-container class="custom-toaster-conatiner" toaster-options="{'position-class': 'toast-top-center'}"></toaster-container>
 <div class="settings-container">
   <div class="container container-min-height">
     <div class="panel settiings-panel">
@@ -10,11 +10,11 @@
           <div class="form-horizontal">
 
             <div class="form-group">
-              <div class="col-md-2"></div>
+              <div class="col-md-3"></div>
               <div class="col-md-2 ">
               <label class="control-label" data-translate="nav.edit_profile.first_name">First Name:</label>
               </div>
-              <div class="col-md-5">
+              <div class="col-md-3">
                 <input type="text" name="firstName" class="form-control"
                        ng-minlength="2" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/"
                        data-ng-model="settings.model.userData.firstName"
@@ -41,12 +41,12 @@
             </div>
 
             <div class="form-group">
-              <div class="col-md-2"></div>
+              <div class="col-md-3"></div>
               <div class="col-md-2 ">
               <label class="control-label " data-translate="nav.edit_profile.last_name">Last Name:</label>
               </div>
 
-              <div class="col-md-5">
+              <div class="col-md-3">
                 <input type="text" name="lastName" class="form-control" data-ng-model="settings.model.userData.lastName"
                        ng-minlength="2" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/"
                        placeholder="{{ 'user.last_name' | translate }}" required ng-disabled="!settings.isEditClicked">
@@ -68,24 +68,24 @@
             </div>
 
             <div class="form-group">
-              <div class="col-md-2"></div>
+              <div class="col-md-3"></div>
               <div class="col-md-2 ">
               <label class="control-label" data-translate="nav.edit_profile.email">Email:</label></div>
 
-              <div class="col-md-5">
+              <div class="col-md-3">
                 <input type="text" name="email" class="form-control" data-ng-model="settings.model.userData.email"
                        placeholder="{{ 'user.email' | translate }}" disabled>
               </div>
             </div>
 
             <div class="form-group">
-              <div class="col-md-2"></div>
+              <div class="col-md-3"></div>
               <div class="col-md-2">
                 <label class=" control-label" data-translate="nav.edit_profile.mobile_num">Mobile
                 Number:</label>
               </div>
 
-              <div class="col-md-5">
+              <div class="col-md-3">
                 <input type="text" name="mobileNumber" data-ng-model="settings.model.userData.mobileNumber"
                        class="form-control" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
                        placeholder="{{ 'user.register.mobile' | translate }}" ng-disabled="!settings.isEditClicked">
@@ -98,7 +98,7 @@
             </div>
 
             <div class="form-group">
-              <div class="col-md-4"></div>
+              <div class="col-md-5"></div>
               <div class="col-md-6">
                 <button class="btn btn-primary settings-edit-button edit-submit-btn" type="button" data-ng-click="settings.edit();"
                         data-ng-hide="settings.isEditClicked">Edit
@@ -126,13 +126,13 @@
           <div class="form-horizontal">
 
             <div class="form-group">
-              <div class="col-md-2"></div>
+              <div class="col-md-3"></div>
               <div class="col-md-2">
                 <label class="control-label " data-translate="nav.change_password.old_password">Old
                   password:</label>
               </div>
 
-              <div class="col-md-5">
+              <div class="col-md-3">
                 <input type="password" class="form-control " name="oldPassword"
                        ng-model="settings.model.passwordData.oldPassword"
                        placeholder="{{ 'user.change_password.old_password' | translate }}" required>
@@ -146,12 +146,12 @@
             </div>
 
             <div class="form-group">
-              <div class="col-md-2"></div>
+              <div class="col-md-3"></div>
               <div class="col-md-2">
                 <label class=" control-label" data-translate="nav.change_password.new_password">New
                   Password:</label>
               </div>
-              <div class="col-md-5">
+              <div class="col-md-3">
 
                 <input type="password" class="form-control " name="password"
                        ng-model="settings.model.passwordData.password"
@@ -171,12 +171,12 @@
             </div>
 
             <div class="form-group ">
-              <div class="col-md-2"></div>
+              <div class="col-md-3"></div>
               <div class="col-md-2">
                 <label class=" control-label" data-translate="nav.change_password.confirm_new_password">Confirm
                   Newe Password:</label>
               </div>
-              <div class="col-md-5">
+              <div class="col-md-3">
 
                 <input type="password" name="confirmPassword"
                        data-ng-model="settings.model.passwordData.confirmPassword"
@@ -196,8 +196,8 @@
             </div>
 
             <div class="form-group ">
-              <div class="col-md-4"></div>
-              <div class="col-md-5">
+              <div class="col-md-5"></div>
+              <div class="col-md-3">
                 <button type="submit" class="btn btn-primary settings-submit-button edit-submit-btn" data-translate="common.buttons.submit">
                   Submit
                 </button>

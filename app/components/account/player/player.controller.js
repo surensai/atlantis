@@ -27,7 +27,13 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.drop = 'drop feedback';
 
 
-
+  player.gridCount = 0;
+  if(screen.width === 768){
+    player.gridCount = 2;
+  }else {
+    player.gridCount = 4;
+    player.gridNumber  = 3;
+  }
   player.getKeysOfCollection = function (obj) {
     obj = angular.copy(obj);
     if (!obj) {
@@ -60,14 +66,32 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   };
 
   player.bigBadgesData = function (index) {
-    var currentIndex =  index * 4;
-    return player.bigBadges.slice(currentIndex, currentIndex+4);
+    var currentIndex =  index * player.gridCount;
+    return player.bigBadges.slice(currentIndex, currentIndex+player.gridCount);
   };
 
   player.showGraph = function (index, colIndex) {
     player.clicked = true;
     player.showRow = index;
     player.showColumn = colIndex;
+    var count = 0;
+    for(var j=0;j<player.bigBadges.length;j++){
+      if(player.showRow === j){
+        for(var k=0;k<player.bigBadges.length;k++){
+          if(player.showColumn === k){
+            player.badgeDescription  = player.bigBadges[count].description;
+            player.tabWords = player.bigBadges[count].tabwords;
+            break;
+          }else{
+            count++;
+          }
+        }
+        break;
+      }else {
+        count=count+player.gridCount;
+      }
+    }
+    console.log(player.tabWords)
   };
   function getBigBadges(playerId) {
     PlayerService.getBadges(userID,playerId)
@@ -79,6 +103,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         flashService.showError($translate.instant("player.messages.error_getting_players"), false);
       });
   }
+
   function getPlayers() {
     var handleSuccess = function (data) {
       player.isNoPlayer = true;
@@ -175,12 +200,12 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   function splitBadgesData(){
     if(player.bigBadges.length){
-      var reminderVal = player.bigBadges.length % 4;
-      var repeater = 4 - reminderVal;
+      var reminderVal = player.bigBadges.length % player.gridCount;
+      var repeater = player.gridCount - reminderVal;
       for(var i = 0; i < repeater; i++ ){
         player.bigBadges.push({});
       }
-      for(var ii = 0; ii < player.bigBadges.length / 4; ii++ ){
+      for(var ii = 0; ii < player.bigBadges.length / player.gridCount; ii++ ){
         player.splitBadgesData.push({});
       }
     }

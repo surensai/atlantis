@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', '$scope', '$state', '$uibModal', 'messagesFactory','$translate', function ($timeout, CurriculumService, $scope, $state, $uibModal, messagesFactory,$translate) {
+angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', '$scope', '$state', '$uibModal', 'messagesFactory', '$translate', function ($timeout, CurriculumService, $scope, $state, $uibModal, messagesFactory, $translate) {
 
   var curriculum = this;
   curriculum.customWords = [];
@@ -49,9 +49,9 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
 
     };
 
-    var handleError = function (error,status) {
-        if (error && status) {
-          messagesFactory.customisesearchwordError(status);
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.customisesearchwordError(status);
       }
     };
 
@@ -161,7 +161,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
         messagesFactory.listwordsError(status);
       }
     };
-      CurriculumService.listWordsApi()
+    CurriculumService.listWordsApi()
       .success(handleSuccess)
       .error(handleError);
 
@@ -169,27 +169,31 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
 
   function getWordsByCategory(carArr) {
     var handleSuccess = function (data) {
-        if (data.anatomy && data.anatomy.length > 0) {
-          curriculum.group.anatomyWords = [];
-          curriculum.group.anatomyWords = data.anatomy;
-        }
+      if (data.anatomy && data.anatomy.length > 0) {
+        curriculum.group.anatomyWords = [];
 
-        if(data.bathroom && data.bathroom.length > 0) {
-          curriculum.group.bathroomWords = [];
-          curriculum.group.bathroomWords = data.bathroom;
-        }
+
+        var sortedanatomyArr = sortWordsData(data.anatomy);
+        curriculum.group.anatomyWords = chunk(sortedanatomyArr, 4);
+      }
+
+      if (data.bathroom && data.bathroom.length > 0) {
+        curriculum.group.bathroomWords = [];
+        var sortedbathroomArr = sortWordsData(data.bathroom);
+        curriculum.group.bathroomWords = chunk(sortedbathroomArr, 4);
+      }
     };
     var handleError = function (error, status) {
       if (error && status) {
         messagesFactory.getGroupwordsError(status);
       }
     };
-     CurriculumService.getGroupWords(carArr)
+    CurriculumService.getGroupWords(carArr)
       .success(handleSuccess)
       .error(handleError);
   }
 
-  curriculum.checkAll = function (event,selectedAll,words) {
+  curriculum.checkAll = function (event, selectedAll, words) {
     angular.element("#href-remove a").removeAttr("href");
     event.stopPropagation();
 
@@ -202,5 +206,32 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
       item.groupedflag = selectedAll;
     });
   };
+
+  function sortWordsData(arr) {
+    arr.sort(function (a, b) {
+      if (a.Word.toLowerCase() < b.Word.toLowerCase()) {
+        return -1;
+      }
+      if (a.Word.toLowerCase() > b.Word.toLowerCase()) {
+        return 1;
+      }
+      return 0;
+    });
+
+    for (var i = 0; i < arr.length; i++) {
+      arr[i].Word;
+    }
+    return arr;
+  }
+
+  function chunk(arr, size) {
+    var newArr = [];
+    size = arr.length / 4;
+    size = Math.ceil(size);
+    for (var i = 0; i < arr.length; i += size) {
+      newArr.push(arr.slice(i, i + size));
+    }
+    return newArr;
+  }
 
 }]);
