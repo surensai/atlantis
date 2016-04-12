@@ -481,15 +481,41 @@
     padding-left: 183px !important;
   }
 
-  .bb-col-0, .bb-col-1, .bb-col-2{
+ /* .bb-col-0, .bb-col-1, .bb-col-2{
     display: none;
   }
 
   .bb-col-3{
     display: block;
-  }
+  }*/
 
 }
+
+@media only screen and (min-device-width:768px){
+  .bb-col-0, .bb-col-1, .bb-col-2 {
+    display:none;
+  }
+  .bb-col-3 {
+    display:block;
+  }
+}
+@media only screen and (min-device-width:414px) and (max-device-width:768px) {
+  .bb-col-0 {
+    display:none;
+  }
+  .bb-col-1 {
+    display:block;
+  }
+}
+/*@media only screen and (max-device-width:414px) {
+  .bb-col-0, .bb-col-1, .bb-col-2 {
+    display:none;
+  }
+  .bb-col-3 {
+    display:block;
+  }
+
+}*/
 @media only screen and
 (min-device-width: 320px) and (max-device-width: 1024px) {
   .save-cancel-parent {

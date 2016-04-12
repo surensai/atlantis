@@ -50,28 +50,21 @@
                data-ng-repeat-start="badge in player.bigBadgesData(count)"
                data-ng-click="player.showGraph(count, $index)">
 
-              <data-badge-item item-data="badge"
-                               display-index="player.displayChartIndex"
-                               index="$index">
-              </data-badge-item>
-              <p class="bb-arrow" data-ng-if="player.clicked && (player.showRow === count) && (player.showColumn === $index)">
-                <img src="assets/images/arrow-icon.png" />
-              </p>
+            <data-badge-item item-data="badge"
+                             display-index="player.displayChartIndex"
+                             index="$index">
+            </data-badge-item>
+            <p class="bb-arrow" data-ng-if="player.clicked && (player.showRow === count) && (player.showColumn === $index)">
+              <img src="assets/images/arrow-icon.png" />
+            </p>
 
           </div>
 
           <div class="bb-col-{{$index}}" data-ng-repeat-end="" data-ng-if="player.clicked && player.showRow === count">
             <div class="bigbadge-description">
               <div class="bigbadge-description-text">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  doloremagna aliqua. Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat quis nostrud exercitation ullamco laboris nisi ut aliquip. </p>
-                <span class="  bigbadge-buttons">Cat</span>
-                <span class="  bigbadge-buttons">Bat</span>
-                <span class="  bigbadge-buttons bigbadge-buttons-mat">Mat</span>
-                <span class="  bigbadge-buttons bigbadge-buttons-ball">Ball</span>
-                <span class="  bigbadge-buttons bigbadge-buttons-doll">Doll</span>
-                <span>...</span>
+                <p>{{player.badgeDescription}} </p>
+                <button class="btn  bigbadge-buttons" data-ng-repeat="word in player.tabWords">{{word}}</button>
               </div>
               <div class="bigbadge-graph-buttons ">
                 <button class="btn bigbadge-graph-button-style">Day</button>
@@ -111,33 +104,33 @@
     <uib-tab index="2" heading="Words">
       <div class="badges-container clearfix">
         <div class="table-responsive">
-        <table class="table table-striped table-hover borderless">
-          <thead>
-          <tr>
-            <th ng-repeat="key in player.getKeysOfCollection(player.wordsHeaders)"
-                ng-click="player.predicate = key; player.reverse=!player.reverse;">
-              {{player.wordsHeaders[key]}}
-              <span class="fa fa-sort columnSortIcons" ng-if="key !== player.predicate"></span>
+          <table class="table table-striped table-hover borderless">
+            <thead>
+            <tr>
+              <th ng-repeat="key in player.getKeysOfCollection(player.wordsHeaders)"
+                  ng-click="player.predicate = key; player.reverse=!player.reverse;">
+                {{player.wordsHeaders[key]}}
+                <span class="fa fa-sort columnSortIcons" ng-if="key !== player.predicate"></span>
                 <span class="fa fa-sort-down columnSortIcons"
                       ng-if="!(player.reverse) && key === player.predicate"></span>
                 <span class="fa fa-sort-up columnSortIcons"
                       ng-if="player.reverse && key === player.predicate"></span>
-            </th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr data-ng-repeat="word in player.wordsData | orderBy:player.predicate:player.reverse">
-            <td class="player-words text-ellipsis word-text">{{ word.word}}</td>
-            <td class="word-icons">{{ word.activity.length}}</td>
-            <td class="word-date">{{ word.endtime | date:"MM/dd/yyyy '' h:mma"}}</td>
-            <td data-ng-if="word.activity[word.activity.length - 1].answer" class="word-check"><i class="fa fa-check last-attempt-green" ></i></td>
-            <td data-ng-if="!word.activity[word.activity.length - 1].answer" class="word-check"><i class="fa fa-close last-attempt-blue" ></i></td>
-          </tr>
-          <tr data-ng-if="player.wordsData.length === 0">
-            <td colspan="5"> No Data</td>
-          </tr>
-          </tbody>
-        </table>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="word in player.wordsData | orderBy:player.predicate:player.reverse">
+              <td class="player-words text-ellipsis word-text">{{ word.word}}</td>
+              <td class="word-icons">{{ word.activity.length}}</td>
+              <td class="word-date">{{ word.endtime | date:"MM/dd/yyyy '' h:mma"}}</td>
+              <td data-ng-if="word.activity[word.activity.length - 1].answer" class="word-check"><i class="fa fa-check last-attempt-green" ></i></td>
+              <td data-ng-if="!word.activity[word.activity.length - 1].answer" class="word-check"><i class="fa fa-close last-attempt-blue" ></i></td>
+            </tr>
+            <tr data-ng-if="player.wordsData.length === 0">
+              <td colspan="5"> No Data</td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </uib-tab>
