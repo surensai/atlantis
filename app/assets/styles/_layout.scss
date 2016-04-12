@@ -298,6 +298,17 @@ body{
     color: $white-color;
   }
 }
+
+.sp-cancel-btn {
+  background-color: #7E7E7E;
+  border: 0px;
+  font-size: 18px;
+  color: $white-color;
+  &:hover {
+    background-color: lighten(#7E7E7E, 10%);
+  }
+}
+
 .uc-left, .uc-right{
   text-align: center;
 }

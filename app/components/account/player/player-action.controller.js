@@ -147,14 +147,13 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     $uibModal.open({
       templateUrl: 'components/account/player/player-avatars-modal.html',
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
-        $scope.close = function () {
-          $uibModalInstance.dismiss('cancel');
-        };
+
+        $scope.selectionAvatar = (playerAction.model.playerItem.profileURL) ? playerAction.model.playerItem.profileURL : '';
 
         $scope.avatarsList = playerAction.data.avatarsList;
         $scope.selectAvatar = function(item){
           $scope.selectionAvatar = item.assetURL;
-        }
+        };
 
         $scope.photoChanged = function (files) {
           if (files.length > 0 || playerAction.previousSelectedFile.length > 0) {
@@ -175,6 +174,15 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
               playerAction.fileError = false;
             }
           }
+        };
+
+        $scope.onCancel = function () {
+          $uibModalInstance.dismiss('cancel');
+        };
+
+        $scope.onSubmit = function () {
+          playerAction.model.playerItem.profileURL = $scope.selectionAvatar;
+          $uibModalInstance.dismiss('cancel');
         };
       }]
     });
