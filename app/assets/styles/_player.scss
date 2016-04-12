@@ -466,6 +466,30 @@
   display: block;
 }
 
+
+.sp-avatars-modal{
+  .modal-body{
+    .modal-left{
+      float: left;
+    }
+    .modal-right{
+      float: right;
+      .avatars-items{
+        .item{
+          float: left;
+        }
+      }
+    }
+  }
+  .modal-footer{
+    padding: 0px;
+    text-align: left;
+    button{
+      width: 49%;
+    }
+  }
+}
+
 @media(min-width: 768px) {
   .profile-pic, .profile-pic img{
     width: 160px !important;
@@ -517,4 +541,9 @@
 }
 .word-date {
   width: 36%;
+}
+@media only screen and (max-device-width: 320px) {
+  .player-tabs ul li a{
+    padding: 10px 6px;
+  }
 }

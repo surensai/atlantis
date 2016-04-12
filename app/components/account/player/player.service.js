@@ -82,6 +82,10 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
     return $http.get(base_url + '/activity/' + userID +'/'+childID +'/bigbadges');
   };
 
+  service.getAvatarsAPI = function (userID, childID) {
+    return $http.get(base_url + '/avatar/' + userID +'/get-avatars');
+  };
+
   return service;
 
 
