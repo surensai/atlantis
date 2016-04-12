@@ -1,0 +1,38 @@
+<div class="sp-avatars-modal">
+  <div class='modal-header sp-common-panel-header'>
+    Set your profile picture
+  </div>
+  <div class='modal-body clearfix'>
+    <div class="modal-left">
+      <div class="avatar-seletion">
+        <img data-ng-src="{{selectionAvatar}}" width="117" height="117" data-ng-if="selectionAvatar" />
+        <img src="assets/images/fallback-img.png" width="117" height="117" data-ng-if="!selectionAvatar" />
+      </div>
+      <div class="browse-btn">
+        <input type="file" name="file" file-model="playerAction.myFile"
+               class="img-rectangle img-border-radius " accept='image/*'
+               onchange="angular.element(this).scope().photoChanged(this.files)"/>
+        <button class='btn btn-default btn-primary'>Upload your own picture</button>
+      </div>
+
+      <div>
+        <span> (or) </span>
+      </div>
+
+      <div>
+        <a href="javascript:;"> Choose an Avatar <i class="fa fa-chevron-right"></i> </a>
+      </div>
+    </div>
+    <div class="modal-right">
+        <div class="avatars-items">
+          <div class="item" data-ng-repeat="item in avatarsList" data-ng-click="selectAvatar(item)">
+            <img  data-ng-src="{{item.assetURL}}" width="50" height="50">
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class='modal-footer'>
+    <button class='btn btn-default btn-primary' ng-click='onSubmit()'>Submit</button>
+    <button class='btn btn-default sp-cancel-btn' ng-click='onCancel()'>Cancel</button>
+  </div>
+</div>

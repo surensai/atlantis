@@ -1,10 +1,11 @@
 'use strict';
 
-angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messagesFactory', 'PlayerService', '$timeout', '$translate', function ($scope, $state, messagesFactory, PlayerService, $timeout, $translate) {
+angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messagesFactory', 'PlayerService', '$timeout', '$translate', '$uibModal', function ($scope, $state, messagesFactory, PlayerService, $timeout, $translate, $uibModal) {
 
   var playerAction = this;
   playerAction.model = {};
   playerAction.data = {};
+  playerAction.data.avatarsList = [];
   playerAction.modalTitle = 'Warning!';
   playerAction.modalBody = $translate.instant("user.validationMessages.model_delete_player");
   playerAction.data.deleteObj = {};
@@ -20,8 +21,8 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
 
   (function () {
     getPlayerById();
+    getAvatars();
   })();
-
 
   playerAction.submitForm = function (form) {
 
@@ -140,25 +141,51 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   };
 
 
-  $scope.photoChanged = function (files) {
-    if (files.length > 0 || playerAction.previousSelectedFile.length > 0) {
-      playerAction.previousSelectedFile = (files.length > 0) ? files : playerAction.previousSelectedFile;
-      var file = (files.length > 0) ? files[0] : playerAction.previousSelectedFile[0];
-      if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
-        playerAction.fileError = true;
-        $timeout(function () {
-          var fileReader = new FileReader();
-          fileReader.readAsDataURL(file);
-          fileReader.onload = function (e) {
-            $timeout(function () {
-              playerAction.model.playerItem.profileURL = e.target.result;
-            });
-          };
-        });
-      } else {
-        playerAction.fileError = false;
-      }
-    }
+
+
+  playerAction.showAvatars = function() {
+    $uibModal.open({
+      templateUrl: 'components/account/player/player-avatars-modal.html',
+      controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+
+        $scope.selectionAvatar = (playerAction.model.playerItem.profileURL) ? playerAction.model.playerItem.profileURL : '';
+
+        $scope.avatarsList = playerAction.data.avatarsList;
+        $scope.selectAvatar = function(item){
+          $scope.selectionAvatar = item.assetURL;
+        };
+
+        $scope.photoChanged = function (files) {
+          if (files.length > 0 || playerAction.previousSelectedFile.length > 0) {
+            playerAction.previousSelectedFile = (files.length > 0) ? files : playerAction.previousSelectedFile;
+            var file = (files.length > 0) ? files[0] : playerAction.previousSelectedFile[0];
+            if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
+              playerAction.fileError = true;
+              $timeout(function () {
+                var fileReader = new FileReader();
+                fileReader.readAsDataURL(file);
+                fileReader.onload = function (e) {
+                  $timeout(function () {
+                    $scope.selectionAvatar = e.target.result;
+                  });
+                };
+              });
+            } else {
+              playerAction.fileError = false;
+            }
+          }
+        };
+
+        $scope.onCancel = function () {
+          $uibModalInstance.dismiss('cancel');
+        };
+
+        $scope.onSubmit = function () {
+          playerAction.model.playerItem.profileURL = $scope.selectionAvatar;
+          $uibModalInstance.dismiss('cancel');
+        };
+      }]
+    });
   };
 
   function getPlayerById() {
@@ -182,5 +209,24 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     }
 
   }
+
+
+  function getAvatars() {
+
+      var handleSuccess = function (data) {
+        playerAction.data.avatarsList = data;
+      };
+
+      var handleError = function (error, status) {
+        if (error && status) {
+          messagesFactory.getPlayerbyIDError(status);
+        }
+      };
+      PlayerService.getAvatarsAPI()
+        .success(handleSuccess)
+        .error(handleError);
+    }
+
+
 }]);
 

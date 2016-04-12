@@ -26,7 +26,9 @@
     opacity: 0;
   }
   .myLabel {
-    color: white;
+    a{
+      color: white;
+    }
     background: rgba(0, 0, 0, 0.6);
     display: inline-block;
     width: 100%;
@@ -34,12 +36,7 @@
     padding-top: 12px;
     border-radius: 0px 0px 5px 5px;
   }
-  .myLabel:hover {
-    background: rgba(0, 0, 0, 0.6);
-  }
-  .myLabel:active {
-    background: rgba(0, 0, 0, 0.6);
-  }
+
 
   .gender-icon-size{
     padding-left: 5px;
@@ -466,6 +463,57 @@
   display: block;
 }
 
+
+.sp-avatars-modal{
+  .modal-header{
+    padding: 11px;
+    border-radius: 5px 5px 0px 0px;
+    border: 0px;
+  }
+  .modal-body{
+    .modal-left{
+      float: left;
+      width: 50%;
+      text-align: center;
+      .avatar-seletion{
+        margin-bottom: 10px;
+      }
+      .browse-btn{
+        position: relative;
+        input[type="file"]{
+          position: absolute;
+          z-index: 2;
+          opacity: 0;
+        }
+      }
+    }
+    .modal-right{
+      float: right;
+      width: 50%;
+      .avatars-items{
+        .item{
+          float: left;
+        }
+      }
+    }
+  }
+  .modal-footer{
+    padding: 0px;
+    text-align: left;
+    border: 0px;
+    button{
+      width: 50%;
+      float: left;
+      margin-left: 0px!important;
+      border-radius: 0px 0px 0px 5px;
+    }
+
+    button:nth-child(2){
+      border-radius: 0px 0px 5px 0px;
+    }
+  }
+}
+
 @media(min-width: 768px) {
   .profile-pic, .profile-pic img{
     width: 160px !important;
@@ -543,4 +591,9 @@
 }
 .word-date {
   width: 36%;
+}
+@media only screen and (max-device-width: 320px) {
+  .player-tabs ul li a{
+    padding: 10px 6px;
+  }
 }

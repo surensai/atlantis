@@ -257,3 +257,9 @@ img{
     transform: translateX(-50%);
   }
 }
+
+.modal-open {
+  overflow-y: scroll;
+  position: fixed;
+  width: 100%;
+}

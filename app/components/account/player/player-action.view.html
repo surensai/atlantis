@@ -102,23 +102,12 @@
             <label class="col-md-2 col-sm-2 control-label add-profile-pic" data-translate="player.add_picture">Add Picture</label>
 
             <div class="col-md-2 col-sm-3">
-              <!--<div class="cropArea" style="display:none;width:500px;height:350px;">-->
-                <!--<img-crop image="playerAction.model.playerItem.profileURL"-->
-                          <!--area-type="square" area-min-size="450"-->
-                          <!--result-image-format="jpeg"-->
-                          <!--result-image="playerAction.model.croppedImage">-->
-
-                <!--</img-crop>-->
-              <!--</div>-->
               <div class="thumbnail">
                 <img src="{{playerAction.model.playerItem.profileURL}}">
 
                 <div class="myLabel text-center" href="">
-                  <input type="file" name="file" file-model="playerAction.myFile"
-                         class="img-rectangle img-border-radius " accept='image/*'
-                         onchange="angular.element(this).scope().photoChanged(this.files)"/>
-                  <span data-translate="player.add_picture" data-ng-if="!playerAction.isUpdate">Add Picture</span>
-                  <span data-translate="player.change_picture" data-ng-if="playerAction.isUpdate">Change Picture</span>
+                  <a href="javascript:;" data-ng-click="playerAction.showAvatars()" data-translate="player.add_picture" data-ng-if="!playerAction.isUpdate">Add Picture</a>
+                  <a href="javascript:;" data-ng-click="playerAction.showAvatars()" data-translate="player.change_picture" data-ng-if="playerAction.isUpdate">Change Picture</a>
                 </div>
               </div>
               <div ng-show="!playerAction.fileError" class="error-mesasage">
