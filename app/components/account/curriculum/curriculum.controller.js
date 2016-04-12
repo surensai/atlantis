@@ -173,14 +173,14 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
         curriculum.group.anatomyWords = [];
 
 
-        var sortedArr = sortAnatomyData(data.anatomy);
-        curriculum.group.anatomyWords = chunk(sortedArr, 4);
+        var sortedanatomyArr = sortWordsData(data.anatomy);
+        curriculum.group.anatomyWords = chunk(sortedanatomyArr, 4);
       }
 
       if (data.bathroom && data.bathroom.length > 0) {
         curriculum.group.bathroomWords = [];
-        var sortedArr = sortAnatomyData(data.bathroom);
-        curriculum.group.bathroomWords = chunk(sortedArr, 4);
+        var sortedbathroomArr = sortWordsData(data.bathroom);
+        curriculum.group.bathroomWords = chunk(sortedbathroomArr, 4);
       }
     };
     var handleError = function (error, status) {
@@ -207,7 +207,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
     });
   };
 
-  function sortAnatomyData(arr) {
+  function sortWordsData(arr) {
     arr.sort(function (a, b) {
       if (a.Word.toLowerCase() < b.Word.toLowerCase()) {
         return -1;
@@ -226,7 +226,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
 
   function chunk(arr, size) {
     var newArr = [];
-    size = arr.length/4;
+    size = arr.length / 4;
     size = Math.ceil(size);
     for (var i = 0; i < arr.length; i += size) {
       newArr.push(arr.slice(i, i + size));
