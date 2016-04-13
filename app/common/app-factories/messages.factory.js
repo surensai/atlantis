@@ -262,7 +262,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
       flashService.showSuccess($translate.instant("player.messages.add_success"), true);
     }
   }
-  function createPlayerError(status,error) {
+  function createPlayerError(status ,error) {
     var message;
     if (status !== "") {
       message = error.error;

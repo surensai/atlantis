@@ -149,6 +149,9 @@
       "grade": "Grade",
       "school": "School",
       "sign_up": "Sign up",
+      "grownup_first_name":"Grown Up's First Name",
+      "grownup_last_name":"Grown Up's Last Name",
+      "grownup_email":"Grown Up's Email",
       "profile_picture": "Profile Picture",
       "signIn": "Already registered? Sign in"
     },

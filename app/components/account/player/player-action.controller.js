@@ -67,7 +67,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
 
     var handleError = function (error, status) {
       if (error && status) {
-        messagesFactory.createPlayerError(status);
+        messagesFactory.createPlayerError(status,error);
       }
     };
 

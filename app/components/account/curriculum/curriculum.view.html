@@ -89,13 +89,14 @@
                   <tr data-ng-repeat="word in curriculum.customWords | orderBy:curriculum.predicate:curriculum.reverse">
                     <td class="player-words text-ellipsis word-text">{{ word.Words}}</td>
                     <td class="word-date">{{ word.dateAdded | date:"MM/dd/yyyy ' h:mma"}}</td>
-                    <td data-ng-if="word.picture" class="word-check">Available</td>
-                    <td data-ng-if="!word.picture" class="word-check">Not Available</td>
-                    <td class="word-icons"><a href="#"><i class="fa fa-eye"
-                                                          ui-sref="account.viewCustomWord({ id: word.id})"></i></a> <a
-                      href=""> <i ui-sref="account.editCustomWord({ id: word.id})"
-                                  class="fa fa-pencil-square-o left-padding"></i> </a><a href=""> <i
-                      data-ng-click="curriculum.deleteListener(word)" class="fa fa-trash left-padding"></i></a></td>
+                    <td data-ng-if="word.picture" class="word-check"><img  class="img-circle" width="40" height="40" ng-src="{{word.picture}}"></td>
+                    <td data-ng-if="!word.picture" class="word-check">
+                      <img src="assets/images/fallback-img.png" class="img-circle" alt="player" width="40" height="40" />
+                    </td>
+                    <td class="word-icons">
+                      <!--<a href="#"><i class="fa fa-eye" ui-sref="account.viewCustomWord({ id: word.id})"></i></a> -->
+                      <a href=""> <i ui-sref="account.editCustomWord({ id: word.id})" class="fa fa-pencil-square-o left-padding"></i> </a>
+                     &nbsp;  &nbsp; &nbsp;<a href=""> <i data-ng-click="curriculum.deleteListener(word)" class="fa fa-trash left-padding"></i></a></td>
                   </tr>
                   <tr data-ng-if="curriculum.customWords.length === 0">
                     <td colspan="5" data-translate="curriculum.nodata"> No Data</td>
@@ -131,14 +132,13 @@
                  ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Bathroom
             </uib-accordion-heading>
             <div class="curriculum-groupword-data">
-              <!--<div class="checkbox">-->
-              <!--<label><input type="checkbox" ng-model="curriculum.bathroomWords.selectedAll"-->
-              <!--ng-click="curriculum.checkAll(curriculum.bathroomWords.selectedAll,curriculum.group.bathroomWords)"/>Select-->
-              <!--All</label>-->
-              <!--</div>-->
+              <div class="checkbox">
+              <label><input type="checkbox" ng-model="curriculum.selectedAll" ng-click="curriculum.selectAll()"/>SelectAll</label>
+              </div>
+
               <div class="col-md-3" data-ng-repeat="words in curriculum.group.bathroomWords ">
-                <div class="checkbox" ng-repeat="word in words track by $index">
-                  <label><input type="checkbox" data-ng-model="word.groupedflag">{{word.Word}}</label>
+                <div class="checkbox" ng-repeat="word in words track by $index" >
+                  <label><input type="checkbox" data-ng-model="word.groupedflag"  ng-click="curriculum.checkIfAllSelected()">{{word.Word}}</label>
                 </div>
               </div>
 
@@ -160,9 +160,12 @@
               <!--ng-click="curriculum.checkAll(curriculum.anatomyWords.selectedAll,curriculum.group.anatomyWords)"/>Select-->
               <!--All</label>-->
               <!--</div>-->
+              <div class="checkbox">
+                <label><input type="checkbox" ng-model="curriculum.checkselectAll" ng-click="curriculum.checkSelectAll()"/>SelectAll</label>
+              </div>
               <div class="col-md-3" data-ng-repeat="words in curriculum.group.anatomyWords">
                 <div class="checkbox"  data-ng-repeat="word in words track by $index">
-                  <label><input type="checkbox" data-ng-model="word.groupedflag">{{word.Word}}</label>
+                  <label><input type="checkbox" data-ng-model="word.groupedflag" >{{word.Word}}</label>
                 </div>
               </div>
             </div>
