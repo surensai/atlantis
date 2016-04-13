@@ -80,6 +80,7 @@
 
             <div class="col-md-5">
               <dob birth-date="playerAction.model.playerItem.dateofBirth"></dob>
+              <div ng-if="playerForm.$submitted && !playerAction.isDOBVaid" class="error-mesasage">Date of birth is not valid</div>
             </div>
           </div>
 
@@ -122,15 +123,17 @@
 
               </div>
 
-
-
-
-
-              <div ng-show="!playerAction.fileError" class="error-mesasage">
+              <div ng-show="!playerAction.fileError" class="error-mesasage clearfix">
                 <i class="fa fa-exclamation-circle"></i>
                   <span
                     data-translate="user.validationMessages.file_type_wrong"> File Type is wrong. Only allows images </span>
               </div>
+              <div ng-show="!playerAction.model.playerItem.profileURL && playerForm.$submitted" class="error-mesasage clearfix">
+                <i class="fa fa-exclamation-circle"></i>
+                <span> Please upload image or select Avatar </span>
+              </div>
+
+
             </div>
           </div>
           <div class="col-md-2 "></div>
@@ -141,17 +144,12 @@
             </button>
             <a ui-sref="account.players.details({ id: playerAction.model.playerItem.id })" type="button"
                class="btn btn-primary cancel-button save-cancel-player" data-translate="common.buttons.cancel">Cancel</a>
-            <img src="assets/images/delete-player.png" class=" player-delete-icon pull-right" data-target="#{{modal}}"
-                 data-toggle="modal" data-ng-if="playerAction.isUpdate"
+            <img src="assets/images/delete-player.png" class=" player-delete-icon pull-right" data-ng-if="playerAction.isUpdate"
                  data-ng-click="playerAction.deleteListener(playerAction.model.playerItem)">
           </div>
         </div>
       </form>
     </div>
-
-    <modal my-handler="modal" modal-body="playerAction.modalBody"
-           modal-footer="playerAction.modalFooter" modal-header="playerAction.modalTitle"
-           data-ng-click-right-button="playerAction.deleteAction()"></modal>
 
   </div>
 </div>

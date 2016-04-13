@@ -464,7 +464,6 @@
 }
 
 .avatar-container{
-  float: left;
   .avatar-seletion{
     float: left;
   }
@@ -515,6 +514,9 @@
         float: left;
         margin-left: 5px;
         margin-bottom: 5px;
+        .active{
+          border:solid 5px $sp-green;
+        }
         img{
           border-radius: 5px;
         }
