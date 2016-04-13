@@ -11,7 +11,7 @@
       <div class="form-group has-feedback">
         <input type="text" name="firstName" class="form-control" data-ng-model="register.model.firstName"
                ng-minlength="2" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/"
-               placeholder="{{ 'user.first_name' | translate }}" required>
+               placeholder="{{ 'user.register.grownup_first_name' | translate }}" required>
         <div ng-show="userForm.$submitted && userForm.firstName.$error.required" class="error-mesasage">
         <i class="fa fa-exclamation-circle"></i>
         <span data-translate="user.validationMessages.first_name_require">First Name is required.</span>
@@ -32,7 +32,7 @@
       <div class="form-group has-feedback">
         <input type="text" name="lastName" class="form-control" data-ng-model="register.model.lastName"
                ng-minlength="2" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/"
-               placeholder="{{ 'user.last_name' | translate }}" required>
+               placeholder="{{ 'user.register.grownup_last_name' | translate }}" required>
         <div ng-show="userForm.$submitted && userForm.lastName.$error.required" class="error-mesasage">
         <i class="fa fa-exclamation-circle"></i>
         <span  data-translate="user.validationMessages.last_name_require">Last Name is required.</span>
@@ -52,7 +52,7 @@
 
       <div class="form-group has-feedback">
         <input type="email" name="email" class="form-control" data-ng-model="register.model.email"
-               placeholder="{{ 'user.email' | translate }}"
+               placeholder="{{ 'user.register.grownup_email' | translate }}"
                ng-pattern="/^[a-zA-Z0-9._]+[+]?[a-zA-Z0-9._]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/" required>
         <div ng-show="userForm.$submitted && userForm.email.$error.required" class="error-mesasage">
         <i class="fa fa-exclamation-circle"></i>
