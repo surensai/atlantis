@@ -10,11 +10,12 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   playerAction.modalBody = $translate.instant("user.validationMessages.model_delete_player");
   playerAction.data.deleteObj = {};
   playerAction.isUpdate = false;
+  playerAction.isChoosenAvatar = false;
+  playerAction.isDOBVaid = false;
   playerAction.model.playerItem = {};
   playerAction.fileError = true;
   playerAction.model.playerItem.gender = 'M';
   playerAction.model.playerItem.age = 5;
-  playerAction.model.playerItem.profileURL = "assets/images/fallback-img.png";
   playerAction.previousSelectedFile = [];
   playerAction.fileReaderSupported = window.FileReader != null;
   playerAction.model.croppedImage = '';
@@ -27,12 +28,12 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   playerAction.submitForm = function (form) {
 
     playerAction.submitted = true;
-    if (form.$valid && playerAction.fileError) {
+    isDOBValid();
+    if (form.$valid && playerAction.fileError && playerAction.isDOBVaid) {
       playerAction.added = true;
-      if(playerAction.previousSelectedFile.length > 0){
+      if(playerAction.previousSelectedFile.length > 0 && !playerAction.isChoosenAvatar){
         uploadProfilePic(form);
       }else{
-        playerAction.model.playerItem.profileURL = undefined;
         if (playerAction.isUpdate) {
           updateAction();
         } else {
@@ -119,7 +120,24 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   }
 
   playerAction.deleteListener = function (obj) {
-    playerAction.data.deleteObj = obj;
+    $uibModal.open({
+      templateUrl: 'common/app-directives/modal/custom-modal.html',
+      controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+        $scope.modalTitle = "Warning!";
+        $scope.modalBody = "Are you sure do you want to delete player?";
+
+        $scope.ok = function () {
+          playerAction.data.deleteObj = obj;
+          playerAction.deleteAction();
+          $uibModalInstance.close();
+        };
+
+        $scope.cancel = function () {
+          $uibModalInstance.dismiss('cancel');
+        };
+      }]
+    });
+
   };
 
   playerAction.deleteAction = function () {
@@ -141,6 +159,29 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   };
 
 
+  $scope.photoChanged = function (files) {
+    if (files.length > 0 || playerAction.previousSelectedFile.length > 0) {
+      playerAction.previousSelectedFile = (files.length > 0) ? files : playerAction.previousSelectedFile;
+      var file = (files.length > 0) ? files[0] : playerAction.previousSelectedFile[0];
+      if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
+        playerAction.fileError = true;
+        $timeout(function () {
+          var fileReader = new FileReader();
+          fileReader.readAsDataURL(file);
+          fileReader.onload = function (e) {
+            $timeout(function () {
+              playerAction.model.playerItem.profileURL = e.target.result;
+              playerAction.isChoosenAvatar = false;
+            });
+          };
+        });
+      } else {
+        playerAction.fileError = false;
+      }
+    }
+  };
+
+
 
 
   playerAction.showAvatars = function() {
@@ -149,30 +190,20 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
 
         $scope.selectionAvatar = (playerAction.model.playerItem.profileURL) ? playerAction.model.playerItem.profileURL : '';
+        $scope.selectVal;
 
         $scope.avatarsList = playerAction.data.avatarsList;
-        $scope.selectAvatar = function(item){
+        $scope.selectAvatar = function(item, index){
           $scope.selectionAvatar = item.assetURL;
+          playerAction.isChoosenAvatar = true;
+          $scope.selectVal = index;
         };
 
-        $scope.photoChanged = function (files) {
-          if (files.length > 0 || playerAction.previousSelectedFile.length > 0) {
-            playerAction.previousSelectedFile = (files.length > 0) ? files : playerAction.previousSelectedFile;
-            var file = (files.length > 0) ? files[0] : playerAction.previousSelectedFile[0];
-            if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
-              playerAction.fileError = true;
-              $timeout(function () {
-                var fileReader = new FileReader();
-                fileReader.readAsDataURL(file);
-                fileReader.onload = function (e) {
-                  $timeout(function () {
-                    $scope.selectionAvatar = e.target.result;
-                  });
-                };
-              });
-            } else {
-              playerAction.fileError = false;
-            }
+        $scope.isAvatarClicked = function(index){
+          if($scope.selectVal === index){
+            return true;
+          } else {
+            return false;
           }
         };
 
@@ -184,6 +215,8 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
           playerAction.model.playerItem.profileURL = $scope.selectionAvatar;
           $uibModalInstance.dismiss('cancel');
         };
+
+
       }]
     });
   };
@@ -193,9 +226,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       playerAction.isUpdate = true;
       var handleSuccess = function (data) {
         playerAction.data.playerItem = playerAction.model.playerItem = data;
-        if(!data.profileURL){
-          playerAction.model.playerItem.profileURL = "assets/images/fallback-img.png";
-        }
       };
 
       var handleError = function (error, status) {
@@ -226,6 +256,16 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
         .success(handleSuccess)
         .error(handleError);
     }
+
+  function isDOBValid(){
+    var dobArr = playerAction.model.playerItem.dateofBirth.split("/");
+    if(dobArr[0] > 0 && dobArr[1] > 0 && dobArr[2] > 0) {
+      playerAction.isDOBVaid = true;
+    } else {
+      playerAction.isDOBVaid = false;
+    }
+
+  }
 
 
 }]);
