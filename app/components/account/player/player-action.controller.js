@@ -10,6 +10,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   playerAction.modalBody = $translate.instant("user.validationMessages.model_delete_player");
   playerAction.data.deleteObj = {};
   playerAction.isUpdate = false;
+  playerAction.isChoosenAvatar = false;
   playerAction.model.playerItem = {};
   playerAction.fileError = true;
   playerAction.model.playerItem.gender = 'M';
@@ -29,10 +30,9 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     playerAction.submitted = true;
     if (form.$valid && playerAction.fileError) {
       playerAction.added = true;
-      if(playerAction.previousSelectedFile.length > 0){
+      if(playerAction.previousSelectedFile.length > 0 && !playerAction.isChoosenAvatar){
         uploadProfilePic(form);
       }else{
-        playerAction.model.playerItem.profileURL = undefined;
         if (playerAction.isUpdate) {
           updateAction();
         } else {
@@ -141,6 +141,29 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   };
 
 
+  $scope.photoChanged = function (files) {
+    if (files.length > 0 || playerAction.previousSelectedFile.length > 0) {
+      playerAction.previousSelectedFile = (files.length > 0) ? files : playerAction.previousSelectedFile;
+      var file = (files.length > 0) ? files[0] : playerAction.previousSelectedFile[0];
+      if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
+        playerAction.fileError = true;
+        $timeout(function () {
+          var fileReader = new FileReader();
+          fileReader.readAsDataURL(file);
+          fileReader.onload = function (e) {
+            $timeout(function () {
+              playerAction.model.playerItem.profileURL = e.target.result;
+              playerAction.isChoosenAvatar = false;
+            });
+          };
+        });
+      } else {
+        playerAction.fileError = false;
+      }
+    }
+  };
+
+
 
 
   playerAction.showAvatars = function() {
@@ -153,27 +176,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
         $scope.avatarsList = playerAction.data.avatarsList;
         $scope.selectAvatar = function(item){
           $scope.selectionAvatar = item.assetURL;
-        };
-
-        $scope.photoChanged = function (files) {
-          if (files.length > 0 || playerAction.previousSelectedFile.length > 0) {
-            playerAction.previousSelectedFile = (files.length > 0) ? files : playerAction.previousSelectedFile;
-            var file = (files.length > 0) ? files[0] : playerAction.previousSelectedFile[0];
-            if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
-              playerAction.fileError = true;
-              $timeout(function () {
-                var fileReader = new FileReader();
-                fileReader.readAsDataURL(file);
-                fileReader.onload = function (e) {
-                  $timeout(function () {
-                    $scope.selectionAvatar = e.target.result;
-                  });
-                };
-              });
-            } else {
-              playerAction.fileError = false;
-            }
-          }
+          playerAction.isChoosenAvatar = true;
         };
 
         $scope.onCancel = function () {

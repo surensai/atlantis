@@ -463,6 +463,45 @@
   display: block;
 }
 
+.avatar-container{
+  float: left;
+  .avatar-seletion{
+    float: left;
+  }
+  .avatar-actions{
+    float: left;
+    padding: 15px 10px 0 10px;
+    text-align: center;
+    .browse-btn{
+      position: relative;
+      .btn{
+        font-size: 15px;
+      }
+      input[type="file"]{
+        position: absolute;
+        z-index: 2;
+        opacity: 0;
+        height: 100%;
+      }
+    }
+    .orText{
+      display: block;
+      padding-top: 10px;
+      color: #ccc;
+    }
+    a{
+      display: block;
+      color: $sp-green;
+      font-size: 16px;
+      i{
+        border: solid 2px;
+        padding: 4px 4px 2px 6px;
+        border-radius: 50%;
+        margin-left: 4px;
+      }
+    }
+  }
+}
 
 .sp-avatars-modal{
   .modal-header{
@@ -471,28 +510,13 @@
     border: 0px;
   }
   .modal-body{
-    .modal-left{
-      float: left;
-      width: 50%;
-      text-align: center;
-      .avatar-seletion{
-        margin-bottom: 10px;
-      }
-      .browse-btn{
-        position: relative;
-        input[type="file"]{
-          position: absolute;
-          z-index: 2;
-          opacity: 0;
-        }
-      }
-    }
-    .modal-right{
-      float: right;
-      width: 50%;
-      .avatars-items{
-        .item{
-          float: left;
+    .avatars-items{
+      .item{
+        float: left;
+        margin-left: 5px;
+        margin-bottom: 5px;
+        img{
+          border-radius: 5px;
         }
       }
     }
