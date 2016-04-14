@@ -9,7 +9,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   curriculum.group = {};
   curriculum.wordsHeaders = {
     Words: "Words",
-    dateAdded: "Date Added",
     picture: "Picture",
     actions: "Actions"
   };
