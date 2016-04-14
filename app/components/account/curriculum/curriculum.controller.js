@@ -150,7 +150,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
             id: word.id,
             Words: word.wordName,
             dateAdded: word.createdAt,
-            picture: (word.imageURL) ? true : false
+            picture: (word.imageURL)
           });
 
         });
@@ -171,15 +171,25 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
     var handleSuccess = function (data) {
       if (data.anatomy && data.anatomy.length > 0) {
         curriculum.group.anatomyWords = [];
-
-
         var sortedanatomyArr = sortWordsData(data.anatomy);
+        curriculum.checkSelectAll = function() {
+          angular.forEach(sortedanatomyArr, function (word) {
+            word.groupedflag = curriculum.checkselectAll;
+
+          });
+        };
         curriculum.group.anatomyWords = chunk(sortedanatomyArr, 4);
       }
 
       if (data.bathroom && data.bathroom.length > 0) {
         curriculum.group.bathroomWords = [];
         var sortedbathroomArr = sortWordsData(data.bathroom);
+        curriculum.selectAll = function() {
+          angular.forEach(sortedbathroomArr, function (word) {
+            word.groupedflag = curriculum.selectedAll;
+
+          });
+        };
         curriculum.group.bathroomWords = chunk(sortedbathroomArr, 4);
       }
     };

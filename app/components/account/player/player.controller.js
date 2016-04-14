@@ -91,7 +91,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         count=count+player.gridCount;
       }
     }
-    console.log(player.tabWords)
   };
   function getBigBadges(playerId) {
     PlayerService.getBadges(userID,playerId)
@@ -163,17 +162,28 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         player.miniBadges = data;
       }
     };
-
     var handleError = function (error, status) {
       if (error && status) {
         messagesFactory.getminibadgessError(status);
       }
     };
-
     PlayerService.getMinibadgesApi(playerId)
       .success(handleSuccess)
       .error(handleError);
   }
+
+
+  function getBigBadges(playerId) {
+    PlayerService.getBadges(userID,playerId)
+      .success(function (data) {
+        player.bigBadges = data;
+        splitBadgesData();
+      })
+      .error(function () {
+        flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+      });
+  }
+
 
   function getPlayerHighlights (playerId) {
     var handleSuccess = function (data) {

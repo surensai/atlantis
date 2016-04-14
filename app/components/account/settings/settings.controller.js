@@ -75,7 +75,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
 
   function changePassword() {
     var handleSuccess = function (data) {
-
+      settings.model.passwordData="";
       messagesFactory.settingschangepasswordSuccessMessages(data);
     };
     var handleError = function (error, status) {
