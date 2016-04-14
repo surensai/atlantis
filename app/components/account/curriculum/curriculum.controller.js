@@ -172,24 +172,12 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
       if (data.anatomy && data.anatomy.length > 0) {
         curriculum.group.anatomyWords = [];
         var sortedanatomyArr = sortWordsData(data.anatomy);
-        curriculum.checkSelectAll = function() {
-          angular.forEach(sortedanatomyArr, function (word) {
-            word.groupedflag = curriculum.checkselectAll;
-
-          });
-        };
         curriculum.group.anatomyWords = chunk(sortedanatomyArr, 4);
       }
 
       if (data.bathroom && data.bathroom.length > 0) {
         curriculum.group.bathroomWords = [];
         var sortedbathroomArr = sortWordsData(data.bathroom);
-        curriculum.selectAll = function() {
-          angular.forEach(sortedbathroomArr, function (word) {
-            word.groupedflag = curriculum.selectedAll;
-
-          });
-        };
         curriculum.group.bathroomWords = chunk(sortedbathroomArr, 4);
       }
     };
@@ -203,18 +191,47 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
       .error(handleError);
   }
 
-  curriculum.checkAll = function (event, selectedAll, words) {
-    angular.element("#href-remove a").removeAttr("href");
-    event.stopPropagation();
-
-    if (selectedAll) {
-      selectedAll = true;
-    } else {
-      selectedAll = false;
+  curriculum.checkAll = function (type, arr) {
+    if(arr.length > 0){
+        for(var i = 0; arr.length > i; i++){
+            if(arr[i].length > 0){
+              for(var ii = 0; arr[i].length > ii; ii++){
+                arr[i][ii].groupedflag = type;
+              }
+            }
+        }
     }
-    angular.forEach(words, function (item) {
-      item.groupedflag = selectedAll;
-    });
+  };
+
+  curriculum.checkItemBy = function (topIndex, index, arr, type, selectType) {
+    arr[topIndex][index].groupedflag = type;
+    var arrBooleanCount = 0;
+    var totalCount = 0;
+    if(arr.length > 0){
+      for(var i = 0; arr.length > i; i++){
+        if(arr[i].length > 0){
+          totalCount = totalCount + arr[i].length;
+          for(var ii = 0; arr[i].length > ii; ii++){
+            if(arr[i][ii].groupedflag){
+              arrBooleanCount++;
+            }
+          }
+        }
+      }
+    }
+    if(selectType === 'anatomy'){
+      if(totalCount === arrBooleanCount){
+        curriculum.checkselectAll = true;
+      } else {
+        curriculum.checkselectAll = false;
+      }
+    } else {
+      if(totalCount === arrBooleanCount){
+        curriculum.selectedAll = true;
+      } else {
+        curriculum.selectedAll = false;
+      }
+    }
   };
 
   function sortWordsData(arr) {
