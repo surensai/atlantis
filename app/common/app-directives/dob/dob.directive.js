@@ -34,7 +34,7 @@
           while (startYear <= currentYear) {
             years.push(startYear++);
           }
-          return years.reverse();;
+          return years
         };
 
         $scope.getDays = function () {
