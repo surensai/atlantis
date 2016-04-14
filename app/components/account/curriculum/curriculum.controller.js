@@ -71,7 +71,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
         if(curriculum.group.anatomyWords[i].length > 0){
           for(var ii = 0; curriculum.group.anatomyWords[i].length > ii; ii++){
             if(curriculum.group.anatomyWords[i][ii].groupedflag) {
-              anatomy_words.push(curriculum.group.anatomyWords[i][ii].id);
+              anatomy_words.push(curriculum.group.anatomyWords[i][ii].Word);
             }
           }
         }
@@ -83,7 +83,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
         if(curriculum.group.bathroomWords[i].length > 0){
           for(var ii = 0; curriculum.group.bathroomWords[i].length > ii; ii++){
             if(curriculum.group.bathroomWords[i][ii].groupedflag){
-              bathroom_words.push(curriculum.group.bathroomWords[i][ii].id);
+              bathroom_words.push(curriculum.group.bathroomWords[i][ii].Word);
             }
           }
         }
