@@ -88,7 +88,8 @@
                 <div class="mb-icon-con">
                   <div class="mb-icon">
                     <img data-ng-if="!minibadge.assetURL"  src="assets/images/fallback-img.png" class= "noimagestyle" width="150" height="150px" alt="minibadge"  />
-                    <img data-ng-if="minibadge.assetURL" data-ng-src="{{minibadge.assetURL}}"/>
+                    <img data-ng-if="minibadge.assetURL && minibadge.status === 'Disabled'" data-ng-src="{{minibadge.disabledassetURL}}" />
+                    <img data-ng-if="minibadge.assetURL && minibadge.status === 'Active'" data-ng-src="{{minibadge.assetURL}}"/>
                   </div>
                 </div>
               </div>
