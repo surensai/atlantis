@@ -225,7 +225,7 @@
     }
   },
   "player": {
-    "first_name": "First Name",
+    "first_name": "Player's First Name",
     "last_name": "Last Name",
     "mobile": "Mobile",
     "gender": "Gender",

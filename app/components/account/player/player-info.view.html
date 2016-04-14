@@ -15,23 +15,23 @@
     <h3>{{player.playerObj.firstName}} {{player.playerObj.lastName}}</h3>
 
     <p><img src="assets/images/badge1.png">
-      <span data-ng-if="!highlights.earnedBadges"> <strong>{{highlights.earnedBadges}}</strong> No badges earned so far. </span>
-      <span data-ng-if="highlights.earnedBadges"> <strong>{{highlights.earnedBadges}}</strong> badges earned in the past 7 days.</span>
+      <span data-ng-if="!player.highlights.earnedBadges"> No badges earned so far. </span>
+      <span data-ng-if="player.highlights.earnedBadges"> <strong>{{player.highlights.earnedBadges}}</strong> badges earned in the past 7 days.</span>
     </p>
 
     <p><img src="assets/images/badge2.png">
-      <span data-ng-if="!highlights.totalPlayedTime"> You haven't spent anytime on games.</span>
-      <span data-ng-if="highlights.totalPlayedTime"> <strong>{{highlights.totalPlayedTime}}</strong> played in Square Panda for past 7 days.</span>
+      <span data-ng-if="!player.highlights.totalPlayedTime"> You haven't spent anytime on games.</span>
+      <span data-ng-if="player.highlights.totalPlayedTime"> <strong>{{player.highlights.totalPlayedTime}}</strong> played in Square Panda for past 7 days.</span>
     </p>
 
     <p><img src="assets/images/badge2.png">
-      <span data-ng-if="highlights.correctWord"> Most recent word <strong>"{{highlights.correctWord}}"</strong> marked as Correct.</span>
-      <span data-ng-if="!highlights.correctWord"> No words are marked as correct so far.</span>
+      <span data-ng-if="player.highlights.correctWord"> Most recent word <strong>"{{player.highlights.correctWord}}"</strong> marked as Correct.</span>
+      <span data-ng-if="!player.highlights.correctWord"> No words are marked as correct so far.</span>
     </p>
 
     <p><img src="assets/images/badge2.png">
-      <span data-ng-if="!highlights.favourites.word || !highlights.favourites.count"> No favorite word </span>
-      <span data-ng-if="highlights.favourites.word && highlights.favourites.count"> My Favourite Word : {{highlights.favourites.word}} (I spelled {{highlights.favourites.word}} {{highlights.favourites.count}} times)</span>
+      <span data-ng-if="!player.highlights.favourites.word || !player.highlights.favourites.count"> No favorite word </span>
+      <span data-ng-if="player.highlights.favourites.word && player.highlights.favourites.count"> My Favourite Word : {{player.highlights.favourites.word}} (I spelled {{player.highlights.favourites.word}} {{player.highlights.favourites.count}} times)</span>
     </p>
 
 

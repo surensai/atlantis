@@ -91,7 +91,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         count=count+player.gridCount;
       }
     }
-    console.log(player.tabWords)
   };
   function getBigBadges(playerId) {
     PlayerService.getBadges(userID,playerId)
