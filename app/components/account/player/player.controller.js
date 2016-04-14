@@ -159,13 +159,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   function getMinibadges (playerId) {
     var handleSuccess = function (data) {
       if (data.length > 0) {
-        for (var i = 0; i < data.length; i++) {
-          if (data[i].status === 'Active') {
-            player.miniBadges.assetURL = data[i].assetURL;
-          }else {
-          player.miniBadges.assetURL = data[i].disabledassetURL;
-        }
-      }
         player.miniBadges = data;
       }
     };
