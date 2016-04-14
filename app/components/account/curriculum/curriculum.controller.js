@@ -65,23 +65,38 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
     var anatomy_words = [];
     var bathroom_words = [];
     var data = {};
-    var i = 0;
-    for (i = 0; i < curriculum.group.anatomyWords.length; i++) {
-      if (curriculum.group.anatomyWords[i].groupedflag) {
-        anatomy_words.push(curriculum.group.anatomyWords[i].Word);
+
+    if(curriculum.group.anatomyWords.length > 0){
+      for(var i = 0; curriculum.group.anatomyWords.length > i; i++){
+        if(curriculum.group.anatomyWords[i].length > 0){
+          for(var ii = 0; curriculum.group.anatomyWords[i].length > ii; ii++){
+            if(curriculum.group.anatomyWords[i][ii].groupedflag) {
+              anatomy_words.push(curriculum.group.anatomyWords[i][ii].id);
+            }
+          }
+        }
       }
     }
-    for (i = 0; i < curriculum.group.bathroomWords.length; i++) {
-      if (curriculum.group.bathroomWords[i].groupedflag) {
-        bathroom_words.push(curriculum.group.bathroomWords[i].Word);
+
+    if(curriculum.group.bathroomWords.length > 0){
+      for(var i = 0; curriculum.group.bathroomWords.length > i; i++){
+        if(curriculum.group.bathroomWords[i].length > 0){
+          for(var ii = 0; curriculum.group.bathroomWords[i].length > ii; ii++){
+            if(curriculum.group.bathroomWords[i][ii].groupedflag){
+              bathroom_words.push(curriculum.group.bathroomWords[i][ii].id);
+            }
+          }
+        }
       }
     }
+
     data.anatomy_words = anatomy_words;
     data.bathroom_words = bathroom_words;
 
     var handleSuccess = function (data) {
       messagesFactory.submitGroupwordsSuccess(data);
     };
+
     var handleError = function (error, status) {
       if (error && status) {
         messagesFactory.submitGroupwordsError(status);
