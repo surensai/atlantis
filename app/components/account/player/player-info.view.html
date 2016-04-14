@@ -123,7 +123,7 @@
             <tr data-ng-repeat="word in player.wordsData | orderBy:player.predicate:player.reverse">
               <td class="player-words text-ellipsis word-text">{{ word.word}}</td>
               <td class="word-icons">{{ word.activity.length}}</td>
-              <td class="word-date">{{ word.endtime | date:"MM/dd/yyyy '' h:mma"}}</td>
+              <td class="word-date">{{ word.endtime*1000 | date:"MM/dd/yyyy h:mma"}}</td>
               <td data-ng-if="word.activity[word.activity.length - 1].answer" class="word-check"><i class="fa fa-check last-attempt-green" ></i></td>
               <td data-ng-if="!word.activity[word.activity.length - 1].answer" class="word-check"><i class="fa fa-close last-attempt-blue" ></i></td>
             </tr>

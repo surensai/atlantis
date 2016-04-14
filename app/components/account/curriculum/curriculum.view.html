@@ -88,13 +88,11 @@
                   <tbody>
                   <tr data-ng-repeat="word in curriculum.customWords | orderBy:curriculum.predicate:curriculum.reverse">
                     <td class="player-words text-ellipsis word-text">{{ word.Words}}</td>
-                    <td class="word-date">{{ word.dateAdded | date:"MM/dd/yyyy ' h:mma"}}</td>
                     <td data-ng-if="word.picture" class="word-check"><img  class="img-circle" width="40" height="40" ng-src="{{word.picture}}"></td>
                     <td data-ng-if="!word.picture" class="word-check">
                       <img src="assets/images/fallback-img.png" class="img-circle" alt="player" width="40" height="40" />
                     </td>
                     <td class="word-icons">
-                      <!--<a href="#"><i class="fa fa-eye" ui-sref="account.viewCustomWord({ id: word.id})"></i></a> -->
                       <a href=""> <i ui-sref="account.editCustomWord({ id: word.id})" class="fa fa-pencil-square-o left-padding"></i> </a>
                      &nbsp;  &nbsp; &nbsp;<a href=""> <i data-ng-click="curriculum.deleteListener(word)" class="fa fa-trash left-padding"></i></a></td>
                   </tr>
