@@ -15,23 +15,23 @@
     <h3>{{player.playerObj.firstName}} {{player.playerObj.lastName}}</h3>
 
     <p><img src="assets/images/badge1.png">
-      <span data-ng-if="!player.highlights.earnedBadges"> No badges earned so far. </span>
-      <span data-ng-if="player.highlights.earnedBadges"> <strong>{{player.highlights.earnedBadges}}</strong> badges earned in the past 7 days.</span>
+      <span data-ng-if="!player.highlights.earnedBadges" data-translate="player.badges.nobadge_earned"> No badges earned so far. </span>
+      <span data-ng-if="player.highlights.earnedBadges"> <strong>{{player.highlights.earnedBadges}}</strong><span data-translate="player.badges.nobadge_earned_days">badges earned in the past 7 days.</span> </span>
     </p>
 
     <p><img src="assets/images/badge2.png">
-      <span data-ng-if="!player.highlights.totalPlayedTime"> You haven't spent anytime on games.</span>
-      <span data-ng-if="player.highlights.totalPlayedTime"> <strong>{{player.highlights.totalPlayedTime}}</strong> time played in Square Panda for past 7 days.</span>
+      <span data-ng-if="!player.highlights.totalPlayedTime" data-translate="player.badges.no_spendtime"> You haven't spent anytime on games.</span>
+      <span data-ng-if="player.highlights.totalPlayedTime"> <strong>{{player.highlights.totalPlayedTime}}</strong> <span data-translate="player.badges.last_time_played">time played in Square Panda for past 7 days.</span></span>
     </p>
 
     <p><img src="assets/images/badge2.png">
-      <span data-ng-if="player.highlights.correctWord"> Most recent word <strong>"{{player.highlights.correctWord}}"</strong> marked as Correct.</span>
-      <span data-ng-if="!player.highlights.correctWord"> No words are marked as correct so far.</span>
+      <span data-ng-if="player.highlights.correctWord"> <span data-translate="player.badges.recent_word">Most recent word </span><strong>"{{player.highlights.correctWord}}"</strong> <span data-translate="player.badges.mark_correct">marked as Correct.</span></span>
+      <span data-ng-if="!player.highlights.correctWord" data-translate="player.badges.noword_correct"> No words are marked as correct so far.</span>
     </p>
 
     <p><img src="assets/images/badge2.png">
-      <span data-ng-if="!player.highlights.favourites.word || !player.highlights.favourites.count"> No favorite word </span>
-      <span data-ng-if="player.highlights.favourites.word && player.highlights.favourites.count"> Maybe "Favourite Word" too?  ( {{player.highlights.favourites.word}}  spelled {{player.highlights.favourites.word}} {{player.highlights.favourites.count}} times)</span>
+      <span data-ng-if="!player.highlights.favourites.word || !player.highlights.favourites.count" data-translate="player.badges.no_fav_word"> No favorite word </span>
+      <span data-ng-if="player.highlights.favourites.word && player.highlights.favourites.count"><span data-translate="player.badges.maybe_fav_word"> Maybe "Favourite Word" too?</span>  ( {{player.highlights.favourites.word}}<span data-translate="player.badges.spelling">spelled</span>   {{player.highlights.favourites.word}} {{player.highlights.favourites.count}} <span data-translate="player.badges.times">times</span>)</span>
     </p>
 
 
@@ -67,10 +67,10 @@
                 <button class="btn  bigbadge-buttons" data-ng-repeat="word in player.tabWords">{{word}}</button>
               </div>
               <div class="bigbadge-graph-buttons ">
-                <button class="btn bigbadge-graph-button-style">Day</button>
-                <button class="btn bigbadge-graph-button-style">Week</button>
-                <button class="btn bigbadge-graph-button-style">Month</button>
-                <button class="btn bigbadge-graph-button-style">Year</button>
+                <button class="btn bigbadge-graph-button-style" data-translate="player.badges.day">Day</button>
+                <button class="btn bigbadge-graph-button-style" data-translate="player.badges.week">Week</button>
+                <button class="btn bigbadge-graph-button-style" data-translate="player.badges.month">Month</button>
+                <button class="btn bigbadge-graph-button-style" data-translate="player.badges.year">Year</button>
               </div>
               <img src="assets/images/samplegrapg.png" class="img-responsive">
             </div>
@@ -128,7 +128,7 @@
               <td data-ng-if="!word.activity[word.activity.length - 1].answer" class="word-check"><i class="fa fa-close last-attempt-blue" ></i></td>
             </tr>
             <tr data-ng-if="player.wordsData.length === 0">
-              <td colspan="5"> No Data</td>
+              <td colspan="5" data-translate="player.badges.nodata"> No Data</td>
             </tr>
             </tbody>
           </table>

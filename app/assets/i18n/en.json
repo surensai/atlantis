@@ -125,7 +125,8 @@
       "ok":"Ok",
       "no": "No",
       "back" : "Back",
-      "close" : "Close"
+      "close" : "Close",
+      "select":"Select"
     }
   },
   "default_title":"Default Title",
@@ -220,7 +221,8 @@
       "firmware_upload_error":"Error in file uploading",
       "firmware_success":"firmware added successfully!",
       "error_file_upload":"Error in file uploading",
-      "only_alphabets":"Allow only Alphabets"
+      "only_alphabets":"Allow only Alphabets",
+      "dob_notvalid":"Date of birth is not valid"
 
     },
     "change_password": {
@@ -237,6 +239,9 @@
     "dateOfBirth": "DOB",
     "age":"Age :",
     "more": "more",
+    "boy":"Boy",
+    "girl":"Girl",
+    "not_prefer":"Prefer not to answer",
     "add_player":"Add Player",
     "edit_player":"Edit Player",
     "view_players": "Back to view Players",
@@ -253,6 +258,15 @@
     "milestone_achieved":" achieved 02 Milestones in",
     "elit":" elit.",
     "consectetur":" consectetur adipscing",
+    "add_modaltitle":"Error",
+    "add_modalbody":"You already have the maximum number of players added.",
+    "add_modaltype":"Error",
+    "delete_modaltitle":"Warning!",
+    "delete_modalbody":"Are you sure do you want to delete player?",
+    "or":"(or)",
+    "uploadImage_selectavatar":"Please upload image or select Avatar",
+    "choose_avatar":"Choose Avatar",
+    "no_players":"You don't have any players added.Start adding now..",
     "messages": {
       "add_success": "Player added successfully!",
       "update_success": "Player updated successfully!",
@@ -269,13 +283,33 @@
       "error_getting_minibadges":"Error in getting mini badges."
     },
     "buttons":{
-      "add_palyer":"Add Player"
+      "add_palyer":"Add Player",
+      "upload_picture":"Upload your own picture",
+      "choose_avatar":"Choose an Avatar"
+
     },
     "badges":{
       "big_badges":"Big Badges",
       "mini_badges":"Mini Badges",
-      "activities":"Activities"
+      "activities":"Activities",
+      "nobadge_earned":"No badges earned so far.",
+      "nobadge_earned_days":"badges earned in the past 7 days.",
+      "no_spendtime":"You haven't spent anytime on games.",
+      "last_time_played":"time played in Square Panda for past 7 days.",
+      "recent_word":"Most recent word",
+      "mark_correct":"marked as Correct.",
+      "noword_correct":"No words are marked as correct so far.",
+      "no_fav_word":"No favorite word",
+      "maybe_fav_word":"Maybe 'Favourite Word' too?",
+      "spelling":"spelled",
+      "times":"times",
+      "day":"Day",
+      "week":"Week",
+      "month":"Month",
+      "year":"Year",
+      "nodata":"No Data"
     }
+
   },
   "admin": {
     "firmware": {
