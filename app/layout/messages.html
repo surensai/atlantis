@@ -5,21 +5,21 @@
       <div class="panel panel-default messages-panel">
         <div class="panel-body">
           <div data-ng-if="messages && messages.type === 'register'">
-            <p> Thank you for registering with us </p>
-            <p> Soon you will get a confirmation email to verify your account </p>
+            <p data-translate="user.register.messages.register_success"> Thank you for registering with us </p>
+            <p data-translate="user.register.messages.get_mail"> Soon you will get a confirmation email to verify your account </p>
           </div>
           <div data-ng-if="messages && messages.type === 'forgot'">
-            <p>Please check your inbox for the link to reset your password.If it doesn't appear within the next few minutes, please check your spam folder.</p>
+            <p data-translate="user.register.messages.reset_password">Please check your inbox for the link to reset your password.If it doesn't appear within the next few minutes, please check your spam folder.</p>
           </div>
           <div data-ng-if="messages && messages.type === 'reset'">
-            <p>Your password changed successfully.</p>
+            <p data-translate="user.register.messages.password_changed">Your password changed successfully.</p>
           </div>
           <div data-ng-if="messages && messages.type === 'change_password'">
                 <p>{{ 'user.validationMessages.password_change_new_login' | translate}}</p>
           </div>
         </div>
       </div>
-      <button ui-sref="login" class="btn sp-pur-btn center-block">Return to Sign in</button>
+      <button ui-sref="login" class="btn sp-pur-btn center-block" data-translate="user.register.messages.return_signin">Return to Sign in</button>
     </div>
     <div class="col-md-2"></div>
   </div>

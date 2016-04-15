@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', '$state', '$timeout', 'auth', 'messagesFactory','AuthenticationService', function ($scope, UserService, $state, $timeout, auth, messagesFactory, AuthenticationService) {
+angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', '$state', '$timeout', 'auth', 'messagesFactory','AuthenticationService','$translate', function ($scope, UserService, $state, $timeout, auth, messagesFactory, AuthenticationService, $translate) {
 
   var resetPassword = this;
   resetPassword.model = {};
 
   (function () {
     if (auth.data.message !== "success") {
-      flashService.showError("Your session has expired", true);
+      flashService.showError($translate.instant('user.validationMessages.session_expire'), true);
       $state.go('messages');
     }
   })();

@@ -1,11 +1,4 @@
-<uib-alert type="success" class="alert-success" close="firmware.closeAlert()"
-           data-ng-if="globals.flash && globals.flash.type === 'success' && firmware.show"
-           dismiss-on-timeout="200000">{{globals.flash.message}}
-</uib-alert>
-<uib-alert type="warning" class="alert-danger" close="firmware.closeAlert()"
-           data-ng-if="globals.flash && globals.flash.type !== 'success' && firmware.show"
-           dismiss-on-timeout="5000">{{globals.flash.message}}
-</uib-alert>
+<toaster-container toaster-options="{'position-class': 'toast-top-center'}"></toaster-container>
 <div class="col-lg-2"></div>
 
 <div class="col-lg-8 container-min-height">

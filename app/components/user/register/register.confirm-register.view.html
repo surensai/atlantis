@@ -5,20 +5,20 @@
       <div class="panel panel-default messages-panel">
         <div class="panel-body">
           <div data-ng-if= " confirmRegister.message === 'success' ">
-            <p> Thank you for registering with us </p>
+            <p data-translate="user.register.messages.register_success"> Thank you for registering with us </p>
 
-            <p>Your email got activated.
+            <p data-translate="user.register.messages.email_activation_message">Your email got activated.
               Now you can login in application with email and password which you provided at register time.</p>
           </div>
           <div data-ng-if= " confirmRegister.message === 'error' ">
-            <p> Thank you for registering with us </p>
+            <p data-translate="user.register.messages.register_success"> Thank you for registering with us </p>
 
-            <p> User already verified</p>
+            <p data-translate="user.register.messages.user_verified_already"> User already verified</p>
           </div>
 
         </div>
       </div>
-      <button ui-sref="login" class="btn sp-pur-btn center-block">Return to Sign in</button>
+      <button ui-sref="login" class="btn sp-pur-btn center-block" data-translate="user.register.return_signin">Return to Sign in</button>
     </div>
     <div class="col-md-2"></div>
   </div>
