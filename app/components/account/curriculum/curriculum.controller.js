@@ -274,5 +274,15 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
     }
     return newArr;
   }
-
+  curriculum.exportCSV = function(){
+    var opts = [{sheetid:'One',header:true}];
+    var res = alasql('SELECT INTO XLSX("CustomWords.csv",?) FROM ?',
+      [opts,[curriculum.customWords]]);
+  }
+  curriculum.exportBathroomCSV = function(){
+    console.log(curriculum.group.bathroomWords);
+    /* var opts = [{sheetid:'One',header:true}];
+     var res = alasql('SELECT INTO XLSX("BathroomWords.csv",?) FROM ?',
+     [opts,[curriculum.group.bathroomWords]]);*/
+  }
 }]);

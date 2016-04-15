@@ -141,10 +141,18 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   }
 
+  var csvData = [];
   function getWords(childId) {
     var handleSuccess = function (data) {
       if (data) {
         player.wordsData = data;
+        for(var i=0;i<player.wordsData.length;i++){
+          var obj={};
+          obj.Words = player.wordsData[i].word;
+          obj.Attempts = player.wordsData[i].activity.length;
+          obj.LastPlayed = player.wordsData[i].endtime;
+          csvData.push(obj);
+        }
       }
     };
 
@@ -215,6 +223,12 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         player.splitBadgesData.push({});
       }
     }
+  }
+
+  player.exportCSV = function(){
+    var opts = [{sheetid:'One',header:true}];
+    var res = alasql('SELECT INTO XLSX("GroupWords.csv",?) FROM ?',
+      [opts,[csvData]]);
   }
 
 }]);
