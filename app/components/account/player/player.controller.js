@@ -14,7 +14,10 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.isNoPlayer = false;
   player.reverse = false;
   player.clicked = false;
-
+  player.viewby = 5;
+  player.totalItems = player.wordsData.length;
+  player.currentPage = 1;
+  player.itemsPerPage = player.viewby;
   player.displayChartIndex = 0;
   player.predicate = 'Sno';
   player.wordsHeaders = {
