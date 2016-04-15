@@ -9,7 +9,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   curriculum.group = {};
   curriculum.wordsHeaders = {
     Words: "Words",
-    dateAdded: "Date Added",
     picture: "Picture",
     actions: "Actions"
   };
@@ -65,23 +64,38 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
     var anatomy_words = [];
     var bathroom_words = [];
     var data = {};
-    var i = 0;
-    for (i = 0; i < curriculum.group.anatomyWords.length; i++) {
-      if (curriculum.group.anatomyWords[i].groupedflag) {
-        anatomy_words.push(curriculum.group.anatomyWords[i].Word);
+
+    if(curriculum.group.anatomyWords.length > 0){
+      for(var i = 0; curriculum.group.anatomyWords.length > i; i++){
+        if(curriculum.group.anatomyWords[i].length > 0){
+          for(var ii = 0; curriculum.group.anatomyWords[i].length > ii; ii++){
+            if(curriculum.group.anatomyWords[i][ii].groupedflag) {
+              anatomy_words.push(curriculum.group.anatomyWords[i][ii].Word);
+            }
+          }
+        }
       }
     }
-    for (i = 0; i < curriculum.group.bathroomWords.length; i++) {
-      if (curriculum.group.bathroomWords[i].groupedflag) {
-        bathroom_words.push(curriculum.group.bathroomWords[i].Word);
+
+    if(curriculum.group.bathroomWords.length > 0){
+      for(var i = 0; curriculum.group.bathroomWords.length > i; i++){
+        if(curriculum.group.bathroomWords[i].length > 0){
+          for(var ii = 0; curriculum.group.bathroomWords[i].length > ii; ii++){
+            if(curriculum.group.bathroomWords[i][ii].groupedflag){
+              bathroom_words.push(curriculum.group.bathroomWords[i][ii].Word);
+            }
+          }
+        }
       }
     }
+
     data.anatomy_words = anatomy_words;
     data.bathroom_words = bathroom_words;
 
     var handleSuccess = function (data) {
       messagesFactory.submitGroupwordsSuccess(data);
     };
+
     var handleError = function (error, status) {
       if (error && status) {
         messagesFactory.submitGroupwordsError(status);
@@ -106,7 +120,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
       templateUrl: 'common/app-directives/modal/custom-modal.html',
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
 
-        $scope.modalTitle = "Warning!";
+        $scope.modalTitle = $translate.instant("common.warning");
         $scope.modalBody = $translate.instant("curriculum.message.model_delete_word");
         $scope.ok = function () {
           $uibModalInstance.close(word);
@@ -172,24 +186,12 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
       if (data.anatomy && data.anatomy.length > 0) {
         curriculum.group.anatomyWords = [];
         var sortedanatomyArr = sortWordsData(data.anatomy);
-        curriculum.checkSelectAll = function() {
-          angular.forEach(sortedanatomyArr, function (word) {
-            word.groupedflag = curriculum.checkselectAll;
-
-          });
-        };
         curriculum.group.anatomyWords = chunk(sortedanatomyArr, 4);
       }
 
       if (data.bathroom && data.bathroom.length > 0) {
         curriculum.group.bathroomWords = [];
         var sortedbathroomArr = sortWordsData(data.bathroom);
-        curriculum.selectAll = function() {
-          angular.forEach(sortedbathroomArr, function (word) {
-            word.groupedflag = curriculum.selectedAll;
-
-          });
-        };
         curriculum.group.bathroomWords = chunk(sortedbathroomArr, 4);
       }
     };
@@ -203,18 +205,47 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
       .error(handleError);
   }
 
-  curriculum.checkAll = function (event, selectedAll, words) {
-    angular.element("#href-remove a").removeAttr("href");
-    event.stopPropagation();
-
-    if (selectedAll) {
-      selectedAll = true;
-    } else {
-      selectedAll = false;
+  curriculum.checkAll = function (type, arr) {
+    if(arr.length > 0){
+        for(var i = 0; arr.length > i; i++){
+            if(arr[i].length > 0){
+              for(var ii = 0; arr[i].length > ii; ii++){
+                arr[i][ii].groupedflag = type;
+              }
+            }
+        }
     }
-    angular.forEach(words, function (item) {
-      item.groupedflag = selectedAll;
-    });
+  };
+
+  curriculum.checkItemBy = function (topIndex, index, arr, type, selectType) {
+    arr[topIndex][index].groupedflag = type;
+    var arrBooleanCount = 0;
+    var totalCount = 0;
+    if(arr.length > 0){
+      for(var i = 0; arr.length > i; i++){
+        if(arr[i].length > 0){
+          totalCount = totalCount + arr[i].length;
+          for(var ii = 0; arr[i].length > ii; ii++){
+            if(arr[i][ii].groupedflag){
+              arrBooleanCount++;
+            }
+          }
+        }
+      }
+    }
+    if(selectType === 'anatomy'){
+      if(totalCount === arrBooleanCount){
+        curriculum.checkselectAll = true;
+      } else {
+        curriculum.checkselectAll = false;
+      }
+    } else {
+      if(totalCount === arrBooleanCount){
+        curriculum.selectedAll = true;
+      } else {
+        curriculum.selectedAll = false;
+      }
+    }
   };
 
   function sortWordsData(arr) {

@@ -2,7 +2,8 @@
   "nav": {
       "home": {
       "title": "Home",
-      "Header": "Home"
+      "Header": "Home",
+      "back_home":"Back to Home"
     },
     "header": {
       "dashboard": "Dashboard",
@@ -108,6 +109,7 @@
 
   },
   "common": {
+    "warning":"Warning!",
     "buttons": {
       "submit": "Submit",
       "save": "Save",
@@ -120,16 +122,17 @@
       "addword": "Add Word",
       "clear_all": "Clear All",
       "yes": "Yes",
+      "ok":"Ok",
       "no": "No",
       "back" : "Back",
       "close" : "Close"
-    },
-    "dob_year": "Year",
-    "dob_month": "Month",
-    "dob-day": "Day",
-    "modal_ok_button": "Ok",
-    "modal_cancel_button": "Close",
-    "validationMessages": {}
+    }
+  },
+  "default_title":"Default Title",
+  "dob":{
+    "day":"Day",
+    "month":"Month",
+    "year":"Year"
   },
   "user": {
     "first_name": "First Name",
@@ -215,7 +218,9 @@
       "error_get_feeds":"Error in getting feeds.",
       "invalid_firmware":"Invalid firmware credentials",
       "firmware_upload_error":"Error in file uploading",
-      "firmware_success":"firmware added successfully!"
+      "firmware_success":"firmware added successfully!",
+      "error_file_upload":"Error in file uploading",
+      "only_alphabets":"Allow only Alphabets"
 
     },
     "change_password": {
@@ -279,6 +284,17 @@
     }
   },
   "curriculum":{
+    "description":{
+      "text":"Add any word you like into your own personalized Square Panda word bank! In addition to over 4,000 words in our database, be sure your child's very own special words are included in their games! Some ideas are: ",
+      "child_firstname":"your child's first name",
+      "family_pet":"your family pet",
+      "child_fav_food":"your child's favorite food",
+      "upload_mom_dad_pic":"or upload your own picture to MOM or DAD",
+      "option_limitless":"The options are limitless!",
+      "milestone_text":"At Square Panda, parents and teachers rule! Not all parents and teachers want the same things, share the same beliefs, or think the same way. So, we've left it up to you! It'scompletely within your control as to what words your children can and cannot see. Take a look at our lists of curated 'bathroom words' and more advanced science 'anatomy' words.You can turn these entire word lists on and off, or you can look at individual words on the list and decide if you want them excluded from your child's game. Customize away!",
+      "milestone_text_note":" Note: Square Panda will never intentionally display a bad word to your child. However, as your child explores letter combinations, he/she may inadvertently discover a mature word. Here you have the flexibility to allow or disallow these words from your child's game."
+    },
+    "custom_word_list":"Custom Word List",
     "wordlabel": "Word",
     "word": "word",
     "pronunciation":"Pronunciation",
@@ -288,6 +304,11 @@
     "custom_word":"Custom Word",
     "group_word_list":"Group Word List",
     "parent_choice": "Parent's Choice - Word Filter",
+    "anatomy":"Anatomy",
+    "bathroom":"Bathroom",
+    "selectall":"Select All",
+    "browse":"Browse",
+
     "message":{
       "word_notexist_want_procced":"The word doesn't exists, do you want to proceed?",
       "word_exist_want_edit":"The word already exists, do you want to edit the word?",
@@ -297,5 +318,26 @@
       "delete_success":"Word deleted Successfully",
       "error_deleting_word":"Error in deleting Word"
     }
+  },
+  "settings":{
+    "lost_letters":{
+      "header":"Lost Letter",
+      "data":"   Lost a letter? Let us know here and we'll exclude these letters from your games!",
+      "to_order" :"To order the",
+      "character_set":"Character Set ",
+      "visit":"please visit",
+      "spanda_website":"www.squarepanda.com"
+    },
+    "notifications":{
+      "data":"Stay up to date on your child's latest accomplishments, learn new reading readiness tips, and be the first to know about new releases of Square Panda learning apps! Tap on any of the activity notifications to receive email updates.",
+      "player_updates":"Player Updates",
+      "player_updates_data":"As your child discovers new skills and earns badges you'll receive a realtime update of their activity and progress.",
+      "panda_news":"Square Panda News",
+      "panda_news_data":"Be the first to know about the newest Square Panda learning apps (and get special offers too!)",
+      "educational_feeds":"Educational New Feed",
+      "educational_feeds_data":"Amplify learning with reading readiness tips and the latest research, articles and videos to help your child be reading ready!"
+    }
+
   }
+
 }

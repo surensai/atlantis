@@ -173,17 +173,28 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
     if(type === 1){
       if (settings.missingLetters_row_2[rowInd][letterInd].missingCharacter) {
         settings.missingLetters_row_2[rowInd][letterInd].missingCharacter = false;
+        if((rowInd === 12) && (settings.missingLetters_row_2[rowInd][letterInd].letter === "M")){
+          settings.missingLetters[9][letterInd].missingCharacter = false;
+        }
       } else {
         settings.missingLetters_row_2[rowInd][letterInd].missingCharacter = true;
+        if((rowInd === 12) && (settings.missingLetters_row_2[rowInd][letterInd].letter === "M")){
+          settings.missingLetters[9][letterInd].missingCharacter = true;
+        }
       }
     } else {
       if (settings.missingLetters[rowInd][letterInd].missingCharacter) {
         settings.missingLetters[rowInd][letterInd].missingCharacter = false;
+        if((rowInd === 9) && (settings.missingLetters[rowInd][letterInd].letter === "W")){
+          settings.missingLetters_row_2[12][letterInd].missingCharacter = false;
+        }
       } else {
         settings.missingLetters[rowInd][letterInd].missingCharacter = true;
+        if((rowInd === 9) && (settings.missingLetters[rowInd][letterInd].letter === "W")){
+          settings.missingLetters_row_2[12][letterInd].missingCharacter = true;
+        }
       }
     }
-
   };
 
   settings.isMissilingLetterSelected = function (rowInd, letterInd, type) {

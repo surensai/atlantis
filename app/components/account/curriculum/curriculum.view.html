@@ -9,15 +9,15 @@
 
         <div class="add-custom-word ">
           <form name="curriculumForm" novalidate>
-            <p>Add any word you like into your own personalized Square Panda word bank! In addition to over 4,000 words
+            <p data-translate="curriculum.description.text">Add any word you like into your own personalized Square Panda word bank! In addition to over 4,000 words
               in our database, be sure your child's very own special words are included in their games! Some ideas are:
               <ul>
-                <li>your child's first name</li>
-                <li>your family pet</li>
-                <li>your child's favorite food</li>
-                <li>or upload your own picture to MOM or DAD</li>
+                <li data-translate="curriculum.description.child_firstname">your child's first name</li>
+                <li data-translate="curriculum.description.family_pet">your family pet</li>
+                <li data-translate="curriculum.description.child_fav_food">your child's favorite food</li>
+                <li data-translate="curriculum.description.upload_mom_dad_pic">or upload your own picture to MOM or DAD</li>
               </ul>
-              The options are limitless!
+              <p data-translate="curriculum.description.option_limitless">The options are limitless!</p>
             </p>
 
             <div class="form-horizontal">
@@ -36,7 +36,7 @@
                   </div>
                   <div ng-show="curriculumForm.word.$error.pattern" class="error-mesasage">
                     <i class="fa fa-exclamation-circle"></i>
-                    <span>Allow only Alphabets</span>
+                    <span data-translate="user.validationMessages.only_alphabets">Allow only Alphabets</span>
                   </div>
                   <div
                     ng-show="!curriculumForm.word.$error.pattern && !curriculumForm.word.$error.required && (curriculumForm.word.$error.minlength || curriculumForm.word.$error.maxlength) && curriculumForm.word.$dirty"
@@ -66,7 +66,7 @@
               <uib-accordion-heading>
                 <i class=" glyphicon"
                    ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>
-                Custom Word List
+                <span data-translate="curriculum.custom_word_list">Custom Word List</span>
               </uib-accordion-heading>
               <div class="table-responsive">
                 <table class="table table-striped table-hover">
@@ -88,13 +88,11 @@
                   <tbody>
                   <tr data-ng-repeat="word in curriculum.customWords | orderBy:curriculum.predicate:curriculum.reverse">
                     <td class="player-words text-ellipsis word-text">{{ word.Words}}</td>
-                    <td class="word-date">{{ word.dateAdded | date:"MM/dd/yyyy ' h:mma"}}</td>
                     <td data-ng-if="word.picture" class="word-check"><img  class="img-circle" width="40" height="40" ng-src="{{word.picture}}"></td>
                     <td data-ng-if="!word.picture" class="word-check">
                       <img src="assets/images/fallback-img.png" class="img-circle" alt="player" width="40" height="40" />
                     </td>
                     <td class="word-icons">
-                      <!--<a href="#"><i class="fa fa-eye" ui-sref="account.viewCustomWord({ id: word.id})"></i></a> -->
                       <a href=""> <i ui-sref="account.editCustomWord({ id: word.id})" class="fa fa-pencil-square-o left-padding"></i> </a>
                      &nbsp;  &nbsp; &nbsp;<a href=""> <i data-ng-click="curriculum.deleteListener(word)" class="fa fa-trash left-padding"></i></a></td>
                   </tr>
@@ -114,14 +112,14 @@
         Parent's Choice - Word Filter
       </div>
       <div class="panel-body curriculum-groupwordpanel-body">
-        <p class="curriculum-milestone-text">At Square Panda, parents and teachers rule! Not all parents and teachers
+        <p class="curriculum-milestone-text" data-translate="curriculum.description.milestone_text">At Square Panda, parents and teachers rule! Not all parents and teachers
           want the same things, share the same beliefs, or think the same way. So, we've left it up to you! It's
           completely within your control as to what words your children can and cannot see.&nbsp; Take a look at our
           lists of curated "bathroom words" and more advanced science "anatomy" words.&nbsp; You can turn these entire
           word lists on and off, or you can look at individual words on the list and decide if you want them excluded
           from your child's game. Customize away! </p>
 
-        <p class="curriculum-milestone-text"> Note: Square Panda will never intentionally display a bad word to your
+        <p class="curriculum-milestone-text" data-translate="curriculum.description.milestone_text_note"> Note: Square Panda will never intentionally display a bad word to your
           child.&nbsp; However, as your child explores letter combinations, he/she may inadvertently discover a mature
           word. Here you have the flexibility to allow or disallow these words from your child's game.</p>
 
@@ -129,22 +127,20 @@
           <uib-accordion-group is-open="status.open">
             <uib-accordion-heading>
               <i class=" glyphicon"
-                 ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Bathroom
+                 ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>
+              <span data-translate="curriculum.bathroom">Bathroom</span>
             </uib-accordion-heading>
             <div class="curriculum-groupword-data">
               <div class="checkbox">
-              <label><input type="checkbox" ng-model="curriculum.selectedAll" ng-click="curriculum.selectAll()"/>SelectAll</label>
+              <label><input type="checkbox" ng-model="curriculum.selectedAll" data-ng-click="curriculum.checkAll(curriculum.selectedAll, curriculum.group.bathroomWords)"/><span data-translate="curriculum.selectall">SelectAll</span></label>
               </div>
 
-              <div class="col-md-3" data-ng-repeat="words in curriculum.group.bathroomWords ">
+              <div class="col-md-3" data-ng-repeat="words in curriculum.group.bathroomWords " data-ng-init="topIndex = $index">
                 <div class="checkbox" ng-repeat="word in words track by $index" >
-                  <label><input type="checkbox" data-ng-model="word.groupedflag"  ng-click="curriculum.checkIfAllSelected()">{{word.Word}}</label>
+                  <label><input type="checkbox" data-ng-model="word.groupedflag" data-ng-click="curriculum.checkItemBy(topIndex, $index, curriculum.group.bathroomWords, word.groupedflag, 'bathroom')">{{word.Word | lowercase}}</label>
                 </div>
               </div>
-
-
             </div>
-
           </uib-accordion-group>
         </uib-accordion>
 
@@ -152,20 +148,16 @@
           <uib-accordion-group is-open="status.open">
             <uib-accordion-heading>
               <i class=" glyphicon"
-                 ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>Anatomy
+                 ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>
+              <span data-translate="curriculum.anatomy">Anatomy</span>
             </uib-accordion-heading>
             <div class="curriculum-groupword-data">
-              <!--<div class="checkbox">-->
-              <!--<label><input type="checkbox" ng-model="curriculum.anatomyWords.selectedAll"-->
-              <!--ng-click="curriculum.checkAll(curriculum.anatomyWords.selectedAll,curriculum.group.anatomyWords)"/>Select-->
-              <!--All</label>-->
-              <!--</div>-->
               <div class="checkbox">
-                <label><input type="checkbox" ng-model="curriculum.checkselectAll" ng-click="curriculum.checkSelectAll()"/>SelectAll</label>
+                <label><input type="checkbox" ng-model="curriculum.checkselectAll" data-ng-click="curriculum.checkAll(curriculum.checkselectAll, curriculum.group.anatomyWords)"/><span data-translate="curriculum.selectall">SelectAll</span></label>
               </div>
-              <div class="col-md-3" data-ng-repeat="words in curriculum.group.anatomyWords">
+              <div class="col-md-3" data-ng-repeat="words in curriculum.group.anatomyWords" data-ng-init="topIndex = $index">
                 <div class="checkbox"  data-ng-repeat="word in words track by $index">
-                  <label><input type="checkbox" data-ng-model="word.groupedflag" >{{word.Word}}</label>
+                  <label><input type="checkbox" data-ng-model="word.groupedflag" data-ng-click="curriculum.checkItemBy(topIndex, $index, curriculum.group.anatomyWords, word.groupedflag, 'anatomy')">{{word.Word | lowercase}}</label>
                 </div>
               </div>
             </div>

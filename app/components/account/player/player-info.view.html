@@ -21,7 +21,7 @@
 
     <p><img src="assets/images/badge2.png">
       <span data-ng-if="!player.highlights.totalPlayedTime"> You haven't spent anytime on games.</span>
-      <span data-ng-if="player.highlights.totalPlayedTime"> <strong>{{player.highlights.totalPlayedTime}}</strong> played in Square Panda for past 7 days.</span>
+      <span data-ng-if="player.highlights.totalPlayedTime"> <strong>{{player.highlights.totalPlayedTime}}</strong> time played in Square Panda for past 7 days.</span>
     </p>
 
     <p><img src="assets/images/badge2.png">
@@ -31,7 +31,7 @@
 
     <p><img src="assets/images/badge2.png">
       <span data-ng-if="!player.highlights.favourites.word || !player.highlights.favourites.count"> No favorite word </span>
-      <span data-ng-if="player.highlights.favourites.word && player.highlights.favourites.count"> My Favourite Word : {{player.highlights.favourites.word}} (I spelled {{player.highlights.favourites.word}} {{player.highlights.favourites.count}} times)</span>
+      <span data-ng-if="player.highlights.favourites.word && player.highlights.favourites.count"> Maybe "Favourite Word" too?  ( {{player.highlights.favourites.word}}  spelled {{player.highlights.favourites.word}} {{player.highlights.favourites.count}} times)</span>
     </p>
 
 
@@ -88,7 +88,8 @@
                 <div class="mb-icon-con">
                   <div class="mb-icon">
                     <img data-ng-if="!minibadge.assetURL"  src="assets/images/fallback-img.png" class= "noimagestyle" width="150" height="150px" alt="minibadge"  />
-                    <img data-ng-if="minibadge.assetURL" data-ng-src="{{minibadge.assetURL}}"/>
+                    <img data-ng-if="minibadge.assetURL && minibadge.status === 'Disabled'" data-ng-src="{{minibadge.disabledassetURL}}" />
+                    <img data-ng-if="minibadge.assetURL && minibadge.status === 'Active'" data-ng-src="{{minibadge.assetURL}}"/>
                   </div>
                 </div>
               </div>
@@ -122,7 +123,7 @@
             <tr data-ng-repeat="word in player.wordsData | orderBy:player.predicate:player.reverse">
               <td class="player-words text-ellipsis word-text">{{ word.word}}</td>
               <td class="word-icons">{{ word.activity.length}}</td>
-              <td class="word-date">{{ word.endtime | date:"MM/dd/yyyy '' h:mma"}}</td>
+              <td class="word-date">{{ word.endtime*1000 | date:"MM/dd/yyyy h:mma"}}</td>
               <td data-ng-if="word.activity[word.activity.length - 1].answer" class="word-check"><i class="fa fa-check last-attempt-green" ></i></td>
               <td data-ng-if="!word.activity[word.activity.length - 1].answer" class="word-check"><i class="fa fa-close last-attempt-blue" ></i></td>
             </tr>

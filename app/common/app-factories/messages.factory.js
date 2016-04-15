@@ -215,7 +215,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError("Error in file uploading", false);
+    flashService.showError($translate.instant("user.validationMessages.error_file_upload"), false);
   }
   function dashboardfeedsError(status,error) {
     var message;

@@ -33,7 +33,7 @@
               </div>
               <div ng-show="playerForm.word.$error.pattern" class="error-mesasage" >
                 <i class="fa fa-exclamation-circle"></i>
-                <span >Allow only Alphabets</span>
+                <span data-translate="user.validationMessages.only_alphabets">Allow only Alphabets</span>
               </div>
               <div ng-show="!playerForm.word.$error.pattern && !playerForm.word.$error.required && (playerForm.word.$error.minlength || playerForm.word.$error.maxlength) && playerForm.word.$dirty"
                 class="error-mesasage">
@@ -54,7 +54,7 @@
               <div class=" btn custom-audio-button custom-audio-file" data-ng-if="!curriculum.isView">
                 <input type="file" id="audio" name="file" file-model="curriculum.myAudioFile" class="img-rectangle img-border-radius "
                        accept="audio/*" onchange="angular.element(this).scope().audioFileChanged(this.files)">
-                <span>Browse</span>
+                <span data-translate="curriculum.browse">Browse</span>
               </div>
               <span data-ng-if="!curriculum.isView" ng-disabled="!curriculum.isAudioUploaded" ng-click="curriculum.refreshFile()" class="btn btn-default custom-audio-button repeat-button"
                     ><i class="glyphicon glyphicon-repeat"></i></span>
