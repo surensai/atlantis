@@ -21,7 +21,7 @@
 
     <p><img src="assets/images/badge2.png">
       <span data-ng-if="!player.highlights.totalPlayedTime"> You haven't spent anytime on games.</span>
-      <span data-ng-if="player.highlights.totalPlayedTime"> <strong>{{player.highlights.totalPlayedTime}}</strong> played in Square Panda for past 7 days.</span>
+      <span data-ng-if="player.highlights.totalPlayedTime"> <strong>{{player.highlights.totalPlayedTime}}</strong> time played in Square Panda for past 7 days.</span>
     </p>
 
     <p><img src="assets/images/badge2.png">
@@ -31,7 +31,7 @@
 
     <p><img src="assets/images/badge2.png">
       <span data-ng-if="!player.highlights.favourites.word || !player.highlights.favourites.count"> No favorite word </span>
-      <span data-ng-if="player.highlights.favourites.word && player.highlights.favourites.count"> My Favourite Word : {{player.highlights.favourites.word}} (I spelled {{player.highlights.favourites.word}} {{player.highlights.favourites.count}} times)</span>
+      <span data-ng-if="player.highlights.favourites.word && player.highlights.favourites.count"> Maybe "Favourite Word" too?  ( {{player.highlights.favourites.word}}  spelled {{player.highlights.favourites.word}} {{player.highlights.favourites.count}} times)</span>
     </p>
 
 

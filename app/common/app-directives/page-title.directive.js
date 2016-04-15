@@ -1,12 +1,12 @@
 "use strict";
-angular.module("app").directive('pageTitle', ['$rootScope', '$timeout',
-  function ($rootScope, $timeout) {
+angular.module("app").directive('pageTitle', ['$rootScope', '$timeout','$translate',
+  function ($rootScope, $timeout,$translate) {
     return {
       link: function (scope, element) {
 
         var listener = function (event, toState) {
 
-          var title = 'Default Title';
+          var title = $translate.instant('default_title');
           if (toState.data && toState.data.pageTitle) {
             title = toState.data.pageTitle;
           }

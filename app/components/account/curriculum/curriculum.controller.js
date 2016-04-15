@@ -120,7 +120,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
       templateUrl: 'common/app-directives/modal/custom-modal.html',
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
 
-        $scope.modalTitle = "Warning!";
+        $scope.modalTitle = $translate.instant("common.warning");
         $scope.modalBody = $translate.instant("curriculum.message.model_delete_word");
         $scope.ok = function () {
           $uibModalInstance.close(word);
