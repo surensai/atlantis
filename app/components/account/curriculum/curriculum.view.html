@@ -67,6 +67,7 @@
                 <i class=" glyphicon"
                    ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>
                 <span data-translate="curriculum.custom_word_list">Custom Word List</span>
+                <button class="export-btn" style="margin-top:-10px;" data-ng-show="status.open" data-ng-click="curriculum.exportCSV()">Export CSV</button>
               </uib-accordion-heading>
               <div class="table-responsive">
                 <table class="table table-striped table-hover">
@@ -129,6 +130,7 @@
               <i class=" glyphicon"
                  ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>
               <span data-translate="curriculum.bathroom">Bathroom</span>
+              <button class="export-btn" style="margin-top:-10px;" data-ng-show="status.open" data-ng-click="curriculum.exportBathroomCSV()">Export CSV</button>
             </uib-accordion-heading>
             <div class="curriculum-groupword-data">
               <div class="checkbox">
@@ -149,6 +151,7 @@
             <uib-accordion-heading>
               <i class=" glyphicon"
                  ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>
+              <button class="export-btn" style="margin-top:-10px;" data-ng-show="status.open" data-ng-click="curriculum.exportAnatomyCSV()">Export CSV</button>
               <span data-translate="curriculum.anatomy">Anatomy</span>
             </uib-accordion-heading>
             <div class="curriculum-groupword-data">

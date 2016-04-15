@@ -117,6 +117,7 @@
                 <span class="fa fa-sort-up columnSortIcons"
                       ng-if="player.reverse && key === player.predicate"></span>
               </th>
+              <button class="export-btn" data-ng-click="player.exportCSV()">Export CSV</button>
             </tr>
             </thead>
             <tbody>
