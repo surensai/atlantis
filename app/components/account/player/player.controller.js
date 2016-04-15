@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory','flashService','$uibModal', function ($timeout, $rootScope, $state, PlayerService, messagesFactory,flashService, $uibModal) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory','flashService','$uibModal', '$translate',function ($timeout, $rootScope, $state, PlayerService, messagesFactory,flashService, $uibModal, $translate) {
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
   var player = this;
   player.model = {};
@@ -55,9 +55,9 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
      $uibModal.open({
         templateUrl: 'common/app-directives/modal/custom-modal.html',
         controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
-          $scope.modalTitle = "Error";
-          $scope.modalBody = "You already have the maximum number of players added.";
-          $scope.modalType = "Error";
+          $scope.modalTitle = $translate.instant('player.add_modaltitle');
+          $scope.modalBody = $translate.instant('player.add_modalbody');
+          $scope.modalType = $translate.instant('player.add_modaltype');
           $scope.close = function () {
             $uibModalInstance.dismiss('cancel');
           };
