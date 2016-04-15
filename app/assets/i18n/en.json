@@ -32,7 +32,11 @@
       "title":"Order Missing Letters"
     },
     "footer": {
-      "glyphicon": "Square Panda"
+      "glyphicon": "Square Panda",
+      "warranty_info":"Warranty Information",
+      "press":"Press",
+      "privacy_policy":"Privacy Policy",
+      "terms_service":"Terms of Service"
     },
     "login": {
       "title": "Login",
@@ -153,11 +157,20 @@
       "grade": "Grade",
       "school": "School",
       "sign_up": "Sign up",
-      "grownup_first_name":"Grown Up's First Name",
-      "grownup_last_name":"Grown Up's Last Name",
-      "grownup_email":"Grown Up's Email",
+      "grownup_first_name": "Grown Up's First Name",
+      "grownup_last_name": "Grown Up's Last Name",
+      "grownup_email": "Grown Up's Email",
       "profile_picture": "Profile Picture",
-      "signIn": "Already registered? Sign in"
+      "signIn": "Already registered? Sign in",
+      "messages":{
+      "register_success":"Thank you for registering with us ",
+        "email_activation_message":"Your email got activated.Now you can login in application with email and password which you provided at register time.",
+        "user_verified_already":"User already verified",
+        "return_signin":"Return to Sign in",
+        "get_mail":"Soon you will get a confirmation email to verify your account",
+        "reset_password":"Please check your inbox for the link to reset your password.If it doesn't appear within the next few minutes, please check your spam folder.",
+        "password_changed":"Your password changed successfully."
+      }
     },
     "login": {
       "remember_password": "Remember password",
@@ -222,7 +235,8 @@
       "firmware_success":"firmware added successfully!",
       "error_file_upload":"Error in file uploading",
       "only_alphabets":"Allow only Alphabets",
-      "dob_notvalid":"Date of birth is not valid"
+      "dob_notvalid":"Date of birth is not valid",
+      "session_expire":"Your session has expired"
 
     },
     "change_password": {
