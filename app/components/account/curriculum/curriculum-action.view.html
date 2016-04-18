@@ -17,13 +17,13 @@
             <div class="col-md-2">
               <label class=" control-label" data-translate="curriculum.wordlabel">Word</label>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 ">
               <div style="display: inline-flex;">
 
                 <input ng-disabled="curriculum.isView" type="text" name="word" class="form-control" data-ng-model="curriculum.model.wordItem.wordName"
                        placeholder="{{ 'curriculum.word' | translate }}" required ng-pattern="/^[A-z][A-z]*$/" ng-minlength="1" ng-maxlength="24">
 
-                <span class="btn btn-default custom-search-button" ng-click="curriculum.searchWord()" data-ng-if="!curriculum.isView"><i
+                <span class="btn btn-default custom-search-button" ng-click="curriculum.searchWord()" data-ng-if="!curriculum.isView && curriculum.model.wordItem.wordName"><i
                   class="fa fa-search"></i></span>
               </div>
               <div class="custom-message-color" ng-show="curriculum.model.message">{{curriculum.model.message}}</div>
