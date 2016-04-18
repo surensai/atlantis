@@ -40,11 +40,11 @@
     },
     "login": {
       "title": "Login",
-      "header": "Login"
+      "header": "Log In"
     },
     "register": {
       "title": "Register",
-      "header": "REGISTRATION"
+      "header": "Create a Square Panda Account"
     },
     "edit_profile": {
       "title": "Edit Profile",
@@ -166,7 +166,7 @@
       "register_success":"Thank you for registering with us ",
         "email_activation_message":"Your email got activated.Now you can login in application with email and password which you provided at register time.",
         "user_verified_already":"User already verified",
-        "return_signin":"Return to Sign in",
+        "return_login":"Return to Log In",
         "get_mail":"Soon you will get a confirmation email to verify your account",
         "reset_password":"Please check your inbox for the link to reset your password.If it doesn't appear within the next few minutes, please check your spam folder.",
         "password_changed":"Your password changed successfully."
@@ -175,7 +175,7 @@
     "login": {
       "remember_password": "Remember password",
       "forgot_password": "Forgot Password",
-      "sign_in": "LOGIN",
+      "log_in": "Log In",
       "forgot_password": "Forgot password?",
       "register": "Not registered yet? Sign Up",
       "login_page":"Go to login page"
