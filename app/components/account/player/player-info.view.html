@@ -61,10 +61,10 @@
           </div>
 
           <div class="bb-col-{{$index}}" data-ng-repeat-end="" data-ng-if="player.clicked && player.showRow === count">
-            <div class="bigbadge-description">
-              <div class="bigbadge-description-text">
+            <div class="bigbadge-description clearfix">
+              <div class="bigbadge-description-text clearfix">
                 <p>{{player.badgeDescription}} </p>
-                <span class="  bigbadge-buttons" data-ng-repeat="word in player.tabWords">{{word}}</span>
+                <span class="bigbadge-buttons " data-ng-repeat="word in player.tabWords">{{word}}</span>
               </div>
               <div class="bigbadge-graph-buttons ">
                 <button class="btn bigbadge-graph-button-style" data-translate="player.badges.day">Day</button>
@@ -72,7 +72,7 @@
                 <button class="btn bigbadge-graph-button-style" data-translate="player.badges.month">Month</button>
                 <button class="btn bigbadge-graph-button-style" data-translate="player.badges.year">Year</button>
               </div>
-              <img src="assets/images/samplegrapg.png" class="img-responsive">
+              <highchart config="player.highchartsNG"></highchart>
             </div>
           </div>
 

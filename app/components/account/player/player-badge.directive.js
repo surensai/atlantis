@@ -7,7 +7,7 @@ angular.module("app").directive('badgeItem', function () {
       displayIndex: '=displayIndex',
       callFunc: '&'
     },
-    templateUrl: 'layout/big-badges-template.html',
+    templateUrl: 'components/account/player/big-badges-template.html',
     link: function(scope) {
       if(scope.item.percentage !== ""){
         var value = 130-(scope.item.percentage*1.3);

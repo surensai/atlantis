@@ -231,4 +231,27 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       [opts,[csvData]]);
   }
 
+
+  player.highchartsNG = {
+    options: {
+      chart: {
+        type: 'line'
+      }
+    },
+    xAxis: {
+      categories: ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7', 'Day8'],
+      labels: {
+        rotation: 0
+      }
+    },
+    series: [{
+      data: [2, 5, 8, 12, 15, 6, 5]
+    }],
+    title: {
+      text: ''
+    },
+    loading: false,
+    exporting: { enabled: false }
+  }
+
 }]);
