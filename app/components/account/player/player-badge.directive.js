@@ -12,7 +12,7 @@ angular.module("app").directive('badgeItem', function () {
       if(scope.item.percentage !== ""){
         var value = 130-(scope.item.percentage*1.3);
         scope.perValue = 'rect('+value+'px,130px,130px,0px)';
-        scope.getStyle = function(obj){
+        scope.getStyle = function(){
           return {"clip": scope.perValue};
         };
       }
