@@ -41,7 +41,9 @@
 <div class="player-tabs">
   <uib-tabset active="activeJustified" >
     <uib-tab index="0" heading="Big Badges">
-      <div class="badges-container clearfix">
+      <div class="badges-container clearfix" >
+        <div resize></div>
+
         <div class="badges-row"
              data-ng-repeat="reptable in player.splitBadgesData"
              data-ng-init="count = $index ">
@@ -60,7 +62,10 @@
 
           </div>
 
-          <div class="bb-col-{{$index}}" data-ng-repeat-end="" data-ng-if="player.clicked && player.showRow === count">
+          <div class="bb-col-{{$index}}"
+               ng-class="{'bb-2side': (windowWidth > 768) && (windowWidth < 990) && (player.showColumn === 1 || player.showColumn === 0), 'bb-4side': (windowWidth > 768) && (windowWidth <= 990) && (player.showColumn === 3 || player.showColumn === 2)}"
+               data-ng-repeat-end=""
+               data-ng-if="(player.clicked && (player.showRow === count) && (windowWidth > 768)) || (player.clicked && (windowWidth < 768) && (player.showRow === count) && (player.showColumn === $index))">
             <div class="bigbadge-description clearfix">
               <div class="bigbadge-description-text clearfix">
                 <p>{{player.badgeDescription}} </p>
@@ -117,7 +122,7 @@
                 <span class="fa fa-sort-up columnSortIcons"
                       ng-if="player.reverse && key === player.predicate"></span>
               </th>
-              <button class="export-btn" data-ng-click="player.exportCSV()">Export CSV</button>
+              <button class="export-btn" data-ng-click="player.exportCSV()" data-ng-if="player.csvData.length > 0">Export CSV</button>
             </tr>
             </thead>
             <tbody>

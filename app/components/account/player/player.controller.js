@@ -11,6 +11,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.splitBadgesData = [];
   player.miniBadges=[];
   player.wordsData = [];
+  player.csvData = [];
   player.isNoPlayer = false;
   player.reverse = false;
   player.clicked = false;
@@ -29,14 +30,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.drag = 'drag feedback';
   player.drop = 'drop feedback';
 
+  player.gridCount = 4;
 
-  player.gridCount = 0;
-  if(screen.width === 768){
-    player.gridCount = 2;
-  }else {
-    player.gridCount = 4;
-    player.gridNumber  = 3;
-  }
   player.getKeysOfCollection = function (obj) {
     obj = angular.copy(obj);
     if (!obj) {
@@ -141,7 +136,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   }
 
-  var csvData = [];
+
   function getWords(childId) {
     var handleSuccess = function (data) {
       if (data) {
@@ -151,7 +146,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           obj.Words = player.wordsData[i].word;
           obj.Attempts = player.wordsData[i].activity.length;
           obj.LastPlayed = player.wordsData[i].endtime;
-          csvData.push(obj);
+          player.csvData.push(obj);
         }
       }
     };
@@ -187,7 +182,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   function getBigBadges(playerId) {
     PlayerService.getBadges(userID,playerId)
       .success(function (data) {
-        player.bigBadges = data;
+        player.bigBadges = sortWordsData(data);
         splitBadgesData();
       })
       .error(function () {
@@ -213,23 +208,43 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   }
 
   function splitBadgesData(){
-    if(player.bigBadges.length){
+    if(player.bigBadges.length > 0){
       var reminderVal = player.bigBadges.length % player.gridCount;
       var repeater = player.gridCount - reminderVal;
       for(var i = 0; i < repeater; i++ ){
         player.bigBadges.push({});
       }
+
       for(var ii = 0; ii < player.bigBadges.length / player.gridCount; ii++ ){
         player.splitBadgesData.push({});
       }
     }
   }
 
-  player.exportCSV = function(){
-    var opts = [{sheetid:'One',header:true}];
-    var res = alasql('SELECT INTO XLSX("GroupWords.csv",?) FROM ?',
-      [opts,[csvData]]);
+  function sortWordsData(arr) {
+    arr.sort(function (a, b) {
+      if (a.badgeName.toLowerCase() < b.badgeName.toLowerCase()) {
+        return -1;
+      }
+      if (a.badgeName.toLowerCase() > b.badgeName.toLowerCase()) {
+        return 1;
+      }
+      return 0;
+    });
+
+    for (var i = 0; i < arr.length; i++) {
+      arr[i].badgeName;
+    }
+    return arr;
   }
+
+  player.exportCSV = function(){
+    if(player.csvData.length > 0){
+      var opts = [{sheetid:'One',header:true}];
+      var res = alasql('SELECT INTO XLSX("GroupWords.csv",?) FROM ?',
+        [opts,[player.csvData]]);
+    }
+  };
 
 
   player.highchartsNG = {
@@ -252,6 +267,34 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     },
     loading: false,
     exporting: { enabled: false }
-  }
+  };
 
 }]);
+
+app.directive('resize', function ($window) {
+  return function (scope) {
+    var w = angular.element($window);
+    scope.getWindowDimensions = function () {
+      return {
+        'h': w.height(),
+        'w': w.width()
+      };
+    };
+    scope.$watch(scope.getWindowDimensions, function (newValue) {
+      scope.windowHeight = newValue.h;
+      scope.windowWidth = newValue.w;
+
+      scope.style = function () {
+        return {
+          'height': (newValue.h - 100) + 'px',
+          'width': (newValue.w - 100) + 'px'
+        };
+      };
+
+    }, true);
+
+    w.bind('resize', function () {
+      scope.$apply();
+    });
+  }
+});
