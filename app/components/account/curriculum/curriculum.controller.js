@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', '$scope', '$state', '$uibModal', 'messagesFactory', '$translate', function ($timeout, CurriculumService, $scope, $state, $uibModal, messagesFactory, $translate) {
+angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', '$scope', '$state', '$uibModal', 'messagesFactory', '$translate', 'utilsFactory', function ($timeout, CurriculumService, $scope, $state, $uibModal, messagesFactory, $translate, utilsFactory) {
 
   var curriculum = this;
   curriculum.customWords = [];
@@ -186,13 +186,13 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
       if (data.anatomy && data.anatomy.length > 0) {
         curriculum.group.anatomyWords = [];
         var sortedanatomyArr = sortWordsData(data.anatomy);
-        curriculum.group.anatomyWords = chunk(sortedanatomyArr, 4);
+        curriculum.group.anatomyWords = utilsFactory.chunkArray(sortedanatomyArr, 4);
       }
 
       if (data.bathroom && data.bathroom.length > 0) {
         curriculum.group.bathroomWords = [];
         var sortedbathroomArr = sortWordsData(data.bathroom);
-        curriculum.group.bathroomWords = chunk(sortedbathroomArr, 4);
+        curriculum.group.bathroomWords = utilsFactory.chunkArray(sortedbathroomArr, 4);
       }
     };
     var handleError = function (error, status) {
@@ -265,24 +265,12 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
     return arr;
   }
 
-  function chunk(arr, size) {
-    var newArr = [];
-    size = arr.length / 4;
-    size = Math.ceil(size);
-    for (var i = 0; i < arr.length; i += size) {
-      newArr.push(arr.slice(i, i + size));
-    }
-    return newArr;
-  }
+
   curriculum.exportCSV = function(){
     var opts = [{sheetid:'One',header:true}];
     var res = alasql('SELECT INTO XLSX("CustomWords.csv",?) FROM ?',
       [opts,[curriculum.customWords]]);
-  }
-  curriculum.exportBathroomCSV = function(){
-    console.log(curriculum.group.bathroomWords);
-    /* var opts = [{sheetid:'One',header:true}];
-     var res = alasql('SELECT INTO XLSX("BathroomWords.csv",?) FROM ?',
-     [opts,[curriculum.group.bathroomWords]]);*/
-  }
+  };
+
+
 }]);
