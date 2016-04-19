@@ -131,6 +131,9 @@
     }
     .curriculum-groupword-data{
       color: #A6A5A5;
+      .checkbox-selectlabel{
+        margin-left: 13px;
+      }
       label{
         text-transform: capitalize;
       }
@@ -254,13 +257,13 @@
   padding: 6px 55px;
   margin-left: 5px;
   background-color: #7E7E7E !important;
-  color: black !important;
+  color: white !important;
 }
 .add-word-cancel-button :hover{
   padding: 6px 55px;
   margin-left: 5px;
   background-color: #7E7E7E !important;
-  color: black !important;
+  color: white !important;
 }
 .add-word-save-button{
   padding: 5px 41px;
