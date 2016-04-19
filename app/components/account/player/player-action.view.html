@@ -26,18 +26,10 @@
                 <i class="fa fa-exclamation-circle"></i>
                 <span data-translate="user.validationMessages.first_name_require">First Name is required.</span>
               </div>
-              <div
-                ng-show="(!playerForm.firstName.$error.minLength || !playerForm.firstName.$error.maxLength) && playerForm.firstName.$error.pattern && playerForm.firstName.$dirty"
+              <div ng-show=" playerForm.firstName.$error.pattern && playerForm.firstName.$dirty"
                 class="error-mesasage">
                 <i class="fa fa-exclamation-circle"></i>
-                <span data-translate="user.validationMessages.user_name_pattern"> Must start with a letter and be alphanumeric.</span>
-              </div>
-              <div
-                ng-show="!playerForm.firstName.$error.pattern && !playerForm.firstName.$error.required && (playerForm.firstName.$error.minlength || playerForm.firstName.$error.maxlength) && playerForm.firstName.$dirty"
-                class="error-mesasage">
-                <i class="fa fa-exclamation-circle"></i>
-                <span
-                  data-translate="user.validationMessages.user_name_length"> Must be between 2 and 20 characters.</span>
+                <span> No special characters allowed and must start with a letter </span>
               </div>
             </div>
           </div>
