@@ -13,6 +13,8 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
     actions: "Actions"
   };
 
+  var customWordsCsv = [];
+
   (function () {
     getWords();
     getWordsByCategory('6,8');
@@ -134,7 +136,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
 
     modalInstance.result.then(function (word) {
       curriculum.customWords.splice(curriculum.customWords.indexOf(word), 1);
-
+      customWordsCsv.splice(customWordsCsv.indexOf(word), 1);
       var handleSuccess = function (data) {
         messagesFactory.deletewordSuccess(data);
         $state.go("account.curriculum");
@@ -165,6 +167,11 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
             Words: word.wordName,
             dateAdded: word.createdAt,
             picture: (word.imageURL)
+          });
+
+          customWordsCsv.push({
+            Words: word.wordName,
+            dateAdded: word.createdAt
           });
 
         });
@@ -266,10 +273,9 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   }
 
 
-  curriculum.exportCSV = function(){
-    var opts = [{sheetid:'One',header:true}];
-    var res = alasql('SELECT INTO XLSX("CustomWords.csv",?) FROM ?',
-      [opts,[curriculum.customWords]]);
+  curriculum.getCSVHeader = function () { return ["Words ", "Date"] };
+  curriculum.getCustomWordExportData = function(){
+    return customWordsCsv;
   };
 
 
