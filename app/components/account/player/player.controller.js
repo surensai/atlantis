@@ -226,28 +226,11 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   function sortWordsData(arr) {
     arr.sort(function (a, b) {
-      if (a.badgeName.toLowerCase() < b.badgeName.toLowerCase()) {
-        return -1;
-      }
-      if (a.badgeName.toLowerCase() > b.badgeName.toLowerCase()) {
-        return 1;
-      }
-      return 0;
+      return a.incrementflag - b.incrementflag;
     });
 
-    for (var i = 0; i < arr.length; i++) {
-      arr[i].badgeName;
-    }
     return arr;
   }
-
-  player.exportCSV = function(){
-    if(player.csvData.length > 0){
-      var opts = [{sheetid:'One',header:true}];
-      var res = alasql('SELECT INTO XLSX("GroupWords.csv",?) FROM ?',
-        [opts,[player.csvData]]);
-    }
-  };
 
 
   player.highchartsNG = {

@@ -5,20 +5,20 @@
 .content-bg {
   background-color: rgba(0, 0, 0, 0.6);
   padding-top: 30px;
-  height: 100%;
+  height: 110%;
 }
 
 .bg-img {
   background: url('../images/bg.jpg') no-repeat top;
-  background-size: auto 100%;
+  background-size: cover;
   position: absolute;
   left: 0px;
   right: 0px;
   bottom: 0px;
   top: 0px;
   z-index: -999;
+  height: 110%;
 }
-
 
 .user-form-container {
   position: relative;
