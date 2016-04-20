@@ -50,7 +50,13 @@ body{
 .content-min-height{
   min-height: 550px;
 }
-
+.register-error-message{
+  position: absolute;
+  top: -33px;
+  color: #E07C72;
+  text-align: center;
+  width: 127%;
+}
 .error-text-message{
   position: absolute;
   top: 40px;
@@ -291,7 +297,7 @@ body{
 
 .sp-pur-btn {
   background-color: $primary-color;
-  border-radius: 0px;
+  border-radius: 4px;
   color: $white-color;
   &:hover {
     background-color: lighten($primary-color, 10%);
