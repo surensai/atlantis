@@ -315,6 +315,20 @@
         padding-bottom: 25px;
         .badge-item {
           margin-bottom: 20px;
+          .active-big-badge {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+            -o-transform: translateX(-50%);
+          }
+          .bb-active-star{
+            position: absolute;
+            bottom: 32px;
+            left: 44%;
+          }
           span, h3 {
             display: block;
             text-align: center;
@@ -334,22 +348,7 @@
       .last-attempt-blue{
         color: blue;
       }
-      .badge-inactive {
-        color: #000000 !important;
-        background: url("../images/inactive-badge.png") no-repeat center;
-      }
-      .badge-start {
-        background: url("../images/strt-badge.png") no-repeat center;
-      }
-      .badge-bronze {
-        background: url("../images/bronze-badge.png") no-repeat center;
-      }
-      .badge-silver {
-        background: url("../images/silver-badge.png") no-repeat center;
-      }
-      .badge-gold {
-        background: url("../images/gold-badge.png") no-repeat center;
-      }
+
         .table {
           border: 1px solid #C7C7C7;
           thead th {

@@ -250,18 +250,6 @@ img{
   }
 }
 
-.badge-item {
-  .active-big-badge {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-  }
-}
-
 .modal-open {
   overflow-y: scroll;
   position: fixed;

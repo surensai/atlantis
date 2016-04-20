@@ -16,7 +16,7 @@ angular.module("app").directive('badgeItem', function () {
           return {"clip": scope.perValue};
         };
       }
-      if(scope.item.percentage === 120){
+      if(scope.item.percentage >= 120){
         scope.displayStar = true;
       }
     }
