@@ -56,20 +56,20 @@
                              display-index="player.displayChartIndex"
                              index="$index">
             </data-badge-item>
-            <p class="bb-arrow" data-ng-if="player.clicked && (player.showRow === count) && (player.showColumn === $index)">
-              <img src="assets/images/arrow-icon.png" />
+
+            <p class="bb-arrow" data-ng-if="player.clicked && (player.showRow === count) && (player.showColumn === $index)" style=""  ng-style="{'border-bottom-color': player.bigbadgedetails.colorCode}" >
+
             </p>
 
           </div>
-
           <div class="bb-col-{{$index}}"
                ng-class="{'bb-2side': (windowWidth > 768) && (windowWidth < 990) && (player.showColumn === 1 || player.showColumn === 0), 'bb-4side': (windowWidth > 768) && (windowWidth <= 990) && (player.showColumn === 3 || player.showColumn === 2)}"
                data-ng-repeat-end=""
                data-ng-if="(player.clicked && (player.showRow === count) && (windowWidth > 768)) || (player.clicked && (windowWidth < 768) && (player.showRow === count) && (player.showColumn === $index))">
             <div class="bigbadge-description clearfix">
-              <div class="bigbadge-description-text clearfix">
-                <p>{{player.badgeDescription}} </p>
-                <span class="bigbadge-buttons " data-ng-repeat="word in player.tabWords">{{word}}</span>
+              <div class="bigbadge-description-text clearfix" ng-style="{'background-color': player.bigbadgedetails.colorCode}">
+                <p>{{player.bigbadgedetails.description}} </p>
+                <span class="bigbadge-buttons " data-ng-repeat="word in player.bigbadgedetails.tabwords">{{word}}</span>
               </div>
               <div class="bigbadge-graph-buttons ">
                 <button class="btn bigbadge-graph-button-style" data-translate="player.badges.day">Day</button>
@@ -92,7 +92,7 @@
               <div class="mb-con center-align">
                 <div class="mb-icon-con">
                   <div class="mb-icon">
-                    <img data-ng-if="!minibadge.assetURL"  src="assets/images/fallback-img.png" class= "noimagestyle" width="150" height="150px" alt="minibadge"  />
+                    <img data-ng-if="!minibadge.assetURL"  src="assets/images/no-badge.png"  alt="minibadge"  />
                     <img data-ng-if="minibadge.assetURL && minibadge.status === 'Disabled'" data-ng-src="{{minibadge.disabledassetURL}}" />
                     <img data-ng-if="minibadge.assetURL && minibadge.status === 'Active'" data-ng-src="{{minibadge.assetURL}}"/>
                   </div>
@@ -122,7 +122,11 @@
                 <span class="fa fa-sort-up columnSortIcons"
                       ng-if="player.reverse && key === player.predicate"></span>
               </th>
-              <button class="export-btn" data-ng-click="player.exportCSV()" data-ng-if="player.csvData.length > 0">Export CSV</button>
+              <a href="" class="export-btn"
+                 ng-click="$event.stopPropagation();$event.preventDefault();"
+                 ng-csv="player.getWordsExportData()"
+                 filename="words.csv"
+                 csv-header="player.getCSVHeader()"><i class="fa fa-download"></i> Export CSV</a>
             </tr>
             </thead>
             <tbody>

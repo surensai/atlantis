@@ -409,7 +409,6 @@
     background-color: white;
     clear: both;
     .bigbadge-description-text{
-      background-color: #85D1C2;
 
       padding: 30px;
       p{
@@ -458,7 +457,12 @@
   position: absolute;
   bottom: -10px;
   text-align: center;
-  width: 100%;
+  width: 0;
+  border-style: solid;
+  border-width: 0 20px 20px 21px;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  margin-left: 105px
 }
 
 .avatar-container{
