@@ -1,5 +1,6 @@
 .error-mesasage {
   color: #E07C72;
+  width: 160%;
 }
 
 .content-bg {
@@ -19,7 +20,9 @@
   z-index: -999;
 }
 
-
+.register-form-heading{
+  color: $white-color;
+}
 .user-form-container {
   position: relative;
   h2 {
@@ -37,6 +40,7 @@
 
   .error-mesasage {
     position: absolute;
+    width: 130%;
   }
 
   .has-feedback {
@@ -92,7 +96,7 @@
 
 .custom-checkbox-span {
   padding-left: 8px;
-  margin: 3px 0 15px;
+  margin: 4px 0 15px;
   font-size: 15px;
 }
 

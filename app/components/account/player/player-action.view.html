@@ -19,7 +19,7 @@
             <div class="col-md-5">
               <input type="text" name="firstName" class="form-control"
                      data-ng-model="playerAction.model.playerItem.firstName"
-                     ng-minlength="2" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/"
+                     ng-pattern="/^[A-z][A-z0-9]*$/"
                      placeholder="{{ 'player.first_name' | translate }}" required>
 
               <div ng-show="playerForm.$submitted && playerForm.firstName.$error.required" class="error-mesasage">
@@ -49,12 +49,12 @@
             <label class="col-md-2 control-label" data-translate="player.gender">Gender :</label>
 
             <div class="col-md-5">
+              <label class="radio-inline radio-label-sizes"><input type="radio" name="gender" value="F"
+                                                                   data-ng-model="playerAction.model.playerItem.gender"
+                                                                   class="radio-button-sizes"/><span data-translate="player.girl">Girl</span></label>
               <label class="radio-inline radio-label-sizes"><input type="radio" name="gender" value="M"
                                                                    data-ng-model="playerAction.model.playerItem.gender"
                                                                    class="radio-button-sizes"/><span data-translate="player.boy">Boy</span></label>
-              <label class="radio-inline radio-label-sizes"><input type="radio" name="gender" value="F"
-                                                 data-ng-model="playerAction.model.playerItem.gender"
-                                                 class="radio-button-sizes"/><span data-translate="player.girl">Girl</span></label>
               <label class="radio-inline"><input type="radio" name="gender" value="O"
                                                  data-ng-model="playerAction.model.playerItem.gender"
                                                  class="radio-button-sizes"/><span data-translate="player.not_prefer">Prefer not to answer</span></label>
