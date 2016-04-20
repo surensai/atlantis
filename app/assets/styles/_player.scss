@@ -464,6 +464,9 @@
 .avatar-container{
   .avatar-seletion{
     float: left;
+    img{
+      border-radius: 5px;
+    }
   }
   .avatar-actions{
     float: left;
