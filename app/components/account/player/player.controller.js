@@ -223,18 +223,9 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   function sortWordsData(arr) {
     arr.sort(function (a, b) {
-      if (a.incrementflag < b.incrementflag) {
-        return -1;
-      }
-      if (a.incrementflag > b.incrementflag) {
-        return 1;
-      }
-      return 0;
+      return a.incrementflag - b.incrementflag;
     });
 
-    for (var i = 0; i < arr.length; i++) {
-      arr[i].incrementflag;
-    }
     return arr;
   }
 
