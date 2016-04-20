@@ -29,9 +29,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   };
   player.drag = 'drag feedback';
   player.drop = 'drop feedback';
-
   player.gridCount = 4;
-
+  var wordsCsv = [];
   player.getKeysOfCollection = function (obj) {
     obj = angular.copy(obj);
     if (!obj) {
@@ -77,8 +76,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       if(player.showRow === j){
         for(var k=0;k<player.bigBadges.length;k++){
           if(player.showColumn === k){
-            player.badgeDescription  = player.bigBadges[count].description;
-            player.tabWords = player.bigBadges[count].tabwords;
+            player.bigbadgedetails  = player.bigBadges[count];
             break;
           }else{
             count++;
@@ -146,7 +144,12 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           obj.Words = player.wordsData[i].word;
           obj.Attempts = player.wordsData[i].activity.length;
           obj.LastPlayed = player.wordsData[i].endtime;
-          player.csvData.push(obj);
+
+          wordsCsv.push({
+            Words: obj.Words,
+            Attempts: obj.Attempts,
+            LastPlayed:obj.LastPlayed
+          });
         }
       }
     };
@@ -251,7 +254,10 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     loading: false,
     exporting: { enabled: false }
   };
-
+  player.getCSVHeader = function () { return ["Words ", "Attempts" ,"Last Played"] };
+  player.getWordsExportData = function(){
+    return wordsCsv;
+  };
 }]);
 
 app.directive('resize', function ($window) {
