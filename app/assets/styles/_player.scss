@@ -417,12 +417,14 @@
         color: white;
       }
       .bigbadge-buttons{
-        padding: 1px 45px 1px 45px;
-        background: #85D1C2;
+        padding: 1px 10px 1px 10px;
         border: 1px solid white;
-        border-radius: 0px;
-        margin-right: 20px;
+        margin-right: 10px;
         color: white;
+        min-width: 75px;
+        display: block;
+        float: left;
+        text-align: center;
       }
       .bigbadge-buttons-mat,.bigbadge-buttons-ball .bigbadge-buttons-doll{
         padding: 1px 45px 1px 43px !important;
@@ -448,6 +450,8 @@
         border: 1px solid #EDA01D;
       }
     }
+
+
   }
 }
 
@@ -456,14 +460,6 @@
   bottom: -10px;
   text-align: center;
   width: 100%;
-}
-
-.bb-col-3{
-  display: none;
-}
-
-.bb-col-0{
-  display: block;
 }
 
 .avatar-container{
@@ -546,6 +542,8 @@
   }
 }
 
+
+
 @media(min-width: 768px) {
   .profile-pic, .profile-pic img{
     width: 160px !important;
@@ -561,41 +559,29 @@
     padding-left: 183px !important;
   }
 
- /* .bb-col-0, .bb-col-1, .bb-col-2{
-    display: none;
-  }
-
-  .bb-col-3{
-    display: block;
-  }*/
-
-}
-
-@media only screen and (min-device-width:768px){
   .bb-col-0, .bb-col-1, .bb-col-2 {
     display:none;
   }
-  .bb-col-3 {
-    display:block;
-  }
-}
-@media only screen and (min-device-width:414px) and (max-device-width:768px) {
-  .bb-col-0 {
-    display:none;
-  }
-  .bb-col-1 {
-    display:block;
-  }
-}
-/*@media only screen and (max-device-width:414px) {
-  .bb-col-0, .bb-col-1, .bb-col-2 {
-    display:none;
-  }
+
   .bb-col-3 {
     display:block;
   }
 
-}*/
+  .bb-2side.bb-col-1{
+    display:block;
+  }
+
+  .bb-2side.bb-col-3{
+    display:none;
+  }
+
+  .bb-4side.bb-col-3{
+    display:block;
+  }
+}
+
+
+
 @media only screen and
 (min-device-width: 320px) and (max-device-width: 1024px) {
   .save-cancel-parent {
