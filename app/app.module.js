@@ -16,5 +16,6 @@ var app = angular.module('app', [
   'highcharts-ng',
   'toaster',
   'ngAudio',
-  'ngImgCrop'
+  'ngImgCrop',
+  'ngCsv'
 ]);
