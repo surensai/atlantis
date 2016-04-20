@@ -88,17 +88,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       }
     }
   };
-  function getBigBadges(playerId) {
-    PlayerService.getBadges(userID,playerId)
-      .success(function (data) {
-        player.bigBadges = data;
-        splitBadgesData();
-      })
-      .error(function () {
-        flashService.showError($translate.instant("player.messages.error_getting_players"), false);
-      });
-  }
-
   function getPlayers() {
     var handleSuccess = function (data) {
       player.isNoPlayer = true;
@@ -254,7 +243,9 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     loading: false,
     exporting: { enabled: false }
   };
-  player.getCSVHeader = function () { return ["Words ", "Attempts" ,"Last Played"] };
+  player.getCSVHeader = function () {
+    return ["Words ", "Attempts" ,"Last Played"];
+  };
   player.getWordsExportData = function(){
     return wordsCsv;
   };
@@ -285,5 +276,5 @@ app.directive('resize', function ($window) {
     w.bind('resize', function () {
       scope.$apply();
     });
-  }
+  };
 });

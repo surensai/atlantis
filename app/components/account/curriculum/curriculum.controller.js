@@ -68,11 +68,11 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
     var data = {};
 
     if(curriculum.group.anatomyWords.length > 0){
-      for(var i = 0; curriculum.group.anatomyWords.length > i; i++){
-        if(curriculum.group.anatomyWords[i].length > 0){
-          for(var ii = 0; curriculum.group.anatomyWords[i].length > ii; ii++){
-            if(curriculum.group.anatomyWords[i][ii].groupedflag) {
-              anatomy_words.push(curriculum.group.anatomyWords[i][ii].Word);
+      for(var j = 0; curriculum.group.anatomyWords.length > j; j++){
+        if(curriculum.group.anatomyWords[j].length > 0){
+          for(var k = 0; curriculum.group.anatomyWords[j].length > k; k++){
+            if(curriculum.group.anatomyWords[j][k].groupedflag) {
+              anatomy_words.push(curriculum.group.anatomyWords[j][k].Word);
             }
           }
         }
@@ -273,7 +273,9 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   }
 
 
-  curriculum.getCSVHeader = function () { return ["Words ", "Date"] };
+  curriculum.getCSVHeader = function () {
+    return ["Words ", "Date"] ;
+  };
   curriculum.getCustomWordExportData = function(){
     return customWordsCsv;
   };
