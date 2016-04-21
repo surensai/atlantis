@@ -364,11 +364,7 @@ body.body-toggle{
   .top-header .dropdown, #account-nav-wrapper{
     display: none!important;
   }
-
-  .navbar-toggle {
-    display: block;
-  }
-
+  
   .bg-img {
     background-size: auto 100% !important;
   }
@@ -390,6 +386,7 @@ body.body-toggle{
   }
 
   .navbar-toggle{
+    display: block;
     margin-right: 0px;
     margin-top: 27px;
   }
@@ -402,10 +399,6 @@ body.body-toggle{
     display: none!important;
   }
 
-  .navbar-toggle {
-    display: block;
-  }
-
   .bg-img {
     background-size: auto 100% !important;
   }
@@ -427,6 +420,7 @@ body.body-toggle{
   }
 
   .navbar-toggle{
+    display: block;
     margin-right: 0px;
     margin-top: 34px;
   }

@@ -122,11 +122,11 @@
                 <span class="fa fa-sort-up columnSortIcons"
                       ng-if="player.reverse && key === player.predicate"></span>
               </th>
-              <a href="" class="export-btn"
+              <a href="" class="player-export-btn"
                  ng-click="$event.stopPropagation();$event.preventDefault();"
                  ng-csv="player.getWordsExportData()"
                  filename="words.csv"
-                 csv-header="player.getCSVHeader()"><i class="fa fa-download"></i> Export CSV</a>
+                 csv-header="player.getCSVHeader()"><i class="fa fa-download"></i><sapn data-translate="curriculum.export_csv">Export CSV</sapn></a>
             </tr>
             </thead>
             <tbody>

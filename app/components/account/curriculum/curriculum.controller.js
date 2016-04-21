@@ -8,9 +8,9 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   curriculum.model.wordItem = {};
   curriculum.group = {};
   curriculum.wordsHeaders = {
-    Words: "Words",
-    picture: "Picture",
-    actions: "Actions"
+    Words: $translate.instant("curriculum.customword_headers.words"),
+    picture: $translate.instant("curriculum.customword_headers.picture"),
+    actions: $translate.instant("curriculum.customword_headers.actions")
   };
 
   var customWordsCsv = [];
@@ -293,9 +293,11 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
     return arr;
   }
 
+  var csvheader_words = $translate.instant("curriculum.customword_headers.words");
+  var csvheader_date = $translate.instant("curriculum.customword_headers.date");
 
   curriculum.getCSVHeader = function () {
-    return ["Words ", "Date"];
+    return [csvheader_words , csvheader_date] ;
   };
   curriculum.getCustomWordExportData = function () {
     return customWordsCsv;

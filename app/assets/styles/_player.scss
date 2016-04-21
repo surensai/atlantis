@@ -310,6 +310,7 @@
       margin-right: 25px;
       .graph-container{
         background-color: #fcfcfc;
+
       }
       .badges-row {
         padding-bottom: 25px;
@@ -618,8 +619,14 @@
     padding: 10px 6px;
   }
 }
-
-.export-btn {
+.player-export-btn{
   color: #9B9B9B;
   float: right;
+  margin-bottom: 15px;
+  i.fa.fa-download{
+    margin-right: 7px;
+  }
+}
+.player-export-btn:hover{
+  text-decoration: none;
 }
