@@ -297,11 +297,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   var csvheader_date = $translate.instant("curriculum.customword_headers.date");
 
   curriculum.getCSVHeader = function () {
-<<<<<<< HEAD
     return [csvheader_words , csvheader_date] ;
-=======
-    return ["Words ", "Date"];
->>>>>>> 9a5b5652055dfccec962bdca7de38c4bfb426301
   };
   curriculum.getCustomWordExportData = function () {
     return customWordsCsv;
