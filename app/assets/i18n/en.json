@@ -163,14 +163,14 @@
       "profile_picture": "Profile Picture",
       "signIn": "Already registered? Sign in",
       "messages":{
-      "register_success":"Thanks for creating a Square Panda account.",
-        "register_success_mes":"Thanks for creating a Square Panda account.",
+      "register_success":"Thank you for creating a Square Panda account.",
+        "register_success_mes":"Thank you for creating a Square Panda account.",
         "email_activation_message":"You’re all set to jump into Square Panda's world of reading readiness.",
-        "user_verified_already":"User already verified",
+        "user_verified_already":"You are already registered with us and your account is active.",
         "return_login":"Return to Log In",
-        "get_mail":"Soon you will get a confirmation email to verify your account",
-        "reset_password":"Please check your inbox for the link to reset your password.If it doesn't appear within the next few minutes, please check your spam folder.",
-        "password_changed":"Your password changed successfully."
+        "get_mail":"Please activate your account using the verification link sent to your email address.",
+        "reset_password":"Please check your inbox for the email with the subject 'Forgot Password Request'.If the email doesn't appear within the next few minutes, please check your Spam or Junk Mail folder.",
+        "password_changed":"Your password has been reset. You can now use your new password to login."
       }
     },
     "login": {
