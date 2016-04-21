@@ -241,6 +241,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       text: ''
     },
     loading: false,
+    size:{height:300},
     exporting: { enabled: false }
   };
 

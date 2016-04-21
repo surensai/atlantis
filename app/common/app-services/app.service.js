@@ -1,11 +1,6 @@
 'use strict';
-angular.module('app').factory('appService', [ '$rootScope', function ($rootScope) {
+angular.module('app').factory('appService', [ '$rootScope','$timeout', function ($rootScope, $timeout) {
   var service = {};
-
-  service.isFooterFixed = function(paht){
-    var pages = ['/progress'];
-    return $.inArray(paht, pages) !== -1;
-  };
 
   /**
    * Convert an image
@@ -38,7 +33,11 @@ angular.module('app').factory('appService', [ '$rootScope', function ($rootScope
       };
     })(jQuery);
 
-    $rootScope.isFooterFix = $('body').hasScrollBar();
+    $timeout(function() {
+      $rootScope.isFooterFix = $('body').hasScrollBar();
+    }, 200);
+
+
 
   };
 
