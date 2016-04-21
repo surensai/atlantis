@@ -21,13 +21,13 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   })();
 
   curriculum.searchWord = function () {
-    var word = curriculum.model.wordItem.wordName;
+    var word = curriculum.model.wordItem.wordName, isWordPrsnt = isWordPresent(word);
     var handleSuccess = function (data) {
       var modalInstance = $uibModal.open({
         templateUrl: 'common/app-directives/modal/custom-modal.html',
         controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
           $scope.modalTitle = "Confirm";
-          if (data.length === 0) {
+          if (data.length === 0 && !isWordPrsnt) {
             $scope.modalBody = $translate.instant("curriculum.message.word_notexist_want_procced");
           } else {
             $scope.modalBody = $translate.instant("curriculum.message.word_exist_want_edit");
@@ -43,7 +43,11 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
       });
 
       modalInstance.result.then(function () {
-        $state.go("account.addCustomWord", {word: word});
+        if (isWordPrsnt) {
+          $state.go("account.editCustomWord", {id: curriculum.model.wordItem.id});
+        } else {
+          $state.go("account.addCustomWord", {word: word});
+        }
       }, function () {
         $state.go("account.curriculum");
       });
@@ -62,16 +66,33 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
 
   };
 
+  //Check word in Local NodeJS server
+  function isWordPresent(word) {
+    //check if words array length is zero
+    if (!curriculum.customWords || curriculum.customWords.length === 0) {
+      return false;
+    }
+    //find the word in Words Array
+    for (var wordCounter = 0; wordCounter < curriculum.customWords.length; wordCounter++) {
+      var localdbWrd = curriculum.customWords[wordCounter].Words;
+      if (word.toLowerCase() === localdbWrd.toLowerCase()) {
+        curriculum.model.wordItem = curriculum.customWords[wordCounter];
+        return true;
+      }
+    }
+    return false;
+  }
+
   curriculum.submitGroupWords = function () {
     var anatomy_words = [];
     var bathroom_words = [];
     var data = {};
 
-    if(curriculum.group.anatomyWords.length > 0){
-      for(var j = 0; curriculum.group.anatomyWords.length > j; j++){
-        if(curriculum.group.anatomyWords[j].length > 0){
-          for(var k = 0; curriculum.group.anatomyWords[j].length > k; k++){
-            if(curriculum.group.anatomyWords[j][k].groupedflag) {
+    if (curriculum.group.anatomyWords.length > 0) {
+      for (var j = 0; curriculum.group.anatomyWords.length > j; j++) {
+        if (curriculum.group.anatomyWords[j].length > 0) {
+          for (var k = 0; curriculum.group.anatomyWords[j].length > k; k++) {
+            if (curriculum.group.anatomyWords[j][k].groupedflag) {
               anatomy_words.push(curriculum.group.anatomyWords[j][k].Word);
             }
           }
@@ -79,11 +100,11 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
       }
     }
 
-    if(curriculum.group.bathroomWords.length > 0){
-      for(var i = 0; curriculum.group.bathroomWords.length > i; i++){
-        if(curriculum.group.bathroomWords[i].length > 0){
-          for(var ii = 0; curriculum.group.bathroomWords[i].length > ii; ii++){
-            if(curriculum.group.bathroomWords[i][ii].groupedflag){
+    if (curriculum.group.bathroomWords.length > 0) {
+      for (var i = 0; curriculum.group.bathroomWords.length > i; i++) {
+        if (curriculum.group.bathroomWords[i].length > 0) {
+          for (var ii = 0; curriculum.group.bathroomWords[i].length > ii; ii++) {
+            if (curriculum.group.bathroomWords[i][ii].groupedflag) {
               bathroom_words.push(curriculum.group.bathroomWords[i][ii].Word);
             }
           }
@@ -213,14 +234,14 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   }
 
   curriculum.checkAll = function (type, arr) {
-    if(arr.length > 0){
-        for(var i = 0; arr.length > i; i++){
-            if(arr[i].length > 0){
-              for(var ii = 0; arr[i].length > ii; ii++){
-                arr[i][ii].groupedflag = type;
-              }
-            }
+    if (arr.length > 0) {
+      for (var i = 0; arr.length > i; i++) {
+        if (arr[i].length > 0) {
+          for (var ii = 0; arr[i].length > ii; ii++) {
+            arr[i][ii].groupedflag = type;
+          }
         }
+      }
     }
   };
 
@@ -228,26 +249,26 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
     arr[topIndex][index].groupedflag = type;
     var arrBooleanCount = 0;
     var totalCount = 0;
-    if(arr.length > 0){
-      for(var i = 0; arr.length > i; i++){
-        if(arr[i].length > 0){
+    if (arr.length > 0) {
+      for (var i = 0; arr.length > i; i++) {
+        if (arr[i].length > 0) {
           totalCount = totalCount + arr[i].length;
-          for(var ii = 0; arr[i].length > ii; ii++){
-            if(arr[i][ii].groupedflag){
+          for (var ii = 0; arr[i].length > ii; ii++) {
+            if (arr[i][ii].groupedflag) {
               arrBooleanCount++;
             }
           }
         }
       }
     }
-    if(selectType === 'anatomy'){
-      if(totalCount === arrBooleanCount){
+    if (selectType === 'anatomy') {
+      if (totalCount === arrBooleanCount) {
         curriculum.checkselectAll = true;
       } else {
         curriculum.checkselectAll = false;
       }
     } else {
-      if(totalCount === arrBooleanCount){
+      if (totalCount === arrBooleanCount) {
         curriculum.selectedAll = true;
       } else {
         curriculum.selectedAll = false;
@@ -274,9 +295,9 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
 
 
   curriculum.getCSVHeader = function () {
-    return ["Words ", "Date"] ;
+    return ["Words ", "Date"];
   };
-  curriculum.getCustomWordExportData = function(){
+  curriculum.getCustomWordExportData = function () {
     return customWordsCsv;
   };
 
