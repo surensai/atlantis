@@ -6,7 +6,7 @@
 .content-bg {
   background-color: rgba(0, 0, 0, 0.6);
   padding-top: 30px;
-  height: 110%;
+  height: 100%;
 }
 
 .bg-img {
@@ -18,7 +18,7 @@
   bottom: 0px;
   top: 0px;
   z-index: -999;
-  height: 108%;
+  height: 100%;
 }
 
 .register-error-message{
@@ -183,6 +183,16 @@
   }
 
   .user-links-col2{
-    top: -58px!important;
+    top: -59px!important;
+  }
+}
+
+@media(min-height: 1200px) {
+  .bg-img{
+    height: 108%;
+  }
+
+  .content-bg{
+    height: 110%;
   }
 }
