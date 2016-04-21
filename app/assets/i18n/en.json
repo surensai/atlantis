@@ -186,8 +186,8 @@
     },
     "validationMessages": {
       "first_name_require": "First Name is required.",
-      "no_specialchar_require":"No special characters allowed and must start with a letter.",
       "last_name_require": "Last Name is required.",
+      "no_specialchar_require":"No special characters allowed and must start with a letter.",
       "password_mismatch": "Please make sure your passwords match.",
       "email_require": "Email address is required.",
       "email_valid": "Please enter a valid email address.",
