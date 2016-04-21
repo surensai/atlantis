@@ -220,6 +220,7 @@ body{
   color: $white-color;
   border: none;
   clear: both;
+  position: relative;
   ul, li {
     @extend .reset-padding-margin;
   }
@@ -390,6 +391,10 @@ body.body-toggle{
     margin-right: 0px;
     margin-top: 27px;
   }
+
+  .bg-img, .content-bg{
+    height: 100%!important;
+  }
 }
 
 @media only screen and
@@ -423,6 +428,10 @@ body.body-toggle{
     display: block;
     margin-right: 0px;
     margin-top: 34px;
+  }
+
+  .bg-img, .content-bg{
+    height: 100%!important;
   }
 
 }
