@@ -215,6 +215,7 @@
                   <div data-ng-repeat="letters in item" class="ml-letter" ng-class="{'active': settings.isMissilingLetterSelected(rowInd, $index, 1 ), 'vowel': settings.isLetterVowel(letters.letter)}" data-ng-click="settings.selectCharacter(rowInd, $index, 1)">
                     {{letters.letter}}
                   </div>
+                  <div class="ml-letter no-visible" data-ng-if="item.length === 2">A</div>
               </div>
             </div>
 
@@ -223,6 +224,7 @@
                 <div data-ng-repeat="letters in item" class="ml-letter" ng-class="{'active': settings.isMissilingLetterSelected(rowInd1, $index, 2 ), 'vowel': settings.isLetterVowel(letters.letter)}" data-ng-click="settings.selectCharacter(rowInd1, $index, 2)">
                   {{letters.letter}}
                 </div>
+                <div class="ml-letter no-visible" data-ng-if="item.length === 2">A</div>
               </div>
             </div>
           </div>
