@@ -220,6 +220,7 @@ body{
   color: $white-color;
   border: none;
   clear: both;
+  position: relative;
   ul, li {
     @extend .reset-padding-margin;
   }
