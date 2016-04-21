@@ -22,10 +22,10 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.displayChartIndex = 0;
   player.predicate = 'Sno';
   player.wordsHeaders = {
-    Words: "Words",
-    Attempts: "Attempts",
-    LastPlayed: "Last Played",
-    LastAttempt: "Last Attempt"
+    Words: $translate.instant("player.word_headers.words"),
+    Attempts:  $translate.instant("player.word_headers.attempts"),
+    LastPlayed: $translate.instant("player.word_headers.last_played"),
+    LastAttempt:$translate.instant("player.word_headers.last_attempt")
   };
   player.drag = 'drag feedback';
   player.drop = 'drop feedback';
@@ -243,8 +243,13 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     loading: false,
     exporting: { enabled: false }
   };
+
+  var csvheader_playerwords = $translate.instant("player.word_headers.words");
+  var csvheader_attempts =  $translate.instant("player.word_headers.attempts");
+  var csvheader_lastpalyed =  $translate.instant("player.word_headers.last_played");
+
   player.getCSVHeader = function () {
-    return ["Words ", "Attempts" ,"Last Played"];
+    return [csvheader_playerwords, csvheader_attempts ,csvheader_lastpalyed];
   };
   player.getWordsExportData = function(){
     return wordsCsv;

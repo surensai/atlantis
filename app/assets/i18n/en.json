@@ -186,6 +186,7 @@
     },
     "validationMessages": {
       "first_name_require": "First Name is required.",
+      "no_specialchar_require":"No special characters allowed and must start with a letter.",
       "last_name_require": "Last Name is required.",
       "password_mismatch": "Please make sure your passwords match.",
       "email_require": "Email address is required.",
@@ -282,6 +283,12 @@
     "uploadImage_selectavatar":"Please upload image or select Avatar",
     "choose_avatar":"Choose Avatar",
     "no_players":"You don't have any players added.Start adding now..",
+    "word_headers":{
+      "words":"Words",
+      "attempts":"Attempts",
+      "last_played":"Last Played",
+      "last_attempt":"Last Attempt"
+    },
     "messages": {
       "add_success": "Player added successfully!",
       "update_success": "Player updated successfully!",
@@ -343,6 +350,13 @@
       "milestone_text":"At Square Panda, parents and teachers rule! Not all parents and teachers want the same things, share the same beliefs, or think the same way. So, we've left it up to you! It'scompletely within your control as to what words your children can and cannot see. Take a look at our lists of curated 'bathroom words' and more advanced science 'anatomy' words.You can turn these entire word lists on and off, or you can look at individual words on the list and decide if you want them excluded from your child's game. Customize away!",
       "milestone_text_note":" Note: Square Panda will never intentionally display a bad word to your child. However, as your child explores letter combinations, he/she may inadvertently discover a mature word. Here you have the flexibility to allow or disallow these words from your child's game."
     },
+    "customword_headers":{
+      "words":"Words",
+      "picture":"Picture",
+      "actions":"Actions",
+      "date":"Date"
+    },
+    "export_csv":"Export CSV",
     "custom_word_list":"Custom Word List",
     "wordlabel": "Word",
     "word": "word",
