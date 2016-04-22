@@ -34,7 +34,7 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group ">
             <div class="col-md-2"></div>
             <label class="col-md-2 control-label" data-translate="user.register.dob">Date of birth</label>
 
@@ -49,15 +49,23 @@
             <label class="col-md-2 control-label" data-translate="player.gender">Gender :</label>
 
             <div class="col-md-5">
-              <label class="radio-inline radio-label-sizes"><input type="radio" name="gender" value="F"
-                                                                   data-ng-model="playerAction.model.playerItem.gender"
-                                                                   class="radio-button-sizes"/><span data-translate="player.girl">Girl</span></label>
-              <label class="radio-inline radio-label-sizes"><input type="radio" name="gender" value="M"
-                                                                   data-ng-model="playerAction.model.playerItem.gender"
-                                                                   class="radio-button-sizes"/><span data-translate="player.boy">Boy</span></label>
-              <label class="radio-inline"><input type="radio" name="gender" value="O"
-                                                 data-ng-model="playerAction.model.playerItem.gender"
-                                                 class="radio-button-sizes"/><span data-translate="player.not_prefer">Prefer not to answer</span></label>
+
+              <div class="row">
+                <div class="col-md-2">
+                  <label class="radio-inline radio-label-sizes"><input type="radio" name="gender" value="F" data-ng-model="playerAction.model.playerItem.gender"
+                                                                       class="radio-button-sizes"/><span data-translate="player.girl">Girl</span></label>
+                </div>
+                <div class="col-md-2"  >
+                  <label class="radio-inline radio-label-sizes"><input type="radio" name="gender" value="M"
+                                                                       data-ng-model="playerAction.model.playerItem.gender"
+                                                                       class="radio-button-sizes"/><span data-translate="player.boy">Boy</span></label>
+                </div>
+                <div class="col-md-6">
+                  <label class="radio-inline"><input type="radio" name="gender" value="O"
+                                                     data-ng-model="playerAction.model.playerItem.gender"
+                                                     class="radio-button-sizes"/><span data-translate="player.not_prefer">Prefer not to answer</span></label>
+                </div>
+              </div>
             </div>
           </div>
 
