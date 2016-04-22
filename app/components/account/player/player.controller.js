@@ -253,7 +253,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     return arr;
   };
   player.getWordsExportData = function(){
-    return arr;
+    return wordsCsv;
   };
 }]);
 

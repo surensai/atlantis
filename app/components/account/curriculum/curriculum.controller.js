@@ -293,11 +293,12 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
     return arr;
   }
 
-  var csvheader_words = $translate.instant("curriculum.customword_headers.words");
-  var csvheader_date = $translate.instant("curriculum.customword_headers.date");
-
   curriculum.getCSVHeader = function () {
-    return [csvheader_words , csvheader_date] ;
+    var arr = [];
+    arr[0] = $translate.instant("curriculum.customword_headers.words");
+    arr[1] =   $translate.instant("curriculum.customword_headers.date");
+    return arr;
+    return arr ;
   };
   curriculum.getCustomWordExportData = function () {
     return customWordsCsv;
