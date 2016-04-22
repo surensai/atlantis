@@ -68,7 +68,7 @@ body{
   }
 
   .width70-per {
-    width: 81%;
+    width: 90%;
     position: relative;
     z-index: 1;
   }
@@ -161,6 +161,7 @@ body{
   position: absolute;
   height: 100%;
   width: 100%;
+  background-size: auto 109%;
 }
 .top-header {
   float: right;
@@ -349,6 +350,10 @@ body.body-toggle{
 
   body.body-toggle{
     overflow: visible;
+  }
+
+  .header .width70-per{
+    width: 81%;
   }
 
 }

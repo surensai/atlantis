@@ -18,10 +18,11 @@
                placeholder="{{ 'user.password' | translate }}" required>
         <i class="fa fa-unlock-alt form-control-feedback "></i>
       </div>
-      <div class="checkbox">
+      <div class="form-group remember-me">
         <label>
-          <input type="checkbox" class="custom-checkbox" data-ng-disabled="!login.model.email || !login.model.password"
-                 data-ng-model="login.model.remember"><p class="custom-checkbox-span" data-translate="user.login.remember_password">Remember password</p>
+          <input type="checkbox" data-ng-disabled="!login.model.email || !login.model.password"
+                 data-ng-model="login.model.remember" />
+          <span data-translate="user.login.remember_password">Remember password</span>
         </label>
       </div>
       <button class="btn btn-large btn-block btn-primary apply-margin login-button" type="submit"
