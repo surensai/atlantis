@@ -546,7 +546,9 @@
     }
   }
 }
-
+.dob{
+  margin-bottom: 10px;
+}
 
 
 @media(min-width: 768px) {
@@ -582,6 +584,9 @@
 
   .bb-4side.bb-col-3{
     display:block;
+  }
+  .dob{
+    margin-bottom: 0px;
   }
 }
 
