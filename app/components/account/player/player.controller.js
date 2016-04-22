@@ -1,15 +1,17 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory','flashService','$uibModal', '$translate',function ($timeout, $rootScope, $state, PlayerService, messagesFactory,flashService, $uibModal, $translate) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', 'flashService', '$uibModal', '$translate', function ($timeout, $rootScope, $state, PlayerService, messagesFactory, flashService, $uibModal, $translate) {
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
   var player = this;
   player.model = {};
+  player.chartData = {};
+  player.highchartsNG = getChartObj();
   player.data = {};
   player.playerObj = {};
   player.highlights = {};
   player.data.playersList = [];
   player.splitBadgesData = [];
-  player.miniBadges=[];
+  player.miniBadges = [];
   player.wordsData = [];
   player.csvData = [];
   player.isNoPlayer = false;
@@ -23,9 +25,9 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.predicate = 'Sno';
   player.wordsHeaders = {
     Words: $translate.instant("player.word_headers.words"),
-    Attempts:  $translate.instant("player.word_headers.attempts"),
+    Attempts: $translate.instant("player.word_headers.attempts"),
     LastPlayed: $translate.instant("player.word_headers.last_played"),
-    LastAttempt:$translate.instant("player.word_headers.last_attempt")
+    LastAttempt: $translate.instant("player.word_headers.last_attempt")
   };
   player.drag = 'drag feedback';
   player.drop = 'drop feedback';
@@ -39,14 +41,13 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     return Object.keys(obj);
   };
 
-
   (function () {
     getPlayers();
   })();
 
-  player.addPlayer = function(){
+  player.addPlayer = function () {
     if (player.data.playersList.length >= 5) {
-     $uibModal.open({
+      $uibModal.open({
         templateUrl: 'common/app-directives/modal/custom-modal.html',
         controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
           $scope.modalTitle = $translate.instant('player.add_modaltitle');
@@ -63,31 +64,50 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   };
 
   player.bigBadgesData = function (index) {
-    var currentIndex =  index * player.gridCount;
-    return player.bigBadges.slice(currentIndex, currentIndex+player.gridCount);
+    var currentIndex = index * player.gridCount;
+    return player.bigBadges.slice(currentIndex, currentIndex + player.gridCount);
   };
-
+  player.onGetChartData = function (chartType) {
+    getChartDataAPI(player.bigbadgedetails.id, player.playerObj.id, chartType);
+  };
   player.showGraph = function (index, colIndex) {
     player.clicked = true;
     player.showRow = index;
     player.showColumn = colIndex;
     var count = 0;
-    for(var j=0;j<player.bigBadges.length;j++){
-      if(player.showRow === j){
-        for(var k=0;k<player.bigBadges.length;k++){
-          if(player.showColumn === k){
-            player.bigbadgedetails  = player.bigBadges[count];
+    for (var j = 0; j < player.bigBadges.length; j++) {
+      if (player.showRow === j) {
+        for (var k = 0; k < player.bigBadges.length; k++) {
+          if (player.showColumn === k) {
+            player.bigbadgedetails = player.bigBadges[count];
             break;
-          }else{
+          } else {
             count++;
           }
         }
         break;
-      }else {
-        count=count+player.gridCount;
+      } else {
+        count = count + player.gridCount;
       }
     }
+    //Get Chart data from API - Default is Day type
+    player.onGetChartData('day');
   };
+  /*Get Chart Data from API & render in UI*/
+  function getChartDataAPI(badgeId, playerId, chartType) {
+    //Get Chart Data API Call
+    PlayerService.getChartDetaisService(badgeId, playerId, chartType)
+      .success(function (data) {
+        player.chartData = data;
+        //Update the Chart Object to render on UI
+        player.highchartsNG = getChartObj(data);
+      })
+      .error(function () {
+        flashService.showError("Chart Data Fetch Error.", false);
+      });
+    // End of API call
+  }
+
   function getPlayers() {
     var handleSuccess = function (data) {
       player.isNoPlayer = true;
@@ -128,8 +148,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     var handleSuccess = function (data) {
       if (data) {
         player.wordsData = data;
-        for(var i=0;i<player.wordsData.length;i++){
-          var obj={};
+        for (var i = 0; i < player.wordsData.length; i++) {
+          var obj = {};
           obj.Words = player.wordsData[i].word;
           obj.Attempts = player.wordsData[i].activity.length;
           obj.LastPlayed = player.wordsData[i].endtime;
@@ -137,7 +157,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           wordsCsv.push({
             Words: obj.Words,
             Attempts: obj.Attempts,
-            LastPlayed:obj.LastPlayed
+            LastPlayed: obj.LastPlayed
           });
         }
       }
@@ -154,7 +174,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       .error(handleError);
   }
 
-  function getMinibadges (playerId) {
+  function getMinibadges(playerId) {
     var handleSuccess = function (data) {
       if (data.length > 0) {
         player.miniBadges = data;
@@ -172,7 +192,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
 
   function getBigBadges(playerId) {
-    PlayerService.getBadges(userID,playerId)
+    PlayerService.getBadges(userID, playerId)
       .success(function (data) {
         player.bigBadges = sortWordsData(data);
         splitBadgesData();
@@ -183,7 +203,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   }
 
 
-  function getPlayerHighlights (playerId) {
+  function getPlayerHighlights(playerId) {
     var handleSuccess = function (data) {
       player.highlights = data;
     };
@@ -199,15 +219,15 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       .error(handleError);
   }
 
-  function splitBadgesData(){
-    if(player.bigBadges.length > 0){
+  function splitBadgesData() {
+    if (player.bigBadges.length > 0) {
       var reminderVal = player.bigBadges.length % player.gridCount;
       var repeater = player.gridCount - reminderVal;
-      for(var i = 0; i < repeater; i++ ){
+      for (var i = 0; i < repeater; i++) {
         player.bigBadges.push({});
       }
 
-      for(var ii = 0; ii < player.bigBadges.length / player.gridCount; ii++ ){
+      for (var ii = 0; ii < player.bigBadges.length / player.gridCount; ii++) {
         player.splitBadgesData.push({});
       }
     }
@@ -217,45 +237,74 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     arr.sort(function (a, b) {
       return a.incrementflag - b.incrementflag;
     });
-
     return arr;
   }
 
+  //create chart object
+  function getChartObj(data) {
+    var formatedChartData = parseChartData(data)
+    var chartObj = {
+      exporting: {
+        enabled: false //disable export button
+      },
+      options: {
+        chart: {
+          type: 'line'
+        }
+      },
+      xAxis: {
+        categories: formatedChartData.xAxisCatgryArr,
+        labels: {
+          rotation: 0
+        }
+      },
+      series: [{
+        data: formatedChartData.seriesDataArr
+      }],
+      title: {
+        text: ''
+      },
+      size: {
+        height: 300
+      },
+      loading: false
+    };
+    return chartObj;
+  }
 
-  player.highchartsNG = {
-    options: {
-      chart: {
-        type: 'line'
+  //Parse Chart Data
+  function parseChartData(data) {
+    var tempChartObj = {
+      xAxisCatgryArr: ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7', 'Day8'],
+      seriesDataArr: [2, 5, 8, 12, 15, 6, 5]
+    };
+    if (data && data.length) {
+      tempChartObj.xAxisCatgryArr = [];
+      tempChartObj.seriesDataArr = [];
+      for (var chartCounter = 0; chartCounter < data.length; chartCounter++) {
+        if (data[chartCounter].hasOwnProperty('x-axis')) {
+          tempChartObj.xAxisCatgryArr.push(data[chartCounter]['x-axis'])
+        }
+        if (data[chartCounter].hasOwnProperty('y-axis')) {
+          tempChartObj.seriesDataArr.push(data[chartCounter]['y-axis']);
+        }
       }
-    },
-    xAxis: {
-      categories: ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7', 'Day8'],
-      labels: {
-        rotation: 0
-      }
-    },
-    series: [{
-      data: [2, 5, 8, 12, 15, 6, 5]
-    }],
-    title: {
-      text: ''
-    },
-    loading: false,
-    size:{height:300},
-    exporting: { enabled: false }
-  };
+    }
+    return tempChartObj;
+  }
 
   var csvheader_playerwords = $translate.instant("player.word_headers.words");
-  var csvheader_attempts =  $translate.instant("player.word_headers.attempts");
-  var csvheader_lastpalyed =  $translate.instant("player.word_headers.last_played");
+  var csvheader_attempts = $translate.instant("player.word_headers.attempts");
+  var csvheader_lastpalyed = $translate.instant("player.word_headers.last_played");
 
   player.getCSVHeader = function () {
-    return [csvheader_playerwords, csvheader_attempts ,csvheader_lastpalyed];
+    return [csvheader_playerwords, csvheader_attempts, csvheader_lastpalyed];
   };
-  player.getWordsExportData = function(){
+  player.getWordsExportData = function () {
     return wordsCsv;
   };
-}]);
+}])
+;
 
 app.directive('resize', function ($window) {
   return function (scope) {

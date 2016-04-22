@@ -1,4 +1,3 @@
-
 <div class="player-details clearfix">
   <div class="pd-left nopadding">
     <div class="profile-pic">
@@ -16,22 +15,29 @@
 
     <p><img src="assets/images/badge1.png">
       <span data-ng-if="!player.highlights.earnedBadges" data-translate="player.badges.nobadge_earned"> No badges earned so far. </span>
-      <span data-ng-if="player.highlights.earnedBadges"> <strong>{{player.highlights.earnedBadges}}</strong><span data-translate="player.badges.nobadge_earned_days"> badges earned in the past 7 days.</span> </span>
+      <span data-ng-if="player.highlights.earnedBadges"> <strong>{{player.highlights.earnedBadges}}</strong><span
+        data-translate="player.badges.nobadge_earned_days"> badges earned in the past 7 days.</span> </span>
     </p>
 
     <p><img src="assets/images/badge2.png">
       <span data-ng-if="!player.highlights.totalPlayedTime" data-translate="player.badges.no_spendtime"> You haven't spent anytime on games.</span>
-      <span data-ng-if="player.highlights.totalPlayedTime"> <strong>{{player.highlights.totalPlayedTime}}</strong> <span data-translate="player.badges.last_time_played">time played in Square Panda for past 7 days.</span></span>
+      <span data-ng-if="player.highlights.totalPlayedTime"> <strong>{{player.highlights.totalPlayedTime}}</strong> <span
+        data-translate="player.badges.last_time_played">time played in Square Panda for past 7 days.</span></span>
     </p>
 
     <p><img src="assets/images/badge2.png">
-      <span data-ng-if="player.highlights.correctWord"> <span data-translate="player.badges.recent_word">Most recent word </span><strong>"{{player.highlights.correctWord}}"</strong> <span data-translate="player.badges.mark_correct">marked as Correct.</span></span>
+      <span data-ng-if="player.highlights.correctWord"> <span data-translate="player.badges.recent_word">Most recent word </span><strong>"{{player.highlights.correctWord}}"</strong> <span
+        data-translate="player.badges.mark_correct">marked as Correct.</span></span>
       <span data-ng-if="!player.highlights.correctWord" data-translate="player.badges.noword_correct"> No words are marked as correct so far.</span>
     </p>
 
     <p><img src="assets/images/badge2.png">
-      <span data-ng-if="!player.highlights.favourites.word || !player.highlights.favourites.count" data-translate="player.badges.no_fav_word"> No favorite word </span>
-      <span data-ng-if="player.highlights.favourites.word && player.highlights.favourites.count"><span data-translate="player.badges.maybe_fav_word"> Maybe "Favourite Word" too?</span>  ( {{player.highlights.favourites.word}}<span data-translate="player.badges.spelling">spelled</span>   {{player.highlights.favourites.word}} {{player.highlights.favourites.count}} <span data-translate="player.badges.times">times</span>)</span>
+      <span data-ng-if="!player.highlights.favourites.word || !player.highlights.favourites.count"
+            data-translate="player.badges.no_fav_word"> No favorite word </span>
+      <span data-ng-if="player.highlights.favourites.word && player.highlights.favourites.count"><span
+        data-translate="player.badges.maybe_fav_word"> Maybe "Favourite Word" too?</span>  ( {{player.highlights.favourites.word}}<span
+        data-translate="player.badges.spelling">spelled</span>   {{player.highlights.favourites.word}} {{player.highlights.favourites.count}} <span
+        data-translate="player.badges.times">times</span>)</span>
     </p>
 
 
@@ -39,9 +45,9 @@
 </div>
 
 <div class="player-tabs">
-  <uib-tabset active="activeJustified" >
+  <uib-tabset active="activeJustified">
     <uib-tab index="0" heading="Big Badges">
-      <div class="badges-container clearfix" >
+      <div class="badges-container clearfix">
         <div resize></div>
 
         <div class="badges-row"
@@ -57,7 +63,9 @@
                              index="$index">
             </data-badge-item>
 
-            <p class="bb-arrow" data-ng-if="player.clicked && (player.showRow === count) && (player.showColumn === $index)" style=""  ng-style="{'border-bottom-color': player.bigbadgedetails.colorCode}" >
+            <p class="bb-arrow"
+               data-ng-if="player.clicked && (player.showRow === count) && (player.showColumn === $index)" style=""
+               ng-style="{'border-bottom-color': player.bigbadgedetails.colorCode}">
 
             </p>
 
@@ -68,15 +76,28 @@
                data-ng-repeat-end=""
                data-ng-if="(player.clicked && (player.showRow === count) && (windowWidth >= 768)) || (player.clicked && (windowWidth <= 768) && (player.showRow === count) && (player.showColumn === $index))">
             <div class="bigbadge-description clearfix">
-              <div class="bigbadge-description-text clearfix" ng-style="{'background-color': player.bigbadgedetails.colorCode}">
+              <div class="bigbadge-description-text clearfix"
+                   ng-style="{'background-color': player.bigbadgedetails.colorCode}">
                 <p>{{player.bigbadgedetails.description}} </p>
                 <span class="bigbadge-buttons " data-ng-repeat="word in player.bigbadgedetails.tabwords">{{word}}</span>
               </div>
               <div class="bigbadge-graph-buttons ">
-                <button class="btn bigbadge-graph-button-style" data-translate="player.badges.day">Day</button>
-                <button class="btn bigbadge-graph-button-style" data-translate="player.badges.week">Week</button>
-                <button class="btn bigbadge-graph-button-style" data-translate="player.badges.month">Month</button>
-                <button class="btn bigbadge-graph-button-style" data-translate="player.badges.year">Year</button>
+                <button class="btn bigbadge-graph-button-style" data-translate="player.badges.day"
+                        data-ng-click="player.onGetChartData('day')">
+                  Day
+                </button>
+                <button class="btn bigbadge-graph-button-style" data-translate="player.badges.week"
+                        data-ng-click="player.onGetChartData('week')">
+                  Week
+                </button>
+                <button class="btn bigbadge-graph-button-style" data-translate="player.badges.month"
+                        data-ng-click="player.onGetChartData('month')">
+                  Month
+                </button>
+                <button class="btn bigbadge-graph-button-style" data-translate="player.badges.year"
+                        data-ng-click="player.onGetChartData()">
+                  Year
+                </button>
               </div>
               <highchart config="player.highchartsNG"></highchart>
             </div>
@@ -93,14 +114,16 @@
               <div class="mb-con center-align">
                 <div class="mb-icon-con">
                   <div class="mb-icon">
-                    <img data-ng-if="!minibadge.assetURL"  src="assets/images/no-badge.png"  alt="minibadge"  />
-                    <img data-ng-if="minibadge.assetURL && minibadge.status === 'Disabled'" data-ng-src="{{minibadge.disabledassetURL}}" />
-                    <img data-ng-if="minibadge.assetURL && minibadge.status === 'Active'" data-ng-src="{{minibadge.assetURL}}"/>
+                    <img data-ng-if="!minibadge.assetURL" src="assets/images/no-badge.png" alt="minibadge"/>
+                    <img data-ng-if="minibadge.assetURL && minibadge.status === 'Disabled'"
+                         data-ng-src="{{minibadge.disabledassetURL}}"/>
+                    <img data-ng-if="minibadge.assetURL && minibadge.status === 'Active'"
+                         data-ng-src="{{minibadge.assetURL}}"/>
                   </div>
                 </div>
               </div>
               <div class="mb-des center-align">
-                <h4 >{{minibadge.badgeName}}</h4>
+                <h4>{{minibadge.badgeName}}</h4>
                 <span>{{minibadge.description}}</span>
               </div>
             </div>
@@ -127,7 +150,9 @@
                  ng-click="$event.stopPropagation();$event.preventDefault();"
                  ng-csv="player.getWordsExportData()"
                  filename="words.csv"
-                 csv-header="player.getCSVHeader()"><i class="fa fa-download"></i><sapn data-translate="curriculum.export_csv">Export CSV</sapn></a>
+                 csv-header="player.getCSVHeader()"><i class="fa fa-download"></i>
+                <sapn data-translate="curriculum.export_csv">Export CSV</sapn>
+              </a>
             </tr>
             </thead>
             <tbody>
@@ -135,8 +160,10 @@
               <td class="player-words text-ellipsis word-text">{{ word.word}}</td>
               <td class="word-icons">{{ word.activity.length}}</td>
               <td class="word-date">{{ word.endtime*1000 | date:"MM/dd/yyyy h:mma"}}</td>
-              <td data-ng-if="word.activity[word.activity.length - 1].answer" class="word-check"><i class="fa fa-check last-attempt-green" ></i></td>
-              <td data-ng-if="!word.activity[word.activity.length - 1].answer" class="word-check"><i class="fa fa-close last-attempt-blue" ></i></td>
+              <td data-ng-if="word.activity[word.activity.length - 1].answer" class="word-check"><i
+                class="fa fa-check last-attempt-green"></i></td>
+              <td data-ng-if="!word.activity[word.activity.length - 1].answer" class="word-check"><i
+                class="fa fa-close last-attempt-blue"></i></td>
             </tr>
             <tr data-ng-if="player.wordsData.length === 0">
               <td colspan="5" data-translate="player.badges.nodata"> No Data</td>
