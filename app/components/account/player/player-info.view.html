@@ -62,10 +62,11 @@
             </p>
 
           </div>
+
           <div class="bb-col-{{$index}}"
-               ng-class="{'bb-2side': (windowWidth > 768) && (windowWidth < 990) && (player.showColumn === 1 || player.showColumn === 0), 'bb-4side': (windowWidth > 768) && (windowWidth <= 990) && (player.showColumn === 3 || player.showColumn === 2)}"
+               ng-class="{'bb-2side': (windowWidth >= 768) && (windowWidth <= 990) && (player.showColumn === 1 || player.showColumn === 0), 'bb-4side': (windowWidth >= 768) && (windowWidth <= 990) && (player.showColumn === 3 || player.showColumn === 2)}"
                data-ng-repeat-end=""
-               data-ng-if="(player.clicked && (player.showRow === count) && (windowWidth > 768)) || (player.clicked && (windowWidth < 768) && (player.showRow === count) && (player.showColumn === $index))">
+               data-ng-if="(player.clicked && (player.showRow === count) && (windowWidth >= 768)) || (player.clicked && (windowWidth <= 768) && (player.showRow === count) && (player.showColumn === $index))">
             <div class="bigbadge-description clearfix">
               <div class="bigbadge-description-text clearfix" ng-style="{'background-color': player.bigbadgedetails.colorCode}">
                 <p>{{player.bigbadgedetails.description}} </p>

@@ -400,6 +400,10 @@ body.body-toggle{
   .bg-img, .content-bg{
     height: 100%!important;
   }
+
+  body.body-toggle {
+    overflow: hidden;
+  }
 }
 
 @media only screen and
@@ -437,6 +441,10 @@ body.body-toggle{
 
   .bg-img, .content-bg{
     height: 100%!important;
+  }
+
+  body.body-toggle {
+    overflow: hidden;
   }
 
 }
