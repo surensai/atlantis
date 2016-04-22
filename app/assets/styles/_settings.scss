@@ -8,6 +8,10 @@
       .settings-edit-button {
         padding: 5px 72px;
       }
+      .settings-cancel-button{
+        background-color: #7E7E7E !important;
+        padding: 5px 50px;
+      }
       .settings-save-button {
         padding: 5px 55px;
         margin-right: 10px;
@@ -162,5 +166,10 @@
   }
 }
 
-
+@media only screen and (max-device-width: 375px){
+  .settings-cancel-button{
+    margin-top: 10px;
+    padding: 5px 46px !important;
+  }
+}
 

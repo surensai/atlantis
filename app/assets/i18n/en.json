@@ -194,7 +194,7 @@
       "password_require": "Password is required.",
       "cpassword_require": "Retype Password is required.",
       "old_password_require": "Old Password is required.",
-      "email_password_mismatch": "Email or password incorrect. Please, try again..",
+      "email_password_mismatch": "Email or password incorrect. Please, try again.",
       "email_notverified": "Email address not verified.",
       "email_registered": "Email already exists, please try with different email address.",
       "password_strength": "Must be between 8 and 20 characters.",

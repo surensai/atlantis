@@ -245,12 +245,12 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     exporting: { enabled: false }
   };
 
-  var csvheader_playerwords = $translate.instant("player.word_headers.words");
-  var csvheader_attempts =  $translate.instant("player.word_headers.attempts");
-  var csvheader_lastpalyed =  $translate.instant("player.word_headers.last_played");
-
   player.getCSVHeader = function () {
-    return [csvheader_playerwords, csvheader_attempts ,csvheader_lastpalyed];
+    var arr = [];
+    arr[0] = $translate.instant("player.word_headers.words");
+    arr[1] =   $translate.instant("player.word_headers.last_played");
+    arr[2] =   $translate.instant("player.word_headers.attempts");
+    return arr;
   };
   player.getWordsExportData = function(){
     return wordsCsv;
