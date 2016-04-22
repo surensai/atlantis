@@ -7,7 +7,7 @@ angular.module('app').factory('DashboardService', ['$http', '$rootScope', functi
   var userID = $rootScope.globals.currentUser.id;
 
   service.getAllApi = function () {
-    return $http.get(base_url + '/newsfeeds/' + userID + '/listnewsfeeds');
+    return $http.get(base_url + '/newsfeeds/' + userID + '/listallnewsfeeds');
   };
 
   service.getByCategory = function () {

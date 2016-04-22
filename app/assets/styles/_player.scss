@@ -309,6 +309,9 @@
       padding-top: 25px;
       margin-left: 25px;
       margin-right: 25px;
+      .player-words-table{
+        clear: both;
+      }
       .graph-container{
         background-color: #fcfcfc;
 
@@ -546,7 +549,9 @@
     }
   }
 }
-
+.dob{
+  margin-bottom: 10px;
+}
 
 
 @media(min-width: 768px) {
@@ -582,6 +587,9 @@
 
   .bb-4side.bb-col-3{
     display:block;
+  }
+  .dob{
+    margin-bottom: 10px;
   }
 }
 
