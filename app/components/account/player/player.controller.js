@@ -76,6 +76,9 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       if(player.showRow === j){
         for(var k=0;k<player.bigBadges.length;k++){
           if(player.showColumn === k){
+            if(player.bigBadges[count].percentage === 0){
+              player.bigBadges[count].colorCode = "#BABCBE";
+            }
             player.bigbadgedetails  = player.bigBadges[count];
             break;
           }else{

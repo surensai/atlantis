@@ -56,11 +56,10 @@
                              display-index="player.displayChartIndex"
                              index="$index">
             </data-badge-item>
-
-            <p class="bb-arrow" data-ng-if="player.clicked && (player.showRow === count) && (player.showColumn === $index)" style=""  ng-style="{'border-bottom-color': player.bigbadgedetails.colorCode}" >
-
-            </p>
-
+            <div class="center-align">
+              <div class="bb-arrow" data-ng-if="player.clicked && (player.showRow === count) && (player.showColumn === $index)" ng-style="{'border-bottom-color': player.bigbadgedetails.colorCode}">
+              </div>
+            </div>
           </div>
 
           <div class="bb-col-{{$index}}"

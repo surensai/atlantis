@@ -407,7 +407,6 @@
     }
   }
   .bigbadge-description{
-    margin: 34px;
     background-color: white;
     clear: both;
     .bigbadge-description-text{
@@ -450,21 +449,16 @@
         border: 1px solid #EDA01D;
       }
     }
-
-
   }
 }
 
 .bb-arrow{
-  position: absolute;
-  bottom: -10px;
-  text-align: center;
-  width: 0;
-  border-style: solid;
-  border-width: 0 20px 20px 21px;
-  border-left-color: transparent;
-  border-right-color: transparent;
-  margin-left: 105px
+    width: 0;
+    border-style: solid;
+    border-width: 0 13px 13px 13px;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    margin-left: 45%;
 }
 
 .avatar-container{
