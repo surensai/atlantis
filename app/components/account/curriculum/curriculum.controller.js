@@ -7,6 +7,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   curriculum.model = {};
   curriculum.model.wordItem = {};
   curriculum.group = {};
+
   curriculum.wordsHeaders = {
     Words: $translate.instant("curriculum.customword_headers.words"),
     picture: $translate.instant("curriculum.customword_headers.picture"),
@@ -14,46 +15,59 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   };
 
   var customWordsCsv = [];
-
   (function () {
     getWords();
     getWordsByCategory('6,8');
   })();
-
   curriculum.searchWord = function (word) {
-    var handleSuccess = function (data) {
-      var isWordPrsnt = false;
-      var modalInstance = $uibModal.open({
-        templateUrl: 'common/app-directives/modal/custom-modal.html',
-        controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
-          $scope.modalTitle = "Confirm";
-          if (data.length > 0) {
-            isWordPrsnt = (data[0].owner) ? true : false;
-            $scope.modalBody = $translate.instant("curriculum.message.word_exist_want_edit");
+      var handleSuccess = function (data) {
+        if( curriculum.customWords.length >=50){
+          $uibModal.open({
+            templateUrl: 'common/app-directives/modal/custom-modal.html',
+            controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+              $scope.modalTitle = $translate.instant('curriculum.customword_modaltitle');
+              $scope.modalBody = $translate.instant('curriculum.customword_modalbody');
+              $scope.modalType = $translate.instant('curriculum.customword_modaltype');
+              $scope.close = function () {
+                $uibModalInstance.dismiss('cancel');
+              };
+            }]
+          });
+        }else {
+          var isWordPrsnt = false;
+        var modalInstance = $uibModal.open({
+          templateUrl: 'common/app-directives/modal/custom-modal.html',
+          controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+            $scope.modalTitle = "Confirm";
+            if (data.length > 0) {
+              isWordPrsnt = (data[0].owner) ? true : false;
+              $scope.modalBody = $translate.instant("curriculum.message.word_exist_want_edit");
+            } else {
+              isWordPrsnt = false;
+              $scope.modalBody = $translate.instant("curriculum.message.word_notexist_want_procced");
+            }
+            $scope.ok = function () {
+              $uibModalInstance.close();
+            };
+
+            $scope.cancel = function () {
+              $uibModalInstance.dismiss('cancel');
+            };
+          }]
+        });
+
+        modalInstance.result.then(function () {
+          if (isWordPrsnt) {
+            $state.go("account.editCustomWord", {id: data[0].id});
           } else {
-            isWordPrsnt = false;
-            $scope.modalBody = $translate.instant("curriculum.message.word_notexist_want_procced");
+            $state.go("account.addCustomWord", {word: word});
           }
-          $scope.ok = function () {
-            $uibModalInstance.close();
-          };
+        }, function () {
+          $state.go("account.curriculum");
+        });
 
-          $scope.cancel = function () {
-            $uibModalInstance.dismiss('cancel');
-          };
-        }]
-      });
 
-      modalInstance.result.then(function () {
-        if (isWordPrsnt) {
-          $state.go("account.editCustomWord", {id: data[0].id});
-        } else {
-          $state.go("account.addCustomWord", {word: word});
-        }
-      }, function () {
-        $state.go("account.curriculum");
-      });
-
+      };
     };
 
     var handleError = function (error, status) {
@@ -182,6 +196,10 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
 
         });
       }
+      curriculum.viewby = 10;
+      curriculum.totalItems = curriculum.customWords.length;
+      curriculum.currentPage = 1;
+      curriculum.itemsPerPage = curriculum.viewby;
     };
     var handleError = function (error, status) {
       if (error && status) {
@@ -288,6 +306,4 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
   curriculum.getCustomWordExportData = function () {
     return customWordsCsv;
   };
-
-
 }]);
