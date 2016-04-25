@@ -20,17 +20,19 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
     getWordsByCategory('6,8');
   })();
 
-  curriculum.searchWord = function () {
-    var word = curriculum.model.wordItem.wordName, isWordPrsnt = isWordPresent(word);
+  curriculum.searchWord = function (word) {
     var handleSuccess = function (data) {
+      var isWordPrsnt = false;
       var modalInstance = $uibModal.open({
         templateUrl: 'common/app-directives/modal/custom-modal.html',
         controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
           $scope.modalTitle = "Confirm";
-          if (data.length === 0 && !isWordPrsnt) {
-            $scope.modalBody = $translate.instant("curriculum.message.word_notexist_want_procced");
-          } else {
+          if (data.length > 0) {
+            isWordPrsnt = (data[0].owner) ? true : false;
             $scope.modalBody = $translate.instant("curriculum.message.word_exist_want_edit");
+          } else {
+            isWordPrsnt = false;
+            $scope.modalBody = $translate.instant("curriculum.message.word_notexist_want_procced");
           }
           $scope.ok = function () {
             $uibModalInstance.close();
@@ -44,7 +46,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
 
       modalInstance.result.then(function () {
         if (isWordPrsnt) {
-          $state.go("account.editCustomWord", {id: curriculum.model.wordItem.id});
+          $state.go("account.editCustomWord", {id: data[0].id});
         } else {
           $state.go("account.addCustomWord", {word: word});
         }
@@ -65,23 +67,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
       .error(handleError);
 
   };
-
-  //Check word in Local NodeJS server
-  function isWordPresent(word) {
-    //check if words array length is zero
-    if (!curriculum.customWords || curriculum.customWords.length === 0) {
-      return false;
-    }
-    //find the word in Words Array
-    for (var wordCounter = 0; wordCounter < curriculum.customWords.length; wordCounter++) {
-      var localdbWrd = curriculum.customWords[wordCounter].Words;
-      if (word.toLowerCase() === localdbWrd.toLowerCase()) {
-        curriculum.model.wordItem = curriculum.customWords[wordCounter];
-        return true;
-      }
-    }
-    return false;
-  }
 
   curriculum.submitGroupWords = function () {
     var anatomy_words = [];
