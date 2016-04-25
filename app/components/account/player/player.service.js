@@ -79,13 +79,17 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
   };
 
   service.getBadges = function (userID, childID) {
-    return $http.get(base_url + '/activity/' + userID +'/'+childID +'/bigbadges');
+    return $http.get(base_url + '/activity/' + userID + '/' + childID + '/bigbadges');
   };
 
   service.getAvatarsAPI = function (userID) {
-    return $http.get(base_url + '/avatar/' + userID +'/get-avatars');
+    return $http.get(base_url + '/avatar/' + userID + '/get-avatars');
   };
 
+  //Get Graph Data
+  service.getChartDetaisService = function (badgeId, playerId, chartType) {
+    return $http.get(base_url + '/sendbigbadgegraphs/' + badgeId + "/" + playerId + "/" + chartType);
+  };
   return service;
 
 

@@ -309,6 +309,9 @@
       padding-top: 25px;
       margin-left: 25px;
       margin-right: 25px;
+      .player-words-table{
+        clear: both;
+      }
       .graph-container{
         background-color: #fcfcfc;
 
@@ -580,7 +583,7 @@
     display:block;
   }
   .dob{
-    margin-bottom: 0px;
+    margin-bottom: 10px;
   }
 }
 
