@@ -32,6 +32,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.drag = 'drag feedback';
   player.drop = 'drop feedback';
   player.gridCount = 4;
+  player.chartTabType = "day";
   var wordsCsv = [];
   player.getKeysOfCollection = function (obj) {
     obj = angular.copy(obj);
@@ -68,6 +69,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     return player.bigBadges.slice(currentIndex, currentIndex + player.gridCount);
   };
   player.onGetChartData = function (chartType) {
+    player.chartTabType = chartType;
     getChartDataAPI(player.bigbadgedetails.id, player.playerObj.id, chartType);
   };
   player.showGraph = function (index, colIndex) {
@@ -75,14 +77,14 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     player.showRow = index;
     player.showColumn = colIndex;
     var count = 0;
-    for(var j=0;j<player.bigBadges.length;j++){
-      if(player.showRow === j){
-        for(var k=0;k<player.bigBadges.length;k++){
-          if(player.showColumn === k){
-            if(player.bigBadges[count].percentage === 0){
+    for (var j = 0; j < player.bigBadges.length; j++) {
+      if (player.showRow === j) {
+        for (var k = 0; k < player.bigBadges.length; k++) {
+          if (player.showColumn === k) {
+            if (player.bigBadges[count].percentage === 0) {
               player.bigBadges[count].colorCode = "#BABCBE";
             }
-            player.bigbadgedetails  = player.bigBadges[count];
+            player.bigbadgedetails = player.bigBadges[count];
             break;
           } else {
             count++;
@@ -245,30 +247,54 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   //create chart object
   function getChartObj(data) {
+
     var formatedChartData = parseChartData(data)
     var chartObj = {
-      exporting: {
-        enabled: false //disable export button
-      },
       options: {
+        exporting: {
+          enabled: false //remove export button
+        },
+        title: {
+          text: ''
+        },
+        legend: {
+          enabled: false //remove x axis legend
+        },
         chart: {
-          type: 'line'
+          type: 'line' //Chart type
         }
       },
       xAxis: {
+        type: 'category',
         categories: formatedChartData.xAxisCatgryArr,
+        title: {
+          text: getXAxisLabel(), // X-Axis Legend
+          margin: 10
+        },
         labels: {
-          rotation: 0
+          rotation: -65,
+        }
+      },
+      yAxis: {
+        min: 0,
+        tickInterval: 5,
+        title: {
+          text: '<b>PROGRESS</b>' // Y-Axis Legend
+        },
+        labels: {
+          format: "{value}" + "%" // Add percent formater to Y Axis label
         }
       },
       series: [{
+        name: "",
+        color: '#4CBC96', //line chart color
+        marker: {
+          symbol: 'circle' //line series marker - dot
+        },
         data: formatedChartData.seriesDataArr
       }],
-      title: {
-        text: ''
-      },
       size: {
-        height: 300
+        height: getChartHeight()
       },
       loading: false
     };
@@ -296,20 +322,33 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     return tempChartObj;
   }
 
+  function getXAxisLabel() {
+    var xAxisLabel = "";
+    if (player.chartTabType) {
+      xAxisLabel = '<b>' + player.chartTabType.toUpperCase() + 'S</b>';
+    }
+    return xAxisLabel;
+  }
+
+  function getChartHeight() {
+    var chartheight = 300;
+    if (document.documentElement.clientWidth < 700) {
+      chartheight = document.documentElement.clientWidth - 50;
+    }
+    return chartheight;
+  }
 
   player.getCSVHeader = function () {
     var arr = [];
     arr[0] = $translate.instant("player.word_headers.words");
-    arr[1] =   $translate.instant("player.word_headers.last_played");
-    arr[2] =   $translate.instant("player.word_headers.attempts");
+    arr[1] = $translate.instant("player.word_headers.last_played");
+    arr[2] = $translate.instant("player.word_headers.attempts");
     return arr;
   };
   player.getWordsExportData = function () {
     return wordsCsv;
   };
-}])
-;
-
+}]);
 app.directive('resize', function ($window) {
   return function (scope) {
     var w = angular.element($window);
