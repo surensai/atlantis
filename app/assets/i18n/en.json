@@ -238,7 +238,9 @@
       "error_file_upload":"Error in file uploading",
       "only_alphabets":"Allow only Alphabets",
       "dob_notvalid":"Date of birth is not valid",
-      "session_expire":"Your session has expired"
+      "session_expire":"Your session has expired",
+      "exit_custom_word":"Word already exists.",
+      "error_adding_word":"Error in updating word"
 
     },
     "change_password": {
