@@ -64,6 +64,7 @@
            }
          }
        }
+
        .table {
          border: 1px solid #C7C7C7;
          background-color: white;
@@ -77,6 +78,23 @@
            font-weight: normal;
            border-bottom: none;
          }
+       }
+       .word-picture{
+         text-align: left;
+       }
+       .word-icons {
+         text-align: right;
+         padding-right: 59px;
+       }
+       .first-tablehead{
+         width:1%
+       }
+       .second-tablehead{
+         text-align: left;
+       }
+       .third-tablehead{
+         text-align: right;
+         padding-right: 59px;
        }
        tr, th {
          text-align: center;
