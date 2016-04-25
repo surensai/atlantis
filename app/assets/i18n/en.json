@@ -371,6 +371,9 @@
     "bathroom":"Bathroom",
     "selectall":"Select All",
     "browse":"Browse",
+    "customword_modaltitle":"Error",
+    "customword_modalbody":"You already have the maximum number of custom words added.",
+    "customword_modaltype":"Error",
 
     "message":{
       "word_notexist_want_procced":"The word doesn't exists, do you want to proceed?",
