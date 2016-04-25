@@ -205,11 +205,14 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     }
   }
   function updatewordsError(status,error) {
-    var message;
-    if (status !== "") {
-      message = error.error;
+
+    if (status == 500) {
+   flashService.showError($translate.instant('user.validationMessages.exit_custom_word'), false);
     }
-    flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
+    else{
+      flashService.showError($translate.instant("player.messages.error_adding_word"), false);
+    }
+
   }
   function uploadfileError(status,error) {
     var message;
