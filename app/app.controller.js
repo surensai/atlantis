@@ -1,5 +1,5 @@
 "use strict";
-angular.module("app").controller("appCtrl", ['$scope', '$rootScope', '$location', 'AuthenticationService', '$state','appService', function ($scope, $rootScope, $location, AuthenticationService, $state, appService) {
+angular.module("app").controller("appCtrl", ['$scope', '$rootScope', '$location', 'AuthenticationService', '$state', function ($scope, $rootScope, $location, AuthenticationService, $state) {
   $scope.curUrl = "";
   $scope.logout = function () {
     AuthenticationService.ClearCredentials();
