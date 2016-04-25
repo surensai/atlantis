@@ -130,9 +130,8 @@
       </div>
     </uib-tab>
     <uib-tab index="2" heading="Words">
-
       <div class="badges-container clearfix">
-        <a href="" class="player-export-btn"
+        <a href="" class="player-export-btn" data-ng-if=" player.getWordsExportData().length > 0"
            ng-click="$event.stopPropagation();$event.preventDefault();"
            ng-csv="player.getWordsExportData()"
            filename="words.csv"
@@ -150,15 +149,6 @@
                 <span class="fa fa-sort-up columnSortIcons"
                       ng-if="player.reverse && key === player.predicate"></span>
               </th>
-
-              <a href="" class="player-export-btn"
-                 ng-click="$event.stopPropagation();$event.preventDefault();"
-                 ng-csv="player.getWordsExportData()"
-                 filename="words.csv"
-                 csv-header="player.getCSVHeader()"><i class="fa fa-download"></i>
-                <sapn data-translate="curriculum.export_csv">Export CSV</sapn>
-              </a>
-
             </tr>
             </thead>
             <tbody>
