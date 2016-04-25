@@ -272,7 +272,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           margin: 10
         },
         labels: {
-          rotation: -65,
+          rotation: getXAxisLblRotation(),
         }
       },
       yAxis: {
@@ -320,6 +320,17 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       }
     }
     return tempChartObj;
+  }
+
+  //Resposive View X-Axis Label Rotation
+  function getXAxisLblRotation() {
+    //Mobile or responsive view
+    if (document.documentElement.clientWidth < 700) {
+      return -45;
+    } else {
+      //Desktop View
+      return 0;
+    }
   }
 
   function getXAxisLabel() {
