@@ -75,11 +75,14 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     player.showRow = index;
     player.showColumn = colIndex;
     var count = 0;
-    for (var j = 0; j < player.bigBadges.length; j++) {
-      if (player.showRow === j) {
-        for (var k = 0; k < player.bigBadges.length; k++) {
-          if (player.showColumn === k) {
-            player.bigbadgedetails = player.bigBadges[count];
+    for(var j=0;j<player.bigBadges.length;j++){
+      if(player.showRow === j){
+        for(var k=0;k<player.bigBadges.length;k++){
+          if(player.showColumn === k){
+            if(player.bigBadges[count].percentage === 0){
+              player.bigBadges[count].colorCode = "#BABCBE";
+            }
+            player.bigbadgedetails  = player.bigBadges[count];
             break;
           } else {
             count++;
