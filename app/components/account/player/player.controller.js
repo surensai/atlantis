@@ -148,7 +148,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   }
 
-
   function getWords(childId) {
     var handleSuccess = function (data) {
       if (data) {
@@ -195,7 +194,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       .error(handleError);
   }
 
-
   function getBigBadges(playerId) {
     PlayerService.getBadges(userID, playerId)
       .success(function (data) {
@@ -206,7 +204,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         flashService.showError($translate.instant("player.messages.error_getting_players"), false);
       });
   }
-
 
   function getPlayerHighlights(playerId) {
     var handleSuccess = function (data) {
@@ -245,11 +242,12 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     return arr;
   }
 
-  //create chart object
   function getChartObj(data) {
-
-    var formatedChartData = parseChartData(data)
+    var formatedChartData = parseChartData(data);
     var chartObj = {
+      exporting: {
+        enabled: false
+      },
       options: {
         exporting: {
           enabled: false //remove export button
@@ -312,7 +310,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       tempChartObj.seriesDataArr = [];
       for (var chartCounter = 0; chartCounter < data.length; chartCounter++) {
         if (data[chartCounter].hasOwnProperty('x-axis')) {
-          tempChartObj.xAxisCatgryArr.push(data[chartCounter]['x-axis'])
+          tempChartObj.xAxisCatgryArr.push(data[chartCounter]['x-axis']);
         }
         if (data[chartCounter].hasOwnProperty('y-axis')) {
           tempChartObj.seriesDataArr.push(data[chartCounter]['y-axis']);
