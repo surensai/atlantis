@@ -470,7 +470,7 @@ module.exports = function (grunt) {
     realFavicon: {
       favicons: {
         src: '<%= root.app %>/assets/images/favIcon.png',
-        dest: '<%= root.build %>/assets/images/icons',
+        dest: '<%= root.build %>',
         options: {
           iconsPath: '/',
           html: [ 'build/index.html','app/index.html' ],
@@ -534,13 +534,13 @@ module.exports = function (grunt) {
     grunt.task.run(['serve:' + target]);
   });
 
-  /*grunt.loadNpmTasks('grunt-real-favicon');*/
+  grunt.loadNpmTasks('grunt-real-favicon');
 
-  /*grunt.initConfig({
+  grunt.initConfig({
     realFavicon: {
       favicons: {
         src: 'app/assets/images/favIcon.png',
-        dest: 'build/assets/images/icons',
+        dest: 'build',
         options: {
           iconsPath: '/',
           html: [ 'build/index.html','app/index.html' ],
@@ -579,7 +579,7 @@ module.exports = function (grunt) {
         }
       }
     }
-  });*/
+  });
 
   grunt.registerTask('test', [
     'clean:server',
