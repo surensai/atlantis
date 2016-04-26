@@ -1,36 +1,38 @@
-<!doctype html>
-<html data-ng-app="app" data-ng-controller="appCtrl">
-  <head>
-    <meta charset="utf-8">
-    <title page-title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) assets/styles/vendor.css -->
-    <!-- bower:css -->
+<!doctype html><html data-ng-app="app" data-ng-controller="appCtrl">  <head>    <meta charset="utf-8">    <title page-title=""></title>    <meta name="description" content="">    <meta name="viewport" content="width=device-width">    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->    <!-- build:css(.) assets/styles/vendor.css -->    <!-- bower:css -->
     <link rel="stylesheet" href="assets/libs/AngularJS-Toaster/toaster.css" />
     <link rel="stylesheet" href="assets/libs/ng-img-crop/compile/minified/ng-img-crop.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) assets/styles/main.css -->
-    <link rel="stylesheet" href="assets/styles/main.css">
-    <!-- endbuild -->
-    <!-- <base href="/"> -->
-    <script src="http://platform.twitter.com/widgets.js"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-  </head>
-  <body>
-    <!--[if lte IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <div class="load-overlay" data-ng-show="$root.ajaxProgress!=0">
-      <img src="assets/images/icon-load.gif" width="100" />
-    </div>
-    <div data-ng-include=" 'layout/header.html' "></div>
-    <div id="app" class="app"  ng-class="{'app-height': !globals.currentUser}" ui-view> </div>
-    <div data-ng-include=" 'layout/footer.html' "></div>
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
+    <!-- endbower -->    <!-- endbuild -->    <!-- build:css(.tmp) assets/styles/main.css -->    <link rel="stylesheet" href="assets/styles/main.css">    <!-- endbuild -->    <!-- <base href="/"> -->    <script src="http://platform.twitter.com/widgets.js"></script>    <script src="https://apis.google.com/js/platform.js" async defer></script><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="apple-mobile-web-app-title" content="test">
+<meta name="application-name" content="test">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="apple-mobile-web-app-title" content="test">
+<meta name="application-name" content="test">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="apple-mobile-web-app-title" content="test">
+<meta name="application-name" content="test">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="apple-mobile-web-app-title" content="test">
+<meta name="application-name" content="test">
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="apple-mobile-web-app-title" content="test">
+<meta name="application-name" content="test">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<meta name="theme-color" content="#ffffff"></head>  <body>    <!--[if lte IE 8]>      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>    <![endif]-->    <div class="load-overlay" data-ng-show="$root.ajaxProgress!=0">      <img src="assets/images/icon-load.gif" width="100">    </div>    <div data-ng-include=" 'layout/header.html' "></div>    <div id="app" class="app" ng-class="{'app-height': !globals.currentUser}" ui-view=""> </div>    <div data-ng-include=" 'layout/footer.html' "></div>    <!-- build:js scripts/vendor.js -->    <!-- bower:js -->
     <script src="assets/libs/jquery/dist/jquery.js"></script>
     <script src="assets/libs/angular/angular.js"></script>
     <script src="assets/libs/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
@@ -57,58 +59,4 @@
     <script src="assets/libs/angular-audio/app/angular.audio.js"></script>
     <script src="assets/libs/ng-img-crop/compile/minified/ng-img-crop.js"></script>
     <script src="assets/libs/ng-csv/build/ng-csv.min.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="app.module.js"></script>
-    <script src="app.router.js"></script>
-    <script src="app.config.js"></script>
-    <script src="app.controller.js"></script>
-
-    <script src="common/app-directives/page-title.directive.js"></script>
-    <script src="common/app-directives/file-upload.directive.js"></script>
-    <script src="common/app-directives/modal/modal.directive.js"></script>
-    <script src="common/app-directives/button-spinner.directive.js"></script>
-    <script src="common/app-directives/social-share/fb.directive.js"></script>
-    <script src="common/app-directives/social-share/twitter.directive.js"></script>
-    <script src="common/app-directives/social-share/gplus.directive.js"></script>
-    <script src="common/app-directives/sidebar.directive.js"></script>
-    <script src="common/app-directives/dob/dob.directive.js"></script>
-
-    <script src="common/app-factories/remember-me.js"></script>
-    <script src="common/app-factories/messages.factory.js"></script>
-    <script src="common/app-services/flash.service.js"></script>
-    <script src="common/app-services/app.service.js"></script>
-    <script src="common/app-factories/utils-factory.js"></script>
-
-    <script src="components/account/curriculum/curriculum.controller.js"></script>
-    <script src="components/account/curriculum/curriculum-action.controller.js"></script>
-    <script src="components/account/curriculum/curriculum.service.js"></script>
-    <script src="components/account/dashboard/dashboard.controller.js"></script>
-    <script src="components/account/dashboard/dashboard.service.js"></script>
-    <script src="components/home/home.controller.js"></script>
-
-    <script src="components/account/player/player.controller.js"></script>
-    <script src="components/account/player/player.service.js"></script>
-    <script src="components/account/player/player-badge.directive.js"></script>
-    <script src="components/account/settings/settings.controller.js"></script>
-    <script src="components/account/settings/settings.service.js"></script>
-    <script src="components/account/player/player-action.controller.js"></script>
-
-    <script src="components/admin/firmware-update/firmware.controller.js"></script>
-    <script src="components/admin/firmware-update/firmware.service.js"></script>
-
-    <script src="components/static/static.controller.js"></script>
-
-    <script src="components/user/login/login.controller.js"></script>
-    <script src="components/user/register/register.controller.js"></script>
-    <script src="components/user/forgot-password/forgot-password.controller.js"></script>
-    <script src="components/user/reset-password/reset-password.controller.js"></script>
-    <script src="components/user/authentication.service.js"></script>
-    <script src="components/user/user.service.js"></script>
-
-    <!-- endbuild -->
-
-</body>
-</html>
+    <!-- endbower -->    <!-- endbuild -->    <!-- build:js({.tmp,app}) scripts/scripts.js -->    <script src="app.module.js"></script>    <script src="app.router.js"></script>    <script src="app.config.js"></script>    <script src="app.controller.js"></script>    <script src="common/app-directives/page-title.directive.js"></script>    <script src="common/app-directives/file-upload.directive.js"></script>    <script src="common/app-directives/modal/modal.directive.js"></script>    <script src="common/app-directives/button-spinner.directive.js"></script>    <script src="common/app-directives/social-share/fb.directive.js"></script>    <script src="common/app-directives/social-share/twitter.directive.js"></script>    <script src="common/app-directives/social-share/gplus.directive.js"></script>    <script src="common/app-directives/sidebar.directive.js"></script>    <script src="common/app-directives/dob/dob.directive.js"></script>    <script src="common/app-factories/remember-me.js"></script>    <script src="common/app-factories/messages.factory.js"></script>    <script src="common/app-services/flash.service.js"></script>    <script src="common/app-services/app.service.js"></script>    <script src="common/app-factories/utils-factory.js"></script>    <script src="components/account/curriculum/curriculum.controller.js"></script>    <script src="components/account/curriculum/curriculum-action.controller.js"></script>    <script src="components/account/curriculum/curriculum.service.js"></script>    <script src="components/account/dashboard/dashboard.controller.js"></script>    <script src="components/account/dashboard/dashboard.service.js"></script>    <script src="components/home/home.controller.js"></script>    <script src="components/account/player/player.controller.js"></script>    <script src="components/account/player/player.service.js"></script>    <script src="components/account/player/player-badge.directive.js"></script>    <script src="components/account/settings/settings.controller.js"></script>    <script src="components/account/settings/settings.service.js"></script>    <script src="components/account/player/player-action.controller.js"></script>    <script src="components/admin/firmware-update/firmware.controller.js"></script>    <script src="components/admin/firmware-update/firmware.service.js"></script>    <script src="components/static/static.controller.js"></script>    <script src="components/user/login/login.controller.js"></script>    <script src="components/user/register/register.controller.js"></script>    <script src="components/user/forgot-password/forgot-password.controller.js"></script>    <script src="components/user/reset-password/reset-password.controller.js"></script>    <script src="components/user/authentication.service.js"></script>    <script src="components/user/user.service.js"></script>    <!-- endbuild --></body></html>

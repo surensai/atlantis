@@ -466,6 +466,48 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+    realFavicon: {
+      favicons: {
+        src: '<%= root.app %>/assets/images/favIcon.png',
+        dest: '<%= root.build %>/assets/images/icons',
+        options: {
+          iconsPath: '/',
+          html: [ 'build/index.html','app/index.html' ],
+          design: {
+            ios: {
+              pictureAspect: 'noChange',
+              appName: 'test'
+            },
+            desktopBrowser: {},
+            windows: {
+              pictureAspect: 'noChange',
+              backgroundColor: '#da532c',
+              onConflict: 'override',
+              appName: 'test'
+            },
+            androidChrome: {
+              pictureAspect: 'noChange',
+              themeColor: '#ffffff',
+              manifest: {
+                name: 'test',
+                display: 'browser',
+                orientation: 'notSet',
+                onConflict: 'override',
+                declared: true
+              }
+            },
+            safariPinnedTab: {
+              pictureAspect: 'silhouette',
+              themeColor: '#5bbad5'
+            }
+          },
+          settings: {
+            scalingAlgorithm: 'Mitchell',
+            errorOnImageTooSmall: false
+          }
+        }
+      }
     }
 
   });
@@ -478,6 +520,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'realFavicon',
       'wiredep',
       'concurrent:server',
       'postcss:server',
@@ -491,6 +534,53 @@ module.exports = function (grunt) {
     grunt.task.run(['serve:' + target]);
   });
 
+  /*grunt.loadNpmTasks('grunt-real-favicon');*/
+
+  /*grunt.initConfig({
+    realFavicon: {
+      favicons: {
+        src: 'app/assets/images/favIcon.png',
+        dest: 'build/assets/images/icons',
+        options: {
+          iconsPath: '/',
+          html: [ 'build/index.html','app/index.html' ],
+          design: {
+            ios: {
+              pictureAspect: 'noChange',
+              appName: 'test'
+            },
+            desktopBrowser: {},
+            windows: {
+              pictureAspect: 'noChange',
+              backgroundColor: '#da532c',
+              onConflict: 'override',
+              appName: 'test'
+            },
+            androidChrome: {
+              pictureAspect: 'noChange',
+              themeColor: '#ffffff',
+              manifest: {
+                name: 'test',
+                display: 'browser',
+                orientation: 'notSet',
+                onConflict: 'override',
+                declared: true
+              }
+            },
+            safariPinnedTab: {
+              pictureAspect: 'silhouette',
+              themeColor: '#5bbad5'
+            }
+          },
+          settings: {
+            scalingAlgorithm: 'Mitchell',
+            errorOnImageTooSmall: false
+          }
+        }
+      }
+    }
+  });*/
+
   grunt.registerTask('test', [
     'clean:server',
     'wiredep',
@@ -501,6 +591,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'realFavicon',
     'clean:dist',
     'wiredep',
     'useminPrepare',

@@ -7,8 +7,8 @@ angular.module('app').factory('CurriculumService', ['$http', '$rootScope', "_", 
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
 
 
-  service.listWordsApi = function(){
-    return $http.get(base_url + '/private/'+ userID  +'/listuserwords');
+  service.listWordsApi = function(user_id){
+    return $http.get(base_url + '/private/'+ user_id  +'/listuserwords');
   };
 
   service.searchWordApi = function(word){

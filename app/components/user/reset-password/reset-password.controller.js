@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', '$state', '$timeout', 'auth', 'messagesFactory','AuthenticationService','$translate', function ($scope, UserService, $state, $timeout, auth, messagesFactory, AuthenticationService, $translate) {
+angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', '$state', '$timeout', 'auth', 'messagesFactory','AuthenticationService','$translate','flashService' ,function ($scope, UserService, $state, $timeout, auth, messagesFactory, AuthenticationService, $translate,flashService) {
 
   var resetPassword = this;
   resetPassword.model = {};
