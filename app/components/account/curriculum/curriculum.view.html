@@ -79,7 +79,7 @@
                   <thead>
                   <tr>
                     <th ng-repeat="key in curriculum.getKeysOfCollection(curriculum.wordsHeaders)"
-                        ng-click="curriculum.predicate = key; curriculum.reverse=!curriculum.reverse;" ng-class="{ 'first-tablehead':$index ==0, 'second-tablehead': $index == 1,'third-tablehead': $index == 2}">
+                        ng-click="curriculum.predicate = key; curriculum.reverse=!curriculum.reverse;">
                       {{curriculum.wordsHeaders[key]}}
                     <span class="fa fa-sort columnSortIcons"
                           ng-if="key !== curriculum.predicate && (key !== 'Sno' && key !== 'actions' )"></span>
@@ -93,21 +93,21 @@
                   <tbody>
                   <tr data-ng-repeat="word in curriculum.customWords.slice(((curriculum.currentPage-1)*curriculum.itemsPerPage), ((curriculum.currentPage)*curriculum.itemsPerPage)) | orderBy:curriculum.predicate:curriculum.reverse">
                     <td class="player-words text-ellipsis word-text">{{ word.Words}}</td>
-                    <td data-ng-if="word.picture" class="word-check word-picture"><img  class="img-circle" width="40" height="40" ng-src="{{word.picture}}"></td>
-                    <td data-ng-if="!word.picture" class="word-check word-picture">
+                    <td data-ng-if="word.picture" class="word-check"><img  class="img-circle" width="40" height="40" ng-src="{{word.picture}}"></td>
+                    <td data-ng-if="!word.picture" class="word-check">
                       <img src="assets/images/fallback-img.png" class="img-circle" alt="player" width="40" height="40" />
                     </td>
-                    <td class="word-icons">
+                    <td>
                       <a href=""> <i ui-sref="account.editCustomWord({ id: word.id})" class="fa fa-pencil-square-o left-padding"></i> </a>
                     <a href=""> <i data-ng-click="curriculum.deleteListener(word)" class="fa fa-trash left-padding"></i></a></td>
                   </tr>
                   <tr data-ng-if="curriculum.customWords.length === 0">
-                    <td colspan="5" data-translate="curriculum.nodata"> No Data</td>
+                    <td colspan="5" data-translate="curriculum.nodata" class="no-data"> No Data</td>
                   </tr>
                   </tbody>
                 </table>
               </div>
-              <uib-pagination class="pull-right" total-items="curriculum.totalItems" direction-links="false" ng-model="curriculum.currentPage"  items-per-page="curriculum.itemsPerPage"></uib-pagination>
+              <uib-pagination data-ng-if="curriculum.totalItems > curriculum.itemsPerPage" class="pull-right" total-items="curriculum.totalItems" direction-links="false" ng-model="curriculum.currentPage"  items-per-page="curriculum.itemsPerPage"></uib-pagination>
             </uib-accordion-group>
           </uib-accordion>
         </div>

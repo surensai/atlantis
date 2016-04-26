@@ -321,7 +321,6 @@
       .badges-row {
         padding-bottom: 25px;
         .badge-item {
-          margin-bottom: 20px;
           .active-big-badge {
             position: absolute;
             left: 50%;
@@ -595,7 +594,7 @@
   }
 }
 
-@media only screen and(min-device-width: 320px) and (max-device-width: 1024px) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 1024px) {
   .save-cancel-parent {
     display: inline;
   }
@@ -608,8 +607,6 @@
 .word-text {
   width: 250px;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .word-icons {

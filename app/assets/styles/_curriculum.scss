@@ -77,46 +77,54 @@
            color: $white-color;
            font-weight: normal;
            border-bottom: none;
+           &:first-child, &:nth-child(2){
+             text-align: left;
+             padding-left: 25px;
+             width: 25%;
+           }
+           &:last-child{
+             text-align: right;
+             padding-right: 25px;
+           }
          }
        }
-       .word-picture{
-         text-align: left;
-       }
-       .word-icons {
-         text-align: right;
-         padding-right: 59px;
-       }
-       .first-tablehead{
-         width:1%
-       }
-       .second-tablehead{
-         text-align: left;
-       }
-       .third-tablehead{
-         text-align: right;
-         padding-right: 59px;
-       }
+
+
        tr, th {
          text-align: center;
        }
        td{
-         border-top: none;
-         color: lighten(#000, 30%);
-         .last-attempt-green{
-           color: $sp-green;
+           border-top: none;
+           color: lighten(#000, 30%);
+           .last-attempt-green{
+             color: $sp-green;
+           }
+           .last-attempt-blue{
+             color: #6E4D9F;
+           }
+          a{
+            text-decoration: none;
+            color:black;
+          }
+
+         &:first-child, &:nth-child(2){
+           text-align: left;
+           padding-left: 25px;
          }
-         .last-attempt-blue{
-           color: #6E4D9F;
+
+         &:last-child{
+           text-align: right;
+           padding-right: 25px;
          }
-        a{
-          text-decoration: none;
-          color:black;
-        }
+       }
+       .no-data{
+         text-align: center!important;
        }
        .left-padding{
          padding-left: 20px;
        }
      }
+
   }
   .curriculum-groupword-panel {
     .curriculum-groupwordpanel-body{
