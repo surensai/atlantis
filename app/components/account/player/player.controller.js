@@ -250,23 +250,23 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       },
       options: {
         exporting: {
-          enabled: false //remove export button
+          enabled: false
         },
         title: {
           text: ''
         },
         legend: {
-          enabled: false //remove x axis legend
+          enabled: false
         },
         chart: {
-          type: 'line' //Chart type
+          type: 'line'
         }
       },
       xAxis: {
         type: 'category',
         categories: formatedChartData.xAxisCatgryArr,
         title: {
-          text: getXAxisLabel(), // X-Axis Legend
+          text: getXAxisLabel(),
           margin: 10
         },
         labels: {
@@ -277,17 +277,17 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         min: 0,
         tickInterval: 5,
         title: {
-          text: '<b>PROGRESS</b>' // Y-Axis Legend
+          text: '<b>PROGRESS</b>'
         },
         labels: {
-          format: "{value}" + "%" // Add percent formater to Y Axis label
+          format: "{value}" + "%"
         }
       },
       series: [{
         name: "",
-        color: '#4CBC96', //line chart color
+        color: '#4CBC96',
         marker: {
-          symbol: 'circle' //line series marker - dot
+          symbol: 'circle'
         },
         data: formatedChartData.seriesDataArr
       }],
