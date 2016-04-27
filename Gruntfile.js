@@ -25,6 +25,8 @@ module.exports = function (grunt) {
     dist: 'build'
   };
 
+  grunt.loadNpmTasks('grunt-real-favicon');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -472,30 +474,29 @@ module.exports = function (grunt) {
         singleRun: true
       }
     },
+
     realFavicon: {
       favicons: {
-        src: '<%= root.app %>/assets/images/favIcon.png',
-        dest: '<%= root.build %>',
+        src: '<%= root.app %>/assets/images/favicon-master.png',
+        dest: '<%= root.dist %>',
         options: {
           iconsPath: '/',
-          html: [ 'build/index.html','app/index.html' ],
+          html: [ 'build/index.html' ],
           design: {
             ios: {
-              pictureAspect: 'noChange',
-              appName: 'test'
+              pictureAspect: 'noChange'
             },
             desktopBrowser: {},
             windows: {
               pictureAspect: 'noChange',
               backgroundColor: '#da532c',
-              onConflict: 'override',
-              appName: 'test'
+              onConflict: 'override'
             },
             androidChrome: {
               pictureAspect: 'noChange',
               themeColor: '#ffffff',
               manifest: {
-                name: 'test',
+                name: 'Square Panda',
                 display: 'browser',
                 orientation: 'notSet',
                 onConflict: 'override',
@@ -503,7 +504,8 @@ module.exports = function (grunt) {
               }
             },
             safariPinnedTab: {
-              pictureAspect: 'silhouette',
+              pictureAspect: 'blackAndWhite',
+              threshold: 75,
               themeColor: '#5bbad5'
             }
           },
@@ -563,7 +565,8 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'realFavicon'
   ]);
 
   grunt.registerTask('default', [
