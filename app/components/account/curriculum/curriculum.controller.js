@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumService', '$scope', '$state', '$uibModal', 'messagesFactory', '$translate', 'utilsFactory', function ($timeout, CurriculumService, $scope, $state, $uibModal, messagesFactory, $translate, utilsFactory) {
-
+angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','CurriculumService', '$scope', '$state', '$uibModal', 'messagesFactory', '$translate', 'utilsFactory', function ($timeout, $rootScope, CurriculumService, $scope, $state, $uibModal, messagesFactory, $translate, utilsFactory) {
+  var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
   var curriculum = this;
   curriculum.customWords = [];
   curriculum.model = {};
@@ -206,7 +206,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', 'CurriculumServi
         messagesFactory.listwordsError(status);
       }
     };
-    CurriculumService.listWordsApi()
+    CurriculumService.listWordsApi(userID)
       .success(handleSuccess)
       .error(handleError);
 
