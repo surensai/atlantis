@@ -20,22 +20,29 @@
             <div class="col-md-3 ">
               <div style="display: inline-flex;">
 
-                <input ng-disabled="curriculum.isView" type="text" name="word" class="form-control" data-ng-model="curriculum.model.wordItem.wordName"
-                       placeholder="{{ 'curriculum.word' | translate }}" required ng-pattern="/^[A-z][A-z]*$/" ng-minlength="1" ng-maxlength="24">
+                <input ng-disabled="curriculum.isView" type="text" name="word" class="form-control"
+                       data-ng-model="curriculum.model.wordItem.wordName"
+                       placeholder="{{ 'curriculum.word' | translate }}" required ng-pattern="/^[A-z][A-z]*$/"
+                       ng-minlength="1" ng-maxlength="24">
 
-                <span class="btn btn-default custom-search-button" ng-click="curriculum.searchWord()" data-ng-if="!curriculum.isView && curriculum.model.wordItem.wordName"><i
+                <span class="btn btn-default custom-search-button" ng-click="curriculum.searchWord()"
+                      data-ng-if="!curriculum.isView && curriculum.model.wordItem.wordName"><i
                   class="fa fa-search"></i></span>
               </div>
-              <div class="custom-message-color" ng-show="curriculum.model.message">{{curriculum.model.message}}</div>
+              <div ng-class="curriculum.model.isWordExit===true?'error-mesasage':'custom-message-color'"
+                   ng-show="curriculum.model.message">
+                {{curriculum.model.message}}
+              </div>
               <div class="error-mesasage" ng-show="curriculum.submitted && playerForm.word.$error.required">
                 <i class="fa fa-exclamation-circle"></i>
                 <span data-translate="user.validationMessages.word_name_require"> Word is required. </span>
               </div>
-              <div ng-show="playerForm.word.$error.pattern" class="error-mesasage" >
+              <div ng-show="playerForm.word.$error.pattern" class="error-mesasage">
                 <i class="fa fa-exclamation-circle"></i>
                 <span data-translate="user.validationMessages.only_alphabets">Allow only Alphabets</span>
               </div>
-              <div ng-show="!playerForm.word.$error.pattern && !playerForm.word.$error.required && (playerForm.word.$error.minlength || playerForm.word.$error.maxlength) && playerForm.word.$dirty"
+              <div
+                ng-show="!playerForm.word.$error.pattern && !playerForm.word.$error.required && (playerForm.word.$error.minlength || playerForm.word.$error.maxlength) && playerForm.word.$dirty"
                 class="error-mesasage">
                 <i class="fa fa-exclamation-circle"></i>
                 <span data-translate="user.validationMessages.word_length"> Must be between 1 and 24 characters.</span>
@@ -48,34 +55,39 @@
             <label class="col-md-2 control-label add-profile-pic" data-translate="curriculum.pronunciation">Pronunciation</label>
 
             <div class="col-md-3 curriculum-custom-audio">
-              <span ng-click='curriculum.model.wordItem.audioURL.paused ? curriculum.model.wordItem.audioURL.play() : curriculum.model.wordItem.audioURL.pause()'
-                    ng-disabled="!curriculum.isAudioUploaded"   class="btn  custom-audio-button custom-volume-button"><i class="fa fa-volume-up"></i> </span>
+              <span
+                ng-click='curriculum.model.wordItem.audioURL.paused ? curriculum.model.wordItem.audioURL.play() : curriculum.model.wordItem.audioURL.pause()'
+                ng-disabled="!curriculum.isAudioUploaded" class="btn  custom-audio-button custom-volume-button"><i
+                class="fa fa-volume-up"></i> </span>
 
               <div class=" btn custom-audio-button custom-audio-file" data-ng-if="!curriculum.isView">
-                <input type="file" id="audio" name="file" file-model="curriculum.myAudioFile" class="img-rectangle img-border-radius "
+                <input type="file" id="audio" name="file" file-model="curriculum.myAudioFile"
+                       class="img-rectangle img-border-radius "
                        accept="audio/*" onchange="angular.element(this).scope().audioFileChanged(this.files)">
                 <span data-translate="curriculum.browse">Browse</span>
               </div>
-              <span data-ng-if="!curriculum.isView" ng-disabled="!curriculum.isAudioUploaded" ng-click="curriculum.refreshFile()" class="btn btn-default custom-audio-button repeat-button"
-                    ><i class="glyphicon glyphicon-repeat"></i></span>
+              <span data-ng-if="!curriculum.isView" ng-disabled="!curriculum.isAudioUploaded"
+                    ng-click="curriculum.refreshFile()" class="btn btn-default custom-audio-button repeat-button"
+                ><i class="glyphicon glyphicon-repeat"></i></span>
 
             </div>
 
-              <div ng-show="!curriculum.audioFileError" class="error-mesasage">
-                <i class="fa fa-exclamation-circle"></i>
+            <div ng-show="!curriculum.audioFileError" class="error-mesasage">
+              <i class="fa fa-exclamation-circle"></i>
                   <span
                     data-translate="user.validationMessages.file_type_wrong"> File Type is Wrong</span>
-              </div>
-              <div ng-show="!curriculum.audioFilesize" class="error-mesasage">
-                <i class="fa fa-exclamation-circle"></i>
-                    <span  data-translate="user.validationMessages.file_size_large" > File size is too large, Try to upload below 2mb.</span>
-              </div>
+            </div>
+            <div ng-show="!curriculum.audioFilesize" class="error-mesasage">
+              <i class="fa fa-exclamation-circle"></i>
+              <span data-translate="user.validationMessages.file_size_large"> File size is too large, Try to upload below 2mb.</span>
+            </div>
 
           </div>
 
           <div class="form-group">
             <div class="col-md-3"></div>
-            <label class="col-md-2 col-sm-2 control-label add-profile-pic" data-translate="curriculum.picture">Picture</label>
+            <label class="col-md-2 col-sm-2 control-label add-profile-pic"
+                   data-translate="curriculum.picture">Picture</label>
 
             <div class="col-md-2 col-sm-3">
               <div class="thumbnail ">
@@ -101,13 +113,15 @@
             <div class="col-md-3"></div>
             <div class="col-md-2"></div>
             <div class="col-md-6">
-              <button type="submit" ng-if="!curriculum.isUpdate" class="btn btn-primary add-word-save-button submit-clear-all-padding"
+              <button type="submit" ng-if="!curriculum.isUpdate"
+                      class="btn btn-primary add-word-save-button submit-clear-all-padding"
                       data-translate="common.buttons.addword">Add Word
               </button>
               <button ng-if="curriculum.isUpdate" type="submit" class="btn btn-primary add-save-button "
                       data-translate="common.buttons.save">Save
               </button>
-              <button type="button" class="btn add-word-cancel-button submit-clear-all-padding " ui-sref="account.curriculum"
+              <button type="button" class="btn add-word-cancel-button submit-clear-all-padding "
+                      ui-sref="account.curriculum"
                       data-translate="common.buttons.cancel">Cancel
               </button>
             </div>
@@ -116,8 +130,8 @@
             <div class="col-md-3"></div>
             <div class="col-md-2"></div>
             <div class="col-md-6 ">
-               <a class="btn  add-word-cancel-margin" ui-sref="account.curriculum"
-                      data-translate="common.buttons.back">Back
+              <a class="btn  add-word-cancel-margin" ui-sref="account.curriculum"
+                 data-translate="common.buttons.back">Back
               </a>
             </div>
           </div>

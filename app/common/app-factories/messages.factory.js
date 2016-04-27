@@ -194,7 +194,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   }
   function savewordsError(status,error) {
     var message;
-    if (status !== "") {
+    if (status !== "" && error) {
       message = error.error;
     }
     flashService.showError($translate.instant("player.messages.invalid_word_deatils"), false);
