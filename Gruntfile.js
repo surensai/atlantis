@@ -435,6 +435,11 @@ module.exports = function (grunt) {
           cwd: '<%= root.app %>',
           src: 'assets/i18n/*',
           dest: '<%= root.dist %>'
+        },{
+          expand: true,
+          cwd: '<%= root.app %>',
+          src: 'assets/webfonts/*',
+          dest: '<%= root.dist %>'
         }]
       },
       styles: {
@@ -520,7 +525,6 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'realFavicon',
       'wiredep',
       'concurrent:server',
       'postcss:server',
@@ -534,52 +538,6 @@ module.exports = function (grunt) {
     grunt.task.run(['serve:' + target]);
   });
 
-  grunt.loadNpmTasks('grunt-real-favicon');
-
-  grunt.initConfig({
-    realFavicon: {
-      favicons: {
-        src: 'app/assets/images/favIcon.png',
-        dest: 'build',
-        options: {
-          iconsPath: '/',
-          html: [ 'build/index.html','app/index.html' ],
-          design: {
-            ios: {
-              pictureAspect: 'noChange',
-              appName: 'test'
-            },
-            desktopBrowser: {},
-            windows: {
-              pictureAspect: 'noChange',
-              backgroundColor: '#da532c',
-              onConflict: 'override',
-              appName: 'test'
-            },
-            androidChrome: {
-              pictureAspect: 'noChange',
-              themeColor: '#ffffff',
-              manifest: {
-                name: 'test',
-                display: 'browser',
-                orientation: 'notSet',
-                onConflict: 'override',
-                declared: true
-              }
-            },
-            safariPinnedTab: {
-              pictureAspect: 'silhouette',
-              themeColor: '#5bbad5'
-            }
-          },
-          settings: {
-            scalingAlgorithm: 'Mitchell',
-            errorOnImageTooSmall: false
-          }
-        }
-      }
-    }
-  });
 
   grunt.registerTask('test', [
     'clean:server',
@@ -591,7 +549,6 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'realFavicon',
     'clean:dist',
     'wiredep',
     'useminPrepare',
