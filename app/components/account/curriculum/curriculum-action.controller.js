@@ -61,7 +61,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
         curriculum.model.isWordExit = true;
       }
       //Validate the entered word - to save or update mode
-      if (curriculum.submitted === true && !curriculum.model.isWordExit) {
+      if (curriculum.submitted === true) {
         saveOrUpdateWord();
         curriculum.submitted = false;
       }
