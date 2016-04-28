@@ -413,6 +413,11 @@
   .bigbadge-description {
     background-color: white;
     clear: both;
+    #chartContainer{
+      .highcharts-container{
+        width: 100%!important;
+      }
+    }
     .bigbadge-description-text {
 
       padding: 30px;
