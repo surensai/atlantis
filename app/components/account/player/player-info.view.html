@@ -83,24 +83,24 @@
               </div>
               <div class="bigbadge-graph-buttons ">
                 <button class="btn bigbadge-graph-button-style" data-ng-class="player.chartTabType==='day'?'active':''"
-                        data-translate="player.badges.day" data-ng-click="player.onGetChartData('day')">
-                  Day
+                        data-translate="player.badges.this_week" data-ng-click="player.onGetChartData('day')">
+                  This Week
                 </button>
                 <button class="btn bigbadge-graph-button-style" data-ng-class="player.chartTabType==='week'?'active':''"
-                        data-translate="player.badges.week" data-ng-click="player.onGetChartData('week')">
-                  Week
+                        data-translate="player.badges.30days" data-ng-click="player.onGetChartData('week')">
+                  30 Days
                 </button>
                 <button class="btn bigbadge-graph-button-style"
                         data-ng-class="player.chartTabType==='month'?'active':''"
-                        data-translate="player.badges.month" data-ng-click="player.onGetChartData('month')">
-                  Month
+                        data-translate="player.badges.1year" data-ng-click="player.onGetChartData('month')">
+                  1 Year
                 </button>
                 <button class="btn bigbadge-graph-button-style" data-ng-class="player.chartTabType==='year'?'active':''"
-                        data-translate="player.badges.year" data-ng-click="player.onGetChartData('year')">
-                  Year
+                        data-translate="player.badges.all_time" data-ng-click="player.onGetChartData('year')">
+                  All Time
                 </button>
               </div>
-              <highchart id="chartContainer" config="player.highchartsNG" style="width: 100%;"></highchart>
+              <highchart id="chartContainer" config="player.highchartsNG"></highchart>
             </div>
           </div>
 

@@ -327,10 +327,10 @@
       "maybe_fav_word":"Maybe 'Favourite Word' too?",
       "spelling":"spelled",
       "times":"times",
-      "day":"Day",
-      "week":"Week",
-      "month":"Month",
-      "year":"Year",
+      "this_week":"This Week",
+      "30days":"30 Days",
+      "1year":"1 Year",
+      "all_time":"All Time",
       "nodata":"No Data"
     }
 
