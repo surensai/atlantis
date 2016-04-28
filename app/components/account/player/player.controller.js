@@ -124,7 +124,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         getPlayerHighlights(playerId);
         getMinibadges(playerId);
         getBigBadges(playerId);
-        getWords(playerId);
         player.data.playersList = data;
         PlayerService.getPlayerById(playerId)
           .success(function (data) {
@@ -354,9 +353,15 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     arr[2] = $translate.instant("player.word_headers.attempts");
     return arr;
   };
+
   player.getWordsExportData = function () {
     return wordsCsv;
   };
+
+  player.getWordsClickHandler = function(){
+    getWords(player.playerObj.id);
+  }
+
 }]);
 app.directive('resize', function ($window) {
   return function (scope) {
