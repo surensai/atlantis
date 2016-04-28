@@ -194,7 +194,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   }
   function savewordsError(status,error) {
     var message;
-    if (status !== "") {
+    if (status !== "" && error) {
       message = error.error;
     }
     flashService.showError($translate.instant("player.messages.invalid_word_deatils"), false);
@@ -204,9 +204,9 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
       flashService.showSuccess($translate.instant('user.validationMessages.word_update_msg'), true);
     }
   }
-  function updatewordsError(status,error) {
+  function updatewordsError(status) {
 
-    if (status == 500) {
+    if (status === 500) {
    flashService.showError($translate.instant('user.validationMessages.exit_custom_word'), false);
     }
     else{

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'CurriculumService', '$scope', '$state', '$uibModal', 'ngAudio','messagesFactory','$translate', function ($timeout, CurriculumService, $scope, $state, $uibModal, ngAudio,messagesFactory,$translate) {
+angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'CurriculumService', '$scope', '$state', '$uibModal', 'ngAudio', 'messagesFactory', '$translate', function ($timeout, CurriculumService, $scope, $state, $uibModal, ngAudio, messagesFactory, $translate) {
 
   var curriculum = this;
   curriculum.model = {};
@@ -16,32 +16,31 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
   curriculum.isView = ($state.current.name === 'account.viewCustomWord') ? true : false;
   curriculum.fileReaderSupported = window.FileReader != null;
   var URL = window.URL || window.webkitURL;
+  var formData = null;
   curriculum.previousImageObj = [];
 
   (function () {
     getWordId();
   })();
 
-  curriculum.submitForm = function (form) {
-
-    curriculum.submitted = true;
-    if (form.$valid && curriculum.imageFileError && curriculum.audioFileError && curriculum.audioFilesize) {
-
+  //Save New Word OR Update existing word
+  function saveOrUpdateWord() {
+    if (formData.$valid && curriculum.imageFileError && curriculum.audioFileError && curriculum.audioFilesize) {
       if (curriculum.myAudioFile && curriculum.previousImageObj.length > 0) {
-        uploadMultipleFiles(form, curriculum.myAudioFile, curriculum.previousImageObj[0]);
+        uploadMultipleFiles(formData, curriculum.myAudioFile, curriculum.previousImageObj[0]);
       } else if (curriculum.myAudioFile) {
         curriculum.model.wordItem.imageURL = undefined;
-        uploadProfilePic(form, curriculum.myAudioFile);
+        uploadProfilePic(formData, curriculum.myAudioFile);
       } else if (curriculum.previousImageObj.length > 0) {
         curriculum.model.wordItem.audioURL = undefined;
-        uploadProfilePic(form, curriculum.previousImageObj[0]);
+        uploadProfilePic(formData, curriculum.previousImageObj[0]);
       } else {
         curriculum.model.wordItem.imageURL = undefined;
         curriculum.model.wordItem.audioURL = undefined;
         if (curriculum.isUpdate) {
           updateAction();
         } else {
-          addAction(form);
+          addAction(formData);
         }
       }
     } else {
@@ -49,18 +48,24 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
         angular.element('.custom-error:first').focus();
       }, 200);
     }
-
-  };
-
+  }
 
   curriculum.searchWord = function () {
     var word = curriculum.model.wordItem.wordName;
     var handleSuccess = function (data) {
       if (data.length === 0) {
         curriculum.model.message = $translate.instant("curriculum.message.word_notexist");
+        curriculum.model.isWordExit = false;
       } else {
         curriculum.model.message = $translate.instant("curriculum.message.word_exist");
+        curriculum.model.isWordExit = true;
       }
+      //Validate the entered word - to save or update mode
+      if (curriculum.submitted === true && !curriculum.model.isWordExit) {
+        saveOrUpdateWord();
+        curriculum.submitted = false;
+      }
+      curriculum.submitted = false;
     };
 
     var handleError = function (error, status) {
@@ -74,6 +79,11 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
 
   };
 
+  curriculum.submitForm = function (form) {
+    formData = form;
+    curriculum.submitted = true;
+    curriculum.searchWord();
+  };
 
   function getWordId() {
     if ($state.params.id) {

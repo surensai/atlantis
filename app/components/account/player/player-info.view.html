@@ -112,8 +112,8 @@
         <div class="row minibadges-row">
           <div class="col-md-4" ng-repeat="minibadge in player.miniBadges">
             <div class="mini-badge-item">
-              <div class="mb-con center-align">
-                <div class="mb-icon-con">
+              <div class="mb-con ">
+                <div class="mb-icon-con  center-align">
                   <div class="mb-icon">
                     <img data-ng-if="!minibadge.assetURL" src="assets/images/no-badge.png" alt="minibadge"/>
                     <img data-ng-if="minibadge.assetURL && minibadge.status === 'Disabled'"
@@ -123,9 +123,9 @@
                   </div>
                 </div>
               </div>
-              <div class="mb-des center-align">
-                <h4>{{minibadge.badgeName}}</h4>
-                <span>{{minibadge.description}}</span>
+              <div class="mb-des">
+                <h4 class="center-align">{{minibadge.badgeName}}</h4>
+                <span class="text-left"> {{minibadge.description}}</span>
               </div>
             </div>
           </div>
