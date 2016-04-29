@@ -161,6 +161,9 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
 
   $scope.photoChanged = function (files) {
     if (files.length > 0 || playerAction.previousSelectedFile.length > 0) {
+      //Restricting file upload to 2MB i.e (1024*1024*2)
+      if(files[0].size <= 2097152){
+        playerAction.showSizeLimitError = false;
       playerAction.previousSelectedFile = (files.length > 0) ? files : playerAction.previousSelectedFile;
       var file = (files.length > 0) ? files[0] : playerAction.previousSelectedFile[0];
       if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
@@ -178,6 +181,9 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       } else {
         playerAction.fileError = false;
       }
+    }else {
+        playerAction.showSizeLimitError = true;
+    }
     }
   };
 

@@ -283,7 +283,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         }
       },
       series: [{
-        name: "",
+        name: "Progress",
         color: '#4CBC96',
         marker: {
           symbol: 'circle'

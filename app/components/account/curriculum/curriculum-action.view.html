@@ -100,6 +100,11 @@
                          onchange="angular.element(this).scope().photoChanged(this.files); ">
                   <span data-translate="player.change_picture">Change Picture</span>
                 </div>
+                <div ng-show="curriculum.showSizeLimitError" class="error-mesasage clearfix">
+                  <i class="fa fa-exclamation-circle"></i>
+                  <span
+                    data-translate=""> Please select image with 2MB or Lesser size </span>
+                </div>
               </div>
               <div ng-show="!curriculum.imageFileError" class="error-mesasage">
                 <i class="fa fa-exclamation-circle"></i>

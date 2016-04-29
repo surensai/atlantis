@@ -226,6 +226,9 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
   $scope.photoChanged = function (files) {
 
     if (files.length > 0 || curriculum.previousImageObj) {
+      //Restricting file upload to 2MB i.e (1024*1024*2)
+      if(files[0].size <= 2097152){
+        curriculum.showSizeLimitError = false;
       curriculum.previousImageObj = (files.length > 0) ? files : curriculum.previousImageObj;
       var file = (files[0]) ? files[0] : curriculum.previousImageObj[0];
       if (curriculum.fileReaderSupported && file.type.indexOf('image') > -1) {
@@ -241,6 +244,9 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
         });
       } else {
         curriculum.imageFileError = false;
+      }
+      }else {
+        curriculum.showSizeLimitError = true;
       }
     }
   };
