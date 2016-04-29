@@ -257,6 +257,9 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         legend: {
           enabled: false
         },
+        tooltip: {
+          valueSuffix: '%'
+        },
         chart: {
           type: 'line'
         }
