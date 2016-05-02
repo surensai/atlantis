@@ -1,24 +1,25 @@
 'use strict';
 
-angular.module("app").controller('dashboardCtrl', ['DashboardService','messagesFactory','$state', '$stateParams', function (DashboardService,messagesFactory,$state,$stateParams) {
+angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messagesFactory', '$state', '$stateParams', function (DashboardService, messagesFactory, $state, $stateParams) {
   var dashboard = this;
   dashboard.model = {};
   dashboard.data = {};
   dashboard.data.newsFeedsList = {};
-  dashboard.data.newsFeeds={};
+  dashboard.data.newsFeeds = {};
   (function () {
     var handleSuccess = function (data) {
-      if($stateParams.id){
-        var tempArr=[];
-        for(var i=0; i<data.length; i++){
-          if($stateParams.id === data[i].id){
+      if ($stateParams.id) {
+        var tempArr = [];
+        for (var i = 0; i < data.length; i++) {
+          if ($stateParams.id === data[i].id) {
             tempArr.push(data[i]);
             dashboard.data.newsFeedsList = tempArr;
             break;
           }
         }
-      }else{
-        dashboard.data.newsFeedsList = data;
+      } else {
+        //filter the news feed based on status param
+        dashboard.data.newsFeedsList = parseNewsFeedData(data);
       }
     };
     var handleError = function (error, status) {
@@ -32,5 +33,15 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService','messagesF
       .error(handleError);
 
   })();
+
+  function parseNewsFeedData(data) {
+    var tempNewsFeedArr = [];
+    for (var newsFeedCounter = 0; newsFeedCounter < data.length; newsFeedCounter++) {
+      if (data[newsFeedCounter].status === 'PUBLISH') {
+        tempNewsFeedArr.push(data[newsFeedCounter]);
+      }
+    }
+    return tempNewsFeedArr;
+  }
 
 }]);
