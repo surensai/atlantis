@@ -81,6 +81,7 @@
   }
 
   .missing-letter-keyboard{
+
     padding: 0px;
     .letters_set{
       float: left;
@@ -109,6 +110,7 @@
 }
 
 @media(min-width: 768px) {
+
   .settings-container .missing-letter-keyboard .letters_set .ml-letter{
     font-size: 21px;
     padding: 10px 15px;
@@ -138,7 +140,21 @@
   }
 }
 
-
+@media (min-width: 768px) {
+  .missing-letter-keyboard{
+    margin: 0px 66px;
+  }
+}
+@media (max-width: 768px) {
+  .missing-letter-keyboard{
+    margin:0px 26px;
+  }
+}
+@media only screen and (device-width: 768px) {
+  .missing-letter-keyboard{
+    margin: 0px 32px;
+  }
+}
 @media only screen and
 (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   .settings-container .missing-letter-keyboard .letters_set{
