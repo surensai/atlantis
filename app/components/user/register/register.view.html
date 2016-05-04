@@ -12,7 +12,7 @@
 
       <div class="form-group has-feedback">
         <input type="text" name="firstName" class="form-control" data-ng-model="register.model.firstName"
-                ng-pattern="/^[A-z][A-z0-9]*$/"
+                ng-pattern="/^[A-z][A-z0-9 ]*$/"
                placeholder="{{ 'user.register.grownup_first_name' | translate }}" required>
         <div ng-show="userForm.$submitted && userForm.firstName.$error.required" class="error-mesasage">
         <i class="fa fa-exclamation-circle"></i>
@@ -28,7 +28,7 @@
 
       <div class="form-group has-feedback">
         <input type="text" name="lastName" class="form-control" data-ng-model="register.model.lastName"
-               ng-pattern="/^[A-z][A-z0-9]*$/"
+               ng-pattern="/^[A-z][A-z0-9 ]*$/"
                placeholder="{{ 'user.register.grownup_last_name' | translate }}" required>
         <div ng-show="userForm.$submitted && userForm.lastName.$error.required" class="error-mesasage">
         <i class="fa fa-exclamation-circle"></i>

@@ -16,7 +16,7 @@
               </div>
               <div class="col-md-3">
                 <input type="text" name="firstName" class="form-control"
-                        ng-pattern="/^[A-z][A-z0-9]*$/"
+                        ng-pattern="/^[A-z][A-z0-9 ]*$/"
                        data-ng-model="settings.model.userData.firstName"
                        placeholder="{{ 'user.first_name' | translate }}" required ng-disabled="!settings.isEditClicked">
 
@@ -40,7 +40,7 @@
 
               <div class="col-md-3">
                 <input type="text" name="lastName" class="form-control" data-ng-model="settings.model.userData.lastName"
-                        ng-pattern="/^[A-z][A-z0-9]*$/"
+                        ng-pattern="/^[A-z][A-z0-9 ]*$/"
                        placeholder="{{ 'user.last_name' | translate }}" required ng-disabled="!settings.isEditClicked">
 
                 <div class="error-mesasage"  ng-show="settingsForm.lastName.$error.required">
