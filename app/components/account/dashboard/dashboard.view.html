@@ -3,8 +3,8 @@
   <div class="feed-row" data-ng-repeat="feedItem in dashboard.data.newsFeedsList">
     <div class="panel clearfix">
       <div class="col-md-5 nopadding">
-        <img data-ng-if="!feedItem.image_url" src="assets/images/no-image.png" class="img-responsive feed-img"  />
-        <img data-ng-if="feedItem.image_url" data-ng-src="{{feedItem.image_url}}" class="img-responsive feed-img"
+        <img data-ng-if="!feedItem.image_url" src="assets/images/no-image.png" class="img-responsive feed-img img-radius"  />
+        <img data-ng-if="feedItem.image_url" data-ng-src="{{feedItem.image_url}}" class="img-responsive feed-img img-radius"
              ng-class="{ 'first-imgsize':$index ==0, 'second-imgsize': $index == 1}"/>
       </div>
       <div class="col-md-7 nopadding">

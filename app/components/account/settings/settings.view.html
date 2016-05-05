@@ -87,17 +87,20 @@
 
             <div class="form-group">
               <div class="col-md-5"></div>
+
               <div class="col-md-6">
                 <button class="btn btn-primary settings-edit-button edit-submit-btn" type="button" data-ng-click="settings.edit();"
                         data-ng-hide="settings.isEditClicked">Edit
                 </button>
-                <button type="submit" data-ng-disabled="settingsForm.$invalid"
-                        class="btn btn-primary settings-save-button submit-clear-all-padding"
-                        data-translate="common.buttons.save" data-ng-show="settings.isEditClicked">Save
+
+              </div>
+
+              <div class="col-md-12 margin-top20 center-align submit-clear-parent-div">
+                <button class="btn btn-primary notification-submit-button submit-clear-all-padding"  data-ng-show="settings.isEditClicked" data-ng-disabled="settingsForm.$invalid" type="submit"
+                        data-translate="common.buttons.save">Save
                 </button>
-                <button type="button"  class="btn btn-primary cancel-button submit-clear-all-padding"
-                        data-translate="common.buttons.cancel" ng-click="settings.cancel()"
-                        data-ng-show="settings.isEditClicked">Cancel
+                <button class="btn btn-primary cancel-button submit-clear-all-padding" type="button"
+                        data-translate="common.buttons.cancel"  data-ng-show="settings.isEditClicked"  ng-click="settings.cancel()" >Cancel
                 </button>
               </div>
 

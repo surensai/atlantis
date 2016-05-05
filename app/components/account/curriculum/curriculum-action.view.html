@@ -122,14 +122,17 @@
                       class="btn btn-primary add-word-save-button submit-clear-all-padding"
                       data-translate="common.buttons.addword">Add Word
               </button>
-              <button ng-if="curriculum.isUpdate" type="submit" class="btn btn-primary add-save-button "
+            </div>
+
+            <div class="col-md-12 margin-top20 center-align submit-clear-parent-div">
+              <button ng-if="curriculum.isUpdate"   class="btn btn-primary addword-submit-button submit-clear-all-padding"  type="submit"
                       data-translate="common.buttons.save">Save
               </button>
-              <button type="button" class="btn add-word-cancel-button submit-clear-all-padding "
-                      ui-sref="account.curriculum"
-                      data-translate="common.buttons.cancel">Cancel
+              <button class="btn btn-primary cancel-button submit-clear-all-padding" type="button"
+                      data-translate="common.buttons.cancel"    ui-sref="account.curriculum">Cancel
               </button>
             </div>
+
           </div>
           <div class="form-group clearfix" data-ng-if="curriculum.isView">
             <div class="col-md-3"></div>
