@@ -9,7 +9,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
   curriculum.group = {};
 
   curriculum.wordsHeaders = {
-    Words: $translate.instant("curriculum.customword_headers.words"),
+    Words: $translate.instant("curriculum.customword_headers.word"),
     picture: $translate.instant("curriculum.customword_headers.picture"),
     actions: $translate.instant("curriculum.customword_headers.actions")
   };
@@ -178,10 +178,13 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
   };
 
   function getWords() {
+
     var handleSuccess = function (data) {
       if (data.length > 0) {
-        angular.forEach(data, function (word) {
 
+        angular.forEach(data, function (word) {
+          var date =new Date(word.createdAt);
+          var formatedDate = (date.getMonth()+1)+'-'+date.getDay()+'-'+date.getFullYear();
           curriculum.customWords.push({
             id: word.id,
             Words: word.wordName,
@@ -191,7 +194,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
 
           customWordsCsv.push({
             Words: word.wordName,
-            dateAdded: word.createdAt
+            dateAdded: formatedDate
           });
 
         });
@@ -298,8 +301,8 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
 
   curriculum.getCSVHeader = function () {
     var arr = [];
-    arr[0] = $translate.instant("curriculum.customword_headers.words");
-    arr[1] =   $translate.instant("curriculum.customword_headers.date");
+    arr[0] = $translate.instant("curriculum.customword_headers.word");
+    arr[1] =   $translate.instant("curriculum.customword_headers.created_date");
     return arr;
   };
   curriculum.getCustomWordExportData = function () {
