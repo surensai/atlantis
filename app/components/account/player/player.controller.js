@@ -69,10 +69,17 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     return player.bigBadges.slice(currentIndex, currentIndex + player.gridCount);
   };
   player.onGetChartData = function (chartType) {
+    if(player.chartTabType === chartType){
+      return false;
+    }
     player.chartTabType = chartType;
     getChartDataAPI(player.bigbadgedetails.id, player.playerObj.id, chartType);
   };
   player.showGraph = function (index, colIndex) {
+    if(index === player.showRow && colIndex === player.showColumn && player.clicked){
+      return false;
+
+    }
     player.clicked = true;
     player.showRow = index;
     player.showColumn = colIndex;
@@ -85,6 +92,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
               player.bigBadges[count].colorCode = "#BABCBE";
             }
             player.bigbadgedetails = player.bigBadges[count];
+
             break;
           } else {
             count++;

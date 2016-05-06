@@ -320,7 +320,11 @@
       }
       .badges-row {
         padding-bottom: 25px;
+
         .badge-item {
+          img{
+            cursor: pointer;
+          };
           .active-big-badge {
             position: absolute;
             left: 50%;
@@ -340,7 +344,7 @@
             text-align: center;
             color: #000;
             border-top: dotted 1px #ffffff;
-            padding-top: 20px;
+            padding-top: 8px;
             padding-bottom: 5px;
           }
           h3 {
@@ -463,6 +467,7 @@
         background-color: #EDA01D;
         color: white;
         border: 1px solid #EDA01D;
+        cursor: default;
       }
 
     }

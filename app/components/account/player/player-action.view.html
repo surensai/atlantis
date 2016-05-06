@@ -19,7 +19,7 @@
             <div class="col-md-5">
               <input type="text" name="firstName" class="form-control"
                      data-ng-model="playerAction.model.playerItem.firstName"
-                     ng-pattern="/^[A-z][A-z0-9]*$/"
+                     ng-pattern="/^[A-z][A-z0-9 ]*$/"
                      placeholder="{{ 'player.first_name' | translate }}" required>
 
               <div ng-show="playerForm.$submitted && playerForm.firstName.$error.required" class="error-mesasage">

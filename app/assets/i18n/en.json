@@ -283,7 +283,7 @@
     "delete_modalbody":"Are you sure do you want to delete player?",
     "or":"(or)",
     "uploadImage_selectavatar":"Please upload image or select Avatar",
-    "choose_avatar":"Choose Avatar",
+    "choose_avatar":"Choose a generic avatar",
     "no_players":"You don't have any players added.Start adding now..",
     "word_headers":{
       "words":"Words",
@@ -309,7 +309,7 @@
     "buttons":{
       "add_palyer":"Add Player",
       "upload_picture":"Upload your own picture",
-      "choose_avatar":"Choose an Avatar"
+      "choose_avatar":"Choose a generic avatar"
 
     },
     "badges":{
@@ -353,10 +353,10 @@
       "milestone_text_note":" Note: Square Panda will never intentionally display a bad word to your child. However, as your child explores letter combinations, he/she may inadvertently discover a mature word. Here you have the flexibility to allow or disallow these words from your child's game."
     },
     "customword_headers":{
-      "words":"Words",
+      "word":"Custom Word",
       "picture":"Picture",
       "actions":"Actions",
-      "date":"Date"
+      "created_date":"Created date"
     },
     "export_csv":"Export CSV",
     "custom_word_list":"Custom Word List",
