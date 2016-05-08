@@ -110,17 +110,17 @@
     <uib-tab index="1" heading="Mini Badges">
       <div class="mini-badges-container clearfix">
         <div class="row minibadges-row">
-          <div class="col-md-4" ng-repeat="minibadge in player.miniBadges">
+          <div class="col-md-3" ng-repeat="minibadge in player.miniBadges">
             <div class="mini-badge-item">
               <div class="mb-con ">
                 <div class="mb-icon-con  center-align">
                   <div class="mb-icon">
                   <div class="mb-icon">
-                    <img data-ng-if="!minibadge.assetURL" src="assets/images/no-badge.png" alt="minibadge"/>
+                    <img data-ng-if="!minibadge.assetURL" src="assets/images/no-badge.png" alt="minibadge"  width="110" />
                     <img data-ng-if="minibadge.assetURL && minibadge.status === 'Disabled'"
-                         data-ng-src="{{minibadge.disabledassetURL}}"/>
+                         data-ng-src="{{minibadge.disabledassetURL}}"  width="110"  />
                     <img data-ng-if="minibadge.assetURL && minibadge.status === 'Active'"
-                         data-ng-src="{{minibadge.assetURL}}"/>
+                         data-ng-src="{{minibadge.assetURL}}"  width="110"  />
                   </div>
                 </div>
               </div>
