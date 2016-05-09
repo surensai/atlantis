@@ -5,6 +5,9 @@
     .settiings-panel-body {
       border: 1px solid #E9E9E9;
       padding: 24px 15px;
+      .nopadding{
+        padding-left: 0px;
+      }
       .settings-edit-button {
         padding: 5px 72px;
       }
@@ -105,6 +108,10 @@
       }
     }
 
+    .mlk-margin{
+      margin-left:5%;
+    }
+
   }
 
 }
@@ -126,6 +133,10 @@
   .settings-container .settiings-panel .settiings-panel-body .notification-text-missing-letters, .missing-letter-keyboard{
     padding:0 15px;
   }
+
+  .settiings-panel-body .nopadding{
+    padding-left: 16px;
+  }
 }
 
 @media only screen and
@@ -140,21 +151,6 @@
   }
 }
 
-@media (min-width: 768px) {
-  .missing-letter-keyboard{
-    margin: 0px 66px;
-  }
-}
-@media (max-width: 768px) {
-  .missing-letter-keyboard{
-    margin:0px 26px;
-  }
-}
-@media only screen and (device-width: 768px) {
-  .missing-letter-keyboard{
-    margin: 0px 14px;
-  }
-}
 @media only screen and
 (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   .settings-container .missing-letter-keyboard .letters_set{
