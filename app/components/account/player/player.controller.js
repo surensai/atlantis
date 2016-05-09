@@ -77,8 +77,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   };
   player.showGraph = function (index, colIndex) {
     if(index === player.showRow && colIndex === player.showColumn && player.clicked){
+      player.clicked = false;
       return false;
-
     }
     player.clicked = true;
     player.showRow = index;
