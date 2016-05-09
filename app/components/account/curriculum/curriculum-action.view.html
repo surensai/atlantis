@@ -113,18 +113,13 @@
               </div>
             </div>
           </div>
-
-          <div class="form-group" data-ng-if="!curriculum.isView">
+          <div class="form-group">
             <div class="col-md-3"></div>
-            <div class="col-md-2"></div>
-            <div class="col-md-6">
+          <div class="col-md-7 margin-top20 center-align submit-clear-parent-div ">
               <button type="submit" ng-if="!curriculum.isUpdate"
                       class="btn btn-primary add-word-save-button submit-clear-all-padding"
                       data-translate="common.buttons.addword">Add Word
               </button>
-            </div>
-
-            <div class="col-md-12 margin-top20 center-align submit-clear-parent-div">
               <button ng-if="curriculum.isUpdate"   class="btn btn-primary addword-submit-button submit-clear-all-padding"  type="submit"
                       data-translate="common.buttons.save">Save
               </button>
@@ -132,7 +127,7 @@
                       data-translate="common.buttons.cancel"    ui-sref="account.curriculum">Cancel
               </button>
             </div>
-
+          </div>
           </div>
           <div class="form-group clearfix" data-ng-if="curriculum.isView">
             <div class="col-md-3"></div>
