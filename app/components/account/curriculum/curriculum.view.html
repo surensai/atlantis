@@ -142,7 +142,7 @@
               </div>
 
               <div class="col-md-3" data-ng-repeat="words in curriculum.group.bathroomWords " data-ng-init="topIndex = $index">
-                <div class="checkbox" ng-repeat="word in words track by $index" >
+                <div class="checkbox" data-ng-repeat="word in words track by $index" >
                   <label><input type="checkbox" data-ng-model="word.groupedflag" data-ng-click="curriculum.checkItemBy(topIndex, $index, curriculum.group.bathroomWords, word.groupedflag, 'bathroom')">{{word.Word | lowercase}}</label>
                 </div>
               </div>

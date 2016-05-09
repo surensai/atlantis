@@ -68,6 +68,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     var currentIndex = index * player.gridCount;
     return player.bigBadges.slice(currentIndex, currentIndex + player.gridCount);
   };
+
   player.onGetChartData = function (chartType) {
     if(player.chartTabType === chartType){
       return false;
@@ -75,6 +76,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     player.chartTabType = chartType;
     getChartDataAPI(player.bigbadgedetails.id, player.playerObj.id, chartType);
   };
+
   player.showGraph = function (index, colIndex) {
     if(index === player.showRow && colIndex === player.showColumn && player.clicked){
       player.clicked = false;

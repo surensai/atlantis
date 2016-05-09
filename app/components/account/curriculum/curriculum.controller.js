@@ -218,12 +218,30 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
   function getWordsByCategory(carArr) {
     var handleSuccess = function (data) {
       if (data.anatomy && data.anatomy.length > 0) {
+        var totalAnatomyWords = [];
+        for(var i=0; data.anatomy.length > i; i++){
+          if(data.anatomy[i].groupedflag){
+            totalAnatomyWords.push(data.anatomy[i]);
+          }
+        }
+        if(totalAnatomyWords.length === data.anatomy.length){
+          curriculum.checkselectAll = true;
+        }
         curriculum.group.anatomyWords = [];
         var sortedanatomyArr = sortWordsData(data.anatomy);
         curriculum.group.anatomyWords = utilsFactory.chunkArray(sortedanatomyArr, 4);
       }
 
       if (data.bathroom && data.bathroom.length > 0) {
+        var totalBathroomWords = [];
+        for(var i=0; data.bathroom.length > i; i++){
+          if(data.bathroom[i].groupedflag){
+            totalBathroomWords.push(data.bathroom[i]);
+          }
+        }
+        if(totalBathroomWords.length === data.bathroom.length){
+          curriculum.selectedAll = true;
+        }
         curriculum.group.bathroomWords = [];
         var sortedbathroomArr = sortWordsData(data.bathroom);
         curriculum.group.bathroomWords = utilsFactory.chunkArray(sortedbathroomArr, 4);
