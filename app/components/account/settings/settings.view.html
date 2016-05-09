@@ -118,7 +118,7 @@
 
             <div class="form-group">
               <div class="col-md-3"></div>
-              <div class="col-md-2">
+              <div class="col-md-2 nopadding">
                 <label class="control-label " data-translate="nav.change_password.old_password">Old
                   password:</label>
               </div>
@@ -138,7 +138,7 @@
 
             <div class="form-group">
               <div class="col-md-3"></div>
-              <div class="col-md-2">
+              <div class="col-md-2 nopadding">
                 <label class=" control-label" data-translate="nav.change_password.new_password">New
                   Password:</label>
               </div>
@@ -163,7 +163,7 @@
 
             <div class="form-group ">
               <div class="col-md-3"></div>
-              <div class="col-md-2">
+              <div class="col-md-2 nopadding">
                 <label class=" control-label" data-translate="nav.change_password.confirm_new_password">Confirm
                   Newe Password:</label>
               </div>
@@ -213,7 +213,7 @@
           </p>
 
           <div class="missing-letter-keyboard col-md-12 clearfix">
-            <div class="clearfix">
+            <div class="clearfix mlk-margin">
               <div data-ng-repeat="item in settings.missingLetters_row_2" class="letters_set" data-ng-init="rowInd = $index">
                   <div data-ng-repeat="letters in item" class="ml-letter" ng-class="{'active': settings.isMissilingLetterSelected(rowInd, $index, 1 ), 'vowel': settings.isLetterVowel(letters.letter)}" data-ng-click="settings.selectCharacter(rowInd, $index, 1)">
                     {{letters.letter}}
@@ -222,7 +222,7 @@
               </div>
             </div>
 
-            <div class="clearfix">
+            <div class="clearfix mlk-margin">
               <div data-ng-repeat="item in settings.missingLetters" data-ng-init="rowInd1 = $index"  class="letters_set">
                 <div data-ng-repeat="letters in item" class="ml-letter" ng-class="{'active': settings.isMissilingLetterSelected(rowInd1, $index, 2 ), 'vowel': settings.isLetterVowel(letters.letter)}" data-ng-click="settings.selectCharacter(rowInd1, $index, 2)">
                   {{letters.letter}}
@@ -241,7 +241,7 @@
             </button>
           </div>
 
-          <p class="notification-text col-md-12 margin-top20" >
+          <p class="notification-text col-md-12 margin-top20 center-align" >
             <span data-translate="settings.lost_letters.to_order"> To order the</span>
               <b data-translate="settings.lost_letters.character_set">Character Set</b><span data-translate="settings.lost_letters.visit"> please visit</span> <a href="http://squarepanda.com" target="-_blank" ata-translate="settings.lost_letters.spanda_website"> www.squarepanda.com </a>
           </p>

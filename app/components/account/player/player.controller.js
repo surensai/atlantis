@@ -269,7 +269,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           valueSuffix: '%'
         },
         chart: {
-          type: 'line'
+          type: 'line',
+          backgroundColor:'rgba(255, 255, 255, 0)'
         }
       },
       xAxis: {
@@ -304,6 +305,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       size: {
         height: getChartHeight()
       },
+
       loading: false
     };
     return chartObj;
