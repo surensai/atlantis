@@ -159,18 +159,19 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   function getWords(childId) {
     var handleSuccess = function (data) {
-      if (data) {
+      if (data.length>0) {
         player.wordsData = data;
         for (var i = 0; i < player.wordsData.length; i++) {
+          var wordDate = new Date(parseInt(player.wordsData[i].endtime * 1000));
+          var formatedwordDate = (wordDate.getMonth()+1)+'/'+wordDate.getDate()+'/'+wordDate.getFullYear();
           var obj = {};
           obj.Words = player.wordsData[i].word;
           obj.Attempts = player.wordsData[i].activity.length;
           obj.LastPlayed = player.wordsData[i].endtime;
-
           wordsCsv.push({
             Words: obj.Words,
             Attempts: obj.Attempts,
-            LastPlayed: obj.LastPlayed
+            LastPlayed: formatedwordDate
           });
         }
       }
