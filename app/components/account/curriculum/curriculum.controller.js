@@ -184,7 +184,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
 
         angular.forEach(data, function (word) {
           var date =new Date(word.createdAt);
-          var formatedDate = (date.getMonth()+1)+'-'+date.getDate()+'-'+date.getFullYear();
+          var formatedDate = (date.getMonth()+1)+'/'+date.getDate()+'/'+date.getFullYear();
           curriculum.customWords.push({
             id: word.id,
             Words: word.wordName,
