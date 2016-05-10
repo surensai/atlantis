@@ -77,8 +77,15 @@
   label {
     color: #fff;
   }
+
   .login-button {
-    width: 60%;
+   padding: 5px 60px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 1;
+  }
+  .forgotpassword-button{
+    padding: 5px 30px;
     margin-left: auto;
     margin-right: auto;
     opacity: 1;
@@ -147,9 +154,14 @@
   padding: 0 5%;
 }
 
+.resetpassword-form-margin {
+  margin-top: 30px;
+  margin-bottom: 178px;
+  padding: 0 5%;
+}
 .forgot-form-margin {
   margin-top: 30px;
-  margin-bottom: 300px;
+  margin-bottom: 250px;
   padding: 0 5%;
 }
 

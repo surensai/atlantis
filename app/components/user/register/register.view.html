@@ -94,12 +94,14 @@
         <i class="fa fa-lock form-control-feedback"></i>
 
       </div>
+      <div class="center-align">
+        <button type="submit" class="btn btn-large  btn-primary apply-margin login-button"
+                data-ng-disabled="!register.model.firstName || !register.model.lastName || !register.model.email || !register.model.password || !register.model.confirmPassword"
+                data-translate="common.buttons.submit"
+                >Submit
+        </button>
+      </div>
 
-      <button type="submit" class="btn btn-large btn-block btn-primary signup-btn"
-              data-ng-disabled="!register.model.firstName || !register.model.lastName || !register.model.email || !register.model.password || !register.model.confirmPassword"
-              data-translate="common.buttons.submit"
-              data-translate="common.buttons.sign_up">SIGNUP
-      </button>
     </form>
   </div>
   <div class="col-lg-4 col-md-3 col-sm-3"></div>
