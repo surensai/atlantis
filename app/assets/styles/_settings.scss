@@ -6,7 +6,7 @@
       border: 1px solid #E9E9E9;
       padding: 24px 15px;
       .nopadding{
-        padding-left: 0px;
+        padding-left: 16px;
       }
       .settings-edit-button {
         padding: 5px 72px;
@@ -138,7 +138,7 @@
   }
 
   .settiings-panel-body .nopadding{
-    padding-left: 16px;
+    padding-left: 0px !important;
   }
 }
 

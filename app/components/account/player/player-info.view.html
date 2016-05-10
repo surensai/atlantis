@@ -54,7 +54,7 @@
              data-ng-repeat="reptable in player.splitBadgesData"
              data-ng-init="count = $index ">
 
-          <div class="col-md-3 col-sm-6"
+          <div class="col-md-3 col-sm-6 badge-columns"
                data-ng-repeat-start="badge in player.bigBadgesData(count)"
                data-ng-click="player.showGraph(count, $index)">
 
@@ -76,6 +76,7 @@
                data-ng-repeat-end=""
                data-ng-if="(player.clicked && (player.showRow === count) && (windowWidth >= 768)) || (player.clicked && (windowWidth <= 768) && (player.showRow === count) && (player.showColumn === $index))">
             <div class="bigbadge-description clearfix">
+              <div class="bigbadge-description-empty-div"></div>
               <div class="bigbadge-description-text clearfix"
                    ng-style="{'background-color': player.bigbadgedetails.colorCode}">
                 <p>{{player.bigbadgedetails.description}} </p>

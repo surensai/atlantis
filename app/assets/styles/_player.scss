@@ -320,8 +320,9 @@
 
       }
       .badges-row {
-        padding-bottom: 25px;
-
+        .badge-columns{
+          padding: 12px;
+        }
         .badge-item {
           img{
             cursor: pointer;
@@ -420,6 +421,9 @@
   .bigbadge-description {
     background-color: white;
     clear: both;
+    .bigbadge-description-empty-div{
+      margin-top: -12px;
+    }
     #chartContainer{
       background-color: #fefefe;
       .highcharts-container{
