@@ -1,0 +1,26 @@
+<div class="messages-container content-min-height ">
+  <div class="container">
+    <div class="col-md-2"></div>
+    <div class=" col-md-8">
+      <div class="panel panel-default messages-panel">
+        <div class="panel-body">
+          <div data-ng-if="messages && messages.type === 'register'">
+
+            <p data-translate="user.register.messages.get_mail"> Please activate your account using the verification link sent to your email address. </p>
+          </div>
+          <div data-ng-if="messages && messages.type === 'forgot'">
+            <p data-translate="user.register.messages.reset_password">Please check your inbox for the email with the subject "Forgot Password Request".If the email doesn't appear within the next few minutes, please check your Spam or Junk Mail folder.</p>
+          </div>
+          <div data-ng-if="messages && messages.type === 'reset'">
+            <p data-translate="user.register.messages.password_changed">Your password has been reset. You can now use your new password to login.</p>
+          </div>
+          <div data-ng-if="messages && messages.type === 'change_password'">
+                <p data-translate="user.register.messages.password_change_new_login"></p>
+          </div>
+        </div>
+      </div>
+      <button ui-sref="login" data-ng-if="!(messages && messages.type === 'register') && !(messages && messages.type === 'forgot')" class="btn sp-pur-btn center-block" data-translate="user.register.messages.return_login">Return to Sign in</button>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

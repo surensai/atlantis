@@ -1,0 +1,25 @@
+<div class="messages-container content-min-height">
+  <div class="container">
+    <div class="col-md-2"></div>
+    <div class=" col-md-8">
+      <div class="panel panel-default messages-panel">
+        <div class="panel-body">
+          <div data-ng-if= " confirmRegister.message === 'success' ">
+            <p data-translate="user.register.messages.register_success_mes"> Thank you for creating a Square Panda account.  </p>
+
+            <p data-translate="user.register.messages.email_activation_message">You’re all set to jump into Square Panda's world of reading readiness.</p>
+          </div>
+          <div data-ng-if= " confirmRegister.message === 'error' ">
+                      <p data-translate="user.register.messages.user_verified_already">You are already registered with us and your account is active.</p>
+          </div>
+
+        </div>
+      </div>
+      <button ui-sref="login" class="btn sp-pur-btn center-block" data-translate="user.register.messages.return_login">Return to logn In</button>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+
+
+

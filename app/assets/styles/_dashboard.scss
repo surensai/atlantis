@@ -1,0 +1,125 @@
+.player-container{
+  padding-top: 30px
+}
+.newsfeed-conatiner{
+
+}
+.dashboard-container {
+  background-color: $account-bg-color;
+  .feed-row {
+    .panel {
+      margin-bottom: 20px;
+      border: solid 1px #e9e9e9;
+      border-radius: 10px;
+      background-color: #fcfafa;
+      .feed-img {
+        width: 100%;
+        border-radius: 10px 10px 0px 0px;
+      }
+      .panel-body {
+        padding: 26px;
+        height: 235px;
+        .time-ago {
+          font-size: 12px;
+          margin-top: 5px;
+          color: #B3B1B1;
+        }
+        h3 {
+          font-size: 21px;
+          color: #5d5d5d;
+        }
+        p {
+          font-size: 14px;
+          color: #9a9a9a;
+          line-height: 22px;
+        }
+      }
+      .panel-footer {
+        background-color: #f4f4f4;
+        max-height: 43px;
+        margin-right: -1px;
+        border-bottom-right-radius: 10px;
+        .icons-block {
+          ul {
+              list-style-type: none;
+              padding: 0px;
+              margin: 0px;
+              margin-left: 10px;
+
+            li {
+              display: inline;
+              padding-right: 15%;
+              a{
+                text-decoration: none;
+              }
+            }
+            li:first-child {
+              padding-left: 0px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.player-container{
+  padding-top: 30px;
+  background-color: $account-bg-color;
+}
+.curriculum-container{
+  background-color: $account-bg-color;
+}
+.img-radius{
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.feed-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -moz-box-orient: vertical;
+  height: 110px;
+  -webkit-line-clamp: 5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.first-element {
+  margin: 0px 0 11px !important;
+}
+.second-element{
+  padding-bottom: 0%;
+}
+.third-element{
+  padding-bottom: 0%;
+}
+.reduce-margin{
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.read-more-margin{
+  margin-right: 1px;
+}
+
+@media only screen and
+(min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .feed-img{
+    max-height: none!important;
+  }
+}
+
+@media(min-width: 995px) {
+  .dashboard-container .feed-row .panel .feed-img{
+    height: 276px;
+    width: 508px;
+    border-radius: 10px 0px 0px 10px;
+  }
+}
+

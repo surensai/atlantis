@@ -1,0 +1,21 @@
+'use strict';
+
+var app = angular.module('app', [
+  'ngAnimate',
+  'ngCookies',
+  'ngStorage',
+  'ngResource',
+  'ui.router',
+  'ngSanitize',
+  'ngTouch',
+  'pascalprecht.translate',
+  'underscore',
+  'ui.bootstrap',
+  'base64',
+  'angularMoment',
+  'highcharts-ng',
+  'toaster',
+  'ngAudio',
+  'ngImgCrop',
+  'ngCsv'
+]);

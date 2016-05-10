@@ -1,0 +1,264 @@
+body, html {
+  height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  background: #f6f6f6;
+ // font-family: 'Open Sans', sans-serif;
+}
+
+.reset-padding-margin {
+  padding: 0px;
+  margin: 0px !important;
+}
+
+.nopadding {
+  padding: 0px;
+}
+.nomargin {
+  margin: 0px;
+}
+
+.noborders {
+  border: 0px!important;
+}
+
+.no-visible{
+  visibility: hidden!important;
+}
+
+.nofloat{
+  float: none !important;
+}
+
+.center-align {
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: $sp-green;
+  border: 0px;
+  font-size: 18px;
+}
+
+.margin-right-20{
+  margin-right: 20px;
+}
+
+.navbar {
+  border-radius: 0px;
+}
+
+.navbar-default {
+  background-color: transparent;
+  border: none;
+}
+
+.has-error .help-block {
+  color: #FF8D8B !important;
+}
+
+.spinner {
+  display: inline-block;
+  opacity: 0;
+  width: 0;
+  -webkit-transition: opacity 0.25s, width 0.25s;
+  -moz-transition: opacity 0.25s, width 0.25s;
+  -o-transition: opacity 0.25s, width 0.25s;
+  transition: opacity 0.25s, width 0.25s;
+}
+
+.has-spinner.active {
+  cursor: progress;
+}
+
+.has-spinner.active .spinner {
+  opacity: 1;
+  width: auto; /* This doesn't work, just fix for unkown width elements */
+}
+
+.has-spinner.btn-mini.active .spinner {
+  width: 10px;
+}
+
+.has-spinner.btn-small.active .spinner {
+  width: 13px;
+}
+
+.has-spinner.btn.active .spinner {
+  width: 16px;
+}
+
+.has-spinner.btn-large.active .spinner {
+  width: 19px;
+}
+
+.alert-danger {
+  background-color: #D62C29;
+  border: none;
+  border-radius: 0px;
+  text-align: center;
+  color: #fff;
+  margin: 0px !important;
+}
+
+.alert-success {
+  background-color: #3c763d;
+  color: #fff;
+  border: 0px;
+  margin-bottom: 0px;
+  border-radius: 0px;
+  text-align: center;
+}
+
+.width50-per {
+  width: 50%;
+}
+
+.form-control-feedback {
+  left: 0px;
+  line-height: 40px;
+  color: #222;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.has-feedback .form-control {
+  padding-right: 10px;
+  padding-left: 30px;
+  font-size: 15px;
+  color: #222;
+}
+
+.btn-primary.disabled:hover, .btn-primary.disabled:focus {
+  background-color: darken($sp-green, 10%);
+}
+
+.btn-primary:hover {
+  background-color: darken($sp-green, 10%) !important;
+}
+
+.navbar-toggle {
+  border: none;
+  margin-right: 0px;
+  span.icon-bar {
+    background-color: #ffffff;
+  }
+}
+
+.container-min-height {
+  min-height: 520px;
+}
+
+.has-feedback {
+  color: whitesmoke;
+  margin-bottom: 20px;
+}
+
+.alert-danger {
+  margin-top: -31px;
+}
+
+.success-padding {
+  margin-top: -31px;
+}
+
+.accordion-classes, .accordion-word{
+  a:focus {
+    outline: none;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+.accordion-word{
+  a:focus {
+    outline: none;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+.cancel-button,.cancel-button:hover{
+  background-color: #a5a5a5 !important;
+ padding: 5px 50px;
+  color: white;
+  font-size: 17px;
+}
+.pagination li  a,
+.pagination  li  span{
+  border: none;
+}
+.pagination  li  a:hover,.pagination .active a{
+  background-color: $sp-green !important;
+}
+.thumbnail{
+  padding: 0px;
+  border: 1px solid #E9EEF1;
+img{
+  margin-bottom: -43px;
+  border-radius: 5px;
+}
+}
+.radio + .radio, .checkbox + .checkbox {
+  margin-top: 16px;
+}
+
+.panel{
+  border: none;
+}
+
+.form-control{
+  box-shadow: none;
+}
+
+.sp-common-panel-header {
+  background-color: #f7ab31;
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+}
+
+.sp-green-common-btn {
+  background-color: #4cbc96;
+  border: 0px;
+  font-size: 18px;
+}
+
+.sp-purple-common-btn {
+  background-color: #7e49e9;
+  color: #fff;
+  min-width: 75px;
+  &:hover {
+    background-color: darken(#7e49e9, 10%);
+    color: #fff;
+  }
+}
+
+.sp-confirm-modal{
+  .modal-body {
+    padding: 28px;
+    color: #8C8B8B;
+  }
+  .modal-header{
+    background: #efefef;
+    border-radius: 5px 5px 0px 0px;
+    .modal-title {
+      font-size: 18px;
+    }
+  }
+  .modal-footer{
+    padding: 9px;
+  }
+}
+
+.modal-open {
+  overflow-y: scroll;
+  position: fixed;
+  width: 100%;
+}

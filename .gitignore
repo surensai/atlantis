@@ -1,0 +1,8 @@
+/node_modules
+/build
+/.tmp
+/.sass-cache
+/app/assets/libs
+.idea/
+/build
+/test
