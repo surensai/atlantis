@@ -10,10 +10,6 @@ body{
   position: relative;
 }
 
-.app-height {
-  height: 87%;
-}
-
 .load-overlay{
   background-color: rgba(256, 256, 256, 0.6);
   position: fixed;
@@ -447,16 +443,6 @@ body.body-toggle{
     overflow: hidden;
   }
 
-}
-
-@media(max-height: 670px) {
-  .footer-fixed {
-    position: relative;
-  }
-
-  .app-height{
-    height: auto!important;
-  }
 }
 
 @media (min-width: 1300px){
