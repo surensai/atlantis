@@ -67,7 +67,8 @@
     },
     "forgot_password": {
       "title": "Forgot Password",
-      "header": "FORGOT PASSWORD"
+      "header": "Forgot Password",
+      "request_password":"Request Password"
     },
     "press": {
       "title": "Press",
@@ -121,7 +122,6 @@
       "cancel": "Cancel",
       "clear":"Clear",
       "delete":"delete",
-      "forgot_password":"REQUEST PASSWORD",
       "sign_up":"SIGNUP",
       "addword": "Add Word",
       "clear_all": "Clear All",

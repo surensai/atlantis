@@ -32,6 +32,8 @@
        .custom-word-list{
          background-color: #FAFAFA;
          .panel-default {
+           box-shadow: none;
+           -webkit-box-shadow:none;
            .panel-heading{
              background-color: #ececec;
              padding: 12px;
@@ -127,6 +129,10 @@
   .curriculum-groupword-panel {
     .curriculum-groupwordpanel-body{
       padding: 20px;
+      .panel-default {
+        box-shadow: none;
+        -webkit-box-shadow: none;
+      }
       .panel-title{
         color :#767575;
         a{
@@ -144,7 +150,7 @@
         background-color: #ececec;
         padding: 12px;
         i{
-          margin-right: 15px;
+          margin-right: 7px;
         }
       }
       .panel-body{
