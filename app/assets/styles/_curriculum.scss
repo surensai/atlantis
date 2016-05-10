@@ -5,9 +5,7 @@
        padding: 20px;
        padding-bottom: 0px;
        .add-custom-word{
-
          padding: 0px;
-         margin-bottom: 2%;
          color: #9a9a9a;
          .form-control{
            height: 45px;
@@ -36,7 +34,7 @@
          .panel-default {
            .panel-heading{
              background-color: #ececec;
-             padding: 15px;
+             padding: 12px;
            }
          }
          .panel-title{
@@ -128,6 +126,7 @@
   }
   .curriculum-groupword-panel {
     .curriculum-groupwordpanel-body{
+      padding: 20px;
       .panel-title{
         color :#767575;
         a{
@@ -301,6 +300,9 @@
 .export-btn {
   color: #9B9B9B;
   float: right;
+}
+.notification-submit-button{
+ padding: 5px 56px;
 }
 
 @media only screen and
