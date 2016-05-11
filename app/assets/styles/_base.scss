@@ -57,3 +57,13 @@ $bg-color: #7e49e9;
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Averta-Light';
+  src: url('../webfonts/Averta-Light.ttf') format('truetype'),
+  url('../webfonts/Averta-Light.eot?#iefix') format('embedded-opentype'),
+  url('../webfonts/Averta-Light.svg#Averta-Light') format('svg'),
+  url('../webfonts/Averta-Light.html') format('html'),
+  url('../webfonts/Averta-Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

@@ -9,13 +9,21 @@
     }
   }
   .add-profile-pic {
-    padding-top: 0px;
+    padding-top: 4px;
     .thumbnail {
       position: absolute;
     }
     img {
       margin-bottom: -43px !important;
     }
+  }
+  .player-label{
+    width: 30%;
+  }
+  .gender-align{
+    height: 34px;
+    margin-top: -3px;
+
   }
   .myLabel {
     position: relative;
@@ -576,6 +584,9 @@
 }
 
 @media(min-width: 768px) {
+  .player-label{
+    width: 10% !important;
+  }
   .bigbadge-graph-button-style{
     padding: 5px 20px 5px 20px;
   }
@@ -661,4 +672,21 @@
 
 .player-export-btn:hover {
   text-decoration: none;
+}
+@media only screen and
+(min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .player-label{
+    width: 16% !important;
+  }
+}
+@media only screen and
+(min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .player-label{
+    width: 12% !important;
+  }
+}
+@media only screen and (max-device-width: 375px){
+  .player-label{
+    width: 40% !important;
+  }
 }
