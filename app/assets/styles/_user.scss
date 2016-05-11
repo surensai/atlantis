@@ -35,7 +35,7 @@
   h2 {
     color: $white-color;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 28px;
     font-size: 27px;
   }
 
@@ -77,7 +77,9 @@
   label {
     color: #fff;
   }
-
+  .signin-button{
+    margin-bottom: 18px;
+  }
   .login-button {
    padding: 5px 60px;
     margin-left: auto;
@@ -104,6 +106,8 @@
 
 
 .remember-me{
+  margin-top: -17px;
+  margin-bottom: 20px !important;
   input[type="checkbox"]{
     margin-top: 4px;
     float: left;
@@ -117,7 +121,7 @@
 }
 
 .apply-margin {
-  margin-bottom: 10px;
+  margin-bottom: 17px;
 }
 
 .user-links-col1{
@@ -149,7 +153,7 @@
 }
 
 .login-top-margin {
-  margin-top: 30px;
+  margin-top: 28px;
   margin-bottom: 120px;
   padding: 0 5%;
 }

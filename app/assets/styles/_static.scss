@@ -1,8 +1,19 @@
 .warrenty-container{
   margin-bottom: 50px;
   margin-top: 25px;
+  .warranty-header{
+    font-size: 28px;
+    text-align: center;
+  }
+  .warranty-semiheader{
+    margin-top: 3px;
+    margin-bottom: 20px;
+  }
   p.p-font {
-    line-height: 27px;
+    line-height: 21px;
+    color: #666666;
+    margin-top: -3px;
+    margin-bottom: 30px;
   }
 }
 .privacy-conatiner{
