@@ -4,8 +4,6 @@
 
 .content-bg {
   background-color: rgba(0, 0, 0, 0.6);
-  padding-top: 30px;
-  height: 100%;
 }
 
 .bg-img {
@@ -161,7 +159,7 @@
 }
 .forgot-form-margin {
   margin-top: 30px;
-  margin-bottom: 250px;
+  margin-bottom: 270px;
   padding: 0 5%;
 }
 
@@ -196,15 +194,5 @@
 
   .user-links-col2{
     top: -59px!important;
-  }
-}
-
-@media(min-height: 1200px) {
-  .bg-img{
-    height: 108%;
-  }
-
-  .content-bg{
-    height: 110%;
   }
 }

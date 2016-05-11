@@ -1,17 +1,17 @@
-body{
+body {
   font-family: 'AvertaStd-Regular';
+}
+
+#wrapper {
+  position: relative;
+}
+
+.wrapper-height {
+  height: 100%;
 }
 
 .app, .header {
   clear: both;
-}
-
-.app {
-  position: relative;
-}
-
-.app-height {
-  height: 87%;
 }
 
 .load-overlay{
@@ -36,6 +36,10 @@ body{
 
 .margin-top20{
   margin-top: 20px;
+}
+
+.padding-top30{
+  padding-top: 30px;
 }
 
 .container-margins{
@@ -397,7 +401,7 @@ body.body-toggle{
     margin-top: 27px;
   }
 
-  .bg-img, .content-bg{
+  .bg-img{
     height: 100%!important;
   }
 
@@ -439,7 +443,7 @@ body.body-toggle{
     margin-top: 34px;
   }
 
-  .bg-img, .content-bg{
+  .bg-img{
     height: 100%!important;
   }
 
@@ -447,16 +451,6 @@ body.body-toggle{
     overflow: hidden;
   }
 
-}
-
-@media(max-height: 670px) {
-  .footer-fixed {
-    position: relative;
-  }
-
-  .app-height{
-    height: auto!important;
-  }
 }
 
 @media (min-width: 1300px){
