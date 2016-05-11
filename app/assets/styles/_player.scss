@@ -19,6 +19,7 @@
   }
   .player-label{
     width: 30%;
+    color: #565656 !important;
   }
   .gender-align{
     height: 34px;
@@ -378,6 +379,11 @@
           color: $white-color;
           font-weight: normal;
           font-size: 15px;
+          &:first-child{
+            text-align: left;
+            padding-left: 100px;
+            width: 20%;
+          }
         }
       }
       tr, th {
@@ -387,6 +393,11 @@
         color: #B0B0B0;
         font-size: 15px;
         border-top: none;
+        &:first-child{
+          text-align: left;
+          padding-left: 100px;
+        }
+
       }
       .player-words {
         text-transform: lowercase;
@@ -418,6 +429,9 @@
             border: 10px solid #cad6dd;
           }
           .mb-des {
+            .minibadge-description{
+              color: #636363
+            }
             span {
               color: #B0B0B0;
             }
@@ -581,6 +595,7 @@
 
 .dob {
   margin-bottom: 12px;
+  color: #AAAAAA;
 }
 
 @media(min-width: 768px) {

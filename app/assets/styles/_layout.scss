@@ -306,12 +306,14 @@ body {
 }
 
 .sp-cancel-btn {
-  background-color: #7E7E7E;
+  background-color: #a5a5a5 !important;
   border: 0px;
   font-size: 18px;
   color: $white-color;
+
   &:hover {
-    background-color: lighten(#7E7E7E, 10%);
+    background-color: darken(#a5a5a5, 10%) !important;
+    color:$white-color
   }
 }
 
