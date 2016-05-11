@@ -441,6 +441,7 @@
     }
   }
   .bigbadge-description {
+    position: relative;
     background-color: white;
     clear: both;
     .bigbadge-description-empty-div{
@@ -703,5 +704,23 @@
 @media only screen and (max-device-width: 375px){
   .player-label{
     width: 40% !important;
+  }
+}
+
+.chart-overlay {
+  position:absolute;
+  top:-12px;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color: rgba(201, 201, 201, 0.85);
+  background: url(data:;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuNUmK/OAAAAATSURBVBhXY2RgYNgHxGAAYuwDAA78AjwwRoQYAAAAAElFTkSuQmCC) repeat scroll transparent\9;
+  z-index:9999;
+  color:white;
+  .chart-ovelay-label{
+    display: block;
+    text-align: center;
+    margin-top: 230px;
+    font-size: 25px;
   }
 }

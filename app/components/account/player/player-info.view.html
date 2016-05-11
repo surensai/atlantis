@@ -76,6 +76,9 @@
                data-ng-repeat-end=""
                data-ng-if="(player.clicked && (player.showRow === count) && (windowWidth >= 768)) || (player.clicked && (windowWidth <= 768) && (player.showRow === count) && (player.showColumn === $index))">
             <div class="bigbadge-description clearfix">
+              <div class="chart-overlay" data-ng-show="player.bigbadgedetails.colorCode==='#BABCBE'">
+                <label class="chart-ovelay-label">Please add your milestones</label>
+              </div>
               <div class="bigbadge-description-empty-div"></div>
               <div class="bigbadge-description-text clearfix"
                    ng-style="{'background-color': player.bigbadgedetails.colorCode}">
@@ -116,24 +119,26 @@
               <div class="mb-con ">
                 <div class="mb-icon-con  center-align">
                   <div class="mb-icon">
-                  <div class="mb-icon">
-                    <img data-ng-if="!minibadge.assetURL" src="assets/images/no-badge.png" alt="minibadge"  width="110" />
-                    <img data-ng-if="minibadge.assetURL && minibadge.status === 'Disabled'"
-                         data-ng-src="{{minibadge.disabledassetURL}}"  width="110"  />
-                    <img data-ng-if="minibadge.assetURL && minibadge.status === 'Active'"
-                         data-ng-src="{{minibadge.assetURL}}"  width="110"  />
+                    <div class="mb-icon">
+                      <img data-ng-if="!minibadge.assetURL" src="assets/images/no-badge.png" alt="minibadge"
+                           width="110"/>
+                      <img data-ng-if="minibadge.assetURL && minibadge.status === 'Disabled'"
+                           data-ng-src="{{minibadge.disabledassetURL}}" width="110"/>
+                      <img data-ng-if="minibadge.assetURL && minibadge.status === 'Active'"
+                           data-ng-src="{{minibadge.assetURL}}" width="110"/>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="mb-des">
-                <h4 class="center-align">{{minibadge.badgeName}}</h4>
-                <div class="center-align minibadge-description"> {{minibadge.description}}</div>
+                <div class="mb-des">
+                  <h4 class="center-align">{{minibadge.badgeName}}</h4>
+
+                  <div class="center-align minibadge-description"> {{minibadge.description}}</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-        </div>
     </uib-tab>
     <uib-tab index="2" heading="Words" data-ng-click="player.getWordsClickHandler()">
       <div class="badges-container clearfix">
@@ -166,7 +171,7 @@
               <td data-ng-if="word.gamescore > 0" class="word-check"><img src="assets/images/tick.png" width="15"/>
               </td>
               <td data-ng-if="word.gamescore == 0" class="word-check">
-                <img src="assets/images/wrong.png" width="15" />
+                <img src="assets/images/wrong.png" width="15"/>
               </td>
               <td class="word-date">{{ word.endtime*1000 | date:"MM/dd/yyyy h:mma"}}</td>
             </tr>
