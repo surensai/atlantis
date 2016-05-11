@@ -184,8 +184,15 @@ body {
     text-decoration: none;
   }
 }
-.cancel-button,.cancel-button:hover{
-  background-color: #a5a5a5 !important;
+.cancel-button{
+  background-color: #a5a5a5;
+  padding: 5px 50px;
+  color: white;
+  font-size: 17px;
+}
+
+.cancel-button:hover{
+  background-color: darken(#a5a5a5, 10%)!important;
  padding: 5px 50px;
   color: white;
   font-size: 17px;

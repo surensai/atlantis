@@ -27,9 +27,12 @@
     <div class="load-overlay" data-ng-show="$root.ajaxProgress!=0">
       <img src="assets/images/icon-load.gif" width="100">
     </div>
-    <div data-ng-include=" 'layout/header.html' "></div>
-    <div id="app" class="app" ng-class="{'app-height': !globals.currentUser}" ui-view=""> </div>
-    <div data-ng-include=" 'layout/footer.html' "></div>
+    <div id="wrapper" ng-class="{'content-bg': !globals.currentUser, 'wrapper-height': !isFooterFix}">
+      <div data-ng-include=" 'layout/header.html' "></div>
+      <div id="app" class="app" ui-view=""> </div>
+      <div data-ng-include=" 'layout/footer.html' "></div>
+    </div>
+
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="assets/libs/jquery/dist/jquery.js"></script>
