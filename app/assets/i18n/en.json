@@ -150,7 +150,7 @@
     "others": "Others",
     "register": {
       "confirm_password": "Retype Password",
-      "dob": "Date of Birth",
+      "dob": "Date of birth",
       "mobile": "Mobile",
       "gender": "Gender",
       "role": "Role",
@@ -350,7 +350,8 @@
       "upload_mom_dad_pic":"or upload your own picture to MOM or DAD",
       "option_limitless":"The options are limitless!",
       "milestone_text":"At Square Panda, parents and teachers rule! Not all parents and teachers want the same things, share the same beliefs, or think the same way. So, we've left it up to you! It'scompletely within your control as to what words your children can and cannot see. Take a look at our lists of curated 'bathroom words' and more advanced science 'anatomy' words.You can turn these entire word lists on and off, or you can look at individual words on the list and decide if you want them excluded from your child's game. Customize away!",
-      "milestone_text_note":" Note: Square Panda will never intentionally display a bad word to your child. However, as your child explores letter combinations, he/she may inadvertently discover a mature word. Here you have the flexibility to allow or disallow these words from your child's game."
+      "milestone_text_note":" Square Panda will never intentionally display a bad word to your child. However, as your child explores letter combinations, he/she may inadvertently discover a mature word. Here you have the flexibility to allow or disallow these words from your child's game.",
+      "milestone_text_note_head":"Note:"
     },
     "customword_headers":{
       "word":"Custom Word",
