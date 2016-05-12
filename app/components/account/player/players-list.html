@@ -2,7 +2,8 @@
   <ul>
     <li>
       <a href="javascript:;" data-ng-click="player.addPlayer()">
-        <img data-ng-if="!playerItem.profileURL" src="assets/images/add-player.png" alt="player" width="55" height="55" />
+        <img data-ng-if="!playerItem.profileURL" src="assets/images/add-player.png" class="non-retina" alt="player" width="55" height="55" />
+        <img data-ng-if="!playerItem.profileURL" src="assets/images/add-player@2x.png" class="retina-display" alt="player" width="55" height="55" />
         <span data-translate="player.add_player" title="Add Player"> Add Player </span>
       </a>
     </li>
