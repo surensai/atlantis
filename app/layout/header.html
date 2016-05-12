@@ -1,21 +1,23 @@
 <div class="header clearfix" data-ng-if="!globals.currentUser">
-  <div class="pull-left width70-per header-bg header-left">
+  <div class="pull-left width70-per header-bg header-bg-2x header-left">
     <div class="navbar navbar-default" role="navigation">
       <div class="navbar-header main-logo-header">
           <a class="navbar-brand" ng-if="!globals.currentUser" ui-sref="login">
-            <img src="assets/images/header_logo.png" class="non-retina"  />
+            <img src="assets/images/header_logo.png" class="non-retina" width="310"  />
             <img src="assets/images/header_logo@2x.png" class="retina-display" width="310" />
           </a>
           <a class="navbar-brand" ui-sref="account.dashboard" ng-if="globals.currentUser">
-            <img src="assets/images/header_logo.png" class="non-retina" />
+            <img src="assets/images/header_logo.png" class="non-retina" width="310" />
             <img src="assets/images/header_logo@2x.png" class="retina-display" width="310" />
           </a>
           <a class="navbar-brand-responsive" ng-if="!globals.currentUser" ui-sref="login">
             <img src="assets/images/logo-responsive.png" class="non-retina" width="219" />
-            <img src="assets/images/logo-responsive@2x.png" class="retina-display" />
+            <img src="assets/images/logo-responsive@2x.png" class="retina-display" width="219" />
           </a>
-          <a class="navbar-brand-responsive" ui-sref="account.dashboard" ng-if="globals.currentUser"><img
-            src="assets/images/logo-responsive.png"/></a>
+          <a class="navbar-brand-responsive" ui-sref="account.dashboard" ng-if="globals.currentUser">
+            <img src="assets/images/logo-responsive.png" class="non-retina" width="219" />
+            <img src="assets/images/logo-responsive@2x.png" class="retina-display" width="219" />
+          </a>
       </div>
     </div>
   </div>
@@ -39,19 +41,21 @@
     <div class="navbar navbar-default pull-left" role="navigation">
       <div class="navbar-header ">
         <a class="navbar-brand" ng-if="!globals.currentUser" ui-sref="login">
-          <img src="assets/images/header_logo.png" class="non-retina"  />
+          <img src="assets/images/header_logo.png" class="non-retina" width="310"  />
           <img src="assets/images/header_logo@2x.png" class="retina-display" width="310" />
         </a>
         <a class="navbar-brand" ui-sref="account.dashboard" ng-if="globals.currentUser">
-          <img src="assets/images/header_logo.png" class="non-retina" />
+          <img src="assets/images/header_logo.png" class="non-retina" width="310" />
           <img src="assets/images/header_logo@2x.png" class="retina-display" width="310" />
         </a>
         <a class="navbar-brand-responsive" ng-if="!globals.currentUser" ui-sref="login">
           <img src="assets/images/logo-responsive.png" class="non-retina" width="219" />
-          <img src="assets/images/logo-responsive@2x.png" class="retina-display" />
+          <img src="assets/images/logo-responsive@2x.png" class="retina-display" width="219" />
         </a>
-        <a class="navbar-brand-responsive" ui-sref="account.dashboard" ng-if="globals.currentUser"><img
-          src="assets/images/logo-responsive.png"/></a>
+        <a class="navbar-brand-responsive" ui-sref="account.dashboard" ng-if="globals.currentUser">
+          <img src="assets/images/logo-responsive.png" class="non-retina" width="219" />
+          <img src="assets/images/logo-responsive@2x.png" class="retina-display" width="219" />
+        </a>
       </div>
     </div>
     <div class="pull-right">

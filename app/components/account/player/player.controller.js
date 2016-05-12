@@ -32,8 +32,9 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.drag = 'drag feedback';
   player.drop = 'drop feedback';
   player.gridCount = 4;
-  player.chartTabType = "day";
-  var wordsCsv = [];
+  player.chartTabType = "";
+  var wordsCsv = [], daysXAxisLegArr = ["", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], monthsXAxisLegArr = ["", "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
   player.getKeysOfCollection = function (obj) {
     obj = angular.copy(obj);
     if (!obj) {
@@ -70,7 +71,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   };
 
   player.onGetChartData = function (chartType) {
-    if(player.chartTabType === chartType){
+    if (player.chartTabType === chartType) {
       return false;
     }
     player.chartTabType = chartType;
@@ -78,7 +79,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   };
 
   player.showGraph = function (index, colIndex) {
-    if(index === player.showRow && colIndex === player.showColumn && player.clicked){
+    if (index === player.showRow && colIndex === player.showColumn && player.clicked) {
       player.clicked = false;
       return false;
     }
@@ -106,6 +107,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       }
     }
     //Get Chart data from API - Default is Day type
+    player.chartTabType = "";
     player.onGetChartData('day');
   };
   /*Get Chart Data from API & render in UI*/
@@ -159,13 +161,14 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   function getWords(childId) {
     var handleSuccess = function (data) {
-      if (data.length>0) {
+      if (data.length > 0) {
         player.wordsData = data;
         for (var i = 0; i < player.wordsData.length; i++) {
           var wordDate = new Date(parseInt(player.wordsData[i].endtime * 1000));
-          var formatedwordDate = (wordDate.getMonth()+1)+'/'+wordDate.getDate()+'/'+wordDate.getFullYear();
+          var formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
           var obj = {};
           obj.Words = player.wordsData[i].word;
+          player.wordsData[i].activity = JSON.parse(player.wordsData[i].activity[0]);
           obj.Attempts = player.wordsData[i].activity.length;
           obj.LastPlayed = player.wordsData[i].endtime;
           wordsCsv.push({
@@ -273,7 +276,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         },
         chart: {
           type: 'line',
-          backgroundColor:'rgba(255, 255, 255, 0)'
+          backgroundColor: 'rgba(255, 255, 255, 0)'
         }
       },
       xAxis: {
@@ -317,22 +320,117 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   //Parse Chart Data
   function parseChartData(data) {
     var tempChartObj = {
-      xAxisCatgryArr: ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7', 'Day8'],
-      seriesDataArr: [2, 5, 8, 12, 15, 6, 5]
-    };
+      xAxisCatgryArr: [],
+      seriesDataArr: []
+    }, xAxisArr = [], yAxisArr = [], apiData;
     if (data && data.length) {
-      tempChartObj.xAxisCatgryArr = [];
-      tempChartObj.seriesDataArr = [];
-      for (var chartCounter = 0; chartCounter < data.length; chartCounter++) {
-        if (data[chartCounter].hasOwnProperty('x-axis')) {
-          tempChartObj.xAxisCatgryArr.push(data[chartCounter]['x-axis']);
-        }
-        if (data[chartCounter].hasOwnProperty('y-axis')) {
-          tempChartObj.seriesDataArr.push(data[chartCounter]['y-axis']);
-        }
+      switch (player.chartTabType) {
+        case "day" || "":
+          //This Week Data
+          for (var chartCounter = 1; chartCounter <= 7; chartCounter++) {
+            //API data
+            apiData = parseXYAxisLegends(data, chartCounter);
+            if (apiData.hasOwnProperty('xAxisVal') && apiData.hasOwnProperty('yAxisVal')) {
+              xAxisArr.push(apiData.xAxisVal);
+              yAxisArr.push(apiData.yAxisVal);
+            } else {
+              //Dummy Data
+              xAxisArr.push(daysXAxisLegArr[chartCounter]);
+              yAxisArr.push(0);
+            }
+          }
+          break;
+        case "week":
+          //30 Days Data
+          var tempWeekArr = [], weekArr = [];
+          for (var weekCounter = 0; weekCounter < data.length; weekCounter++) {
+            var weekObj = data[weekCounter]["_id"];
+            weekObj.xAxisVal = Number(weekObj.weekOfMonth) + 1;
+            weekObj.yAxisVal = data[weekCounter].count;
+            tempWeekArr.push(weekObj);
+          }
+          tempWeekArr.sort(function (a, b) {
+            return a.xAxisVal == b.xAxisVal ? 0 : a.xAxisVal < b.xAxisVal ? -1 : 1;
+          });
+          for (var sortedweekCntr = 1; sortedweekCntr <= 4; sortedweekCntr++) {
+            var isWeekAPIDt = false;
+            for (var weekAPICntr = 0; weekAPICntr < tempWeekArr.length; weekAPICntr++) {
+              if (sortedweekCntr === tempWeekArr[weekAPICntr].xAxisVal) {
+                isWeekAPIDt = true;
+                xAxisArr.push("Week" + tempWeekArr[weekAPICntr].xAxisVal);
+                yAxisArr.push(tempWeekArr[weekAPICntr].yAxisVal);
+                break;
+              }
+            }
+            if (!isWeekAPIDt) {
+              xAxisArr.push("Week" + sortedweekCntr);
+              yAxisArr.push(0);
+            }
+          }
+          break;
+        case "month":
+          //1 Year Data
+          for (var monthCounter = 1; monthCounter <= 12; monthCounter++) {
+            //API data
+            apiData = parseXYAxisLegends(data, monthCounter);
+            if (apiData.hasOwnProperty('xAxisVal') && apiData.hasOwnProperty('yAxisVal')) {
+              xAxisArr.push(apiData.xAxisVal);
+              yAxisArr.push(apiData.yAxisVal);
+            } else {
+              //Dummy Data
+              xAxisArr.push(monthsXAxisLegArr[monthCounter]);
+              yAxisArr.push(0);
+            }
+          }
+          break;
+        case "year":
+          //All Time Data
+          var yearArr = [];
+          for (var yearCounter = 0; yearCounter < data.length; yearCounter++) {
+            var yearObj = data[yearCounter]["_id"];
+            yearObj.xAxisVal = yearObj.year;
+            yearObj.yAxisVal = data[yearCounter].count;
+            yearArr.push(yearObj);
+          }
+          yearArr.sort(function (a, b) {
+            return a.xAxisVal == b.xAxisVal ? 0 : a.xAxisVal < b.xAxisVal ? -1 : 1;
+          });
+          for (var sortedCntr = 0; sortedCntr < yearArr.length; sortedCntr++) {
+            xAxisArr.push(yearArr[sortedCntr].xAxisVal);
+            yAxisArr.push(yearArr[sortedCntr].yAxisVal);
+          }
+          break;
+        default:
+          break;
       }
+      tempChartObj.xAxisCatgryArr = xAxisArr;
+      tempChartObj.seriesDataArr = yAxisArr;
+    }
+    //Clear series data if Chart percentage is zero
+    if (player.bigbadgedetails && player.bigbadgedetails.percentage === 0) {
+      tempChartObj.seriesDataArr = [];
     }
     return tempChartObj;
+  }
+
+  //Parse X Axis Legends labels (e.g Days - Monday OR Months - Jan)
+  function parseXYAxisLegends(data, chartCounter) {
+    var chartDataObj = {};
+    for (var dataCounter = 0; dataCounter < data.length; dataCounter++) {
+      var obj = data[dataCounter]['_id'];
+      //Days
+      if ((player.chartTabType === "day" || player.chartTabType === "") && chartCounter === obj.dayOfWeek) {
+        chartDataObj.xAxisVal = daysXAxisLegArr[obj.dayOfWeek];
+        chartDataObj.yAxisVal = data[dataCounter].count;
+        break;
+      } else if (player.chartTabType === "month" && chartCounter === obj.month) {
+        //Months
+        chartDataObj.xAxisVal = monthsXAxisLegArr[obj.month];
+        chartDataObj.yAxisVal = data[dataCounter].count;
+        break;
+      }
+    }
+    return chartDataObj;
   }
 
   //Resposive View X-Axis Label Rotation
@@ -374,7 +472,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     return wordsCsv;
   };
 
-  player.getWordsClickHandler = function(){
+  player.getWordsClickHandler = function () {
     getWords(player.playerObj.id);
   }
 

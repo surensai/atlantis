@@ -62,11 +62,11 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     },
     resolve: {
       auth: function (UserService, $stateParams) {
-         var base_url = "http://ec2-52-71-125-138.compute-1.amazonaws.com";
-         return UserService.authorizeTokenAPI(base_url, $stateParams.token);
+        var base_url = "http://ec2-52-71-125-138.compute-1.amazonaws.com";
+        return UserService.authorizeTokenAPI(base_url, $stateParams.token);
       }
     }
-   }).state('reset-password-prod', {
+  }).state('reset-password-prod', {
     url: '/reset-password/prod/:token',
     templateUrl: urlBuilder('user/reset-password', 'reset-password'),
     controller: 'resetPasswordCtrl',
@@ -76,11 +76,11 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     },
     resolve: {
       auth: function (UserService, $stateParams) {
-         var base_url = "http://ec2-52-86-142-186.compute-1.amazonaws.com";
-         return UserService.authorizeTokenAPI(base_url, $stateParams.token);
+        var base_url = "http://ec2-52-86-142-186.compute-1.amazonaws.com";
+        return UserService.authorizeTokenAPI(base_url, $stateParams.token);
       }
     }
-    }).state('user-confirm-register', {
+  }).state('user-confirm-register', {
     url: '/user/confirmation/:token',
     templateUrl: urlBuilder('user/register', 'register.confirm-register'),
     controller: function($scope,auth) {
@@ -137,14 +137,14 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
       pageTitle: 'Square Panda - Dashboard'
     }
   }).state('account.feeds', {
-      url: '/dashboard/:id/feed',
-      templateUrl: urlBuilder('account/dashboard', 'newsfeeds'),
-      controller: 'dashboardCtrl',
-      controllerAs: "dashboard",
-      data: {
-        pageTitle: 'Square Panda - Dashboard Feeds'
-      }
-    }).state('account.players', {
+    url: '/dashboard/:id/feed',
+    templateUrl: urlBuilder('account/dashboard', 'newsfeeds'),
+    controller: 'dashboardCtrl',
+    controllerAs: "dashboard",
+    data: {
+      pageTitle: 'Square Panda - Dashboard Feeds'
+    }
+  }).state('account.players', {
     url: '/players',
     templateUrl: urlBuilder('account/player', 'players'),
     controller: 'playerCtrl',
