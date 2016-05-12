@@ -107,6 +107,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       }
     }
     //Get Chart data from API - Default is Day type
+    player.chartTabType = "";
     player.onGetChartData('day');
   };
   /*Get Chart Data from API & render in UI*/
@@ -341,32 +342,43 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           break;
         case "week":
           //30 Days Data
-          var weekArr = [];
+          var tempWeekArr = [], weekArr = [];
           for (var weekCounter = 0; weekCounter < data.length; weekCounter++) {
             var weekObj = data[weekCounter]["_id"];
-            weekObj.xAxisVal = weekObj.week;
+            weekObj.xAxisVal = Number(weekObj.weekOfMonth) + 1;
             weekObj.yAxisVal = data[weekCounter].count;
-            weekArr.push(weekObj);
+            tempWeekArr.push(weekObj);
           }
-          weekArr.sort(function (a, b) {
+          tempWeekArr.sort(function (a, b) {
             return a.xAxisVal == b.xAxisVal ? 0 : a.xAxisVal < b.xAxisVal ? -1 : 1;
           });
-          for (var sortedweekCntr = 0; sortedweekCntr < weekArr.length; sortedweekCntr++) {
-            xAxisArr.push(weekArr[sortedweekCntr].xAxisVal);
-            yAxisArr.push(weekArr[sortedweekCntr].yAxisVal);
+          for (var sortedweekCntr = 1; sortedweekCntr <= 4; sortedweekCntr++) {
+            var isWeekAPIDt = false;
+            for (var weekAPICntr = 0; weekAPICntr < tempWeekArr.length; weekAPICntr++) {
+              if (sortedweekCntr === tempWeekArr[weekAPICntr].xAxisVal) {
+                isWeekAPIDt = true;
+                xAxisArr.push("Week" + tempWeekArr[weekAPICntr].xAxisVal);
+                yAxisArr.push(tempWeekArr[weekAPICntr].yAxisVal);
+                break;
+              }
+            }
+            if (!isWeekAPIDt) {
+              xAxisArr.push("Week" + sortedweekCntr);
+              yAxisArr.push(0);
+            }
           }
           break;
         case "month":
           //1 Year Data
-          for (var chartCounter = 1; chartCounter <= 12; chartCounter++) {
+          for (var monthCounter = 1; monthCounter <= 12; monthCounter++) {
             //API data
-            apiData = parseXYAxisLegends(data, chartCounter);
+            apiData = parseXYAxisLegends(data, monthCounter);
             if (apiData.hasOwnProperty('xAxisVal') && apiData.hasOwnProperty('yAxisVal')) {
               xAxisArr.push(apiData.xAxisVal);
               yAxisArr.push(apiData.yAxisVal);
             } else {
               //Dummy Data
-              xAxisArr.push(daysXAxisLegArr[chartCounter]);
+              xAxisArr.push(monthsXAxisLegArr[monthCounter]);
               yAxisArr.push(0);
             }
           }
@@ -394,6 +406,10 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       tempChartObj.xAxisCatgryArr = xAxisArr;
       tempChartObj.seriesDataArr = yAxisArr;
     }
+    //Clear series data if Chart percentage is zero
+    if (player.bigbadgedetails && player.bigbadgedetails.percentage === 0) {
+      tempChartObj.seriesDataArr = [];
+    }
     return tempChartObj;
   }
 
@@ -407,13 +423,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         chartDataObj.xAxisVal = daysXAxisLegArr[obj.dayOfWeek];
         chartDataObj.yAxisVal = data[dataCounter].count;
         break;
-      } else if (player.chartTabType === "week" && chartCounter === obj.week) {
-        //Weeks
-        chartDataObj.xAxisVal = "Week" + data[dataCounter].week;
-        chartDataObj.yAxisVal = data[dataCounter].count;
-        break;
-      }
-      else if (player.chartTabType === "month" && chartCounter === obj.month) {
+      } else if (player.chartTabType === "month" && chartCounter === obj.month) {
         //Months
         chartDataObj.xAxisVal = monthsXAxisLegArr[obj.month];
         chartDataObj.yAxisVal = data[dataCounter].count;
@@ -421,27 +431,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       }
     }
     return chartDataObj;
-  }
-
-  //get Chart API data Object
-  function getChartAPIObj(chartCntr) {
-    for (var apiDtCounter = 0; apiDtCounter < data.length; apiDtCounter++) {
-      //Day
-      if (counterLen === 7) {
-
-      } else if (counterLen === 4) {
-
-      } else if (counterLen === 4) {
-
-      }
-      if (data[chartCounter].hasOwnProperty('_id')) {
-        chartDataObj.xAxisArr.push(parseXAxisLegends(data[chartCounter]['month']));
-      }
-      //Y Axis Values
-      if (data[chartCounter].hasOwnProperty('count')) {
-        chartDataObj.yAxisSeriesArr.push(data[chartCounter]['count']);
-      }
-    }
   }
 
   //Resposive View X-Axis Label Rotation
