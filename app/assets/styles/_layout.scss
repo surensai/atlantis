@@ -79,6 +79,7 @@ body {
 
   .header-bg {
     background: $primary-color url('../images/header-design.png') no-repeat right;
+    background-size: auto 100%;
   }
 
   .header .navbar-brand-responsive{
@@ -475,6 +476,10 @@ only screen and (min-device-pixel-ratio: 2) {
   }
   .non-retina {
     display: none!important;
+  }
+
+  .header-bg-2x{
+    background: $primary-color url('../images/header-design@2x.png') no-repeat 124px !important;
   }
 }
 
