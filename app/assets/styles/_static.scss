@@ -19,13 +19,63 @@
 .privacy-conatiner{
   margin-top: 25px;
   margin-bottom: 50px;
-   ul li{
-    margin-bottom: 10px;
-    margin-top: 10px;
+  .child-privacy-heading{
+    font-family: AvertaStd-Semibold;
+    font-size: 28px;
+    line-height: 23px;
+    color: #676767;
+    margin-bottom: 4px;
+  }
+  .child-privacy-semi-heading{
+    font-family: AvertaStd-Regular;
+    margin-top: 14px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: #888383;
   }
   p.p-font {
-    line-height: 27px;
+    font-family: AvertaStd-Regular;
+    line-height: 20px;
+    margin-bottom: 26px;
+    color: #676767;
   }
+  .privacy-data-heading{
+    font-family: AvertaStd-Bold;
+    font-size: 18px;
+    color: #676767;
+  }
+  .privacy-data-sub-heading{
+    color: #f26383;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-family: AvertaStd-Semibold
+  }
+  ul {
+    li {
+      margin-bottom: 10px;
+      margin-top: 10px;
+      line-height: 12px;
+      color: #676767;
+    }
+  }
+  .privacy-address{
+    margin-top: 20px;
+    list-style-type: none;
+    font-family: AvertaStd-Semibold;
+    color: #676767;
+  }
+  .privacy-data-sub-heading-one{
+    margin-top: 10px;
+    font-family: AvertaStd-Regular;
+    color: #676767;
+  }
+  .privacy-data-sub-heading-two{
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-family: AvertaStd-Semibold;
+    color: #676767;
+  }
+
 }
 .termservice-container{
   margin-bottom: 50px;
@@ -37,7 +87,7 @@
     line-height: 27px;
   }
   ul li{
-    line-height: 27px;
+    line-height: 18px;
   }
 }
 

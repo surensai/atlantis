@@ -279,3 +279,31 @@ img{
   position: fixed;
   width: 100%;
 }
+.pagination-styles{
+  border-radius: 0px;
+    li{
+      a{
+        margin-left: 10px;
+        background-color:#a5a5a5 !important;
+        color: white;
+        border-radius: 4px !important;
+      }
+
+      a:hover{
+      color: #fff;
+      background-color: darken(#4cbc96, 10%)!important;
+      }
+      .active a {
+        background-color: #4cbc96 !important;
+      }
+    }
+  li:first-child {
+    a{
+      padding:6px 13px !important;
+    }
+  }
+}
+.no-data{
+  text-align: center!important;
+  padding-left: 0px !important;
+}
