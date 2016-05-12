@@ -21,6 +21,11 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
         //filter the news feed based on status param
         dashboard.data.newsFeedsList = parseNewsFeedData(data);
       }
+
+      dashboard.viewby = 10;
+      dashboard.totalItems = dashboard.data.newsFeedsList.length;
+      dashboard.currentPage = 1;
+      dashboard.itemsPerPage = dashboard.viewby;
     };
     var handleError = function (error, status) {
       if (error && status) {

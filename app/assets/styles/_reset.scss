@@ -246,7 +246,16 @@ img{
     color: #fff;
   }
 }
-
+.sp-cancel-common-btn{
+  min-width: 75px;
+  color: #fff;
+  background-color: #a5a5a5;
+  border-color: none;
+  &:hover {
+    background-color: darken(#a5a5a5, 10%);
+    color: #fff;
+  }
+}
 .sp-confirm-modal{
   .modal-body {
     padding: 28px;
@@ -257,6 +266,7 @@ img{
     border-radius: 5px 5px 0px 0px;
     .modal-title {
       font-size: 18px;
+      margin-left: 10px;
     }
   }
   .modal-footer{
