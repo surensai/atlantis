@@ -476,5 +476,10 @@ only screen and (min-device-pixel-ratio: 2) {
   .non-retina {
     display: none!important;
   }
+}
 
+@media screen and (min-height: 640px ){
+  .footer-fixed {
+    position: relative;
+  }
 }
