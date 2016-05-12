@@ -478,8 +478,12 @@ only screen and (min-device-pixel-ratio: 2) {
   }
 }
 
-@media screen and (min-height: 640px ){
+@media screen and (max-height: 640px ){
   .footer-fixed {
     position: relative;
+  }
+
+  .wrapper-height{
+    height: auto!important;
   }
 }
