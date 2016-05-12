@@ -1,6 +1,6 @@
 <div class="col-lg-2"></div>
 <toaster-container toaster-options="{'position-class': 'toast-top-center'}"></toaster-container>
-<div class="container container-min-height addpalyer-container">
+<div class="container container-min-height addpalyer-container container-margins">
   <div></div>
   <div class="panel">
     <div class="panel-heading sp-common-panel-header text-center">
@@ -98,11 +98,11 @@
                       your own picture
                     </button>
                   </div>
-                  <span class="orText" data-translate="player.or"> (or) </span>
-                  <a href="javascript:;" data-ng-click="playerAction.showAvatars()"><span
-                    data-translate="player.buttons.choose_avatar">Choose an Avatar</span> <i
-                    class="fa fa-chevron-right"></i> </a>
 
+
+                  <div class="orText">
+                    <span> <a href="javascript:;" data-ng-click="playerAction.showAvatars()"> <span  data-translate="player.or">Or,</span><u data-translate="player.buttons.choose_avatar">Choose a generic avatar</u>  </a></span>
+                  </div>
                 </div>
 
               </div>
