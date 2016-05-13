@@ -1,5 +1,4 @@
 .addpalyer-container {
-  margin-top: 40px;
   background-color: #F6F6F6;
   .panel-body {
     label {
@@ -17,14 +16,12 @@
       margin-bottom: -43px !important;
     }
   }
+  .picture-selection-image{
+    margin-top: 74px;
+  }
   .player-label{
     width: 30%;
     color: #565656 !important;
-  }
-  .gender-align{
-    height: 34px;
-    margin-top: -3px;
-
   }
   .myLabel {
     position: relative;
@@ -543,8 +540,14 @@
     }
   }
   .avatar-actions {
+    a:hover{
+      text-decoration: none;
+    }
+    a:focus{
+      text-decoration: none;
+    }
     float: left;
-    padding: 15px 10px 0 10px;
+    padding: 32px 10px 0 10px;
     text-align: center;
     .browse-btn {
       position: relative;
@@ -567,6 +570,7 @@
       display: block;
       color: $sp-green;
       font-size: 13px;
+
       i {
         border: solid 2px;
         padding: 3px 4px 2px 5px;
@@ -618,12 +622,14 @@
 
 .dob {
   margin-bottom: 12px;
-  color: #AAAAAA;
 }
 
 @media(min-width: 768px) {
   .player-label{
     width: 10% !important;
+  }
+  .picture-selection-image{
+    margin-top: 0px !important;
   }
   .bigbadge-graph-button-style{
     padding: 5px 20px 5px 20px;
@@ -711,16 +717,21 @@
 .player-export-btn:hover {
   text-decoration: none;
 }
-@media only screen and
-(min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
   .player-label{
     width: 16% !important;
+  }
+  .picture-selection-image{
+    margin-top: 93px !important;
   }
 }
 @media only screen and
 (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   .player-label{
     width: 12% !important;
+  }
+  .picture-selection-image{
+    margin-top: 0px !important;
   }
 }
 @media only screen and (max-device-width: 375px){

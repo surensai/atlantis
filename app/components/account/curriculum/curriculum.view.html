@@ -92,14 +92,14 @@
                   </thead>
                   <tbody>
                   <tr data-ng-repeat="word in curriculum.customWords.slice(((curriculum.currentPage-1)*curriculum.itemsPerPage), ((curriculum.currentPage)*curriculum.itemsPerPage)) | orderBy:curriculum.predicate:curriculum.reverse">
-                    <td class="player-words text-ellipsis word-text">{{ word.Words}}</td>
+                    <td class="player-words ">{{ word.Words}}</td>
                     <td data-ng-if="word.picture" class="word-check"><img  class="img-circle" width="40" height="40" ng-src="{{word.picture}}"></td>
                     <td data-ng-if="!word.picture" class="word-check">
                       <img src="assets/images/fallback-img.png" class="img-circle" alt="player" width="40" height="40" />
                     </td>
                     <td>
-                      <a href=""> <i ui-sref="account.editCustomWord({ id: word.id})" class="fa fa-pencil-square-o left-padding"></i> </a>
-                    <a href=""> <i data-ng-click="curriculum.deleteListener(word)" class="fa fa-trash left-padding"></i></a></td>
+                      <a href=""> <i ui-sref="account.editCustomWord({ id: word.id})" class="fa fa-pencil-square-o left-padding word-icon-colors"></i> </a>
+                    <a href=""> <i data-ng-click="curriculum.deleteListener(word)" class="fa fa-trash left-padding word-icon-colors"></i></a></td>
                   </tr>
                   <tr data-ng-if="curriculum.customWords.length === 0">
                     <td colspan="5" data-translate="curriculum.nodata" class="no-data"> No Data</td>
@@ -107,7 +107,7 @@
                   </tbody>
                 </table>
               </div>
-              <uib-pagination data-ng-if="curriculum.totalItems > curriculum.itemsPerPage" class="pull-right" total-items="curriculum.totalItems" direction-links="false" ng-model="curriculum.currentPage"  items-per-page="curriculum.itemsPerPage"></uib-pagination>
+              <uib-pagination data-ng-if="curriculum.totalItems > curriculum.itemsPerPage" class="pull-right pagination-styles" total-items="curriculum.totalItems" direction-links="false" ng-model="curriculum.currentPage"  items-per-page="curriculum.itemsPerPage"></uib-pagination>
             </uib-accordion-group>
           </uib-accordion>
         </div>

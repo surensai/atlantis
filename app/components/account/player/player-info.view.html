@@ -82,36 +82,26 @@
                 <p>{{player.bigbadgedetails.description}} </p>
                 <span class="bigbadge-buttons " data-ng-repeat="word in player.bigbadgedetails.tabwords">{{word}}</span>
               </div>
-              <div class="chart-container">
-                <div class="chart-overlay" data-ng-show="player.bigbadgedetails.percentage === 0">
-                  <span>Please start the milestone to view your child's performance</span>
-                </div>
-                <div class="bigbadge-graph-buttons ">
-                  <button class="btn bigbadge-graph-button-style"
-                          data-ng-class="player.chartTabType==='day' && player.bigbadgedetails.percentage !== 0 ?'active':''"
-                          data-translate="player.badges.this_week" data-ng-click="player.onGetChartData('day')">
-                    This Week
-                  </button>
-                  <button class="btn bigbadge-graph-button-style"
-                          data-ng-class="player.chartTabType==='week'?'active':''"
-                          data-translate="player.badges.30days" data-ng-click="player.onGetChartData('week')">
-                    30 Days
-                  </button>
-                  <button class="btn bigbadge-graph-button-style"
-                          data-ng-class="player.chartTabType==='month'?'active':''"
-                          data-translate="player.badges.1year" data-ng-click="player.onGetChartData('month')">
-                    1 Year
-                  </button>
-                  <button class="btn bigbadge-graph-button-style"
-                          data-ng-class="player.chartTabType==='year'?'active':''"
-                          data-translate="player.badges.all_time" data-ng-click="player.onGetChartData('year')">
-                    All Time
-                  </button>
-                </div>
-
-                <highchart id="chartContainer" config="player.highchartsNG"></highchart>
+              <div class="bigbadge-graph-buttons ">
+                <button class="btn bigbadge-graph-button-style" data-ng-class="player.chartTabType==='day'?'active':''"
+                        data-translate="player.badges.this_week" data-ng-click="player.onGetChartData('day')">
+                  This Week
+                </button>
+                <button class="btn bigbadge-graph-button-style" data-ng-class="player.chartTabType==='week'?'active':''"
+                        data-translate="player.badges.30days" data-ng-click="player.onGetChartData('week')">
+                  30 Days
+                </button>
+                <button class="btn bigbadge-graph-button-style"
+                        data-ng-class="player.chartTabType==='month'?'active':''"
+                        data-translate="player.badges.1year" data-ng-click="player.onGetChartData('month')">
+                  1 Year
+                </button>
+                <button class="btn bigbadge-graph-button-style" data-ng-class="player.chartTabType==='year'?'active':''"
+                        data-translate="player.badges.all_time" data-ng-click="player.onGetChartData('year')">
+                  All Time
+                </button>
               </div>
-
+              <highchart id="chartContainer" config="player.highchartsNG"></highchart>
             </div>
           </div>
 
@@ -126,26 +116,24 @@
               <div class="mb-con ">
                 <div class="mb-icon-con  center-align">
                   <div class="mb-icon">
-                    <div class="mb-icon">
-                      <img data-ng-if="!minibadge.assetURL" src="assets/images/no-badge.png" alt="minibadge"
-                           width="110"/>
-                      <img data-ng-if="minibadge.assetURL && minibadge.status === 'Disabled'"
-                           data-ng-src="{{minibadge.disabledassetURL}}" width="110"/>
-                      <img data-ng-if="minibadge.assetURL && minibadge.status === 'Active'"
-                           data-ng-src="{{minibadge.assetURL}}" width="110"/>
-                    </div>
+                  <div class="mb-icon">
+                    <img data-ng-if="!minibadge.assetURL" src="assets/images/no-badge.png" alt="minibadge"  width="110" />
+                    <img data-ng-if="minibadge.assetURL && minibadge.status === 'Disabled'"
+                         data-ng-src="{{minibadge.disabledassetURL}}"  width="110"  />
+                    <img data-ng-if="minibadge.assetURL && minibadge.status === 'Active'"
+                         data-ng-src="{{minibadge.assetURL}}"  width="110"  />
                   </div>
                 </div>
-                <div class="mb-des">
-                  <h4 class="center-align">{{minibadge.badgeName}}</h4>
-
-                  <div class="center-align minibadge-description"> {{minibadge.description}}</div>
-                </div>
+              </div>
+              <div class="mb-des">
+                <h4 class="center-align">{{minibadge.badgeName}}</h4>
+                <div class="center-align minibadge-description"> {{minibadge.description}}</div>
               </div>
             </div>
           </div>
         </div>
       </div>
+        </div>
     </uib-tab>
     <uib-tab index="2" heading="Words" data-ng-click="player.getWordsClickHandler()">
       <div class="badges-container clearfix">
@@ -178,12 +166,12 @@
               <td data-ng-if="word.gamescore > 0" class="word-check"><img src="assets/images/tick.png" width="15"/>
               </td>
               <td data-ng-if="word.gamescore == 0" class="word-check">
-                <img src="assets/images/wrong.png" width="15"/>
+                <img src="assets/images/wrong.png" width="15" />
               </td>
               <td class="word-date">{{ word.endtime*1000 | date:"MM/dd/yyyy h:mma"}}</td>
             </tr>
             <tr data-ng-if="player.wordsData.length === 0">
-              <td colspan="5" data-translate="player.badges.nodata"> No Data</td>
+              <td colspan="5" data-translate="player.badges.nodata" class="no-data"> No Data</td>
             </tr>
             </tbody>
           </table>
