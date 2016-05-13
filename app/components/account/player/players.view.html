@@ -1,5 +1,7 @@
-<toaster-container toaster-options="{'position-class': 'toast-top-center'}"></toaster-container>
-<div class="container container-min-height players-container container-margins">
+<div class="container container-min-height players-container">
+  <div set-class-when-at-top="fix-to-top container row">
+    <toaster-container class="custom-toaster-conatiner" toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+  </div>
   <div class="players-panel" data-ng-if="player.data.playersList.length > 0">
     <div data-ng-include =" 'components/account/player/players-list.html' "></div>
     <div ui-view></div>
