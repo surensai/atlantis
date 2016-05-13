@@ -28,7 +28,7 @@ angular.module('app').factory('flashService', ['$rootScope','$cookieStore','toas
       type: 'success',
       keepAfterLocationChange: keepAfterLocationChange
     };
-    toaster.pop({type:$rootScope.globals.flash.type, title:"Success", body:$rootScope.globals.flash.message, timeout: 2000});
+    toaster.pop({type:$rootScope.globals.flash.type, closeButton: true, title:"Success", body:$rootScope.globals.flash.message, timeout: 10000});
   }
 
   function showCustomMessage(type, isClear) {
@@ -45,7 +45,7 @@ angular.module('app').factory('flashService', ['$rootScope','$cookieStore','toas
       type: 'error',
       keepAfterLocationChange: keepAfterLocationChange
     };
-    toaster.pop({type:$rootScope.globals.flash.type, title:"Error", body:$rootScope.globals.flash.message, timeout: 2000});
+    toaster.pop({type:$rootScope.globals.flash.type, closeButton: true, title:"Error", body:$rootScope.globals.flash.message, timeout: 10000});
   }
 
   initService();
