@@ -90,27 +90,35 @@
                 <p>{{player.bigbadgedetails.description}} </p>
                 <span class="bigbadge-buttons " data-ng-repeat="word in player.bigbadgedetails.tabwords">{{word}}</span>
               </div>
+              <div class="chart-container">
+                  <div class="chart-overlay" data-ng-show="player.bigbadgedetails.percentage === 0">
+                  <span>Please start the milestone to view your child's performance</span>
+                  </div>
               <div class="bigbadge-graph-buttons ">
-                <button class="btn bigbadge-graph-button-style" data-ng-class="player.chartTabType==='day'?'active':''"
+                <a class="btn bigbadge-graph-button-style"
+                        data-ng-class="{'active': (player.chartTabType==='day' && player.bigbadgedetails.percentage !== 0)}"
                         data-translate="player.badges.this_week" data-ng-click="player.onGetChartData('day')">
                   This Week
-                </button>
-                <button class="btn bigbadge-graph-button-style" data-ng-class="player.chartTabType==='week'?'active':''"
+                </a>
+                <a class="btn bigbadge-graph-button-style"
+                        data-ng-class="{'active': player.chartTabType==='week'}"
                         data-translate="player.badges.30days" data-ng-click="player.onGetChartData('week')">
                   30 Days
-                </button>
-                <button class="btn bigbadge-graph-button-style"
-                        data-ng-class="player.chartTabType==='month'?'active':''"
+                </a>
+                <a class="btn bigbadge-graph-button-style"
+                        data-ng-class="{'active': player.chartTabType==='month'}"
                         data-translate="player.badges.1year" data-ng-click="player.onGetChartData('month')">
                   1 Year
-                </button>
-                <button class="btn bigbadge-graph-button-style" data-ng-class="player.chartTabType==='year'?'active':''"
+                </a>
+                <a class="btn bigbadge-graph-button-style"
+                        data-ng-class="{'active': player.chartTabType==='year'}"
                         data-translate="player.badges.all_time" data-ng-click="player.onGetChartData('year')">
                   All Time
-                </button>
+                </a>
               </div>
               <highchart id="chartContainer" config="player.highchartsNG"></highchart>
             </div>
+              </div>
           </div>
 
         </div>

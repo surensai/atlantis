@@ -132,15 +132,18 @@
             <div class="col-md-1 col-sm-2 player-label"></div>
             <div class="col-md-5 col-sm-5 save-cancel-parent">
               <button type="submit" class="btn btn-primary player-button-padding save-cancel-player"
-                      data-translate="common.buttons.save">
-                Save
-              </button>
+                      data-translate="common.buttons.save">  Save  </button>
+
               <a ui-sref="account.players.details({ id: playerAction.model.playerItem.id })" type="button"
                  class="btn btn-primary cancel-button save-cancel-player"
                  data-translate="common.buttons.cancel">Cancel</a>
-              <img src="assets/images/delete-player.png" class=" player-delete-icon pull-right"
-                   data-ng-if="playerAction.isUpdate"
-                   data-ng-click="playerAction.deleteListener(playerAction.model.playerItem)">
+
+              <a class="pull-right btn-primary player-delete-button"
+                 data-ng-click="playerAction.deleteListener(playerAction.model.playerItem)"
+                 data-ng-if="playerAction.isUpdate">
+                <i class="fa fa-trash-o"></i>
+              </a>
+
             </div>
           </div>
         </div>

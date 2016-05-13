@@ -56,6 +56,10 @@
     padding: 5px 60px;
     margin-right: 15px;
   }
+  .player-delete-button{
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
   .player-delete-icon {
     background-color: $sp-green;
     border-radius: 5px;
@@ -503,20 +507,20 @@
       .bigbadge-graph-button-style {
         padding: 5px 14px 5px 14px;
         background-color: white;
-        color: #EDA01D;
-        border: 1px solid;
+        color: #BABCBE;
+        border: 1px solid #BABCBE;
         margin-right: 10px;
-      }
-      .bigbadge-graph-button-style:hover {
-        background-color: #EDA01D;
-        color: white;
-        border: 1px solid #EDA01D;
+        &:hover{
+          background-color: $sp-yellow;
+          border: 1px solid $sp-yellow;
+          color: white;
+        }
       }
       .bigbadge-graph-button-style.active {
-        background-color: #EDA01D;
+        background-color: $sp-yellow;
+        border: 1px solid $sp-yellow;
         color: white;
-        border: 1px solid #EDA01D;
-        cursor: default;
+        box-shadow: none;
       }
 
     }
@@ -738,4 +742,9 @@
   .player-label{
     width: 40% !important;
   }
+}@media only screen and (max-device-width: 475px){
+  .player-delete-button{
+    margin-right: 20px;
+  }
 }
+
