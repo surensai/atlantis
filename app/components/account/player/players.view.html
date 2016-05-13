@@ -1,5 +1,7 @@
-<toaster-container toaster-options="{'position-class': 'toast-top-center'}"></toaster-container>
-<div class="container container-min-height players-container container-margins">
+<div class="container container-min-height players-container">
+  <div set-class-when-at-top="fix-to-top container row">
+    <toaster-container class="custom-toaster-conatiner" toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+  </div>
   <div class="players-panel" data-ng-if="player.data.playersList.length > 0">
     <div data-ng-include =" 'components/account/player/players-list.html' "></div>
     <div ui-view></div>
@@ -10,7 +12,8 @@
         <h4 class="center-align" data-translate="player.no_players">You don't have any players added.Start adding now..</h4>
         <div class="center-align margin-top20">
             <a class="add-player-link"  ui-sref="account.addplayer">
-              <img src="assets/images/add-player-noplayers.png" />
+              <img src="assets/images/add-player-noplayers.png"  class="non-retina" width="81" />
+              <img src="assets/images/add-player-noplayers@2x.png"  class="retina-display" width="81" />
               <span data-translate="player.add_player"> Add Player </span>
             </a>
         </div>

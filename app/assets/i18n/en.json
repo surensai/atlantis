@@ -110,8 +110,6 @@
       "title": "View Custom Word",
       "header":"View Custom Word"
     }
-
-
   },
   "common": {
     "warning":"Warning!",
@@ -365,7 +363,7 @@
     "word": "word",
     "pronunciation":"Pronunciation",
     "picture":"Picture",
-    "add_custom_word":"Add Custom word",
+    "add_custom_word":"Add Custom Word",
     "nodata":"No data",
     "custom_word":"Custom Word",
     "group_word_list":"Group Word List",

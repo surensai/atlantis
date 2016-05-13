@@ -267,10 +267,19 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     var dobArr = playerAction.model.playerItem.dateofBirth.split("/");
     if(dobArr[0] > 0 && dobArr[1] > 0 && dobArr[2] > 0) {
       playerAction.isDOBVaid = true;
+      isDOBCurrentDateExceed(dobArr);
     } else {
       playerAction.isDOBVaid = false;
     }
+  }
 
+  function isDOBCurrentDateExceed(selectedDate){
+    var curDate = new Date(), month = selectedDate[0], day = selectedDate[1], year = selectedDate[2];
+    if(curDate.getFullYear() === parseInt(year)){
+      if(month >= (curDate.getMonth() + 1)){
+        playerAction.isDOBVaid = false;
+      }
+    }
   }
 
 
