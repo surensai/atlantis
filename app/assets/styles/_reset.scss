@@ -340,6 +340,11 @@ img{
       color:#709263;
       margin: 5px 5px 0 0;
     }
+    .toast-close-button:hover,:focus{
+      outline: none;
+      color: darken(#709263, 10%)!important;
+      opacity:1;
+    }
   }
 
   .toast-error {
@@ -350,6 +355,11 @@ img{
     .toast-close-button{
       color:#a94442;
       margin: 5px 5px 0 0;
+    }
+    .toast-close-button:hover,:focus{
+      outline: none;
+      color:  darken(#a94442, 10%)!important;
+      opacity:1;
     }
   }
 
