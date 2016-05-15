@@ -228,7 +228,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     url: '/press',
     templateUrl: urlBuilder('static', 'press'),
     controller: 'staticCtrl',
-    controllerAs: "static",
+    controllerAs: "self",
     data: {
       pageTitle: 'Square Panda - Press'
     }
@@ -236,7 +236,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     url: '/warrentyinfo',
     templateUrl: urlBuilder('static', 'warrentyinfo'),
     controller: 'staticCtrl',
-    controllerAs: "static",
+    controllerAs: "self",
     data: {
       pageTitle: 'Square Panda - Warranty Information'
     }
@@ -244,7 +244,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     url: '/privacy-policy',
     templateUrl: urlBuilder('static', 'privacy-policy'),
     controller: 'staticCtrl',
-    controllerAs: "static",
+    controllerAs: "self",
     data: {
       pageTitle: 'Square Panda - privacy-policy'
     }
@@ -252,7 +252,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     url: '/terms-services',
     templateUrl: urlBuilder('static', 'terms-services'),
     controller: 'staticCtrl',
-    controllerAs: "static",
+    controllerAs: "self",
     data: {
       pageTitle: 'Square Panda - terms-services'
     }
