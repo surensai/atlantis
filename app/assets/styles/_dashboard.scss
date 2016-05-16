@@ -6,6 +6,57 @@
 }
 .dashboard-container {
   background-color: $account-bg-color;
+  .welcome-feed{
+    border-radius: 10px;
+    background-color: #00ccff;
+    .panel{
+      background-color: transparent;
+      .welcome-feed-description{
+        color: $white-color;
+        padding: 30px;
+        padding-top: 0px;
+      }
+      .panel-footer{
+        clear: both;
+        background-color: #64A53A;
+        padding: 0px;
+        text-align: right;
+        border-top: none;
+      }
+    }
+  }
+  .earn-badge{
+    background-color: #552F91;
+    border-radius: 10px;
+    .eb-left{
+      padding: 25px;
+      h2{
+        text-align: center;
+        margin: 0px;
+        color: #ffffff;
+        line-height: 45px;
+      }
+    }
+    .eb-left-content{
+      h2{
+        color: #ffffff;
+        line-height: 45px;
+        margin: 0px;
+        font-size: 15px;
+        text-align: center;
+      }
+      h3{
+        border: solid 1px #F9A61A;
+        background-color: #472182;
+        margin: 0px;
+        color: #ffffff;
+        font-size: 15px;
+        padding: 10px;
+        text-align: center;
+      }
+    }
+  }
+
   .feed-row {
     .panel {
       margin-bottom: 20px;

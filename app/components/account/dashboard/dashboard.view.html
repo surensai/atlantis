@@ -1,5 +1,55 @@
 <div class="dashboard-container container-margins">
 <div class="container container-min-height ">
+  <div class="welcome-feed">
+    <div class="panel clearfix">
+      <div class="col-md-4 nopadding">
+          <div class="welcome-feed-description">
+            <h3>Welcome Jan,</h3>
+            <p>We’re delighted that you’re
+              here to take the first steps towards
+              your child’s reading readiness with
+              Square Panda’s Playground!</p>
+            <a href="javascript:;">Read less</a>
+          </div>
+      </div>
+      <div class="col-md-8 nopadding">
+        <img data-ng-if="!feedItem.image_url" src="assets/images/welcome-feed-img.png" width="100%"  />
+      </div>
+      <div class="panel-footer clearfix">
+        <div class="col-md-4"></div>
+        <div class="col-md-8">
+          <img src="assets/images/welcome-feed-footer-img.png" width="100%" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="welcome-feed-details">
+    <p>This is your destination to view the footprints of your child’s newly earned badges and discover more skills that they're ready to learn.</p>
+    <p>It’s easy to follow your child’s progress with a quick glance at their collection of earned badges. These badges symbolize the top skills your child needs to become reading ready from letter identification to rhymes to blended letter sounds! To help your child practice, you can view lists of all the letters and words they’ve learned.</p>
+    <p>Imagine how thrilled your child will be when she or he discovers the word “Mom” and your photo appears on screen while they’re playing! By adding new words and familiar pictures to your child’s word bank, you'll be able to customize any word imaginable - pets, family members, school logos and even special spelling lists. Just check out the My Curriculum area to create personalized word lists.</p>
+    <p>Well we have kept you long enough - it's time to jump into the Playground!</p>
+
+    Welcome!
+    Square Panda Team
+  </div>
+  <div class="earn-badge clearfix">
+    <div class="col-md-6">
+      <div class="eb-left">
+        <h2>Help your child</h2>
+        <h2>earn their 1 st badge</h2>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="eb-left-content pull-left col-md-6">
+        <h2>Earn a New badge</h2>
+        <h3>"I spelled my name"</h3>
+      </div>
+      <div class="eb-right-content pull-right col-md-6">
+        <img src="assets/images/earn-badge.png" />
+      </div>
+    </div>
+  </div>
+
   <div class="feed-row" data-ng-repeat="feedItem in dashboard.data.newsFeedsList.slice(((dashboard.currentPage-1)*dashboard.itemsPerPage), ((dashboard.currentPage)*dashboard.itemsPerPage))">
     <div class="panel clearfix">
       <div class="col-md-5 nopadding">
