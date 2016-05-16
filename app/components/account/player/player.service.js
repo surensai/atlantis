@@ -14,7 +14,18 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
   service.getWordsApi = function (childId) {
     return $http.get(base_url + '/activity/' + userID + '/' + childId);
   };
-
+  //Get Letters API
+  service.getLettersWordsApi = function (childId) {
+    return $http.get(base_url + '/word/' + childId + "/singleletterwords");
+  };
+//Get Nonsense Words API
+  service.getNonsenseWordsApi = function (childId) {
+    return $http.get(base_url + '/word/' + childId + "/nonsensewords");
+  };
+//Get Real Words API
+  service.getRealWordsApi = function (childId) {
+    return $http.get(base_url + '/word/' + childId + "/realwords");
+  };
   service.getMinibadgesApi = function (playerId) {
     return $http.get(base_url + '/activity/' + userID + '/' + playerId + '/minibadges');
   };
