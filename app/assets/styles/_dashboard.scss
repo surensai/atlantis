@@ -7,14 +7,25 @@
 .dashboard-container {
   background-color: $account-bg-color;
   .welcome-feed{
+    font-family: AvertaStd-Regular;
     border-radius: 10px;
     background-color: #00ccff;
+    padding-top: 10px;
     .panel{
       background-color: transparent;
       .welcome-feed-description{
         color: $white-color;
         padding: 30px;
-        padding-top: 0px;
+        padding-top: 40px;
+        a {
+          text-decoration: underline;
+          float: right;
+          color: white;
+        }
+        a:hover{
+          text-decoration: underline;
+          color: white;
+        }
       }
       .panel-footer{
         clear: both;
@@ -22,25 +33,47 @@
         padding: 0px;
         text-align: right;
         border-top: none;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
       }
     }
   }
+  .welcome-feed-details{
+    padding: 0px 25px 5px 25px;
+    margin-top: -5px;
+    .welcome-feed-ending{
+      margin-top: 35px;
+      line-height: 0px;
+  }
+    .welcome-feed-ending-details-ending{
+      color: #f26383;
+      font-family: AvertaStd-Semibold;
+    }
+  }
+
   .earn-badge{
     background-color: #552F91;
     border-radius: 10px;
+    margin-bottom: 10px;
     .eb-left{
-      padding: 25px;
-      h2{
+      margin-top: 10px;
+      padding: 25px 100px;
+      float: left;
+      h3{
         text-align: center;
         margin: 0px;
         color: #ffffff;
-        line-height: 45px;
+        font-size: 22px;
+        line-height: 30px;
       }
     }
     .eb-left-content{
+      margin-top: 16px;
+      padding: 15px 0px;
+      margin-left: 40px;
       h2{
         color: #ffffff;
-        line-height: 45px;
+        line-height: 30px;
         margin: 0px;
         font-size: 15px;
         text-align: center;
@@ -55,6 +88,13 @@
         text-align: center;
       }
     }
+    .eb-right-content{
+      padding: 0px 40px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      margin-right: -40px;
+    }
+
   }
 
   .feed-row {
@@ -164,7 +204,27 @@
   .feed-img{
     max-height: none!important;
   }
+  .eb-right-content{
+    padding: 0px 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 80px !important;
+  }
 }
+
+@media only screen and
+(min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .feed-img{
+    max-height: none!important;
+  }
+  .eb-right-content{
+    padding: 0px 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 170px !important;
+  }
+}
+
 
 @media(min-width: 995px) {
   .dashboard-container .feed-row .panel .feed-img{
