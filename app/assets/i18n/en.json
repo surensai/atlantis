@@ -287,7 +287,7 @@
       "attempts": "Attempts",
       "last_played": "Last Played",
       "last_attempt": "Last Attempt"
-    },
+    },,
     "letter_headers": {
       "letters": "Letters",
       "inputs": "Inputs",
