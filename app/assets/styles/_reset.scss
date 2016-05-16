@@ -16,6 +16,7 @@ body {
 .nopadding {
   padding: 0px;
 }
+
 .nomargin {
   margin: 0px;
 }
@@ -26,6 +27,10 @@ body {
 
 .no-visible{
   visibility: hidden!important;
+}
+
+.no-display{
+  display: none;
 }
 
 .nofloat{
@@ -304,9 +309,67 @@ img{
   }
 }
 
+.fix-to-top {
+  position: fixed;
+  z-index: 9999;
+  top: 0px;
+}
+
 #toast-container{
+  position: relative;
+  margin-bottom: 10px;
+  top: 0px;
+  margin-top: 10px;
+  .toast {
+    padding: 10px;
+    opacity: 1;
+    width: auto;
+    margin: 0 20px!important;
+  }
+
+  .toast-title {
+    display: none;
+  }
+
+  .toast-success {
+    background-image: none!important;
+    background-color: #DFF0D9;
+    color:#709263;
+    border: solid 1px #709263;
+    .toast-close-button{
+      color:#709263;
+      margin: 5px 5px 0 0;
+    }
+    .toast-close-button:hover,:focus{
+      outline: none;
+      color: darken(#709263, 10%)!important;
+      opacity:1;
+    }
+  }
+
+  .toast-error {
+    background-image: none!important;
+    background-color: #f2dede;
+    color:#a94442;
+    border: solid 1px #a94442;
+    .toast-close-button{
+      color:#a94442;
+      margin: 5px 5px 0 0;
+    }
+    .toast-close-button:hover,:focus{
+      outline: none;
+      color:  darken(#a94442, 10%)!important;
+      opacity:1;
+    }
+  }
+
+  .toast-message {
+    text-align: center;
+    line-height: 30px;
+  }
 
 }
+
 
 .no-data{
   text-align: center!important;

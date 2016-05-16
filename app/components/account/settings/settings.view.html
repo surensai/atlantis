@@ -1,6 +1,9 @@
-<toaster-container class="custom-toaster-conatiner" toaster-options="{'position-class': 'toast-top-center'}"></toaster-container>
-<div class="settings-container container-margins">
+<div class="settings-container">
   <div class="container container-min-height">
+    <div set-class-when-at-top="fix-to-top container row">
+        <toaster-container class="custom-toaster-conatiner" toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+    </div>
+
     <div class="panel settiings-panel">
       <div class="panel-heading sp-common-panel-header" data-translate="nav.header.edit_profile">
         Edit Profile
