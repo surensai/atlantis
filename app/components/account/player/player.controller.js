@@ -13,6 +13,9 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.splitBadgesData = [];
   player.miniBadges = [];
   player.wordsData = [];
+  player.lettersWordsData = [];
+  player.nonsenseWordsData = [];
+  player.realWordsData = [];
   player.csvData = [];
   player.isNoPlayer = false;
   player.reverse = false;
@@ -29,11 +32,29 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     LastPlayed: $translate.instant("player.word_headers.last_played"),
     LastAttempt: $translate.instant("player.word_headers.last_attempt")
   };
+  player.lettersHeaders = {
+    LettersWords: $translate.instant("player.letter_headers.letters"),
+    Inputs: $translate.instant("player.letter_headers.inputs"),
+    LastPlayed: $translate.instant("player.letter_headers.last_played"),
+    LastAttempt: $translate.instant("player.letter_headers.last_attempt")
+  };
+  player.nonsenseHeaders = {
+    NonsenseWords: $translate.instant("player.nonsense_headers.nonsense_words"),
+    Times: $translate.instant("player.nonsense_headers.times"),
+    LastPlayed: $translate.instant("player.nonsense_headers.last_played")
+  };
+  player.realWordsHeaders = {
+    Real_Words: $translate.instant("player.real_word_headers.real_words"),
+    Correct: $translate.instant("player.real_word_headers.correct"),
+    Incorrect: $translate.instant("player.real_word_headers.incorrect"),
+    LastPlayed: $translate.instant("player.real_word_headers.last_played"),
+    LastAttempt: $translate.instant("player.real_word_headers.last_attempt")
+  };
   player.drag = 'drag feedback';
   player.drop = 'drop feedback';
   player.gridCount = 4;
   player.chartTabType = "";
-  var wordsCsv = [], daysXAxisLegArr = ["", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], monthsXAxisLegArr = ["", "January", "February", "March", "April", "May", "June",
+  var wordsCsv = [], lettersWordsCsv = [], nonsenseWordsCsv = [], realWordsCsv = [], daysXAxisLegArr = ["", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], monthsXAxisLegArr = ["", "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"];
   player.getKeysOfCollection = function (obj) {
     obj = angular.copy(obj);
@@ -159,6 +180,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   }
 
+  //Words
   function getWords(childId) {
     var handleSuccess = function (data) {
       if (data.length > 0) {
@@ -187,6 +209,119 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     };
 
     PlayerService.getWordsApi(childId)
+      .success(handleSuccess)
+      .error(handleError);
+  }
+
+  //Letters Words
+  function getLettersWords(childId) {
+    var handleSuccess = function (data) {
+      if (data.length > 0) {
+        player.lettersWordsData = data;
+        for (var i = 0; i < player.lettersWordsData.length; i++) {
+          var wordDate = new Date(parseInt(player.lettersWordsData[i].endtime * 1000));
+          var formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
+          var obj = {};
+          obj.Words = player.lettersWordsData[i]._id;
+          player.lettersWordsData[i].activity = JSON.parse(player.lettersWordsData[i].activity[0]);
+          obj.Attempts = player.lettersWordsData[i].activity.length;
+          obj.LastPlayed = player.lettersWordsData[i].endtime;
+          lettersWordsCsv.push({
+            Words: obj.Words,
+            Attempts: obj.Attempts,
+            LastPlayed: formatedwordDate
+          });
+        }
+      }
+    };
+
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.getPlayerwordsError(status);
+      }
+    };
+
+    PlayerService.getLettersWordsApi(childId)
+      .success(handleSuccess)
+      .error(handleError);
+  }
+
+  //Nonsense Words
+  function getNonsenseWords(childId) {
+    var handleSuccess = function (data) {
+      if (data.length > 0) {
+        player.nonsenseWordsData = data;
+        for (var i = 0; i < player.nonsenseWordsData.length; i++) {
+          var wordDate = new Date(parseInt(player.nonsenseWordsData[i].endtime * 1000));
+          var formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
+          var obj = {};
+          obj.Words = player.nonsenseWordsData[i]._id;
+          player.nonsenseWordsData[i].activity = JSON.parse(player.nonsenseWordsData[i].activity[0]);
+          obj.Attempts = player.nonsenseWordsData[i].activity.length;
+          obj.LastPlayed = player.nonsenseWordsData[i].endtime;
+          nonsenseWordsCsv.push({
+            Words: obj.Words,
+            Attempts: obj.Attempts,
+            LastPlayed: formatedwordDate
+          });
+        }
+      }
+    };
+
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.getPlayerwordsError(status);
+      }
+    };
+
+    PlayerService.getNonsenseWordsApi(childId)
+      .success(handleSuccess)
+      .error(handleError);
+  }
+
+  //Real Words
+  function getRealWords(childId) {
+    var handleSuccess = function (data) {
+      if (data.length > 0) {
+        player.realWordsData = data;
+        for (var i = 0; i < player.realWordsData.length; i++) {
+          var wordDate = new Date(parseInt(player.realWordsData[i].endtime * 1000));
+          var formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
+          var obj = {};
+          obj.Words = player.realWordsData[i]._id;
+          player.realWordsData[i].activity = JSON.parse(player.realWordsData[i].activity[0]);
+          obj.Attempts = player.realWordsData[i].activity.length;
+          obj.LastPlayed = player.realWordsData[i].endtime;
+          obj.gamescore = player.realWordsData[i].gamescore;
+          obj.gameAttempts = player.realWordsData[i].gameAttempts;
+          if (!obj.gameAttempts || obj.gameAttempts.length === 0) {
+            obj.gameAttempts = [];
+          } else {
+            var gameAttLen = 5 - obj.gameAttempts.length;
+            for (var gameAttcounter = 0; gameAttcounter < gameAttLen; gameAttcounter++) {
+              obj.gameAttempts.push(0);
+            }
+          }
+          //update the UI also
+          player.realWordsData[i].gameAttempts = obj.gameAttempts;
+          realWordsCsv.push({
+            Words: obj.Words,
+            Correct: obj.gamescore,
+            Incorrect: obj.gamescore === 1 ? 0 : 1,
+            LastPlayed: formatedwordDate,
+            LastAttempts: obj.gameAttempts.join(",")
+          });
+        }
+      }
+    };
+
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.getPlayerwordsError(status);
+      }
+    };
+
+    PlayerService.getRealWordsApi(childId)
       .success(handleSuccess)
       .error(handleError);
   }
@@ -460,20 +595,48 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     return chartheight;
   }
 
-  player.getCSVHeader = function () {
+  player.getCSVHeader = function (wordType) {
     var arr = [];
-    arr[0] = $translate.instant("player.word_headers.words");
-    arr[1] = $translate.instant("player.word_headers.last_played");
-    arr[2] = $translate.instant("player.word_headers.attempts");
+    if (wordType === "word") {
+      arr[0] = $translate.instant("player.word_headers.words");
+      arr[1] = $translate.instant("player.word_headers.last_played");
+      arr[2] = $translate.instant("player.word_headers.attempts");
+    } else if (wordType === "letterword") {
+      arr[0] = $translate.instant("player.letter_headers.letters");
+      arr[1] = $translate.instant("player.letter_headers.last_played");
+      arr[2] = $translate.instant("player.letter_headers.last_attempt");
+    } else if (wordType === "nonsenseword") {
+      arr[0] = $translate.instant("player.nonsense_headers.nonsense_words");
+      arr[1] = $translate.instant("player.nonsense_headers.last_played");
+      arr[2] = $translate.instant("player.nonsense_headers.times");
+    } else if (wordType === "realword") {
+      arr[0] = $translate.instant("player.real_word_headers.real_words");
+      arr[1] = $translate.instant("player.real_word_headers.correct");
+      arr[2] = $translate.instant("player.real_word_headers.incorrect");
+      arr[3] = $translate.instant("player.real_word_headers.last_played");
+      arr[4] = $translate.instant("player.real_word_headers.last_attempt");
+    }
     return arr;
   };
 
-  player.getWordsExportData = function () {
-    return wordsCsv;
+  player.getWordsExportData = function (wordType) {
+    if (wordType === "word") {
+      return wordsCsv;
+    } else if (wordType === "letterword") {
+      return lettersWordsCsv;
+    } else if (wordType === "nonsenseword") {
+      return nonsenseWordsCsv;
+    } else if (wordType === "realword") {
+      return realWordsCsv;
+    }
+
   };
 
   player.getWordsClickHandler = function () {
     getWords(player.playerObj.id);
+    getLettersWords(player.playerObj.id);
+    getNonsenseWords(player.playerObj.id);
+    getRealWords(player.playerObj.id);
   }
 
 }]);
