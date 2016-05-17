@@ -310,22 +310,28 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           obj.Attempts = player.realWordsData[i].activity.length;
           obj.LastPlayed = player.realWordsData[i].endtime;
           player.realWordsData[i].endtime = player.realWordsData[i].endtime * 1000;
-          obj.gamescore = player.realWordsData[i].gamescore;
+          obj.correctCount = 0;
+          obj.inCorrectCount = 0;
           obj.gameAttempts = player.realWordsData[i].gameAttempts;
           if (!obj.gameAttempts || obj.gameAttempts.length === 0) {
             obj.gameAttempts = [];
-          } else {
-            var gameAttLen = 5 - obj.gameAttempts.length;
-            for (var gameAttcounter = 0; gameAttcounter < gameAttLen; gameAttcounter++) {
-              obj.gameAttempts.push(0);
+          }
+          for (var corrtIncrtCounter = 0; corrtIncrtCounter < obj.gameAttempts.length; corrtIncrtCounter++) {
+            if (obj.gameAttempts[corrtIncrtCounter] === 1) {
+              obj.correctCount++;
+            } else if (obj.gameAttempts[corrtIncrtCounter] === 0) {
+              obj.inCorrectCount++;
             }
           }
+          obj.gameAttempts.reverse();
           //update the UI also
           player.realWordsData[i].gameAttempts = obj.gameAttempts;
+          player.realWordsData[i].correctCount = obj.correctCount;
+          player.realWordsData[i].inCorrectCount = obj.inCorrectCount;
           realWordsCsv.push({
             Words: obj.Words,
-            Correct: obj.gamescore,
-            Incorrect: obj.gamescore === 1 ? 0 : 1,
+            Correct: obj.correctCount,
+            Incorrect: obj.inCorrectCount,
             LastPlayed: formatedwordDate,
             LastAttempts: obj.gameAttempts.join(",")
           });
