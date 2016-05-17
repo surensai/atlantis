@@ -302,7 +302,7 @@
             <thead>
             <tr>
               <th ng-repeat="key in player.getKeysOfCollection(player.realWordsHeaders)"
-                  ng-click="player.predicate = key; player.reverse=!player.reverse;">
+                  ng-click="player.predicate = key; player.reverse=!player.reverse;" class="table-th-class">
                 {{player.realWordsHeaders[key]}}
                 <span class="fa fa-sort columnSortIcons" ng-if="key !== player.predicate"></span>
                 <span class="fa fa-sort-down columnSortIcons"
