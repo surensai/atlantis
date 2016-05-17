@@ -56,9 +56,8 @@
     border-radius: 10px;
     margin-bottom: 10px;
     .eb-left{
-      margin-top: 10px;
-      padding: 25px 100px;
-      float: left;
+      margin-top: 28px;
+      text-align: center;
       h3{
         text-align: center;
         margin: 0px;
@@ -68,31 +67,30 @@
       }
     }
     .eb-left-content{
-      margin-top: 16px;
-      padding: 15px 0px;
-      margin-left: 40px;
-      h2{
-        color: #ffffff;
-        line-height: 30px;
-        margin: 0px;
-        font-size: 15px;
+      margin-top: 2px;
+      padding: 21px 0px;
+      float: left;
+      margin-left: 156px;
+      margin-right: 10px;
+      h4{
         text-align: center;
+        margin: 0px;
+        color: #ffffff;
+        line-height: 25px;
       }
       h3{
-        border: solid 1px #F9A61A;
-        background-color: #472182;
-        margin: 0px;
-        color: #ffffff;
-        font-size: 15px;
-        padding: 10px;
-        text-align: center;
+        color: white;
+        background-color: #f9a61a;
+        padding: 6px;
+        border-radius: 4px;
+        margin-top: 10px
       }
     }
     .eb-right-content{
-      padding: 0px 40px;
-      margin-top: 10px;
+      float: right;
+      margin-right: 74px;
+      margin-top: 23px;
       margin-bottom: 10px;
-      margin-right: -40px;
     }
 
   }
@@ -204,25 +202,15 @@
   .feed-img{
     max-height: none!important;
   }
-  .eb-right-content{
-    padding: 0px 40px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: 80px !important;
-  }
 }
+
 @media only screen and
 (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   .feed-img{
     max-height: none!important;
   }
-  .eb-right-content{
-    padding: 0px 40px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: 170px !important;
-  }
 }
+
 
 @media(min-width: 995px) {
   .dashboard-container .feed-row .panel .feed-img{
@@ -230,5 +218,28 @@
     width: 508px;
     border-radius: 10px 0px 0px 10px;
   }
+  .eb-right-content{
+    text-align: right;
+  }
 }
+@media(max-width: 995px) {
+  .eb-right-content{
+    margin-right: 0px !important;
+    margin-top: 21px !important;
+    margin-bottom: 10px !important;
 
+  }
+  .eb-left-content {
+    margin-left: 0px !important;
+    margin-right: 5px !important;
+  }
+
+}
+@media(max-width: 375px) {
+  .eb-right-content{
+    margin-right: 100px !important;
+    margin-top: 21px !important;
+    margin-bottom: 10px !important;
+
+  }
+}

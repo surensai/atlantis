@@ -324,6 +324,9 @@
       margin-right: 25px;
       .player-words-table {
         clear: both;
+        .table-th-class{
+          width: 20%;
+        }
       }
       .graph-container {
         background-color: #fcfcfc;
