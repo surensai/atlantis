@@ -1,14 +1,21 @@
 'use strict';
 
-angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messagesFactory', '$state', '$stateParams', function (DashboardService, messagesFactory, $state, $stateParams) {
+angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messagesFactory', '$state', '$stateParams','$rootScope', function (DashboardService, messagesFactory, $state, $stateParams, $rootScope) {
   var dashboard = this;
+  var welcomefeed = $rootScope.globals.currentUser.welcomefeed;
   dashboard.model = {};
   dashboard.data = {};
   dashboard.data.newsFeedsList = {};
   dashboard.data.newsFeeds = {};
+
   dashboard.isUserFirstTimeLoggedIn = false;
   dashboard.showWelcomeNewsFeedDetails = false;
   (function () {
+    if(welcomefeed && welcomefeed > 0){
+      dashboard.isUserFirstTimeLoggedIn = true;
+    } else {
+      dashboard.isUserFirstTimeLoggedIn = false;
+    }
     var handleSuccess = function (data) {
       if ($stateParams.id) {
         var tempArr = [];
