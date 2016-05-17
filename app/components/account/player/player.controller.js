@@ -4,6 +4,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
   var player = this;
   player.model = {};
+  player.model.wordTypeUI = "Word";
   player.chartData = {};
   player.highchartsNG = getChartObj();
   player.data = {};
@@ -47,8 +48,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     Real_Words: $translate.instant("player.real_word_headers.real_words"),
     Correct: $translate.instant("player.real_word_headers.correct"),
     Incorrect: $translate.instant("player.real_word_headers.incorrect"),
-    LastPlayed: $translate.instant("player.real_word_headers.last_played"),
-    LastAttempt: $translate.instant("player.real_word_headers.last_attempt")
+    LastAttempt: $translate.instant("player.real_word_headers.last_attempt"),
+    LastPlayed: $translate.instant("player.real_word_headers.last_played")
   };
   player.drag = 'drag feedback';
   player.drop = 'drop feedback';
@@ -68,6 +69,17 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     getPlayers();
   })();
 
+  player.onWordTypeChanges = function () {
+    if (player.model.wordTypeUI === "Word") {
+      getWords(player.playerObj.id);
+    } else if (player.model.wordTypeUI === "Letter Word") {
+      getLettersWords(player.playerObj.id);
+    } else if (player.model.wordTypeUI === "Nonsense Word") {
+      getNonsenseWords(player.playerObj.id);
+    } else if (player.model.wordTypeUI === "Real Word") {
+      getRealWords(player.playerObj.id);
+    }
+  };
   player.addPlayer = function () {
     if (player.data.playersList.length >= 5) {
       $uibModal.open({
@@ -191,6 +203,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           var obj = {};
           obj.Words = player.wordsData[i].word;
           player.wordsData[i].activity = JSON.parse(player.wordsData[i].activity[0]);
+          player.wordsData[i].endtime = player.wordsData[i].endtime * 1000;
           obj.Attempts = player.wordsData[i].activity.length;
           obj.LastPlayed = player.wordsData[i].endtime;
           wordsCsv.push({
@@ -225,11 +238,14 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           obj.Words = player.lettersWordsData[i]._id;
           player.lettersWordsData[i].activity = JSON.parse(player.lettersWordsData[i].activity[0]);
           obj.Attempts = player.lettersWordsData[i].activity.length;
+          player.lettersWordsData[i].endtime = player.lettersWordsData[i].endtime * 1000;
           obj.LastPlayed = player.lettersWordsData[i].endtime;
+          obj.gamescore = player.lettersWordsData[i].gamescore;
           lettersWordsCsv.push({
-            Words: obj.Words,
-            Attempts: obj.Attempts,
-            LastPlayed: formatedwordDate
+            LettersWords: obj.Words,
+            Inputs: obj.Attempts,
+            LastPlayed: formatedwordDate,
+            LastAttempts: obj.gamescore
           });
         }
       }
@@ -259,9 +275,10 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           player.nonsenseWordsData[i].activity = JSON.parse(player.nonsenseWordsData[i].activity[0]);
           obj.Attempts = player.nonsenseWordsData[i].activity.length;
           obj.LastPlayed = player.nonsenseWordsData[i].endtime;
+          player.nonsenseWordsData[i].endtime = player.nonsenseWordsData[i].endtime * 1000;
           nonsenseWordsCsv.push({
-            Words: obj.Words,
-            Attempts: obj.Attempts,
+            NonsenseWords: obj.Words,
+            Times: obj.Attempts,
             LastPlayed: formatedwordDate
           });
         }
@@ -292,6 +309,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           player.realWordsData[i].activity = JSON.parse(player.realWordsData[i].activity[0]);
           obj.Attempts = player.realWordsData[i].activity.length;
           obj.LastPlayed = player.realWordsData[i].endtime;
+          player.realWordsData[i].endtime = player.realWordsData[i].endtime * 1000;
           obj.gamescore = player.realWordsData[i].gamescore;
           obj.gameAttempts = player.realWordsData[i].gameAttempts;
           if (!obj.gameAttempts || obj.gameAttempts.length === 0) {
@@ -603,12 +621,13 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       arr[2] = $translate.instant("player.word_headers.attempts");
     } else if (wordType === "letterword") {
       arr[0] = $translate.instant("player.letter_headers.letters");
-      arr[1] = $translate.instant("player.letter_headers.last_played");
-      arr[2] = $translate.instant("player.letter_headers.last_attempt");
+      arr[1] = $translate.instant("player.letter_headers.inputs");
+      arr[2] = $translate.instant("player.letter_headers.last_played");
+      arr[3] = $translate.instant("player.letter_headers.last_attempt");
     } else if (wordType === "nonsenseword") {
       arr[0] = $translate.instant("player.nonsense_headers.nonsense_words");
-      arr[1] = $translate.instant("player.nonsense_headers.last_played");
-      arr[2] = $translate.instant("player.nonsense_headers.times");
+      arr[1] = $translate.instant("player.nonsense_headers.times");
+      arr[2] = $translate.instant("player.nonsense_headers.last_played");
     } else if (wordType === "realword") {
       arr[0] = $translate.instant("player.real_word_headers.real_words");
       arr[1] = $translate.instant("player.real_word_headers.correct");
@@ -634,9 +653,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   player.getWordsClickHandler = function () {
     getWords(player.playerObj.id);
-    getLettersWords(player.playerObj.id);
-    getNonsenseWords(player.playerObj.id);
-    getRealWords(player.playerObj.id);
   }
 
 }]);
