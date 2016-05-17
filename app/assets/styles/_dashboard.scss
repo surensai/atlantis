@@ -233,28 +233,4 @@
     width: 508px;
     border-radius: 10px 0px 0px 10px;
   }
-  .eb-right-content{
-    text-align: right;
-  }
-}
-@media(max-width: 995px) {
-  .eb-right-content{
-    margin-right: 0px !important;
-    margin-top: 21px !important;
-    margin-bottom: 10px !important;
-
-  }
-  .eb-left-content {
-    margin-left: 0px !important;
-    margin-right: 5px !important;
-  }
-
-}
-@media(max-width: 375px) {
-  .eb-right-content{
-    margin-right: 100px !important;
-    margin-top: 21px !important;
-    margin-bottom: 10px !important;
-
-  }
 }
