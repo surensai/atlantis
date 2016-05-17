@@ -154,7 +154,7 @@
       </div>
     </uib-tab>
     <uib-tab index="2" heading="Words" data-ng-click="player.getWordsClickHandler()">
-      <!-- -->
+      <!-- Filter Words Data-->
       <div class="player-words-tab-filterby">
         <span>
            <label class="filter-label">Filter by</label>
@@ -209,7 +209,7 @@
           </table>
         </div>
       </div>
-      <!-- Letters Table -->
+      <!-- Letters Word Table -->
       <div class="badges-container clearfix" data-ng-if="player.model.wordTypeUI==='Letter Word'">
         <a href="" class="player-export-btn" data-ng-if=" player.getWordsExportData('letterword').length > 0"
            ng-click="$event.stopPropagation();$event.preventDefault();"
@@ -251,7 +251,7 @@
           </table>
         </div>
       </div>
-      <!-- Nonsense Table -->
+      <!-- Nonsense Word Table -->
       <div class="badges-container clearfix" data-ng-if="player.model.wordTypeUI==='Nonsense Word'">
         <a href="" class="player-export-btn" data-ng-if=" player.getWordsExportData('nonsenseword').length > 0"
            ng-click="$event.stopPropagation();$event.preventDefault();"
@@ -288,7 +288,7 @@
           </table>
         </div>
       </div>
-      <!-- Real Table -->
+      <!-- Real Word Table -->
       <div class="badges-container clearfix" data-ng-if="player.model.wordTypeUI==='Real Word'">
         <a href="" class="player-export-btn" data-ng-if=" player.getWordsExportData('realword').length > 0"
            ng-click="$event.stopPropagation();$event.preventDefault();"
@@ -317,18 +317,12 @@
               <!-- Real Word  -->
               <td class="player-words text-ellipsis word-text">{{ word._id}}</td>
               <!-- Correct  -->
-              <td data-ng-if="word.gamescore > 0" class="word-check">
-                <img src="assets/images/tick.png" width="15"/>
-              </td>
-              <td data-ng-if="word.gamescore == 0" class="word-check">
-                <img src="assets/images/wrong.png" width="15"/>
+              <td >
+                {{word.correctCount}}
               </td>
               <!-- Incorrect  -->
-              <td data-ng-if="word.gamescore === 0" class="word-check">
-                <img src="assets/images/tick.png" width="15"/>
-              </td>
-              <td data-ng-if="word.gamescore > 0" class="word-check">
-                <img src="assets/images/wrong.png" width="15"/>
+              <td>
+                {{word.inCorrectCount}}
               </td>
               <!-- Last Attempt  -->
               <td>
