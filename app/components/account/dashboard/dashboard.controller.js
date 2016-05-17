@@ -6,6 +6,8 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
   dashboard.data = {};
   dashboard.data.newsFeedsList = {};
   dashboard.data.newsFeeds = {};
+  dashboard.isUserFirstTimeLoggedIn = false;
+  dashboard.showWelcomeNewsFeedDetails = false;
   (function () {
     var handleSuccess = function (data) {
       if ($stateParams.id) {
@@ -38,6 +40,14 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
       .error(handleError);
 
   })();
+
+  dashboard.showWelcomeMessageDetail = function(){
+    if(dashboard.showWelcomeNewsFeedDetails){
+      dashboard.showWelcomeNewsFeedDetails = false;
+    } else {
+      dashboard.showWelcomeNewsFeedDetails = true;
+    }
+  };
 
   function parseNewsFeedData(data) {
     var tempNewsFeedArr = [];
