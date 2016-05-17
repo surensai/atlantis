@@ -55,41 +55,56 @@
     background-color: #552F91;
     border-radius: 10px;
     margin-bottom: 10px;
+    .ed-welcomefeed{
+      width: 257px;
+      overflow: auto;
+      margin: 0 auto;
+    }
     .eb-left{
-      margin-top: 28px;
+      margin-top: 25px;
       text-align: center;
+      margin-bottom: 24px;
       h3{
         text-align: center;
-        margin: 0px;
         color: #ffffff;
-        font-size: 22px;
-        line-height: 30px;
+        font-size: 26px;
+        line-height: 21px;
+        font-weight: normal;
+        font-family: AvertaStd-Thin;
       }
     }
     .eb-left-content{
-      margin-top: 2px;
-      padding: 21px 0px;
-      float: left;
-      margin-left: 156px;
-      margin-right: 10px;
+      padding: 14px 0px;
+      float: right;
+      margin-right: 9px;
       h4{
         text-align: center;
         margin: 0px;
         color: #ffffff;
-        line-height: 25px;
+        line-height: 33px;
+        font-size: 15px;
       }
       h3{
         color: white;
         background-color: #f9a61a;
         padding: 6px;
         border-radius: 4px;
-        margin-top: 10px
+        margin-top: 10px;
+      }
+      .welcome-feed-button{
+        border: 2px solid #F9A61A;
+        background-color: transparent;
+        color:#ffffff;
+        letter-spacing: 1px;
+        font-family: AvertaStd-Thin;
+      }
+      .welcome-feed-button:hover{
+        background-color: darken(#552F91 ,10%);
       }
     }
     .eb-right-content{
       float: right;
-      margin-right: 74px;
-      margin-top: 23px;
+      margin-top: 16px;
       margin-bottom: 10px;
     }
 
