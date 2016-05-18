@@ -121,7 +121,14 @@ body {
     }
   }
 }
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 110px;
+  float: right;
 
+}
 .account-header {
   min-height: 40px;
   max-height: 117px;
@@ -200,9 +207,9 @@ body {
     }
   }
 .custom-caret{
-  width: 10px;
-  height: 10px;
-  vertical-align: -15%;
+  display: block;
+  float: right;
+  margin-top: 10px;
   margin-left: 10px;
 
 }

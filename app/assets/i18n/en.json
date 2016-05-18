@@ -301,6 +301,7 @@
     "uploadImage_selectavatar": "Please upload image or select Avatar.",
     "choose_avatar": " Choose a generic avatar",
     "no_players": "You don't have any players added.Start adding now.",
+    "no_graph_description":"Your child hasn't played any words in this badge, yet. Check out the descriptions above to see what kinds of words are covered in this badge.",
     "word_headers": {
       "words": "Words",
       "attempts": "Attempts",
