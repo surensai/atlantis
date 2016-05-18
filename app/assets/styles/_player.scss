@@ -611,6 +611,21 @@
         float: left;
         margin-left: 5px;
         margin-bottom: 5px;
+        position: relative;
+        min-width: 50px;
+        min-height: 50px;
+        .item-loader{
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          text-align: center;
+          min-width: 50px;
+          min-height: 50px;
+          border: solid 1px #efefef;
+          img{
+            margin-top: 16px;
+          }
+        }
         .active {
           border: solid 5px $sp-green;
         }
