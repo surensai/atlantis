@@ -215,7 +215,7 @@
             from your games!
           </p>
 
-          <div class="missing-letter-keyboard col-md-12 clearfix">
+          <div class="missing-letter-keyboard clearfix">
             <div class="clearfix mlk-margin">
               <div data-ng-repeat="item in settings.missingLetters_row_2" class="letters_set" data-ng-init="rowInd = $index">
                   <div data-ng-repeat="letters in item" class="ml-letter" ng-class="{'active': settings.isMissilingLetterSelected(rowInd, $index, 1 ), 'vowel': settings.isLetterVowel(letters.letter)}" data-ng-click="settings.selectCharacter(rowInd, $index, 1)">
