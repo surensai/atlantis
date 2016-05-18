@@ -38,7 +38,7 @@
             here to take the first steps towards
             your child’s reading readiness with
             Square Panda’s Playground!</p>
-          <a href="javascript:;" data-ng-click="dashboard.showWelcomeMessageDetail()">
+          <a href="javascript:;" data-ng-if="!dashboard.isUserFirstTimeLoggedIn" data-ng-click="dashboard.showWelcomeMessageDetail()">
             <span data-ng-if="dashboard.showWelcomeNewsFeedDetails"> Read less </span>
             <span data-ng-if="!dashboard.showWelcomeNewsFeedDetails"> Read more </span>
           </a>
