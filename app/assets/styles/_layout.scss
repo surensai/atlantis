@@ -125,10 +125,8 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 110px;
-  float: right;
-
 }
+
 .account-header {
   min-height: 40px;
   max-height: 117px;
@@ -206,13 +204,18 @@ body {
       color: #333333;
     }
   }
-.custom-caret{
-  display: block;
-  float: right;
-  margin-top: 10px;
-  margin-left: 10px;
+  .custom-caret{
+    display: block;
+    float: right;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
 
-}
+  .username{
+    width: 110px;
+    float: right;
+  }
+
   li {
     list-style: none;
     display: inline;

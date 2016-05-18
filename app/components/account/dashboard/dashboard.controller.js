@@ -11,12 +11,9 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
 
   dashboard.isUserFirstTimeLoggedIn = false;
   dashboard.showWelcomeNewsFeedDetails = false;
+  dashboard.hideWelcomeFeedOnload = true;
   (function () {
-    if(welcomefeed && welcomefeed > 0){
-      dashboard.isUserFirstTimeLoggedIn = true;
-    } else {
-      dashboard.isUserFirstTimeLoggedIn = false;
-    }
+
     var handleSuccess = function (data) {
       if ($stateParams.id) {
         var tempArr = [];
@@ -36,6 +33,15 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
       dashboard.totalItems = dashboard.data.newsFeedsList.length;
       dashboard.currentPage = 1;
       dashboard.itemsPerPage = dashboard.viewby;
+
+      dashboard.hideWelcomeFeedOnload = false;
+
+      if(welcomefeed && welcomefeed > 0){
+        dashboard.isUserFirstTimeLoggedIn = true;
+      } else {
+        dashboard.isUserFirstTimeLoggedIn = false;
+      }
+
     };
     var handleError = function (error, status) {
       if (error && status) {
