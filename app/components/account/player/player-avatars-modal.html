@@ -3,16 +3,14 @@
     Choose Avatar
   </div>
   <div class='modal-body clearfix'>
-
-
         <div class="avatars-items">
           <div class="item" data-ng-repeat="item in avatarsList" data-ng-click="selectAvatar(item, $index)">
-            <img  data-ng-src="{{item.assetURL}}" width="50" height="50" ng-class="{active: isAvatarClicked($index)}" image-load-complete-evt>
+            <img  data-ng-src="{{item.assetURL}}" class="non-retina" width="50" height="50" ng-class="{active: isAvatarClicked($index)}" image-load-complete-evt>
+            <img  data-ng-src="{{item['2x']}}" class="retina-display" width="50" height="50" ng-class="{active: isAvatarClicked($index)}" image-load-complete-evt>
             <span class="item-loader">
               <img src="https://www.yugma.com/images/loading-animation-7.gif" width="20" height="20"/>
           </span>
           </div>
-
         </div>
     </div>
 
