@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('staticCtrl', [ '$state','StaticService','$sce','$http', function ($state, StaticService, $sce, $http) {
+angular.module("app").controller('staticCtrl', [ '$state','StaticService','$sce','flashService', function ($state, StaticService, $sce, flashService) {
 
   var self = this;
   self.contentFrameURL = "";
@@ -21,8 +21,8 @@ angular.module("app").controller('staticCtrl', [ '$state','StaticService','$sce'
       self.contentFrameURL = data.htmlView;
     };
 
-    var handleError = function (error, status) {
-      if (error && status) {   }
+    var handleError = function (error) {
+      flashService.showError('error in getting data', false);
     };
 
     StaticService.getPrivacyAPI()
@@ -38,9 +38,7 @@ angular.module("app").controller('staticCtrl', [ '$state','StaticService','$sce'
     };
 
     var handleError = function (error, status) {
-      if (error && status) {
-
-      }
+      flashService.showError('error in getting data', false);
     };
 
     StaticService.getTermsAPI()

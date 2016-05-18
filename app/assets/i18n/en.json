@@ -113,6 +113,7 @@
   },
   "common": {
     "warning": "Warning!",
+    "confirm":"Confirm",
     "buttons": {
       "submit": "Submit",
       "save": "Save",
@@ -207,6 +208,7 @@
       "settings_updated": "Settings updated.",
       "curriculum_word_notExists": "The word doesn't exists.",
       "file_type_wrong": "File Type is Wrong.",
+      "file_selection_wrong":"Please select image with 2MB or Lesser size.",
       "age_require": "Age is required.",
       "model_delete_player": "Are you sure do you want to delete player?",
       "user_name_pattern": "Must start with a letter and be alphanumeric.",
@@ -244,6 +246,23 @@
       "old_password": "Old Password",
       "new_password": "New Password",
       "confirm_new_password": "Confirm New Password"
+    }
+  },
+  "dashboard":{
+    "welcome_feed":{
+      "welcome_feed_description":"We’re delighted that you’re here to take the first steps towards your child’s reading readiness with Square Panda’s Playground!",
+      "read_less":"Read less",
+      "read_more":"Read more",
+      "welcome_feed_details_first":"This is your destination to view the footprints of your child’s newly earned badges and discover more skills that they're ready to learn.",
+      "welcome_feed_details_second":"It’s easy to follow your child’s progress with a quick glance at their collection of earned badges. These badges symbolize the top skills your child needs to become reading ready from letter identification to rhymes to blended letter sounds! To help your child practice, you can view lists of all the letters and words they’ve learned.",
+      "welcome_feed_details_third":"Imagine how thrilled your child will be when she or he discovers the word “Mom” and your photo appears on screen while they’re playing! By adding new words and familiar pictures to your child’s word bank, you'll be able to customize any word imaginable - pets, family members, school logos and even special spelling lists. Just check out the My Curriculum area to create personalized word lists.",
+      "welcome_feed_details_fourth":"Well we have kept you long enough - it's time to jump into the Playground!",
+      "welcome":"Welcome!",
+      "welcome_feed_squarepanda":"Square Panda Team",
+      "help_child":"Help your child",
+      "earn_badge":"earn their 1 st badge",
+      "earn_new_badge":"Earn a New badge",
+      "spelled_myname":" 'I spelled my name' "
     }
   },
   "player": {
@@ -373,6 +392,7 @@
       "created_date": "Created date"
     },
     "export_csv": "Export CSV",
+    "type_word":"Type a word",
     "custom_word_list": "Custom Word List",
     "wordlabel": "Word",
     "word": "word",
@@ -418,5 +438,12 @@
       "educational_feeds": "Educational New Feed",
       "educational_feeds_data": "Amplify learning with reading readiness tips and the latest research, articles and videos to help your child be reading ready!"
     }
-  }
+  },
+  "privacy":{
+    "header":"Children's Privacy Policy",
+    "sub_header":"Square Panda Inc-Plain English Version"
+  },
+  "terms_conditions":{
+  "header":"Terms of Service"
+}
 }

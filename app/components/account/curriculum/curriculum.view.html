@@ -27,8 +27,7 @@
               <div class="form-group">
                 <div class="col-md-12">
 
-                  <input type="text" class="form-control" name="word" placeholder="Type a word"
-                         data-ng-model="curriculum.model.wordItem.wordName" ng-pattern="/^[A-z][A-z]*$/"
+                  <input type="text" class="form-control" name="word" placeholder="{{ 'curriculum.type_word' | translate }}" data-ng-model="curriculum.model.wordItem.wordName" ng-pattern="/^[A-z][A-z]*$/"
                          ng-minlength="1" ng-maxlength="24">
 
                   <div ng-show="curriculumForm.$submitted && curriculumForm.word.$error.required"
@@ -77,7 +76,6 @@
               </uib-accordion-heading>
               <div class="table-responsive">
                 <table class="table table-striped table-hover">
-
                   <thead>
                   <tr>
                     <th ng-repeat="key in curriculum.getKeysOfCollection(curriculum.wordsHeaders)"

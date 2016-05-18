@@ -38,7 +38,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
         var modalInstance = $uibModal.open({
           templateUrl: 'common/app-directives/modal/custom-modal.html',
           controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
-            $scope.modalTitle = "Confirm";
+            $scope.modalTitle =  $translate.instant("common.confirm");
             if (data.length > 0) {
               isWordPrsnt = (data[0].owner) ? true : false;
               $scope.modalBody = $translate.instant("curriculum.message.word_exist_want_edit");

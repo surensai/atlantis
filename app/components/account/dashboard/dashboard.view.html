@@ -34,13 +34,13 @@
       <div class="col-md-4 nopadding">
         <div class="welcome-feed-description">
           <h3>Welcome Jan,</h3>
-          <p>We’re delighted that you’re
+          <p data-translate="dashboard.welcome_feed.welcome_feed_description">We’re delighted that you’re
             here to take the first steps towards
             your child’s reading readiness with
             Square Panda’s Playground!</p>
           <a href="javascript:;" data-ng-if="!dashboard.isUserFirstTimeLoggedIn" data-ng-click="dashboard.showWelcomeMessageDetail()">
-            <span data-ng-if="dashboard.showWelcomeNewsFeedDetails"> Read less </span>
-            <span data-ng-if="!dashboard.showWelcomeNewsFeedDetails"> Read more </span>
+            <span data-ng-if="dashboard.showWelcomeNewsFeedDetails" data-translate="dashboard.welcome_feed.read_less"> Read less </span>
+            <span data-ng-if="!dashboard.showWelcomeNewsFeedDetails" data-translate="dashboard.welcome_feed.read_more"> Read more </span>
           </a>
         </div>
       </div>
@@ -57,19 +57,19 @@
   </div>
   <div data-ng-if="dashboard.isUserFirstTimeLoggedIn || dashboard.showWelcomeNewsFeedDetails">
     <div class="welcome-feed-details">
-      <p>This is your destination to view the footprints of your child’s newly earned badges and discover more skills that they're ready to learn.</p>
-      <p>It’s easy to follow your child’s progress with a quick glance at their collection of earned badges. These badges symbolize the top skills your child needs to become reading ready from letter identification to rhymes to blended letter sounds! To help your child practice, you can view lists of all the letters and words they’ve learned.</p>
-      <p>Imagine how thrilled your child will be when she or he discovers the word “Mom” and your photo appears on screen while they’re playing! By adding new words and familiar pictures to your child’s word bank, you'll be able to customize any word imaginable - pets, family members, school logos and even special spelling lists. Just check out the My Curriculum area to create personalized word lists.</p>
-      <p>Well we have kept you long enough - it's time to jump into the Playground!</p>
-      <p class="welcome-feed-ending"> Welcome!</p>
-      <p class="welcome-feed-ending-details-ending">Square Panda Team</p>
+      <p data-translate="dashboard.welcome_feed.welcome_feed_details_first">This is your destination to view the footprints of your child’s newly earned badges and discover more skills that they're ready to learn.</p>
+      <p data-translate="dashboard.welcome_feed.welcome_feed_details_second">It’s easy to follow your child’s progress with a quick glance at their collection of earned badges. These badges symbolize the top skills your child needs to become reading ready from letter identification to rhymes to blended letter sounds! To help your child practice, you can view lists of all the letters and words they’ve learned.</p>
+      <p data-translate="dashboard.welcome_feed.welcome_feed_details_third">Imagine how thrilled your child will be when she or he discovers the word “Mom” and your photo appears on screen while they’re playing! By adding new words and familiar pictures to your child’s word bank, you'll be able to customize any word imaginable - pets, family members, school logos and even special spelling lists. Just check out the My Curriculum area to create personalized word lists.</p>
+      <p data-translate="dashboard.welcome_feed.welcome_feed_details_fourth">Well we have kept you long enough - it's time to jump into the Playground!</p>
+      <p class="welcome-feed-ending" data-translate="dashboard.welcome_feed.welcome"> Welcome!</p>
+      <p class="welcome-feed-ending-details-ending" data-translate="dashboard.welcome_feed.welcome_feed_squarepanda">Square Panda Team</p>
 
     </div>
     <div class="earn-badge clearfix">
       <div class="col-md-6">
         <div class="eb-left">
-          <h3>Help your child</h3>
-          <h3>earn their 1 st badge</h3>
+          <h3 data-translate="dashboard.welcome_feed.help_child">Help your child</h3>
+          <h3 data-translate="dashboard.welcome_feed.earn_badge">earn their 1 st badge</h3>
         </div>
       </div>
       <div class="col-md-6">
@@ -79,8 +79,8 @@
           </div>
 
           <div class="eb-left-content">
-            <h4>Earn a New badge</h4>
-            <button  ui-sref='account.players'  class="btn btn-default welcome-feed-button">"I spelled my name"</button>
+            <h4 data-translate="dashboard.welcome_feed.earn_new_badge">Earn a New badge</h4>
+            <button  ui-sref='account.players'  class="btn btn-default welcome-feed-button" data-translate="dashboard.welcome_feed.spelled_myname">"I spelled my name"</button>
           </div>
         </div>
 
