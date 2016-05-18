@@ -16,7 +16,7 @@
       .welcome-feed-description{
         color: $white-color;
         padding: 30px;
-        padding-top: 40px;
+        padding-top: 0px;
         a {
           text-decoration: underline;
           float: right;
@@ -166,13 +166,16 @@
     }
   }
 }
+
 .player-container{
   padding-top: 30px;
   background-color: $account-bg-color;
 }
+
 .curriculum-container{
   background-color: $account-bg-color;
 }
+
 .img-radius{
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -191,22 +194,21 @@
 .first-element {
   margin: 0px 0 11px !important;
 }
+
 .second-element{
   padding-bottom: 0%;
 }
+
 .third-element{
   padding-bottom: 0%;
 }
+
 .reduce-margin{
   margin-top: 0px !important;
   margin-bottom: 0px !important;
 }
 
-.text-ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
+
 
 .read-more-margin{
   margin-right: 1px;
@@ -226,6 +228,11 @@
   }
 }
 
+@media(min-width: 768px) {
+  .welcome-feed-description {
+      padding-top: 40px!important;
+  }
+}
 
 @media(min-width: 995px) {
   .dashboard-container .feed-row .panel .feed-img{

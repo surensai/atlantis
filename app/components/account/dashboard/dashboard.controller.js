@@ -3,6 +3,7 @@
 angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messagesFactory', '$state', '$stateParams','$rootScope', function (DashboardService, messagesFactory, $state, $stateParams, $rootScope) {
   var dashboard = this;
   var welcomefeed = $rootScope.globals.currentUser.welcomefeed;
+  dashboard.userName = $rootScope.globals.currentUser;
   dashboard.model = {};
   dashboard.data = {};
   dashboard.data.newsFeedsList = {};
