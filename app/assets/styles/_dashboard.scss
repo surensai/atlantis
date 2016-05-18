@@ -190,6 +190,12 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
+.text-ellipsiss {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
 
 .first-element {
   margin: 0px 0 11px !important;
