@@ -1,6 +1,6 @@
 'use strict';
-angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', '$cookieStore', '$http','$localStorage', '$translate',
-  function ($rootScope, $state, $stateParams, $location, $cookieStore, $http, $localStorage, $translate) {
+angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', '$cookieStore', '$http','$localStorage',
+  function ($rootScope, $state, $stateParams, $location, $cookieStore, $http, $localStorage) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     $rootScope.base_url = "http://ec2-52-71-125-138.compute-1.amazonaws.com";
