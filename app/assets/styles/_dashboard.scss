@@ -1,19 +1,21 @@
-.player-container{
+.player-container {
   padding-top: 30px
 }
-.newsfeed-conatiner{
+
+.newsfeed-conatiner {
 
 }
+
 .dashboard-container {
   background-color: $account-bg-color;
-  .welcome-feed{
+  .welcome-feed {
     font-family: AvertaStd-Regular;
     border-radius: 10px;
     background-color: #00ccff;
     padding-top: 10px;
-    .panel{
+    .panel {
       background-color: transparent;
-      .welcome-feed-description{
+      .welcome-feed-description {
         color: $white-color;
         padding: 30px;
         padding-top: 0px;
@@ -22,12 +24,12 @@
           float: right;
           color: white;
         }
-        a:hover{
+        a:hover {
           text-decoration: underline;
           color: white;
         }
       }
-      .panel-footer{
+      .panel-footer {
         clear: both;
         background-color: #64A53A;
         padding: 0px;
@@ -38,33 +40,33 @@
       }
     }
   }
-  .welcome-feed-details{
+  .welcome-feed-details {
     padding: 0px 25px 5px 25px;
     margin-top: -5px;
-    .welcome-feed-ending{
+    .welcome-feed-ending {
       margin-top: 35px;
       line-height: 0px;
-  }
-    .welcome-feed-ending-details-ending{
+    }
+    .welcome-feed-ending-details-ending {
       color: #f26383;
       font-family: AvertaStd-Semibold;
     }
   }
 
-  .earn-badge{
+  .earn-badge {
     background-color: #552F91;
     border-radius: 10px;
     margin-bottom: 10px;
-    .ed-welcomefeed{
+    .ed-welcomefeed {
       width: 257px;
       overflow: auto;
       margin: 0 auto;
     }
-    .eb-left{
+    .eb-left {
       margin-top: 25px;
       text-align: center;
       margin-bottom: 24px;
-      h3{
+      h3 {
         text-align: center;
         color: #ffffff;
         font-size: 26px;
@@ -73,36 +75,36 @@
         font-family: AvertaStd-Thin;
       }
     }
-    .eb-left-content{
+    .eb-left-content {
       padding: 14px 0px;
       float: right;
       margin-right: 9px;
-      h4{
+      h4 {
         text-align: center;
         margin: 0px;
         color: #ffffff;
         line-height: 33px;
         font-size: 15px;
       }
-      h3{
+      h3 {
         color: white;
         background-color: #f9a61a;
         padding: 6px;
         border-radius: 4px;
         margin-top: 10px;
       }
-      .welcome-feed-button{
+      .welcome-feed-button {
         border: 2px solid #F9A61A;
         background-color: transparent;
-        color:#ffffff;
+        color: #ffffff;
         letter-spacing: 1px;
         font-family: AvertaStd-Thin;
       }
-      .welcome-feed-button:hover{
-        background-color: darken(#552F91 ,10%);
+      .welcome-feed-button:hover {
+        background-color: darken(#552F91, 10%);
       }
     }
-    .eb-right-content{
+    .eb-right-content {
       float: right;
       margin-top: 16px;
       margin-bottom: 10px;
@@ -119,6 +121,15 @@
       .feed-img {
         width: 100%;
         border-radius: 10px 10px 0px 0px;
+      }
+      .feed-img-loader {
+        top: 42%;
+        left: 38%;
+        text-align: center;
+        min-width: 25%;
+        min-height: 20%;
+        position: absolute;
+        //border: solid 1px #efefef;
       }
       .panel-body {
         padding: 26px;
@@ -145,15 +156,15 @@
         border-bottom-right-radius: 10px;
         .icons-block {
           ul {
-              list-style-type: none;
-              padding: 0px;
-              margin: 0px;
-              margin-left: 10px;
+            list-style-type: none;
+            padding: 0px;
+            margin: 0px;
+            margin-left: 10px;
 
             li {
               display: inline;
               padding-right: 15%;
-              a{
+              a {
                 text-decoration: none;
               }
             }
@@ -167,16 +178,16 @@
   }
 }
 
-.player-container{
+.player-container {
   padding-top: 30px;
   background-color: $account-bg-color;
 }
 
-.curriculum-container{
+.curriculum-container {
   background-color: $account-bg-color;
 }
 
-.img-radius{
+.img-radius {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
@@ -190,6 +201,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
+
 .text-ellipsiss {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -201,47 +213,43 @@
   margin: 0px 0 11px !important;
 }
 
-.second-element{
+.second-element {
   padding-bottom: 0%;
 }
 
-.third-element{
+.third-element {
   padding-bottom: 0%;
 }
 
-.reduce-margin{
+.reduce-margin {
   margin-top: 0px !important;
   margin-bottom: 0px !important;
 }
 
-
-
-.read-more-margin{
+.read-more-margin {
   margin-right: 1px;
 }
 
-@media only screen and
-(min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-  .feed-img{
-    max-height: none!important;
+@media only screen and(min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .feed-img {
+    max-height: none !important;
   }
 }
 
-@media only screen and
-(min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .feed-img{
-    max-height: none!important;
+@media only screen and(min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .feed-img {
+    max-height: none !important;
   }
 }
 
 @media(min-width: 768px) {
   .welcome-feed-description {
-      padding-top: 40px!important;
+    padding-top: 40px !important;
   }
 }
 
 @media(min-width: 995px) {
-  .dashboard-container .feed-row .panel .feed-img{
+  .dashboard-container .feed-row .panel .feed-img {
     height: 276px;
     width: 508px;
     border-radius: 10px 0px 0px 10px;
