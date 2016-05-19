@@ -537,6 +537,48 @@
       }
 
     }
+    .bigbadge-graph-buttons-one{
+      float: left;
+      .bigbadge-graph-button-style {
+        padding: 5px 14px 5px 14px;
+        background-color: white;
+        color: #BABCBE;
+        border: 1px solid #BABCBE;
+        margin-right: 10px;
+        &:hover{
+          background-color: $sp-yellow;
+          border: 1px solid $sp-yellow;
+          color: white;
+        }
+      }
+      .bigbadge-graph-button-style.active {
+        background-color: $sp-yellow;
+        border: 1px solid $sp-yellow;
+        color: white;
+        box-shadow: none;
+      }
+    }
+    .bigbadge-graph-buttons-two{
+      float: right;
+      .bigbadge-graph-button-style {
+        padding: 5px 14px 5px 14px;
+        background-color: white;
+        color: #BABCBE;
+        border: 1px solid #BABCBE;
+        margin-right: 10px;
+        &:hover{
+          background-color: $sp-yellow;
+          border: 1px solid $sp-yellow;
+          color: white;
+        }
+      }
+      .bigbadge-graph-button-style.active {
+        background-color: $sp-yellow;
+        border: 1px solid $sp-yellow;
+        color: white;
+        box-shadow: none;
+      }
+    }
   }
 }
 
@@ -722,12 +764,6 @@
   width: 36%;
 }
 
-@media only screen and (max-device-width: 320px) {
-  .player-tabs ul li a {
-    padding: 10px 6px;
-  }
-}
-
 .player-export-btn {
   color: #9B9B9B;
   float: right;
@@ -764,23 +800,63 @@
   }
 }
 
-@media only screen and (max-device-width: 375px){
+@media only screen and (max-device-width: 360px){
   .player-label{
     width: 40% !important;
   }
-}
-
-@media only screen and (max-device-width: 475px){
-  .player-delete-button{
-    margin-right: 20px;
+  .avatar-container .avatar-actions{
+    margin-left:-10px;
+  }
+  .player-tabs ul li a {
+    padding: 10px 6px;
   }
 }
-
-@media(max-width: 480px){
+@media only screen and (max-device-width: 320px) {
+  .save-cancel-player {
+    padding: 6px 10px !important;
+    width: 32%;
+  }
+  .save-cancel-parent {
+    display: inline;
+  }
+  .player-tabs ul li a {
+    padding: 10px 0px;
+    margin-right: -1px;
+  }
+  .player-tabs .bigbadge-description .bigbadge-graph-buttons-one .bigbadge-graph-button-style{
+    padding:5px 7px 5px 7px !important;
+  }
+}
+@media only screen and (max-device-width: 480px){
   .pd-left{
     float: none!important;
     margin: 0 auto;
     width: 160px;
   }
+  .player-delete-button{
+    margin-right: 20px;
+  }
+  .player-tabs .bigbadge-description
+    .bigbadge-graph-buttons-one{
+    margin: 0px auto;
+    text-align: center;
+    display: block;
+    float: none;
+    padding-top: 15px;
+    }
+    .bigbadge-graph-buttons-two{
+      float: none !important;
+      margin-top: 15px !important;
+      margin: 0px auto;
+      text-align: center;
+      display: block;
+    }
+  .bigbadge-graph-buttons{
+    float: none !important;
+    margin-top: 0px !important;
+  }
+}
+@media(max-width: 480px){
+
 }
 

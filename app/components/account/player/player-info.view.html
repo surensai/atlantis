@@ -95,6 +95,7 @@
                   <span data-translate="player.no_graph_description">Your child hasn't played any words in this badge, yet. Check out the descriptions above to see what kinds of words are covered in this badge.</span>
                 </div>
                 <div class="bigbadge-graph-buttons ">
+                  <div class="bigbadge-graph-buttons-one">
                   <a class="btn bigbadge-graph-button-style"
                      data-ng-class="{'active': (player.chartTabType==='day' && player.bigbadgedetails.percentage !== 0)}"
                      data-translate="player.badges.this_week" data-ng-click="player.onGetChartData('day')">
@@ -105,6 +106,8 @@
                      data-translate="player.badges.30days" data-ng-click="player.onGetChartData('week')">
                     30 Days
                   </a>
+                  </div>
+                  <div class="bigbadge-graph-buttons-two">
                   <a class="btn bigbadge-graph-button-style"
                      data-ng-class="{'active': player.chartTabType==='month'}"
                      data-translate="player.badges.1year" data-ng-click="player.onGetChartData('month')">
@@ -115,6 +118,7 @@
                      data-translate="player.badges.all_time" data-ng-click="player.onGetChartData('year')">
                     All Time
                   </a>
+                  </div>
                 </div>
                 <highchart id="chartContainer" config="player.highchartsNG"></highchart>
               </div>

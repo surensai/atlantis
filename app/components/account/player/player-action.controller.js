@@ -186,10 +186,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     }
     }
   };
-
-
-
-
+  
   playerAction.showAvatars = function() {
     $uibModal.open({
       templateUrl: 'components/account/player/player-avatars-modal.html',
