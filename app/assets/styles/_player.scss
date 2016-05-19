@@ -93,6 +93,7 @@
 }
 
 .players-container {
+  margin-bottom: 10px;
   .players-panel {
     background: #fcf1dd;
     border: solid 1px #f7ab31;
@@ -395,7 +396,7 @@
           &:first-child{
             text-align: left;
             padding-left: 100px;
-            width: 20%;
+            width: 21%;
           }
         }
       }
