@@ -31,9 +31,9 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     isDOBValid();
     if (form.$valid && playerAction.fileError && playerAction.isDOBVaid && playerAction.model.playerItem.profileURL) {
       playerAction.added = true;
-      if(playerAction.previousSelectedFile.length > 0 && !playerAction.isChoosenAvatar){
+      if (playerAction.previousSelectedFile.length > 0 && !playerAction.isChoosenAvatar) {
         uploadProfilePic(form);
-      }else{
+      } else {
         if (playerAction.isUpdate) {
           updateAction();
         } else {
@@ -68,7 +68,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
 
     var handleError = function (error, status) {
       if (error && status) {
-        messagesFactory.createPlayerError(status,error);
+        messagesFactory.createPlayerError(status, error);
       }
     };
 
@@ -153,7 +153,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       }
     };
 
-   PlayerService.deleteApi(playerAction.data.deleteObj.id)
+    PlayerService.deleteApi(playerAction.data.deleteObj.id)
       .success(handleSuccess)
       .error(handleError);
   };
@@ -162,32 +162,72 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   $scope.photoChanged = function (files) {
     if (files.length > 0 || playerAction.previousSelectedFile.length > 0) {
       //Restricting file upload to 2MB i.e (1024*1024*2)
-      if(files[0].size <= 2097152){
+      if (files[0].size <= 2097152) {
         playerAction.showSizeLimitError = false;
-      playerAction.previousSelectedFile = (files.length > 0) ? files : playerAction.previousSelectedFile;
-      var file = (files.length > 0) ? files[0] : playerAction.previousSelectedFile[0];
-      if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
-        playerAction.fileError = true;
-        $timeout(function () {
-          var fileReader = new FileReader();
-          fileReader.readAsDataURL(file);
-          fileReader.onload = function (e) {
-            $timeout(function () {
-              playerAction.model.playerItem.profileURL = e.target.result;
-              playerAction.isChoosenAvatar = false;
-            });
-          };
-        });
+        playerAction.previousSelectedFile = (files.length > 0) ? files : playerAction.previousSelectedFile;
+        var file = (files.length > 0) ? files[0] : playerAction.previousSelectedFile[0];
+        if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
+          playerAction.fileError = true;
+          $timeout(function () {
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = function (e) {
+              $timeout(function () {
+                playerAction.model.playerItem.profileURL = e.target.result;
+                playerAction.isChoosenAvatar = false;
+              });
+            };
+          });
+        } else {
+          playerAction.fileError = false;
+        }
       } else {
-        playerAction.fileError = false;
-      }
-    }else {
         playerAction.showSizeLimitError = true;
-    }
+      }
     }
   };
-  
-  playerAction.showAvatars = function() {
+
+  /*
+   Open the crop image popup to crop the selected image
+   */
+  playerAction.onOpenCropImg = function () {
+    $uibModal.open({
+      templateUrl: 'components/account/player/player-image-crop-modal.html',
+      controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+        $scope.selectedImage = '';
+        $scope.croppedImage = '';
+        $scope.croppedImageSize = '';
+        $scope.handleFileSelect = function (files) {
+          playerAction.previousSelectedFile = (files.length > 0) ? files : playerAction.previousSelectedFile;
+          var file = (files.length > 0) ? files[0] : playerAction.previousSelectedFile[0];
+          console.log(JSON.stringify(playerAction.previousSelectedFile));
+          if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
+            //playerAction.fileError = true;
+            $timeout(function () {
+              var fileReader = new FileReader();
+              fileReader.readAsDataURL(file);
+              fileReader.onload = function (e) {
+                $timeout(function () {
+                  $scope.selectedImage = e.target.result;
+                  playerAction.isChoosenAvatar = false;
+                });
+              };
+            });
+          }
+        };
+        $scope.onCancel = function () {
+          $uibModalInstance.dismiss('cancel');
+        };
+        $scope.onSubmit = function () {
+          playerAction.model.playerItem.profileURL = $scope.croppedImage;
+          //playerAction.previousSelectedFile[0].size = $scope.croppedImageSize;
+          $uibModalInstance.dismiss('cancel');
+        };
+      }]
+    });
+  };
+
+  playerAction.showAvatars = function () {
     $uibModal.open({
       templateUrl: 'components/account/player/player-avatars-modal.html',
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
@@ -196,14 +236,14 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
         $scope.selectVal;
 
         $scope.avatarsList = playerAction.data.avatarsList;
-        $scope.selectAvatar = function(item, index){
+        $scope.selectAvatar = function (item, index) {
           $scope.selectionAvatar = item.assetURL;
           playerAction.isChoosenAvatar = true;
           $scope.selectVal = index;
         };
 
-        $scope.isAvatarClicked = function(index){
-          if($scope.selectVal === index){
+        $scope.isAvatarClicked = function (index) {
+          if ($scope.selectVal === index) {
             return true;
           } else {
             return false;
@@ -246,23 +286,23 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
 
   function getAvatars() {
 
-      var handleSuccess = function (data) {
-        playerAction.data.avatarsList = data;
-      };
+    var handleSuccess = function (data) {
+      playerAction.data.avatarsList = data;
+    };
 
-      var handleError = function (error, status) {
-        if (error && status) {
-          messagesFactory.getPlayerbyIDError(status);
-        }
-      };
-      PlayerService.getAvatarsAPI()
-        .success(handleSuccess)
-        .error(handleError);
-    }
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.getPlayerbyIDError(status);
+      }
+    };
+    PlayerService.getAvatarsAPI()
+      .success(handleSuccess)
+      .error(handleError);
+  }
 
-  function isDOBValid(){
+  function isDOBValid() {
     var dobArr = playerAction.model.playerItem.dateofBirth.split("/");
-    if(dobArr[0] > 0 && dobArr[1] > 0 && dobArr[2] > 0) {
+    if (dobArr[0] > 0 && dobArr[1] > 0 && dobArr[2] > 0) {
       playerAction.isDOBVaid = true;
       isDOBCurrentDateExceed(dobArr);
     } else {
@@ -270,10 +310,10 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     }
   }
 
-  function isDOBCurrentDateExceed(selectedDate){
+  function isDOBCurrentDateExceed(selectedDate) {
     var curDate = new Date(), month = selectedDate[0], day = selectedDate[1], year = selectedDate[2];
-    if(curDate.getFullYear() === parseInt(year)){
-      if(month >= (curDate.getMonth() + 1)){
+    if (curDate.getFullYear() === parseInt(year)) {
+      if (month >= (curDate.getMonth() + 1)) {
         playerAction.isDOBVaid = false;
       }
     }

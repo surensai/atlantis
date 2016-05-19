@@ -781,6 +781,27 @@
   .filter-label {
   }
 }
+/* Player Crop Image CSS*/
+.crop-image-container {
+  padding: 10px 10px;
+  text-align: left;
+  font-weight: bold;
+  .cropArea {
+    background: #E4E4E4;
+    overflow: hidden;
+    width: 61%;
+    height: 250px;
+    margin: 14px 0px;
+  }
+
+  .croped-image {
+    background: #E4E4E4;
+    overflow: hidden;
+    width: 125px;
+    height: 120px;
+    margin: 14px 0px;
+  }
+}
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
   .player-label{
     width: 16% !important;
