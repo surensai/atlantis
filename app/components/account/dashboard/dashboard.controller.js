@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messagesFactory', '$state', '$stateParams','$rootScope', function (DashboardService, messagesFactory, $state, $stateParams, $rootScope) {
+angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messagesFactory', '$state', '$stateParams', '$rootScope', function (DashboardService, messagesFactory, $state, $stateParams, $rootScope) {
   var dashboard = this;
   var welcomefeed = $rootScope.globals.currentUser.welcomefeed;
   dashboard.userName = $rootScope.globals.currentUser;
@@ -36,7 +36,7 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
 
       dashboard.hideWelcomeFeedOnload = false;
 
-      if(welcomefeed && welcomefeed > 0){
+      if (welcomefeed && welcomefeed > 0) {
         dashboard.isUserFirstTimeLoggedIn = true;
       } else {
         dashboard.isUserFirstTimeLoggedIn = false;
@@ -55,8 +55,8 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
 
   })();
 
-  dashboard.showWelcomeMessageDetail = function(){
-    if(dashboard.showWelcomeNewsFeedDetails){
+  dashboard.showWelcomeMessageDetail = function () {
+    if (dashboard.showWelcomeNewsFeedDetails) {
       dashboard.showWelcomeNewsFeedDetails = false;
     } else {
       dashboard.showWelcomeNewsFeedDetails = true;
@@ -67,6 +67,7 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
     var tempNewsFeedArr = [];
     for (var newsFeedCounter = 0; newsFeedCounter < data.length; newsFeedCounter++) {
       if (data[newsFeedCounter].status === 'PUBLISH') {
+        data[newsFeedCounter].isImgLoaded = false;
         tempNewsFeedArr.push(data[newsFeedCounter]);
       }
     }
