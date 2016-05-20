@@ -4,10 +4,6 @@
   </div>
   <div class='modal-body clearfix'>
     <div class="crop-image-container">
-      <div style="display: inline-flex">
-          Select an image file :<input type="file" id="fileInput"
-                                     onchange="angular.element(this).scope().handleFileSelect(this.files)"/>
-      </div>
       <div class="cropArea">
         <img-crop image="selectedImage" result-image="croppedImage" result-image-size="croppedImageSize"></img-crop>
       </div>
