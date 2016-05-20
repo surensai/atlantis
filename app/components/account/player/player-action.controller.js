@@ -26,7 +26,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   })();
 
   playerAction.submitForm = function (form) {
-
     playerAction.submitted = true;
     isDOBValid();
     if (form.$valid && playerAction.fileError && playerAction.isDOBVaid && playerAction.model.playerItem.profileURL) {
@@ -45,7 +44,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
         angular.element('.custom-error:first').focus();
       }, 200);
     }
-
   };
 
   function stuctureFormData() {
@@ -55,6 +53,9 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     data.profileURL = playerAction.model.playerItem.profileURL;
     data.dateofBirth = playerAction.model.playerItem.dateofBirth;
     data.gender = playerAction.model.playerItem.gender;
+    if (!playerAction.isChoosenAvatar) {
+      data.imgbase64 = playerAction.model.playerItem.imgbase64;
+    }
     return data;
   }
 
@@ -173,8 +174,9 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
             fileReader.readAsDataURL(file);
             fileReader.onload = function (e) {
               $timeout(function () {
-                playerAction.model.playerItem.profileURL = e.target.result;
+                //playerAction.model.playerItem.profileURL = e.target.result;
                 playerAction.isChoosenAvatar = false;
+                playerAction.onOpenCropImg(e.target.result);
               });
             };
           });
@@ -190,37 +192,20 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   /*
    Open the crop image popup to crop the selected image
    */
-  playerAction.onOpenCropImg = function () {
+  playerAction.onOpenCropImg = function (selectedImg) {
     $uibModal.open({
       templateUrl: 'components/account/player/player-image-crop-modal.html',
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
-        $scope.selectedImage = '';
+        $scope.selectedImage = selectedImg;
         $scope.croppedImage = '';
         $scope.croppedImageSize = '';
-        $scope.handleFileSelect = function (files) {
-          playerAction.previousSelectedFile = (files.length > 0) ? files : playerAction.previousSelectedFile;
-          var file = (files.length > 0) ? files[0] : playerAction.previousSelectedFile[0];
-          console.log(JSON.stringify(playerAction.previousSelectedFile));
-          if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
-            //playerAction.fileError = true;
-            $timeout(function () {
-              var fileReader = new FileReader();
-              fileReader.readAsDataURL(file);
-              fileReader.onload = function (e) {
-                $timeout(function () {
-                  $scope.selectedImage = e.target.result;
-                  playerAction.isChoosenAvatar = false;
-                });
-              };
-            });
-          }
-        };
+        playerAction.isChoosenAvatar = false;
         $scope.onCancel = function () {
           $uibModalInstance.dismiss('cancel');
         };
         $scope.onSubmit = function () {
           playerAction.model.playerItem.profileURL = $scope.croppedImage;
-          //playerAction.previousSelectedFile[0].size = $scope.croppedImageSize;
+          playerAction.model.playerItem.imgbase64 = $scope.croppedImage;
           $uibModalInstance.dismiss('cancel');
         };
       }]
