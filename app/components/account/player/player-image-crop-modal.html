@@ -1,0 +1,22 @@
+<div class="sp-avatars-modal">
+  <div class='modal-header sp-common-panel-header' data-translate="player.choose_avatar">
+    Choose Avatar
+  </div>
+  <div class='modal-body clearfix'>
+    <div class="crop-image-container">
+      <div class="cropArea">
+        <img-crop image="selectedImage" result-image="croppedImage" result-image-size="croppedImageSize"></img-crop>
+      </div>
+      <div>Cropped Image:</div>
+      <div>
+        <img ng-src="{{croppedImage}}" class="croped-image"/>
+      </div>
+    </div>
+  </div>
+  <div class='modal-footer'>
+    <button class='btn btn-default sp-cancel-btn' ng-click='onCancel()' data-translate="common.buttons.cancel">Cancel
+    </button>
+    <button class='btn btn-default btn-primary' ng-click='onSubmit()' data-translate="common.buttons.select">Select
+    </button>
+  </div>
+</div>
