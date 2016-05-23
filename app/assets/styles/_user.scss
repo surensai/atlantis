@@ -28,6 +28,9 @@
 .register-form-heading{
   color: $white-color;
 }
+.login-form-heading{
+  color: $white-color;
+}
 .user-form-container {
   position: relative;
   h2 {
@@ -45,6 +48,7 @@
 
   .error-mesasage {
     position: absolute;
+    font-size: 11px;
   }
 
   .has-feedback {

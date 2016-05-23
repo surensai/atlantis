@@ -122,10 +122,11 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
 
   playerAction.deleteListener = function (obj) {
     $uibModal.open({
-      templateUrl: 'common/app-directives/modal/custom-modal.html',
+      templateUrl: 'components/account/player/delete-player.html',
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
-        $scope.modalTitle = $translate.instant('player.delete_modaltitle');
-        $scope.modalBody = $translate.instant('player.delete_modalbody');
+        $scope.modalTitle = $translate.instant('common.are_you_sure');
+
+
 
         $scope.ok = function () {
           playerAction.data.deleteObj = obj;

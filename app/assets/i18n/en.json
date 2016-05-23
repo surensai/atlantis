@@ -114,6 +114,10 @@
   "common": {
     "warning": "Warning!",
     "confirm":"Confirm",
+    "are_you_sure": "Are you sure?",
+    "yipee":"Yipee!",
+    "whoops":"Whoops!",
+    "delete":"Delete",
     "buttons": {
       "submit": "Submit",
       "save": "Save",
@@ -184,24 +188,21 @@
       "back_to_login": "Back to login"
     },
     "validationMessages": {
-      "first_name_require": "First Name is required.",
+      "first_name_require": "Please enter the player's first name.",
       "last_name_require": "Last Name is required.",
-      "no_specialchar_require": "No special characters allowed and must start with a letter.",
-      "password_mismatch": "Please make sure your passwords match.",
+      "no_specialchar_require": "Should not include any special characters and must start with a alphabet letter.",
+      "password_mismatch": "That's not the same password as the first one.",
       "email_require": "Email address is required.",
       "email_valid": "Please enter a valid email address.",
       "password_require": "Password is required.",
       "cpassword_require": "Retype Password is required.",
       "old_password_require": "Old Password is required.",
-      "email_password_mismatch": "Email or password incorrect. Please, try again.",
+      "email_password_mismatch": "The email or password is incorrect. If you have forgotten your password, you can reset it here.",
       "email_notverified": "Email address not verified.",
-      "email_registered": "Email already exists, please try with different email address.",
-      "password_strength": "Must be between 8 and 20 characters.",
-      "mobile_num_require": "Mobile Number is required.",
-      "mobile_num_invalid": "Mobile Number is not valid",
+      "email_registered": "Email has already been used to create a Square Panda account. If you've forgotten your password, you can reset it.",
+      "password_strength": "Please choose a password with at least 8 characters.",
       "password_change_new_login": "Password changed succesfully.",
-      "old_passwpord_wrong": "Old password is wrong.",
-      "old_passwpord_require": "Old password is required.",
+      "old_passwpord_wrong": "Your old password is incorrect. Please check and try again!",
       "version_require": "Version is required.",
       "file_require": "File is required.",
       "data_updatede_success": "Data updated successfully.",
@@ -215,20 +216,20 @@
       "user_name_length": "Must be between 2 and 20 characters.",
       "curriculum_word_require": "Word Name is required.",
       "error_getting_words": "Error in listing Words",
-      "word_name_require": "Word is required.",
+      "word_name_require": "Please enter a word to add to custom word list.",
       "file_size_large": "File size is too large, Try to upload below 2mb.",
-      "missing_letters_updated": "Missing letters submitted successfully.",
+      "missing_letters_updated": "Selected missing letters are successfully submitted to our database.",
       "missing_letters_error": "Error in updating missing letters.",
       "error_selecting-missing_letters": "Error in selecting missing letters.",
       "error_reset_password": "Error in resetting password.",
       "profile_edit_success": "Your profile is successfully updated.",
       "profile_edit_error": "Error in editing profile.",
-      "nofifications_success_msg": "Notifications  updated successfully.",
+      "nofifications_success_msg": "Notifications successfully updated.",
       "nofifications_error_msg": "Error in updating notifuications.",
       "word_length": "Must be between 1 and 24 characters.",
-      "groupword_success_msg": "Group words submitted successfully.",
+      "groupword_success_msg": "Relax your backs! The selected bad words are successfully filtered from your child's games.",
       "error_group_words": "Error in submitting group words.",
-      "word_success_msg": "Word added succesfully.",
+      "word_success_msg": "Hurray! Word successfully added.",
       "invalid_word_deatils": "Invalid word credentials.",
       "word_update_msg": "Word updated successfully.",
       "error_get_feeds": "Error in getting feeds.",
@@ -236,8 +237,8 @@
       "firmware_upload_error": "Error in file uploading.",
       "firmware_success": "firmware added successfully!",
       "error_file_upload": "Error in file uploading.",
-      "only_alphabets": "Allow only Alphabets.",
-      "dob_notvalid": "Date of birth is not valid.",
+      "only_alphabets": "Should not include any special characters and numbers.",
+      "dob_notvalid": "Please select the player's date of birth.",
       "session_expire": "Your session has expired.",
       "exit_custom_word": "Word already exists.",
       "error_adding_word": "Error in updating word."
@@ -296,12 +297,11 @@
     "add_modalbody": "You already have the maximum number of players added.",
     "add_modaltype": "Error",
     "delete_modaltitle": "Warning!",
-    "delete_modalbody": "Are you sure do you want to delete player?",
     "or": "Or, ",
     "uploadImage_selectavatar": "Please upload image or select Avatar.",
     "choose_avatar": " Choose a generic avatar",
     "no_players": "You don't have any players added.Start adding now.",
-    "no_graph_description":"Your child hasn't played any words in this badge, yet. Check out the descriptions above to see what kinds of words are covered in this badge.",
+    "no_graph_description":"Your child hasn't played any words in this badge. Check out the description above to see the words covered in this badge and start playing the words to view your child performance graph.",
     "word_headers": {
       "words": "Words",
       "attempts": "Attempts",
@@ -339,7 +339,12 @@
       "error_deleting_players": "Error in deleting.",
       "error_getting_players": "Error in getting player.",
       "error_getting_words": "Error in getting words.",
-      "error_getting_minibadges": "Error in getting mini badges."
+      "error_getting_minibadges": "Error in getting mini badges.",
+      "delete_player_body1": "Deleting this player will wipe curriculum advancement and game progress across all games, and will not be recoverable.",
+      "delete_player_body2": "If you would like more info about our privacy policies...",
+      "delete_player_body3":"click here ",
+      "delete_player_body4":" to read more."
+
     },
     "buttons": {
       "add_palyer": "Add Player",
@@ -365,7 +370,7 @@
       "30days": "30 Days",
       "1year": "1 Year",
       "all_time": "All Time",
-      "nodata": "No Data"
+      "nodata": "No data to display"
     }
   },
   "admin": {
@@ -412,11 +417,11 @@
     "customword_modalbody": "You already have the maximum number of custom words added.",
     "customword_modaltype": "Error",
     "message": {
-      "word_notexist_want_procced": "The word doesn't exists, do you want to proceed?",
-      "word_exist_want_edit": "The word already exists, do you want to edit the word?",
+      "word_notexist_want_procced": "It’s a new word, do you like to proceed?",
+      "word_exist_want_edit": "Looks like the word already exists. Try adding a new word!",
       "word_notexist": "The word doesn't exists.",
       "word_exist": "The word already exists.",
-      "model_delete_word": "Are you sure do you want to delete Word?",
+      "model_delete_word": "Are you sure, you want to delete the word?",
       "delete_success": "Word deleted Successfully.",
       "error_deleting_word": "Error in deleting Word."
     }
@@ -438,6 +443,18 @@
       "panda_news_data": "Be the first to know about the newest Square Panda learning apps (and get special offers too!)",
       "educational_feeds": "Educational New Feed",
       "educational_feeds_data": "Amplify learning with reading readiness tips and the latest research, articles and videos to help your child be reading ready!"
+    },
+    "messages":{
+      "first_name_require":"Please enter you first name.",
+      "last_name_require":"Please enter you last name.",
+      "mobile_num_invalid": "Mobile number should contain only digits.",
+      "no_specialchar_require":"Should not include any special characters and must start with a alphabet letter",
+      "old_password_require":"Please enter old password.",
+      "new_password_require":"Please enter new password.",
+      "cpassword_require":"Please retype new password.",
+      "password_mismatch":"Please make sure, your new and retype password match.",
+      "clear_missingletters":"You want to clear all the selected missing letters?"
+
     }
   },
   "privacy":{
