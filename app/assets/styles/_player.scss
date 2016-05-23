@@ -16,10 +16,10 @@
       margin-bottom: -43px !important;
     }
   }
-  .picture-selection-image{
+  .picture-selection-image {
     margin-top: 74px;
   }
-  .player-label{
+  .player-label {
     width: 30%;
     color: #565656 !important;
   }
@@ -56,7 +56,7 @@
     padding: 5px 60px;
     margin-right: 15px;
   }
-  .player-delete-button{
+  .player-delete-button {
     padding: 5px 10px;
     border-radius: 4px;
   }
@@ -141,7 +141,7 @@
 .player-details {
   padding: 0px;
   margin: 10px 10px;
-  .pd-left{
+  .pd-left {
     float: left;
   }
   .pd-right {
@@ -334,7 +334,7 @@
       margin-right: 25px;
       .player-words-table {
         clear: both;
-        .table-th-class{
+        .table-th-class {
           width: 20%;
         }
       }
@@ -343,13 +343,14 @@
 
       }
       .badges-row {
-        .badge-columns{
+        .badge-columns {
           padding: 12px;
         }
         .badge-item {
-          img{
+          img {
             cursor: pointer;
-          };
+          }
+        ;
           .active-big-badge {
             position: absolute;
             left: 50%;
@@ -393,7 +394,7 @@
           color: $white-color;
           font-weight: normal;
           font-size: 15px;
-          &:first-child{
+          &:first-child {
             text-align: left;
             padding-left: 100px;
             width: 21%;
@@ -407,7 +408,7 @@
         color: #B0B0B0;
         font-size: 15px;
         border-top: none;
-        &:first-child{
+        &:first-child {
           text-align: left;
           padding-left: 100px;
         }
@@ -443,7 +444,7 @@
             border: 10px solid #cad6dd;
           }
           .mb-des {
-            .minibadge-description{
+            .minibadge-description {
               color: #636363
             }
             span {
@@ -458,31 +459,31 @@
     position: relative;
     background-color: white;
     clear: both;
-    .bigbadge-description-empty-div{
+    .bigbadge-description-empty-div {
       margin-top: -12px;
     }
-    #chartContainer{
+    #chartContainer {
       background-color: #fefefe;
-      .highcharts-container{
-        width: 100%!important;
+      .highcharts-container {
+        width: 100% !important;
       }
     }
-    .chart-container{
+    .chart-container {
       position: relative;
       .chart-overlay {
         background-color: rgba(230, 230, 230, 0.7);
         display: table;
-        position:absolute;
+        position: absolute;
         text-align: center;
-        top:0px;
-        left:0;
-        right:0;
-        bottom:0;
-        z-index:999;
+        top: 0px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 999;
         width: 100%;
         height: 370px;
-        span{
-          vertical-align:middle;
+        span {
+          vertical-align: middle;
           display: table-cell;
           color: #615F5F;
           font-size: 21px;
@@ -524,7 +525,7 @@
         color: #BABCBE;
         border: 1px solid #BABCBE;
         margin-right: 10px;
-        &:hover{
+        &:hover {
           background-color: $sp-yellow;
           border: 1px solid $sp-yellow;
           color: white;
@@ -538,7 +539,7 @@
       }
 
     }
-    .bigbadge-graph-buttons-one{
+    .bigbadge-graph-buttons-one {
       float: left;
       .bigbadge-graph-button-style {
         padding: 5px 14px 5px 14px;
@@ -546,7 +547,7 @@
         color: #BABCBE;
         border: 1px solid #BABCBE;
         margin-right: 10px;
-        &:hover{
+        &:hover {
           background-color: $sp-yellow;
           border: 1px solid $sp-yellow;
           color: white;
@@ -559,7 +560,7 @@
         box-shadow: none;
       }
     }
-    .bigbadge-graph-buttons-two{
+    .bigbadge-graph-buttons-two {
       float: right;
       .bigbadge-graph-button-style {
         padding: 5px 14px 5px 14px;
@@ -567,7 +568,7 @@
         color: #BABCBE;
         border: 1px solid #BABCBE;
         margin-right: 10px;
-        &:hover{
+        &:hover {
           background-color: $sp-yellow;
           border: 1px solid $sp-yellow;
           color: white;
@@ -600,10 +601,10 @@
     }
   }
   .avatar-actions {
-    a:hover{
+    a:hover {
       text-decoration: none;
     }
-    a:focus{
+    a:focus {
       text-decoration: none;
     }
     float: left;
@@ -657,7 +658,7 @@
         position: relative;
         min-width: 50px;
         min-height: 50px;
-        .item-loader{
+        .item-loader {
           position: absolute;
           top: 0px;
           left: 0px;
@@ -665,7 +666,7 @@
           min-width: 50px;
           min-height: 50px;
           border: solid 1px #efefef;
-          img{
+          img {
             margin-top: 16px;
           }
         }
@@ -700,13 +701,13 @@
 }
 
 @media(min-width: 768px) {
-  .player-label{
+  .player-label {
     width: 10% !important;
   }
-  .picture-selection-image{
+  .picture-selection-image {
     margin-top: 0px !important;
   }
-  .bigbadge-graph-button-style{
+  .bigbadge-graph-button-style {
     padding: 5px 20px 5px 20px;
   }
   .profile-pic, .profile-pic img {
@@ -777,59 +778,55 @@
 .player-export-btn:hover {
   text-decoration: none;
 }
-.player-words-tab-filterby{
+
+.player-words-tab-filterby {
   padding: 21px 0px 0px 25px;
   .filter-label {
   }
 }
-/* Player Crop Image CSS*/
-.crop-image-container {
-  text-align: left;
-  font-weight: bold;
-  .cropArea {
-    background: #E4E4E4;
-    overflow: hidden;
-    height: 250px;
-  }
 
-  .croped-image {
-    background: #E4E4E4;
-    overflow: hidden;
-    width: 125px;
-    height: 120px;
-    margin: 14px 0px;
+/* Player Crop Image CSS*/
+.cropArea {
+  height: 250px;
+  .img-crop-class {
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    margin-top: 20%;
+    margin-left: 48%;
   }
 }
+
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-  .player-label{
+  .player-label {
     width: 16% !important;
   }
-  .picture-selection-image{
+  .picture-selection-image {
     margin-top: 93px !important;
   }
 }
 
-@media only screen and
-(min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .player-label{
+@media only screen and(min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .player-label {
     width: 12% !important;
   }
-  .picture-selection-image{
+  .picture-selection-image {
     margin-top: 0px !important;
   }
 }
 
-@media only screen and (max-device-width: 360px){
-  .player-label{
+@media only screen and (max-device-width: 360px) {
+  .player-label {
     width: 40% !important;
   }
-  .avatar-container .avatar-actions{
-    margin-left:-10px;
+  .avatar-container .avatar-actions {
+    margin-left: -10px;
   }
   .player-tabs ul li a {
     padding: 10px 6px;
   }
 }
+
 @media only screen and (max-device-width: 320px) {
   .save-cancel-player {
     padding: 6px 10px !important;
@@ -842,40 +839,42 @@
     padding: 10px 0px;
     margin-right: -1px;
   }
-  .player-tabs .bigbadge-description .bigbadge-graph-buttons-one .bigbadge-graph-button-style{
-    padding:5px 7px 5px 7px !important;
+  .player-tabs .bigbadge-description .bigbadge-graph-buttons-one .bigbadge-graph-button-style {
+    padding: 5px 7px 5px 7px !important;
   }
 }
-@media only screen and (max-device-width: 480px){
-  .pd-left{
-    float: none!important;
+
+@media only screen and (max-device-width: 480px) {
+  .pd-left {
+    float: none !important;
     margin: 0 auto;
     width: 160px;
   }
-  .player-delete-button{
+  .player-delete-button {
     margin-right: 20px;
   }
   .player-tabs .bigbadge-description
-    .bigbadge-graph-buttons-one{
+  .bigbadge-graph-buttons-one {
     margin: 0px auto;
     text-align: center;
     display: block;
     float: none;
     padding-top: 15px;
-    }
-    .bigbadge-graph-buttons-two{
-      float: none !important;
-      margin-top: 15px !important;
-      margin: 0px auto;
-      text-align: center;
-      display: block;
-    }
-  .bigbadge-graph-buttons{
+  }
+  .bigbadge-graph-buttons-two {
+    float: none !important;
+    margin-top: 15px !important;
+    margin: 0px auto;
+    text-align: center;
+    display: block;
+  }
+  .bigbadge-graph-buttons {
     float: none !important;
     margin-top: 0px !important;
   }
 }
-@media(max-width: 480px){
+
+@media(max-width: 480px) {
 
 }
 
