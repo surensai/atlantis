@@ -784,15 +784,12 @@
 }
 /* Player Crop Image CSS*/
 .crop-image-container {
-  padding: 10px 10px;
   text-align: left;
   font-weight: bold;
   .cropArea {
     background: #E4E4E4;
     overflow: hidden;
-    width: 61%;
     height: 250px;
-    margin: 14px 0px;
   }
 
   .croped-image {

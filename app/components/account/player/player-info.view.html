@@ -1,9 +1,10 @@
 <div class="player-details clearfix">
   <div class="pd-left nopadding">
     <div class="profile-pic">
-      <img data-ng-if="!player.playerObj.profileURL" src="assets/images/fallback-img.png"
+      <img data-ng-if="player.playerObj.imgbase64 && player.playerObj.profileURL"
+           data-ng-src="{{player.playerObj.imgbase64}}"
            alt="player" width="100%" height="100%"/>
-      <img data-ng-if="player.playerObj.profileURL"
+      <img data-ng-if="!player.playerObj.imgbase64 && player.playerObj.profileURL"
            data-ng-src="{{player.playerObj.profileURL}}"
            class="img-rectangle img-border-radius" alt="player" width="100%" height="100%">
       <a ui-sref="account.editPlayer({ id: player.playerObj.id })">
