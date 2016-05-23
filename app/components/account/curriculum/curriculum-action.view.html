@@ -27,7 +27,7 @@
                        placeholder="{{ 'curriculum.word' | translate }}" required ng-pattern="/^[A-z][A-z]*$/"
                        ng-minlength="1" ng-maxlength="24">
 
-                <span class="btn btn-default custom-search-button" ng-click="curriculum.searchWord()"
+                <span class="btn btn-default custom-search-button" ng-click="curriculum.searchWord(true)"
                       data-ng-if="!curriculum.isView && curriculum.model.wordItem.wordName"><i
                   class="fa fa-search"></i></span>
               </div>
