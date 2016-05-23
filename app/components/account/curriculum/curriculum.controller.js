@@ -38,12 +38,14 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
         var modalInstance = $uibModal.open({
           templateUrl: 'common/app-directives/modal/custom-modal.html',
           controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
-            $scope.modalTitle =  $translate.instant("common.confirm");
+
             if (data.length > 0) {
               isWordPrsnt = (data[0].owner) ? true : false;
+              $scope.modalTitle =  $translate.instant("common.whoops");
               $scope.modalBody = $translate.instant("curriculum.message.word_exist_want_edit");
             } else {
               isWordPrsnt = false;
+              $scope.modalTitle =  $translate.instant("common.yipee");
               $scope.modalBody = $translate.instant("curriculum.message.word_notexist_want_procced");
             }
             $scope.ok = function () {

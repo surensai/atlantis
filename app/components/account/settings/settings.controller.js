@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService', function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService) {
+angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService', '$uibModal', '$translate',  function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService, $uibModal, $translate) {
   var settings = this;
   settings.model = {};
   settings.model.userData = angular.copy($rootScope.globals.currentUser);
@@ -210,8 +210,25 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   };
 
   settings.clearAllAlphabets = function () {
-    addSelectedLetterIds(settings.missingLetters, 'clear');
-    addSelectedLetterIds(settings.missingLetters_row_2, 'clear');
+    $uibModal.open({
+      templateUrl: 'components/account/settings/clear-all-missingletters.html',
+      controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+        $scope.modalTitle = $translate.instant('common.are_you_sure');
+
+
+
+        $scope.ok = function () {
+          addSelectedLetterIds(settings.missingLetters, 'clear');
+          addSelectedLetterIds(settings.missingLetters_row_2, 'clear');
+          $uibModalInstance.close();
+        };
+
+        $scope.cancel = function () {
+          $uibModalInstance.dismiss('cancel');
+        };
+      }]
+    });
+
   };
 
   settings.isLetterVowel = function (char) {
