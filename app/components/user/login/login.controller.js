@@ -35,7 +35,10 @@ angular.module("app").controller('loginCtrl', ['$scope', '$state', 'Authenticati
       $state.go('account.dashboard');
     };
     var handleError = function (error, status) {
+
       if (error && status) {
+        login.model.email = '';
+        login.model.password = '';
         messagesFactory.loginErrorMessages(status);
       }
     };
