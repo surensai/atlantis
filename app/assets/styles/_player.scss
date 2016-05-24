@@ -787,11 +787,9 @@
 
 /* Player Crop Image CSS*/
 .cropArea {
-  height: 250px;
+  height: 260px;
   .img-crop-class {
-    width: 80%;
-    height: 80%;
-    position: absolute;
+    position: static !important;
     margin-top: 20%;
     margin-left: 48%;
   }
