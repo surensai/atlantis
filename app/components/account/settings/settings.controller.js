@@ -210,25 +210,8 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   };
 
   settings.clearAllAlphabets = function () {
-    $uibModal.open({
-      templateUrl: 'components/account/settings/clear-all-missingletters.html',
-      controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
-        $scope.modalTitle = $translate.instant('common.are_you_sure');
-
-
-
-        $scope.ok = function () {
-          addSelectedLetterIds(settings.missingLetters, 'clear');
-          addSelectedLetterIds(settings.missingLetters_row_2, 'clear');
-          $uibModalInstance.close();
-        };
-
-        $scope.cancel = function () {
-          $uibModalInstance.dismiss('cancel');
-        };
-      }]
-    });
-
+      addSelectedLetterIds(settings.missingLetters, 'clear');
+      addSelectedLetterIds(settings.missingLetters_row_2, 'clear');
   };
 
   settings.isLetterVowel = function (char) {

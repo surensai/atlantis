@@ -12,33 +12,20 @@
 
       <div class="form-group has-feedback">
         <input type="text" name="firstName" class="form-control" data-ng-model="register.model.firstName"
-                ng-pattern="/^[A-z][A-z0-9 ]*$/"
                placeholder="{{ 'user.register.grownup_first_name' | translate }}" required>
         <div ng-show="userForm.$submitted && userForm.firstName.$error.required" class="error-mesasage">
         <i class="fa fa-exclamation-circle"></i>
         <span data-translate="user.validationMessages.first_name_require">First Name is required.</span>
-        </div>
-        <div ng-show="userForm.firstName.$error.pattern && userForm.firstName.$dirty"
-             class="error-mesasage">
-        <i class="fa fa-exclamation-circle"></i>
-        <span data-translate="user.validationMessages.no_specialchar_require"> No special characters allowed and must start with a letter.</span>
         </div>
           <i class="fa fa-user form-control-feedback "></i>
       </div>
 
       <div class="form-group has-feedback">
         <input type="text" name="lastName" class="form-control" data-ng-model="register.model.lastName"
-               ng-pattern="/^[A-z][A-z0-9 ]*$/"
                placeholder="{{ 'user.register.grownup_last_name' | translate }}" required>
         <div ng-show="userForm.$submitted && userForm.lastName.$error.required" class="error-mesasage">
         <i class="fa fa-exclamation-circle"></i>
         <span  data-translate="user.validationMessages.last_name_require">Last Name is required.</span>
-        </div>
-
-        <div ng-show="userForm.lastName.$error.pattern && userForm.lastName.$dirty"
-             class="error-mesasage">
-        <i class="fa fa-exclamation-circle"></i>
-        <span data-translate="user.validationMessages.no_specialchar_require"> No special characters allowed and must start with a letter.</span>
         </div>
           <i class="fa fa-user form-control-feedback "></i>
       </div>
