@@ -1,12 +1,15 @@
 <div class="bg-img"></div>
 <div class="content clearfix">
+  <div class="text-center">
+    <h2 class="login-form-heading center-align" data-translate="user.login.log_in">Log In</h2>
+    <div class="login-error-message" data-ng-if="globals.flash && globals.flash.type !== 'success'">
+      {{globals.flash.message}}
+    </div>
+  </div>
   <div class="col-lg-4 col-md-3 col-sm-3"></div>
   <div class="col-lg-4 col-md-6 col-sm-6 login-top-margin">
     <form name="signinForm" class="user-form-container" data-ng-submit="login.submitForm(signinForm)" novalidate>
-      <h2 class="form-signin-heading center-align" data-translate="user.login.log_in">Log In</h2>
-      <div class="error-text-message" data-ng-if="globals.flash && globals.flash.type !== 'success'">
-        {{globals.flash.message}}
-      </div>
+
       <div class="form-group has-feedback">
         <input type="text" name="email" class="form-control" data-ng-model="login.model.email"
                placeholder="{{ 'user.email' | translate }}" required>

@@ -55,10 +55,10 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
     var handleSuccess = function (data) {
       if (isSearchClicked) {
         if (data.length === 0) {
-          curriculum.model.message = $translate.instant("curriculum.message.word_notexist");
+          curriculum.model.message = $translate.instant("curriculum.messages.word_notexist");
           curriculum.model.isWordExit = false;
         } else {
-          curriculum.model.message = $translate.instant("curriculum.message.word_exist");
+          curriculum.model.message = $translate.instant("curriculum.messages.word_exist");
           curriculum.model.isWordExit = true;
         }
       } else {

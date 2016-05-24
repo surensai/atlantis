@@ -19,17 +19,12 @@
               </div>
               <div class="col-md-3">
                 <input type="text" name="firstName" class="form-control"
-                        ng-pattern="/^[A-z][A-z0-9 ]*$/"
                        data-ng-model="settings.model.userData.firstName"
                        placeholder="{{ 'settings.grownup_first_name' | translate }}" required ng-disabled="!settings.isEditClicked">
 
                 <div class="error-mesasage"  ng-show="settingsForm.firstName.$error.required">
                   <i class="fa fa-exclamation-circle"></i>
-                  <span data-translate="settings.messages.first_name_require">  Please enter you first name. </span>
-                </div>
-                <div class="error-mesasage" ng-show="settingsForm.firstName.$error.pattern && settingsForm.firstName.$dirty">
-                  <i class="fa fa-exclamation-circle"></i>
-                  <span data-translate="settings.messages.no_specialchar_require">Should not include any special characters and must start with a alphabet letter. </span>
+                  <span data-translate="settings.messages.first_name_require">  Please enter your (grown-up's) first name. </span>
                 </div>
               </div>
 
@@ -43,18 +38,13 @@
 
               <div class="col-md-3">
                 <input type="text" name="lastName" class="form-control" data-ng-model="settings.model.userData.lastName"
-                        ng-pattern="/^[A-z][A-z0-9 ]*$/"
                        placeholder="{{ 'settings.grownup_last_name' | translate }}" required ng-disabled="!settings.isEditClicked">
 
                 <div class="error-mesasage"  ng-show="settingsForm.lastName.$error.required">
                   <i class="fa fa-exclamation-circle"></i>
-                  <span data-translate="settings.messages.last_name_require">Please enter you last name.</span>
+                  <span data-translate="settings.messages.last_name_require">Please enter your (grown-up's) last name.</span>
                 </div>
 
-                <div class="error-mesasage" ng-show="settingsForm.lastName.$error.pattern && settingsForm.lastName.$dirty">
-                  <i class="fa fa-exclamation-circle"></i>
-                  <span data-translate="settings.messages.no_specialchar_require">Should not include any special characters and must start with a alphabet letter.</span>
-                </div>
               </div>
             </div>
 
