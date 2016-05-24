@@ -135,6 +135,9 @@
       "back": "Back",
       "close": "Close",
       "select": "Select"
+    },
+    "messages":{
+      "wrong_email_format":"That doesn't look like a valid email. Please check for typos."
     }
   },
   "default_title": "Default Title",
