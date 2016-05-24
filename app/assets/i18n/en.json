@@ -128,6 +128,7 @@
       "sign_up": "SIGNUP",
       "addword": "Add Word",
       "clear_all": "Clear All",
+      "reset":"Reset",
       "yes": "Yes",
       "ok": "Ok",
       "no": "No",
@@ -198,11 +199,11 @@
       "cpassword_require": "Retype Password is required.",
       "old_password_require": "Old Password is required.",
       "email_password_mismatch": "The email or password is incorrect. If you have forgotten your password, you can reset it here.",
-      "email_notverified": "Email address not verified.",
-      "email_registered": "Email has already been used to create a Square Panda account. If you've forgotten your password, you can reset it.",
+      "email_notverified": "Looks like your account has not yet been activated.  Check your email for a message from Square Panda.",
+      "email_registered": "That email has already been used to create a Square Panda account. If you've forgotten your password, you can reset it.",
       "password_strength": "Please choose a password with at least 8 characters.",
       "password_change_new_login": "Password changed succesfully.",
-      "old_passwpord_wrong": "Your old password is incorrect. Please check and try again!",
+      "old_passwpord_wrong": "Your old password is incorrect. Please try again!",
       "version_require": "Version is required.",
       "file_require": "File is required.",
       "data_updatede_success": "Data updated successfully.",
@@ -218,15 +219,15 @@
       "error_getting_words": "Error in listing Words",
       "word_name_require": "Please enter a word to add to custom word list.",
       "file_size_large": "File size is too large, Try to upload below 2mb.",
-      "missing_letters_updated": "Selected missing letters are successfully submitted to our database.",
+      "missing_letters_updated": "Changes Saved.",
       "missing_letters_error": "Error in updating missing letters.",
       "error_selecting-missing_letters": "Error in selecting missing letters.",
       "error_reset_password": "Error in resetting password.",
       "profile_edit_success": "Your profile is successfully updated.",
       "profile_edit_error": "Error in editing profile.",
-      "nofifications_success_msg": "Notifications successfully updated.",
+      "nofifications_success_msg": "Changes Saved.",
       "nofifications_error_msg": "Error in updating notifuications.",
-      "word_length": "Must be between 1 and 24 characters.",
+      "word_length": "Must be between 1 and 8 characters.",
       "groupword_success_msg": "Relax your backs! The selected bad words are successfully filtered from your child's games.",
       "error_group_words": "Error in submitting group words.",
       "word_success_msg": "Hurray! Word successfully added.",
@@ -427,6 +428,9 @@
     }
   },
   "settings": {
+    "grownup_first_name": "Grown Up's First Name",
+    "grownup_last_name": "Grown Up's Last Name",
+    "grownup_email": "Grown Up's Email",
     "lost_letters": {
       "header": "Lost Letter",
       "data": "   Lost a letter? Let us know here and we'll exclude these letters from your games!",
@@ -449,12 +453,10 @@
       "last_name_require":"Please enter you last name.",
       "mobile_num_invalid": "Mobile number should contain only digits.",
       "no_specialchar_require":"Should not include any special characters and must start with a alphabet letter",
-      "old_password_require":"Please enter old password.",
-      "new_password_require":"Please enter new password.",
-      "cpassword_require":"Please retype new password.",
-      "password_mismatch":"Please make sure, your new and retype password match.",
-      "clear_missingletters":"You want to clear all the selected missing letters?"
-
+      "old_password_require":"Please enter your old password.",
+      "new_password_require":"Please enter your new password.",
+      "cpassword_require":"Please re-enter your new password.",
+      "password_mismatch":"Please make sure your passwords match."
     }
   },
   "privacy":{
