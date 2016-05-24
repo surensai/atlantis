@@ -222,16 +222,13 @@
       "error_getting_words": "Error in listing Words",
       "word_name_require": "Please enter a word to add to custom word list.",
       "file_size_large": "File size is too large, Try to upload below 2mb.",
-      "missing_letters_updated": "Changes Saved.",
       "missing_letters_error": "Error in updating missing letters.",
       "error_selecting-missing_letters": "Error in selecting missing letters.",
       "error_reset_password": "Error in resetting password.",
       "profile_edit_success": "Your profile is successfully updated.",
       "profile_edit_error": "Error in editing profile.",
-      "nofifications_success_msg": "Changes Saved.",
       "nofifications_error_msg": "Error in updating notifuications.",
       "word_length": "Must be between 1 and 8 characters.",
-      "groupword_success_msg": "Relax your backs! The selected bad words are successfully filtered from your child's games.",
       "error_group_words": "Error in submitting group words.",
       "word_success_msg": "Hurray! Word successfully added.",
       "invalid_word_deatils": "Invalid word credentials.",
@@ -243,9 +240,7 @@
       "error_file_upload": "Error in file uploading.",
       "only_alphabets": "Should not include any special characters and numbers.",
       "dob_notvalid": "Please select the player's date of birth.",
-      "session_expire": "Your session has expired.",
-      "exit_custom_word": "Word already exists.",
-      "error_adding_word": "Error in updating word."
+      "session_expire": "Your session has expired."
     },
     "change_password": {
       "old_password": "Old Password",
@@ -420,14 +415,17 @@
     "customword_modaltitle": "Error",
     "customword_modalbody": "You already have the maximum number of custom words added.",
     "customword_modaltype": "Error",
-    "message": {
+    "messages": {
       "word_notexist_want_procced": "It’s a new word, do you like to proceed?",
       "word_exist_want_edit": "Looks like the word already exists. Try adding a new word!",
       "word_notexist": "The word doesn't exists.",
       "word_exist": "The word already exists.",
       "model_delete_word": "Are you sure, you want to delete the word?",
       "delete_success": "Word deleted Successfully.",
-      "error_deleting_word": "Error in deleting Word."
+      "error_deleting_word": "Error in deleting Word.",
+      "groupword_success_msg": "Changes Saved.",
+      "exit_custom_word": "Word already exists.",
+      "error_adding_word": "Error in updating word."
     }
   },
   "settings": {
@@ -458,7 +456,9 @@
       "old_password_require":"Please enter your old password.",
       "new_password_require":"Please enter your new password.",
       "cpassword_require":"Please re-enter your new password.",
-      "password_mismatch":"Please make sure your passwords match."
+      "password_mismatch":"Please make sure your passwords match.",
+      "missing_letters_updated": "Changes Saved.",
+      "nofifications_success_msg": "Changes Saved."
     }
   },
   "privacy":{
