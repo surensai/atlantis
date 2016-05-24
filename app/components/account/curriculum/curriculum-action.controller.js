@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'CurriculumService', '$scope', '$state', '$uibModal', 'ngAudio', 'messagesFactory', '$translate', function ($timeout, CurriculumService, $scope, $state, $uibModal, ngAudio, messagesFactory, $translate) {
+angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'CurriculumService', '$scope', '$state', '$uibModal', 'ngAudio', 'messagesFactory', '$translate','AuthenticationService', function ($timeout, CurriculumService, $scope, $state, $uibModal, ngAudio, messagesFactory, $translate, authService) {
 
   var curriculum = this;
   curriculum.model = {};
@@ -71,7 +71,14 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
     };
 
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          CurriculumService.searchWordApi(word)
+            .success(handleSuccess)
+            .error(handleError);
+        });
+      }
+      else {
         messagesFactory.searchwordsError(status);
       }
     };
@@ -103,7 +110,12 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
         }
       };
       var handleError = function (error, status) {
-        if (error && status) {
+        if(status === 401){
+          authService.generateNewToken(function(){
+            getWordId();
+          });
+        }
+        else {
           messagesFactory.getwordsError(status);
         }
       };
@@ -140,7 +152,12 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
     var formData = structureFormData();
 
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          addAction(form);
+        });
+      }
+      else {
         messagesFactory.savewordsError(status);
       }
     };
@@ -162,7 +179,12 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
       $state.go('account.curriculum');
     };
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          updateAction();
+        });
+      }
+      else {
         messagesFactory.updatewordsError(status);
       }
     };
@@ -184,14 +206,26 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
             addAction(form);
           }
         })
-        .error(function () {
-          messagesFactory.uploadfileError(status);
+        .error(function (error, status) {
+          if(status === 401){
+            authService.generateNewToken(function(){
+              uploadMultipleFiles(form, audioFile, imageFile);
+            });
+          }
+          else {
+            messagesFactory.uploadfileError(status);
+          }
         });
 
     };
 
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          uploadMultipleFiles(form, audioFile, imageFile);
+        });
+      }
+      else {
         messagesFactory.uploadfileError(status);
       }
     };
@@ -216,7 +250,12 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
 
     };
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          uploadProfilePic(form, file);
+        });
+      }
+      else {
         messagesFactory.uploadfileError(status);
       }
     };
