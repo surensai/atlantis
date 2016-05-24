@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messagesFactory', 'PlayerService', '$timeout', '$translate', '$uibModal', function ($scope, $state, messagesFactory, PlayerService, $timeout, $translate, $uibModal) {
+angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messagesFactory', 'PlayerService', '$timeout', '$translate', '$uibModal','AuthenticationService', function ($scope, $state, messagesFactory, PlayerService, $timeout, $translate, $uibModal, authService) {
 
   var playerAction = this;
   playerAction.model = {};
@@ -68,7 +68,12 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     };
 
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          addAction();
+        });
+      }
+      else {
         messagesFactory.createPlayerError(status, error);
       }
     };
@@ -85,7 +90,12 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     };
 
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          updateAction();
+        });
+      }
+      else {
         messagesFactory.updatePlayerError(status);
       }
     };
@@ -106,13 +116,21 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       form.$setPristine();
     };
 
-    var handleError = function () {
-      if (playerAction.isUpdate) {
-        updateAction();
-      } else {
-        addAction();
+    var handleError = function (error,status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          uploadProfilePic(form);
+        });
       }
-      messagesFactory.uploadfileError(status);
+      else {
+        if (playerAction.isUpdate) {
+          updateAction();
+        } else {
+          addAction();
+        }
+        messagesFactory.uploadfileError(status);
+      }
+
     };
 
     PlayerService.uploadFileApi(playerAction.previousSelectedFile[0])
@@ -150,7 +168,14 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       $state.go("account.players");
     };
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          PlayerService.deleteApi(playerAction.data.deleteObj.id)
+            .success(handleSuccess)
+            .error(handleError);
+        });
+      }
+      else {
         messagesFactory.deletePlayerError(status);
       }
     };
@@ -258,7 +283,12 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       };
 
       var handleError = function (error, status) {
-        if (error && status) {
+        if(status === 401){
+          authService.generateNewToken(function(){
+            getPlayerById();
+          });
+        }
+        else {
           messagesFactory.getPlayerbyIDError(status);
         }
       };
@@ -277,7 +307,12 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     };
 
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          getAvatars();
+        });
+      }
+      else {
         messagesFactory.getPlayerbyIDError(status);
       }
     };
