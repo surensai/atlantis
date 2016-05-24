@@ -40,7 +40,7 @@ var app = angular.module('app').config(['$windowProvider', '$translateProvider',
         return response;
       },
       'responseError': function (rejection) {
-        if (rejection.status === 401 || rejection.status === 403) {
+        if (rejection.status === 403) {
           $location.path('/login');
         }
         appService.isFooterFixed();

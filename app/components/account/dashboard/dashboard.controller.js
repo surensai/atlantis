@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messagesFactory', '$state', '$stateParams', '$rootScope', function (DashboardService, messagesFactory, $state, $stateParams, $rootScope) {
+angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messagesFactory', '$state', '$stateParams', '$rootScope','AuthenticationService', function (DashboardService, messagesFactory, $state, $stateParams, $rootScope,authService) {
   var dashboard = this;
   var welcomefeed = $rootScope.globals.currentUser.welcomefeed;
   dashboard.userName = $rootScope.globals.currentUser;
@@ -68,14 +68,13 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
     };
 
     var handleError = function (error, status) {
-      if (error && status) {
-        messagesFactory.dashboardfeedsError(status);
-      }
-
       if(status === 401){
-        AuthenticationService.generateNewToken(function(){
-          loadFeedData(playerId);
+        authService.generateNewToken(function(){
+          loadFeedData();
         });
+      }
+      else {
+        messagesFactory.dashboardfeedsError(status);
       }
 
     };
