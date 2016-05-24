@@ -452,9 +452,8 @@
       "educational_feeds_data": "Amplify learning with reading readiness tips and the latest research, articles and videos to help your child be reading ready!"
     },
     "messages":{
-      "first_name_require":"Please enter you first name.",
-      "last_name_require":"Please enter you last name.",
-      "mobile_num_invalid": "Mobile number should contain only digits.",
+      "first_name_require":"Please enter your (grown-up's) first name.",
+      "last_name_require":"Please enter your (grown-up's) last name.",
       "no_specialchar_require":"Should not include any special characters and must start with a alphabet letter",
       "old_password_require":"Please enter your old password.",
       "new_password_require":"Please enter your new password.",
