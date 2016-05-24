@@ -28,7 +28,7 @@
                 <div class="col-md-12">
 
                   <input type="text" class="form-control" name="word" placeholder="{{ 'curriculum.type_word' | translate }}" data-ng-model="curriculum.model.wordItem.wordName" ng-pattern="/^[A-z][A-z]*$/"
-                         ng-minlength="1" ng-maxlength="24">
+                         ng-minlength="1" ng-maxlength="8">
 
                   <div ng-show="curriculumForm.$submitted && curriculumForm.word.$error.required"
                        class="error-mesasage">
@@ -43,7 +43,7 @@
                     ng-show="!curriculumForm.word.$error.pattern && !curriculumForm.word.$error.required && (curriculumForm.word.$error.minlength || curriculumForm.word.$error.maxlength) && curriculumForm.word.$dirty"
                     class="error-mesasage">
                     <i class="fa fa-exclamation-circle"></i>
-                    <span data-translate="user.validationMessages.word_length"> Must be between 1 and 24 characters.</span>
+                    <span data-translate="user.validationMessages.word_length"> Must be between 1 and 8 characters.</span>
                   </div>
                 </div>
               </div>

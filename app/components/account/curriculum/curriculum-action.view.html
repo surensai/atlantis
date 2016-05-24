@@ -25,7 +25,7 @@
                 <input ng-disabled="curriculum.isView" type="text" name="word" class="form-control"
                        data-ng-model="curriculum.model.wordItem.wordName"
                        placeholder="{{ 'curriculum.word' | translate }}" required ng-pattern="/^[A-z][A-z]*$/"
-                       ng-minlength="1" ng-maxlength="24">
+                       ng-minlength="1" ng-maxlength="8">
 
                 <span class="btn btn-default custom-search-button" ng-click="curriculum.searchWord(true)"
                       data-ng-if="!curriculum.isView && curriculum.model.wordItem.wordName"><i
@@ -47,7 +47,7 @@
                 ng-show="!playerForm.word.$error.pattern && !playerForm.word.$error.required && (playerForm.word.$error.minlength || playerForm.word.$error.maxlength) && playerForm.word.$dirty"
                 class="error-mesasage">
                 <i class="fa fa-exclamation-circle"></i>
-                <span data-translate="user.validationMessages.word_length"> Must be between 1 and 24 characters.</span>
+                <span data-translate="user.validationMessages.word_length"> Must be between 1 and 8 characters.</span>
               </div>
             </div>
           </div>

@@ -15,13 +15,13 @@
             <div class="form-group">
               <div class="col-md-3"></div>
               <div class="col-md-2 ">
-              <label class="control-label" data-translate="nav.edit_profile.first_name">First Name:</label>
+              <label class="control-label" data-translate="settings.grownup_first_name">Grown Up's First Name:</label>
               </div>
               <div class="col-md-3">
                 <input type="text" name="firstName" class="form-control"
                         ng-pattern="/^[A-z][A-z0-9 ]*$/"
                        data-ng-model="settings.model.userData.firstName"
-                       placeholder="{{ 'user.first_name' | translate }}" required ng-disabled="!settings.isEditClicked">
+                       placeholder="{{ 'settings.grownup_first_name' | translate }}" required ng-disabled="!settings.isEditClicked">
 
                 <div class="error-mesasage"  ng-show="settingsForm.firstName.$error.required">
                   <i class="fa fa-exclamation-circle"></i>
@@ -38,13 +38,13 @@
             <div class="form-group">
               <div class="col-md-3"></div>
               <div class="col-md-2 ">
-              <label class="control-label " data-translate="nav.edit_profile.last_name">Last Name:</label>
+              <label class="control-label " data-translate="settings.grownup_last_name">Grown Up's Last Name:</label>
               </div>
 
               <div class="col-md-3">
                 <input type="text" name="lastName" class="form-control" data-ng-model="settings.model.userData.lastName"
                         ng-pattern="/^[A-z][A-z0-9 ]*$/"
-                       placeholder="{{ 'user.last_name' | translate }}" required ng-disabled="!settings.isEditClicked">
+                       placeholder="{{ 'settings.grownup_last_name' | translate }}" required ng-disabled="!settings.isEditClicked">
 
                 <div class="error-mesasage"  ng-show="settingsForm.lastName.$error.required">
                   <i class="fa fa-exclamation-circle"></i>
@@ -61,32 +61,32 @@
             <div class="form-group">
               <div class="col-md-3"></div>
               <div class="col-md-2 ">
-              <label class="control-label" data-translate="nav.edit_profile.email">Email:</label></div>
+              <label class="control-label" data-translate="settings.grownup_email">Grown Up's Emai:</label></div>
 
               <div class="col-md-3">
                 <input type="text" name="email" class="form-control" data-ng-model="settings.model.userData.email"
-                       placeholder="{{ 'user.email' | translate }}" disabled>
+                       placeholder="{{ 'settings.grownup_email' | translate }}" disabled>
               </div>
             </div>
 
-            <div class="form-group">
-              <div class="col-md-3"></div>
-              <div class="col-md-2">
-                <label class=" control-label" data-translate="nav.edit_profile.mobile_num">Mobile
-                Number:</label>
-              </div>
+            <!--<div class="form-group">-->
+              <!--<div class="col-md-3"></div>-->
+              <!--<div class="col-md-2">-->
+                <!--<label class=" control-label" data-translate="nav.edit_profile.mobile_num">Mobile-->
+                <!--Number:</label>-->
+              <!--</div>-->
 
-              <div class="col-md-3">
-                <input type="text" name="mobileNumber" data-ng-model="settings.model.userData.mobileNumber"
-                       class="form-control" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
-                       placeholder="{{ 'user.register.mobile' | translate }}" ng-disabled="!settings.isEditClicked">
+              <!--<div class="col-md-3">-->
+                <!--<input type="text" name="mobileNumber" data-ng-model="settings.model.userData.mobileNumber"-->
+                       <!--class="form-control" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"-->
+                       <!--placeholder="{{ 'user.register.mobile' | translate }}" ng-disabled="!settings.isEditClicked">-->
 
-                <div class="error-mesasage" ng-show='settingsForm.mobileNumber.$error.pattern && settingsForm.mobileNumber.$dirty'>
-                  <i class="fa fa-exclamation-circle"></i>
-                  <span data-translate="settings.messages.mobile_num_invalid">Mobile number should contain only digits.</span>
-                </div>
-              </div>
-            </div>
+                <!--<div class="error-mesasage" ng-show='settingsForm.mobileNumber.$error.pattern && settingsForm.mobileNumber.$dirty'>-->
+                  <!--<i class="fa fa-exclamation-circle"></i>-->
+                  <!--<span data-translate="settings.messages.mobile_num_invalid">Mobile number should contain only digits.</span>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
 
             <div class="form-group">
               <div class="col-md-5"></div>
@@ -240,8 +240,7 @@
                     data-translate="common.buttons.submit">SUBMIT
             </button>
             <button class="btn btn-primary cancel-button submit-clear-all-padding" type="button"
-                    data-translate="common.buttons.clear_all" data-ng-click="settings.clearAllAlphabets()">Clear All
-            </button>
+                    data-translate="common.buttons.reset" data-ng-click="settings.clearAllAlphabets()">Reset </button>
           </div>
 
           <p class="notification-text col-md-12 margin-top20 center-align" >
