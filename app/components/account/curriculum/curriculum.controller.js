@@ -42,11 +42,11 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
             if (data.length > 0) {
               isWordPrsnt = (data[0].owner) ? true : false;
               $scope.modalTitle =  $translate.instant("common.whoops");
-              $scope.modalBody = $translate.instant("curriculum.message.word_exist_want_edit");
+              $scope.modalBody = $translate.instant("curriculum.messages.word_exist_want_edit");
             } else {
               isWordPrsnt = false;
               $scope.modalTitle =  $translate.instant("common.yipee");
-              $scope.modalBody = $translate.instant("curriculum.message.word_notexist_want_procced");
+              $scope.modalBody = $translate.instant("curriculum.messages.word_notexist_want_procced");
             }
             $scope.ok = function () {
               $uibModalInstance.close();
@@ -145,7 +145,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
 
         $scope.modalTitle = $translate.instant("common.delete");
-        $scope.modalBody = $translate.instant("curriculum.message.model_delete_word");
+        $scope.modalBody = $translate.instant("curriculum.messages.model_delete_word");
         $scope.ok = function () {
           $uibModalInstance.close(word);
         };
