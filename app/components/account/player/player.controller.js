@@ -356,11 +356,19 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         player.miniBadges = data;
       }
     };
+
     var handleError = function (error, status) {
       if (error && status) {
         messagesFactory.getminibadgessError(status);
       }
+
+      if(status === 401){
+        AuthenticationService.generateNewToken(function(){
+          getMinibadges(playerId);
+        });
+      }
     };
+
     PlayerService.getMinibadgesApi(playerId)
       .success(handleSuccess)
       .error(handleError);
