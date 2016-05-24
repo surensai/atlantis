@@ -46,6 +46,7 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
     if (formData) {
       $localStorage.token =  user.tokenId;
     }
+    delete user.player;
     $rootScope.globals = {
       currentUser: user
     };
@@ -78,6 +79,19 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
       data.password = atob(rememberFactory('UU@#90').toString());
     }
     return data;
+  };
+
+  service.generateNewToken = function (cb) {
+    $http.post($rootScope.base_url + '/user/generate/new-token',{ refreshToken: $localStorage.token}).success(function(data){
+      if(data.token){
+        $localStorage.token = data.token;
+      }
+      if(cb){
+        cb();
+      }
+    }).error(function(data){
+      console.log("error");
+    });
   };
 
   return service;

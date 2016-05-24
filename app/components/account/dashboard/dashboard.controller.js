@@ -12,8 +12,31 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
   dashboard.isUserFirstTimeLoggedIn = false;
   dashboard.showWelcomeNewsFeedDetails = false;
   dashboard.hideWelcomeFeedOnload = true;
-  (function () {
 
+  (function () {
+    loadFeedData();
+  })();
+
+  dashboard.showWelcomeMessageDetail = function () {
+    if (dashboard.showWelcomeNewsFeedDetails) {
+      dashboard.showWelcomeNewsFeedDetails = false;
+    } else {
+      dashboard.showWelcomeNewsFeedDetails = true;
+    }
+  };
+
+  function parseNewsFeedData(data) {
+    var tempNewsFeedArr = [];
+    for (var newsFeedCounter = 0; newsFeedCounter < data.length; newsFeedCounter++) {
+      if (data[newsFeedCounter].status === 'PUBLISH') {
+        data[newsFeedCounter].isImgLoaded = false;
+        tempNewsFeedArr.push(data[newsFeedCounter]);
+      }
+    }
+    return tempNewsFeedArr;
+  }
+
+  function loadFeedData(){
     var handleSuccess = function (data) {
       if ($stateParams.id) {
         var tempArr = [];
@@ -43,35 +66,26 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
       }
 
     };
+
     var handleError = function (error, status) {
       if (error && status) {
         messagesFactory.dashboardfeedsError(status);
       }
+
+      if(status === 401){
+        AuthenticationService.generateNewToken(function(){
+          loadFeedData(playerId);
+        });
+      }
+
     };
 
     DashboardService.getAllApi()
       .success(handleSuccess)
       .error(handleError);
-
-  })();
-
-  dashboard.showWelcomeMessageDetail = function () {
-    if (dashboard.showWelcomeNewsFeedDetails) {
-      dashboard.showWelcomeNewsFeedDetails = false;
-    } else {
-      dashboard.showWelcomeNewsFeedDetails = true;
-    }
-  };
-
-  function parseNewsFeedData(data) {
-    var tempNewsFeedArr = [];
-    for (var newsFeedCounter = 0; newsFeedCounter < data.length; newsFeedCounter++) {
-      if (data[newsFeedCounter].status === 'PUBLISH') {
-        data[newsFeedCounter].isImgLoaded = false;
-        tempNewsFeedArr.push(data[newsFeedCounter]);
-      }
-    }
-    return tempNewsFeedArr;
   }
+
+
+
 
 }]);
