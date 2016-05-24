@@ -176,7 +176,6 @@
         "user_verified_already": "You are already registered with us and your account is active.",
         "return_login": "Return to Log In",
         "get_mail": "Please activate your account using the verification link sent to your email address.",
-        "reset_password": "Please check your inbox for the email with the subject 'Forgot Password Request'.If the email doesn't appear within the next few minutes, please check your Spam or Junk Mail folder.",
         "password_changed": "Your password has been reset. You can now use your new password to login."
       }
     },
@@ -204,6 +203,7 @@
       "email_password_mismatch": "The email or password is incorrect. If you have forgotten your password, you can reset it here.",
       "email_notverified": "Looks like your account has not yet been activated.  Check your email for a message from Square Panda.",
       "email_registered": "That email has already been used to create a Square Panda account. If you've forgotten your password, you can reset it.",
+      "reset_password": "Request received.  You will receive an email shortly that will allow you to reset your password.",
       "password_strength": "Please choose a password with at least 8 characters.",
       "password_change_new_login": "Password changed succesfully.",
       "old_passwpord_wrong": "Your old password is incorrect. Please try again!",
