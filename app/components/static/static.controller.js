@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('staticCtrl', [ '$state','StaticService','$sce','flashService', function ($state, StaticService, $sce, flashService) {
+angular.module("app").controller('staticCtrl', [ '$state','StaticService','$sce','flashService','AuthenticationService', function ($state, StaticService, $sce, flashService, authService) {
 
   var self = this;
   self.contentFrameURL = "";
@@ -22,7 +22,14 @@ angular.module("app").controller('staticCtrl', [ '$state','StaticService','$sce'
     };
 
     var handleError = function (error) {
-      flashService.showError('error in getting data', false);
+      if(status === 401){
+        authService.generateNewToken(function(){
+          getPrivacyContent();
+        });
+      }
+      else {
+        flashService.showError('error in getting data', false);
+      }
     };
 
     StaticService.getPrivacyAPI()
@@ -38,7 +45,14 @@ angular.module("app").controller('staticCtrl', [ '$state','StaticService','$sce'
     };
 
     var handleError = function (error, status) {
-      flashService.showError('error in getting data', false);
+      if(status === 401){
+        authService.generateNewToken(function(){
+          getTemsContent();
+        });
+      }
+      else {
+        flashService.showError('error in getting data', false);
+      }
     };
 
     StaticService.getTermsAPI()

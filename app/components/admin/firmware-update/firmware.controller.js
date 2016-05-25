@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('firmwareCtrl', ['$timeout', 'firmwareService', 'messagesFactory', function ($timeout, firmwareService, messagesFactory) {
+angular.module("app").controller('firmwareCtrl', ['$timeout', 'firmwareService', 'messagesFactory','AuthenticationService', function ($timeout, firmwareService, messagesFactory, authService) {
 
   var firmware = this;
   firmware.isUpdate = false;
@@ -30,7 +30,12 @@ angular.module("app").controller('firmwareCtrl', ['$timeout', 'firmwareService',
     };
 
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          addAction();
+        });
+      }
+      else {
         messagesFactory.firmwarecreateError(status);
       }
     };
@@ -48,7 +53,12 @@ angular.module("app").controller('firmwareCtrl', ['$timeout', 'firmwareService',
     };
 
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          uploadFirmware(form);
+        });
+      }
+      else {
         messagesFactory.firmwareuploadError(status);
       }
     };
