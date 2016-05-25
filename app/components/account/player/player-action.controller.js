@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messagesFactory', 'PlayerService', '$timeout', '$translate', '$uibModal','AuthenticationService', function ($scope, $state, messagesFactory, PlayerService, $timeout, $translate, $uibModal, authService) {
+angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messagesFactory', 'PlayerService', '$timeout', '$translate', '$uibModal', 'AuthenticationService', function ($scope, $state, messagesFactory, PlayerService, $timeout, $translate, $uibModal, authService) {
 
   var playerAction = this;
   playerAction.model = {};
@@ -69,8 +69,8 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     };
 
     var handleError = function (error, status) {
-      if(status === 401){
-        authService.generateNewToken(function(){
+      if (status === 401) {
+        authService.generateNewToken(function () {
           addAction();
         });
       }
@@ -91,8 +91,8 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     };
 
     var handleError = function (error, status) {
-      if(status === 401){
-        authService.generateNewToken(function(){
+      if (status === 401) {
+        authService.generateNewToken(function () {
           updateAction();
         });
       }
@@ -117,9 +117,9 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       form.$setPristine();
     };
 
-    var handleError = function (error,status) {
-      if(status === 401){
-        authService.generateNewToken(function(){
+    var handleError = function (error, status) {
+      if (status === 401) {
+        authService.generateNewToken(function () {
           uploadProfilePic(form);
         });
       }
@@ -145,10 +145,10 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
         $scope.modalTitle = $translate.instant('common.are_you_sure');
         $scope.clickedOnReadmore = true;
-        $scope.readMore = function(){
+        $scope.readMore = function () {
           $scope.clickedOnReadmore = false;
         };
-        $scope.readLess = function(){
+        $scope.readLess = function () {
           $scope.clickedOnReadmore = true;
         };
         $scope.ok = function () {
@@ -173,8 +173,8 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       $state.go("account.players");
     };
     var handleError = function (error, status) {
-      if(status === 401){
-        authService.generateNewToken(function(){
+      if (status === 401) {
+        authService.generateNewToken(function () {
           PlayerService.deleteApi(playerAction.data.deleteObj.id)
             .success(handleSuccess)
             .error(handleError);
@@ -188,36 +188,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     PlayerService.deleteApi(playerAction.data.deleteObj.id)
       .success(handleSuccess)
       .error(handleError);
-  };
-
-
-  $scope.photoChanged = function (files) {
-    if (files.length > 0 || playerAction.previousSelectedFile.length > 0) {
-      //Restricting file upload to 2MB i.e (1024*1024*2)
-      if (files[0].size <= 2097152) {
-        playerAction.showSizeLimitError = false;
-        playerAction.previousSelectedFile = (files.length > 0) ? files : playerAction.previousSelectedFile;
-        var file = (files.length > 0) ? files[0] : playerAction.previousSelectedFile[0];
-        if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
-          playerAction.fileError = true;
-          $timeout(function () {
-            var fileReader = new FileReader();
-            fileReader.readAsDataURL(file);
-            fileReader.onload = function (e) {
-              $timeout(function () {
-                //playerAction.model.playerItem.profileURL = e.target.result;
-                playerAction.isChoosenAvatar = false;
-                playerAction.onOpenCropImg(e.target.result);
-              });
-            };
-          });
-        } else {
-          playerAction.fileError = false;
-        }
-      } else {
-        playerAction.showSizeLimitError = true;
-      }
-    }
   };
 
   /*
@@ -235,14 +205,44 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
           $uibModalInstance.dismiss('cancel');
         };
         $scope.onSubmit = function () {
-          playerAction.model.playerItem.profileURL = $scope.croppedImage;
+          playerAction.model.playerItem.profileURL = selectedImg;
           playerAction.model.playerItem.imgbase64 = $scope.croppedImage;
           $uibModalInstance.dismiss('cancel');
         };
       }]
     });
   };
-
+  $scope.photoChanged = function (inputFileObj) {
+    var files = inputFileObj.files;
+    if (files.length > 0 || playerAction.previousSelectedFile.length > 0) {
+      //Restricting file upload to 5MB i.e (1024*1024*5)
+      var file = (files.length > 0) ? files[0] : null;
+      if (file && file.size <= 5242880) {
+        playerAction.showSizeLimitError = false;
+        playerAction.previousSelectedFile = (files.length > 0) ? files : playerAction.previousSelectedFile;
+        file = file ? file : playerAction.previousSelectedFile[0];
+        if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
+          playerAction.fileError = true;
+          $timeout(function () {
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = function (e) {
+              $timeout(function () {
+                playerAction.isChoosenAvatar = false;
+                playerAction.onOpenCropImg(e.target.result);
+                //clear the input file value once it is cropped & rendered(issue with selection of same file event is not triggering)
+                inputFileObj.value = null;
+              });
+            };
+          });
+        } else {
+          playerAction.fileError = false;
+        }
+      } else {
+        playerAction.showSizeLimitError = true;
+      }
+    }
+  };
   playerAction.showAvatars = function () {
     $uibModal.open({
       templateUrl: 'components/account/player/player-avatars-modal.html',
@@ -272,6 +272,8 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
 
         $scope.onSubmit = function () {
           playerAction.model.playerItem.profileURL = $scope.selectionAvatar;
+          //clear cropped image
+          playerAction.model.playerItem.imgbase64 = "";
           $uibModalInstance.dismiss('cancel');
         };
 
@@ -288,8 +290,8 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       };
 
       var handleError = function (error, status) {
-        if(status === 401){
-          authService.generateNewToken(function(){
+        if (status === 401) {
+          authService.generateNewToken(function () {
             getPlayerById();
           });
         }
@@ -312,8 +314,8 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     };
 
     var handleError = function (error, status) {
-      if(status === 401){
-        authService.generateNewToken(function(){
+      if (status === 401) {
+        authService.generateNewToken(function () {
           getAvatars();
         });
       }

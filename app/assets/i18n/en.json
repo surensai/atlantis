@@ -221,7 +221,7 @@
       "settings_updated": "Settings updated.",
       "curriculum_word_notExists": "The word doesn't exists.",
       "file_type_wrong": "File Type is Wrong.",
-      "file_selection_wrong":"Please select image with 2MB or Lesser size.",
+      "file_selection_wrong":"Please select image with 5MB or Lesser size.",
       "age_require": "Age is required.",
       "model_delete_player": "Are you sure do you want to delete player?",
       "user_name_pattern": "Must start with a letter and be alphanumeric.",

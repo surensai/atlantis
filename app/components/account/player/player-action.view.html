@@ -80,17 +80,16 @@
 
               <div class="avatar-container clearfix">
                 <div class="avatar-seletion">
-                  <img data-ng-if="!playerAction.model.playerItem.profileURL"
-                       src="assets/images/fallback-img.png" width="117" height="117" />
-                  <img data-ng-src="{{playerAction.model.playerItem.profileURL}}" width="117" height="117"
-                       data-ng-if="playerAction.model.playerItem.profileURL"/>
-
+                  <img data-ng-src="{{playerAction.model.playerItem.imgbase64 || playerAction.model.playerItem.profileURL}}" width="117" height="117"
+                       data-ng-if="playerAction.model.playerItem.imgbase64 || playerAction.model.playerItem.profileURL"/>
+                  <img data-ng-if="!playerAction.model.playerItem.imgbase64 && !playerAction.model.playerItem.profileURL"
+                    src="assets/images/fallback-img.png" width="117" height="117" />
                 </div>
                 <div class="avatar-actions">
                   <div class="browse-btn">
                     <input type="file" name="file" file-model="playerAction.myFile"
                            class="img-rectangle img-border-radius " accept='image/*'
-                           onchange="angular.element(this).scope().photoChanged(this.files)"/>
+                           onchange="angular.element(this).scope().photoChanged(this)"/>
                     <button class='btn btn-default btn-primary' data-translate="player.buttons.upload_picture">
                       Upload your own picture
                     </button>
@@ -118,7 +117,7 @@
               <div ng-show="playerAction.showSizeLimitError" class="error-mesasage clearfix">
                 <i class="fa fa-exclamation-circle"></i>
                   <span
-                    data-translate="user.validationMessages.file_selection_wrong"> Please select image with 2MB or Lesser size </span>
+                    data-translate="user.validationMessages.file_selection_wrong"> Please select image with 5MB or Lesser size </span>
               </div>
 
 
