@@ -10,6 +10,7 @@
     <li data-ng-repeat="playerItem in player.data.playersList" data-ng-init="playerItem.croppedImage = ''" >
       <a ui-sref="account.players.details({ id: playerItem.id })"
          ng-class="{ active: $state.includes('account.players.details', { id: playerItem.id })}">
+		  <img data-ng-if="!playerItem.profileURL" src="assets/images/fallback-img.png" class="img-circle" alt="player" width="55" height="55" >
         <img data-ng-if="playerItem.imgbase64 && playerItem.profileURL" data-ng-src="{{playerItem.imgbase64}}" class="img-circle" alt="player" width="55" height="55" />
         <img data-ng-if="!playerItem.imgbase64 && playerItem.profileURL" data-ng-src="{{playerItem.profileURL}}" class="img-circle" alt="player" width="55" height="55" />
         <span class="text-ellipsis" title='{{ playerItem.firstName }}'>{{ playerItem.firstName }}</span>
