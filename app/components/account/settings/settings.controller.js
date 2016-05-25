@@ -40,7 +40,12 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
     };
 
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        AuthenticationService.generateNewToken(function(){
+          saveProfile();
+        });
+      }
+      else {
         messagesFactory.settingseditprofileErrorMessages(status);
       }
     };
@@ -79,7 +84,12 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       messagesFactory.settingschangepasswordSuccessMessages(data);
     };
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        AuthenticationService.generateNewToken(function(){
+          changePassword();
+        });
+      }
+      else {
         messagesFactory.settingschangepasswordErrorMessages(status);
       }
     };
@@ -96,7 +106,14 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       messagesFactory.settingsNotificationsSuccessMessages(data);
     };
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        AuthenticationService.generateNewToken(function(){
+          settingsService.updateApi(settings.model.notificationObj)
+            .success(handleSuccess)
+            .error(handleError);
+        });
+      }
+      else {
         messagesFactory.settingsNotificationsErrorMessages(status);
       }
     };
@@ -110,8 +127,13 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       settings.model.notificationObj = data;
     };
     var handleError = function (error, status) {
-      if (error && status) {
-        // Add messages
+      if(status === 401){
+        AuthenticationService.generateNewToken(function(){
+          getNotificationData();
+        });
+      }
+      else {
+        messagesFactory.settingsNotificationsErrorMessages(status);
       }
     };
     settingsService.getApi()
@@ -142,7 +164,12 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       }
     };
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        AuthenticationService.generateNewToken(function(){
+          getMissingLetters();
+        });
+      }
+      else {
         messagesFactory.selectmissinglettesErrorMessages(status);
       }
     };
@@ -156,7 +183,14 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       messagesFactory.updateMissingLettersSuccessMessages(data);
     };
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        AuthenticationService.generateNewToken(function(){
+          settingsService.updateMissingCharactersApi({"character": settings.selectedMisLetters})
+            .success(handleSuccess)
+            .error(handleError);
+        });
+      }
+      else {
         messagesFactory.updateMissingLettersErrorMessages(status);
       }
     };
