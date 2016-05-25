@@ -1,6 +1,8 @@
 <div class="player-details clearfix">
   <div class="pd-left nopadding">
     <div class="profile-pic">
+	 <img data-ng-if="!player.playerObj.profileURL" src="assets/images/fallback-img.png">
+	 
       <img data-ng-if="player.playerObj.imgbase64 && player.playerObj.profileURL"
            data-ng-src="{{player.playerObj.imgbase64}}"
            alt="player" width="100%" height="100%"/>
@@ -214,7 +216,7 @@
               <td class="word-date" am-time-ago="word.endtime"></td>
             </tr>
             <tr data-ng-if="player.wordsData.length === 0">
-              <td colspan="5" data-translate="player.badges.nodata" class="no-data"> No Data</td>
+              <td colspan="5" data-translate="common.nodata" class="no-data">No data to display</td>
             </tr>
             </tbody>
           </table>

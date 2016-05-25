@@ -22,7 +22,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   function registerErrorMessages(status) {
     var message;
     if (status === 412) {
-      message = $translate.instant('user.validationMessages.email_registered');
+      message = $translate.instant('user.register.messages.email_registered');
     }
     if (status === 400) {
       message = $translate.instant('user.validationMessages.email_valid');
