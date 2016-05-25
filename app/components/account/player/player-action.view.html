@@ -80,9 +80,9 @@
 
               <div class="avatar-container clearfix">
                 <div class="avatar-seletion">
-                  <img data-ng-src="{{playerAction.model.playerItem.profileURL}}" width="117" height="117"
-                       data-ng-if="playerAction.model.playerItem.profileURL"/>
-                  <img data-ng-if="!playerAction.model.playerItem.profileURL"
+                  <img data-ng-src="{{playerAction.model.playerItem.imgbase64 || playerAction.model.playerItem.profileURL}}" width="117" height="117"
+                       data-ng-if="playerAction.model.playerItem.imgbase64 || playerAction.model.playerItem.profileURL"/>
+                  <img data-ng-if="!playerAction.model.playerItem.imgbase64 && !playerAction.model.playerItem.profileURL"
                     src="assets/images/fallback-img.png" width="117" height="117" />
                 </div>
                 <div class="avatar-actions">
