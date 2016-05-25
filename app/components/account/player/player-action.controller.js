@@ -212,7 +212,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       }]
     });
   };
-
   $scope.photoChanged = function (inputFileObj) {
     var files = inputFileObj.files;
     if (files.length > 0 || playerAction.previousSelectedFile.length > 0) {
