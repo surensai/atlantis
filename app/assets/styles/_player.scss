@@ -120,7 +120,8 @@
           text-align: center;
           width: 110px;
           img {
-            margin-bottom: 4px;
+            width: 55px;
+            margin: 4px auto;
           }
           span {
             color: #ffffff;
@@ -804,7 +805,7 @@
   }
 }
 
-@media only screen and(min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   .player-label {
     width: 12% !important;
   }
