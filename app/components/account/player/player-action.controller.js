@@ -29,7 +29,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   playerAction.submitForm = function (form) {
     playerAction.submitted = true;
     isDOBValid();
-    if (form.$valid && playerAction.fileError && playerAction.isDOBVaid && playerAction.model.playerItem.profileURL) {
+    if (form.$valid && playerAction.fileError && playerAction.isDOBVaid) {
       playerAction.added = true;
       if (playerAction.previousSelectedFile.length > 0 && !playerAction.isChoosenAvatar) {
         uploadProfilePic(form);
