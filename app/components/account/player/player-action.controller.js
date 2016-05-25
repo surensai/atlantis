@@ -20,6 +20,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   playerAction.fileReaderSupported = window.FileReader != null;
   playerAction.model.croppedImage = '';
 
+
   (function () {
     getPlayerById();
     getAvatars();
@@ -143,9 +144,13 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       templateUrl: 'components/account/player/delete-player.html',
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
         $scope.modalTitle = $translate.instant('common.are_you_sure');
-
-
-
+        $scope.clickedOnReadmore = true;
+        $scope.readMore = function(){
+          $scope.clickedOnReadmore = false;
+        };
+        $scope.readLess = function(){
+          $scope.clickedOnReadmore = true;
+        };
         $scope.ok = function () {
           playerAction.data.deleteObj = obj;
           playerAction.deleteAction();
