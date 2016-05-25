@@ -501,7 +501,7 @@ a .delete-player-back-button:hover{
           vertical-align: middle;
           display: table-cell;
           color: #615F5F;
-          font-size: 21px;
+          font-size: 18px;
           padding: 0px 10px;
         }
       }
@@ -716,6 +716,13 @@ a .delete-player-back-button:hover{
 }
 
 @media(min-width: 768px) {
+  .chart-container .chart-overlay span {
+    vertical-align: middle;
+    display: table-cell;
+    color: #615F5F;
+    font-size: 21px !important;
+    padding: 0px 10px;
+  }
   .player-label {
     width: 10% !important;
   }
