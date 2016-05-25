@@ -190,36 +190,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       .error(handleError);
   };
 
-
-  $scope.photoChanged = function (files) {
-    if (files.length > 0 || playerAction.previousSelectedFile.length > 0) {
-      //Restricting file upload to 2MB i.e (1024*1024*2)
-      if (files[0].size <= 5097152) {
-        playerAction.showSizeLimitError = false;
-        playerAction.previousSelectedFile = (files.length > 0) ? files : playerAction.previousSelectedFile;
-        var file = (files.length > 0) ? files[0] : playerAction.previousSelectedFile[0];
-        if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
-          playerAction.fileError = true;
-          $timeout(function () {
-            var fileReader = new FileReader();
-            fileReader.readAsDataURL(file);
-            fileReader.onload = function (e) {
-              $timeout(function () {
-                playerAction.model.playerItem.profileURL = e.target.result;
-                playerAction.isChoosenAvatar = false;
-                playerAction.onOpenCropImg(e.target.result);
-              });
-            };
-          });
-        } else {
-          playerAction.fileError = false;
-        }
-      } else {
-        playerAction.showSizeLimitError = true;
-      }
-    }
-  };
-
   /*
    Open the crop image popup to crop the selected image
    */
@@ -235,13 +205,44 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
           $uibModalInstance.dismiss('cancel');
         };
         $scope.onSubmit = function () {
+          playerAction.model.playerItem.profileURL = selectedImg;
           playerAction.model.playerItem.imgbase64 = $scope.croppedImage;
           $uibModalInstance.dismiss('cancel');
         };
       }]
     });
   };
-
+  $scope.photoChanged = function (inputFileObj) {
+    var files = inputFileObj.files;
+    if (files.length > 0 || playerAction.previousSelectedFile.length > 0) {
+      //Restricting file upload to 5MB i.e (1024*1024*5)
+      var file = (files.length > 0) ? files[0] : null;
+      if (file && file.size <= 5242880) {
+        playerAction.showSizeLimitError = false;
+        playerAction.previousSelectedFile = (files.length > 0) ? files : playerAction.previousSelectedFile;
+        file = file ? file : playerAction.previousSelectedFile[0];
+        if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
+          playerAction.fileError = true;
+          $timeout(function () {
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = function (e) {
+              $timeout(function () {
+                playerAction.isChoosenAvatar = false;
+                playerAction.onOpenCropImg(e.target.result);
+                //clear the input file value once it is cropped & rendered(issue with selection of same file event is not triggering)
+                inputFileObj.value = null;
+              });
+            };
+          });
+        } else {
+          playerAction.fileError = false;
+        }
+      } else {
+        playerAction.showSizeLimitError = true;
+      }
+    }
+  };
   playerAction.showAvatars = function () {
     $uibModal.open({
       templateUrl: 'components/account/player/player-avatars-modal.html',
