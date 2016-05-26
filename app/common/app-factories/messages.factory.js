@@ -267,10 +267,13 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   }
   function createPlayerError(status ,error) {
     var message;
-    if (status !== "") {
-      message = error.error;
-    }
     flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
+  }
+  function updatePlayerSuccess(successObj) {
+    var message;
+    if (successObj) {
+      flashService.showSuccess($translate.instant("player.messages.edit_player_success"), true);
+    }
   }
   function updatePlayerError(status,error) {
     var message;
@@ -344,6 +347,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   service.getPlayerwordsError = getPlayerwordsError;
   service.createPlayerSuccess = createPlayerSuccess;
   service.createPlayerError = createPlayerError;
+  service.updatePlayerSuccess = updatePlayerSuccess;
   service.updatePlayerError = updatePlayerError;
   service.deletePlayerSuccess = deletePlayerSuccess;
   service.deletePlayerError = deletePlayerError;
