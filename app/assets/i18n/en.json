@@ -428,6 +428,7 @@
     "customword_modaltype": "Error",
     "messages": {
       "word_notexist_want_procced": "It’s a new word, do you like to proceed?",
+      "word_already_exist":"Word already exist.",
       "word_exist_want_edit": "Looks like the word already exists. Try adding a new word!",
       "word_notexist": "The word doesn't exists.",
       "word_exist": "The word already exists.",
