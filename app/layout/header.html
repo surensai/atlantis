@@ -27,7 +27,7 @@
 </div>
 </div>
 
-<div class="account-header clearfix" data-ng-if="globals.currentUser">
+<div class="account-header clearfix " data-ng-if="globals.currentUser">
   <div class="header-left"></div>
   <div class="header-right"></div>
   <div class="panda-iamge-class"></div>
@@ -39,7 +39,7 @@
       <span class="icon-bar"></span>
     </button>
     <div class="navbar navbar-default pull-left" role="navigation">
-      <div class="navbar-header ">
+      <div class="navbar-header responsive-logo-header">
         <a class="navbar-brand" ng-if="!globals.currentUser" ui-sref="login">
           <img src="assets/images/header_logo.png" class="non-retina" width="310"  />
           <img src="assets/images/header_logo@2x.png" class="retina-display" width="310" />
@@ -65,9 +65,11 @@
       <div class="top-nav pull-right">
         <div class="top-header">
           <div class="dropdown" data-ng-if="globals.currentUser">
-            <a href="" class="dropdown-toggle text-ellipsis user-name" type="button" data-toggle="dropdown" width="50%">{{globals.currentUser.firstName}}
-              {{globals.currentUser.lastName}}
+            <a href="" class="dropdown-toggle  user-name" type="button" data-toggle="dropdown" width="50%">
               <span class="caret custom-caret"></span>
+              <div class="text-ellipsis username">{{globals.currentUser.firstName}}
+              {{globals.currentUser.lastName}}</div>
+
             </a>
             <ul class="dropdown-menu dropdown-menu-logout">
               <li data-ng-if="globals.currentUser.email === 'admin@squarepanda.com'"><a ui-sref="admin.firmware-update"

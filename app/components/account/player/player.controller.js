@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', 'flashService', '$uibModal', '$translate', function ($timeout, $rootScope, $state, PlayerService, messagesFactory, flashService, $uibModal, $translate) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', 'flashService', '$uibModal', '$translate','AuthenticationService', function ($timeout, $rootScope, $state, PlayerService, messagesFactory, flashService, $uibModal, $translate, authService) {
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
   var player = this;
   player.model = {};
@@ -152,8 +152,16 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         //Update the Chart Object to render on UI
         player.highchartsNG = getChartObj(data);
       })
-      .error(function () {
-        flashService.showError("Chart Data Fetch Error.", false);
+      .error(function (err,status) {
+        if(status === 401){
+          authService.generateNewToken(function(){
+            getChartDataAPI(badgeId, playerId, chartType);
+          });
+        }
+        else {
+          flashService.showError("Chart Data Fetch Error.", false);
+        }
+
       });
     // End of API call
   }
@@ -174,14 +182,27 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           .success(function (data) {
             player.playerObj = data;
           })
-          .error(function () {
-            flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+          .error(function (err,status) {
+            if(status === 401){
+              authService.generateNewToken(function(){
+                getPlayers();
+              });
+            }
+            else {
+              flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+            }
+
           });
         $state.go('account.players.details', {id: playerId});
       }
     };
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          getPlayers();
+        });
+      }
+      else {
         messagesFactory.getPlayersError(status);
       }
     };
@@ -216,7 +237,12 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     };
 
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          getWords(childId);
+        });
+      }
+      else {
         messagesFactory.getPlayerwordsError(status);
       }
     };
@@ -252,7 +278,12 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     };
 
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          getLettersWords(childId);
+        });
+      }
+      else {
         messagesFactory.getPlayerwordsError(status);
       }
     };
@@ -286,7 +317,12 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     };
 
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          getNonsenseWords(childId);
+        });
+      }
+      else {
         messagesFactory.getPlayerwordsError(status);
       }
     };
@@ -340,7 +376,12 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     };
 
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          getRealWords(childId);
+        });
+      }
+      else {
         messagesFactory.getPlayerwordsError(status);
       }
     };
@@ -356,11 +397,17 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         player.miniBadges = data;
       }
     };
+
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        AuthenticationService.generateNewToken(function(){
+          getMinibadges(playerId);
+        });
+      }else{
         messagesFactory.getminibadgessError(status);
       }
     };
+
     PlayerService.getMinibadgesApi(playerId)
       .success(handleSuccess)
       .error(handleError);
@@ -372,8 +419,14 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         player.bigBadges = sortWordsData(data);
         splitBadgesData();
       })
-      .error(function () {
-        flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+      .error(function (err,status) {
+        if(status === 401){
+          AuthenticationService.generateNewToken(function(){
+            getBigBadges(playerId);
+          });
+        }else{
+          flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+        }
       });
   }
 
@@ -383,7 +436,11 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     };
 
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        AuthenticationService.generateNewToken(function(){
+          getPlayerHighlights(playerId);
+        });
+      }else{
         messagesFactory.getminibadgessError(status);
       }
     };
@@ -446,7 +503,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           margin: 10
         },
         labels: {
-          rotation: getXAxisLblRotation(),
+          rotation: getXAxisLblRotation()
         }
       },
       yAxis: {

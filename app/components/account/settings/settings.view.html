@@ -15,21 +15,16 @@
             <div class="form-group">
               <div class="col-md-3"></div>
               <div class="col-md-2 ">
-              <label class="control-label" data-translate="nav.edit_profile.first_name">First Name:</label>
+              <label class="control-label" data-translate="settings.grownup_first_name">Grown Up's First Name:</label>
               </div>
               <div class="col-md-3">
                 <input type="text" name="firstName" class="form-control"
-                        ng-pattern="/^[A-z][A-z0-9 ]*$/"
                        data-ng-model="settings.model.userData.firstName"
-                       placeholder="{{ 'user.first_name' | translate }}" required ng-disabled="!settings.isEditClicked">
+                       placeholder="{{ 'settings.grownup_first_name' | translate }}" required ng-disabled="!settings.isEditClicked">
 
                 <div class="error-mesasage"  ng-show="settingsForm.firstName.$error.required">
                   <i class="fa fa-exclamation-circle"></i>
-                  <span data-translate="user.validationMessages.first_name_require">  First Name is required. </span>
-                </div>
-                <div class="error-mesasage" ng-show="settingsForm.firstName.$error.pattern && settingsForm.firstName.$dirty">
-                  <i class="fa fa-exclamation-circle"></i>
-                  <span data-translate="user.validationMessages.no_specialchar_require">No special characters allowed and must start with a letter. </span>
+                  <span data-translate="settings.messages.first_name_require">  Please enter your (grown-up's) first name. </span>
                 </div>
               </div>
 
@@ -38,55 +33,50 @@
             <div class="form-group">
               <div class="col-md-3"></div>
               <div class="col-md-2 ">
-              <label class="control-label " data-translate="nav.edit_profile.last_name">Last Name:</label>
+              <label class="control-label " data-translate="settings.grownup_last_name">Grown Up's Last Name:</label>
               </div>
 
               <div class="col-md-3">
                 <input type="text" name="lastName" class="form-control" data-ng-model="settings.model.userData.lastName"
-                        ng-pattern="/^[A-z][A-z0-9 ]*$/"
-                       placeholder="{{ 'user.last_name' | translate }}" required ng-disabled="!settings.isEditClicked">
+                       placeholder="{{ 'settings.grownup_last_name' | translate }}" required ng-disabled="!settings.isEditClicked">
 
                 <div class="error-mesasage"  ng-show="settingsForm.lastName.$error.required">
                   <i class="fa fa-exclamation-circle"></i>
-                  <span data-translate="user.validationMessages.last_name_require">Last Name is required.</span>
+                  <span data-translate="settings.messages.last_name_require">Please enter your (grown-up's) last name.</span>
                 </div>
 
-                <div class="error-mesasage" ng-show="settingsForm.lastName.$error.pattern && settingsForm.lastName.$dirty">
-                  <i class="fa fa-exclamation-circle"></i>
-                  <span data-translate="user.validationMessages.no_specialchar_require">No special characters allowed and must start with a letter.</span>
-                </div>
               </div>
             </div>
 
             <div class="form-group">
               <div class="col-md-3"></div>
               <div class="col-md-2 ">
-              <label class="control-label" data-translate="nav.edit_profile.email">Email:</label></div>
+              <label class="control-label" data-translate="settings.grownup_email">Grown Up's Emai:</label></div>
 
               <div class="col-md-3">
                 <input type="text" name="email" class="form-control" data-ng-model="settings.model.userData.email"
-                       placeholder="{{ 'user.email' | translate }}" disabled>
+                       placeholder="{{ 'settings.grownup_email' | translate }}" disabled>
               </div>
             </div>
 
-            <div class="form-group">
-              <div class="col-md-3"></div>
-              <div class="col-md-2">
-                <label class=" control-label" data-translate="nav.edit_profile.mobile_num">Mobile
-                Number:</label>
-              </div>
+            <!--<div class="form-group">-->
+              <!--<div class="col-md-3"></div>-->
+              <!--<div class="col-md-2">-->
+                <!--<label class=" control-label" data-translate="nav.edit_profile.mobile_num">Mobile-->
+                <!--Number:</label>-->
+              <!--</div>-->
 
-              <div class="col-md-3">
-                <input type="text" name="mobileNumber" data-ng-model="settings.model.userData.mobileNumber"
-                       class="form-control" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
-                       placeholder="{{ 'user.register.mobile' | translate }}" ng-disabled="!settings.isEditClicked">
+              <!--<div class="col-md-3">-->
+                <!--<input type="text" name="mobileNumber" data-ng-model="settings.model.userData.mobileNumber"-->
+                       <!--class="form-control" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"-->
+                       <!--placeholder="{{ 'user.register.mobile' | translate }}" ng-disabled="!settings.isEditClicked">-->
 
-                <div class="error-mesasage" ng-show='settingsForm.mobileNumber.$error.pattern && settingsForm.mobileNumber.$dirty'>
-                  <i class="fa fa-exclamation-circle"></i>
-                  <span data-translate="user.validationMessages.mobile_num_invalid">Mobile Number is not valid</span>
-                </div>
-              </div>
-            </div>
+                <!--<div class="error-mesasage" ng-show='settingsForm.mobileNumber.$error.pattern && settingsForm.mobileNumber.$dirty'>-->
+                  <!--<i class="fa fa-exclamation-circle"></i>-->
+                  <!--<span data-translate="settings.messages.mobile_num_invalid">Mobile number should contain only digits.</span>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
 
             <div class="form-group">
               <div class="col-md-5"></div>
@@ -133,7 +123,7 @@
 
                 <div class="error-mesasage" ng-show="changepasswordForm.$submitted && changepasswordForm.oldPassword.$error.required">
                   <i class="fa fa-exclamation-circle"></i>
-                  <span data-translate="user.validationMessages.old_password_require">Old Password is required</span>
+                  <span data-translate="settings.messages.old_password_require">Please enter old password.</span>
                 </div>
 
               </div>
@@ -153,7 +143,7 @@
 
                 <div class="error-mesasage" ng-show="changepasswordForm.$submitted && changepasswordForm.password.$error.required">
                   <i class="fa fa-exclamation-circle"></i>
-                  <span data-translate="user.validationMessages.password_require">Password is required</span>
+                  <span data-translate="settings.messages.new_password_require">Please enter new password.</span>
                 </div>
 
                 <div class="error-mesasage" ng-show='changepasswordForm.password.$error.pattern && changepasswordForm.password.$dirty'>
@@ -178,12 +168,12 @@
 
                 <div class="error-mesasage" ng-show="!changepasswordForm.confirmPassword.$error.required && settings.model.passwordData.password !== settings.model.passwordData.confirmPassword">
                   <i class="fa fa-exclamation-circle"></i>
-                  <span data-translate="user.validationMessages.password_mismatch"> Please make sure your passwords match.</span>
+                  <span data-translate="settings.messages.password_mismatch"> Please make sure, your new and retype password match.</span>
                 </div>
 
                 <div class="error-mesasage" ng-show="(changepasswordForm.$submitted && changepasswordForm.confirmPassword.$error.required )">
                   <i class="fa fa-exclamation-circle"></i>
-                  <span data-translate="user.validationMessages.cpassword_require">Confirm Password is required.</span>
+                  <span data-translate="settings.messages.cpassword_require">Please retype new password.</span>
                 </div>
 
               </div>
@@ -215,7 +205,7 @@
             from your games!
           </p>
 
-          <div class="missing-letter-keyboard col-md-12 clearfix">
+          <div class="missing-letter-keyboard clearfix">
             <div class="clearfix mlk-margin">
               <div data-ng-repeat="item in settings.missingLetters_row_2" class="letters_set" data-ng-init="rowInd = $index">
                   <div data-ng-repeat="letters in item" class="ml-letter" ng-class="{'active': settings.isMissilingLetterSelected(rowInd, $index, 1 ), 'vowel': settings.isLetterVowel(letters.letter)}" data-ng-click="settings.selectCharacter(rowInd, $index, 1)">
@@ -240,8 +230,7 @@
                     data-translate="common.buttons.submit">SUBMIT
             </button>
             <button class="btn btn-primary cancel-button submit-clear-all-padding" type="button"
-                    data-translate="common.buttons.clear_all" data-ng-click="settings.clearAllAlphabets()">Clear All
-            </button>
+                    data-translate="common.buttons.reset" data-ng-click="settings.clearAllAlphabets()">Reset </button>
           </div>
 
           <p class="notification-text col-md-12 margin-top20 center-align" >

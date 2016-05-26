@@ -28,6 +28,7 @@
          .add-custom-word-button{
            padding: 5px 45px;
          }
+
        }
        .custom-word-list{
          background-color: #FAFAFA;
@@ -218,6 +219,11 @@
   background-color: #4cbc96;
   margin-right: 20px;
 }
+.display-flex{
+  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+}
 .custom-volume-button {
   background-color: #4cbc96 !important;
 }
@@ -325,5 +331,10 @@
   }
   .add-word-cancel-btn-padding {
   padding: 5px 30px 5px 30px;
+  }
+}
+@media only screen and (max-device-width: 480px) {
+  .add-custom-word-button {
+    padding: 5px 13px !important;
   }
 }

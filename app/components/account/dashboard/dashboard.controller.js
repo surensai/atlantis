@@ -1,14 +1,42 @@
 'use strict';
 
-angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messagesFactory', '$state', '$stateParams', function (DashboardService, messagesFactory, $state, $stateParams) {
+angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messagesFactory', '$state', '$stateParams', '$rootScope','AuthenticationService', function (DashboardService, messagesFactory, $state, $stateParams, $rootScope,authService) {
   var dashboard = this;
+  var welcomefeed = $rootScope.globals.currentUser.welcomefeed;
+  dashboard.userName = $rootScope.globals.currentUser;
   dashboard.model = {};
   dashboard.data = {};
   dashboard.data.newsFeedsList = {};
   dashboard.data.newsFeeds = {};
+
   dashboard.isUserFirstTimeLoggedIn = false;
   dashboard.showWelcomeNewsFeedDetails = false;
+  dashboard.hideWelcomeFeedOnload = true;
+
   (function () {
+    loadFeedData();
+  })();
+
+  dashboard.showWelcomeMessageDetail = function () {
+    if (dashboard.showWelcomeNewsFeedDetails) {
+      dashboard.showWelcomeNewsFeedDetails = false;
+    } else {
+      dashboard.showWelcomeNewsFeedDetails = true;
+    }
+  };
+
+  function parseNewsFeedData(data) {
+    var tempNewsFeedArr = [];
+    for (var newsFeedCounter = 0; newsFeedCounter < data.length; newsFeedCounter++) {
+      if (data[newsFeedCounter].status === 'PUBLISH') {
+        data[newsFeedCounter].isImgLoaded = false;
+        tempNewsFeedArr.push(data[newsFeedCounter]);
+      }
+    }
+    return tempNewsFeedArr;
+  }
+
+  function loadFeedData(){
     var handleSuccess = function (data) {
       if ($stateParams.id) {
         var tempArr = [];
@@ -28,35 +56,35 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
       dashboard.totalItems = dashboard.data.newsFeedsList.length;
       dashboard.currentPage = 1;
       dashboard.itemsPerPage = dashboard.viewby;
+
+      dashboard.hideWelcomeFeedOnload = false;
+
+      if (welcomefeed && welcomefeed > 0) {
+        dashboard.isUserFirstTimeLoggedIn = true;
+      } else {
+        dashboard.isUserFirstTimeLoggedIn = false;
+      }
+
     };
+
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          loadFeedData();
+        });
+      }
+      else {
         messagesFactory.dashboardfeedsError(status);
       }
+
     };
 
     DashboardService.getAllApi()
       .success(handleSuccess)
       .error(handleError);
-
-  })();
-
-  dashboard.showWelcomeMessageDetail = function(){
-    if(dashboard.showWelcomeNewsFeedDetails){
-      dashboard.showWelcomeNewsFeedDetails = false;
-    } else {
-      dashboard.showWelcomeNewsFeedDetails = true;
-    }
-  };
-
-  function parseNewsFeedData(data) {
-    var tempNewsFeedArr = [];
-    for (var newsFeedCounter = 0; newsFeedCounter < data.length; newsFeedCounter++) {
-      if (data[newsFeedCounter].status === 'PUBLISH') {
-        tempNewsFeedArr.push(data[newsFeedCounter]);
-      }
-    }
-    return tempNewsFeedArr;
   }
+
+
+
 
 }]);

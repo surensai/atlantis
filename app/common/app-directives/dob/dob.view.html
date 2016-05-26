@@ -2,19 +2,19 @@
     <div class="col-md-4 col-lg-4 col-sm-4">
       <select class="form-control dob" data-ng-model="dob.month"
               data-ng-options='month.id as month.name for month in months'>
-        <option value='' data-translate="dob.month">Month</option>
+        <option value='' data-translate="common.month">Month</option>
       </select>
     </div>
     <div class="col-md-4 col-lg-4 col-sm-4" data-ng-model="dob.day" >
          <select class="form-control dob" data-ng-model="dob.day"
                 data-ng-options='day for day in getDays()'>
-            <option value='' data-translate="dob.day">Day</option>
+            <option value='' data-translate="common.day">Day</option>
          </select>
     </div>
   <div class="col-md-4 col-lg-4 col-sm-4">
     <select class="form-control dob" data-ng-model='dob.year'
             data-ng-options='year for year in getYears()'>
-      <option value='' data-translate="dob.year">Year</option>
+      <option value='' data-translate="common.year">Year</option>
     </select>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="bg-img"></div>
 <div class="content clearfix padding-top30">
   <div class="text-center">
-    <h2 class="register-form-heading" data-translate="nav.register.header">Create a Square Panda Account</h2>
+    <h2 class="register-form-heading" data-translate="user.register.create_account">Create a Square Panda Account</h2>
     <div class="register-error-message" data-ng-if="globals.flash && globals.flash.type !== 'success'">
       {{globals.flash.message}}
     </div>
@@ -12,33 +12,20 @@
 
       <div class="form-group has-feedback">
         <input type="text" name="firstName" class="form-control" data-ng-model="register.model.firstName"
-                ng-pattern="/^[A-z][A-z0-9 ]*$/"
                placeholder="{{ 'user.register.grownup_first_name' | translate }}" required>
         <div ng-show="userForm.$submitted && userForm.firstName.$error.required" class="error-mesasage">
         <i class="fa fa-exclamation-circle"></i>
-        <span data-translate="user.validationMessages.first_name_require">First Name is required.</span>
-        </div>
-        <div ng-show="userForm.firstName.$error.pattern && userForm.firstName.$dirty"
-             class="error-mesasage">
-        <i class="fa fa-exclamation-circle"></i>
-        <span data-translate="user.validationMessages.no_specialchar_require"> No special characters allowed and must start with a letter.</span>
+        <span data-translate="user.register.messages.first_name_require">Please enter your (grown-up's) first name.</span>
         </div>
           <i class="fa fa-user form-control-feedback "></i>
       </div>
 
       <div class="form-group has-feedback">
         <input type="text" name="lastName" class="form-control" data-ng-model="register.model.lastName"
-               ng-pattern="/^[A-z][A-z0-9 ]*$/"
                placeholder="{{ 'user.register.grownup_last_name' | translate }}" required>
         <div ng-show="userForm.$submitted && userForm.lastName.$error.required" class="error-mesasage">
         <i class="fa fa-exclamation-circle"></i>
-        <span  data-translate="user.validationMessages.last_name_require">Last Name is required.</span>
-        </div>
-
-        <div ng-show="userForm.lastName.$error.pattern && userForm.lastName.$dirty"
-             class="error-mesasage">
-        <i class="fa fa-exclamation-circle"></i>
-        <span data-translate="user.validationMessages.no_specialchar_require"> No special characters allowed and must start with a letter.</span>
+        <span  data-translate="user.register.messages.last_name_require">Please enter your (grown-up's) last name.</span>
         </div>
           <i class="fa fa-user form-control-feedback "></i>
       </div>
@@ -50,11 +37,11 @@
         <div ng-show="userForm.$submitted && userForm.email.$error.required" class="error-mesasage">
         <i class="fa fa-exclamation-circle"></i>
         <span
-              data-translate="user.validationMessages.email_require">Email address is required.</span>
+              data-translate="user.register.messages.email_require">Please enter your (grown-up's) Email.</span>
         </div>
         <div class="error-mesasage" ng-show='userForm.email.$error.pattern && userForm.email.$dirty'>
         <i class="fa fa-exclamation-circle"></i>
-        <span data-translate="user.validationMessages.email_valid">Please enter a valid email address.</span>
+        <span data-translate="common.messages.wrong_email_format">That doesn't look like a valid email. Please check for typos.</span>
         </div>
         <i class="fa fa-envelope form-control-feedback"></i>
       </div>

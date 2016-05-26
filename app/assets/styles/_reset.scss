@@ -16,6 +16,9 @@ body {
 .nopadding {
   padding: 0px;
 }
+.nopadding-right{
+  padding-right: 0px;
+}
 
 .nomargin {
   margin: 0px;
@@ -149,6 +152,8 @@ body {
 .navbar-toggle {
   border: none;
   margin-right: 0px;
+  margin-left: -14px;
+  margin-top: 11px;
   span.icon-bar {
     background-color: #ffffff;
   }

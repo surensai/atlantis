@@ -27,7 +27,7 @@ body {
 }
 
 .bg-color-white{
-  background-color: $white-color;
+  background-color: $white-color!important;
 }
 
 .bg-light-gray{
@@ -121,6 +121,11 @@ body {
     }
   }
 }
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 .account-header {
   min-height: 40px;
@@ -129,9 +134,6 @@ body {
 
   .header .navbar-brand-responsive{
     display: block;
-  }
-  .main-logo-header{
-    margin-left: 20px;
   }
   .navbar-brand {
     height: auto;
@@ -160,6 +162,16 @@ body {
     height: 100%;
     width: 40%;
   }
+}
+.main-logo-header{
+  margin-left: 20px !important;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.responsive-logo-header{
+  margin-left: 0px !important;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .panda-iamge-class{
   background: url("../images/panda.png") no-repeat right;
@@ -199,13 +211,18 @@ body {
       color: #333333;
     }
   }
-.custom-caret{
-  width: 10px;
-  height: 10px;
-  vertical-align: -15%;
-  margin-left: 10px;
+  .custom-caret{
+    display: block;
+    float: right;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
 
-}
+  .username{
+    width: 110px;
+    float: right;
+  }
+
   li {
     list-style: none;
     display: inline;
@@ -331,7 +348,13 @@ body.body-toggle{
     display: block;
   }
   .main-logo-header{
-    margin-left: 20px !important;
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+  .responsive-logo-header{
+    margin-left: 0px !important;
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
   .header .navbar-brand,
   .account-header .navbar-brand{

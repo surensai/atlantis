@@ -1,9 +1,12 @@
 <div class="player-details clearfix">
   <div class="pd-left nopadding">
     <div class="profile-pic">
-      <img data-ng-if="!player.playerObj.profileURL" src="assets/images/fallback-img.png"
+      <img data-ng-if="!player.playerObj.profileURL" src="assets/images/default-avatar.png" class="non-retina" />
+      <img data-ng-if="!player.playerObj.profileURL" src="assets/images/default-avatar@2x.png" class="retina-display" />
+      <img data-ng-if="player.playerObj.imgbase64 && player.playerObj.profileURL"
+           data-ng-src="{{player.playerObj.imgbase64}}"
            alt="player" width="100%" height="100%"/>
-      <img data-ng-if="player.playerObj.profileURL"
+      <img data-ng-if="!player.playerObj.imgbase64 && player.playerObj.profileURL"
            data-ng-src="{{player.playerObj.profileURL}}"
            class="img-rectangle img-border-radius" alt="player" width="100%" height="100%">
       <a ui-sref="account.editPlayer({ id: player.playerObj.id })">
@@ -15,7 +18,7 @@
 
     <p>
       <img src="assets/images/badge1.png" width="12" class="non-retina"/>
-      <img src="assets/images/badge1@2x.png" width="12" class="retina-display"/>
+      <img src="assets/images/badge1@2x.png" width="12" class="retina-display badge-icon-retina"/>
       <span data-ng-if="!player.highlights.earnedBadges" data-translate="player.badges.nobadge_earned"> No badges earned so far. </span>
       <span data-ng-if="player.highlights.earnedBadges"> <strong>{{player.highlights.earnedBadges}} </strong><span
         data-translate="player.badges.nobadge_earned_days"> badges earned in the past 7 days.</span> </span>
@@ -23,7 +26,7 @@
 
     <p>
       <img src="assets/images/badge2.png" width="12" class="non-retina"/>
-      <img src="assets/images/badge2@2x.png" width="12" class="retina-display"/>
+      <img src="assets/images/badge2@2x.png" width="12" class="retina-display badge-icon-retina"/>
       <span data-ng-if="!player.highlights.totalPlayedTime" data-translate="player.badges.no_spendtime"> You haven't spent anytime on games.</span>
       <span data-ng-if="player.highlights.totalPlayedTime"> <strong>{{player.highlights.totalPlayedTime}}</strong> <span
         data-translate="player.badges.last_time_played">time played in Square Panda for past 7 days.</span></span>
@@ -31,7 +34,7 @@
 
     <p>
       <img src="assets/images/badge2.png" width="12" class="non-retina"/>
-      <img src="assets/images/badge2@2x.png" width="12" class="retina-display"/>
+      <img src="assets/images/badge2@2x.png" width="12" class="retina-display badge-icon-retina"/>
       <span data-ng-if="player.highlights.correctWord"> <span data-translate="player.badges.recent_word">Most recent word </span><strong>"{{player.highlights.correctWord}}"</strong> <span
         data-translate="player.badges.mark_correct">marked as Correct.</span></span>
       <span data-ng-if="!player.highlights.correctWord" data-translate="player.badges.noword_correct"> No words are marked as correct so far.</span>
@@ -39,7 +42,7 @@
 
     <p>
       <img src="assets/images/badge2.png" width="12" class="non-retina"/>
-      <img src="assets/images/badge2@2x.png" width="12" class="retina-display"/>
+      <img src="assets/images/badge2@2x.png" width="12" class="retina-display badge-icon-retina"/>
       <span data-ng-if="!player.highlights.favourites.word || !player.highlights.favourites.count"
             data-translate="player.badges.no_fav_word"> No favorite word </span>
       <span data-ng-if="player.highlights.favourites.word && player.highlights.favourites.count"><span
@@ -92,9 +95,10 @@
               </div>
               <div class="chart-container">
                 <div class="chart-overlay" data-ng-show="player.bigbadgedetails.percentage === 0">
-                  <span>Your child hasn't played any words in this badge, yet. Check out the descriptions above to see what kinds of words are covered in this badge.</span>
+                  <span data-translate="player.no_graph_description">Your child hasn't played any words in this badge, yet. Check out the descriptions above to see what kinds of words are covered in this badge.</span>
                 </div>
                 <div class="bigbadge-graph-buttons ">
+                  <div class="bigbadge-graph-buttons-one">
                   <a class="btn bigbadge-graph-button-style"
                      data-ng-class="{'active': (player.chartTabType==='day' && player.bigbadgedetails.percentage !== 0)}"
                      data-translate="player.badges.this_week" data-ng-click="player.onGetChartData('day')">
@@ -105,6 +109,8 @@
                      data-translate="player.badges.30days" data-ng-click="player.onGetChartData('week')">
                     30 Days
                   </a>
+                  </div>
+                  <div class="bigbadge-graph-buttons-two">
                   <a class="btn bigbadge-graph-button-style"
                      data-ng-class="{'active': player.chartTabType==='month'}"
                      data-translate="player.badges.1year" data-ng-click="player.onGetChartData('month')">
@@ -115,6 +121,7 @@
                      data-translate="player.badges.all_time" data-ng-click="player.onGetChartData('year')">
                     All Time
                   </a>
+                  </div>
                 </div>
                 <highchart id="chartContainer" config="player.highchartsNG"></highchart>
               </div>
@@ -127,19 +134,25 @@
     <uib-tab index="1" heading="Mini Badges">
       <div class="mini-badges-container clearfix">
         <div class="row minibadges-row">
-          <div class="col-md-3" ng-repeat="minibadge in player.miniBadges">
+          <div class="col-md-3 col-sm-6" ng-repeat="minibadge in player.miniBadges">
             <div class="mini-badge-item">
               <div class="mb-con ">
                 <div class="mb-icon-con  center-align">
-                  <div class="mb-icon">
-                    <div class="mb-icon">
+                  <div class="mb-icon non-retina">
                       <img data-ng-if="!minibadge.assetURL" src="assets/images/no-badge.png" alt="minibadge"
                            width="110"/>
                       <img data-ng-if="minibadge.assetURL && minibadge.status === 'Disabled'"
                            data-ng-src="{{minibadge.disabledassetURL}}" width="110"/>
                       <img data-ng-if="minibadge.assetURL && minibadge.status === 'Active'"
                            data-ng-src="{{minibadge.assetURL}}" width="110"/>
-                    </div>
+                  </div>
+                  <div class="mb-icon retina-display">
+                    <img data-ng-if="!minibadge.assetURL" src="assets/images/no-badge.png" alt="minibadge"
+                         width="110"/>
+                    <img data-ng-if="minibadge.assetURL && minibadge.status === 'Disabled'"
+                         data-ng-src="{{minibadge.r2x}}" width="110"/>
+                    <img data-ng-if="minibadge.assetURL && minibadge.status === 'Active'"
+                         data-ng-src="{{minibadge['2x']}}" width="110"/>
                   </div>
                 </div>
                 <div class="mb-des">
@@ -203,7 +216,7 @@
               <td class="word-date" am-time-ago="word.endtime"></td>
             </tr>
             <tr data-ng-if="player.wordsData.length === 0">
-              <td colspan="5" data-translate="player.badges.nodata" class="no-data"> No Data</td>
+              <td colspan="5" class="no-data"  data-translate="common.nodata" >No data to display</td>
             </tr>
             </tbody>
           </table>
@@ -245,7 +258,7 @@
               </td>
             </tr>
             <tr data-ng-if="player.lettersWordsData.length === 0">
-              <td colspan="5" data-translate="player.badges.nodata"> No Data</td>
+              <td colspan="5"class="no-data"  data-translate="common.nodata" > No Data</td>
             </tr>
             </tbody>
           </table>
@@ -282,7 +295,7 @@
               <td class="word-date" am-time-ago="word.endtime"></td>
             </tr>
             <tr data-ng-if="player.nonsenseWordsData.length === 0">
-              <td colspan="5" data-translate="player.badges.nodata"> No Data</td>
+              <td colspan="5" class="no-data" data-translate="common.nodata"> No Data</td>
             </tr>
             </tbody>
           </table>
@@ -335,7 +348,7 @@
               <td class="word-date" am-time-ago="word.endtime"></td>
             </tr>
             <tr data-ng-if="player.realWordsData.length === 0">
-              <td colspan="5" data-translate="player.badges.nodata"> No Data</td>
+              <td colspan="5" class="no-data" data-translate="common.nodata"> No Data</td>
             </tr>
             </tbody>
           </table>

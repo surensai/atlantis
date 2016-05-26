@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','CurriculumService', '$scope', '$state', '$uibModal', 'messagesFactory', '$translate', 'utilsFactory', function ($timeout, $rootScope, CurriculumService, $scope, $state, $uibModal, messagesFactory, $translate, utilsFactory) {
+angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','CurriculumService', '$scope', '$state', '$uibModal', 'messagesFactory', '$translate', 'utilsFactory','AuthenticationService', function ($timeout, $rootScope, CurriculumService, $scope, $state, $uibModal, messagesFactory, $translate, utilsFactory, authService) {
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
   var curriculum = this;
   curriculum.customWords = [];
@@ -38,13 +38,15 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
         var modalInstance = $uibModal.open({
           templateUrl: 'common/app-directives/modal/custom-modal.html',
           controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
-            $scope.modalTitle = "Confirm";
+
             if (data.length > 0) {
               isWordPrsnt = (data[0].owner) ? true : false;
-              $scope.modalBody = $translate.instant("curriculum.message.word_exist_want_edit");
+              $scope.modalTitle =  $translate.instant("common.whoops");
+              $scope.modalBody = $translate.instant("curriculum.messages.word_exist_want_edit");
             } else {
               isWordPrsnt = false;
-              $scope.modalBody = $translate.instant("curriculum.message.word_notexist_want_procced");
+              $scope.modalTitle =  $translate.instant("common.yipee");
+              $scope.modalBody = $translate.instant("curriculum.messages.word_notexist_want_procced");
             }
             $scope.ok = function () {
               $uibModalInstance.close();
@@ -71,7 +73,14 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
     };
 
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          CurriculumService.searchWordApi(word)
+            .success(handleSuccess)
+            .error(handleError);
+        });
+      }
+      else {
         messagesFactory.customisesearchwordError(status);
       }
     };
@@ -119,7 +128,14 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
     };
 
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          CurriculumService.updateGroupWordsApi(data)
+            .success(handleSuccess)
+            .error(handleError);
+        });
+      }
+      else {
         messagesFactory.submitGroupwordsError(status);
       }
     };
@@ -142,8 +158,8 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
       templateUrl: 'common/app-directives/modal/custom-modal.html',
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
 
-        $scope.modalTitle = $translate.instant("common.warning");
-        $scope.modalBody = $translate.instant("curriculum.message.model_delete_word");
+        $scope.modalTitle = $translate.instant("common.delete");
+        $scope.modalBody = $translate.instant("curriculum.messages.model_delete_word");
         $scope.ok = function () {
           $uibModalInstance.close(word);
         };
@@ -163,7 +179,14 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
       };
 
       var handleError = function (error, status) {
-        if (error && status) {
+        if(status === 401){
+          authService.generateNewToken(function(){
+            CurriculumService.deleteWordApi(word.id)
+              .success(handleSuccess)
+              .error(handleError);
+          });
+        }
+        else {
           messagesFactory.deletewordError(status);
         }
       };
@@ -205,7 +228,12 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
       curriculum.itemsPerPage = curriculum.viewby;
     };
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          getWords();
+        });
+      }
+      else {
         messagesFactory.listwordsError(status);
       }
     };
@@ -248,7 +276,12 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
       }
     };
     var handleError = function (error, status) {
-      if (error && status) {
+      if(status === 401){
+        authService.generateNewToken(function(){
+          getWordsByCategory(carArr);
+        });
+      }
+      else {
         messagesFactory.getGroupwordsError(status);
       }
     };

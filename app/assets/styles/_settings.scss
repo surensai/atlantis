@@ -86,12 +86,19 @@
     }
   }
 
-  .missing-letter-keyboard{
-
+  .missing-letter-keyboard {
     padding: 0px;
+    width: auto;
+    margin: 0 auto;
     .letters_set{
       float: left;
       padding: 0px 5px;
+      &:first-child{
+        padding-left: 0px;
+      }
+      &:last-child{
+        padding-right: 0px;
+      }
       .ml-letter{
         font-family: 'SquarePanda' !important;
         font-size: 17px;
@@ -110,13 +117,13 @@
         color: #f7ab31;
       }
     }
-
-    .mlk-margin{
-      margin-left:5%;
-    }
-
   }
+}
 
+@media (min-width: 1300px){
+  .missing-letter-keyboard{
+    width: 969px!important;
+  }
 }
 
 @media(min-width: 768px) {
@@ -152,8 +159,8 @@
     padding: 5px 9px;
     font-size: 18px;
   }
-  .settings-container .missing-letter-keyboard .mlk-margin{
-    margin-left: 3%;
+  .settings-container .missing-letter-keyboard{
+    width: 587px;
   }
 }
 
@@ -162,8 +169,8 @@
   .settings-container .missing-letter-keyboard .letters_set{
     padding: 0 10px;
   }
-  .settings-container .missing-letter-keyboard .mlk-margin{
-    margin-left: 3%;
+  .settings-container .missing-letter-keyboard{
+    width: 785px;
   }
 
   .settings-container .missing-letter-keyboard .letters_set .ml-letter{
