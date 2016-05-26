@@ -1,6 +1,9 @@
 <div class="col-lg-2"></div>
-<div class="container container-min-height addpalyer-container container-margins">
-  <div></div>
+<div class="container container-min-height addpalyer-container">
+
+  <div set-class-when-at-top="fix-to-top container row">
+    <toaster-container class="custom-toaster-conatiner" toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+  </div>
 
   <div class="panel">
     <div class="panel-heading sp-common-panel-header text-center">
@@ -80,10 +83,16 @@
 
               <div class="avatar-container clearfix">
                 <div class="avatar-seletion">
+
                   <img data-ng-src="{{playerAction.model.playerItem.imgbase64 || playerAction.model.playerItem.profileURL}}" width="117" height="117"
                        data-ng-if="playerAction.model.playerItem.imgbase64 || playerAction.model.playerItem.profileURL"/>
-                  <img data-ng-if="!playerAction.model.playerItem.imgbase64 && !playerAction.model.playerItem.profileURL"
-                    src="assets/images/fallback-img.png" width="117" height="117" />
+                  <img data-ng-if="!playerAction.model.playerItem.imgbase64 && !playerAction.model.playerItem.profileURL && !playerAction.isUpdate"
+                       src="assets/images/fallback-img.png"  width="117" height="117" />
+                  <img data-ng-if="!playerAction.model.playerItem.imgbase64 && !playerAction.model.playerItem.profileURL && playerAction.isUpdate"
+                       src="assets/images/default-avatar.png"  width="117" height="117"  class='retina-display'/>
+                  <img data-ng-if="!playerAction.model.playerItem.imgbase64 && !playerAction.model.playerItem.profileURL && playerAction.isUpdate"
+                       src="assets/images/default-avatar.png"  width="117" height="117"  class='non-retina'/>
+
                 </div>
                 <div class="avatar-actions">
                   <div class="browse-btn">

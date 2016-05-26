@@ -163,9 +163,11 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
     };
     var handleSuccess = function (data) {
       messagesFactory.savewordsSuccess(data);
-      $state.go('account.curriculum');
-    };
+          $timeout(function() {
+            $state.go('account.curriculum');
+          }, 2000);
 
+    };
     CurriculumService.saveWordApi(formData)
       .success(handleSuccess)
       .error(handleError);
@@ -176,8 +178,12 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
 
     var handleSuccess = function (data) {
       messagesFactory.updatewordSuccess(data);
-      $state.go('account.curriculum');
+      $timeout(function() {
+        $state.go('account.curriculum');
+      }, 2000);
+
     };
+
     var handleError = function (error, status) {
       if(status === 401){
         authService.generateNewToken(function(){
