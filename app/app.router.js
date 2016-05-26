@@ -127,16 +127,25 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
       //resend email
       $scope.onResendEmail = function () {
         var handleSuccess = function (data) {
-          //sent mail
+          //sent mail - common for both
         };
         var handleError = function (error, status) {
           if (error && status) {
             messagesFactory.forgotErrorMessages(status);
           }
         };
-        UserService.forgotPasswordAPI($stateParams.data)
-          .success(handleSuccess)
-          .error(handleError);
+        //Forget Password
+        if ($rootScope.messages.type === "forgot") {
+          UserService.forgotPasswordAPI($stateParams.data)
+            .success(handleSuccess)
+            .error(handleError);
+        } else {
+          //Register User - resend activation email
+          UserService.resendActivationEmailAPI($stateParams.data)
+            .success(handleSuccess)
+            .error(handleError);
+        }
+
       };
     },
     data: {

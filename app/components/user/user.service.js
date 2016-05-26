@@ -21,6 +21,9 @@ angular.module('app').factory('UserService', ['$http', '$rootScope', function ($
   service.forgotPasswordAPI = function (user) {
     return $http.post(base_url + '/user/forgot-password', user);
   };
+  service.resendActivationEmailAPI = function (user) {
+    return $http.post(base_url + '/user/resendemail', user);
+  };
   service.authorizeTokenAPI = function (baseUrl, tokenID) {
     return $http.get(baseUrl + '/user/verify/token/' + tokenID);
   };
