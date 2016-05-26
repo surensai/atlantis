@@ -26,7 +26,7 @@
               data-ng-if="!(messages && messages.type === 'register') && !(messages && messages.type === 'forgot')"
               class="btn sp-pur-btn center-block" data-translate="common.return_login">Return to Log In
       </button>
-      <button data-ng-if="messages && messages.type === 'forgot'" class="btn sp-pur-btn center-block"
+      <button data-ng-if="messages && (messages.type === 'forgot' || messages.type === 'register')" class="btn sp-pur-btn center-block"
               data-translate="common.resend_email" data-ng-click="onResendEmail()"
         >Resend Email
       </button>

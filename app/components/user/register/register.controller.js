@@ -30,7 +30,7 @@ angular.module("app").controller('registerCtrl', ['AuthenticationService', 'User
     var formData = stuctureFormData();
     var handleSuccess = function (data) {
       messagesFactory.registerSuccessMessages(data);
-      $state.go('messages');
+      $state.go('messages', {data: {"email": formData.email}});
     };
 
     var handleError = function (error, status) {
