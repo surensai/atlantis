@@ -502,7 +502,7 @@ a .delete-player-back-button:hover{
           display: table-cell;
           color: #615F5F;
           font-size: 18px;
-          padding: 0px 10px;
+          padding: 0px 45px;
         }
       }
     }
@@ -522,6 +522,7 @@ a .delete-player-back-button:hover{
         display: block;
         float: left;
         text-align: center;
+        border-radius: 2px;
       }
       .bigbadge-buttons-mat, .bigbadge-buttons-ball .bigbadge-buttons-doll {
         padding: 1px 45px 1px 43px !important;
@@ -721,7 +722,7 @@ a .delete-player-back-button:hover{
     display: table-cell;
     color: #615F5F;
     font-size: 21px !important;
-    padding: 0px 10px;
+    padding: 0px 45px !important;
   }
   .player-label {
     width: 10% !important;

@@ -16,7 +16,7 @@
       "dashboard": "Dashboard",
       "players": "PLAYERS",
       "curriculum": "MY CURRICULUM",
-      "settings": "MY ACCOUNT",
+      "settings": "My Account",
       "home": "HOME",
       "Home": "Home",
       "Players": "Players",
@@ -173,7 +173,7 @@
       "grownup_last_name": "Grown Up's Last Name",
       "grownup_email": "Grown Up's Email",
       "profile_picture": "Profile Picture",
-      "signIn": "Already registered? Sign in",
+      "signIn": "Already have an account? Log in.",
       "messages": {
         "first_name_require":"Please enter your (grown-up's) first name.",
         "last_name_require":"Please enter your (grown-up's) last name.",
@@ -191,8 +191,8 @@
       "remember_password": "Remember password",
       "forgot_password": "Forgot Password",
       "log_in": "Log In",
-      "forgot_password": "Forgot password?",
-      "register": "Not registered yet? Sign Up",
+      "forgot_password": "Forgot Password?",
+      "register": "New User? Create an Account.",
       "login_page": "Go to login page"
     },
     "forgot_password": {
