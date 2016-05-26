@@ -89,7 +89,9 @@
                   <img data-ng-if="!playerAction.model.playerItem.imgbase64 && !playerAction.model.playerItem.profileURL && !playerAction.isUpdate"
                        src="assets/images/fallback-img.png"  width="117" height="117" />
                   <img data-ng-if="!playerAction.model.playerItem.imgbase64 && !playerAction.model.playerItem.profileURL && playerAction.isUpdate"
-                       src="assets/images/default-avatar.png"  width="117" height="117"  class=''/>
+                       src="assets/images/default-avatar.png"  width="117" height="117"  class='retina-display'/>
+                  <img data-ng-if="!playerAction.model.playerItem.imgbase64 && !playerAction.model.playerItem.profileURL && playerAction.isUpdate"
+                       src="assets/images/default-avatar.png"  width="117" height="117"  class='non-retina'/>
 
                 </div>
                 <div class="avatar-actions">
