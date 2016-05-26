@@ -197,7 +197,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "" && error) {
       message = error.error;
     }
-    flashService.showError($translate.instant("player.messages.invalid_word_deatils"), false);
+    flashService.showError($translate.instant("curriculum.messages.word_already_exist"), false);
   }
   function updatewordSuccess(successObj) {
     if (successObj) {
