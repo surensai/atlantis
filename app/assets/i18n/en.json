@@ -336,6 +336,7 @@
     "messages": {
       "add_success": "Player added successfully!",
       "update_success": "Player updated successfully!",
+      "edit_player_success":"Player edited successfully!",
       "delete_success": "Player deleted successfully!",
       "add_error": "Player added successfully!",
       "update_error": "Player updated successfully!",
