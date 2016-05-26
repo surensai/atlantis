@@ -220,7 +220,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
           $uibModalInstance.dismiss('cancel');
         };
         $scope.onSubmit = function () {
-          playerAction.model.playerItem.profileURL = selectedImg;
+          playerAction.model.playerItem.profileURL = {};
           playerAction.model.playerItem.imgbase64 = $scope.croppedImage;
           $uibModalInstance.dismiss('cancel');
         };
