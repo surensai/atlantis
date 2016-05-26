@@ -19,6 +19,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.realWordsData = [];
   player.csvData = [];
   player.isNoPlayer = false;
+  player.getAllplayers = false;
   player.reverse = false;
   player.clicked = false;
   player.viewby = 5;
@@ -181,6 +182,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         PlayerService.getPlayerById(playerId)
           .success(function (data) {
             player.playerObj = data;
+            player.getAllplayers = true;
           })
           .error(function (err,status) {
             if(status === 401){

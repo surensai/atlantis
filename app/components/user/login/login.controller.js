@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('loginCtrl', ['$scope', '$state', 'AuthenticationService', '$timeout', 'messagesFactory', function ($scope, $state, AuthenticationService, $timeout, messagesFactory) {
+angular.module("app").controller('loginCtrl', ['$scope', '$state', 'AuthenticationService', '$timeout', 'UserService', 'messagesFactory', function ($scope, $state, AuthenticationService, $timeout, UserService, messagesFactory) {
 
   var login = this;
   login.model = {};
@@ -19,6 +19,23 @@ angular.module("app").controller('loginCtrl', ['$scope', '$state', 'Authenticati
         angular.element('.custom-error:first').focus();
       }, 200);
     }
+  };
+
+  login.onResendEmail = function (form) {
+    var handleSuccess = function (data) {
+      //sent mail - common for both
+      messagesFactory.registerSuccessMessages(data);
+      $state.go('messages', {data: {"email": login.model.email}});
+    };
+    var handleError = function (error, status) {
+      if (error && status) {
+        messagesFactory.forgotErrorMessages(status);
+      }
+    };
+    //Register User - resend activation email
+    UserService.resendActivationEmailAPI({"email": login.model.email})
+      .success(handleSuccess)
+      .error(handleError);
   };
 
   function stuctureFormData() {

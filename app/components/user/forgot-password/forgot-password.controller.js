@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('forgotPasswordCtrl', ['$scope', 'UserService', 'messagesFactory','$state', function ($scope, UserService, messagesFactory,$state) {
+angular.module("app").controller('forgotPasswordCtrl', ['$scope', 'UserService', 'messagesFactory', '$state', function ($scope, UserService, messagesFactory, $state) {
 
   var forgot = this;
   forgot.model = {};
@@ -21,7 +21,7 @@ angular.module("app").controller('forgotPasswordCtrl', ['$scope', 'UserService',
     var handleSuccess = function (data) {
       forgot.data = {};
       messagesFactory.forgotSuccessMessages(data);
-      $state.go('messages');
+      $state.go('messages', {data: forgot.model});
     };
     var handleError = function (error, status) {
       if (error && status) {

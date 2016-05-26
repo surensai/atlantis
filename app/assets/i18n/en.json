@@ -16,7 +16,7 @@
       "dashboard": "Dashboard",
       "players": "PLAYERS",
       "curriculum": "MY CURRICULUM",
-      "settings": "MY ACCOUNT",
+      "settings": "My Account",
       "home": "HOME",
       "Home": "Home",
       "Players": "Players",
@@ -119,6 +119,7 @@
     "delete":"Delete",
     "nodata": "No data to display",
     "return_login": "Return to Log In",
+    "resend_email": "Resend Email",
     "what_happento_data":"What happens to the data?",
     "day": "Day",
     "month": "Month",
@@ -172,7 +173,7 @@
       "grownup_last_name": "Grown Up's Last Name",
       "grownup_email": "Grown Up's Email",
       "profile_picture": "Profile Picture",
-      "signIn": "Already registered? Sign in",
+      "signIn": "Already have an account? Log in.",
       "messages": {
         "first_name_require":"Please enter your (grown-up's) first name.",
         "last_name_require":"Please enter your (grown-up's) last name.",
@@ -190,8 +191,8 @@
       "remember_password": "Remember password",
       "forgot_password": "Forgot Password",
       "log_in": "Log In",
-      "forgot_password": "Forgot password?",
-      "register": "Not registered yet? Sign Up",
+      "forgot_password": "Forgot Password?",
+      "register": "New User? Create an Account.",
       "login_page": "Go to login page"
     },
     "forgot_password": {
@@ -336,6 +337,7 @@
     "messages": {
       "add_success": "Player added successfully!",
       "update_success": "Player updated successfully!",
+      "edit_player_success":"Player edited successfully!",
       "delete_success": "Player deleted successfully!",
       "add_error": "Player added successfully!",
       "update_error": "Player updated successfully!",
@@ -426,6 +428,7 @@
     "customword_modaltype": "Error",
     "messages": {
       "word_notexist_want_procced": "It’s a new word, do you like to proceed?",
+      "word_already_exist":"Word already exist.",
       "word_exist_want_edit": "Looks like the word already exists. Try adding a new word!",
       "word_notexist": "The word doesn't exists.",
       "word_exist": "The word already exists.",

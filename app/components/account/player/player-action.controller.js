@@ -65,7 +65,11 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
 
     var handleSuccess = function (data) {
       messagesFactory.createPlayerSuccess(data);
-      $state.go('account.players.details', {id: data.id});
+
+      $timeout(function () {
+        $state.go('account.players.details', {id: data.id});
+      }, 2000);
+
     };
 
     var handleError = function (error, status) {
@@ -86,8 +90,13 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
 
   function updateAction() {
     var formData = stuctureFormData();
-    var handleSuccess = function () {
-      $state.go('account.players.details', {id: playerAction.model.playerItem.id});
+    var handleSuccess = function (data) {
+      messagesFactory.updatePlayerSuccess(data);
+
+      $timeout(function () {
+        $state.go('account.players.details', {id: playerAction.model.playerItem.id});
+      }, 2000);
+
     };
 
     var handleError = function (error, status) {
@@ -168,9 +177,15 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   playerAction.deleteAction = function () {
 
     var handleSuccess = function (data) {
-      angular.element('#pop').modal('hide');
+      $timeout(function () {
+        angular.element('#pop').modal('hide');
+      }, 2000);
+
       messagesFactory.deletePlayerSuccess(data);
-      $state.go("account.players");
+      $timeout(function () {
+        $state.go("account.players");
+      }, 2000);
+
     };
     var handleError = function (error, status) {
       if (status === 401) {
@@ -205,7 +220,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
           $uibModalInstance.dismiss('cancel');
         };
         $scope.onSubmit = function () {
-          playerAction.model.playerItem.profileURL = selectedImg;
+          playerAction.model.playerItem.profileURL = "";
           playerAction.model.playerItem.imgbase64 = $scope.croppedImage;
           $uibModalInstance.dismiss('cancel');
         };
