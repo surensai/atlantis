@@ -2,9 +2,9 @@
   <div class="pd-left nopadding">
     <div class="profile-pic">
       <img data-ng-if="!player.playerObj.profileURL && !player.playerObj.imgbase64 && player.getAllplayers"
-           src="assets/images/default-avatar.png" class="non-retina"/>
+           src="assets/images/default-avatar.png" class="non-retina" width="100%" height="100%"/>
       <img data-ng-if="!player.playerObj.profileURL && !player.playerObj.imgbase64"
-           src="assets/images/default-avatar@2x.png" class="retina-display"/>
+           src="assets/images/default-avatar@2x.png" class="retina-display" width="100%" height="100%"/>
       <img data-ng-if="player.playerObj.imgbase64"
            data-ng-src="{{player.playerObj.imgbase64}}"
            alt="player" width="100%" height="100%"/>
