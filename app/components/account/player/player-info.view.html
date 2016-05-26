@@ -1,9 +1,11 @@
 <div class="player-details clearfix">
   <div class="pd-left nopadding">
     <div class="profile-pic">
-      <img data-ng-if="!player.playerObj.profileURL && player.getAllplayers" src="assets/images/default-avatar.png" class="non-retina" />
-      <img data-ng-if="!player.playerObj.profileURL" src="assets/images/default-avatar@2x.png" class="retina-display" />
-      <img data-ng-if="player.playerObj.imgbase64 && player.playerObj.profileURL"
+      <img data-ng-if="!player.playerObj.profileURL && !player.playerObj.imgbase64 && player.getAllplayers"
+           src="assets/images/default-avatar.png" class="non-retina"/>
+      <img data-ng-if="!player.playerObj.profileURL && !player.playerObj.imgbase64"
+           src="assets/images/default-avatar@2x.png" class="retina-display"/>
+      <img data-ng-if="player.playerObj.imgbase64"
            data-ng-src="{{player.playerObj.imgbase64}}"
            alt="player" width="100%" height="100%"/>
       <img data-ng-if="!player.playerObj.imgbase64 && player.playerObj.profileURL"
@@ -99,28 +101,28 @@
                 </div>
                 <div class="bigbadge-graph-buttons ">
                   <div class="bigbadge-graph-buttons-one">
-                  <a class="btn bigbadge-graph-button-style"
-                     data-ng-class="{'active': (player.chartTabType==='day' && player.bigbadgedetails.percentage !== 0)}"
-                     data-translate="player.badges.this_week" data-ng-click="player.onGetChartData('day')">
-                    This Week
-                  </a>
-                  <a class="btn bigbadge-graph-button-style"
-                     data-ng-class="{'active': player.chartTabType==='week'}"
-                     data-translate="player.badges.30days" data-ng-click="player.onGetChartData('week')">
-                    30 Days
-                  </a>
+                    <a class="btn bigbadge-graph-button-style"
+                       data-ng-class="{'active': (player.chartTabType==='day' && player.bigbadgedetails.percentage !== 0)}"
+                       data-translate="player.badges.this_week" data-ng-click="player.onGetChartData('day')">
+                      This Week
+                    </a>
+                    <a class="btn bigbadge-graph-button-style"
+                       data-ng-class="{'active': player.chartTabType==='week'}"
+                       data-translate="player.badges.30days" data-ng-click="player.onGetChartData('week')">
+                      30 Days
+                    </a>
                   </div>
                   <div class="bigbadge-graph-buttons-two">
-                  <a class="btn bigbadge-graph-button-style"
-                     data-ng-class="{'active': player.chartTabType==='month'}"
-                     data-translate="player.badges.1year" data-ng-click="player.onGetChartData('month')">
-                    1 Year
-                  </a>
-                  <a class="btn bigbadge-graph-button-style"
-                     data-ng-class="{'active': player.chartTabType==='year'}"
-                     data-translate="player.badges.all_time" data-ng-click="player.onGetChartData('year')">
-                    All Time
-                  </a>
+                    <a class="btn bigbadge-graph-button-style"
+                       data-ng-class="{'active': player.chartTabType==='month'}"
+                       data-translate="player.badges.1year" data-ng-click="player.onGetChartData('month')">
+                      1 Year
+                    </a>
+                    <a class="btn bigbadge-graph-button-style"
+                       data-ng-class="{'active': player.chartTabType==='year'}"
+                       data-translate="player.badges.all_time" data-ng-click="player.onGetChartData('year')">
+                      All Time
+                    </a>
                   </div>
                 </div>
                 <highchart id="chartContainer" config="player.highchartsNG"></highchart>
@@ -139,12 +141,12 @@
               <div class="mb-con ">
                 <div class="mb-icon-con  center-align">
                   <div class="mb-icon non-retina">
-                      <img data-ng-if="!minibadge.assetURL" src="assets/images/no-badge.png" alt="minibadge"
-                           width="110"/>
-                      <img data-ng-if="minibadge.assetURL && minibadge.status === 'Disabled'"
-                           data-ng-src="{{minibadge.disabledassetURL}}" width="110"/>
-                      <img data-ng-if="minibadge.assetURL && minibadge.status === 'Active'"
-                           data-ng-src="{{minibadge.assetURL}}" width="110"/>
+                    <img data-ng-if="!minibadge.assetURL" src="assets/images/no-badge.png" alt="minibadge"
+                         width="110"/>
+                    <img data-ng-if="minibadge.assetURL && minibadge.status === 'Disabled'"
+                         data-ng-src="{{minibadge.disabledassetURL}}" width="110"/>
+                    <img data-ng-if="minibadge.assetURL && minibadge.status === 'Active'"
+                         data-ng-src="{{minibadge.assetURL}}" width="110"/>
                   </div>
                   <div class="mb-icon retina-display">
                     <img data-ng-if="!minibadge.assetURL" src="assets/images/no-badge.png" alt="minibadge"
@@ -216,7 +218,7 @@
               <td class="word-date" am-time-ago="word.endtime"></td>
             </tr>
             <tr data-ng-if="player.wordsData.length === 0">
-              <td colspan="5" class="no-data"  data-translate="common.nodata" >No data to display</td>
+              <td colspan="5" class="no-data" data-translate="common.nodata">No data to display</td>
             </tr>
             </tbody>
           </table>
@@ -258,7 +260,7 @@
               </td>
             </tr>
             <tr data-ng-if="player.lettersWordsData.length === 0">
-              <td colspan="5"class="no-data"  data-translate="common.nodata" > No Data</td>
+              <td colspan="5" class="no-data" data-translate="common.nodata"> No Data</td>
             </tr>
             </tbody>
           </table>
@@ -330,7 +332,7 @@
               <!-- Real Word  -->
               <td class="player-words text-ellipsis word-text">{{ word._id}}</td>
               <!-- Correct  -->
-              <td >
+              <td>
                 {{word.correctCount}}
               </td>
               <!-- Incorrect  -->

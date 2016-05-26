@@ -1,6 +1,17 @@
 'use strict';
-angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', '$cookieStore', '$http','$localStorage',
+angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', '$cookieStore', '$http', '$localStorage',
   function ($rootScope, $state, $stateParams, $location, $cookieStore, $http, $localStorage) {
+
+    window.addEventListener('load', function () {
+      function updateOnlineStatus(event) {
+        var condition = navigator.onLine ? "online" : "offline";
+        alert(condition);
+      }
+
+      window.addEventListener('online', updateOnlineStatus);
+      window.addEventListener('offline', updateOnlineStatus);
+    });
+
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     $rootScope.base_url = "http://ec2-52-71-125-138.compute-1.amazonaws.com";
@@ -83,7 +94,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
   }).state('user-confirm-register', {
     url: '/user/confirmation/:token',
     templateUrl: urlBuilder('user/register', 'register.confirm-register'),
-    controller: function($scope,auth) {
+    controller: function ($scope, auth) {
       if (auth) {
         $scope.confirmRegister = auth.data;
       }
@@ -107,11 +118,26 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
   }).state('messages', {
     url: '/messages',
     templateUrl: "layout/messages.html",
-    controller: function ($cookieStore, $rootScope, $state) {
+    params: {data: null},
+    controller: function ($cookieStore, $rootScope, $scope, $state, $stateParams, UserService, messagesFactory) {
       $rootScope.messages = $cookieStore.get('noSesMes');
       if (!$rootScope.messages) {
         $state.go("login");
       }
+      //resend email
+      $scope.onResendEmail = function () {
+        var handleSuccess = function (data) {
+          //sent mail
+        };
+        var handleError = function (error, status) {
+          if (error && status) {
+            messagesFactory.forgotErrorMessages(status);
+          }
+        };
+        UserService.forgotPasswordAPI($stateParams.data)
+          .success(handleSuccess)
+          .error(handleError);
+      };
     },
     data: {
       pageTitle: 'Square Panda - Successfully Registered'
@@ -195,7 +221,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     }
   }).state('account.viewCustomWord', {
     url: '/curriculum/:id/viewword',
-    cache:false,
+    cache: false,
     templateUrl: urlBuilder('account/curriculum', 'curriculum-action'),
     controller: 'curriculumActionCtrl',
     controllerAs: "curriculum",
@@ -214,7 +240,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     url: '/details/:id',
     templateUrl: urlBuilder('account/player', 'player-info'),
     controller: 'playerCtrl',
-    controllerAs:'player',
+    controllerAs: 'player',
     data: {
       pageTitle: 'Square Panda - Player Details'
     }
