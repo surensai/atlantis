@@ -23,7 +23,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
 
   (function () {
     getPlayerById();
-    getAvatars();
   })();
 
   playerAction.submitForm = function (form) {
@@ -56,6 +55,8 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     data.gender = playerAction.model.playerItem.gender;
     if (!playerAction.isChoosenAvatar) {
       data.imgbase64 = playerAction.model.playerItem.imgbase64;
+    } else {
+      data.imgbase64 = "";
     }
     return data;
   }
@@ -65,11 +66,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
 
     var handleSuccess = function (data) {
       messagesFactory.createPlayerSuccess(data);
-
-      $timeout(function () {
-        $state.go('account.players.details', {id: data.id});
-      }, 2000);
-
+      $state.go('account.players.details', {id: data.id});
     };
 
     var handleError = function (error, status) {
@@ -92,11 +89,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     var formData = stuctureFormData();
     var handleSuccess = function (data) {
       messagesFactory.updatePlayerSuccess(data);
-
-      $timeout(function () {
-        $state.go('account.players.details', {id: playerAction.model.playerItem.id});
-      }, 2000);
-
+      $state.go('account.players.details', {id: playerAction.model.playerItem.id});
     };
 
     var handleError = function (error, status) {
@@ -154,12 +147,15 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
         $scope.modalTitle = $translate.instant('common.are_you_sure');
         $scope.clickedOnReadmore = true;
+
         $scope.readMore = function () {
           $scope.clickedOnReadmore = false;
         };
+
         $scope.readLess = function () {
           $scope.clickedOnReadmore = true;
         };
+
         $scope.ok = function () {
           playerAction.data.deleteObj = obj;
           playerAction.deleteAction();
@@ -177,16 +173,10 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   playerAction.deleteAction = function () {
 
     var handleSuccess = function (data) {
-      $timeout(function () {
-        angular.element('#pop').modal('hide');
-      }, 2000);
-
       messagesFactory.deletePlayerSuccess(data);
-      $timeout(function () {
-        $state.go("account.players");
-      }, 2000);
-
+      $state.go("account.players");
     };
+
     var handleError = function (error, status) {
       if (status === 401) {
         authService.generateNewToken(function () {
@@ -227,6 +217,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       }]
     });
   };
+
   $scope.photoChanged = function (inputFileObj) {
     var files = inputFileObj.files;
     if (files.length > 0 || playerAction.previousSelectedFile.length > 0) {
@@ -258,42 +249,45 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       }
     }
   };
+
   playerAction.showAvatars = function () {
-    $uibModal.open({
-      templateUrl: 'components/account/player/player-avatars-modal.html',
-      controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+    getAvatars(function(){
+      $uibModal.open({
+        templateUrl: 'components/account/player/player-avatars-modal.html',
+        controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
 
-        $scope.selectionAvatar = (playerAction.model.playerItem.profileURL) ? playerAction.model.playerItem.profileURL : '';
-        $scope.selectVal;
+          $scope.selectionAvatar = (playerAction.model.playerItem.profileURL) ? playerAction.model.playerItem.profileURL : '';
+          $scope.selectVal;
 
-        $scope.avatarsList = playerAction.data.avatarsList;
-        $scope.selectAvatar = function (item, index) {
-          $scope.selectionAvatar = item.assetURL;
-          playerAction.isChoosenAvatar = true;
-          $scope.selectVal = index;
-        };
+          $scope.avatarsList = playerAction.data.avatarsList;
+          $scope.selectAvatar = function (item, index) {
+            $scope.selectionAvatar = item.assetURL;
+            playerAction.isChoosenAvatar = true;
+            $scope.selectVal = index;
+          };
 
-        $scope.isAvatarClicked = function (index) {
-          if ($scope.selectVal === index) {
-            return true;
-          } else {
-            return false;
-          }
-        };
+          $scope.isAvatarClicked = function (index) {
+            if ($scope.selectVal === index) {
+              return true;
+            } else {
+              return false;
+            }
+          };
 
-        $scope.onCancel = function () {
-          $uibModalInstance.dismiss('cancel');
-        };
+          $scope.onCancel = function () {
+            $uibModalInstance.dismiss('cancel');
+          };
 
-        $scope.onSubmit = function () {
-          playerAction.model.playerItem.profileURL = $scope.selectionAvatar;
-          //clear cropped image
-          playerAction.model.playerItem.imgbase64 = "";
-          $uibModalInstance.dismiss('cancel');
-        };
+          $scope.onSubmit = function () {
+            playerAction.model.playerItem.profileURL = $scope.selectionAvatar;
+            //clear cropped image
+            playerAction.model.playerItem.imgbase64 = "";
+            $uibModalInstance.dismiss('cancel');
+          };
 
 
-      }]
+        }]
+      });
     });
   };
 
@@ -322,10 +316,13 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   }
 
 
-  function getAvatars() {
+  function getAvatars(cb) {
 
     var handleSuccess = function (data) {
       playerAction.data.avatarsList = data;
+      if(cb){
+        cb();
+      }
     };
 
     var handleError = function (error, status) {
