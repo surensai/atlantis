@@ -25,7 +25,7 @@
                 <input ng-disabled="curriculum.isView" type="text" name="word" class="form-control"
                        data-ng-model="curriculum.model.wordItem.wordName"
                        placeholder="{{ 'curriculum.word' | translate }}" required ng-pattern="/^[A-z][A-z]*$/"
-                       ng-minlength="1" ng-maxlength="8">
+                       ng-minlength="1" ng-maxlength="8" autocomplete="off">
 
                 <span class="btn btn-default custom-search-button" ng-click="curriculum.searchWord(true)"
                       data-ng-if="!curriculum.isView && curriculum.model.wordItem.wordName"><i

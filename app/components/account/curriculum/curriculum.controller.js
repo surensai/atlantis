@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','CurriculumService', '$scope', '$state', '$uibModal', 'messagesFactory', '$translate', 'utilsFactory','AuthenticationService', function ($timeout, $rootScope, CurriculumService, $scope, $state, $uibModal, messagesFactory, $translate, utilsFactory, authService) {
+angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','CurriculumService', 'flashService', '$scope', '$state', '$uibModal', 'messagesFactory', '$translate', 'utilsFactory','AuthenticationService', function ($timeout, $rootScope, CurriculumService, flashService, $scope, $state, $uibModal, messagesFactory, $translate, utilsFactory, authService) {
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
   var curriculum = this;
   curriculum.customWords = [];
@@ -18,6 +18,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
   (function () {
     getWords();
     getWordsByCategory('6,8');
+    flashService.showPreviousMessage();
   })();
   curriculum.searchWord = function (word) {
       var handleSuccess = function (data) {

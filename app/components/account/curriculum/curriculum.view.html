@@ -28,7 +28,7 @@
                 <div class="col-md-12">
 
                   <input type="text" class="form-control" name="word" placeholder="{{ 'curriculum.type_word' | translate }}" data-ng-model="curriculum.model.wordItem.wordName" ng-pattern="/^[A-z][A-z]*$/"
-                         ng-minlength="1" ng-maxlength="8">
+                         ng-minlength="1" ng-maxlength="8" autocomplete="off">
 
                   <div ng-show="curriculumForm.$submitted && curriculumForm.word.$error.required"
                        class="error-mesasage">
@@ -93,10 +93,10 @@
                   <tr data-ng-repeat="word in curriculum.customWords.slice(((curriculum.currentPage-1)*curriculum.itemsPerPage), ((curriculum.currentPage)*curriculum.itemsPerPage)) | orderBy:curriculum.predicate:curriculum.reverse">
                     <td class="player-words ">{{ word.Words}}</td>
                     <td data-ng-if="word.picture" class="word-check"><img  class="img-circle" width="40" height="40" ng-src="{{word.picture}}"></td>
-                    <td data-ng-if="!word.picture" class="word-check">
+                    <td data-ng-if="!word.picture" class="word-check ">
                       <img src="assets/images/fallback-img.png" class="img-circle" alt="player" width="40" height="40" />
                     </td>
-                    <td>
+                    <td class="player-words">
                       <a href=""> <i ui-sref="account.editCustomWord({ id: word.id})" class="fa fa-pencil-square-o left-padding word-icon-colors"></i> </a>
                     <a href=""> <i data-ng-click="curriculum.deleteListener(word)" class="fa fa-trash left-padding word-icon-colors"></i></a></td>
                   </tr>
@@ -142,7 +142,7 @@
               <label class="checkbox-selectlabel"><input type="checkbox" ng-model="curriculum.selectedAll" data-ng-click="curriculum.checkAll(curriculum.selectedAll, curriculum.group.bathroomWords)"/><b data-translate="curriculum.selectall">SelectAll</b></label>
               </div>
 
-              <div class="col-md-3" data-ng-repeat="words in curriculum.group.bathroomWords " data-ng-init="topIndex = $index">
+              <div class="col-md-3 col-sm-3 col-xs-3" data-ng-repeat="words in curriculum.group.bathroomWords " data-ng-init="topIndex = $index">
                 <div class="checkbox" data-ng-repeat="word in words track by $index" >
                   <label><input type="checkbox" data-ng-model="word.groupedflag" data-ng-click="curriculum.checkItemBy(topIndex, $index, curriculum.group.bathroomWords, word.groupedflag, 'bathroom')">{{word.Word | lowercase}}</label>
                 </div>
@@ -163,7 +163,7 @@
               <div class="checkbox">
                 <label class="checkbox-selectlabel"><input type="checkbox" ng-model="curriculum.checkselectAll" data-ng-click="curriculum.checkAll(curriculum.checkselectAll, curriculum.group.anatomyWords)"/><b data-translate="curriculum.selectall">SelectAll</b></label>
               </div>
-              <div class="col-md-3" data-ng-repeat="words in curriculum.group.anatomyWords" data-ng-init="topIndex = $index">
+              <div class="col-md-3 col-sm-3 col-xs-3" data-ng-repeat="words in curriculum.group.anatomyWords" data-ng-init="topIndex = $index">
                 <div class="checkbox"  data-ng-repeat="word in words track by $index">
                   <label><input type="checkbox" data-ng-model="word.groupedflag" data-ng-click="curriculum.checkItemBy(topIndex, $index, curriculum.group.anatomyWords, word.groupedflag, 'anatomy')">{{word.Word | lowercase}}</label>
                 </div>

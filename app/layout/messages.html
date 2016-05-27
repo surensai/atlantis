@@ -5,9 +5,8 @@
       <div class="panel panel-default messages-panel">
         <div class="panel-body">
           <div data-ng-if="messages && messages.type === 'register'">
-
-            <p data-translate="user.register.messages.get_mail"> Please activate your account using the verification
-              link sent to your email address. </p>
+            <h2 class="text-center messages-register-heading" data-translate="user.register.messages.thanks_for_registering">Thank you for registering with us.</h2>
+            <p data-translate="user.register.messages.get_mail"> Soon you will get a confirmation email to verify your account.</p>
           </div>
           <div data-ng-if="messages && messages.type === 'forgot'">
             <p data-translate="user.forgot_password.reset_password">Request received. You will receive an email shortly
