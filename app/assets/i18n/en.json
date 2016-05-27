@@ -16,12 +16,12 @@
       "dashboard": "Dashboard",
       "players": "PLAYERS",
       "curriculum": "MY CURRICULUM",
-      "settings": "My Account",
+      "settings": "MY ACCOUNT",
       "home": "HOME",
       "Home": "Home",
       "Players": "Players",
       "Curriculum": "Curriculum",
-      "my_account": "My account",
+      "my_account": "My Account",
       "customize": "Customize",
       "Customize": "CUSTOMIZE"
     },
@@ -184,7 +184,8 @@
         "user_verified_already": "You are already registered with us and your account is active.",
         "email_registered": "That email has already been used to create a Square Panda account. If you've forgotten your password, you can reset it.",
         "return_login": "Return to Log In",
-        "get_mail": "Please activate your account using the verification link sent to your email address."
+        "get_mail": " Soon you will get a confirmation email to verify your account.",
+        "thanks_for_registering":"Thank you for registering with us."
       }
     },
     "login": {

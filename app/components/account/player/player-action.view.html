@@ -23,7 +23,7 @@
             <div class="col-md-5">
               <input type="text" name="firstName" class="form-control"
                      data-ng-model="playerAction.model.playerItem.firstName"
-                     placeholder="{{ 'player.first_name' | translate }}" required>
+                     placeholder="{{ 'player.first_name' | translate }}" required autocomplete="off">
 
               <div ng-show="playerForm.$submitted && playerForm.firstName.$error.required" class="error-mesasage">
                 <i class="fa fa-exclamation-circle"></i>
@@ -104,8 +104,10 @@
 
 
                   <div class="orText">
-                    <span> <a href="javascript:;" data-ng-click="playerAction.showAvatars()"> <span
-                      data-translate="player.or">Or,</span><u data-translate="player.buttons.choose_avatar">Choose a generic avatar</u>  </a></span>
+                    <span>
+                        <span data-translate="player.or">Or,</span>
+                        <a href="javascript:;" data-translate="player.buttons.choose_avatar" data-ng-click="playerAction.showAvatars()">Choose a generic avatar</a>
+                    </span>
                   </div>
                 </div>
 

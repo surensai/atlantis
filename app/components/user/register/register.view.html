@@ -12,7 +12,7 @@
 
       <div class="form-group has-feedback">
         <input type="text" name="firstName" class="form-control" data-ng-model="register.model.firstName"
-               placeholder="{{ 'user.register.grownup_first_name' | translate }}" required>
+               placeholder="{{ 'user.register.grownup_first_name' | translate }}" required autocomplete="off">
         <div ng-show="userForm.$submitted && userForm.firstName.$error.required" class="error-mesasage">
         <i class="fa fa-exclamation-circle"></i>
         <span data-translate="user.register.messages.first_name_require">Please enter your (grown-up's) first name.</span>
@@ -22,7 +22,7 @@
 
       <div class="form-group has-feedback">
         <input type="text" name="lastName" class="form-control" data-ng-model="register.model.lastName"
-               placeholder="{{ 'user.register.grownup_last_name' | translate }}" required>
+               placeholder="{{ 'user.register.grownup_last_name' | translate }}" required autocomplete="off">
         <div ng-show="userForm.$submitted && userForm.lastName.$error.required" class="error-mesasage">
         <i class="fa fa-exclamation-circle"></i>
         <span  data-translate="user.register.messages.last_name_require">Please enter your (grown-up's) last name.</span>

@@ -34,17 +34,20 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     LastPlayed: $translate.instant("player.word_headers.last_played"),
     LastAttempt: $translate.instant("player.word_headers.last_attempt")
   };
+
   player.lettersHeaders = {
     LettersWords: $translate.instant("player.letter_headers.letters"),
     Inputs: $translate.instant("player.letter_headers.inputs"),
     LastPlayed: $translate.instant("player.letter_headers.last_played"),
     LastAttempt: $translate.instant("player.letter_headers.last_attempt")
   };
+
   player.nonsenseHeaders = {
     NonsenseWords: $translate.instant("player.nonsense_headers.nonsense_words"),
     Times: $translate.instant("player.nonsense_headers.times"),
     LastPlayed: $translate.instant("player.nonsense_headers.last_played")
   };
+
   player.realWordsHeaders = {
     Real_Words: $translate.instant("player.real_word_headers.real_words"),
     Correct: $translate.instant("player.real_word_headers.correct"),
@@ -52,10 +55,12 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     LastAttempt: $translate.instant("player.real_word_headers.last_attempt"),
     LastPlayed: $translate.instant("player.real_word_headers.last_played")
   };
+
   player.drag = 'drag feedback';
   player.drop = 'drop feedback';
   player.gridCount = 4;
   player.chartTabType = "";
+
   var wordsCsv = [], lettersWordsCsv = [], nonsenseWordsCsv = [], realWordsCsv = [], daysXAxisLegArr = ["", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], monthsXAxisLegArr = ["", "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"];
   player.getKeysOfCollection = function (obj) {
@@ -68,6 +73,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   (function () {
     getPlayers();
+    flashService.showPreviousMessage();
   })();
 
   player.onWordTypeChanges = function () {

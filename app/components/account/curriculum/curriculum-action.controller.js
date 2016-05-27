@@ -163,10 +163,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
     };
     var handleSuccess = function (data) {
       messagesFactory.savewordsSuccess(data);
-          $timeout(function() {
-            $state.go('account.curriculum');
-          }, 2000);
-
+      $state.go('account.curriculum');
     };
     CurriculumService.saveWordApi(formData)
       .success(handleSuccess)
@@ -178,10 +175,7 @@ angular.module("app").controller('curriculumActionCtrl', ['$timeout', 'Curriculu
 
     var handleSuccess = function (data) {
       messagesFactory.updatewordSuccess(data);
-      $timeout(function() {
-        $state.go('account.curriculum');
-      }, 2000);
-
+      $state.go('account.curriculum');
     };
 
     var handleError = function (error, status) {

@@ -20,7 +20,7 @@
               <div class="col-md-3">
                 <input type="text" name="firstName" class="form-control"
                        data-ng-model="settings.model.userData.firstName"
-                       placeholder="{{ 'settings.grownup_first_name' | translate }}" required ng-disabled="!settings.isEditClicked">
+                       placeholder="{{ 'settings.grownup_first_name' | translate }}" required ng-disabled="!settings.isEditClicked" autocomplete="off">
 
                 <div class="error-mesasage"  ng-show="settingsForm.firstName.$error.required">
                   <i class="fa fa-exclamation-circle"></i>
@@ -38,7 +38,7 @@
 
               <div class="col-md-3">
                 <input type="text" name="lastName" class="form-control" data-ng-model="settings.model.userData.lastName"
-                       placeholder="{{ 'settings.grownup_last_name' | translate }}" required ng-disabled="!settings.isEditClicked">
+                       placeholder="{{ 'settings.grownup_last_name' | translate }}" required ng-disabled="!settings.isEditClicked" autocomplete="off">
 
                 <div class="error-mesasage"  ng-show="settingsForm.lastName.$error.required">
                   <i class="fa fa-exclamation-circle"></i>
@@ -232,7 +232,7 @@
             <button class="btn btn-primary cancel-button submit-clear-all-padding" type="button"
                     data-translate="common.buttons.reset" data-ng-click="settings.clearAllAlphabets()">Reset </button>
           </div>
-          
+
 
         </form>
       </div>
