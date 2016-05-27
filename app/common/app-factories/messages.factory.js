@@ -121,7 +121,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
 
   service.updateMissingLettersSuccessMessages = function(successObj){
     if (successObj) {
-      flashService.showSuccess($translate.instant('settings.messages.missing_letters_updated'), true);
+      flashService.showSuccess($translate.instant('settings.messages.missing_letters_updated'), false);
 
     }
   };
@@ -144,7 +144,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
 
   service.submitGroupwordsSuccess = function(successObj) {
     if (successObj) {
-      flashService.showSuccess($translate.instant('curriculum.messages.groupword_success_msg'), true);
+      flashService.showSuccess($translate.instant('curriculum.messages.groupword_success_msg'), false);
     }
   };
 
