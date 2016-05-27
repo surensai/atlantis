@@ -5,7 +5,6 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     window.addEventListener('load', function () {
       function updateOnlineStatus(event) {
         var condition = navigator.onLine ? "online" : "offline";
-        alert(condition);
       }
 
       window.addEventListener('online', updateOnlineStatus);

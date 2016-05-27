@@ -36,9 +36,6 @@ angular.module('app').factory('appService', [ '$rootScope','$timeout', function 
     $timeout(function() {
       $rootScope.isFooterFix = $('body').hasScrollBar();
     }, 200);
-
-
-
   };
 
   return service;
