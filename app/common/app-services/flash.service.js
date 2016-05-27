@@ -22,14 +22,25 @@ angular.module('app').factory('flashService', ['$rootScope','$cookieStore','toas
     }
   }
 
+  function showPreviousMessage(){
+    if($rootScope.globals.flash){
+      if($rootScope.globals.flash.type === 'success'){
+        toaster.pop({type:$rootScope.globals.flash.type, closeButton: true, title:"Success", body:$rootScope.globals.flash.message, timeout: 2000});
+      } else {
+        toaster.pop({type:$rootScope.globals.flash.type, closeButton: true, title:"Error", body:$rootScope.globals.flash.message, timeout: 2000});
+      }
+    }
+  }
+
   function showSuccess(message, keepAfterLocationChange) {
     $rootScope.globals.flash = {
       message: message,
       type: 'success',
       keepAfterLocationChange: keepAfterLocationChange
     };
-    toaster.pop({type:$rootScope.globals.flash.type, closeButton: true, title:"Success", body:$rootScope.globals.flash.message, timeout: 2000});
-  }
+
+    toaster.pop({type:$rootScope.globals.flash.type, closeButton: true, title:"Success", body:$rootScope.globals.flash.message, timeout: 2500});
+}
 
   function showCustomMessage(type, isClear) {
     $rootScope.messages = {
@@ -53,6 +64,7 @@ angular.module('app').factory('flashService', ['$rootScope','$cookieStore','toas
   service.showSuccess = showSuccess;
   service.showError = showError;
   service.showCustomMessage = showCustomMessage;
+  service.showPreviousMessage = showPreviousMessage;
   return service;
 
 }]);
