@@ -3,7 +3,7 @@
   <div class="text-center">
     <h2 class="login-form-heading center-align" data-translate="user.login.log_in">Log In</h2>
     <div class="login-error-message" data-ng-if="globals.flash && globals.flash.type !== 'success'">
-      {{globals.flash.message}} <a href="" data-ng-click="login.onResendEmail()">Resend Email</a>
+      {{globals.flash.message}} <a data-ng-if="login.showResendOption" href="" data-ng-click="login.onResendEmail()">Resend Email</a>
     </div>
   </div>
   <div class="col-lg-4 col-md-3 col-sm-3"></div>

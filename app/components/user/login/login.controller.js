@@ -4,6 +4,7 @@ angular.module("app").controller('loginCtrl', ['$scope', '$state', 'Authenticati
 
   var login = this;
   login.model = {};
+  login.showResendOption = false;
 
   (function () {
     AuthenticationService.ClearCredentials();
@@ -23,7 +24,6 @@ angular.module("app").controller('loginCtrl', ['$scope', '$state', 'Authenticati
 
   login.onResendEmail = function (form) {
     var handleSuccess = function (data) {
-      //sent mail - common for both
       messagesFactory.registerSuccessMessages(data);
       $state.go('messages', {data: {"email": login.model.email}});
     };
@@ -32,7 +32,7 @@ angular.module("app").controller('loginCtrl', ['$scope', '$state', 'Authenticati
         messagesFactory.forgotErrorMessages(status);
       }
     };
-    //Register User - resend activation email
+
     UserService.resendActivationEmailAPI({"email": login.model.email})
       .success(handleSuccess)
       .error(handleError);
@@ -54,8 +54,10 @@ angular.module("app").controller('loginCtrl', ['$scope', '$state', 'Authenticati
     var handleError = function (error, status) {
 
       if (error && status) {
+        login.showResendOption = (status === 410) ? true : false ;
         login.model.password = '';
         messagesFactory.loginErrorMessages(status);
+
       }
     };
     AuthenticationService.loginApi(stuctureFormData())
