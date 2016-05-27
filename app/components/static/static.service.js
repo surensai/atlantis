@@ -13,7 +13,9 @@ angular.module('app').factory('StaticService', ['$http', '$rootScope', function 
     return $http.get(base_url + '/cms/listCmsbyCategory/terms');
   };
 
-
+    service.getwarrantyAPI = function(){
+      return $http.get(base_url + '/cms/listCmsbyCategory/warranty');
+    };
 
   return service;
 
