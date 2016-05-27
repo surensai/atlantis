@@ -6,8 +6,9 @@
     },
     templateUrl: 'common/app-directives/dob/dob.view.html',
     controller: function ($scope) {
-      $scope.setDOB = function () {
-        $scope.days = ($scope.dob) ? daysInMonth($scope.dob.year, $scope.dob.month) : 30;
+
+
+        $scope.days = [];
         $scope.dob = {};
         $scope.dob.year = '';
         $scope.dob.month = '';
@@ -37,13 +38,13 @@
           return years.reverse();
         };
 
-        $scope.getDays = function () {
+        function setDays (numDays) {
           var days = [], i = 1;
-          while (i <= $scope.days) {
+          while (i <= numDays) {
             days.push(i++);
           }
-          return days;
-        };
+          $scope.days = days;
+        }
 
         function daysInMonth(month, year) {
           return new Date(year, month, 0).getDate();
@@ -56,8 +57,13 @@
           return month + "/" + day + "/" + year;
         }
 
+        setDays(30);
+
         $scope.$watchGroup(['dob.month', 'dob.day', 'dob.year'], function (newValues, oldValues, scope) {
           scope.birthDate = setDOBFormate(scope.dob.month, scope.dob.day, scope.dob.year);
+          if(scope.dob.month){
+            setDays(daysInMonth(scope.dob.month, scope.dob.year));
+          }
         });
 
         $scope.$watch('birthDate', function (newValue, oldValue,scope) {
@@ -78,8 +84,6 @@
           }
         });
 
-      };
-      $scope.setDOB();
     }
   };
 });
