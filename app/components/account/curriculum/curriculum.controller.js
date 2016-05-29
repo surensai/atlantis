@@ -26,9 +26,9 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
           $uibModal.open({
             templateUrl: 'common/app-directives/modal/custom-modal.html',
             controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
-              $scope.modalTitle = $translate.instant('curriculum.customword_modaltitle');
-              $scope.modalBody = $translate.instant('curriculum.customword_modalbody');
-              $scope.modalType = $translate.instant('curriculum.customword_modaltype');
+              $scope.modalTitle = $translate.instant('common.error');
+              $scope.modalBody = $translate.instant('curriculum.messages.maximum_words');
+              $scope.modalType = $translate.instant('common.error');
               $scope.close = function () {
                 $uibModalInstance.dismiss('cancel');
               };
