@@ -142,7 +142,7 @@
               <label class="checkbox-selectlabel"><input type="checkbox" ng-model="curriculum.selectedAll" data-ng-click="curriculum.checkAll(curriculum.selectedAll, curriculum.group.bathroomWords)"/><b data-translate="curriculum.selectall">SelectAll</b></label>
               </div>
 
-              <div class="col-md-3 col-sm-3 col-xs-3" data-ng-repeat="words in curriculum.group.bathroomWords " data-ng-init="topIndex = $index">
+              <div class="col-md-3 col-sm-3 " data-ng-repeat="words in curriculum.group.bathroomWords " data-ng-init="topIndex = $index">
                 <div class="checkbox" data-ng-repeat="word in words track by $index" >
                   <label><input type="checkbox" data-ng-model="word.groupedflag" data-ng-click="curriculum.checkItemBy(topIndex, $index, curriculum.group.bathroomWords, word.groupedflag, 'bathroom')">{{word.Word | lowercase}}</label>
                 </div>
@@ -163,7 +163,7 @@
               <div class="checkbox">
                 <label class="checkbox-selectlabel"><input type="checkbox" ng-model="curriculum.checkselectAll" data-ng-click="curriculum.checkAll(curriculum.checkselectAll, curriculum.group.anatomyWords)"/><b data-translate="curriculum.selectall">SelectAll</b></label>
               </div>
-              <div class="col-md-3 col-sm-3 col-xs-3" data-ng-repeat="words in curriculum.group.anatomyWords" data-ng-init="topIndex = $index">
+              <div class="col-md-3 col-sm-3 " data-ng-repeat="words in curriculum.group.anatomyWords" data-ng-init="topIndex = $index">
                 <div class="checkbox"  data-ng-repeat="word in words track by $index">
                   <label><input type="checkbox" data-ng-model="word.groupedflag" data-ng-click="curriculum.checkItemBy(topIndex, $index, curriculum.group.anatomyWords, word.groupedflag, 'anatomy')">{{word.Word | lowercase}}</label>
                 </div>
