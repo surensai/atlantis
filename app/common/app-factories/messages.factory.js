@@ -139,7 +139,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError($translate.instant("player.messages.error_getting_words"), false);
+    flashService.showError($translate.instant("curriculum.messages.error_getting_custom_words"), false);
   };
 
   service.submitGroupwordsSuccess = function(successObj) {
@@ -153,7 +153,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError($translate.instant("user.validationMessages.error_group_words"), false);
+    flashService.showError($translate.instant("curriculum.messages.error_group_words"), false);
   };
 
   service.deletewordSuccess = function(successObj) {
@@ -175,7 +175,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError($translate.instant("player.messages.error_getting_words"), false);
+    flashService.showError($translate.instant("curriculum.messages.error_getting_words"), false);
   };
 
   service.getGroupwordsError = function(status,error) {
@@ -183,7 +183,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError($translate.instant("player.messages.error_getting_words"), false);
+    flashService.showError($translate.instant("curriculum.messages.error_getting_words"), false);
   };
 
   service.searchwordsError = function(status,error) {
@@ -191,7 +191,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError($translate.instant("player.messages.error_getting_words"), false);
+    flashService.showError($translate.instant("curriculum.messages.error_getting_words"), false);
   };
 
   service.getwordsError = function(status,error) {
@@ -199,12 +199,12 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError($translate.instant("player.messages.error_getting_players"), false);
+    flashService.showError($translate.instant("curriculum.messages.error_getting_players"), false);
   };
 
   service.savewordsSuccess = function(successObj) {
     if (successObj) {
-      flashService.showSuccess($translate.instant('user.validationMessages.word_success_msg'), true);
+      flashService.showSuccess($translate.instant('curriculum.messages.word_success_msg'), true);
     }
   };
 
@@ -218,7 +218,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
 
   service.updatewordSuccess = function(successObj) {
     if (successObj) {
-      flashService.showSuccess($translate.instant('user.validationMessages.word_update_msg'), true);
+      flashService.showSuccess($translate.instant('curriculum.messages.word_update_msg'), true);
     }
   };
 
@@ -236,7 +236,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError($translate.instant("user.validationMessages.error_file_upload"), false);
+    flashService.showError($translate.instant("curriculum.messages.error_file_upload"), false);
   };
 
   service.dashboardfeedsError = function(status,error) {

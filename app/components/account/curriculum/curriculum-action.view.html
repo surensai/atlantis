@@ -37,17 +37,17 @@
               </div>
               <div class="error-mesasage" ng-show="curriculum.submitted && playerForm.word.$error.required">
                 <i class="fa fa-exclamation-circle"></i>
-                <span data-translate="user.validationMessages.word_name_require"> Word is required. </span>
+                <span data-translate="curriculum.messages.word_name_require"> Word is required. </span>
               </div>
               <div ng-show="playerForm.word.$error.pattern" class="error-mesasage">
                 <i class="fa fa-exclamation-circle"></i>
-                <span data-translate="user.validationMessages.only_alphabets">Allow only Alphabets</span>
+                <span data-translate="common.messages.only_alphabets">Allow only Alphabets</span>
               </div>
               <div
                 ng-show="!playerForm.word.$error.pattern && !playerForm.word.$error.required && (playerForm.word.$error.minlength || playerForm.word.$error.maxlength) && playerForm.word.$dirty"
                 class="error-mesasage">
                 <i class="fa fa-exclamation-circle"></i>
-                <span data-translate="user.validationMessages.word_length"> Must be between 1 and 8 characters.</span>
+                <span data-translate="common.messages.word_length"> Must be between 1 and 8 characters.</span>
               </div>
             </div>
           </div>
@@ -76,11 +76,11 @@
             <div ng-show="!curriculum.audioFileError" class="error-mesasage">
               <i class="fa fa-exclamation-circle"></i>
                   <span
-                    data-translate="user.validationMessages.file_type_wrong"> File Type is Wrong</span>
+                    data-translate="common.messages.file_type_wrong"> File Type is Wrong</span>
             </div>
             <div ng-show="!curriculum.audioFilesize" class="error-mesasage">
               <i class="fa fa-exclamation-circle"></i>
-              <span data-translate="user.validationMessages.file_size_large"> File size is too large, Try to upload below 2mb.</span>
+              <span data-translate="curriculum.messages.file_size_large"> File size is too large, Try to upload below 2mb.</span>
             </div>
 
           </div>
@@ -103,13 +103,13 @@
                 <div ng-show="curriculum.showSizeLimitError" class="error-mesasage clearfix">
                   <i class="fa fa-exclamation-circle"></i>
                   <span
-                    data-translate="user.validationMessages.file_selection_wrong"> Please select image with 2MB or Lesser size. </span>
+                    data-translate="curriculum.messages.file_selection_wrong"> Please select image with 2MB or Lesser size. </span>
                 </div>
               </div>
               <div ng-show="!curriculum.imageFileError" class="error-mesasage">
                 <i class="fa fa-exclamation-circle"></i>
                   <span
-                    data-translate="user.validationMessages.file_type_wrong"> File Type is Wrong</span>
+                    data-translate="common.messages.file_type_wrong"> File Type is Wrong</span>
               </div>
             </div>
           </div>
@@ -119,7 +119,7 @@
             <div class="col-md-7 margin-top20 center-align submit-clear-parent-div ">
                 <button type="submit" ng-if="!curriculum.isUpdate"
                         class="btn btn-primary add-word-save-button submit-clear-all-padding"
-                        data-translate="common.buttons.addword">Add Word
+                        data-translate="curriculum.addword">Add Word
                 </button>
                 <button ng-if="curriculum.isUpdate"   class="btn btn-primary addword-submit-button submit-clear-all-padding"  type="submit"
                         data-translate="common.buttons.save">Save

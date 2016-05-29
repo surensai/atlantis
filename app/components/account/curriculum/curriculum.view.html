@@ -33,17 +33,17 @@
                   <div ng-show="curriculumForm.$submitted && curriculumForm.word.$error.required"
                        class="error-mesasage">
                     <i class="fa fa-exclamation-circle"></i>
-                    <span data-translate="user.validationMessages.curriculum_word_require">Word Name is required.</span>
+                    <span data-translate="curriculum.messages.word_name_require">Word Name is required.</span>
                   </div>
                   <div ng-show="curriculumForm.word.$error.pattern" class="error-mesasage">
                     <i class="fa fa-exclamation-circle"></i>
-                    <span data-translate="user.validationMessages.only_alphabets">Allow only Alphabets</span>
+                    <span data-translate="common.messages.only_alphabets">Allow only Alphabets</span>
                   </div>
                   <div
                     ng-show="!curriculumForm.word.$error.pattern && !curriculumForm.word.$error.required && (curriculumForm.word.$error.minlength || curriculumForm.word.$error.maxlength) && curriculumForm.word.$dirty"
                     class="error-mesasage">
                     <i class="fa fa-exclamation-circle"></i>
-                    <span data-translate="user.validationMessages.word_length"> Must be between 1 and 8 characters.</span>
+                    <span data-translate="common.messages.word_length"> Must be between 1 and 8 characters.</span>
                   </div>
                 </div>
               </div>
