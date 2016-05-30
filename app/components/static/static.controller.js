@@ -31,7 +31,7 @@ angular.module("app").controller('staticCtrl', [ '$state','StaticService','$sce'
         });
       }
       else {
-        flashService.showError('error in getting data', false);
+        flashService.showError($translate.instant('common.messages.error_getting_data'), false);
       }
     };
 
@@ -52,7 +52,7 @@ angular.module("app").controller('staticCtrl', [ '$state','StaticService','$sce'
         });
       }
       else {
-        flashService.showError('error in getting data', false);
+        flashService.showError($translate.instant('common.messages.error_getting_data'), false);
       }
     };
 
@@ -75,7 +75,7 @@ angular.module("app").controller('staticCtrl', [ '$state','StaticService','$sce'
         });
       }
       else {
-        flashService.showError('error in getting data', false);
+        flashService.showError($translate.instant('common.messages.error_getting_data'), false);
       }
     };
 

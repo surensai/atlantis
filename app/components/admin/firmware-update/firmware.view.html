@@ -10,13 +10,13 @@
         <input type="text" name="firmware_revision_string" class="form-control" ng-model="firmware.model.firmware_revision_string"
                placeholder="{{ 'admin.firmware.firmware_version' | translate }}" required>
           <span ng-show="firmware.submitted && firmwareForm.firmware_revision_string.$error.required" class="error-mesasage"
-                data-translate="user.validationMessages.version_require">Version is required.</span>
+                data-translate="admin.firmware.version_require">Version is required.</span>
       </div>
       <div class="row">
         <div class="form-group col-md-6 has-feedback">
             <input type="file" name="firmware_file" file-model="firmware.model.firmware_update_url" ng-required="true">
             <span ng-show="firmware.submitted && !firmware.model.firmware_update_url.name" class="error-mesasage"
-                  data-translate="user.validationMessages.file_require">File is required.</span>
+                  data-translate="admin.messages.file_require">File is required.</span>
           </div>
         <div class="col-md-6"></div>
       </div>
