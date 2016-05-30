@@ -88,7 +88,7 @@
               <div class="col-md-6">
                 <button class="btn btn-primary settings-edit-button edit-submit-btn" type="button"
                         data-ng-click="settings.edit();"
-                        data-ng-hide="settings.isEditClicked">Edit
+                        data-ng-hide="settings.isEditClicked" data-translate="common.edit">Edit
                 </button>
 
               </div>
@@ -119,14 +119,14 @@
             <div class="form-group">
               <div class="col-md-3"></div>
               <div class="col-md-2 nopadding">
-                <label class="control-label " data-translate="nav.change_password.old_password">Old
+                <label class="control-label " data-translate="settings.old_password">Old
                   password:</label>
               </div>
 
               <div class="col-md-3">
                 <input type="password" class="form-control " name="oldPassword"
                        ng-model="settings.model.passwordData.oldPassword"
-                       placeholder="{{ 'user.change_password.old_password' | translate }}" required>
+                       placeholder="{{ 'settings.old_password' | translate }}" required>
 
                 <div class="error-mesasage"
                      ng-show="changepasswordForm.$submitted && changepasswordForm.oldPassword.$error.required">
@@ -140,14 +140,14 @@
             <div class="form-group">
               <div class="col-md-3"></div>
               <div class="col-md-2 nopadding">
-                <label class=" control-label" data-translate="nav.change_password.new_password">New
+                <label class=" control-label" data-translate="settings.new_password">New
                   Password:</label>
               </div>
               <div class="col-md-3">
 
                 <input type="password" class="form-control " name="password"
                        ng-model="settings.model.passwordData.password"
-                       pattern="[A-Za-z0-9\W]{8,20}" placeholder="{{ 'user.password' | translate }}" required>
+                       pattern="[A-Za-z0-9\W]{8,20}" placeholder="{{ 'settings.password' | translate }}" required>
 
                 <div class="error-mesasage"
                      ng-show="changepasswordForm.$submitted && changepasswordForm.password.$error.required">
@@ -158,7 +158,7 @@
                 <div class="error-mesasage"
                      ng-show='changepasswordForm.password.$error.pattern && changepasswordForm.password.$dirty'>
                   <i class="fa fa-exclamation-circle"></i>
-                  <span data-translate="user.validationMessages.password_strength">Password must be between 8 and 20 characters.</span>
+                  <span data-translate="settings.messages.password_strength">Password must be between 8 and 20 characters.</span>
                 </div>
 
               </div>
@@ -167,14 +167,14 @@
             <div class="form-group ">
               <div class="col-md-3"></div>
               <div class="col-md-2 nopadding">
-                <label class=" control-label" data-translate="nav.change_password.confirm_new_password">Confirm
+                <label class=" control-label" data-translate="settings.confirm_new_password">Confirm
                   Newe Password:</label>
               </div>
               <div class="col-md-3">
 
                 <input type="password" name="confirmPassword"
                        data-ng-model="settings.model.passwordData.confirmPassword"
-                       placeholder="{{ 'user.register.confirm_password' | translate }}" class="form-control" required>
+                       placeholder="{{ 'settings.confirm_password' | translate }}" class="form-control" required>
 
                 <div class="error-mesasage"
                      ng-show="!changepasswordForm.confirmPassword.$error.required && settings.model.passwordData.password !== settings.model.passwordData.confirmPassword">

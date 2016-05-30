@@ -17,7 +17,7 @@
           <div class="form-group"
                ng-class="{ 'has-error' : (submitted && !playerForm.firstName) || (playerForm.firstName.$invalid && !playerForm.firstName.$pristine) }">
             <div class="col-md-3"></div>
-            <label class="col-md-1 control-label player-label" data-translate="nav.edit_profile.first_name">First
+            <label class="col-md-1 control-label player-label" data-translate="player.first_name_label">First
               Name</label>
 
             <div class="col-md-5">
@@ -27,19 +27,19 @@
 
               <div ng-show="playerForm.$submitted && playerForm.firstName.$error.required" class="error-mesasage">
                 <i class="fa fa-exclamation-circle"></i>
-                <span data-translate="user.validationMessages.first_name_require">First Name is required.</span>
+                <span data-translate="player.messages.first_name_require">First Name is required.</span>
               </div>
             </div>
           </div>
 
           <div class="form-group ">
             <div class="col-md-3"></div>
-            <label class="col-md-1 control-label player-label" data-translate="user.register.dob">Date of birth</label>
+            <label class="col-md-1 control-label player-label" data-translate="player.dob">Date of birth</label>
 
             <div class="col-md-5">
               <dob birth-date="playerAction.model.playerItem.dateofBirth"></dob>
               <div ng-if="playerForm.$submitted && !playerAction.isDOBVaid" class="error-mesasage"
-                   data-translate="user.validationMessages.dob_notvalid">Date of birth is not valid
+                   data-translate="player.messages.dob_notvalid">Date of birth is not valid
               </div>
             </div>
           </div>
@@ -116,12 +116,12 @@
               <div ng-show="!playerAction.fileError" class="error-mesasage clearfix">
                 <i class="fa fa-exclamation-circle"></i>
                   <span
-                    data-translate="user.validationMessages.file_type_wrong"> File Type is wrong. Only allows images </span>
+                    data-translate="player.messages.file_type_wrong"> File Type is wrong. Only allows images. </span>
               </div>
               <div ng-show="playerAction.showSizeLimitError" class="error-mesasage clearfix">
                 <i class="fa fa-exclamation-circle"></i>
                   <span
-                    data-translate="user.validationMessages.file_selection_wrong"> Please select image with 5MB or Lesser size </span>
+                    data-translate="common.messages.file_selection_wrong"> Please select image with 5MB or Lesser size </span>
               </div>
 
 

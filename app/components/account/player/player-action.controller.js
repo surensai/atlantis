@@ -7,7 +7,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   playerAction.data = {};
   playerAction.data.avatarsList = [];
   playerAction.modalTitle = 'Warning!';
-  playerAction.modalBody = $translate.instant("user.validationMessages.model_delete_player");
+  playerAction.modalBody = $translate.instant("player.messages.delete_player");
   playerAction.data.deleteObj = {};
   playerAction.isUpdate = false;
   playerAction.isChoosenAvatar = false;

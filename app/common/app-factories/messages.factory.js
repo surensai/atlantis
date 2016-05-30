@@ -61,7 +61,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
 
   service.settingseditprofileSuccessMessages = function(successObj) {
     if (successObj) {
-      flashService.showSuccess( $translate.instant('user.validationMessages.profile_edit_success '), true);
+      flashService.showSuccess( $translate.instant('settings.messages.profile_edit_success '), true);
     }
   };
 
@@ -70,19 +70,19 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError($translate.instant('user.validationMessages.profile_edit_error '), false);
+    flashService.showError($translate.instant('settings.messages.profile_edit_error '), false);
   };
 
   service.settingschangepasswordSuccessMessages = function(successObj) {
     if (successObj) {
-      flashService.showSuccess($translate.instant('user.validationMessages.password_change_new_login'), false);
+      flashService.showSuccess($translate.instant('settings.messages.password_change_new_login'), false);
     }
   };
 
   service.settingschangepasswordErrorMessages = function(status) {
     var message;
       if (status === 500) {
-        message = $translate.instant('user.validationMessages.old_passwpord_wrong');
+        message = $translate.instant('settings.messages.old_passwpord_wrong');
     } else {
         message = $translate.instant('user.validationMessages.old_passwpord_require');
     }
@@ -100,7 +100,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError($translate.instant('user.validationMessages.nofifications_error_msg'), false);
+    flashService.showError($translate.instant('settings.messages.nofifications_error_msg'), false);
   };
 
   service.settingsgetNotifictaionsErrorMessages = function(status,error){
@@ -108,7 +108,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError($translate.instant('user.validationMessages.nofifications_error_msg'), false);
+    flashService.showError($translate.instant('settings.messages.nofifications_error_msg'), false);
   };
 
   service.updateMissingLettersErrorMessages = function(status,error) {
@@ -116,7 +116,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError($translate.instant('user.validationMessages.missing_letters_error'), false);
+    flashService.showError($translate.instant('settings.messages.missing_letters_error'), false);
   };
 
   service.updateMissingLettersSuccessMessages = function(successObj){
@@ -131,7 +131,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError($translate.instant('user.validationMessages.missing_letters_error'), false);
+    flashService.showError($translate.instant('settings.messages.missing_letters_error'), false);
   };
 
   service.customisesearchwordError = function(status,error) {
@@ -236,7 +236,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError($translate.instant("curriculum.messages.error_file_upload"), false);
+    flashService.showError($translate.instant("player.messages.error_file_upload"), false);
   };
 
   service.dashboardfeedsError = function(status,error) {
@@ -244,7 +244,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError($translate.instant("user.validationMessages.error_get_feeds"), false);
+    flashService.showError($translate.instant("dashboard.messages.error_get_feeds"), false);
   };
 
   service.firmwarecreateError = function(status,error) {
@@ -252,7 +252,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError($translate.instant("user.validationMessages.invalid_firmware"), false);
+    flashService.showError($translate.instant("admin.messages.invalid_firmware"), false);
   };
 
   service.firmwareuploadError = function(status,error) {
@@ -260,12 +260,12 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     if (status !== "") {
       message = error.error;
     }
-    flashService.showError($translate.instant("user.validationMessages.firmware_upload_error"), false);
+    flashService.showError($translate.instant("admin.messages.firmware_upload_error"), false);
   };
 
   service.firmwarecreateSuccess = function(successObj) {
     if (successObj) {
-      flashService.showSuccess($translate.instant('user.validationMessages.firmware_success'), true);
+      flashService.showSuccess($translate.instant('admin.messages.firmware_success'), true);
     }
   };
 

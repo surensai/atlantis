@@ -103,9 +103,9 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       $uibModal.open({
         templateUrl: 'common/app-directives/modal/custom-modal.html',
         controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
-          $scope.modalTitle = $translate.instant('player.add_modaltitle');
-          $scope.modalBody = $translate.instant('player.add_modalbody');
-          $scope.modalType = $translate.instant('player.add_modaltype');
+          $scope.modalTitle = $translate.instant('common.error');
+          $scope.modalBody = $translate.instant('player.messages.max_players');
+          $scope.modalType = $translate.instant('common.error');
           $scope.close = function () {
             $uibModalInstance.dismiss('cancel');
           };
@@ -180,7 +180,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           });
         }
         else {
-          flashService.showError("Chart Data Fetch Error.", false);
+          flashService.showError($translate.instant("player.messages.error_chart_data"), false);
         }
 
       });
