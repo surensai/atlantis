@@ -7,8 +7,12 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
   curriculum.model = {};
   curriculum.model.wordItem = {};
   curriculum.group = {};
+  curriculum.model.isCustomWordEditMode =false;
 
-  curriculum.wordsHeaders = {
+  curriculum.onEditCustomWord=function(){
+    curriculum.model.isCustomWordEditMode=!curriculum.model.isCustomWordEditMode;
+  };
+    curriculum.wordsHeaders = {
     Words: $translate.instant("curriculum.customword_headers.word"),
     picture: $translate.instant("curriculum.customword_headers.picture"),
     actions: $translate.instant("curriculum.customword_headers.actions")
