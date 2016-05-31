@@ -154,13 +154,17 @@
   .settings-container .missing-letter-keyboard .letters_set{
     padding: 0 5px;
   }
+  .settiings-panel-body .nopadding{
+     padding-left: 16px !important;
+   }
 
   .settings-container .missing-letter-keyboard .letters_set .ml-letter{
     padding: 5px 9px;
     font-size: 18px;
   }
   .settings-container .missing-letter-keyboard{
-    width: 587px;
+    width: 587px !important;
+    margin: 0px auto;
   }
 }
 
@@ -169,8 +173,13 @@
   .settings-container .missing-letter-keyboard .letters_set{
     padding: 0 10px;
   }
+  .settiings-panel-body .settings-label{
+    width:21%;
+  }
+
   .settings-container .missing-letter-keyboard{
-    width: 785px;
+    width: 785px !important;
+    margin: 0px auto;
   }
 
   .settings-container .missing-letter-keyboard .letters_set .ml-letter{
