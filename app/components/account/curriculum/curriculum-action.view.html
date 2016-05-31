@@ -86,10 +86,12 @@
           </div>
 
           <div class="form-group">
-            <div class="col-md-3"></div>
+            <div class="col-md-3 clearfix"></div>
             <label class="col-md-2 col-sm-2 control-label add-profile-pic"
                    data-translate="curriculum.picture">Picture</label>
-            <div class="col-md-2 col-sm-3">
+
+
+            <div class="col-md-2 col-sm-3 clearfix">
               <div class="thumbnail ">
                 <img class="apply-margin-bottom" ng-src="{{curriculum.model.wordItem.imageURL}}">
               </div>
@@ -112,6 +114,10 @@
                     data-translate="common.messages.file_type_wrong"> File Type is Wrong</span>
               </div>
             </div>
+
+
+
+
           </div>
 
           <div class="form-group">
@@ -121,7 +127,7 @@
                         class="btn btn-primary add-word-save-button submit-clear-all-padding"
                         data-translate="curriculum.addword">Add Word
                 </button>
-                <button ng-if="curriculum.isUpdate"   class="btn btn-primary addword-submit-button submit-clear-all-padding"  type="submit"
+                <button class="btn btn-primary addword-submit-button submit-clear-all-padding"  type="submit"
                         data-translate="common.buttons.save">Save
                 </button>
                 <button class="btn btn-primary cancel-button submit-clear-all-padding" type="button"

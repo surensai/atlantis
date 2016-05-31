@@ -11,6 +11,9 @@
            height: 45px;
            font-size: 17px;
          }
+         .word-label{
+           margin-top: 3px;
+         }
          input::-webkit-input-placeholder{
            color: #DADADA;
          }
@@ -27,6 +30,63 @@
          }
          .add-custom-word-button{
            padding: 5px 45px;
+         }
+         .thumbnail {
+
+           .apply-margin-bottom {
+             margin-bottom: -64px;
+           }
+         }
+         img {
+           margin-bottom: -43px !important;
+         }
+         .mylabel-padding{
+           padding-left: 0px;
+           margin-right: -20px;
+         }
+         label.myLabel input[type="file"] {
+           position: fixed;
+           top: -1000px;
+         }
+
+         /***** Example custom styling *****/
+         .myLabel {
+           border-radius: 4px;
+           padding: 25px 5px;
+           width: 90px;
+           margin-right: 25px;
+           background: #DDD;
+           display: inline-block;
+           float: left;
+           border-left: 1px dashed darken(#CCC ,30%);
+           border-bottom: 1px dashed darken(#CCC ,30%);
+
+         }
+         .myLabel:hover {
+           background: #CCC;
+         }
+         .myLabel:active {
+           background: #CCF;
+         }
+         .myLabel :invalid + span {
+           color: #A44;
+         }
+         .myLabel :valid + span {
+           color: #4A4;
+         }
+         .image-style{
+           margin-top: 25px;
+         }
+         .add-custom-word-cancel-button{
+           padding: 6px 82px;
+           background-color: #7E7E7E !important;
+           color: white !important;
+         }
+         .add-custom-word-cancel-button:hover{
+           background-color: darken(#7E7E7E,10%) !important;
+         }
+         .add-custom-word-save-button{
+           padding: 5px 62px;
          }
 
        }
@@ -48,7 +108,7 @@
              i{
                margin-right: 7px;
              }
-              }
+           }
 
            a:focus{
              text-decoration: none;
@@ -73,9 +133,18 @@
          border-top: 0px;
          .player-words{
            vertical-align: middle !important;
+           img{
+             border-radius: 4px;
+           }
          }
          .word-icon-colors{
-           color: #898989;
+           color: #ffffff;
+           padding: 8px 10px;
+           background-color: #7E7E7E;
+           border-radius: 4px;
+         }
+         .word-icon-colors:hover{
+           background-color: darken(#7E7E7E, 10%);
          }
          thead th {
            background-color: #9B9B9B;
@@ -101,18 +170,18 @@
          text-align: center;
        }
        td{
-           border-top: none;
-           color: lighten(#000, 30%);
-           .last-attempt-green{
-             color: $sp-green;
-           }
-           .last-attempt-blue{
-             color: #6E4D9F;
-           }
-          a{
-            text-decoration: none;
-            color:black;
-          }
+         border-top: none;
+         color: lighten(#000, 30%);
+         .last-attempt-green{
+           color: $sp-green;
+         }
+         .last-attempt-blue{
+           color: #6E4D9F;
+         }
+         a{
+           text-decoration: none;
+           color:black;
+         }
 
          &:first-child, &:nth-child(2){
            text-align: left;
@@ -131,6 +200,73 @@
        .left-padding{
          padding-left: 20px;
        }
+
+       .custom-word-edit-button{
+         background-color: #7E7E7E !important;
+         color:#ffffff;
+         padding: 5px 21px;
+         margin-right: 10px;
+       }
+       .custom-word-edit-button:hover{
+         background-color: darken(#7E7E7E,10%) !important;
+       }
+       label.addpicturelabel input[type="file"] {
+         position: fixed;
+         top: -1000px;
+       }
+
+       .addpicturelabel {
+         border-radius: 4px;
+         padding: 13px 5px;
+         width: 47px;
+         background: #DDD;
+         display: inline-block;
+         border: 1px dashed gray;
+         margin-left: 10px;
+       }
+       .addpicturelabel:hover {
+         background: #CCC;
+       }
+       .addpicturelabel:active {
+         background: #CCF;
+       }
+       .addpicturelabel :invalid + span {
+         color: #A44;
+       }
+       .addpicturelabel :valid + span {
+         color: #4A4;
+       }
+       .edit-word-text{
+         border: none;
+         border-bottom: 1px solid gray;
+         width: 70%;
+       }
+       .custom-word-save-button{
+         padding: 5px 35px;
+       }
+       .custom-word-picture{
+         border-radius: 4px ;
+       }
+       .image {
+         float: left;
+         position:relative;
+         margin-right: 10px;
+         img{
+           border-radius: 4px;
+         }
+       }
+
+       .delete {
+         position: absolute;
+         top: -9px;
+         right: -6px;
+         color: #F26383;
+         border: 1px solid #F26383;
+         padding: 1px;
+         border-radius: 50px;
+         background-color: white;
+       }
+
      }
 
   }
@@ -204,6 +340,23 @@
   border-color: #adadad;
   margin-left:5px;
 }
+.custom-add-button{
+  background-color: $sp-green;
+  color: #ffffff;
+  &:hover{
+    background-color:  darken($sp-green, 10%) !important;
+    color: #ffffff;
+  }
+  &:active{
+    background-color: darken($sp-green, 10%) !important;
+    color: #ffffff;
+  }
+}
+  .delete-bad-word{
+    color: #EE486F;
+    padding-left: 12px;
+  }
+
 .custom-searchs-button{
   color: white;
   background-color: #7E7E7E;
