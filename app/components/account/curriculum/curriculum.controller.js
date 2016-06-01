@@ -1,85 +1,156 @@
 'use strict';
 
-angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','CurriculumService', 'flashService', '$scope', '$state', '$uibModal', 'messagesFactory', '$translate', 'utilsFactory','AuthenticationService', function ($timeout, $rootScope, CurriculumService, flashService, $scope, $state, $uibModal, messagesFactory, $translate, utilsFactory, authService) {
+angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'CurriculumService', 'flashService', '$scope', '$state', '$uibModal', 'messagesFactory', '$translate', 'utilsFactory', 'AuthenticationService', function ($timeout, $rootScope, CurriculumService, flashService, $scope, $state, $uibModal, messagesFactory, $translate, utilsFactory, authService) {
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
   var curriculum = this;
   curriculum.customWords = [];
   curriculum.model = {};
   curriculum.model.wordItem = {};
+  curriculum.model.isWordPrsnt = false;
+  curriculum.model.customWrdImgArr = [];
+  //image uploaded to aws url
+  curriculum.model.customWrdImgURLArr = [];
   curriculum.group = {};
-  curriculum.model.isCustomWordEditMode =false;
+  curriculum.showSizeLimitError = false;
+  curriculum.fileReaderSupported = window.FileReader != null;
 
-  curriculum.onEditCustomWord=function(){
-    curriculum.model.isCustomWordEditMode=!curriculum.model.isCustomWordEditMode;
+  curriculum.onEditCustomWord = function (wordItem) {
+    //update once updated
+    if (wordItem.isEditMode) {
+      var isNewFileAdded = false;
+      for (var fileCounter = 0; fileCounter < wordItem.picture.length; fileCounter++) {
+        if (wordItem.picture[fileCounter].fileObj) {
+          isNewFileAdded = true;
+          break;
+        }
+      }
+      if (isNewFileAdded) {
+        //upload images then update the word
+        curriculum.onUploadCustomWordImages(wordItem.picture, wordItem.isEditMode, wordItem);
+      } else {
+        //Update existing word
+        curriculum.model.customWrdImgURLArr = [];
+        curriculum.onUpdateCustomWords(wordItem);
+      }
+    }
+    wordItem.isEditMode = !wordItem.isEditMode;
   };
-    curriculum.wordsHeaders = {
+  curriculum.wordsHeaders = {
     Words: $translate.instant("curriculum.customword_headers.word"),
     picture: $translate.instant("curriculum.customword_headers.picture"),
     actions: $translate.instant("curriculum.customword_headers.actions")
   };
-
   var customWordsCsv = [];
   (function () {
     getWords();
     getWordsByCategory('6,8');
     flashService.showPreviousMessage();
   })();
-  curriculum.searchWord = function (word) {
-      var handleSuccess = function (data) {
-        if( curriculum.customWords.length >=50){
-          $uibModal.open({
-            templateUrl: 'common/app-directives/modal/custom-modal.html',
-            controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
-              $scope.modalTitle = $translate.instant('common.error');
-              $scope.modalBody = $translate.instant('curriculum.messages.maximum_words');
-              $scope.modalType = $translate.instant('common.error');
-              $scope.close = function () {
-                $uibModalInstance.dismiss('cancel');
-              };
-            }]
-          });
-        }else {
-          var isWordPrsnt = false;
-        var modalInstance = $uibModal.open({
-          templateUrl: 'common/app-directives/modal/custom-modal.html',
-          controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+  function structureFormData() {
+    var data = {};
+    data.wordName = curriculum.model.wordItem.wordName;
+    data.imageURL = curriculum.model.customWrdImgURLArr;
+    data.audioURL = "";
+    return data;
+  }
 
-            if (data.length > 0) {
-              isWordPrsnt = (data[0].owner) ? true : false;
-              $scope.modalTitle =  $translate.instant("common.whoops");
-              $scope.modalBody = $translate.instant("curriculum.messages.word_exist_want_edit");
-            } else {
-              isWordPrsnt = false;
-              $scope.modalTitle =  $translate.instant("common.yipee");
-              $scope.modalBody = $translate.instant("curriculum.messages.word_notexist_want_procced");
-            }
-            $scope.ok = function () {
-              $uibModalInstance.close();
-            };
-
-            $scope.cancel = function () {
-              $uibModalInstance.dismiss('cancel');
-            };
-          }]
-        });
-
-        modalInstance.result.then(function () {
-          if (isWordPrsnt) {
-            $state.go("account.editCustomWord", {id: data[0].id});
-          } else {
-            $state.go("account.addCustomWord", {word: word});
-          }
-        }, function () {
-          $state.go("account.curriculum");
-        });
-
-
-      };
-    };
-
+  /*
+   * Save Custom word and add images array
+   * */
+  curriculum.onSaveCustomWords = function () {
+    var formData = structureFormData();
     var handleError = function (error, status) {
-      if(status === 401){
-        authService.generateNewToken(function(){
+      messagesFactory.savewordsError(status);
+    };
+    var handleSuccess = function (data) {
+      messagesFactory.savewordsSuccess(data);
+      //clear all data
+      curriculum.model.wordItem.wordName = "";
+      curriculum.model.customWrdImgArr = [];
+      curriculum.customWords = [];
+      customWordsCsv = [];
+      getWords();
+    };
+    CurriculumService.saveWordApi(formData)
+      .success(handleSuccess)
+      .error(handleError);
+  };
+  /*
+   * upload images array
+   * */
+  curriculum.onUploadCustomWordImages = function (localImgFilesArr, isUpdateMode, wordItem) {
+    //clear
+    curriculum.model.customWrdImgURLArr = [];
+    var fileObjArr = [];
+    var handleSuccess = function (data) {
+      for (var dataCounter = 0; dataCounter < data.files.length; dataCounter++) {
+        curriculum.model.customWrdImgURLArr.push(data.files[dataCounter].url);
+      }
+      //call save custom word
+      if (!isUpdateMode && curriculum.model.customWrdImgURLArr.length === curriculum.model.customWrdImgArr.length) {
+        //Save - Created new word
+        curriculum.onSaveCustomWords();
+      } else if (isUpdateMode && wordItem && fileObjArr.length === curriculum.model.customWrdImgURLArr.length) {
+        //Update existing word
+        curriculum.onUpdateCustomWords(wordItem);
+      }
+    };
+    var handleError = function (error, status) {
+      if (status === 401) {
+      }
+      else {
+        messagesFactory.uploadfileError(status);
+      }
+    };
+    for (var fileCounter = 0; fileCounter < localImgFilesArr.length; fileCounter++) {
+      if (localImgFilesArr[fileCounter].fileObj) {
+        fileObjArr.push(localImgFilesArr[fileCounter].fileObj);
+      }
+    }
+    CurriculumService.uploadMultipleFileApi(fileObjArr)
+      .success(handleSuccess)
+      .error(handleError);
+  };
+  /*
+   * Save Custom word and add images array
+   * */
+  curriculum.onUpdateCustomWords = function (wordItem) {
+    var handleError = function (error, status) {
+      messagesFactory.updatewordsError(status);
+    };
+    var handleSuccess = function (data) {
+      messagesFactory.updatewordSuccess(data);
+      curriculum.customWords = [];
+      customWordsCsv = [];
+      getWords();
+    };
+    //parse data.
+    var formData = {};
+    formData.id = wordItem.id;
+    formData.wordName = wordItem.Words;
+    formData.audioURL = "";
+    for (var fileUpdateCounter = 0; fileUpdateCounter < wordItem.picture.length; fileUpdateCounter++) {
+      if (!wordItem.picture[fileUpdateCounter].fileObj) {
+        curriculum.model.customWrdImgURLArr.push(wordItem.picture[fileUpdateCounter].image64Bit);
+      }
+    }
+    formData.imageURL = curriculum.model.customWrdImgURLArr;
+    CurriculumService.updateWordApi(wordItem.id, formData)
+      .success(handleSuccess)
+      .error(handleError);
+  };
+  curriculum.searchWord = function (word, curriculumForm) {
+    var handleSuccess = function (data) {
+      if (data.length === 0) {
+        curriculum.model.isWordPrsnt = false;
+        curriculum.onUploadCustomWordImages(curriculum.model.customWrdImgArr);
+      } else {
+        curriculum.model.isWordPrsnt = true;
+      }
+    };
+    var handleError = function (error, status) {
+      if (status === 401) {
+        authService.generateNewToken(function () {
           CurriculumService.searchWordApi(word)
             .success(handleSuccess)
             .error(handleError);
@@ -89,18 +160,83 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
         messagesFactory.customisesearchwordError(status);
       }
     };
-
-    CurriculumService.searchWordApi(word)
-      .success(handleSuccess)
-      .error(handleError);
-
+    if (word && curriculumForm.$valid) {
+      CurriculumService.searchWordApi(word)
+        .success(handleSuccess)
+        .error(handleError);
+    }
   };
 
+  $scope.photoChanged = function (inputFileObj) {
+    var files = inputFileObj.files;
+    if (curriculum.model.customWrdImgArr.length < 5) {
+      if (files.length > 0) {
+        //Restricting file upload to 5MB i.e (1024*1024*5)
+        var file = (files.length > 0) ? files[0] : null;
+        if (file && file.size <= 5242880) {
+          curriculum.showSizeLimitError = false;
+          if (curriculum.fileReaderSupported && file && file.type.indexOf('image') > -1) {
+            curriculum.fileError = true;
+            $timeout(function () {
+              var fileReader = new FileReader();
+              fileReader.readAsDataURL(file);
+              fileReader.onload = function (e) {
+                $timeout(function () {
+                  var obj = {fileObj: file, image64Bit: e.target.result};
+                  curriculum.model.customWrdImgArr.push(obj);
+                  //clear the input file value once it is cropped & rendered(issue with selection of same file event is not triggering)
+                  inputFileObj.value = null;
+                });
+              };
+            });
+          } else {
+            curriculum.fileError = false;
+          }
+        } else {
+          curriculum.showSizeLimitError = true;
+        }
+      }
+    } else {
+      curriculum.fileUploadExceedErr = true;
+    }
+  };
+  //Update the custom photo
+  $scope.updateCustomWrdPhoto = function (inputFileObj) {
+    var files = inputFileObj.files, index = angular.element(inputFileObj).scope().$index;
+    if (files.length > 0) {
+      //Restricting file upload to 5MB i.e (1024*1024*5)
+      var file = (files.length > 0) ? files[0] : null;
+      if (file && file.size <= 5242880) {
+        if (curriculum.fileReaderSupported && file && file.type.indexOf('image') > -1) {
+          $timeout(function () {
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = function (e) {
+              $timeout(function () {
+                var obj = {fileObj: file, image64Bit: e.target.result};
+                curriculum.customWords[index].picture.push(obj);
+                //clear the input file value once it is cropped & rendered(issue with selection of same file event is not triggering)
+                inputFileObj.value = null;
+              });
+            };
+          });
+        } else {
+          curriculum.fileError = false;
+        }
+      } else {
+        curriculum.showSizeLimitError = true;
+      }
+    }
+  };
+  curriculum.onClearCustomWordDetails = function (curriculumForm) {
+    curriculumForm.$setPristine();
+    curriculum.model.isWordPrsnt = false
+    curriculum.model.customWrdImgArr = [];
+  };
   curriculum.submitGroupWords = function () {
     var anatomy_words = [];
     var bathroom_words = [];
     var data = {};
-
     if (curriculum.group.anatomyWords.length > 0) {
       for (var j = 0; curriculum.group.anatomyWords.length > j; j++) {
         if (curriculum.group.anatomyWords[j].length > 0) {
@@ -112,7 +248,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
         }
       }
     }
-
     if (curriculum.group.bathroomWords.length > 0) {
       for (var i = 0; curriculum.group.bathroomWords.length > i; i++) {
         if (curriculum.group.bathroomWords[i].length > 0) {
@@ -124,17 +259,14 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
         }
       }
     }
-
     data.anatomy_words = anatomy_words;
     data.bathroom_words = bathroom_words;
-
     var handleSuccess = function (data) {
       messagesFactory.submitGroupwordsSuccess(data);
     };
-
     var handleError = function (error, status) {
-      if(status === 401){
-        authService.generateNewToken(function(){
+      if (status === 401) {
+        authService.generateNewToken(function () {
           CurriculumService.updateGroupWordsApi(data)
             .success(handleSuccess)
             .error(handleError);
@@ -144,7 +276,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
         messagesFactory.submitGroupwordsError(status);
       }
     };
-
     CurriculumService.updateGroupWordsApi(data)
       .success(handleSuccess)
       .error(handleError);
@@ -184,8 +315,8 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
       };
 
       var handleError = function (error, status) {
-        if(status === 401){
-          authService.generateNewToken(function(){
+        if (status === 401) {
+          authService.generateNewToken(function () {
             CurriculumService.deleteWordApi(word.id)
               .success(handleSuccess)
               .error(handleError);
@@ -204,27 +335,53 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
       $state.go("account.curriculum");
     });
   };
+  //Remove grid image
+  curriculum.onRemoveImage = function (index, imageURLArr) {
+    var modalInstance = $uibModal.open({
+      templateUrl: 'components/account/curriculum/delete-word.html',
+      controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+        $scope.modalTitle = $translate.instant("common.delete");
+        $scope.modalBody = $translate.instant("curriculum.messages.model_delete_word_image");
+        $scope.delete = function () {
+          $uibModalInstance.close();
+          imageURLArr.splice(index, 1);
+        };
+        $scope.cancel = function () {
+          $uibModalInstance.dismiss('cancel');
+        };
+      }]
+    });
+  };
 
   function getWords() {
-
     var handleSuccess = function (data) {
       if (data.length > 0) {
-
         angular.forEach(data, function (word) {
-          var date =new Date(word.createdAt);
-          var formatedDate = (date.getMonth()+1)+'/'+date.getDate()+'/'+date.getFullYear();
+          var date = new Date(word.createdAt), imageURLArr = [], imgObj;
+          //image url validation
+          if (word.imageURL) {
+            if (angular.isArray(word.imageURL)) {
+              for (var imgCounter = 0; imgCounter < word.imageURL.length; imgCounter++) {
+                imgObj = {fileObj: null, image64Bit: word.imageURL[imgCounter]};
+                imageURLArr.push(imgObj)
+              }
+            } else {
+              imgObj = {fileObj: null, image64Bit: word.imageURL};
+              imageURLArr.push(imgObj);
+            }
+          }
+          var formatedDate = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
           curriculum.customWords.push({
             id: word.id,
             Words: word.wordName,
             dateAdded: word.createdAt,
-            picture: (word.imageURL)
+            picture: imageURLArr,
+            isEditMode: false
           });
-
           customWordsCsv.push({
             Words: word.wordName,
             dateAdded: formatedDate
           });
-
         });
       }
       curriculum.viewby = 10;
@@ -233,8 +390,8 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
       curriculum.itemsPerPage = curriculum.viewby;
     };
     var handleError = function (error, status) {
-      if(status === 401){
-        authService.generateNewToken(function(){
+      if (status === 401) {
+        authService.generateNewToken(function () {
           getWords();
         });
       }
@@ -245,19 +402,18 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
     CurriculumService.listWordsApi(userID)
       .success(handleSuccess)
       .error(handleError);
-
   }
 
   function getWordsByCategory(carArr) {
     var handleSuccess = function (data) {
       if (data.anatomy && data.anatomy.length > 0) {
         var totalAnatomyWords = [];
-        for(var i=0; data.anatomy.length > i; i++){
-          if(data.anatomy[i].groupedflag){
+        for (var i = 0; data.anatomy.length > i; i++) {
+          if (data.anatomy[i].groupedflag) {
             totalAnatomyWords.push(data.anatomy[i]);
           }
         }
-        if(totalAnatomyWords.length === data.anatomy.length){
+        if (totalAnatomyWords.length === data.anatomy.length) {
           curriculum.checkselectAll = true;
         }
         curriculum.group.anatomyWords = [];
@@ -267,12 +423,12 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
 
       if (data.bathroom && data.bathroom.length > 0) {
         var totalBathroomWords = [];
-        for(var i=0; data.bathroom.length > i; i++){
-          if(data.bathroom[i].groupedflag){
+        for (var i = 0; data.bathroom.length > i; i++) {
+          if (data.bathroom[i].groupedflag) {
             totalBathroomWords.push(data.bathroom[i]);
           }
         }
-        if(totalBathroomWords.length === data.bathroom.length){
+        if (totalBathroomWords.length === data.bathroom.length) {
           curriculum.selectedAll = true;
         }
         curriculum.group.bathroomWords = [];
@@ -281,8 +437,8 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
       }
     };
     var handleError = function (error, status) {
-      if(status === 401){
-        authService.generateNewToken(function(){
+      if (status === 401) {
+        authService.generateNewToken(function () {
           getWordsByCategory(carArr);
         });
       }
@@ -358,7 +514,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope','Cu
   curriculum.getCSVHeader = function () {
     var arr = [];
     arr[0] = $translate.instant("curriculum.customword_headers.word");
-    arr[1] =   $translate.instant("curriculum.customword_headers.created_date");
+    arr[1] = $translate.instant("curriculum.customword_headers.created_date");
     return arr;
   };
   curriculum.getCustomWordExportData = function () {
