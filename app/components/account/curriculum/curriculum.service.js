@@ -67,7 +67,15 @@ angular.module('app').factory('CurriculumService', ['$http', '$rootScope', "_", 
     return obj;
   };
 
-
+  service.getBannedWordsAPI = function (parentId) {
+    return $http.get(base_url + '/wordsettings/' + parentId + '/listbannedwords');
+  };
+  service.createBannedWordAPI = function (parentId, wordObj) {
+    return $http.post(base_url + '/wordsettings/' + parentId + '/createbannedword', wordObj);
+  };
+  service.deleteBannedWordAPI = function (parentId, bannedWordId) {
+    return $http.delete(base_url + '/wordsettings/' + parentId + '/deletebanword/' + bannedWordId);
+  };
   return service;
 
 

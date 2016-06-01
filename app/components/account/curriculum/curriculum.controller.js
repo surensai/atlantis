@@ -8,12 +8,13 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   curriculum.model.wordItem = {};
   curriculum.model.isWordPrsnt = false;
   curriculum.model.customWrdImgArr = [];
+  curriculum.curriculumForm = {};
   //image uploaded to aws url
   curriculum.model.customWrdImgURLArr = [];
   curriculum.group = {};
   curriculum.showSizeLimitError = false;
   curriculum.fileReaderSupported = window.FileReader != null;
-
+  curriculum.model.bannedWordList = [];
   curriculum.onEditCustomWord = function (wordItem) {
     //update once updated
     if (wordItem.isEditMode) {
@@ -41,11 +42,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     actions: $translate.instant("curriculum.customword_headers.actions")
   };
   var customWordsCsv = [];
-  (function () {
-    getWords();
-    getWordsByCategory('6,8');
-    flashService.showPreviousMessage();
-  })();
+
   function structureFormData() {
     var data = {};
     data.wordName = curriculum.model.wordItem.wordName;
@@ -65,10 +62,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     var handleSuccess = function (data) {
       messagesFactory.savewordsSuccess(data);
       //clear all data
-      curriculum.model.wordItem.wordName = "";
-      curriculum.model.customWrdImgArr = [];
-      curriculum.customWords = [];
-      customWordsCsv = [];
+      clearCustomWordData(curriculum.curriculumForm);
       getWords();
     };
     CurriculumService.saveWordApi(formData)
@@ -140,6 +134,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       .error(handleError);
   };
   curriculum.searchWord = function (word, curriculumForm) {
+    curriculum.curriculumForm = curriculumForm;
     var handleSuccess = function (data) {
       if (data.length === 0) {
         curriculum.model.isWordPrsnt = false;
@@ -229,9 +224,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     }
   };
   curriculum.onClearCustomWordDetails = function (curriculumForm) {
-    curriculumForm.$setPristine();
-    curriculum.model.isWordPrsnt = false
-    curriculum.model.customWrdImgArr = [];
+    clearCustomWordData(curriculumForm);
   };
   curriculum.submitGroupWords = function () {
     var anatomy_words = [];
@@ -352,6 +345,13 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       }]
     });
   };
+  function clearCustomWordData(curriculumForm) {
+    curriculumForm.$setPristine();
+    curriculum.model.wordItem.wordName = "";
+    curriculum.model.customWrdImgArr = [];
+    curriculum.customWords = [];
+    curriculum.model.isWordPrsnt = false;
+  }
 
   function getWords() {
     var handleSuccess = function (data) {
@@ -520,4 +520,65 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   curriculum.getCustomWordExportData = function () {
     return customWordsCsv;
   };
+
+  //Create Banned Word
+  curriculum.onAddBanWord = function (banWordForm) {
+    var handleSuccess = function (data) {
+      curriculum.model.banWord="";
+      banWordForm.$setPristine();
+      getBannedWordsList();
+    };
+    var handleError = function (error, status) {
+
+    };
+    if (curriculum.model.banWord) {
+      var banWordObj = {"word": curriculum.model.banWord};
+      CurriculumService.createBannedWordAPI(userID, banWordObj)
+        .success(handleSuccess)
+        .error(handleError);
+    }
+  };
+  //Delete Banned Word
+  curriculum.onDeleteBanWord = function (banWord) {
+    var handleSuccess = function (data) {
+      getBannedWordsList();
+    };
+    var handleError = function (error, status) {
+
+    };
+    var modalInstance = $uibModal.open({
+      templateUrl: 'components/account/curriculum/delete-word.html',
+      controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+        $scope.modalTitle = $translate.instant("common.delete");
+        $scope.modalBody = $translate.instant("curriculum.messages.model_delete_word");
+        $scope.delete = function () {
+          $uibModalInstance.close();
+          CurriculumService.deleteBannedWordAPI(userID, banWord.id)
+            .success(handleSuccess)
+            .error(handleError);
+        };
+        $scope.cancel = function () {
+          $uibModalInstance.dismiss('cancel');
+        };
+      }]
+    });
+  };
+  function getBannedWordsList() {
+    var handleSuccess = function (data) {
+      curriculum.model.bannedWordList = data;
+    };
+    var handleError = function (error, status) {
+
+    };
+    CurriculumService.getBannedWordsAPI(userID)
+      .success(handleSuccess)
+      .error(handleError);
+  }
+
+  (function () {
+    getWords();
+    getWordsByCategory('6,8');
+    getBannedWordsList();
+    flashService.showPreviousMessage();
+  })();
 }]);

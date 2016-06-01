@@ -207,6 +207,7 @@
                         <input type="file" name="updateFile" file-model="curriculum.updateFile"
                                accept='image/*'
                                onchange="angular.element(this).scope().updateCustomWrdPhoto(this)"/>
+
                         <div class="center-align"><i class="fa fa-plus"></i>
                         </div>
                       </label>
@@ -313,108 +314,56 @@
               <span>Custom</span>
             </uib-accordion-heading>
             <div class="jumbotron center-align">
-              <form name="playerForm" ng-submit="curriculum.submitForm(playerForm)" novalidate>
+              <form name="banWordForm" ng-submit="curriculum.onAddBanWord(banWordForm)" novalidate>
                 <div class="form-horizontal">
                   <div class="form-group">
                     <div class="col-md-5"></div>
                     <div class="col-md-3 ">
                       <div class="display-flex">
-                        <input type="text" name="word" class="form-control"
+                        <input type="text" name="word" class="form-control" data-ng-model="curriculum.model.banWord"
                                placeholder="Add a bad word" required ng-pattern="/^[A-z][A-z]*$/"
                                ng-minlength="1" ng-maxlength="8" autocomplete="off">
-                        <span class="btn custom-search-button  custom-add-button"><i class="fa fa-plus"></i></span>
+                        <button type="submit" class="btn custom-search-button custom-add-button">
+                          <i class="fa fa-plus"></i>
+                        </button>
+                      </div>
+                      <!-- Validation Area -->
+                      <div class="col-md-12">
+                        <div ng-show="banWordForm.$submitted && banWordForm.word.$error.required"
+                             class="error-mesasage">
+                          <i class="fa fa-exclamation-circle"></i>
+                          <span data-translate="curriculum.messages.ban_word_name_require">Please enter a word to add to ban word list.</span>
+                        </div>
+                        <div ng-show="banWordForm.word.$error.pattern" class="error-mesasage">
+                          <i class="fa fa-exclamation-circle"></i>
+                          <span data-translate="common.messages.only_alphabets">Allow only Alphabets</span>
+                        </div>
+                        <div
+                          ng-show="!banWordForm.word.$error.pattern && !banWordForm.word.$error.required && (banWordForm.word.$error.minlength || banWordForm.word.$error.maxlength) && banWordForm.word.$dirty"
+                          class="error-mesasage">
+                          <i class="fa fa-exclamation-circle"></i>
+                          <span data-translate="common.messages.word_length"> Must be between 1 and 8 characters.</span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </form>
             </div>
-            <div class="jumbotron clearfix">
-              <!--static data--->
+            <div class="jumbotron clearfix" data-ng-if="curriculum.model.bannedWordList.length>0">
+              <!--Banned Word list data--->
               <div class="col-md-3 col-sm-3 ">
-                <div>
-                  <span>word</span>
-                  <span class=" delete-bad-word"><i class="fa fa-trash"></i></span>
-                </div>
-                <div>
-                  <span>word</span>
-                  <span class="btn "><i class="fa fa-trash"></i></span>
-                </div>
-                <div>
-                  <span>word</span>
-                  <span class="btn "><i class="fa fa-trash"></i></span>
-                </div>
-                <div>
-                  <span>word</span>
-                  <span class="btn "><i class="fa fa-trash"></i></span>
+                <div data-ng-repeat="banWord in curriculum.model.bannedWordList">
+                  <span>{{banWord.word}}</span>
+                  <span class="btn" data-ng-click="curriculum.onDeleteBanWord(banWord)">
+                    <i class="fa fa-trash"></i>
+                  </span>
                 </div>
               </div>
-              <div class="col-md-3 col-sm-3 ">
-                <div>
-                  <span>word</span>
-                  <span class="btn "><i class="fa fa-trash"></i></span>
-                </div>
-                <div>
-                  <span>word</span>
-                  <span class="btn "><i class="fa fa-trash"></i></span>
-                </div>
-                <div>
-                  <span>word</span>
-                  <span class="btn "><i class="fa fa-trash"></i></span>
-                </div>
-                <div>
-                  <span>word</span>
-                  <span class="btn "><i class="fa fa-trash"></i></span>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-3 ">
-                <div>
-                  <span>word</span>
-                  <span class="btn "><i class="fa fa-trash"></i></span>
-                </div>
-                <div>
-                  <span>word</span>
-                  <span class="btn "><i class="fa fa-trash"></i></span>
-                </div>
-                <div>
-                  <span>word</span>
-                  <span class="btn "><i class="fa fa-trash"></i></span>
-                </div>
-                <div>
-                  <span>word</span>
-                  <span class="btn "><i class="fa fa-trash"></i></span>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-3 ">
-                <div>
-                  <span>word</span>
-                  <span class="btn "><i class="fa fa-trash"></i></span>
-                </div>
-                <div>
-                  <span>word</span>
-                  <span class="btn "><i class="fa fa-trash"></i></span>
-                </div>
-                <div>
-                  <span>word</span>
-                  <span class="btn "><i class="fa fa-trash"></i></span>
-                </div>
-                <div>
-                  <span>word</span>
-                  <span class="btn "><i class="fa fa-trash"></i></span>
-                </div>
-              </div>
-
-
             </div>
 
           </uib-accordion-group>
         </uib-accordion>
-
-        <div class="col-md-12 ">
-          <button class="btn btn-primary notification-submit-button center-block" type="submit"
-                  data-ng-click="curriculum.submitGroupWords()" data-translate="common.buttons.submit">SUBMIT
-          </button>
-        </div>
       </div>
     </div>
   </div>
