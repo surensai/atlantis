@@ -427,6 +427,7 @@
       "word_update_msg": "Word updated successfully.",
       "word_success_msg": "Hurray! Word successfully added.",
       "word_name_require": "Please enter a word to add to custom word list.",
+      "ban_word_name_require": "Please enter a word to add to ban word list.",
       "curriculum_word_require": "Word Name is required.",
       "error_getting_words": "Error in getting words.",
       "error_group_words": "Error in submitting group words.",
