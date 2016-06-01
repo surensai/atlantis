@@ -9,7 +9,7 @@
       <div class="panel-heading sp-common-panel-header" data-translate="nav.header.edit_profile">
         Edit Profile
       </div>
-      <div class="panel-body settiings-panel-body">
+      <div class="panel-body settiings-panel-body editprofile-panel-padding">
         <form name="settingsForm" ng-submit="settings.submitForm(settingsForm)" novalidate>
           <div class="form-horizontal">
 
@@ -90,10 +90,6 @@
                         data-ng-click="settings.edit();"
                         data-ng-hide="settings.isEditClicked" data-translate="common.edit">Edit
                 </button>
-
-              </div>
-
-              <div class="col-md-12 margin-top20 center-align submit-clear-parent-div">
                 <button class="btn btn-primary notification-submit-button submit-clear-all-padding"
                         data-ng-show="settings.isEditClicked" data-ng-disabled="settingsForm.$invalid" type="submit"
                         data-translate="common.buttons.save">Save
@@ -102,8 +98,8 @@
                         data-translate="common.buttons.cancel" data-ng-show="settings.isEditClicked"
                         ng-click="settings.cancel()">Cancel
                 </button>
-              </div>
 
+              </div>
             </div>
           </div>
         </form>
@@ -112,7 +108,7 @@
     <div class="panel settiings-panel">
       <div class="panel-heading sp-common-panel-header" data-translate="nav.header.change_password"> Change Password
       </div>
-      <div class="panel-body settiings-panel-body">
+      <div class="panel-body settiings-panel-body changepassword-panel-padding">
         <form name="changepasswordForm" ng-submit="settings.submitchangepassword(changepasswordForm)" novalidate>
           <div class="form-horizontal">
 
