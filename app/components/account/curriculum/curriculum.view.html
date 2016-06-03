@@ -124,11 +124,11 @@
                         ng-click="curriculum.predicate = key; curriculum.reverse=!curriculum.reverse;">
                       {{curriculum.wordsHeaders[key]}}
                       <span class="fa fa-sort columnSortIcons"
-                            ng-if="key !== curriculum.predicate && (key !== 'Sno' && key !== 'actions' )"></span>
+                            ng-if="$index===0 && key !== curriculum.predicate && (key !== 'Sno' && key !== 'actions' )"></span>
                       <span class="fa fa-sort-down columnSortIcons"
-                            ng-if="!(curriculum.reverse) && key === curriculum.predicate && (key !== 'Sno'&& key !== 'actions' )"></span>
+                            ng-if="$index===0 && !(curriculum.reverse) && key === curriculum.predicate && (key !== 'Sno'&& key !== 'actions' )"></span>
                       <span class="fa fa-sort-up columnSortIcons"
-                            ng-if="curriculum.reverse && key === curriculum.predicate && (key !== 'Sno'&& key !== 'actions' )"></span>
+                            ng-if="$index===0 && curriculum.reverse && key === curriculum.predicate && (key !== 'Sno'&& key !== 'actions' )"></span>
                     </th>
                   </tr>
                   </thead>
@@ -191,7 +191,8 @@
               <uib-pagination data-ng-if="curriculum.totalItems > curriculum.itemsPerPage"
                               class="pull-right pagination-styles" total-items="curriculum.totalItems"
                               direction-links="false" ng-model="curriculum.currentPage"
-                              items-per-page="curriculum.itemsPerPage"></uib-pagination>
+                              items-per-page="curriculum.itemsPerPage">
+              </uib-pagination>
             </uib-accordion-group>
           </uib-accordion>
         </div>
@@ -313,11 +314,12 @@
               </form>
             </div>
             <br/>
+
             <div class="badword-list clearfix" data-ng-if="curriculum.model.bannedWordList.length>0">
               <!--Banned Word list data--->
               <div class="col-md-3 col-sm-3 banword-width" data-ng-repeat="banWord in curriculum.model.bannedWordList">
 
-                  <span class="col-md-4 col-sm-4 banword">{{banWord.word}}</span>
+                <span class="col-md-4 col-sm-4 banword">{{banWord.word}}</span>
 
                   <span class="col-md-4 col-sm-4" data-ng-click="curriculum.onDeleteBanWord(banWord)">
                     <i class="fa fa-trash"></i>

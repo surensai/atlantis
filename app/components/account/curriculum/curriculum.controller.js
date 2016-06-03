@@ -6,6 +6,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   curriculum.customWords = [];
   curriculum.model = {};
   curriculum.model.wordItem = {};
+  curriculum.model.previousWrdItm = "";
   curriculum.model.isWordPrsnt = false;
   curriculum.model.customWrdImgArr = [];
   curriculum.curriculumForm = {};
@@ -16,6 +17,9 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   curriculum.fileReaderSupported = window.FileReader != null;
   curriculum.model.bannedWordList = [];
   curriculum.onEditCustomWord = function (wordItem) {
+    if (!wordItem.Words || wordItem.Words === "") {
+      return;
+    }
     //update once updated
     if (wordItem.isEditMode) {
       var isNewFileAdded = false;
@@ -33,8 +37,11 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
         curriculum.model.customWrdImgURLArr = [];
         curriculum.onUpdateCustomWords(wordItem);
       }
+    } else {
+      curriculum.model.previousWrdItm = wordItem.Words;
     }
     wordItem.isEditMode = !wordItem.isEditMode;
+
   };
   curriculum.wordsHeaders = {
     Words: $translate.instant("curriculum.customword_headers.word"),
@@ -111,6 +118,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   curriculum.onUpdateCustomWords = function (wordItem) {
     var handleError = function (error, status) {
       messagesFactory.updatewordsError(status);
+      wordItem.Words = curriculum.model.previousWrdItm;
     };
     var handleSuccess = function (data) {
       messagesFactory.updatewordSuccess(data);
@@ -323,6 +331,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       customWordsCsv.splice(customWordsCsv.indexOf(word), 1);
       var handleSuccess = function (data) {
         messagesFactory.deletewordSuccess(data);
+        updatePagination();
         $state.go("account.curriculum");
       };
 
@@ -403,10 +412,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
           });
         });
       }
-      curriculum.viewby = 10;
-      curriculum.totalItems = curriculum.customWords.length;
-      curriculum.currentPage = 1;
-      curriculum.itemsPerPage = curriculum.viewby;
+      updatePagination();
     };
     var handleError = function (error, status) {
       if (status === 401) {
@@ -422,6 +428,14 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     CurriculumService.listWordsApi(userID)
       .success(handleSuccess)
       .error(handleError);
+  }
+
+  //Update pagination values
+  function updatePagination() {
+    curriculum.viewby = 10;
+    curriculum.totalItems = curriculum.customWords.length;
+    curriculum.currentPage = 1;
+    curriculum.itemsPerPage = curriculum.viewby;
   }
 
   function getWordsByCategory(carArr) {
