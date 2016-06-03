@@ -368,6 +368,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     curriculum.model.wordItem.wordName = "";
     curriculumForm.$setPristine();
     curriculum.model.customWrdImgArr = [];
+    curriculum.model.customWrdImgURLArr = [];
     curriculum.model.isWordPrsnt = false;
   }
 
