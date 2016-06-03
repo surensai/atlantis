@@ -12,7 +12,7 @@
           .cw-content{
             background-color: #FAFAFA;
             border-radius: 5px;
-            padding: 60px;
+            padding: 60px 0px;
             margin-bottom: 10px;
             .cw-input{
 
@@ -38,6 +38,10 @@
                 input[type="file"] {
                   opacity: 0;
                   position: absolute;
+                  width: 54px;
+                  margin-top: -5px;
+                  height: 55px;
+                  cursor: pointer;
                 }
               }
               .add-img-note{
@@ -367,6 +371,23 @@
         margin-left: 13px;
       }
       label{
+        text-transform: capitalize;
+      }
+    }
+.badword-accordion .panel-group .panel .panel-body{
+    background-color: #ffffff !important;
+}
+    .badword-container{
+      background-color: #FAFAFA;
+      padding: 20px;
+    }
+    .badword-list{
+      background-color: #FAFAFA;
+      padding-top: 20px;
+      .fa{
+        color: #EE486F;
+      }
+      .banword{
         text-transform: capitalize;
       }
     }
