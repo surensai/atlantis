@@ -3,7 +3,7 @@
 
     .add-customword-panle-body {
       padding: 20px;
-      padding-bottom: 0px;
+      padding-bottom: 40px;
       .add-custom-word {
         padding: 0px;
         color: #9a9a9a;
@@ -68,15 +68,6 @@
             }
           }
         }
-
-
-
-
-
-
-
-
-
         .form-control {
           height: 45px;
           font-size: 17px;
@@ -107,12 +98,7 @@
             margin-bottom: -64px;
           }
         }
-
-
-
-
-        /***** Example custom styling *****/
-
+           /***** Example custom styling *****/
 
         .myLabel:active {
           background: #CCF;
@@ -144,6 +130,11 @@
       }
       .custom-word-list {
         background-color: #FAFAFA;
+        .customword-accordion{
+          .panel-group{
+            margin-bottom: 0px;
+          }
+        }
         .panel-default {
           box-shadow: none;
           -webkit-box-shadow: none;
@@ -151,6 +142,7 @@
             background-color: #ececec;
             padding: 12px;
           }
+
         }
         .panel-title {
           color: #767575;
@@ -331,6 +323,7 @@
     }
   }
   .curriculum-groupword-panel {
+
     .curriculum-groupwordpanel-body{
       padding: 20px;
       .panel-default {
