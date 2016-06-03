@@ -161,7 +161,11 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
         .error(handleError);
     }
   };
-
+  curriculum.onNewcustomWrdAddImg = function (index) {
+    if (curriculum.model.customWrdImgArr.length > 0) {
+      curriculum.model.customWrdImgArr.splice(index, 1);
+    }
+  };
   $scope.photoChanged = function (inputFileObj) {
     var files = inputFileObj.files;
     if (curriculum.model.customWrdImgArr.length < 5) {
@@ -346,10 +350,9 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     });
   };
   function clearCustomWordData(curriculumForm) {
-    curriculumForm.$setPristine();
     curriculum.model.wordItem.wordName = "";
+    curriculumForm.$setPristine();
     curriculum.model.customWrdImgArr = [];
-    curriculum.customWords = [];
     curriculum.model.isWordPrsnt = false;
   }
 
@@ -399,6 +402,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
         messagesFactory.listwordsError(status);
       }
     };
+    curriculum.customWords = [];
     CurriculumService.listWordsApi(userID)
       .success(handleSuccess)
       .error(handleError);
@@ -524,7 +528,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   //Create Banned Word
   curriculum.onAddBanWord = function (banWordForm) {
     var handleSuccess = function (data) {
-      curriculum.model.banWord="";
+      curriculum.model.banWord = "";
       banWordForm.$setPristine();
       getBannedWordsList();
     };

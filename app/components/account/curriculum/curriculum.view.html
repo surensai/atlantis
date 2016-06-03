@@ -17,7 +17,8 @@
             <div>
               <p data-translate="curriculum.description.text">Add any word you like into your own personalized Square
                 Panda word bank! In addition to over 4,000 words
-                in our database, be sure your child's very own special words are included in their games! Some ideas are:
+                in our database, be sure your child's very own special words are included in their games! Some ideas
+                are:
               <ul>
                 <li data-translate="curriculum.description.child_firstname">your child's first name</li>
                 <li data-translate="curriculum.description.family_pet">your family pet</li>
@@ -31,66 +32,74 @@
 
             <div class="custom-word-add-form">
               <div class="cw-content clearfix">
-                  <div class="cw-input clearfix">
-                    <div class="col-md-3"> </div>
-                    <div class="col-md-6">
-                      <input type="text" class="form-control" placeholder="{{ 'curriculum.type_word' | translate }}"
-                             data-ng-model="curriculum.model.wordItem.wordName" name="word" ng-pattern="/^[A-z][A-z]*$/"
-                             ng-minlength="1" ng-maxlength="8" autocomplete="off" required>
-                      <div ng-show="curriculumForm.$submitted && curriculum.model.isWordPrsnt"
-                           class="error-mesasage">
-                        <i class="fa fa-exclamation-circle"></i>
-                        <span data-translate="curriculum.messages.word_already_exist">Word already exist.</span>
-                      </div>
-                      <div ng-show="curriculumForm.$submitted && curriculumForm.word.$error.required"
-                           class="error-mesasage">
-                        <i class="fa fa-exclamation-circle"></i>
-                        <span data-translate="curriculum.messages.word_name_require">Word Name is required.</span>
-                      </div>
-                      <div ng-show="curriculumForm.word.$error.pattern" class="error-mesasage">
-                        <i class="fa fa-exclamation-circle"></i>
-                        <span data-translate="common.messages.only_alphabets">Allow only Alphabets</span>
-                      </div>
-                      <div
-                        ng-show="!curriculumForm.word.$error.pattern && !curriculumForm.word.$error.required && (curriculumForm.word.$error.minlength || curriculumForm.word.$error.maxlength) && curriculumForm.word.$dirty"
-                        class="error-mesasage">
-                        <i class="fa fa-exclamation-circle"></i>
-                        <span data-translate="common.messages.word_length"> Must be between 1 and 8 characters.</span>
-                      </div>
-                    </div>
-                    <div class="col-md-3"></div>
-                  </div>
-                  <div class="cw-images clearfix">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6">
-                      <div class="cw-sel-img" data-ng-repeat="imgObj in curriculum.model.customWrdImgArr" data-ng-if="curriculum.model.customWrdImgArr.length > 0">
-                        <img data-ng-src="{{imgObj.image64Bit}}" width="50px;" height="50px;">
-                      </div>
-                      <div class="add-img">
-                        <input type="file" name="file" file-model="curriculum.myFile"
-                               accept='image/*' onchange="angular.element(this).scope().photoChanged(this)"
-                               data-ng-disabled="curriculum.model.customWrdImgArr.length===5" />
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        <span>Add Picture</span>
-                      </div>
-                      <div class="add-img-note">
-                        <span>Upload upto 5 images.</span><br/>
-                        <span>Supported formats .jpg .png .gif</span>
-                      </div>
-                    </div>
-                    <div class="col-md-3"></div>
-                  </div>
-                <div class="form-group center-align nomargin">
+                <div class="cw-input clearfix">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="{{ 'curriculum.type_word' | translate }}"
+                           data-ng-model="curriculum.model.wordItem.wordName" name="word" ng-pattern="/^[A-z][A-z]*$/"
+                           ng-minlength="1" ng-maxlength="8" autocomplete="off" required>
 
-                    <button class="btn btn-primary add-custom-word-cancel-button  submit-clear-all-padding"
-                            type="button" data-ng-click="curriculum.onClearCustomWordDetails(curriculumForm)"
-                            data-translate="common.buttons.clear">Clear
-                    </button>
-                    <button type="submit"
-                            class="btn btn-primary add-custom-word-save-button submit-clear-all-padding"
-                            data-translate="curriculum.addword">
-                      Add Word
-                    </button>
+                    <div ng-show="curriculumForm.$submitted && curriculum.model.isWordPrsnt"
+                         class="error-mesasage">
+                      <i class="fa fa-exclamation-circle"></i>
+                      <span data-translate="curriculum.messages.word_already_exist">Word already exist.</span>
+                    </div>
+                    <div ng-show="curriculumForm.$submitted && curriculumForm.word.$error.required"
+                         class="error-mesasage">
+                      <i class="fa fa-exclamation-circle"></i>
+                      <span data-translate="curriculum.messages.word_name_require">Word Name is required.</span>
+                    </div>
+                    <div ng-show="curriculumForm.word.$error.pattern" class="error-mesasage">
+                      <i class="fa fa-exclamation-circle"></i>
+                      <span data-translate="common.messages.only_alphabets">Allow only Alphabets</span>
+                    </div>
+                    <div
+                      ng-show="!curriculumForm.word.$error.pattern && !curriculumForm.word.$error.required && (curriculumForm.word.$error.minlength || curriculumForm.word.$error.maxlength) && curriculumForm.word.$dirty"
+                      class="error-mesasage">
+                      <i class="fa fa-exclamation-circle"></i>
+                      <span data-translate="common.messages.word_length"> Must be between 1 and 8 characters.</span>
+                    </div>
+                  </div>
+                  <div class="col-md-3"></div>
+                </div>
+                <div class="cw-images clearfix">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6">
+                    <div class="cw-sel-img" data-ng-repeat="imgObj in curriculum.model.customWrdImgArr"
+                         data-ng-if="curriculum.model.customWrdImgArr.length > 0">
+                      <i class="fa fa-times delete delet-img"
+                         data-ng-click="curriculum.onNewcustomWrdAddImg($index)"></i>
+                      <img data-ng-src="{{imgObj.image64Bit}}" width="50px;" height="50px;">
+                    </div>
+                    <div class="add-img">
+                      <input type="file" name="file" file-model="curriculum.myFile"
+                             accept='image/*' onchange="angular.element(this).scope().photoChanged(this)"
+                             data-ng-disabled="curriculum.model.customWrdImgArr.length===5"/>
+                      <i class="fa fa-plus" aria-hidden="true"></i>
+                      <span>Add Picture</span>
+                    </div>
+                    <div class="add-img-note">
+                      <span>Upload upto 5 images.</span><br/>
+                      <span>Supported formats .jpg .png .gif</span>
+                    </div>
+                  </div>
+<<<<<<< HEAD
+                <div class="form-group center-align nomargin">
+=======
+                  <div class="col-md-3"></div>
+                </div>
+                <div class="form-group center-align">
+>>>>>>> 658729d4ff7338c9138e233960e5b66b43f46318
+
+                  <button class="btn btn-primary add-custom-word-cancel-button  submit-clear-all-padding"
+                          type="button" data-ng-click="curriculum.onClearCustomWordDetails(curriculumForm)"
+                          data-translate="common.buttons.clear">Clear
+                  </button>
+                  <button type="submit"
+                          class="btn btn-primary add-custom-word-save-button submit-clear-all-padding"
+                          data-translate="curriculum.addword">
+                    Add Word
+                  </button>
 
                 </div>
               </div>
@@ -313,10 +322,11 @@
               <div class="col-md-3 col-sm-3 banword-width" data-ng-repeat="banWord in curriculum.model.bannedWordList">
 
                   <span class="col-md-4 col-sm-4 banword">{{banWord.word}}</span>
+
                   <span class="col-md-4 col-sm-4" data-ng-click="curriculum.onDeleteBanWord(banWord)">
                     <i class="fa fa-trash"></i>
                   </span>
-                </div>
+              </div>
 
             </div>
 
