@@ -50,11 +50,15 @@
               .cw-sel-img{
                 float: left;
                 margin-top: 10px;
+                position: relative;
                 img{
                   width: 65px;
                   height: 64px;
                   margin-right: 5px;
                   border-radius: 4px;
+                }
+                .delet-img{
+                  margin: 2px 9px !important;
                 }
               }
             }
