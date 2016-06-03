@@ -80,7 +80,7 @@
                     </div>
                     <div class="col-md-3"></div>
                   </div>
-                <div class="form-group center-align">
+                <div class="form-group center-align nomargin">
 
                     <button class="btn btn-primary add-custom-word-cancel-button  submit-clear-all-padding"
                             type="button" data-ng-click="curriculum.onClearCustomWordDetails(curriculumForm)"
@@ -262,7 +262,7 @@
             </div>
           </uib-accordion-group>
         </uib-accordion>
-        <uib-accordion>
+        <uib-accordion class="badword-accordion">
           <uib-accordion-group is-open="status.open">
             <uib-accordion-heading>
               <i class=" glyphicon"
@@ -270,10 +270,10 @@
               <!--<button class="export-btn" style="margin-top:-10px;" data-ng-show="status.open" data-ng-click="curriculum.exportAnatomyCSV()">Export CSV</button>-->
               <span>Custom</span>
             </uib-accordion-heading>
-            <div class="jumbotron center-align badword-jumbotron">
+            <div class=" center-align badword-container">
               <form name="banWordForm" ng-submit="curriculum.onAddBanWord(banWordForm)" novalidate>
                 <div class="form-horizontal">
-                  <div class="form-group">
+                  <div class="form-group nomargin">
                     <div class="col-md-5"></div>
                     <div class="col-md-3 ">
                       <div class="display-flex">
@@ -307,11 +307,12 @@
                 </div>
               </form>
             </div>
-            <div class="jumbotron clearfix" data-ng-if="curriculum.model.bannedWordList.length>0">
+            <br/>
+            <div class="badword-list clearfix" data-ng-if="curriculum.model.bannedWordList.length>0">
               <!--Banned Word list data--->
               <div class="col-md-3 col-sm-3 banword-width" data-ng-repeat="banWord in curriculum.model.bannedWordList">
 
-                  <span class="col-md-4 col-sm-4">{{banWord.word}}</span>
+                  <span class="col-md-4 col-sm-4 banword">{{banWord.word}}</span>
                   <span class="col-md-4 col-sm-4" data-ng-click="curriculum.onDeleteBanWord(banWord)">
                     <i class="fa fa-trash"></i>
                   </span>
