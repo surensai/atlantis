@@ -114,9 +114,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     };
     var handleSuccess = function (data) {
       messagesFactory.updatewordSuccess(data);
-      curriculum.customWords = [];
-      customWordsCsv = [];
-      getWords();
     };
     //parse data.
     var formData = {};
@@ -136,9 +133,15 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   curriculum.searchWord = function (word, curriculumForm) {
     curriculum.curriculumForm = curriculumForm;
     var handleSuccess = function (data) {
-      if (data.length === 0) {
+      if (!isWordPresent(data)) {
         curriculum.model.isWordPrsnt = false;
-        curriculum.onUploadCustomWordImages(curriculum.model.customWrdImgArr);
+        //check images added or not
+        if (curriculum.model.customWrdImgArr.length > 0) {
+          curriculum.onUploadCustomWordImages(curriculum.model.customWrdImgArr);
+        } else {
+          //save word without image
+          curriculum.onSaveCustomWords();
+        }
       } else {
         curriculum.model.isWordPrsnt = true;
       }
@@ -166,6 +169,18 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       curriculum.model.customWrdImgArr.splice(index, 1);
     }
   };
+  //Check the owner property in data
+  function isWordPresent(dataArr) {
+    var isWordPrst = false;
+    for (var wrdCounter = 0; wrdCounter < dataArr.length; wrdCounter++) {
+      if (dataArr[wrdCounter].hasOwnProperty("owner")) {
+        isWordPrst = true;
+        break;
+      }
+    }
+    return isWordPrst;
+  }
+
   $scope.photoChanged = function (inputFileObj) {
     var files = inputFileObj.files;
     if (curriculum.model.customWrdImgArr.length < 5) {
