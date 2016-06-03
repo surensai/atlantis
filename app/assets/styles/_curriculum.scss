@@ -1,277 +1,327 @@
 .curriculum-container {
-  .curriculum-customword-panel{
+  .curriculum-customword-panel {
 
-     .add-customword-panle-body{
-       padding: 20px;
-       padding-bottom: 0px;
-       .add-custom-word{
-         padding: 0px;
-         color: #9a9a9a;
-         .form-control{
-           height: 45px;
-           font-size: 17px;
-         }
-         .word-label{
-           margin-top: 3px;
-         }
-         input::-webkit-input-placeholder{
-           color: #DADADA;
-         }
-         input:-moz-placeholder{
-           color: #DADADA;
-         }
+    .add-customword-panle-body {
+      padding: 20px;
+      padding-bottom: 0px;
+      .add-custom-word {
+        padding: 0px;
+        color: #9a9a9a;
 
-         input::-moz-placeholder{
-           color: #DADADA;
-         }
+        .custom-word-add-form{
+          .cw-content{
+            background-color: #FAFAFA;
+            border-radius: 5px;
+            padding: 60px;
+            margin-bottom: 10px;
+            .cw-input{
 
-         input:-ms-input-placeholder {
-           color: #DADADA;
-         }
-         .add-custom-word-button{
-           padding: 5px 45px;
-         }
-         .thumbnail {
+            }
+            .cw-images{
+              margin-bottom: 10px;
+              .add-img{
+                margin: 10px 10px 0 0;
+                border-radius: 4px;
+                padding: 8px 5px;
+                width: 65px;
+                background: #DDD;
+                display: inline-block;
+                float: left;
+                border: 1px dashed gray;
+                font-size: 11px;
+                position: relative;
+                text-align: center;
+                i{
+                  display: block;
+                  margin-bottom: 5px;
+                }
+                input[type="file"] {
+                  opacity: 0;
+                  position: absolute;
+                }
+              }
+              .add-img-note{
+                margin-top: 10px;
+                float: left;
+                padding: 15px 0px;
+                font-size: 11px;
+              }
 
-           .apply-margin-bottom {
-             margin-bottom: -64px;
-           }
-         }
-         img {
-           margin-bottom: -43px !important;
-         }
-         .mylabel-padding{
-           padding-left: 0px;
-           margin-right: -20px;
-         }
-         label.myLabel input[type="file"] {
-           position: fixed;
-           top: -1000px;
-         }
-
-         /***** Example custom styling *****/
-         .myLabel {
-           border-radius: 4px;
-           padding: 25px 5px;
-           width: 90px;
-           margin-right: 25px;
-           background: #DDD;
-           display: inline-block;
-           float: left;
-           border-left: 1px dashed darken(#CCC ,30%);
-           border-bottom: 1px dashed darken(#CCC ,30%);
-
-         }
-         .myLabel:hover {
-           background: #CCC;
-         }
-         .myLabel:active {
-           background: #CCF;
-         }
-         .myLabel :invalid + span {
-           color: #A44;
-         }
-         .myLabel :valid + span {
-           color: #4A4;
-         }
-         .image-style{
-           margin-top: 25px;
-         }
-         .add-custom-word-cancel-button{
-           padding: 6px 82px;
-           background-color: #7E7E7E !important;
-           color: white !important;
-         }
-         .add-custom-word-cancel-button:hover{
-           background-color: darken(#7E7E7E,10%) !important;
-         }
-         .add-custom-word-save-button{
-           padding: 5px 62px;
-         }
-         .add-word-button-class{
-           margin-top: 20px;
-         }
-
-       }
-       .custom-word-list{
-         background-color: #FAFAFA;
-         .panel-default {
-           box-shadow: none;
-           -webkit-box-shadow:none;
-           .panel-heading{
-             background-color: #ececec;
-             padding: 12px;
-           }
-         }
-         .panel-title{
-           color: #767575;
-           a{
-             text-decoration: none;
-             border: none;
-             i{
-               margin-right: 7px;
-             }
-           }
-
-           a:focus{
-             text-decoration: none;
-             outline: none;
-             outline-offset: none;
-           }
-         }
-         .panel-body{
-           background-color: #FAFAFA;
-           padding: 0px;
-           td{
-             padding-top: 15px;
-             padding-bottom: 15px
-           }
-         }
-       }
-
-       .table {
-         border: 1px solid #C7C7C7;
-         background-color: white;
-         margin-bottom: 0px;
-         border-top: 0px;
-         .player-words{
-           vertical-align: middle !important;
-           img{
-             border-radius: 4px;
-           }
-         }
-         .word-icon-colors{
-           color: #ffffff;
-           padding: 8px 10px;
-           background-color: #7E7E7E;
-           border-radius: 4px;
-         }
-         .word-icon-colors:hover{
-           background-color: darken(#7E7E7E, 10%);
-         }
-         thead th {
-           background-color: #9B9B9B;
-           padding-top: 17px;
-           padding-bottom: 17px;
-           color: $white-color;
-           font-weight: normal;
-           border-bottom: none;
-           &:first-child, &:nth-child(2){
-             text-align: left;
-             padding-left: 25px;
-             width: 33%;
-           }
-           &:last-child{
-             text-align: right;
-             padding-right: 25px;
-           }
-         }
-       }
+              .cw-sel-img{
+                float: left;
+                margin-top: 10px;
+                img{
+                  width: 65px;
+                  height: 64px;
+                  margin-right: 5px;
+                  border-radius: 4px;
+                }
+              }
+            }
+          }
+        }
 
 
-       tr, th {
-         text-align: center;
-       }
-       td{
-         border-top: none;
-         color: lighten(#000, 30%);
-         .last-attempt-green{
-           color: $sp-green;
-         }
-         .last-attempt-blue{
-           color: #6E4D9F;
-         }
-         a{
-           text-decoration: none;
-           color:black;
-         }
 
-         &:first-child, &:nth-child(2){
-           text-align: left;
-           padding-left: 25px;
-         }
 
-         &:last-child{
-           text-align: right;
-           padding-right: 25px;
-         }
-         a:focus {
-           outline:none;
-         }
-       }
 
-       .left-padding{
-         padding-left: 20px;
-       }
 
-       .custom-word-edit-button{
-         background-color: #7E7E7E !important;
-         color:#ffffff;
-         padding: 5px 21px;
-         margin-right: 10px;
-       }
-       .custom-word-edit-button:hover{
-         background-color: darken(#7E7E7E,10%) !important;
-       }
-       label.addpicturelabel input[type="file"] {
-         position: fixed;
-         top: -1000px;
-       }
 
-       .addpicturelabel {
-         border-radius: 4px;
-         padding: 13px 5px;
-         width: 47px;
-         background: #DDD;
-         display: inline-block;
-         border: 1px dashed gray;
-         margin-left: 10px;
-       }
-       .addpicturelabel:hover {
-         background: #CCC;
-       }
-       .addpicturelabel:active {
-         background: #CCF;
-       }
-       .addpicturelabel :invalid + span {
-         color: #A44;
-       }
-       .addpicturelabel :valid + span {
-         color: #4A4;
-       }
-       .edit-word-text{
-         border: none;
-         border-bottom: 1px solid gray;
-         width: 70%;
-       }
-       .custom-word-save-button{
-         padding: 5px 35px;
-       }
-       .custom-word-picture{
-         border-radius: 4px ;
-       }
-       .image {
-         float: left;
-         position:relative;
-         margin-right: 10px;
-         img{
-           border-radius: 4px;
-         }
-       }
 
-       .delete {
-         position: absolute;
-         top: -9px;
-         right: -6px;
-         color: #F26383;
-         border: 1px solid #F26383;
-         padding: 1px;
-         border-radius: 50px;
-         background-color: white;
-       }
 
-     }
+        .form-control {
+          height: 45px;
+          font-size: 17px;
+        }
+        .word-label {
+          margin-top: 3px;
+        }
+        input::-webkit-input-placeholder {
+          color: #DADADA;
+        }
+        input:-moz-placeholder {
+          color: #DADADA;
+        }
 
+        input::-moz-placeholder {
+          color: #DADADA;
+        }
+
+        input:-ms-input-placeholder {
+          color: #DADADA;
+        }
+        .add-custom-word-button {
+          padding: 5px 45px;
+        }
+        .thumbnail {
+
+          .apply-margin-bottom {
+            margin-bottom: -64px;
+          }
+        }
+
+
+
+
+        /***** Example custom styling *****/
+
+
+        .myLabel:active {
+          background: #CCF;
+        }
+        .myLabel :invalid + span {
+          color: #A44;
+        }
+        .myLabel :valid + span {
+          color: #4A4;
+        }
+        .image-style {
+          margin-top: 25px;
+        }
+        .add-custom-word-cancel-button {
+          padding: 6px 82px;
+          background-color: #7E7E7E !important;
+          color: white !important;
+        }
+        .add-custom-word-cancel-button:hover {
+          background-color: darken(#7E7E7E, 10%) !important;
+        }
+        .add-custom-word-save-button {
+          padding: 5px 62px;
+        }
+        .add-word-button-class {
+          margin-top: 0px;
+        }
+
+      }
+      .custom-word-list {
+        background-color: #FAFAFA;
+        .panel-default {
+          box-shadow: none;
+          -webkit-box-shadow: none;
+          .panel-heading {
+            background-color: #ececec;
+            padding: 12px;
+          }
+        }
+        .panel-title {
+          color: #767575;
+          a {
+            text-decoration: none;
+            border: none;
+            i {
+              margin-right: 7px;
+            }
+          }
+
+          a:focus {
+            text-decoration: none;
+            outline: none;
+            outline-offset: none;
+          }
+        }
+        .panel-body {
+          background-color: #FAFAFA;
+          padding: 0px;
+          td {
+            padding-top: 15px;
+            padding-bottom: 15px
+          }
+        }
+      }
+
+      .table {
+        border: 1px solid #C7C7C7;
+        background-color: white;
+        margin-bottom: 0px;
+        border-top: 0px;
+        .player-words {
+          vertical-align: middle !important;
+          img {
+            border-radius: 4px;
+          }
+        }
+        .word-icon-colors {
+          color: #ffffff;
+          padding: 8px 10px;
+          background-color: #7E7E7E;
+          border-radius: 4px;
+        }
+        .word-icon-colors:hover {
+          background-color: darken(#7E7E7E, 10%);
+        }
+        thead th {
+          background-color: #9B9B9B;
+          padding-top: 17px;
+          padding-bottom: 17px;
+          color: $white-color;
+          font-weight: normal;
+          border-bottom: none;
+          &:first-child, &:nth-child(2) {
+            text-align: left;
+            padding-left: 25px;
+            width: 33%;
+          }
+          &:last-child {
+            text-align: right;
+            padding-right: 25px;
+          }
+        }
+      }
+
+      tr, th {
+        text-align: center;
+      }
+      td {
+        border-top: none;
+        color: lighten(#000, 30%);
+        .last-attempt-green {
+          color: $sp-green;
+        }
+        .last-attempt-blue {
+          color: #6E4D9F;
+        }
+        a {
+          text-decoration: none;
+          color: black;
+        }
+
+        &:first-child, &:nth-child(2) {
+          text-align: left;
+          padding-left: 25px;
+        }
+
+        &:last-child {
+          text-align: right;
+          padding-right: 25px;
+        }
+        a:focus {
+          outline: none;
+        }
+      }
+
+      .left-padding {
+        padding-left: 20px;
+      }
+
+      .custom-word-edit-button {
+        background-color: #7E7E7E !important;
+        color: #ffffff;
+        padding: 5px 21px;
+        margin-right: 10px;
+      }
+      .custom-word-edit-button:hover {
+        background-color: darken(#7E7E7E, 10%) !important;
+      }
+      label.addpicturelabel input[type="file"] {
+        position: fixed;
+        top: -1000px;
+      }
+
+      .addpicturelabel {
+        border-radius: 4px;
+        padding: 13px 5px;
+        width: 47px;
+        background: #DDD;
+        display: inline-block;
+        border: 1px dashed gray;
+        margin-left: 10px;
+      }
+      .addpicturelabel:hover {
+        background: #CCC;
+      }
+      .addpicturelabel:active {
+        background: #CCF;
+      }
+      .addpicturelabel :invalid + span {
+        color: #A44;
+      }
+      .addpicturelabel :valid + span {
+        color: #4A4;
+      }
+      .edit-word-text {
+        border: none;
+        border-bottom: 1px solid gray;
+        width: 70%;
+        background-color: transparent;
+        border-radius: 0px;
+      }
+      .edit-word-text:focus{
+        outline: none;
+        box-shadow: none;
+      }
+      .edit-word-text:active{
+        outline: none;
+        box-shadow: none;
+      }
+      .custom-word-save-button {
+        padding: 5px 37px;
+      }
+      .custom-word-picture {
+        border-radius: 4px;
+      }
+      .image {
+        float: left;
+        position: relative;
+        margin-right: 10px;
+        img {
+          border-radius: 4px;
+        }
+      }
+
+      .delete {
+        position: absolute;
+        top: -9px;
+        right: -6px;
+        color: #F26383;
+        border: 1px solid #F26383;
+        padding: 1px;
+        border-radius: 50px;
+        background-color: white;
+        font-size: 10px;
+        font-weight: normal;
+      }
+    }
   }
   .curriculum-groupword-panel {
     .curriculum-groupwordpanel-body{
@@ -327,6 +377,12 @@
   background-color: whitesmoke;
   padding: 1%;
   margin-bottom: 2%;
+}
+.banword-width{
+  margin-bottom: 20px;
+}
+.badword-jumbotron{
+  padding-bottom: 0px;
 }
 .curriculum-custom-checkbox-span{
   padding-left: 8px;
