@@ -71,10 +71,9 @@
                          data-ng-click="curriculum.onNewcustomWrdAddImg($index)"></i>
                       <img data-ng-src="{{imgObj.image64Bit}}" width="50px;" height="50px;">
                     </div>
-                    <div class="add-img">
+                    <div class="add-img" data-ng-if="curriculum.model.customWrdImgArr.length<5">
                       <input type="file" name="file" file-model="curriculum.myFile"
-                             accept='image/*' onchange="angular.element(this).scope().photoChanged(this)"
-                             data-ng-disabled="curriculum.model.customWrdImgArr.length===5"/>
+                             accept='image/*' onchange="angular.element(this).scope().photoChanged(this)"/>
                       <i class="fa fa-plus" aria-hidden="true"></i>
                       <span>Add Picture</span>
                     </div>
