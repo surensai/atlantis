@@ -133,9 +133,15 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   curriculum.searchWord = function (word, curriculumForm) {
     curriculum.curriculumForm = curriculumForm;
     var handleSuccess = function (data) {
-      if (data.length > 0 && !isWordPresent(data)) {
+      if (!isWordPresent(data)) {
         curriculum.model.isWordPrsnt = false;
-        curriculum.onUploadCustomWordImages(curriculum.model.customWrdImgArr);
+        //check images added or not
+        if (curriculum.model.customWrdImgArr.length > 0) {
+          curriculum.onUploadCustomWordImages(curriculum.model.customWrdImgArr);
+        } else {
+          //save word without image
+          curriculum.onSaveCustomWords();
+        }
       } else {
         curriculum.model.isWordPrsnt = true;
       }
