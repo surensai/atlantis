@@ -7,6 +7,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   curriculum.model = {};
   curriculum.model.wordItem = {};
   curriculum.model.previousWrdItm = "";
+  curriculum.addImgInTableRowItem = null;
   curriculum.model.isWordPrsnt = false;
   curriculum.model.customWrdImgArr = [];
   curriculum.curriculumForm = {};
@@ -16,7 +17,9 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   curriculum.showSizeLimitError = false;
   curriculum.fileReaderSupported = window.FileReader != null;
   curriculum.model.bannedWordList = [];
+  curriculum.model.editCustomWrdSubmited = false;
   curriculum.onEditCustomWord = function (wordItem) {
+    curriculum.model.editCustomWrdSubmited = true;
     if (!wordItem.Words || wordItem.Words === "") {
       return;
     }
@@ -39,6 +42,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       }
     } else {
       curriculum.model.previousWrdItm = wordItem.Words;
+      curriculum.model.editCustomWrdSubmited = false;
     }
     wordItem.isEditMode = !wordItem.isEditMode;
 
@@ -222,9 +226,12 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       curriculum.fileUploadExceedErr = true;
     }
   };
+  curriculum.onAddImageInRow = function (wrdItm) {
+    curriculum.addImgInTableRowItem = wrdItm;
+  };
   //Update the custom photo
   $scope.updateCustomWrdPhoto = function (inputFileObj) {
-    var files = inputFileObj.files, index = angular.element(inputFileObj).scope().$index;
+    var files = inputFileObj.files, index = curriculum.customWords.indexOf(curriculum.addImgInTableRowItem);
     if (files.length > 0) {
       //Restricting file upload to 5MB i.e (1024*1024*5)
       var file = (files.length > 0) ? files[0] : null;
@@ -254,20 +261,9 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     clearCustomWordData(curriculumForm);
   };
   curriculum.submitGroupWords = function () {
-    var anatomy_words = [];
     var bathroom_words = [];
+    var anatomy_words = [];
     var data = {};
-    if (curriculum.group.anatomyWords.length > 0) {
-      for (var j = 0; curriculum.group.anatomyWords.length > j; j++) {
-        if (curriculum.group.anatomyWords[j].length > 0) {
-          for (var k = 0; curriculum.group.anatomyWords[j].length > k; k++) {
-            if (curriculum.group.anatomyWords[j][k].groupedflag) {
-              anatomy_words.push(curriculum.group.anatomyWords[j][k].Word);
-            }
-          }
-        }
-      }
-    }
     if (curriculum.group.bathroomWords.length > 0) {
       for (var i = 0; curriculum.group.bathroomWords.length > i; i++) {
         if (curriculum.group.bathroomWords[i].length > 0) {
@@ -279,8 +275,19 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
         }
       }
     }
-    data.anatomy_words = anatomy_words;
+    if (curriculum.group.anatomyWords.length > 0) {
+      for (var j = 0; curriculum.group.anatomyWords.length > j; j++) {
+        if (curriculum.group.anatomyWords[j].length > 0) {
+          for (var k = 0; curriculum.group.anatomyWords[j].length > k; k++) {
+            if (curriculum.group.anatomyWords[j][k].groupedflag) {
+              anatomy_words.push(curriculum.group.anatomyWords[j][k].Word);
+            }
+          }
+        }
+      }
+    }
     data.bathroom_words = bathroom_words;
+    data.anatomy_words = anatomy_words;
     var handleSuccess = function (data) {
       messagesFactory.submitGroupwordsSuccess(data);
     };
@@ -308,7 +315,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     }
     return Object.keys(obj);
   };
-
   curriculum.deleteListener = function (word) {
     var modalInstance = $uibModal.open({
       templateUrl: 'components/account/curriculum/delete-word.html',
