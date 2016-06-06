@@ -260,8 +260,9 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   curriculum.onClearCustomWordDetails = function (curriculumForm) {
     clearCustomWordData(curriculumForm);
   };
-  curriculum.onSubmitBathroomWordsGroup = function () {
+  curriculum.submitGroupWords = function () {
     var bathroom_words = [];
+    var anatomy_words = [];
     var data = {};
     if (curriculum.group.bathroomWords.length > 0) {
       for (var i = 0; curriculum.group.bathroomWords.length > i; i++) {
@@ -274,29 +275,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
         }
       }
     }
-    data.bathroom_words = bathroom_words;
-    var handleSuccess = function (data) {
-      messagesFactory.submitGroupwordsSuccess(data);
-    };
-    var handleError = function (error, status) {
-      if (status === 401) {
-        authService.generateNewToken(function () {
-          CurriculumService.updateGroupWordsApi(data)
-            .success(handleSuccess)
-            .error(handleError);
-        });
-      }
-      else {
-        messagesFactory.submitGroupwordsError(status);
-      }
-    };
-    CurriculumService.updateGroupWordsApi(data)
-      .success(handleSuccess)
-      .error(handleError);
-  };
-  curriculum.onSubmitAnatomyWordsGroup = function () {
-    var anatomy_words = [];
-    var data = {};
     if (curriculum.group.anatomyWords.length > 0) {
       for (var j = 0; curriculum.group.anatomyWords.length > j; j++) {
         if (curriculum.group.anatomyWords[j].length > 0) {
@@ -308,6 +286,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
         }
       }
     }
+    data.bathroom_words = bathroom_words;
     data.anatomy_words = anatomy_words;
     var handleSuccess = function (data) {
       messagesFactory.submitGroupwordsSuccess(data);
@@ -328,6 +307,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       .success(handleSuccess)
       .error(handleError);
   };
+
   curriculum.getKeysOfCollection = function (obj) {
     obj = angular.copy(obj);
     if (!obj) {
