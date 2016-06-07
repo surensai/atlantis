@@ -51,7 +51,7 @@
                     </div>
                     <div ng-show="curriculumForm.word.$error.pattern" class="error-mesasage">
                       <i class="fa fa-exclamation-circle"></i>
-                      <span data-translate="common.messages.only_alphabets">Allow only Alphabets</span>
+                      <span data-translate="common.messages.allow_only_letters">Please use only uppercase and lowercase letters.</span>
                     </div>
                     <div
                       ng-show="!curriculumForm.word.$error.pattern && !curriculumForm.word.$error.required && (curriculumForm.word.$error.minlength || curriculumForm.word.$error.maxlength) && curriculumForm.word.$dirty"
@@ -172,7 +172,7 @@
                         </div>
                         <div ng-show="editCustomWrdFrm.editCustomWordInpt.$error.pattern" class="error-mesasage">
                           <i class="fa fa-exclamation-circle"></i>
-                          <span data-translate="common.messages.only_alphabets">Allow only Alphabets</span>
+                          <span data-translate="common.messages.allow_only_letters">Please use only uppercase and lowercase letters.</span>
                         </div>
                         <div
                           ng-show="!editCustomWrdFrm.editCustomWordInpt.$error.pattern && !editCustomWrdFrm.editCustomWordInpt.$error.required && (editCustomWrdFrm.editCustomWordInpt.$error.minlength || editCustomWrdFrm.editCustomWordInpt.$error.maxlength) && editCustomWrdFrm.editCustomWordInpt.$dirty"

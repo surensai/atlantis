@@ -140,6 +140,7 @@
       "select": "Select"
     },
     "messages":{
+      "allow_only_letters":"Please use only uppercase and lowercase letters.",
       "error_getting_data":"error in getting data.",
       "wrong_email_format":"That doesn't look like a valid email. Please check for typos.",
       "only_alphabets": "Should not include any special characters and numbers.",

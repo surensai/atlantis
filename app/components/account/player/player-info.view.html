@@ -47,9 +47,10 @@
       <img src="assets/images/badge2@2x.png" width="12" class="retina-display badge-icon-retina"/>
       <span data-ng-if="!player.highlights.favourites.word || !player.highlights.favourites.count"
             data-translate="player.badges.no_fav_word"> No favorite word </span>
-      <span data-ng-if="player.highlights.favourites.word && player.highlights.favourites.count"><span
-        data-translate="player.badges.maybe_fav_word"> Maybe "Favourite Word" too?</span>  ( {{player.highlights.favourites.word}}<span
-        data-translate="player.badges.spelling">spelled</span>   {{player.highlights.favourites.word}} {{player.highlights.favourites.count}} <span
+      <span data-ng-if="player.highlights.favourites.word && player.highlights.favourites.count">
+        <span data-translate="player.badges.maybe_fav_word"> Maybe "Favourite Word" too?</span>
+        ( {{player.highlights.favourites.word}} <span
+        data-translate="player.badges.spelling">spelled</span> {{player.highlights.favourites.word}} {{player.highlights.favourites.count}} <span
         data-translate="player.badges.times">times</span>)</span>
     </p>
 
