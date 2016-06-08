@@ -93,7 +93,7 @@
                   </button>
                   <button type="submit"
                           class="btn btn-primary add-custom-word-save-button submit-clear-all-padding"
-                          data-translate="curriculum.addword">
+                          data-translate="curriculum.addword"  data-ng-disabled="!curriculum.model.wordItem.wordName">
                     Add Word
                   </button>
 
@@ -200,7 +200,7 @@
                     </td>
                     <td class="player-words" data-ng-if="word.isEditMode">
                       <button class="btn btn-primary custom-word-save-button"
-                              data-ng-click="curriculum.onEditCustomWord(word,editCustomWrdFrm, $parent)">
+                              data-ng-click="curriculum.onEditCustomWord(word,editCustomWrdFrm, $parent)" data-ng-disabled="!word.Words">
                         Save
                       </button>
                     </td>

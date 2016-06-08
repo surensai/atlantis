@@ -2,7 +2,9 @@
 
 angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', 'flashService', '$uibModal', '$translate','AuthenticationService','_', function ($timeout, $rootScope, $state, PlayerService, messagesFactory, flashService, $uibModal, $translate, authService, _) {
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
+
   var player = this;
+  player.maxPlayersLimit = $rootScope.globals.currentUser.playerLimit;
   player.model = {};
   player.model.wordTypeUI = "Word";
   player.chartData = {};
@@ -99,7 +101,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   };
 
   player.addPlayer = function () {
-    if (player.data.playersList.length >= 5) {
+    if (player.data.playersList.length >= player.maxPlayersLimit) {
       $uibModal.open({
         templateUrl: 'common/app-directives/modal/custom-modal.html',
         controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {

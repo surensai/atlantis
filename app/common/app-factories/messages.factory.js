@@ -204,7 +204,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
 
   service.savewordsSuccess = function(successObj) {
     if (successObj) {
-      flashService.showSuccess($translate.instant('curriculum.messages.word_success_msg'), true);
+      flashService.showSuccess($translate.instant('curriculum.messages.word_success_msg'), false);
     }
   };
 
@@ -218,7 +218,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
 
   service.updatewordSuccess = function(successObj) {
     if (successObj) {
-      flashService.showSuccess($translate.instant('curriculum.messages.word_update_msg'), true);
+      flashService.showSuccess($translate.instant('curriculum.messages.word_update_msg'), false);
     }
   };
 

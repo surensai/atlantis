@@ -76,7 +76,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       clearCustomWordData(curriculum.curriculumForm);
       getWords();
     };
-    CurriculumService.saveWordApi(formData)
+    CurriculumService.saveWordApi(formData, userID)
       .success(handleSuccess)
       .error(handleError);
   };
