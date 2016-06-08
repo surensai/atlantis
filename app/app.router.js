@@ -15,14 +15,14 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     $rootScope.base_url = "http://ec2-52-71-125-138.compute-1.amazonaws.com";
-    $rootScope.globals = $cookieStore.get('globals') || {};
+    //$rootScope.globals = $cookieStore.get('globals') || {};
 
-    if ($rootScope.globals.currentUser) {
+    if ($rootScope.globals && $rootScope.globals.currentUser) {
       $http.defaults.headers.common['Authorization'] = 'Bearer ' + $localStorage.token;
     }
 
     $rootScope.$on('$locationChangeStart', function (event, newUrl, oldUrl) {
-      var loggedIn = $rootScope.globals.currentUser;
+      var loggedIn = $rootScope.globals && $rootScope.globals.currentUser;
       if (!loggedIn && $location.path().indexOf("account") > 0) {
         event.preventDefault();
         $state.go('login');
