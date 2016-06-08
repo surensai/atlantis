@@ -147,6 +147,9 @@ a .delete-player-back-button:hover{
           &:hover {
             background-color: #eb9710;
           }
+          &:focus{
+            outline: none;
+          }
         }
       }
     }
@@ -158,6 +161,12 @@ a .delete-player-back-button:hover{
   margin: 10px 10px;
   .pd-left {
     float: left;
+  }
+  .playername-elipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 400px;
   }
   .pd-right {
     float: left;
@@ -866,6 +875,9 @@ a .delete-player-back-button:hover{
 }
 
 @media only screen and (max-device-width: 480px) {
+  .playername-elipsis {
+    width: 225px !important;
+  }
   .pd-left {
     float: none !important;
     margin: 0 auto;

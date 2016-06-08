@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', 'flashService', '$uibModal', '$translate','AuthenticationService', function ($timeout, $rootScope, $state, PlayerService, messagesFactory, flashService, $uibModal, $translate, authService) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', 'flashService', '$uibModal', '$translate','AuthenticationService','_', function ($timeout, $rootScope, $state, PlayerService, messagesFactory, flashService, $uibModal, $translate, authService, _) {
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
   var player = this;
   player.model = {};
@@ -28,6 +28,11 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.itemsPerPage = player.viewby;
   player.displayChartIndex = 0;
   player.predicate = 'Sno';
+  player.drag = 'drag feedback';
+  player.drop = 'drop feedback';
+  player.gridCount = 4;
+  player.chartTabType = "";
+
   player.wordsHeaders = {
     Words: $translate.instant("player.word_headers.words"),
     Attempts: $translate.instant("player.word_headers.attempts"),
@@ -56,13 +61,13 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     LastPlayed: $translate.instant("player.real_word_headers.last_played")
   };
 
-  player.drag = 'drag feedback';
-  player.drop = 'drop feedback';
-  player.gridCount = 4;
-  player.chartTabType = "";
+  var wordsCsv = [],
+      lettersWordsCsv = [],
+      nonsenseWordsCsv = [],
+      realWordsCsv = [],
+      daysXAxisLegArr = ["", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      monthsXAxisLegArr = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-  var wordsCsv = [], lettersWordsCsv = [], nonsenseWordsCsv = [], realWordsCsv = [], daysXAxisLegArr = ["", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], monthsXAxisLegArr = ["", "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"];
   player.getKeysOfCollection = function (obj) {
     obj = angular.copy(obj);
     if (!obj) {
@@ -77,24 +82,30 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   })();
 
   player.onWordTypeChanges = function () {
-    if (player.model.wordTypeUI === "Word") {
-      getWords(player.playerObj.id);
-    } else if (player.model.wordTypeUI === "Letter Word") {
-      getLettersWords(player.playerObj.id);
-    } else if (player.model.wordTypeUI === "Nonsense Word") {
-      getNonsenseWords(player.playerObj.id);
-    } else if (player.model.wordTypeUI === "Real Word") {
-      getRealWords(player.playerObj.id);
+    switch(player.model.wordTypeUI) {
+      case "Word":
+        getWords(player.playerObj.id);
+        break;
+      case "Letter Word":
+        getLettersWords(player.playerObj.id);
+        break;
+      case "Nonsense Word":
+        getNonsenseWords(player.playerObj.id);
+        break;
+      case "Real Word":
+        getRealWords(player.playerObj.id);
+        break;
     }
   };
+
   player.addPlayer = function () {
     if (player.data.playersList.length >= 5) {
       $uibModal.open({
         templateUrl: 'common/app-directives/modal/custom-modal.html',
         controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
-          $scope.modalTitle = $translate.instant('player.add_modaltitle');
-          $scope.modalBody = $translate.instant('player.add_modalbody');
-          $scope.modalType = $translate.instant('player.add_modaltype');
+          $scope.modalTitle = $translate.instant('common.error');
+          $scope.modalBody = $translate.instant('player.messages.max_players');
+          $scope.modalType = $translate.instant('common.error');
           $scope.close = function () {
             $uibModalInstance.dismiss('cancel');
           };
@@ -127,29 +138,32 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     player.showRow = index;
     player.showColumn = colIndex;
     var count = 0;
-    for (var j = 0; j < player.bigBadges.length; j++) {
-      if (player.showRow === j) {
-        for (var k = 0; k < player.bigBadges.length; k++) {
-          if (player.showColumn === k) {
-            if (player.bigBadges[count].percentage === 0) {
-              player.bigBadges[count].colorCode = "#BABCBE";
-            }
-            player.bigbadgedetails = player.bigBadges[count];
 
-            break;
-          } else {
-            count++;
+    if( player.bigBadges.length > 0){
+      for (var j = 0; j < player.bigBadges.length; j++) {
+        if (player.showRow === j) {
+          for (var k = 0; k < player.bigBadges.length; k++) {
+            if (player.showColumn === k) {
+              if (player.bigBadges[count].percentage === 0) {
+                player.bigBadges[count].colorCode = "#BABCBE";
+              }
+              player.bigbadgedetails = player.bigBadges[count];
+
+              break;
+            } else {
+              count++;
+            }
           }
+          break;
+        } else {
+          count = count + player.gridCount;
         }
-        break;
-      } else {
-        count = count + player.gridCount;
       }
     }
-    //Get Chart data from API - Default is Day type
     player.chartTabType = "";
     player.onGetChartData('day');
   };
+
   /*Get Chart Data from API & render in UI*/
   function getChartDataAPI(badgeId, playerId, chartType) {
     //Get Chart Data API Call
@@ -166,7 +180,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           });
         }
         else {
-          flashService.showError("Chart Data Fetch Error.", false);
+          flashService.showError($translate.instant("player.messages.error_chart_data"), false);
         }
 
       });
@@ -727,6 +741,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   }
 
 }]);
+
 app.directive('resize', function ($window) {
   return function (scope) {
     var w = angular.element($window);

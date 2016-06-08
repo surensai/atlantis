@@ -13,7 +13,9 @@ body {
 .app, .header {
   clear: both;
 }
-
+.messages-register-heading{
+  font-size: 27px;
+}
 .load-overlay{
   background-color: rgba(256, 256, 256, 0.6);
   position: fixed;
@@ -219,7 +221,7 @@ body {
   }
 
   .username{
-    width: 110px;
+    max-width: 110px;
     float: right;
   }
 

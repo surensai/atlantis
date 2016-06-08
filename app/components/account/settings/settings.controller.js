@@ -84,6 +84,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       messagesFactory.settingschangepasswordSuccessMessages(data);
     };
     var handleError = function (error, status) {
+      settings.model.passwordData="";
       if(status === 401){
         AuthenticationService.generateNewToken(function(){
           changePassword();
