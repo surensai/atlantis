@@ -19,27 +19,19 @@
     <h3 class="playername-elipsis">{{player.playerObj.firstName}} {{player.playerObj.lastName}}</h3>
 
     <p>
-      <img src="assets/images/badge1.png" width="12" class="non-retina"/>
-      <img src="assets/images/badge1@2x.png" width="12" class="retina-display badge-icon-retina"/>
-      <span data-ng-if="!player.highlights.earnedBadges" data-translate="player.badges.nobadge_earned"> No badges earned so far. </span>
-      <span data-ng-if="player.highlights.earnedBadges"> <strong>{{player.highlights.earnedBadges}} </strong><span
-        data-translate="player.badges.nobadge_earned_days"> badges earned in the past 7 days.</span> </span>
-    </p>
-
-    <p>
       <img src="assets/images/badge2.png" width="12" class="non-retina"/>
       <img src="assets/images/badge2@2x.png" width="12" class="retina-display badge-icon-retina"/>
       <span data-ng-if="!player.highlights.totalPlayedTime" data-translate="player.badges.no_spendtime"> You haven't spent anytime on games.</span>
       <span data-ng-if="player.highlights.totalPlayedTime"> <strong>{{player.highlights.totalPlayedTime}}</strong> <span
-        data-translate="player.badges.last_time_played">time played in Square Panda for past 7 days.</span></span>
+        data-translate="player.badges.last_time_played">Played this week.</span></span>
     </p>
 
     <p>
       <img src="assets/images/badge2.png" width="12" class="non-retina"/>
       <img src="assets/images/badge2@2x.png" width="12" class="retina-display badge-icon-retina"/>
-      <span data-ng-if="player.highlights.correctWord"> <span data-translate="player.badges.recent_word">Most recent word </span><strong>"{{player.highlights.correctWord}}"</strong> <span
-        data-translate="player.badges.mark_correct">marked as Correct.</span></span>
       <span data-ng-if="!player.highlights.correctWord" data-translate="player.badges.noword_correct"> No words are marked as correct so far.</span>
+      <span data-ng-if="player.highlights.correctWord"> <span data-translate="player.badges.recent_word">Most recent word: </span><strong>{{player.highlights.correctWord}}</strong>
+      </span>
     </p>
 
     <p>
@@ -48,10 +40,9 @@
       <span data-ng-if="!player.highlights.favourites.word || !player.highlights.favourites.count"
             data-translate="player.badges.no_fav_word"> No favorite word </span>
       <span data-ng-if="player.highlights.favourites.word && player.highlights.favourites.count">
-        <span data-translate="player.badges.maybe_fav_word"> Maybe "Favourite Word" too?</span>
-        ( {{player.highlights.favourites.word}} <span
-        data-translate="player.badges.spelling">spelled</span> {{player.highlights.favourites.word}} {{player.highlights.favourites.count}} <span
-        data-translate="player.badges.times">times</span>)</span>
+        <span data-translate="player.badges.maybe_fav_word">Favorite word:</span>
+        {{player.highlights.favourites.word}} <span data-translate="player.badges.played">played</span> {{player.highlights.favourites.count}} <span
+        data-translate="player.badges.times">times</span></span>
     </p>
 
 
