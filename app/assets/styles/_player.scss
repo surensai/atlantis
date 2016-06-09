@@ -373,6 +373,10 @@ a .delete-player-back-button:hover{
         .badge-item {
           img {
             cursor: pointer;
+            border-radius: 22px;
+          -webkit-box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
+          -moz-box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
           }
         ;
           .active-big-badge {
