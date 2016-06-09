@@ -766,17 +766,9 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   };
 
-  player.getBigBadgesClickHandler = function () {
-    getBigBadges(player.playerObj.id);
-  };
-  player.getMiniBadgesClickHandler = function () {
-    getMinibadges(player.playerObj.id);
-  };
   player.getWordsClickHandler = function () {
     getWords(player.playerObj.id);
   };
-
-
 }]);
 
 app.directive('resize', function ($window) {
