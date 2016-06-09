@@ -21,7 +21,7 @@
     <p>
       <img src="assets/images/badge2.png" width="12" class="non-retina"/>
       <img src="assets/images/badge2@2x.png" width="12" class="retina-display badge-icon-retina"/>
-      <span data-ng-if="!player.highlights.totalPlayedTime" data-translate="player.badges.no_spendtime"> You haven't spent anytime on games.</span>
+      <span data-ng-if="!player.highlights.totalPlayedTime" data-translate="player.badges.no_spendtime"> 0 min played this week</span>
       <span data-ng-if="player.highlights.totalPlayedTime"> <strong>{{player.highlights.totalPlayedTime}}</strong> <span
         data-translate="player.badges.last_time_played">Played this week.</span></span>
     </p>
@@ -29,7 +29,7 @@
     <p>
       <img src="assets/images/badge2.png" width="12" class="non-retina"/>
       <img src="assets/images/badge2@2x.png" width="12" class="retina-display badge-icon-retina"/>
-      <span data-ng-if="!player.highlights.correctWord" data-translate="player.badges.noword_correct"> No words are marked as correct so far.</span>
+      <span data-ng-if="!player.highlights.correctWord" data-translate="player.badges.noword_correct">Most recent word: -</span>
       <span data-ng-if="player.highlights.correctWord"> <span data-translate="player.badges.recent_word">Most recent word: </span><strong>{{player.highlights.correctWord}}</strong>
       </span>
     </p>
@@ -38,7 +38,7 @@
       <img src="assets/images/badge2.png" width="12" class="non-retina"/>
       <img src="assets/images/badge2@2x.png" width="12" class="retina-display badge-icon-retina"/>
       <span data-ng-if="!player.highlights.favourites.word || !player.highlights.favourites.count"
-            data-translate="player.badges.no_fav_word"> No favorite word </span>
+            data-translate="player.badges.no_fav_word">Favorite word: -</span>
       <span data-ng-if="player.highlights.favourites.word && player.highlights.favourites.count">
         <span data-translate="player.badges.maybe_fav_word">Favorite word:</span>
         {{player.highlights.favourites.word}} <span data-translate="player.badges.played">played</span> {{player.highlights.favourites.count}} <span
@@ -50,7 +50,7 @@
 </div>
 
 <div class="player-tabs">
-  <uib-tabset active="activeJustified">
+  <uib-tabset active="activeJustified" data-ng-click="player.getBigBadgesClickHandler()">
     <uib-tab index="0" heading="Big Badges">
       <div class="badges-container clearfix">
         <div resize></div>
@@ -125,7 +125,7 @@
         </div>
       </div>
     </uib-tab>
-    <uib-tab index="1" heading="Mini Badges">
+    <uib-tab index="1" heading="Mini Badges" data-ng-click="player.getMiniBadgesClickHandler()">
       <div class="mini-badges-container clearfix">
         <div class="row minibadges-row">
           <div class="col-md-3 col-sm-6" ng-repeat="minibadge in player.miniBadges">

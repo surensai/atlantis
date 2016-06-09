@@ -184,7 +184,8 @@
         "email_registered": "That email has already been used to create a Square Panda account. If you've forgotten your password, you can reset it.",
         "return_login": "Return to Log In",
         "get_mail": " Soon you will get a confirmation email to verify your account.",
-        "thanks_for_registering":"Thank you for registering with us."
+        "thanks_for_registering":"Thank you for registering with us.",
+        "security_message":"For security reasons, you'll be prompted to log in again with your email and password."
       }
     },
     "login": {
@@ -243,7 +244,7 @@
       "read_more":"Read more",
       "welcome_feed_details_first":"This is your destination to view the footprints of your child’s newly earned badges and discover more skills that they're ready to learn.",
       "welcome_feed_details_second":"It’s easy to follow your child’s progress with a quick glance at their collection of earned badges. These badges symbolize the top skills your child needs to become reading ready from letter identification to rhymes to blended letter sounds! To help your child practice, you can view lists of all the letters and words they’ve learned.",
-      "welcome_feed_details_third":"Imagine how thrilled your child will be when she or he discovers the word “Mom” and your photo appears on screen while they’re playing! By adding new words and familiar pictures to your child’s word bank, you'll be able to customize any word imaginable - pets, family members, school logos and even special spelling lists. Just check out the Customise area to create personalized word lists.",
+      "welcome_feed_details_third":"Imagine how thrilled your child will be when she or he discovers the word “Mom” and your photo appears on screen while they’re playing! By adding new words and familiar pictures to your child’s word bank, you'll be able to customize any word imaginable - pets, family members, school logos and even special spelling lists. Just check out the Customize area to create personalized word lists.",
       "welcome_feed_details_fourth":"Well we have kept you long enough - it's time to jump into the Playground!",
       "welcome":"Welcome!",
       "welcome_feed_squarepanda":"Square Panda Team",
@@ -371,12 +372,12 @@
       "activities": "Activities",
       "nobadge_earned": "No badges earned so far.",
       "nobadge_earned_days": "badges earned in the past 7 days.",
-      "no_spendtime": "You haven't spent anytime on games.",
+      "no_spendtime": "0 min played this week",
       "last_time_played": "Played this week.",
       "recent_word": "Most recent word:",
       "mark_correct": "marked as Correct.",
-      "noword_correct": "No words are marked as correct so far.",
-      "no_fav_word": "No favorite word",
+      "noword_correct": "Most recent word: -",
+      "no_fav_word": "Favorite word: –",
       "maybe_fav_word": "Favorite word:",
       "spelling": "spelled",
       "played":"played",
