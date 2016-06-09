@@ -769,8 +769,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.getWordsClickHandler = function () {
     getWords(player.playerObj.id);
   };
-
-
 }]);
 
 app.directive('resize', function ($window) {
