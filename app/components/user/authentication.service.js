@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore', '$rootScope', 'UserService', 'rememberFactory', '$localStorage', function ($http, $cookieStore, $rootScope, UserService, rememberFactory, $localStorage) {
+angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore', '$rootScope', 'UserService', 'rememberFactory', '$localStorage','$state', function ($http, $cookieStore, $rootScope, UserService, rememberFactory, $localStorage, $state) {
 
   var service = {};
   var base_url = $rootScope.base_url;
@@ -96,7 +96,7 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
         cb();
       }
     }).error(function (data) {
-      console.log("error");
+      $state.go("login");
     });
   };
 
