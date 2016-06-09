@@ -1,22 +1,15 @@
 'use strict';
-angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', '$cookieStore', '$http', '$localStorage',
-  function ($rootScope, $state, $stateParams, $location, $cookieStore, $http, $localStorage) {
+angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', '$cookieStore', '$http', '$localStorage', 'appService',
+  function ($rootScope, $state, $stateParams, $location, $cookieStore, $http, $localStorage, appService) {
 
     window.addEventListener('load', function () {
-      function updateOnlineStatus(event) {
-        var condition = navigator.onLine ? "online" : "offline";
-      }
-
-      window.addEventListener('online', updateOnlineStatus);
-      window.addEventListener('offline', updateOnlineStatus);
+      appService.handleOffline();
     });
-
 
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
-    $rootScope.base_url = "http://ec2-52-203-16-188.compute-1.amazonaws.com";
-
-
+    $rootScope.base_url = "http://ec2-52-71-125-138.compute-1.amazonaws.com";
+    $rootScope.globals = $cookieStore.get('globals') || {};
 
     if ($rootScope.globals && $rootScope.globals.currentUser) {
       $http.defaults.headers.common['Authorization'] = 'Bearer ' + $localStorage.token;
