@@ -110,25 +110,20 @@
                 <i class=" glyphicon"
                    ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>
                 <span data-translate="curriculum.custom_word_list">Custom Word List</span>
-                <!-- fixed #PPAD-251 - <a class="export-btn" data-ng-if="status.open && curriculum.getCustomWordExportData().length > 0"
-                        ng-click="$event.stopPropagation();$event.preventDefault();"
-                        ng-csv="curriculum.getCustomWordExportData()"
-                        filename="custom-words.csv"
-                        csv-header="curriculum.getCSVHeader()"><i class="fa fa-download"></i><sapn data-translate="curriculum.export_csv">Export CSV</sapn> </a>-->
               </uib-accordion-heading>
               <div class="table-responsive">
                 <table class="table table-striped table-hover">
                   <thead>
                   <tr>
-                    <th ng-repeat="key in curriculum.getKeysOfCollection(curriculum.wordsHeaders)"
-                        ng-click="curriculum.predicate = key; curriculum.reverse=!curriculum.reverse;">
-                      {{curriculum.wordsHeaders[key]}}
-                      <span class="fa fa-sort columnSortIcons"
-                            ng-if="$index===0 && key !== curriculum.predicate && (key !== 'Sno' && key !== 'actions' )"></span>
-                      <span class="fa fa-sort-down columnSortIcons"
-                            ng-if="$index===0 && !(curriculum.reverse) && key === curriculum.predicate && (key !== 'Sno'&& key !== 'actions' )"></span>
-                      <span class="fa fa-sort-up columnSortIcons"
-                            ng-if="$index===0 && curriculum.reverse && key === curriculum.predicate && (key !== 'Sno'&& key !== 'actions' )"></span>
+                    <th ng-click="curriculum.reverse=!curriculum.reverse;">
+                      <span data-translate="curriculum.customword_headers.word"> </span>
+                      <span class="fa fa-sort columnSortIcons"></span>
+                    </th>
+                    <th>
+                      <span data-translate="curriculum.customword_headers.picture"> </span>
+                    </th>
+                    <th >
+                      <span data-translate="curriculum.customword_headers.actions"> </span>
                     </th>
                   </tr>
                   </thead>

@@ -66,8 +66,8 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     data: {
       pageTitle: 'Square Panda - Register'
     }
-  }).state('reset-password-dev', {
-    url: '/reset-password/dev/:token',
+  }).state('reset-password', {
+    url: '/reset-password/:token',
     templateUrl: urlBuilder('user/reset-password', 'reset-password'),
     controller: 'resetPasswordCtrl',
     controllerAs: "resetPassword",
@@ -75,23 +75,8 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
       pageTitle: 'Square Panda - Reset Password'
     },
     resolve: {
-      auth: function (UserService, $stateParams) {
-        var base_url = "http://ec2-52-71-125-138.compute-1.amazonaws.com";
-        return UserService.authorizeTokenAPI(base_url, $stateParams.token);
-      }
-    }
-  }).state('reset-password-prod', {
-    url: '/reset-password/prod/:token',
-    templateUrl: urlBuilder('user/reset-password', 'reset-password'),
-    controller: 'resetPasswordCtrl',
-    controllerAs: "resetPassword",
-    data: {
-      pageTitle: 'Square Panda - Reset Password'
-    },
-    resolve: {
-      auth: function (UserService, $stateParams) {
-        var base_url = "http://ec2-52-203-16-188.compute-1.amazonaws.com";
-        return UserService.authorizeTokenAPI(base_url, $stateParams.token);
+      auth: function (UserService, $stateParams, $rootScope) {
+        return UserService.authorizeTokenAPI($rootScope.base_url, $stateParams.token);
       }
     }
   }).state('user-confirm-register', {
