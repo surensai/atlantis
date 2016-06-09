@@ -11,17 +11,18 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
       window.addEventListener('offline', updateOnlineStatus);
     });
 
+
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     $rootScope.base_url = "http://ec2-52-71-125-138.compute-1.amazonaws.com";
-    $rootScope.globals = $cookieStore.get('globals') || {};
+    //$rootScope.globals = $cookieStore.get('globals') || {};
 
-    if ($rootScope.globals.currentUser) {
+    if ($rootScope.globals && $rootScope.globals.currentUser) {
       $http.defaults.headers.common['Authorization'] = 'Bearer ' + $localStorage.token;
     }
 
-    $rootScope.$on('$locationChangeStart', function (event) {
-      var loggedIn = $rootScope.globals.currentUser;
+    $rootScope.$on('$locationChangeStart', function (event, newUrl, oldUrl) {
+      var loggedIn = $rootScope.globals && $rootScope.globals.currentUser;
       if (!loggedIn && $location.path().indexOf("account") > 0) {
         event.preventDefault();
         $state.go('login');
@@ -36,6 +37,15 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
       if (($location.path().indexOf("messages") === -1) && $rootScope.messages) {
         delete $rootScope.messages;
         $cookieStore.remove('noSesMes');
+      }
+
+      //disable back button for players module
+      if (($location.path().indexOf("account/players") >= 0) && $state.current.name === "account.players.details" && !$rootScope.firstPlayerId) { //players.details
+        console.log($state.current.name + " New URL --- " + newUrl + " Old URL --- " + oldUrl);
+        $rootScope.firstPlayerId = newUrl;
+        $rootScope.playerModuleURL = oldUrl;
+      } else if ($rootScope.firstPlayerId === oldUrl && newUrl === $rootScope.playerModuleURL) {
+        event.preventDefault();
       }
     });
   }

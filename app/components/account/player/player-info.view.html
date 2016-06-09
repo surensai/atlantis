@@ -50,7 +50,7 @@
 </div>
 
 <div class="player-tabs">
-  <uib-tabset active="activeJustified" data-ng-click="player.getBigBadgesClickHandler()">
+  <uib-tabset active="activeJustified">
     <uib-tab index="0" heading="Big Badges">
       <div class="badges-container clearfix">
         <div resize></div>
@@ -125,7 +125,7 @@
         </div>
       </div>
     </uib-tab>
-    <uib-tab index="1" heading="Mini Badges" data-ng-click="player.getMiniBadgesClickHandler()">
+    <uib-tab index="1" heading="Mini Badges">
       <div class="mini-badges-container clearfix">
         <div class="row minibadges-row">
           <div class="col-md-3 col-sm-6" ng-repeat="minibadge in player.miniBadges">

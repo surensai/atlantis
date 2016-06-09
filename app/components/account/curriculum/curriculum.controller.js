@@ -74,7 +74,13 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       messagesFactory.savewordsSuccess(data);
       //clear all data
       clearCustomWordData(curriculum.curriculumForm);
-      getWords();
+      //Add the Custom word object
+      var word = getCustomWordObj(data);
+      curriculum.customWords.push(word);
+      customWordsCsv.push({
+        Words: word.wordName,
+        dateAdded: word.formatedDate
+      });
     };
     CurriculumService.saveWordApi(formData, userID)
       .success(handleSuccess)
@@ -391,30 +397,11 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     var handleSuccess = function (data) {
       if (data.length > 0) {
         angular.forEach(data, function (word) {
-          var date = new Date(word.createdAt), imageURLArr = [], imgObj;
-          //image url validation
-          if (word.imageURL) {
-            if (angular.isArray(word.imageURL)) {
-              for (var imgCounter = 0; imgCounter < word.imageURL.length; imgCounter++) {
-                imgObj = {fileObj: null, image64Bit: word.imageURL[imgCounter]};
-                imageURLArr.push(imgObj)
-              }
-            } else {
-              imgObj = {fileObj: null, image64Bit: word.imageURL};
-              imageURLArr.push(imgObj);
-            }
-          }
-          var formatedDate = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
-          curriculum.customWords.push({
-            id: word.id,
-            Words: word.wordName,
-            dateAdded: word.createdAt,
-            picture: imageURLArr,
-            isEditMode: false
-          });
+          var formatedWrd = getCustomWordObj(word);
+          curriculum.customWords.push(formatedWrd);
           customWordsCsv.push({
-            Words: word.wordName,
-            dateAdded: formatedDate
+            Words: formatedWrd.wordName,
+            dateAdded: formatedWrd.formatedDate
           });
         });
       }
@@ -434,6 +421,33 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     CurriculumService.listWordsApi(userID)
       .success(handleSuccess)
       .error(handleError);
+  }
+
+  //get Custom Word object
+  function getCustomWordObj(word) {
+    var customWrdObj, formatedDate, date = new Date(word.createdAt), imageURLArr = [], imgObj;
+    //image url validation
+    if (word.imageURL) {
+      if (angular.isArray(word.imageURL)) {
+        for (var imgCounter = 0; imgCounter < word.imageURL.length; imgCounter++) {
+          imgObj = {fileObj: null, image64Bit: word.imageURL[imgCounter]};
+          imageURLArr.push(imgObj)
+        }
+      } else {
+        imgObj = {fileObj: null, image64Bit: word.imageURL};
+        imageURLArr.push(imgObj);
+      }
+    }
+    formatedDate = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+    customWrdObj = {
+      id: word.id,
+      Words: word.wordName,
+      dateAdded: word.createdAt,
+      picture: imageURLArr,
+      isEditMode: false,
+      formatedDate: formatedDate
+    };
+    return customWrdObj;
   }
 
   //Update pagination values

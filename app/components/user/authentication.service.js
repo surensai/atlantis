@@ -1,42 +1,43 @@
 'use strict';
 
-angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore', '$rootScope', 'UserService', 'rememberFactory','$localStorage', function ($http, $cookieStore, $rootScope, UserService, rememberFactory, $localStorage) {
+angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore', '$rootScope', 'UserService', 'rememberFactory', '$localStorage', function ($http, $cookieStore, $rootScope, UserService, rememberFactory, $localStorage) {
 
   var service = {};
   var base_url = $rootScope.base_url;
   var currentUser;
-    function changeUser(user) {
-        angular.extend(currentUser, user);
-    }
 
-    function urlBase64Decode(str) {
-        var output = str.replace('-', '+').replace('_', '/');
-        switch (output.length % 4) {
-            case 0:
-                break;
-            case 2:
-                output += '==';
-                break;
-            case 3:
-                output += '=';
-                break;
-            default:
-                throw 'Illegal base64url string!';
-        }
-        return window.atob(output);
-    }
+  function changeUser(user) {
+    angular.extend(currentUser, user);
+  }
 
-    function getUserFromToken() {
-        var token = $localStorage.token;
-        var user = {};
-        if (typeof token !== 'undefined') {
-            var encoded = token.split('.')[1];
-            user = JSON.parse(urlBase64Decode(encoded));
-        }
-        return user;
+  function urlBase64Decode(str) {
+    var output = str.replace('-', '+').replace('_', '/');
+    switch (output.length % 4) {
+      case 0:
+        break;
+      case 2:
+        output += '==';
+        break;
+      case 3:
+        output += '=';
+        break;
+      default:
+        throw 'Illegal base64url string!';
     }
+    return window.atob(output);
+  }
 
-     currentUser = getUserFromToken();
+  function getUserFromToken() {
+    var token = $localStorage.token;
+    var user = {};
+    if (typeof token !== 'undefined') {
+      var encoded = token.split('.')[1];
+      user = JSON.parse(urlBase64Decode(encoded));
+    }
+    return user;
+  }
+
+  currentUser = getUserFromToken();
 
   service.loginApi = function (data) {
     return $http.post(base_url + '/user/login', data);
@@ -44,13 +45,13 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
 
   service.SetCredentials = function (user, formData) {
     if (formData) {
-      $localStorage.token =  user.tokenId;
+      $localStorage.token = user.tokenId;
     }
     delete user.player;
     $rootScope.globals = {
       currentUser: user
     };
-    $cookieStore.put('globals', $rootScope.globals);
+    //$cookieStore.put('globals', $rootScope.globals);
   };
 
   service.ClearCredentials = function () {
@@ -63,11 +64,11 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
 
   service.setRememberMe = function (data) {
     if (data.remember) {
-        rememberFactory('7ZXYZ@L', btoa(data.email));
-        rememberFactory('UU@#90', btoa(data.password));
+      rememberFactory('7ZXYZ@L', btoa(data.email));
+      rememberFactory('UU@#90', btoa(data.password));
     } else {
-        rememberFactory('7ZXYZ@L', '');
-        rememberFactory('UU@#90', '');
+      rememberFactory('7ZXYZ@L', '');
+      rememberFactory('UU@#90', '');
     }
   };
 
@@ -82,14 +83,14 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
   };
 
   service.generateNewToken = function (cb) {
-    $http.post($rootScope.base_url + '/user/generate/new-token',{ refreshToken: $localStorage.token}).success(function(data){
-      if(data.token){
+    $http.post($rootScope.base_url + '/user/generate/new-token', {refreshToken: $localStorage.token}).success(function (data) {
+      if (data.token) {
         $localStorage.token = data.token;
       }
-      if(cb){
+      if (cb) {
         cb();
       }
-    }).error(function(data){
+    }).error(function (data) {
       console.log("error");
     });
   };
