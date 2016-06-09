@@ -6,10 +6,8 @@
       <img data-ng-if="!player.playerObj.profileURL && !player.playerObj.imgbase64"
            src="assets/images/default-avatar@2x.png" class="retina-display" width="100%" height="100%"/>
       <img data-ng-if="player.playerObj.imgbase64"
-           data-ng-src="{{player.playerObj.imgbase64}}"
-           alt="player" width="100%" height="100%"/>
-      <img data-ng-if="!player.playerObj.imgbase64 && player.playerObj.profileURL"
-           data-ng-src="{{player.playerObj.profileURL}}"
+           data-ng-src="{{player.playerObj.imgbase64}}" alt="player" width="100%" height="100%"/>
+      <img data-ng-if="!player.playerObj.imgbase64 && player.playerObj.profileURL" data-ng-src="{{player.playerObj.profileURL}}"
            class="img-rectangle img-border-radius" alt="player" width="100%" height="100%">
       <a ui-sref="account.editPlayer({ id: player.playerObj.id })">
         <i class="glyphicon glyphicon-edit"></i> <span data-translate="player.edit_player">Edit Player</span> </a>
@@ -50,7 +48,7 @@
 </div>
 
 <div class="player-tabs">
-  <uib-tabset active="activeJustified" data-ng-click="player.getBigBadgesClickHandler()">
+  <uib-tabset active="activeJustified">
     <uib-tab index="0" heading="Big Badges">
       <div class="badges-container clearfix">
         <div resize></div>
@@ -125,7 +123,7 @@
         </div>
       </div>
     </uib-tab>
-    <uib-tab index="1" heading="Mini Badges" data-ng-click="player.getMiniBadgesClickHandler()">
+    <uib-tab index="1" heading="Mini Badges">
       <div class="mini-badges-container clearfix">
         <div class="row minibadges-row">
           <div class="col-md-3 col-sm-6" ng-repeat="minibadge in player.miniBadges">
