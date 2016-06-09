@@ -2,7 +2,9 @@
 
 angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', 'flashService', '$uibModal', '$translate','AuthenticationService','_', function ($timeout, $rootScope, $state, PlayerService, messagesFactory, flashService, $uibModal, $translate, authService, _) {
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
+
   var player = this;
+  player.maxPlayersLimit = $rootScope.globals.currentUser.playerLimit;
   player.model = {};
   player.model.wordTypeUI = "Word";
   player.chartData = {};
@@ -99,7 +101,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   };
 
   player.addPlayer = function () {
-    if (player.data.playersList.length >= 5) {
+    if (player.data.playersList.length >= player.maxPlayersLimit) {
       $uibModal.open({
         templateUrl: 'common/app-directives/modal/custom-modal.html',
         controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
@@ -240,13 +242,19 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     var handleSuccess = function (data) {
       if (data.length > 0) {
         player.wordsData = data;
+        var wordDate, formatedwordDate, utcSeconds, d;
         for (var i = 0; i < player.wordsData.length; i++) {
-          var wordDate = new Date(parseInt(player.wordsData[i].endtime * 1000));
-          var formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
+          wordDate = new Date(parseInt(player.wordsData[i].endtime * 1000));
+          formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
+
+          utcSeconds = player.wordsData[i].endtime;
+          // The 0 there is the key, which sets the date to the epoch
+          d = new Date(0);
+          d.setUTCSeconds(utcSeconds);
+
           var obj = {};
           obj.Words = player.wordsData[i].word;
-          player.wordsData[i].activity = JSON.parse(player.wordsData[i].activity[0]);
-          player.wordsData[i].endtime = player.wordsData[i].endtime * 1000;
+          player.wordsData[i].endtime = d;
           obj.Attempts = player.wordsData[i].activity.length;
           obj.LastPlayed = player.wordsData[i].endtime;
           wordsCsv.push({
@@ -279,14 +287,20 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     var handleSuccess = function (data) {
       if (data.length > 0) {
         player.lettersWordsData = data;
+        var wordDate, formatedwordDate, utcSeconds, d;
         for (var i = 0; i < player.lettersWordsData.length; i++) {
-          var wordDate = new Date(parseInt(player.lettersWordsData[i].endtime * 1000));
-          var formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
+          wordDate = new Date(parseInt(player.wordsData[i].endtime * 1000));
+          formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
+          utcSeconds = player.lettersWordsData[i].endtime;
+          // The 0 there is the key, which sets the date to the epoch
+          d = new Date(0);
+          d.setUTCSeconds(utcSeconds);
+
           var obj = {};
           obj.Words = player.lettersWordsData[i]._id;
           player.lettersWordsData[i].activity = JSON.parse(player.lettersWordsData[i].activity[0]);
           obj.Attempts = player.lettersWordsData[i].activity.length;
-          player.lettersWordsData[i].endtime = player.lettersWordsData[i].endtime * 1000;
+          player.lettersWordsData[i].endtime = d;
           obj.LastPlayed = player.lettersWordsData[i].endtime;
           obj.gamescore = player.lettersWordsData[i].gamescore;
           lettersWordsCsv.push({
@@ -320,15 +334,23 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     var handleSuccess = function (data) {
       if (data.length > 0) {
         player.nonsenseWordsData = data;
+
+        var wordDate, formatedwordDate, utcSeconds, d;
         for (var i = 0; i < player.nonsenseWordsData.length; i++) {
-          var wordDate = new Date(parseInt(player.nonsenseWordsData[i].endtime * 1000));
-          var formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
+          wordDate = new Date(parseInt(player.wordsData[i].endtime * 1000));
+          formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
+
+          utcSeconds = player.nonsenseWordsData[i].endtime;
+          // The 0 there is the key, which sets the date to the epoch
+          d = new Date(0);
+          d.setUTCSeconds(utcSeconds);
+
           var obj = {};
           obj.Words = player.nonsenseWordsData[i]._id;
           player.nonsenseWordsData[i].activity = JSON.parse(player.nonsenseWordsData[i].activity[0]);
           obj.Attempts = player.nonsenseWordsData[i].activity.length;
           obj.LastPlayed = player.nonsenseWordsData[i].endtime;
-          player.nonsenseWordsData[i].endtime = player.nonsenseWordsData[i].endtime * 1000;
+          player.nonsenseWordsData[i].endtime = d;
           nonsenseWordsCsv.push({
             NonsenseWords: obj.Words,
             Times: obj.Attempts,
@@ -359,15 +381,23 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     var handleSuccess = function (data) {
       if (data.length > 0) {
         player.realWordsData = data;
+        var wordDate, formatedwordDate, utcSeconds, d;
+
         for (var i = 0; i < player.realWordsData.length; i++) {
-          var wordDate = new Date(parseInt(player.realWordsData[i].endtime * 1000));
-          var formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
+          wordDate = new Date(parseInt(player.wordsData[i].endtime * 1000));
+          formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
+
+          utcSeconds = player.realWordsData[i].endtime;
+          // The 0 there is the key, which sets the date to the epoch
+          d = new Date(0);
+          d.setUTCSeconds(utcSeconds);
+
           var obj = {};
           obj.Words = player.realWordsData[i]._id;
           player.realWordsData[i].activity = JSON.parse(player.realWordsData[i].activity[0]);
           obj.Attempts = player.realWordsData[i].activity.length;
           obj.LastPlayed = player.realWordsData[i].endtime;
-          player.realWordsData[i].endtime = player.realWordsData[i].endtime * 1000;
+          player.realWordsData[i].endtime = d;
           obj.correctCount = 0;
           obj.inCorrectCount = 0;
           obj.gameAttempts = player.realWordsData[i].gameAttempts;
@@ -702,8 +732,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     var arr = [];
     if (wordType === "word") {
       arr[0] = $translate.instant("player.word_headers.words");
-      arr[1] = $translate.instant("player.word_headers.last_played");
-      arr[2] = $translate.instant("player.word_headers.attempts");
+      arr[1] = $translate.instant("player.word_headers.attempts");
+      arr[2] = $translate.instant("player.word_headers.last_played");
     } else if (wordType === "letterword") {
       arr[0] = $translate.instant("player.letter_headers.letters");
       arr[1] = $translate.instant("player.letter_headers.inputs");
@@ -736,9 +766,16 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   };
 
+  player.getBigBadgesClickHandler = function () {
+    getBigBadges(player.playerObj.id);
+  };
+  player.getMiniBadgesClickHandler = function () {
+    getMinibadges(player.playerObj.id);
+  };
   player.getWordsClickHandler = function () {
     getWords(player.playerObj.id);
-  }
+  };
+
 
 }]);
 
