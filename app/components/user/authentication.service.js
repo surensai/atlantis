@@ -47,11 +47,16 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
     if (formData) {
       $localStorage.token = user.tokenId;
     }
+
+    if($cookieStore.get('globals')){
+      service.ClearCredentials();
+    }
+
     delete user.player;
     $rootScope.globals = {
       currentUser: user
     };
-    //$cookieStore.put('globals', $rootScope.globals);
+    $cookieStore.put('globals', $rootScope.globals);
   };
 
   service.ClearCredentials = function () {
