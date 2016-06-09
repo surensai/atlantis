@@ -14,8 +14,9 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
 
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
-    $rootScope.base_url = "http://ec2-52-71-125-138.compute-1.amazonaws.com";
-    //$rootScope.globals = $cookieStore.get('globals') || {};
+    $rootScope.base_url = "http://ec2-52-203-16-188.compute-1.amazonaws.com";
+
+
 
     if ($rootScope.globals && $rootScope.globals.currentUser) {
       $http.defaults.headers.common['Authorization'] = 'Bearer ' + $localStorage.token;
@@ -96,7 +97,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     },
     resolve: {
       auth: function (UserService, $stateParams) {
-        var base_url = "http://ec2-52-86-142-186.compute-1.amazonaws.com";
+        var base_url = "http://ec2-52-203-16-188.compute-1.amazonaws.com";
         return UserService.authorizeTokenAPI(base_url, $stateParams.token);
       }
     }
