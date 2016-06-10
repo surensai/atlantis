@@ -35,7 +35,6 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
 
       //disable back button for players module
       if (($location.path().indexOf("account/players") >= 0) && $state.current.name === "account.players.details" && !$rootScope.firstPlayerId) { //players.details
-        console.log($state.current.name + " New URL --- " + newUrl + " Old URL --- " + oldUrl);
         $rootScope.firstPlayerId = newUrl;
         $rootScope.playerModuleURL = oldUrl;
       } else if ($rootScope.firstPlayerId === oldUrl && newUrl === $rootScope.playerModuleURL) {

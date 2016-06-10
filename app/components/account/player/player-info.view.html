@@ -20,15 +20,16 @@
       <img src="assets/images/badge2.png" width="12" class="non-retina"/>
       <img src="assets/images/badge2@2x.png" width="12" class="retina-display badge-icon-retina"/>
       <span data-ng-if="!player.highlights.totalPlayedTime" data-translate="player.badges.no_spendtime"> 0 min played this week</span>
-      <span data-ng-if="player.highlights.totalPlayedTime"> <strong>{{player.highlights.totalPlayedTime}}</strong> <span
-        data-translate="player.badges.last_time_played">Played this week.</span></span>
+      <span data-ng-if="player.highlights.totalPlayedTime">
+        <strong>{{player.highlights.timePlayedInMin}}</strong>
+        <span data-translate="player.badges.last_time_played">played this week.</span></span>
     </p>
 
     <p>
       <img src="assets/images/badge2.png" width="12" class="non-retina"/>
       <img src="assets/images/badge2@2x.png" width="12" class="retina-display badge-icon-retina"/>
       <span data-ng-if="!player.highlights.correctWord" data-translate="player.badges.noword_correct">Most recent word: -</span>
-      <span data-ng-if="player.highlights.correctWord"> <span data-translate="player.badges.recent_word">Most recent word: </span><strong>{{player.highlights.correctWord}}</strong>
+      <span data-ng-if="player.highlights.correctWord"> <span data-translate="player.badges.recent_word">Most recent word: </span><strong> {{player.highlights.correctWord}}</strong>
       </span>
     </p>
 
@@ -283,7 +284,7 @@
             <tbody>
             <tr data-ng-repeat="word in player.nonsenseWordsData | orderBy:player.predicate:player.reverse">
               <td class="player-words text-ellipsis word-text">{{ word._id}}</td>
-              <td class="word-icons">{{ word.activity.length}}</td>
+              <td class="word-icons">{{ word.count }}</td>
               <td class="word-date" am-time-ago="word.endtime"></td>
             </tr>
             <tr data-ng-if="player.nonsenseWordsData.length === 0">
