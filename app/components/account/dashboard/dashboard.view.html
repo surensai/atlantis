@@ -3,13 +3,19 @@
     <div class="feed-row" data-ng-if="!dashboard.isUserFirstTimeLoggedIn"
          data-ng-repeat="feedItem in dashboard.data.newsFeedsList.slice(((dashboard.currentPage-1)*dashboard.itemsPerPage), ((dashboard.currentPage)*dashboard.itemsPerPage))">
       <div class="panel clearfix">
-        <div class="col-md-5 nopadding">
+        <div class="col-md-5 nopadding center-align">
+
           <img data-ng-if="!feedItem.image_url" src="assets/images/no-image.png"
                class="img-responsive feed-img img-radius" image-load-complete-evt/>
-          <img data-ng-if="feedItem.image_url" data-ng-src="{{feedItem.image_url}}"
+
+          <img data-ng-if="feedItem.image_url && !feedItem.player_avatar" data-ng-src="{{feedItem.image_url}}"
                class="img-responsive feed-img img-radius hide-img"
                ng-class="{ 'first-imgsize':$index ==0, 'second-imgsize': $index == 1}"
                image-load-complete-evt="{{feedItem}}"/>
+
+          <img data-ng-if="feedItem.image_url && feedItem.category === 'Analytics' && feedItem.player_avatar"
+               data-ng-src="{{feedItem.image_url}}" image-load-complete-evt="{{feedItem}}" height="276"
+            />
           <span class="feed-img-loader">
               <img src="assets/images/img-loader.gif"/>
           </span>
