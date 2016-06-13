@@ -18,6 +18,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   curriculum.fileReaderSupported = window.FileReader != null;
   curriculum.model.bannedWordList = [];
   curriculum.model.editCustomWrdSubmited = false;
+
   curriculum.onEditCustomWord = function (wordItem) {
     curriculum.model.editCustomWrdSubmited = true;
     if (!wordItem.Words || wordItem.Words === "") {
@@ -47,11 +48,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     wordItem.isEditMode = !wordItem.isEditMode;
 
   };
-  curriculum.wordsHeaders = {
-    Words: $translate.instant("curriculum.customword_headers.word"),
-    picture: $translate.instant("curriculum.customword_headers.picture"),
-    actions: $translate.instant("curriculum.customword_headers.actions")
-  };
+
   var customWordsCsv = [];
 
   function structureFormData() {
@@ -153,6 +150,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       .success(handleSuccess)
       .error(handleError);
   };
+
   curriculum.searchWord = function (word, curriculumForm) {
     curriculum.curriculumForm = curriculumForm;
     var handleSuccess = function (data) {
@@ -271,34 +269,33 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   curriculum.onClearCustomWordDetails = function (curriculumForm) {
     clearCustomWordData(curriculumForm);
   };
-  curriculum.submitGroupWords = function () {
-    var bathroom_words = [];
-    var anatomy_words = [];
-    var data = {};
-    if (curriculum.group.bathroomWords.length > 0) {
-      for (var i = 0; curriculum.group.bathroomWords.length > i; i++) {
-        if (curriculum.group.bathroomWords[i].length > 0) {
-          for (var ii = 0; curriculum.group.bathroomWords[i].length > ii; ii++) {
-            if (curriculum.group.bathroomWords[i][ii].groupedflag) {
-              bathroom_words.push(curriculum.group.bathroomWords[i][ii].Word);
-            }
+
+  function groupWordsArrMan(sourceArr){
+    var arr = [];
+    for (var i = 0; sourceArr.length > i; i++) {
+      if (sourceArr[i].length > 0) {
+        for (var ii = 0; sourceArr[i].length > ii; ii++) {
+          if (sourceArr[i][ii].groupedflag) {
+            arr.push(sourceArr[i][ii].Word);
           }
         }
       }
+    }
+    return arr;
+  }
+
+  curriculum.submitGroupWords = function () {
+
+    var data = {};
+    data.bathroom_words = data.anatomy_words = [];
+    if (curriculum.group.bathroomWords.length > 0) {
+      data.bathroom_words = groupWordsArrMan(curriculum.group.bathroomWords);
     }
     if (curriculum.group.anatomyWords.length > 0) {
-      for (var j = 0; curriculum.group.anatomyWords.length > j; j++) {
-        if (curriculum.group.anatomyWords[j].length > 0) {
-          for (var k = 0; curriculum.group.anatomyWords[j].length > k; k++) {
-            if (curriculum.group.anatomyWords[j][k].groupedflag) {
-              anatomy_words.push(curriculum.group.anatomyWords[j][k].Word);
-            }
-          }
-        }
-      }
+      data.anatomy_words = groupWordsArrMan(curriculum.group.anatomyWords);
     }
-    data.bathroom_words = bathroom_words;
-    data.anatomy_words = anatomy_words;
+
+
     var handleSuccess = function (data) {
       messagesFactory.submitGroupwordsSuccess(data);
     };
@@ -326,6 +323,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     }
     return Object.keys(obj);
   };
+
   curriculum.deleteListener = function (word) {
     var modalInstance = $uibModal.open({
       templateUrl: 'components/account/curriculum/delete-word.html',
@@ -390,6 +388,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       }]
     });
   };
+
   function clearCustomWordData(curriculumForm) {
     curriculum.model.wordItem.wordName = "";
     curriculumForm.$setPristine();
@@ -588,6 +587,14 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       getBannedWordsList();
     };
 
+    var handleError = function(){
+      if (status === 401) {
+        authService.generateNewToken(function () {
+          curriculum.onAddBanWord(banWordForm);
+        });
+      }
+    };
+
     if (curriculum.model.banWord) {
       var banWordObj = {"word": curriculum.model.banWord};
       CurriculumService.createBannedWordAPI(userID, banWordObj)
@@ -599,6 +606,14 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   curriculum.onDeleteBanWord = function (banWord) {
     var handleSuccess = function () {
       getBannedWordsList();
+    };
+
+    var handleError = function(){
+      if (status === 401) {
+        authService.generateNewToken(function () {
+          curriculum.onDeleteBanWord(banWord);
+        });
+      }
     };
 
     var modalInstance = $uibModal.open({
@@ -618,9 +633,18 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       }]
     });
   };
+
   function getBannedWordsList() {
-    var handleSuccess = function () {
+    var handleSuccess = function (data) {
       curriculum.model.bannedWordList = data;
+    };
+
+    var handleError = function(){
+      if (status === 401) {
+        authService.generateNewToken(function () {
+          getBannedWordsList();
+        });
+      }
     };
 
     CurriculumService.getBannedWordsAPI(userID)

@@ -18,7 +18,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.wordsData = [];
   player.lettersWordsData = [];
   player.nonsenseWordsData = [];
-  player.realWordsData = [];
   player.csvData = [];
   player.isNoPlayer = false;
   player.getAllplayers = false;
@@ -372,7 +371,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   function getRealWords(childId) {
     var handleSuccess = function (data) {
       if (data.length > 0) {
-
+        player.realWordsData = [];
         var realWordObj = {},
             lastAttempts = [],
             wordDate, formatedwordDate, utcSeconds, d;
