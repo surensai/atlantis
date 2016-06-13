@@ -13,6 +13,10 @@ angular.module('app').factory('utilsFactory', [function () {
     return newArr;
   };
 
+  factory.dateFormatterForCSV = function (date) {
+      return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+  };
+
   return factory;
 
 }]);

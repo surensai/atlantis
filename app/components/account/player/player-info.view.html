@@ -253,25 +253,17 @@
             </thead>
             <tbody>
             <tr data-ng-repeat="word in player.realWordsData | orderBy:player.predicate:player.reverse">
-              <!-- Real Word  -->
+
               <td class="player-words text-ellipsis word-text">{{ word._id}}</td>
-              <!-- Correct  -->
+              <td> {{word.correctAttempts}} </td>
+              <td> {{word.inCorrectAttempts}} </td>
               <td>
-                {{word.correctCount}}
-              </td>
-              <!-- Incorrect  -->
-              <td>
-                {{word.inCorrectCount}}
-              </td>
-              <!-- Last Attempt  -->
-              <td>
-                <span data-ng-repeat="gameAttObj in word.gameAttempts track by $index">
+                <span data-ng-repeat="gameAttObj in word.lastAttempts track by $index">
                   <img data-ng-if="gameAttObj > 0" src="assets/images/tick.png" width="15"/>
-                  <img data-ng-if="gameAttObj === 0" src="assets/images/wrong.png" width="15"/>
+                  <img data-ng-if="gameAttObj == 0" src="assets/images/wrong.png" width="15"/>
                 </span>
               </td>
-              <!-- Last Played  -->
-              <td class="word-date" am-time-ago="word.endtime"></td>
+              <td class="word-date" am-time-ago="word.lastAttemptedOn"></td>
             </tr>
             <tr data-ng-if="player.realWordsData.length === 0">
               <td colspan="5" class="no-data" data-translate="common.nodata"> No Data</td>

@@ -8,6 +8,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
 
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
+    // You can set up the dev / prod
     $rootScope.base_url = appService.setEnvironment('prod');
     $rootScope.globals = $cookieStore.get('globals') || {};
 
@@ -284,20 +285,6 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     controllerAs: "self",
     data: {
       pageTitle: 'Square Panda - terms-services'
-    }
-  }).state('admin', {
-    url: '/admin',
-    templateUrl: "layout/account-nav.html",
-    data: {
-      pageTitle: 'Square Panda Inc.'
-    }
-  }).state('admin.firmware-update', {
-    url: '/firmware-update',
-    templateUrl: urlBuilder('admin/firmware-update', 'firmware'),
-    controller: 'firmwareCtrl',
-    controllerAs: "firmware",
-    data: {
-      pageTitle: 'Square Panda Inc.'
     }
   });
 

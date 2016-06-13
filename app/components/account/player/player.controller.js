@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', 'flashService', '$uibModal', '$translate', 'AuthenticationService', '_', function ($timeout, $rootScope, $state, PlayerService, messagesFactory, flashService, $uibModal, $translate, authService, _) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', 'flashService', '$uibModal', '$translate', 'AuthenticationService', '_', 'utilsFactory', function ($timeout, $rootScope, $state, PlayerService, messagesFactory, flashService, $uibModal, $translate, authService, _, utilsFactory) {
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
 
   var player = this;
@@ -96,8 +96,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       case "Letters":
         getLettersWords(player.playerObj.id);
         break;
-
-
     }
   };
 
@@ -374,49 +372,42 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   function getRealWords(childId) {
     var handleSuccess = function (data) {
       if (data.length > 0) {
-        player.realWordsData = data;
-        var wordDate, formatedwordDate, utcSeconds, d;
 
-        for (var i = 0; i < player.realWordsData.length; i++) {
-          wordDate = new Date(player.realWordsData[i].endtime * 1000);
-          formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
+        var realWordObj = {},
+            lastAttempts = [],
+            wordDate, formatedwordDate, utcSeconds, d;
 
-          utcSeconds = player.realWordsData[i].endtime;
-          // The 0 there is the key, which sets the date to the epoch
+        for (var realWordIndex = 0; realWordIndex < data.length; realWordIndex++) {
+          realWordObj = data[realWordIndex];
+          realWordObj.correctAttempts = _.filter(realWordObj.gameAttempts, function(item){
+            return item === "1";
+          }).length;
+          realWordObj.inCorrectAttempts = _.filter(realWordObj.gameAttempts, function(item){
+            return item === "0";
+          }).length;
+
+          if(realWordObj.gameAttempts.length > 5){
+            lastAttempts = angular.copy(realWordObj.gameAttempts);
+            lastAttempts.slice(Math.max(realWordObj.gameAttempts.length - 5, 1))
+          } else {
+            lastAttempts = angular.copy(realWordObj.gameAttempts);
+          }
+
+          realWordObj.lastAttempts = lastAttempts;
+          utcSeconds = realWordObj.endtime;
           d = new Date(0);
           d.setUTCSeconds(utcSeconds);
+          realWordObj.lastAttemptedOn = d;
+          player.realWordsData.push(realWordObj);
 
-          var obj = {};
-          obj.Words = player.realWordsData[i]._id;
-          obj.LastPlayed = player.realWordsData[i].endtime;
-          player.realWordsData[i].endtime = d;
-          //player.realWordsData[i].activity = JSON.parse(player.realWordsData[i].activity[0]);
-          obj.Attempts = player.realWordsData[i].activity.length;
-          obj.correctCount = 0;
-          obj.inCorrectCount = 0;
-          obj.gameAttempts = player.realWordsData[i].gameAttempts;
-          if (!obj.gameAttempts || obj.gameAttempts.length === 0) {
-            obj.gameAttempts = [];
-          }
-          for (var corrtIncrtCounter = 0; corrtIncrtCounter < obj.gameAttempts.length; corrtIncrtCounter++) {
-            if (obj.gameAttempts[corrtIncrtCounter] === 1) {
-              obj.correctCount++;
-            } else if (obj.gameAttempts[corrtIncrtCounter] === 0) {
-              obj.inCorrectCount++;
-            }
-          }
-          obj.gameAttempts.reverse();
-          //update the UI also
-          player.realWordsData[i].gameAttempts = obj.gameAttempts;
-          player.realWordsData[i].correctCount = obj.correctCount;
-          player.realWordsData[i].inCorrectCount = obj.inCorrectCount;
           realWordsCsv.push({
-            Words: obj.Words,
-            Correct: obj.correctCount,
-            Incorrect: obj.inCorrectCount,
-            LastPlayed: formatedwordDate,
-            LastAttempts: obj.gameAttempts.join(",")
+            Words: realWordObj._id,
+            Correct: realWordObj.correctAttempts,
+            Incorrect: realWordObj.inCorrectAttempts,
+            LastAttempts: realWordObj.lastAttempts.join(","),
+            LastPlayed: utilsFactory.dateFormatterForCSV(realWordObj.lastAttemptedOn)
           });
+
         }
       }
     };
