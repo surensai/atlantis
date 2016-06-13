@@ -291,7 +291,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     }
   };
 
-  service.createPlayerError = function(status ,error) {
+  service.createPlayerError = function(error ) {
 
     flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
   };
