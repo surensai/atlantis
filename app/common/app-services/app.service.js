@@ -11,9 +11,9 @@ angular.module('app').factory('appService', [ '$rootScope','$timeout', function 
 
   service.handleOffline = function(){
 
-    function updateOnlineStatus(event) {
+    function updateOnlineStatus() {
       var condition = navigator.onLine ? "online" : "offline";
-      alert(condition);
+      console.log(condition);
     }
     window.addEventListener('online', updateOnlineStatus);
     window.addEventListener('offline', updateOnlineStatus);

@@ -24,7 +24,7 @@ angular.module("app").controller('staticCtrl', [ '$state','StaticService','$sce'
       self.contentFrameURL = data.htmlView;
     };
 
-    var handleError = function (error) {
+    var handleError = function () {
       if(status === 401){
         authService.generateNewToken(function(){
           getWarrentyContent();
@@ -45,7 +45,7 @@ angular.module("app").controller('staticCtrl', [ '$state','StaticService','$sce'
       self.contentFrameURL = data.htmlView;
     };
 
-    var handleError = function (error) {
+    var handleError = function () {
       if(status === 401){
         authService.generateNewToken(function(){
           getPrivacyContent();

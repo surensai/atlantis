@@ -108,6 +108,11 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     };
     var handleError = function (error, status) {
       if (status === 401) {
+        authService.generateNewToken(function () {
+          CurriculumService.uploadMultipleFileApi(fileObjArr)
+            .success(handleSuccess)
+            .error(handleError);
+        });
       }
       else {
         messagesFactory.uploadfileError(status);
@@ -431,7 +436,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       if (angular.isArray(word.imageURL)) {
         for (var imgCounter = 0; imgCounter < word.imageURL.length; imgCounter++) {
           imgObj = {fileObj: null, image64Bit: word.imageURL[imgCounter]};
-          imageURLArr.push(imgObj)
+          imageURLArr.push(imgObj);
         }
       } else {
         imgObj = {fileObj: null, image64Bit: word.imageURL};
@@ -577,14 +582,12 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
 
   //Create Banned Word
   curriculum.onAddBanWord = function (banWordForm) {
-    var handleSuccess = function (data) {
+    var handleSuccess = function () {
       curriculum.model.banWord = "";
       banWordForm.$setPristine();
       getBannedWordsList();
     };
-    var handleError = function (error, status) {
 
-    };
     if (curriculum.model.banWord) {
       var banWordObj = {"word": curriculum.model.banWord};
       CurriculumService.createBannedWordAPI(userID, banWordObj)
@@ -594,12 +597,10 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   };
   //Delete Banned Word
   curriculum.onDeleteBanWord = function (banWord) {
-    var handleSuccess = function (data) {
+    var handleSuccess = function () {
       getBannedWordsList();
     };
-    var handleError = function (error, status) {
 
-    };
     var modalInstance = $uibModal.open({
       templateUrl: 'components/account/curriculum/delete-word.html',
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
@@ -618,12 +619,10 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     });
   };
   function getBannedWordsList() {
-    var handleSuccess = function (data) {
+    var handleSuccess = function () {
       curriculum.model.bannedWordList = data;
     };
-    var handleError = function (error, status) {
 
-    };
     CurriculumService.getBannedWordsAPI(userID)
       .success(handleSuccess)
       .error(handleError);
