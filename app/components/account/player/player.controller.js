@@ -730,38 +730,49 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   player.getCSVHeader = function (wordType) {
     var arr = [];
-    if (wordType === "word") {
-      arr[0] = $translate.instant("player.word_headers.words");
-      arr[1] = $translate.instant("player.word_headers.attempts");
-      arr[2] = $translate.instant("player.word_headers.last_played");
-    } else if (wordType === "letterword") {
-      arr[0] = $translate.instant("player.letter_headers.letters");
-      arr[1] = $translate.instant("player.letter_headers.inputs");
-      arr[2] = $translate.instant("player.letter_headers.last_played");
-      arr[3] = $translate.instant("player.letter_headers.last_attempt");
-    } else if (wordType === "nonsenseword") {
-      arr[0] = $translate.instant("player.nonsense_headers.nonsense_words");
-      arr[1] = $translate.instant("player.nonsense_headers.times");
-      arr[2] = $translate.instant("player.nonsense_headers.last_played");
-    } else if (wordType === "realword") {
-      arr[0] = $translate.instant("player.real_word_headers.real_words");
-      arr[1] = $translate.instant("player.real_word_headers.correct");
-      arr[2] = $translate.instant("player.real_word_headers.incorrect");
-      arr[3] = $translate.instant("player.real_word_headers.last_played");
-      arr[4] = $translate.instant("player.real_word_headers.last_attempt");
+    switch(wordType) {
+      case "word":
+        arr[0] = $translate.instant("player.word_headers.words");
+        arr[1] = $translate.instant("player.word_headers.attempts");
+        arr[2] = $translate.instant("player.word_headers.last_played");
+        break;
+      case "letterword":
+        arr[0] = $translate.instant("player.letter_headers.letters");
+        arr[1] = $translate.instant("player.letter_headers.inputs");
+        arr[2] = $translate.instant("player.letter_headers.last_played");
+        arr[3] = $translate.instant("player.letter_headers.last_attempt");
+        break;
+      case "nonsenseword":
+        arr[0] = $translate.instant("player.nonsense_headers.nonsense_words");
+        arr[1] = $translate.instant("player.nonsense_headers.times");
+        arr[2] = $translate.instant("player.nonsense_headers.last_played");
+        break;
+      case "realword":
+        arr[0] = $translate.instant("player.real_word_headers.real_words");
+        arr[1] = $translate.instant("player.real_word_headers.correct");
+        arr[2] = $translate.instant("player.real_word_headers.incorrect");
+        arr[3] = $translate.instant("player.real_word_headers.last_played");
+        arr[4] = $translate.instant("player.real_word_headers.last_attempt");
+        break;
     }
     return arr;
   };
 
   player.getWordsExportData = function (wordType) {
-    if (wordType === "word") {
-      return wordsCsv;
-    } else if (wordType === "letterword") {
-      return lettersWordsCsv;
-    } else if (wordType === "nonsenseword") {
-      return nonsenseWordsCsv;
-    } else if (wordType === "realword") {
-      return realWordsCsv;
+
+    switch(wordType) {
+      case "word":
+        return wordsCsv;
+        break;
+      case "letterword":
+        return lettersWordsCsv;
+        break;
+      case "nonsenseword":
+        return nonsenseWordsCsv;
+        break;
+      case "realword":
+        return realWordsCsv;
+        break;
     }
 
   };
@@ -769,6 +780,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.getWordsClickHandler = function () {
     getWords(player.playerObj.id);
   };
+
 }]);
 
 app.directive('resize', function ($window) {
