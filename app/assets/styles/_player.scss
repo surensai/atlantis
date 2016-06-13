@@ -382,6 +382,9 @@ a .delete-player-back-button:hover{
           .active-big-badge {
             position: absolute;
             left: 50%;
+            -webkit-box-shadow: 5px 10px 0px rgba(0, 0, 0, 0);
+            -moz-box-shadow: 10px 10px 0px rgba(0, 0, 0, 0);
+            box-shadow: 5px 5px 0px rgba(0, 0, 0, 0);
             transform: translateX(-50%);
             -ms-transform: translateX(-50%);
             -webkit-transform: translateX(-50%);
