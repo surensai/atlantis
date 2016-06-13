@@ -5,7 +5,7 @@
  */
 
 "use strict";
-angular.module("app").directive('imageLoadCompleteEvt', function ($window) {
+angular.module("app").directive('imageLoadCompleteEvt', function () {
   return {
     restrict: 'A',
     scope: {},

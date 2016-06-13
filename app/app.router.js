@@ -120,7 +120,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
       }
       //resend email
       $scope.onResendEmail = function () {
-        var handleSuccess = function (data) {
+        var handleSuccess = function () {
           //sent mail - common for both
         };
         var handleError = function (error, status) {
