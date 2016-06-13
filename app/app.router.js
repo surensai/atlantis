@@ -8,7 +8,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
 
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
-    $rootScope.base_url = "http://ec2-52-71-125-138.compute-1.amazonaws.com";
+    $rootScope.base_url = appService.setEnvironment('prod');
     $rootScope.globals = $cookieStore.get('globals') || {};
 
     if ($rootScope.globals && $rootScope.globals.currentUser) {
