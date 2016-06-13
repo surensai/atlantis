@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messagesFactory', '$state', '$stateParams', '$rootScope','AuthenticationService', function (DashboardService, messagesFactory, $state, $stateParams, $rootScope,authService) {
+angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messagesFactory', '$state', '$stateParams', '$rootScope', 'AuthenticationService', function (DashboardService, messagesFactory, $state, $stateParams, $rootScope, authService) {
   var dashboard = this;
   var welcomefeed = $rootScope.globals.currentUser.welcomefeed;
   dashboard.userName = $rootScope.globals.currentUser;
@@ -33,10 +33,11 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
         tempNewsFeedArr.push(data[newsFeedCounter]);
       }
     }
+    tempNewsFeedArr = sortArrayByTime(tempNewsFeedArr);
     return tempNewsFeedArr;
   }
 
-  function loadFeedData(){
+  function loadFeedData() {
     var handleSuccess = function (data) {
       if ($stateParams.id) {
         var tempArr = [];
@@ -64,19 +65,17 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
       } else {
         dashboard.isUserFirstTimeLoggedIn = false;
       }
-
     };
 
     var handleError = function (error, status) {
-      if(status === 401){
-        authService.generateNewToken(function(){
+      if (status === 401) {
+        authService.generateNewToken(function () {
           loadFeedData();
         });
       }
       else {
         messagesFactory.dashboardfeedsError(status);
       }
-
     };
 
     DashboardService.getAllApi()
@@ -84,7 +83,15 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
       .error(handleError);
   }
 
-
-
+  //sort news feed
+  function sortArrayByTime(arrObj) {
+    if (arrObj && arrObj.length > 0) {
+      arrObj = _.sortBy(arrObj, "updatedAt");
+      arrObj.reverse();
+      return arrObj;
+    } else {
+      return [];
+    }
+  }
 
 }]);
