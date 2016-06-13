@@ -332,6 +332,12 @@
       "last_played": "Last Played",
       "last_attempt": "Last Attempt"
     },
+    "words":{
+      "all":"All",
+      "real_words":"Real Words",
+      "nonsense_words":"Nonsense Words",
+      "letters":"Letters"
+    },
     "messages": {
       "file_type_wrong":"File Type is wrong. Only allows images.",
       "dob_notvalid": "Please select the player's date of birth.",

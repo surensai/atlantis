@@ -6,7 +6,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   var player = this;
   player.maxPlayersLimit = $rootScope.globals.currentUser.playerLimit;
   player.model = {};
-  player.model.wordTypeUI = "Word";
+  player.model.wordTypeUI = "All";
   player.chartData = {};
   player.highchartsNG = getChartObj();
   player.data = {};
@@ -88,15 +88,17 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       case "Word":
         getWords(player.playerObj.id);
         break;
-      case "Letter Word":
-        getLettersWords(player.playerObj.id);
-        break;
-      case "Nonsense Word":
-        getNonsenseWords(player.playerObj.id);
-        break;
-      case "Real Word":
+      case "Real Words":
         getRealWords(player.playerObj.id);
         break;
+      case "Nonsense Words":
+        getNonsenseWords(player.playerObj.id);
+        break;
+      case "Letters":
+        getLettersWords(player.playerObj.id);
+        break;
+
+
     }
   };
 
