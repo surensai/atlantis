@@ -245,7 +245,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         player.wordsData = data;
         var wordDate, formatedwordDate, utcSeconds, d;
         for (var i = 0; i < player.wordsData.length; i++) {
-          wordDate = new Date(player.wordsData[i].endtime*1000);
+          wordDate = new Date(player.wordsData[i].endtime * 1000);
           formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
 
           utcSeconds = player.wordsData[i].endtime;
@@ -290,7 +290,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         player.lettersWordsData = data;
         var wordDate, formatedwordDate, utcSeconds, d;
         for (var i = 0; i < player.lettersWordsData.length; i++) {
-          wordDate = new Date(player.lettersWordsData[i].value.LatestRepeatedTime*1000);
+          wordDate = new Date(player.lettersWordsData[i].value.LatestRepeatedTime * 1000);
           formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
           utcSeconds = player.lettersWordsData[i].value.LatestRepeatedTime;
           // The 0 there is the key, which sets the date to the epoch
@@ -331,7 +331,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
         var wordDate, formatedwordDate, utcSeconds, d;
         for (var i = 0; i < player.nonsenseWordsData.length; i++) {
-          wordDate = new Date(player.nonsenseWordsData[i].endtime*1000);
+          wordDate = new Date(player.nonsenseWordsData[i].endtime * 1000);
           formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
 
           utcSeconds = player.nonsenseWordsData[i].endtime;
@@ -378,7 +378,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         var wordDate, formatedwordDate, utcSeconds, d;
 
         for (var i = 0; i < player.realWordsData.length; i++) {
-          wordDate = new Date(player.realWordsData[i].endtime*1000);
+          wordDate = new Date(player.realWordsData[i].endtime * 1000);
           formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
 
           utcSeconds = player.realWordsData[i].endtime;
@@ -503,7 +503,11 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     minutes = parseInt(seconds / 60, 10);
     hours = parseInt(minutes / 60, 10);
     minutes = minutes % 60;
-    playerHighlightObj.timePlayedInMin = hours + ":" + minutes;
+    if (minutes || hours) {
+      playerHighlightObj.timePlayedInMin = hours + ":" + minutes;
+    } else {
+      playerHighlightObj.timePlayedInMin = "0";
+    }
     return playerHighlightObj;
   }
 
@@ -735,7 +739,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   player.getCSVHeader = function (wordType) {
     var arr = [];
-    switch(wordType) {
+    switch (wordType) {
       case "word":
         arr[0] = $translate.instant("player.word_headers.words");
         arr[1] = $translate.instant("player.word_headers.attempts");
@@ -764,7 +768,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   player.getWordsExportData = function (wordType) {
 
-    switch(wordType) {
+    switch (wordType) {
       case "word":
         return wordsCsv;
         break;
