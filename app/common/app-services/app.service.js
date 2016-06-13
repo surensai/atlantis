@@ -2,18 +2,11 @@
 angular.module('app').factory('appService', [ '$rootScope','$timeout', function ($rootScope, $timeout) {
   var service = {};
 
-  /**
-   * Offline Manage
-   * @param  {String}   url
-   * @param  {Function} callback
-   * @param  {String}   [outputFormat=image/png]
-   */
-
   service.handleOffline = function(){
 
     function updateOnlineStatus() {
       var condition = navigator.onLine ? "online" : "offline";
-      console.log(condition);
+      alert(condition);
     }
     window.addEventListener('online', updateOnlineStatus);
     window.addEventListener('offline', updateOnlineStatus);
@@ -29,6 +22,14 @@ angular.module('app').factory('appService', [ '$rootScope','$timeout', function 
     $timeout(function() {
       $rootScope.isFooterFix = $('body').hasScrollBar();
     }, 200);
+  };
+
+  service.setEnvironment = function(type){
+    if(type === 'dev'){
+      return 'http://ec2-52-71-125-138.compute-1.amazonaws.com';
+    } else if(type === "prod"){
+      return 'http://ec2-52-203-16-188.compute-1.amazonaws.com';
+    }
   };
 
   return service;
