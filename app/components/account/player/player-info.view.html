@@ -334,13 +334,8 @@
             <tbody>
             <tr data-ng-repeat="word in player.lettersWordsData | orderBy:player.predicate:player.reverse">
               <td class="player-words text-ellipsis word-text">{{ word._id}}</td>
-              <td class="word-icons">{{ word.activity.length}}</td>
-              <td class="word-date" am-time-ago="word.endtime"></td>
-              <td data-ng-if="word.gamescore > 0" class="word-check"><img src="assets/images/tick.png" width="15"/>
-              </td>
-              <td data-ng-if="word.gamescore == 0" class="word-check">
-                <img src="assets/images/wrong.png" width="15"/>
-              </td>
+              <td class="word-icons">{{ word.value.repeatedTimes}}</td>
+              <td class="word-date" am-time-ago="word.value.LatestRepeatedTime"></td>
             </tr>
             <tr data-ng-if="player.lettersWordsData.length === 0">
               <td colspan="5" class="no-data" data-translate="common.nodata"> No Data</td>
