@@ -22,7 +22,7 @@ angular.module("app").controller('loginCtrl', ['$scope', '$state', 'Authenticati
     }
   };
 
-  login.onResendEmail = function (form) {
+  login.onResendEmail = function () {
     var handleSuccess = function (data) {
       messagesFactory.registerSuccessMessages(data);
       $state.go('messages', {data: {"email": login.model.email}});

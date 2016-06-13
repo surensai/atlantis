@@ -292,12 +292,12 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
   };
 
   service.createPlayerError = function(status ,error) {
-    var message;
+
     flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
   };
 
   service.updatePlayerSuccess = function(successObj) {
-    var message;
+
     if (successObj) {
       flashService.showSuccess($translate.instant("player.messages.edit_player_success"), true);
     }

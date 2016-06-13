@@ -95,7 +95,7 @@ angular.module('app').factory('AuthenticationService', ['$http', '$cookieStore',
       if (cb) {
         cb();
       }
-    }).error(function (data) {
+    }).error(function () {
       $state.go("login");
     });
   };
