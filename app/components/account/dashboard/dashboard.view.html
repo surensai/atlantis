@@ -8,14 +8,13 @@
           <img data-ng-if="!feedItem.image_url" src="assets/images/no-image.png"
                class="img-responsive feed-img img-radius" image-load-complete-evt/>
 
-          <img data-ng-if="feedItem.image_url && !feedItem.player_avatar" data-ng-src="{{feedItem.image_url}}"
+          <img data-ng-if="feedItem.image_url && feedItem.category !== 'Analytics'" data-ng-src="{{feedItem.image_url}}"
                class="img-responsive feed-img img-radius hide-img"
                ng-class="{ 'first-imgsize':$index ==0, 'second-imgsize': $index == 1}"
                image-load-complete-evt="{{feedItem}}"/>
 
-          <img data-ng-if="feedItem.image_url && feedItem.category === 'Analytics' && feedItem.player_avatar"
-               data-ng-src="{{feedItem.image_url}}" image-load-complete-evt="{{feedItem}}" height="276"
-            />
+          <img data-ng-if="feedItem.category === 'Analytics'"
+               data-ng-src="{{feedItem.image_url}}" image-load-complete-evt="{{feedItem}}" height="276" />
           <span class="feed-img-loader">
               <img src="assets/images/img-loader.gif"/>
           </span>
