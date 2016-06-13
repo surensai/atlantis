@@ -45,8 +45,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.lettersHeaders = {
     LettersWords: $translate.instant("player.letter_headers.letters"),
     Inputs: $translate.instant("player.letter_headers.inputs"),
-    LastPlayed: $translate.instant("player.letter_headers.last_played"),
-    LastAttempt: $translate.instant("player.letter_headers.last_attempt")
+    LastPlayed: $translate.instant("player.letter_headers.last_played")
   };
 
   player.nonsenseHeaders = {
@@ -291,25 +290,18 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         player.lettersWordsData = data;
         var wordDate, formatedwordDate, utcSeconds, d;
         for (var i = 0; i < player.lettersWordsData.length; i++) {
-          wordDate = new Date(player.lettersWordsData[i].endtime*1000);
+          wordDate = new Date(player.lettersWordsData[i].value.LatestRepeatedTime*1000);
           formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
-          utcSeconds = player.lettersWordsData[i].endtime;
+          utcSeconds = player.lettersWordsData[i].value.LatestRepeatedTime;
           // The 0 there is the key, which sets the date to the epoch
           d = new Date(0);
           d.setUTCSeconds(utcSeconds);
 
-          var obj = {};
-          obj.Words = player.lettersWordsData[i]._id;
-          player.lettersWordsData[i].endtime = d;
-          obj.LastPlayed = player.lettersWordsData[i].endtime;
-          //player.lettersWordsData[i].activity = JSON.parse(player.lettersWordsData[i].activity[0]);
-          obj.Attempts = player.lettersWordsData[i].activity.length;
-          obj.gamescore = player.lettersWordsData[i].gamescore;
+
           lettersWordsCsv.push({
-            LettersWords: obj.Words,
-            Inputs: obj.Attempts,
-            LastPlayed: formatedwordDate,
-            LastAttempts: obj.gamescore
+            LettersWords: player.lettersWordsData[i]._id,
+            Inputs: player.lettersWordsData[i].value.repeatedTimes,
+            LastPlayed: player.lettersWordsData[i].value.LatestRepeatedTime
           });
         }
       }
@@ -743,38 +735,48 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   player.getCSVHeader = function (wordType) {
     var arr = [];
-    if (wordType === "word") {
-      arr[0] = $translate.instant("player.word_headers.words");
-      arr[1] = $translate.instant("player.word_headers.attempts");
-      arr[2] = $translate.instant("player.word_headers.last_played");
-    } else if (wordType === "letterword") {
-      arr[0] = $translate.instant("player.letter_headers.letters");
-      arr[1] = $translate.instant("player.letter_headers.inputs");
-      arr[2] = $translate.instant("player.letter_headers.last_played");
-      arr[3] = $translate.instant("player.letter_headers.last_attempt");
-    } else if (wordType === "nonsenseword") {
-      arr[0] = $translate.instant("player.nonsense_headers.nonsense_words");
-      arr[1] = $translate.instant("player.nonsense_headers.times");
-      arr[2] = $translate.instant("player.nonsense_headers.last_played");
-    } else if (wordType === "realword") {
-      arr[0] = $translate.instant("player.real_word_headers.real_words");
-      arr[1] = $translate.instant("player.real_word_headers.correct");
-      arr[2] = $translate.instant("player.real_word_headers.incorrect");
-      arr[3] = $translate.instant("player.real_word_headers.last_played");
-      arr[4] = $translate.instant("player.real_word_headers.last_attempt");
+    switch(wordType) {
+      case "word":
+        arr[0] = $translate.instant("player.word_headers.words");
+        arr[1] = $translate.instant("player.word_headers.attempts");
+        arr[2] = $translate.instant("player.word_headers.last_played");
+        break;
+      case "letterword":
+        arr[0] = $translate.instant("player.letter_headers.letters");
+        arr[1] = $translate.instant("player.letter_headers.inputs");
+        arr[2] = $translate.instant("player.letter_headers.last_played");
+        break;
+      case "nonsenseword":
+        arr[0] = $translate.instant("player.nonsense_headers.nonsense_words");
+        arr[1] = $translate.instant("player.nonsense_headers.times");
+        arr[2] = $translate.instant("player.nonsense_headers.last_played");
+        break;
+      case "realword":
+        arr[0] = $translate.instant("player.real_word_headers.real_words");
+        arr[1] = $translate.instant("player.real_word_headers.correct");
+        arr[2] = $translate.instant("player.real_word_headers.incorrect");
+        arr[3] = $translate.instant("player.real_word_headers.last_played");
+        arr[4] = $translate.instant("player.real_word_headers.last_attempt");
+        break;
     }
     return arr;
   };
 
   player.getWordsExportData = function (wordType) {
-    if (wordType === "word") {
-      return wordsCsv;
-    } else if (wordType === "letterword") {
-      return lettersWordsCsv;
-    } else if (wordType === "nonsenseword") {
-      return nonsenseWordsCsv;
-    } else if (wordType === "realword") {
-      return realWordsCsv;
+
+    switch(wordType) {
+      case "word":
+        return wordsCsv;
+        break;
+      case "letterword":
+        return lettersWordsCsv;
+        break;
+      case "nonsenseword":
+        return nonsenseWordsCsv;
+        break;
+      case "realword":
+        return realWordsCsv;
+        break;
     }
 
   };
@@ -782,6 +784,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.getWordsClickHandler = function () {
     getWords(player.playerObj.id);
   };
+
 }]);
 
 app.directive('resize', function ($window) {
