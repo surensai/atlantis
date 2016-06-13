@@ -17,6 +17,13 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
 
     $rootScope.$on('$locationChangeStart', function (event, newUrl, oldUrl) {
       var loggedIn = $rootScope.globals && $rootScope.globals.currentUser;
+
+      if($location.path().indexOf("reset-password") > -1){
+        $rootScope.globals = {};
+        $cookieStore.remove('globals');
+        delete $localStorage.token;
+      }
+
       if (!loggedIn && $location.path().indexOf("account") > 0) {
         event.preventDefault();
         $state.go('login');
