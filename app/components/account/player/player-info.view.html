@@ -7,7 +7,8 @@
            src="assets/images/default-avatar@2x.png" class="retina-display" width="100%" height="100%"/>
       <img data-ng-if="player.playerObj.imgbase64"
            data-ng-src="{{player.playerObj.imgbase64}}" alt="player" width="100%" height="100%"/>
-      <img data-ng-if="!player.playerObj.imgbase64 && player.playerObj.profileURL" data-ng-src="{{player.playerObj.profileURL}}"
+      <img data-ng-if="!player.playerObj.imgbase64 && player.playerObj.profileURL"
+           data-ng-src="{{player.playerObj.profileURL}}"
            class="img-rectangle img-border-radius" alt="player" width="100%" height="100%">
       <a ui-sref="account.editPlayer({ id: player.playerObj.id })">
         <i class="glyphicon glyphicon-edit"></i> <span data-translate="player.edit_player">Edit Player</span> </a>
@@ -19,17 +20,24 @@
     <p>
       <img src="assets/images/badge2.png" width="12" class="non-retina"/>
       <img src="assets/images/badge2@2x.png" width="12" class="retina-display badge-icon-retina"/>
-      <span data-ng-if="!player.highlights.totalPlayedTime" data-translate="player.badges.no_spendtime"> 0 min played this week</span>
-      <span data-ng-if="player.highlights.totalPlayedTime">
+      <span data-ng-if="!player.highlights.totalPlayedTime || player.highlights.timePlayedInMin==0"
+            data-translate="player.badges.no_spendtime">
+        0 min played this week
+      </span>
+      <span data-ng-if="player.highlights.totalPlayedTime && player.highlights.timePlayedInMin!=0">
         <strong>{{player.highlights.timePlayedInMin}}</strong>
-        <span data-translate="player.badges.last_time_played">played this week.</span></span>
+        <span data-translate="player.badges.last_time_played">
+          played this week.
+        </span>
+      </span>
     </p>
 
     <p>
       <img src="assets/images/badge2.png" width="12" class="non-retina"/>
       <img src="assets/images/badge2@2x.png" width="12" class="retina-display badge-icon-retina"/>
       <span data-ng-if="!player.highlights.correctWord" data-translate="player.badges.noword_correct">Most recent word: -</span>
-      <span data-ng-if="player.highlights.correctWord"> <span data-translate="player.badges.recent_word">Most recent word: </span><strong> {{player.highlights.correctWord}}</strong>
+      <span data-ng-if="player.highlights.correctWord"> <span data-translate="player.badges.recent_word">Most recent word: </span><strong>
+        {{player.highlights.correctWord}}</strong>
       </span>
     </p>
 
@@ -116,7 +124,8 @@
                     </a>
                   </div>
                 </div>
-                <highchart id="chartContainer" config="player.highchartsNG"></highchart>
+                <highchart id="chartContainer" config="player.highchartsNG">
+                </highchart>
               </div>
             </div>
           </div>
@@ -316,7 +325,8 @@
            filename="letter_words.csv"
            csv-header="player.getCSVHeader('letterword')"><i class="fa fa-download"></i><span
           data-translate="common.export_csv">Export CSV</span></a>
-          <div class="table-responsive player-words-table">
+
+        <div class="table-responsive player-words-table">
           <table class="table table-striped table-hover borderless ">
             <thead>
             <tr>
