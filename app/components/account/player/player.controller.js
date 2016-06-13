@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', 'flashService', '$uibModal', '$translate','AuthenticationService','_', function ($timeout, $rootScope, $state, PlayerService, messagesFactory, flashService, $uibModal, $translate, authService, _) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', 'flashService', '$uibModal', '$translate', 'AuthenticationService', '_', function ($timeout, $rootScope, $state, PlayerService, messagesFactory, flashService, $uibModal, $translate, authService, _) {
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
 
   var player = this;
   player.maxPlayersLimit = $rootScope.globals.currentUser.playerLimit;
   player.model = {};
-  player.model.wordTypeUI = "Word";
+  player.model.wordTypeUI = "All";
   player.chartData = {};
   player.highchartsNG = getChartObj();
   player.data = {};
@@ -64,11 +64,11 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   };
 
   var wordsCsv = [],
-      lettersWordsCsv = [],
-      nonsenseWordsCsv = [],
-      realWordsCsv = [],
-      daysXAxisLegArr = ["", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      monthsXAxisLegArr = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    lettersWordsCsv = [],
+    nonsenseWordsCsv = [],
+    realWordsCsv = [],
+    daysXAxisLegArr = ["", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    monthsXAxisLegArr = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   player.getKeysOfCollection = function (obj) {
     obj = angular.copy(obj);
@@ -84,19 +84,21 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   })();
 
   player.onWordTypeChanges = function () {
-    switch(player.model.wordTypeUI) {
+    switch (player.model.wordTypeUI) {
       case "Word":
         getWords(player.playerObj.id);
         break;
-      case "Letter Word":
-        getLettersWords(player.playerObj.id);
-        break;
-      case "Nonsense Word":
-        getNonsenseWords(player.playerObj.id);
-        break;
-      case "Real Word":
+      case "Real Words":
         getRealWords(player.playerObj.id);
         break;
+      case "Nonsense Words":
+        getNonsenseWords(player.playerObj.id);
+        break;
+      case "Letters":
+        getLettersWords(player.playerObj.id);
+        break;
+
+
     }
   };
 
@@ -141,7 +143,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     player.showColumn = colIndex;
     var count = 0;
 
-    if( player.bigBadges.length > 0){
+    if (player.bigBadges.length > 0) {
       for (var j = 0; j < player.bigBadges.length; j++) {
         if (player.showRow === j) {
           for (var k = 0; k < player.bigBadges.length; k++) {
@@ -175,9 +177,9 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         //Update the Chart Object to render on UI
         player.highchartsNG = getChartObj(data);
       })
-      .error(function (err,status) {
-        if(status === 401){
-          authService.generateNewToken(function(){
+      .error(function (err, status) {
+        if (status === 401) {
+          authService.generateNewToken(function () {
             getChartDataAPI(badgeId, playerId, chartType);
           });
         }
@@ -206,9 +208,9 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
             player.playerObj = data;
             player.getAllplayers = true;
           })
-          .error(function (err,status) {
-            if(status === 401){
-              authService.generateNewToken(function(){
+          .error(function (err, status) {
+            if (status === 401) {
+              authService.generateNewToken(function () {
                 getPlayers();
               });
             }
@@ -221,8 +223,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       }
     };
     var handleError = function (error, status) {
-      if(status === 401){
-        authService.generateNewToken(function(){
+      if (status === 401) {
+        authService.generateNewToken(function () {
           getPlayers();
         });
       }
@@ -244,7 +246,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         player.wordsData = data;
         var wordDate, formatedwordDate, utcSeconds, d;
         for (var i = 0; i < player.wordsData.length; i++) {
-          wordDate = new Date(parseInt(player.wordsData[i].endtime * 1000));
+          wordDate = new Date(player.wordsData[i].endtime*1000);
           formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
 
           utcSeconds = player.wordsData[i].endtime;
@@ -267,8 +269,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     };
 
     var handleError = function (error, status) {
-      if(status === 401){
-        authService.generateNewToken(function(){
+      if (status === 401) {
+        authService.generateNewToken(function () {
           getWords(childId);
         });
       }
@@ -289,7 +291,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         player.lettersWordsData = data;
         var wordDate, formatedwordDate, utcSeconds, d;
         for (var i = 0; i < player.lettersWordsData.length; i++) {
-          wordDate = new Date(parseInt(player.wordsData[i].endtime * 1000));
+          wordDate = new Date(player.lettersWordsData[i].endtime*1000);
           formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
           utcSeconds = player.lettersWordsData[i].endtime;
           // The 0 there is the key, which sets the date to the epoch
@@ -298,10 +300,10 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
           var obj = {};
           obj.Words = player.lettersWordsData[i]._id;
-          player.lettersWordsData[i].activity = JSON.parse(player.lettersWordsData[i].activity[0]);
-          obj.Attempts = player.lettersWordsData[i].activity.length;
           player.lettersWordsData[i].endtime = d;
           obj.LastPlayed = player.lettersWordsData[i].endtime;
+          //player.lettersWordsData[i].activity = JSON.parse(player.lettersWordsData[i].activity[0]);
+          obj.Attempts = player.lettersWordsData[i].activity.length;
           obj.gamescore = player.lettersWordsData[i].gamescore;
           lettersWordsCsv.push({
             LettersWords: obj.Words,
@@ -314,8 +316,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     };
 
     var handleError = function (error, status) {
-      if(status === 401){
-        authService.generateNewToken(function(){
+      if (status === 401) {
+        authService.generateNewToken(function () {
           getLettersWords(childId);
         });
       }
@@ -337,7 +339,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
         var wordDate, formatedwordDate, utcSeconds, d;
         for (var i = 0; i < player.nonsenseWordsData.length; i++) {
-          wordDate = new Date(parseInt(player.wordsData[i].endtime * 1000));
+          wordDate = new Date(player.nonsenseWordsData[i].endtime*1000);
           formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
 
           utcSeconds = player.nonsenseWordsData[i].endtime;
@@ -347,10 +349,10 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
           var obj = {};
           obj.Words = player.nonsenseWordsData[i]._id;
-          player.nonsenseWordsData[i].activity = JSON.parse(player.nonsenseWordsData[i].activity[0]);
-          obj.Attempts = player.nonsenseWordsData[i].activity.length;
           obj.LastPlayed = player.nonsenseWordsData[i].endtime;
           player.nonsenseWordsData[i].endtime = d;
+          //player.nonsenseWordsData[i].activity = JSON.parse(player.nonsenseWordsData[i].activity[0]);
+          obj.Attempts = player.nonsenseWordsData[i].activity.length;
           nonsenseWordsCsv.push({
             NonsenseWords: obj.Words,
             Times: obj.Attempts,
@@ -361,8 +363,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     };
 
     var handleError = function (error, status) {
-      if(status === 401){
-        authService.generateNewToken(function(){
+      if (status === 401) {
+        authService.generateNewToken(function () {
           getNonsenseWords(childId);
         });
       }
@@ -384,7 +386,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         var wordDate, formatedwordDate, utcSeconds, d;
 
         for (var i = 0; i < player.realWordsData.length; i++) {
-          wordDate = new Date(parseInt(player.wordsData[i].endtime * 1000));
+          wordDate = new Date(player.realWordsData[i].endtime*1000);
           formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
 
           utcSeconds = player.realWordsData[i].endtime;
@@ -394,10 +396,10 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
           var obj = {};
           obj.Words = player.realWordsData[i]._id;
-          player.realWordsData[i].activity = JSON.parse(player.realWordsData[i].activity[0]);
-          obj.Attempts = player.realWordsData[i].activity.length;
           obj.LastPlayed = player.realWordsData[i].endtime;
           player.realWordsData[i].endtime = d;
+          //player.realWordsData[i].activity = JSON.parse(player.realWordsData[i].activity[0]);
+          obj.Attempts = player.realWordsData[i].activity.length;
           obj.correctCount = 0;
           obj.inCorrectCount = 0;
           obj.gameAttempts = player.realWordsData[i].gameAttempts;
@@ -428,8 +430,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     };
 
     var handleError = function (error, status) {
-      if(status === 401){
-        authService.generateNewToken(function(){
+      if (status === 401) {
+        authService.generateNewToken(function () {
           getRealWords(childId);
         });
       }
@@ -451,11 +453,11 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     };
 
     var handleError = function (error, status) {
-      if(status === 401){
-        AuthenticationService.generateNewToken(function(){
+      if (status === 401) {
+        AuthenticationService.generateNewToken(function () {
           getMinibadges(playerId);
         });
-      }else{
+      } else {
         messagesFactory.getminibadgessError(status);
       }
     };
@@ -471,12 +473,12 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         player.bigBadges = sortWordsData(data);
         splitBadgesData();
       })
-      .error(function (err,status) {
-        if(status === 401){
-          AuthenticationService.generateNewToken(function(){
+      .error(function (err, status) {
+        if (status === 401) {
+          AuthenticationService.generateNewToken(function () {
             getBigBadges(playerId);
           });
-        }else{
+        } else {
           flashService.showError($translate.instant("player.messages.error_getting_players"), false);
         }
       });
@@ -484,15 +486,15 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   function getPlayerHighlights(playerId) {
     var handleSuccess = function (data) {
-      player.highlights = data;
+      player.highlights = parsePlayerHighlitsData(data);
     };
 
     var handleError = function (error, status) {
-      if(status === 401){
-        AuthenticationService.generateNewToken(function(){
+      if (status === 401) {
+        AuthenticationService.generateNewToken(function () {
           getPlayerHighlights(playerId);
         });
-      }else{
+      } else {
         messagesFactory.getminibadgessError(status);
       }
     };
@@ -500,6 +502,17 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     PlayerService.getPlayerHighlightsApi(playerId)
       .success(handleSuccess)
       .error(handleError);
+  }
+
+  //Parse Player Data
+  function parsePlayerHighlitsData(data) {
+    var playerHighlightObj = data;
+    var seconds = (playerHighlightObj.totalPlayedTime / 1000), minutes, hours;
+    minutes = parseInt(seconds / 60, 10);
+    hours = parseInt(minutes / 60, 10);
+    minutes = minutes % 60;
+    playerHighlightObj.timePlayedInMin = hours + ":" + minutes;
+    return playerHighlightObj;
   }
 
   function splitBadgesData() {
