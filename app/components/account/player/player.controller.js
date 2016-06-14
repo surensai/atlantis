@@ -374,7 +374,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         player.realWordsData = [];
         var realWordObj = {},
             lastAttempts = [],
-            wordDate, formatedwordDate, utcSeconds, d;
+            utcSeconds, d;
 
         for (var realWordIndex = 0; realWordIndex < data.length; realWordIndex++) {
           realWordObj = data[realWordIndex];
