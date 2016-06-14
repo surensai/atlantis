@@ -10,11 +10,11 @@
       </div>
       <div class="panel-body add-customword-panle-body">
 
-        <div class="add-custom-word ">
+        <div class="add-custom-word clearfix">
           <form name="curriculumForm" novalidate
                 data-ng-submit="curriculum.searchWord(curriculum.model.wordItem.wordName, curriculumForm)">
 
-            <div>
+            <div class="col-md-6">
               <p data-translate="curriculum.description.text">Add any word you like into your own personalized Square
                 Panda word bank! In addition to over 4,000 words
                 in our database, be sure your child's very own special words are included in their games! Some ideas
@@ -30,11 +30,10 @@
               </p>
             </div>
 
-            <div class="custom-word-add-form">
+            <div class="custom-word-add-form col-md-6">
               <div class="cw-content clearfix">
                 <div class="cw-input clearfix">
-                  <div class="col-md-3"></div>
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <input type="text" class="form-control" placeholder="{{ 'curriculum.type_word' | translate }}"
                            data-ng-model="curriculum.model.wordItem.wordName" name="word" ng-pattern="/^[A-z][A-z]*$/"
                            ng-minlength="1" ng-maxlength="8" autocomplete="off" required>
@@ -60,11 +59,9 @@
                       <span data-translate="common.messages.word_length"> Must be between 1 and 8 characters.</span>
                     </div>
                   </div>
-                  <div class="col-md-3"></div>
                 </div>
                 <div class="cw-images clearfix">
-                  <div class="col-md-3"></div>
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <div class="cw-sel-img" data-ng-repeat="imgObj in curriculum.model.customWrdImgArr"
                          data-ng-if="curriculum.model.customWrdImgArr.length > 0">
                       <i class="fa fa-times delete delet-img"
@@ -82,8 +79,6 @@
                       <span>Supported formats .jpg .png .gif</span>
                     </div>
                   </div>
-
-                  <div class="col-md-3"></div>
                 </div>
                 <div class="form-group center-align nomargin">
 
