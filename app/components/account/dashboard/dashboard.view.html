@@ -21,6 +21,15 @@
         </div>
         <div class="col-md-7 nopadding">
           <div class="panel-body">
+            <div class="newsfeed-player-profile-pic" data-ng-if="feedItem.category === 'Analytics'">
+              <img data-ng-if="feedItem.player_avatar !== null"
+                   data-ng-src="{{feedItem.player_avatar}}" image-load-complete-evt="{{feedItem}}" height="50" />
+
+              <img data-ng-if="feedItem.player_avatar === null"
+                   src="assets/images/default-avatar.png" image-load-complete-evt="{{feedItem}}" height="50" />
+            </div>
+
+
             <h3 class="reduce-margin text-ellipsiss">{{feedItem.title}}</h3>
 
             <p class="time-ago" am-time-ago="feedItem.updatedAt"></p>

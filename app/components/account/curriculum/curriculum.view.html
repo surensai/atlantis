@@ -10,7 +10,7 @@
       </div>
       <div class="panel-body add-customword-panle-body">
 
-        <div class="add-custom-word clearfix">
+        <div class="add-custom-word clearfix row">
           <form name="curriculumForm" novalidate
                 data-ng-submit="curriculum.searchWord(curriculum.model.wordItem.wordName, curriculumForm)">
 
@@ -81,17 +81,19 @@
                   </div>
                 </div>
                 <div class="form-group center-align nomargin">
-
-                  <button class="btn btn-primary add-custom-word-cancel-button  submit-clear-all-padding"
-                          type="button" data-ng-click="curriculum.onClearCustomWordDetails(curriculumForm)"
-                          data-translate="common.buttons.clear">Clear
-                  </button>
-                  <button type="submit"
-                          class="btn btn-primary add-custom-word-save-button submit-clear-all-padding"
-                          data-translate="curriculum.addword"  data-ng-disabled="!curriculum.model.wordItem.wordName">
-                    Add Word
-                  </button>
-
+                  <div class="col-md-6">
+                    <button class="btn btn-primary add-custom-word-cancel-button  btn-block submit-clear-all-padding"
+                            type="button" data-ng-click="curriculum.onClearCustomWordDetails(curriculumForm)"
+                            data-translate="common.buttons.clear">Clear
+                    </button>
+                  </div>
+                  <div class="col-md-6">
+                    <button type="submit"
+                            class="btn btn-primary add-custom-word-save-button submit-clear-all-padding btn-block"
+                            data-translate="curriculum.addword"  data-ng-disabled="!curriculum.model.wordItem.wordName">
+                      Add Word
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -99,116 +101,117 @@
           </form>
         </div>
         <div class="custom-word-list clearfix">
-          <uib-accordion class="customword-accordion">
+          <!--<uib-accordion class="customword-accordion">
             <uib-accordion-group is-open="status.open">
               <uib-accordion-heading>
                 <i class=" glyphicon"
                    ng-class="{' glyphicon-triangle-bottom': status.open, ' glyphicon-triangle-right': !status.open}"></i>
                 <span data-translate="curriculum.custom_word_list">Custom Word List</span>
               </uib-accordion-heading>
-              <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                  <thead>
-                  <tr>
-                    <th ng-click="curriculum.reverse=!curriculum.reverse;">
-                      <span data-translate="curriculum.customword_headers.word"> </span>
-                      <span class="fa fa-sort columnSortIcons"></span>
-                    </th>
-                    <th>
-                      <span data-translate="curriculum.customword_headers.picture"> </span>
-                    </th>
-                    <th >
-                      <span data-translate="curriculum.customword_headers.actions"> </span>
-                    </th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr id="tableRowData" data-ng-click="curriculum.onAddImageInRow(word, this)"
-                      data-ng-repeat="word in curriculum.customWords.slice(((curriculum.currentPage-1)*curriculum.itemsPerPage), ((curriculum.currentPage)*curriculum.itemsPerPage)) | orderBy:curriculum.predicate:curriculum.reverse">
-                    <!-- Noraml Mode -->
-                    <td class="player-words " data-ng-if="!word.isEditMode">{{ word.Words}}</td>
-                    <td class="word-check" data-ng-if="!word.isEditMode">
+
+            </uib-accordion-group>
+          </uib-accordion>-->
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead>
+              <tr>
+                <th ng-click="curriculum.reverse=!curriculum.reverse;">
+                  <span data-translate="curriculum.customword_headers.word"> </span>
+                  <span class="fa fa-sort columnSortIcons"></span>
+                </th>
+                <th>
+                  <span data-translate="curriculum.customword_headers.picture"> </span>
+                </th>
+                <th >
+                  <span data-translate="curriculum.customword_headers.actions"> </span>
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr id="tableRowData" data-ng-click="curriculum.onAddImageInRow(word, this)"
+                  data-ng-repeat="word in curriculum.customWords.slice(((curriculum.currentPage-1)*curriculum.itemsPerPage), ((curriculum.currentPage)*curriculum.itemsPerPage)) | orderBy:curriculum.predicate:curriculum.reverse">
+                <!-- Noraml Mode -->
+                <td class="player-words " data-ng-if="!word.isEditMode">{{ word.Words}}</td>
+                <td class="word-check" data-ng-if="!word.isEditMode">
                       <span data-ng-repeat="imgURLObj in word.picture">
                         <img class="custom-word-picture" width="47" height="47" data-ng-src="{{imgURLObj.image64Bit}}">
                       </span>
-                    </td>
-                    <td class="player-words" data-ng-if="!word.isEditMode">
-                      <button class="btn custom-word-edit-button" data-ng-click="curriculum.onEditCustomWord(word)">
-                        Edit
-                      </button>
-                      <a href="">
+                </td>
+                <td class="player-words" data-ng-if="!word.isEditMode">
+                  <button class="btn custom-word-edit-button" data-ng-click="curriculum.onEditCustomWord(word)">
+                    Edit
+                  </button>
+                  <a href="">
                         <span class="custom-word-delete-button">
                           <i data-ng-click="curriculum.deleteListener(word)"
                              class="fa fa-trash left-padding word-icon-colors"></i>
                         </span>
-                      </a>
-                    </td>
-                    <!-- Edit Mode -->
-                    <td id="editTDCustomWrd" class="player-words " data-ng-if="word.isEditMode">
-                      <form name="editCustomWrdFrm">
-                        <input type="text" data-ng-model="word.Words" class="form-control edit-word-text"
-                               name="editCustomWordInpt" ng-pattern="/^[A-z][A-z]*$/"
-                               ng-minlength="1" ng-maxlength="8" autocomplete="off" required>
-                        <!-- Validation here -->
-                        <div ng-show="curriculum.model.editCustomWrdSubmited && curriculum.model.isWordPrsnt"
-                             class="error-mesasage">
-                          <i class="fa fa-exclamation-circle"></i>
-                          <span data-translate="curriculum.messages.word_already_exist">Word already exist.</span>
-                        </div>
-                        <div ng-show="curriculum.model.editCustomWrdSubmited && editCustomWrdFrm.editCustomWordInpt.$error.required"
-                             class="error-mesasage">
-                          <i class="fa fa-exclamation-circle"></i>
-                          <span data-translate="curriculum.messages.word_name_require">Word Name is required.</span>
-                        </div>
-                        <div ng-show="editCustomWrdFrm.editCustomWordInpt.$error.pattern" class="error-mesasage">
-                          <i class="fa fa-exclamation-circle"></i>
-                          <span data-translate="common.messages.allow_only_letters">Please use only uppercase and lowercase letters.</span>
-                        </div>
-                        <div
-                          ng-show="!editCustomWrdFrm.editCustomWordInpt.$error.pattern && !editCustomWrdFrm.editCustomWordInpt.$error.required && (editCustomWrdFrm.editCustomWordInpt.$error.minlength || editCustomWrdFrm.editCustomWordInpt.$error.maxlength) && editCustomWrdFrm.editCustomWordInpt.$dirty"
-                          class="error-mesasage">
-                          <i class="fa fa-exclamation-circle"></i>
-                          <span data-translate="common.messages.word_length"> Must be between 1 and 8 characters.</span>
-                        </div>
-                      </form>
-                    </td>
-                    <td class="word-check" data-ng-if="word.isEditMode">
-                      <div class="image" data-ng-repeat="imgURLObj in word.picture">
-                        <i class="fa fa-times delete"
-                           data-ng-click="curriculum.onRemoveImage($index, word.picture)"></i>
-                        <img class="custom-word-picture" width="47" height="47" data-ng-src="{{imgURLObj.image64Bit}}">
-                      </div>
-                      <!--Add picture button-->
-                      <label class="addpicturelabel clearfix" data-ng-if="word.picture.length<5">
-                        <input type="file" name="updateFile" file-model="curriculum.updateFile"
-                               accept='image/*'
-                               onchange="angular.element(this).scope().updateCustomWrdPhoto(this)"/>
+                  </a>
+                </td>
+                <!-- Edit Mode -->
+                <td id="editTDCustomWrd" class="player-words " data-ng-if="word.isEditMode">
+                  <form name="editCustomWrdFrm">
+                    <input type="text" data-ng-model="word.Words" class="form-control edit-word-text"
+                           name="editCustomWordInpt" ng-pattern="/^[A-z][A-z]*$/"
+                           ng-minlength="1" ng-maxlength="8" autocomplete="off" required>
+                    <!-- Validation here -->
+                    <div ng-show="curriculum.model.editCustomWrdSubmited && curriculum.model.isWordPrsnt"
+                         class="error-mesasage">
+                      <i class="fa fa-exclamation-circle"></i>
+                      <span data-translate="curriculum.messages.word_already_exist">Word already exist.</span>
+                    </div>
+                    <div ng-show="curriculum.model.editCustomWrdSubmited && editCustomWrdFrm.editCustomWordInpt.$error.required"
+                         class="error-mesasage">
+                      <i class="fa fa-exclamation-circle"></i>
+                      <span data-translate="curriculum.messages.word_name_require">Word Name is required.</span>
+                    </div>
+                    <div ng-show="editCustomWrdFrm.editCustomWordInpt.$error.pattern" class="error-mesasage">
+                      <i class="fa fa-exclamation-circle"></i>
+                      <span data-translate="common.messages.allow_only_letters">Please use only uppercase and lowercase letters.</span>
+                    </div>
+                    <div
+                      ng-show="!editCustomWrdFrm.editCustomWordInpt.$error.pattern && !editCustomWrdFrm.editCustomWordInpt.$error.required && (editCustomWrdFrm.editCustomWordInpt.$error.minlength || editCustomWrdFrm.editCustomWordInpt.$error.maxlength) && editCustomWrdFrm.editCustomWordInpt.$dirty"
+                      class="error-mesasage">
+                      <i class="fa fa-exclamation-circle"></i>
+                      <span data-translate="common.messages.word_length"> Must be between 1 and 8 characters.</span>
+                    </div>
+                  </form>
+                </td>
+                <td class="word-check" data-ng-if="word.isEditMode">
+                  <div class="image" data-ng-repeat="imgURLObj in word.picture">
+                    <i class="fa fa-times delete"
+                       data-ng-click="curriculum.onRemoveImage($index, word.picture)"></i>
+                    <img class="custom-word-picture" width="47" height="47" data-ng-src="{{imgURLObj.image64Bit}}">
+                  </div>
+                  <!--Add picture button-->
+                  <label class="addpicturelabel clearfix" data-ng-if="word.picture.length<5">
+                    <input type="file" name="updateFile" file-model="curriculum.updateFile"
+                           accept='image/*'
+                           onchange="angular.element(this).scope().updateCustomWrdPhoto(this)"/>
 
-                        <div class="center-align"><i class="fa fa-plus"></i>
-                        </div>
-                      </label>
-                    </td>
-                    <td class="player-words" data-ng-if="word.isEditMode">
-                      <button class="btn btn-primary custom-word-save-button"
-                              data-ng-click="curriculum.onEditCustomWord(word,editCustomWrdFrm, $parent)" data-ng-disabled="!word.Words">
-                        Save
-                      </button>
-                    </td>
-                  </tr>
-                  <!-- No Data -->
-                  <tr data-ng-if="curriculum.customWords.length === 0">
-                    <td colspan="5" data-translate="common.nodata" class="no-data">No data to display</td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-              <uib-pagination data-ng-if="curriculum.totalItems > curriculum.itemsPerPage"
-                              class="pull-right pagination-styles" total-items="curriculum.totalItems"
-                              direction-links="false" ng-model="curriculum.currentPage"
-                              items-per-page="curriculum.itemsPerPage">
-              </uib-pagination>
-            </uib-accordion-group>
-          </uib-accordion>
+                    <div class="center-align"><i class="fa fa-plus"></i>
+                    </div>
+                  </label>
+                </td>
+                <td class="player-words" data-ng-if="word.isEditMode">
+                  <button class="btn btn-primary custom-word-save-button"
+                          data-ng-click="curriculum.onEditCustomWord(word,editCustomWrdFrm, $parent)" data-ng-disabled="!word.Words">
+                    Save
+                  </button>
+                </td>
+              </tr>
+              <!-- No Data -->
+              <tr data-ng-if="curriculum.customWords.length === 0">
+                <td colspan="5" data-translate="common.nodata" class="no-data">No data to display</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <uib-pagination data-ng-if="curriculum.totalItems > curriculum.itemsPerPage"
+                          class="pull-right pagination-styles" total-items="curriculum.totalItems"
+                          direction-links="false" ng-model="curriculum.currentPage"
+                          items-per-page="curriculum.itemsPerPage">
+          </uib-pagination>
         </div>
       </div>
     </div>
