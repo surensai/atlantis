@@ -371,12 +371,12 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         var lettersObj = {};
         for (var lettersIndex = 0; lettersIndex < data.length; lettersIndex++) {
           lettersObj = data[lettersIndex];
-          lettersObj.lastAttemptedOn = lettersObj.value.LatestRepeatedTime;
+          lettersObj.lastAttemptedOn =  utilsFactory.epochLinuxDateToDate(lettersObj.value.LatestRepeatedTime);
           player.lettersWordsData.push(lettersObj);
           lettersWordsCsv.push({
             LettersWords: lettersObj._id,
             Inputs: lettersObj.value.repeatedTimes,
-            LastPlayed:utilsFactory.dateFormatterForCSV(new Date(lettersObj.lastAttemptedOn))
+            LastPlayed:utilsFactory.dateFormatterForCSV(lettersObj.lastAttemptedOn)
           });
         }
       }
