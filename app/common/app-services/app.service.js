@@ -3,11 +3,14 @@
 angular.module('app').factory('appService', [ '$rootScope','$timeout', function ( $rootScope, $timeout) {
   var service = {};
 
-  service.handleOffline = function(uibModal, state){
-
+  service.handleOffline = function(uibModal, state, apiError){
+    if(apiError){
+      updateOnlineStatus();
+      return false;
+    }
     function updateOnlineStatus() {
       var condition = navigator.onLine ? "online" : "offline";
-      if(condition === "offline"){
+      if(condition === "offline" || apiError){
         var mInstance = uibModal.open({
           keyboard: false,
           templateUrl: 'common/app-directives/modal/offline-modal.html',
