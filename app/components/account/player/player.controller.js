@@ -235,30 +235,20 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   }
 
-  //Words
+
   function getWords(childId) {
     var handleSuccess = function (data) {
       if (data.length > 0) {
-        player.wordsData = data;
-        var wordDate, formatedwordDate, utcSeconds, d;
-        for (var i = 0; i < player.wordsData.length; i++) {
-          wordDate = new Date(player.wordsData[i].endtime * 1000);
-          formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
-
-          utcSeconds = player.wordsData[i].endtime;
-          // The 0 there is the key, which sets the date to the epoch
-          d = new Date(0);
-          d.setUTCSeconds(utcSeconds);
-
-          var obj = {};
-          obj.Words = player.wordsData[i].word;
-          player.wordsData[i].endtime = d;
-          obj.Attempts = player.wordsData[i].activity.length;
-          obj.LastPlayed = player.wordsData[i].endtime;
+        player.wordsData = [];
+        var allWordObj = {};
+        for (var allWordsInd = 0; allWordsInd < data.length; allWordsInd++) {
+          allWordObj = data[allWordsInd];
+          allWordObj.lastAttemptedOn = utilsFactory.epochLinuxDateToDate(allWordObj.endtime);
+          player.wordsData.push(allWordObj);
           wordsCsv.push({
-            Words: obj.Words,
-            Attempts: obj.Attempts,
-            LastPlayed: formatedwordDate
+            Words: allWordObj._id,
+            Attempts: allWordObj.count,
+            LastPlayed: utilsFactory.dateFormatterForCSV(allWordObj.lastAttemptedOn)
           });
         }
       }
@@ -280,101 +270,14 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       .error(handleError);
   }
 
-  //Letters Words
-  function getLettersWords(childId) {
-    var handleSuccess = function (data) {
-      if (data.length > 0) {
-        player.lettersWordsData = data;
-        var wordDate, formatedwordDate, utcSeconds, d;
-        for (var i = 0; i < player.lettersWordsData.length; i++) {
-          wordDate = new Date(player.lettersWordsData[i].value.LatestRepeatedTime * 1000);
-          formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
-          utcSeconds = player.lettersWordsData[i].value.LatestRepeatedTime;
-          // The 0 there is the key, which sets the date to the epoch
-          d = new Date(0);
-          d.setUTCSeconds(utcSeconds);
 
-
-          lettersWordsCsv.push({
-            LettersWords: player.lettersWordsData[i]._id,
-            Inputs: player.lettersWordsData[i].value.repeatedTimes,
-            LastPlayed: player.lettersWordsData[i].value.LatestRepeatedTime
-          });
-        }
-      }
-    };
-
-    var handleError = function (error, status) {
-      if (status === 401) {
-        authService.generateNewToken(function () {
-          getLettersWords(childId);
-        });
-      }
-      else {
-        messagesFactory.getPlayerwordsError(status);
-      }
-    };
-
-    PlayerService.getLettersWordsApi(childId)
-      .success(handleSuccess)
-      .error(handleError);
-  }
-
-  //Nonsense Words
-  function getNonsenseWords(childId) {
-    var handleSuccess = function (data) {
-      if (data.length > 0) {
-        player.nonsenseWordsData = data;
-
-        var wordDate, formatedwordDate, utcSeconds, d;
-        for (var i = 0; i < player.nonsenseWordsData.length; i++) {
-          wordDate = new Date(player.nonsenseWordsData[i].endtime * 1000);
-          formatedwordDate = (wordDate.getMonth() + 1) + '/' + wordDate.getDate() + '/' + wordDate.getFullYear();
-
-          utcSeconds = player.nonsenseWordsData[i].endtime;
-          // The 0 there is the key, which sets the date to the epoch
-          d = new Date(0);
-          d.setUTCSeconds(utcSeconds);
-
-          var obj = {};
-          obj.Words = player.nonsenseWordsData[i]._id;
-          obj.LastPlayed = player.nonsenseWordsData[i].endtime;
-          player.nonsenseWordsData[i].endtime = d;
-          //player.nonsenseWordsData[i].activity = JSON.parse(player.nonsenseWordsData[i].activity[0]);
-          obj.Attempts = player.nonsenseWordsData[i].activity.length;
-          nonsenseWordsCsv.push({
-            NonsenseWords: obj.Words,
-            Times: obj.Attempts,
-            LastPlayed: formatedwordDate
-          });
-        }
-      }
-    };
-
-    var handleError = function (error, status) {
-      if (status === 401) {
-        authService.generateNewToken(function () {
-          getNonsenseWords(childId);
-        });
-      }
-      else {
-        messagesFactory.getPlayerwordsError(status);
-      }
-    };
-
-    PlayerService.getNonsenseWordsApi(childId)
-      .success(handleSuccess)
-      .error(handleError);
-  }
-
-  //Real Words
   function getRealWords(childId) {
     var handleSuccess = function (data) {
       if (data.length > 0) {
         player.realWordsData = [];
         var realWordObj = {},
-            lastAttempts = [],
-            utcSeconds, d;
+          lastAttempts = [],
+          utcSeconds, d;
 
         for (var realWordIndex = 0; realWordIndex < data.length; realWordIndex++) {
           realWordObj = data[realWordIndex];
@@ -393,10 +296,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           }
 
           realWordObj.lastAttempts = lastAttempts;
-          utcSeconds = realWordObj.endtime;
-          d = new Date(0);
-          d.setUTCSeconds(utcSeconds);
-          realWordObj.lastAttemptedOn = d;
+          realWordObj.lastAttemptedOn = utilsFactory.epochLinuxDateToDate(realWordObj.endtime);
           player.realWordsData.push(realWordObj);
 
           realWordsCsv.push({
@@ -426,6 +326,79 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       .success(handleSuccess)
       .error(handleError);
   }
+
+
+  function getNonsenseWords(childId) {
+    var handleSuccess = function (data) {
+      if (data.length > 0) {
+        player.nonsenseWordsData = [];
+        var nonsenseWordObj = {};
+
+        for (var nonsenceWordIndex = 0; nonsenceWordIndex < data.length; nonsenceWordIndex++) {
+          nonsenseWordObj = data[nonsenceWordIndex];
+          nonsenseWordObj.lastAttemptedOn = utilsFactory.epochLinuxDateToDate(nonsenseWordObj.endtime);
+          player.nonsenseWordsData.push(nonsenseWordObj);
+          nonsenseWordsCsv.push({
+            NonsenseWords: nonsenseWordObj._id,
+            Times: nonsenseWordObj.count,
+            LastPlayed: utilsFactory.dateFormatterForCSV(nonsenseWordObj.lastAttemptedOn)
+          });
+        }
+      }
+    };
+
+    var handleError = function (error, status) {
+      if (status === 401) {
+        authService.generateNewToken(function () {
+          getNonsenseWords(childId);
+        });
+      }
+      else {
+        messagesFactory.getPlayerwordsError(status);
+      }
+    };
+
+    PlayerService.getNonsenseWordsApi(childId)
+      .success(handleSuccess)
+      .error(handleError);
+  }
+
+
+  function getLettersWords(childId) {
+    var handleSuccess = function (data) {
+      if (data.length > 0) {
+        player.lettersWordsData = [];
+        var lettersObj = {};
+        for (var lettersIndex = 0; lettersIndex < data.length; lettersIndex++) {
+          lettersObj = data[lettersIndex];
+          lettersObj.lastAttemptedOn = lettersObj.value.LatestRepeatedTime;
+          player.lettersWordsData.push(lettersObj);
+          lettersWordsCsv.push({
+            LettersWords: lettersObj._id,
+            Inputs: lettersObj.value.repeatedTimes,
+            LastPlayed:utilsFactory.dateFormatterForCSV(new Date(lettersObj.lastAttemptedOn))
+          });
+        }
+      }
+    };
+
+    var handleError = function (error, status) {
+      if (status === 401) {
+        authService.generateNewToken(function () {
+          getLettersWords(childId);
+        });
+      }
+      else {
+        messagesFactory.getPlayerwordsError(status);
+      }
+    };
+
+    PlayerService.getLettersWordsApi(childId)
+      .success(handleSuccess)
+      .error(handleError);
+  }
+
+
 
   function getMinibadges(playerId) {
     var handleSuccess = function (data) {

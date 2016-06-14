@@ -13,6 +13,12 @@ angular.module('app').factory('utilsFactory', [function () {
     return newArr;
   };
 
+  factory.epochLinuxDateToDate = function(date){
+    var d = new Date(0);
+    d.setUTCSeconds(date);
+    return d;
+  };
+
   factory.dateFormatterForCSV = function (date) {
       return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
   };
