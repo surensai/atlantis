@@ -1,9 +1,9 @@
 'use strict';
-angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', '$cookieStore', '$http', '$localStorage', 'appService',
-  function ($rootScope, $state, $stateParams, $location, $cookieStore, $http, $localStorage, appService) {
+angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', '$cookieStore', '$http', '$localStorage', 'appService','$uibModal',
+  function ($rootScope, $state, $stateParams, $location, $cookieStore, $http, $localStorage, appService, $uibModal) {
 
     window.addEventListener('load', function () {
-      appService.handleOffline();
+      appService.handleOffline($uibModal, $state);
     });
 
     $rootScope.$state = $state;

@@ -1,7 +1,12 @@
 'use strict';
-angular.module('app').factory('messagesFactory', ['$translate', 'flashService', function ($translate, flashService) {
+angular.module('app').factory('messagesFactory', ['$translate', 'flashService','appService','$uibModal','$state', function ($translate, flashService, appService, $uibModal, $state) {
 
   var service = {};
+
+
+  function netWorkError (){
+    appService.handleOffline($uibModal, $state, true);
+  };
 
   service.loginErrorMessages = function(status) {
     var message;
@@ -59,6 +64,16 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     }
   };
 
+  service.dashboardfeedsError = function(status,error) {
+    if (status === -1) {
+      netWorkError();
+    }else{
+      flashService.showError($translate.instant("dashboard.messages.error_get_feeds"), false);
+    }
+  };
+
+
+
   service.settingseditprofileSuccessMessages = function(successObj) {
     if (successObj) {
       flashService.showSuccess( $translate.instant('settings.messages.profile_edit_success '), true);
@@ -99,6 +114,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     var message;
     if (status !== "") {
       message = error.error;
+
     }
     flashService.showError($translate.instant('settings.messages.nofifications_error_msg'), false);
   };
@@ -239,13 +255,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 
     flashService.showError($translate.instant("player.messages.error_file_upload"), false);
   };
 
-  service.dashboardfeedsError = function(status,error) {
-    var message;
-    if (status !== "") {
-      message = error.error;
-    }
-    flashService.showError($translate.instant("dashboard.messages.error_get_feeds"), false);
-  };
+
 
   service.firmwarecreateError = function(status,error) {
     var message;

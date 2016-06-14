@@ -1,12 +1,31 @@
 'use strict';
-angular.module('app').factory('appService', [ '$rootScope','$timeout', function ($rootScope, $timeout) {
+
+angular.module('app').factory('appService', [ '$rootScope','$timeout', function ( $rootScope, $timeout) {
   var service = {};
 
-  service.handleOffline = function(){
-
+  service.handleOffline = function(uibModal, state, apiError){
+    if(apiError){
+      updateOnlineStatus();
+      return false;
+    }
     function updateOnlineStatus() {
       var condition = navigator.onLine ? "online" : "offline";
-      alert(condition);
+      if(condition === "offline" || apiError){
+        var mInstance = uibModal.open({
+          keyboard: false,
+          templateUrl: 'common/app-directives/modal/offline-modal.html',
+          controller: ['$scope', '$state','$uibModalInstance', function ($scope, $state, $uibModalInstance) {
+
+            $scope.close = function () {
+              $uibModalInstance.dismiss('cancel');
+              $state.reload();
+            };
+          }]
+        });
+      } else {
+        state.reload();
+      }
+
     }
     window.addEventListener('online', updateOnlineStatus);
     window.addEventListener('offline', updateOnlineStatus);
