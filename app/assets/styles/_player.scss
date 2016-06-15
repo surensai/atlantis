@@ -809,6 +809,7 @@ a .delete-player-back-button:hover{
   color: #9B9B9B;
   float: right;
   margin-bottom: 15px;
+  cursor: pointer;
   i.fa.fa-download {
     margin-right: 7px;
   }
@@ -818,10 +819,8 @@ a .delete-player-back-button:hover{
   text-decoration: none;
 }
 
-.player-words-tab-filterby {
-  padding: 21px 0px 0px 25px;
-  .filter-label {
-  }
+.words-options{
+    padding: 25px 25px 0px 25px;
 }
 
 /* Player Crop Image CSS*/
