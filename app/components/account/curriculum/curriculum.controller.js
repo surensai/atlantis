@@ -371,7 +371,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   };
   //Remove grid image
   curriculum.onRemoveImage = function (index, imageURLArr) {
-    var modalInstance = $uibModal.open({
+    $uibModal.open({
       templateUrl: 'components/account/curriculum/delete-word.html',
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
         $scope.modalTitle = $translate.instant("common.delete");
@@ -464,9 +464,9 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     var handleSuccess = function (data) {
       if (data.anatomy && data.anatomy.length > 0) {
         var totalAnatomyWords = [];
-        for (var i = 0; data.anatomy.length > i; i++) {
-          if (data.anatomy[i].groupedflag) {
-            totalAnatomyWords.push(data.anatomy[i]);
+        for (var anatomyIndex = 0; data.anatomy.length > anatomyIndex; anatomyIndex++) {
+          if (data.anatomy[anatomyIndex].groupedflag) {
+            totalAnatomyWords.push(data.anatomy[anatomyIndex]);
           }
         }
         if (totalAnatomyWords.length === data.anatomy.length) {
@@ -479,9 +479,9 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
 
       if (data.bathroom && data.bathroom.length > 0) {
         var totalBathroomWords = [];
-        for (var i = 0; data.bathroom.length > i; i++) {
-          if (data.bathroom[i].groupedflag) {
-            totalBathroomWords.push(data.bathroom[i]);
+        for (var bathIndex = 0; data.bathroom.length > bathIndex; bathIndex++) {
+          if (data.bathroom[bathIndex].groupedflag) {
+            totalBathroomWords.push(data.bathroom[bathIndex]);
           }
         }
         if (totalBathroomWords.length === data.bathroom.length) {
@@ -578,7 +578,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       }
     };
 
-    var modalInstance = $uibModal.open({
+    $uibModal.open({
       templateUrl: 'components/account/curriculum/delete-word.html',
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
         $scope.modalTitle = $translate.instant("common.delete");
