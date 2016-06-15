@@ -267,11 +267,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
           };
 
           $scope.isAvatarClicked = function (index) {
-            if ($scope.selectVal === index) {
-              return true;
-            } else {
-              return false;
-            }
+            return ($scope.selectVal === index)? true : false;
           };
 
           $scope.onCancel = function () {
@@ -351,11 +347,9 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   }
 
   function isDOBCurrentDateExceed(selectedDate) {
-    var curDate = new Date(), month = selectedDate[0], day = selectedDate[1], year = selectedDate[2];
-    if (curDate.getFullYear() === parseInt(year)) {
-      if (month >= (curDate.getMonth() + 1)) {
-        playerAction.isDOBVaid = false;
-      }
+    var curDate = new Date(), month = selectedDate[0], year = selectedDate[2];
+    if ((curDate.getFullYear() === parseInt(year)) && (month >= (curDate.getMonth() + 1))) {
+      playerAction.isDOBVaid = false;
     }
   }
 

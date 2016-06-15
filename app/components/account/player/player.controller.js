@@ -65,7 +65,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.onWordTypeChanges = function () {
     wordsCsvData = [];
     switch (player.model.wordTypeUI) {
-      case "Word":
+      case "All":
         getWords(player.playerObj.id);
         break;
       case "Real Words":

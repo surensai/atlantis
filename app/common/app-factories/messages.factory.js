@@ -64,15 +64,13 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     }
   };
 
-  service.dashboardfeedsError = function(status,error) {
+  service.dashboardfeedsError = function(status) {
     if (status === -1) {
       netWorkError();
     }else{
       flashService.showError($translate.instant("dashboard.messages.error_get_feeds"), false);
     }
   };
-
-
 
   service.settingseditprofileSuccessMessages = function(successObj) {
     if (successObj) {
