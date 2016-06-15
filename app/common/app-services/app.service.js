@@ -53,12 +53,22 @@ angular.module('app').factory('appService', [ '$rootScope','$timeout', function 
 
   service.simpleSort = function(sourceArr, property, reverse){
     sourceArr.sort(function (a, b) {
-      if (a[property].toLowerCase() < b[property].toLowerCase()) {
-        return -1;
+      if(typeof a[property] === "string"){
+        if (a[property].toLowerCase() < b[property].toLowerCase()) {
+          return -1;
+        }
+        if (a[property].toLowerCase() > b[property].toLowerCase()) {
+          return 1;
+        }
+      } else {
+        if (a[property] < b[property]) {
+          return -1;
+        }
+        if (a[property] > b[property]) {
+          return 1;
+        }
       }
-      if (a[property].toLowerCase() > b[property].toLowerCase()) {
-        return 1;
-      }
+
       return 0;
     });
 
