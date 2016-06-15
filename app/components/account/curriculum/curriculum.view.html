@@ -115,9 +115,11 @@
             <table class="table table-striped table-hover">
               <thead>
               <tr>
-                <th ng-click="curriculum.reverse=!curriculum.reverse;">
+                <th data-ng-click="curriculum.customWordListSort('Words')">
                   <span data-translate="curriculum.customword_headers.word"> </span>
-                  <span class="fa fa-sort columnSortIcons"></span>
+                  <span class="fa fa-sort columnSortIcons"
+                        data-ng-class="{' fa-sort-asc': curriculum.sortType.reverse === true && curriculum.sortType.column === 'Words', 'fa-sort-desc': curriculum.sortType.reverse === false && curriculum.sortType.column === 'Words'}">
+                  </span>
                 </th>
                 <th>
                   <span data-translate="curriculum.customword_headers.picture"> </span>
@@ -128,9 +130,8 @@
               </tr>
               </thead>
               <tbody>
-              <tr id="tableRowData" data-ng-click="curriculum.onAddImageInRow(word, this)"
-                  data-ng-repeat="word in curriculum.customWords.slice(((curriculum.currentPage-1)*curriculum.itemsPerPage), ((curriculum.currentPage)*curriculum.itemsPerPage)) | orderBy:curriculum.predicate:curriculum.reverse">
-                <!-- Noraml Mode -->
+              <tr id="tableRowData" data-ng-click="curriculum.onAddImageInRow(word, this);"
+                  data-ng-repeat="word in curriculum.customWords.slice(((curriculum.currentPage-1)*curriculum.itemsPerPage), ((curriculum.currentPage)*curriculum.itemsPerPage))">
                 <td class="player-words " data-ng-if="!word.isEditMode">{{ word.Words}}</td>
                 <td class="word-check" data-ng-if="!word.isEditMode">
                       <span data-ng-repeat="imgURLObj in word.picture">
@@ -148,7 +149,6 @@
                         </span>
                   </a>
                 </td>
-                <!-- Edit Mode -->
                 <td id="editTDCustomWrd" class="player-words " data-ng-if="word.isEditMode">
                   <form name="editCustomWrdFrm">
                     <input type="text" data-ng-model="word.Words" class="form-control edit-word-text"

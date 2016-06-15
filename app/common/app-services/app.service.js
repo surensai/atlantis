@@ -51,7 +51,27 @@ angular.module('app').factory('appService', [ '$rootScope','$timeout', function 
     }
   };
 
+  service.simpleSort = function(sourceArr, property, reverse){
+    sourceArr.sort(function (a, b) {
+      if (a[property].toLowerCase() < b[property].toLowerCase()) {
+        return -1;
+      }
+      if (a[property].toLowerCase() > b[property].toLowerCase()) {
+        return 1;
+      }
+      return 0;
+    });
 
+    for (var i = 0; i < sourceArr.length; i++) {
+      sourceArr[i][property];
+    }
+
+    if(reverse){
+      sourceArr.reverse();
+    }
+
+    return sourceArr;
+  };
 
   return service;
 
