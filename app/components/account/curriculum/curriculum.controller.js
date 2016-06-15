@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'CurriculumService', 'flashService', '$scope', '$state', '$uibModal', 'messagesFactory', '$translate', 'utilsFactory', 'AuthenticationService', function ($timeout, $rootScope, CurriculumService, flashService, $scope, $state, $uibModal, messagesFactory, $translate, utilsFactory, authService) {
+angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'CurriculumService', 'flashService', '$scope', '$state', '$uibModal', 'messagesFactory', '$translate', 'utilsFactory', 'AuthenticationService','appService', function ($timeout, $rootScope, CurriculumService, flashService, $scope, $state, $uibModal, messagesFactory, $translate, utilsFactory, authService, appService) {
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
   var curriculum = this;
   curriculum.customWords = [];
@@ -18,7 +18,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   curriculum.fileReaderSupported = window.FileReader != null;
   curriculum.model.bannedWordList = [];
   curriculum.model.editCustomWrdSubmited = false;
-
+  curriculum.sortType = {};
   curriculum.onEditCustomWord = function (wordItem) {
     curriculum.model.editCustomWrdSubmited = true;
     if (!wordItem.Words || wordItem.Words === "") {
@@ -475,7 +475,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
           curriculum.checkselectAll = true;
         }
         curriculum.group.anatomyWords = [];
-        var sortedanatomyArr = sortWordsData(data.anatomy);
+        var sortedanatomyArr = appService.simpleSort(data.anatomy, 'Word');
         curriculum.group.anatomyWords = utilsFactory.chunkArray(sortedanatomyArr, 4);
       }
 
@@ -490,7 +490,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
           curriculum.selectedAll = true;
         }
         curriculum.group.bathroomWords = [];
-        var sortedbathroomArr = sortWordsData(data.bathroom);
+        var sortedbathroomArr = appService.simpleSort(data.bathroom, 'Word');
         curriculum.group.bathroomWords = utilsFactory.chunkArray(sortedbathroomArr, 4);
       }
     };
@@ -551,23 +551,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       }
     }
   };
-
-  function sortWordsData(arr) {
-    arr.sort(function (a, b) {
-      if (a.Word.toLowerCase() < b.Word.toLowerCase()) {
-        return -1;
-      }
-      if (a.Word.toLowerCase() > b.Word.toLowerCase()) {
-        return 1;
-      }
-      return 0;
-    });
-
-    for (var i = 0; i < arr.length; i++) {
-      arr[i].Word;
-    }
-    return arr;
-  }
 
   curriculum.getCSVHeader = function () {
     var arr = [];
@@ -632,6 +615,16 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
         };
       }]
     });
+  };
+
+  curriculum.customWordListSort = function(type){
+    if(typeof curriculum.sortType.reverse === "undefined"){
+      curriculum.sortType.reverse = false;
+    } else {
+      curriculum.sortType.reverse = (curriculum.sortType.reverse) ? false : true;
+    }
+    curriculum.sortType.column = type;
+    curriculum.customWords = appService.simpleSort(curriculum.customWords, type, curriculum.sortType.reverse);
   };
 
   function getBannedWordsList() {

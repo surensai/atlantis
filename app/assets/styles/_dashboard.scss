@@ -137,6 +137,14 @@
       .panel-body {
         padding: 26px;
         height: 235px;
+        .newsfeed-player-profile-pic{
+          float: left;
+          img{
+            border-radius: 50px;
+            max-height:35px ;
+            margin-right: 10px;
+          }
+        }
         .time-ago {
           font-size: 12px;
           margin-top: 3px;
@@ -145,6 +153,7 @@
         h3 {
           font-size: 21px;
           color: #5d5d5d;
+          width: 90%;
         }
         p {
           font-size: 14px;

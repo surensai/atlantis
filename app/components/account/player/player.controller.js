@@ -36,9 +36,10 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   player.wordsHeaders = {
     Words: $translate.instant("player.word_headers.words"),
-    Attempts: $translate.instant("player.word_headers.attempts"),
-    LastPlayed: $translate.instant("player.word_headers.last_played"),
-    LastAttempt: $translate.instant("player.word_headers.last_attempt")
+    Correct: $translate.instant("player.real_word_headers.correct"),
+    Incorrect: $translate.instant("player.real_word_headers.incorrect"),
+    LastAttempt: $translate.instant("player.real_word_headers.last_attempt"),
+    LastPlayed: $translate.instant("player.real_word_headers.last_played")
   };
 
   player.lettersHeaders = {
@@ -61,10 +62,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     LastPlayed: $translate.instant("player.real_word_headers.last_played")
   };
 
-  var wordsCsv = [],
-    lettersWordsCsv = [],
-    nonsenseWordsCsv = [],
-    realWordsCsv = [],
+  var wordsCsvData = [],
     daysXAxisLegArr = ["", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     monthsXAxisLegArr = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -82,6 +80,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   })();
 
   player.onWordTypeChanges = function () {
+    wordsCsvData = [];
     switch (player.model.wordTypeUI) {
       case "Word":
         getWords(player.playerObj.id);
@@ -240,14 +239,34 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     var handleSuccess = function (data) {
       if (data.length > 0) {
         player.wordsData = [];
-        var allWordObj = {};
+        var allWordObj = {},
+            lastAttempts = [];
         for (var allWordsInd = 0; allWordsInd < data.length; allWordsInd++) {
           allWordObj = data[allWordsInd];
+
+          allWordObj.correctAttempts = _.filter(allWordObj.gameAttempts, function(item){
+            return item === "1";
+          }).length;
+          allWordObj.inCorrectAttempts = _.filter(allWordObj.gameAttempts, function(item){
+            return item === "0";
+          }).length;
+
+          if(allWordObj.gameAttempts.length > 5){
+            lastAttempts = angular.copy(allWordObj.gameAttempts);
+            lastAttempts.slice(Math.max(allWordObj.gameAttempts.length - 5, 1))
+          } else {
+            lastAttempts = angular.copy(allWordObj.gameAttempts);
+          }
+
+          allWordObj.lastAttempts = lastAttempts;
           allWordObj.lastAttemptedOn = utilsFactory.epochLinuxDateToDate(allWordObj.endtime);
           player.wordsData.push(allWordObj);
-          wordsCsv.push({
+
+          wordsCsvData.push({
             Words: allWordObj._id,
-            Attempts: allWordObj.count,
+            Correct: allWordObj.correctAttempts,
+            Incorrect: allWordObj.inCorrectAttempts,
+            LastAttempts: allWordObj.lastAttempts.join(","),
             LastPlayed: utilsFactory.dateFormatterForCSV(allWordObj.lastAttemptedOn)
           });
         }
@@ -276,8 +295,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       if (data.length > 0) {
         player.realWordsData = [];
         var realWordObj = {},
-          lastAttempts = [],
-          utcSeconds, d;
+          lastAttempts = [];
 
         for (var realWordIndex = 0; realWordIndex < data.length; realWordIndex++) {
           realWordObj = data[realWordIndex];
@@ -299,7 +317,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           realWordObj.lastAttemptedOn = utilsFactory.epochLinuxDateToDate(realWordObj.endtime);
           player.realWordsData.push(realWordObj);
 
-          realWordsCsv.push({
+          wordsCsvData.push({
             Words: realWordObj._id,
             Correct: realWordObj.correctAttempts,
             Incorrect: realWordObj.inCorrectAttempts,
@@ -338,7 +356,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           nonsenseWordObj = data[nonsenceWordIndex];
           nonsenseWordObj.lastAttemptedOn = utilsFactory.epochLinuxDateToDate(nonsenseWordObj.endtime);
           player.nonsenseWordsData.push(nonsenseWordObj);
-          nonsenseWordsCsv.push({
+          wordsCsvData.push({
             NonsenseWords: nonsenseWordObj._id,
             Times: nonsenseWordObj.count,
             LastPlayed: utilsFactory.dateFormatterForCSV(nonsenseWordObj.lastAttemptedOn)
@@ -373,7 +391,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           lettersObj = data[lettersIndex];
           lettersObj.lastAttemptedOn =  utilsFactory.epochLinuxDateToDate(lettersObj.value.LatestRepeatedTime);
           player.lettersWordsData.push(lettersObj);
-          lettersWordsCsv.push({
+          wordsCsvData.push({
             LettersWords: lettersObj._id,
             Inputs: lettersObj.value.repeatedTimes,
             LastPlayed:utilsFactory.dateFormatterForCSV(lettersObj.lastAttemptedOn)
@@ -700,52 +718,33 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     return chartheight;
   }
 
-  player.getCSVHeader = function (wordType) {
-    var arr = [];
-    switch (wordType) {
-      case "word":
-        arr[0] = $translate.instant("player.word_headers.words");
-        arr[1] = $translate.instant("player.word_headers.attempts");
-        arr[2] = $translate.instant("player.word_headers.last_played");
+  player.getCSVHeader = function () {
+    var wordsHeaders = [];
+    switch (player.model.wordTypeUI) {
+      case "Word":
+      case "Real Words":
+        wordsHeaders[0] = $translate.instant("player.real_word_headers.real_words");
+        wordsHeaders[1] = $translate.instant("player.real_word_headers.correct");
+        wordsHeaders[2] = $translate.instant("player.real_word_headers.incorrect");
+        wordsHeaders[3] = $translate.instant("player.real_word_headers.last_played");
+        wordsHeaders[4] = $translate.instant("player.real_word_headers.last_attempt");
         break;
-      case "letterword":
-        arr[0] = $translate.instant("player.letter_headers.letters");
-        arr[1] = $translate.instant("player.letter_headers.inputs");
-        arr[2] = $translate.instant("player.letter_headers.last_played");
+      case "Nonsense Words":
+        wordsHeaders[0] = $translate.instant("player.nonsense_headers.nonsense_words");
+        wordsHeaders[1] = $translate.instant("player.nonsense_headers.times");
+        wordsHeaders[2] = $translate.instant("player.nonsense_headers.last_played");
         break;
-      case "nonsenseword":
-        arr[0] = $translate.instant("player.nonsense_headers.nonsense_words");
-        arr[1] = $translate.instant("player.nonsense_headers.times");
-        arr[2] = $translate.instant("player.nonsense_headers.last_played");
-        break;
-      case "realword":
-        arr[0] = $translate.instant("player.real_word_headers.real_words");
-        arr[1] = $translate.instant("player.real_word_headers.correct");
-        arr[2] = $translate.instant("player.real_word_headers.incorrect");
-        arr[3] = $translate.instant("player.real_word_headers.last_played");
-        arr[4] = $translate.instant("player.real_word_headers.last_attempt");
+      case "Letters":
+        wordsHeaders[0] = $translate.instant("player.letter_headers.letters");
+        wordsHeaders[1] = $translate.instant("player.letter_headers.inputs");
+        wordsHeaders[2] = $translate.instant("player.letter_headers.last_played");
         break;
     }
-    return arr;
+    return wordsHeaders;
   };
 
-  player.getWordsExportData = function (wordType) {
-
-    switch (wordType) {
-      case "word":
-        return wordsCsv;
-        break;
-      case "letterword":
-        return lettersWordsCsv;
-        break;
-      case "nonsenseword":
-        return nonsenseWordsCsv;
-        break;
-      case "realword":
-        return realWordsCsv;
-        break;
-    }
-
+  player.getWordsExportData = function () {
+    return wordsCsvData;
   };
 
   player.getWordsClickHandler = function () {
