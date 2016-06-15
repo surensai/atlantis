@@ -189,25 +189,45 @@
         </div>
       </div>
 
-      <!-- All Table -->
       <div class="badges-container clearfix" data-ng-if="player.model.wordTypeUI==='All'">
         <div class="table-responsive player-words-table">
           <table class="table table-striped table-hover borderless ">
             <thead>
             <tr>
-              <th ng-repeat="key in player.getKeysOfCollection(player.wordsHeaders)"
-                  ng-click="player.predicate = key; player.reverse=!player.reverse;">
-                {{player.wordsHeaders[key]}}
-                <span class="fa fa-sort columnSortIcons" ng-if="key !== player.predicate"></span>
-                <span class="fa fa-sort-down columnSortIcons"
-                      ng-if="!(player.reverse) && key === player.predicate"></span>
-                <span class="fa fa-sort-up columnSortIcons"
-                      ng-if="player.reverse && key === player.predicate"></span>
+              <th data-ng-click="player.playerTableSort('_id', player.wordsData)">
+                <span data-translate="player.word_headers.words"> </span>
+                  <span class="fa fa-sort"
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === '_id', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === '_id'}">
+                  </span>
+              </th>
+              <th data-ng-click="player.playerTableSort('correctAttempts', player.wordsData)">
+                <span data-translate="player.real_word_headers.correct"> </span>
+                  <span class="fa fa-sort"
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'correctAttempts', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'correctAttempts'}">
+                  </span>
+              </th>
+              <th data-ng-click="player.playerTableSort('inCorrectAttempts', player.wordsData)">
+                <span data-translate="player.real_word_headers.incorrect"> </span>
+                  <span class="fa fa-sort"
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'inCorrectAttempts', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'inCorrectAttempts'}">
+                  </span>
+              </th>
+              <th data-ng-click="player.playerTableSort('count', player.wordsData)">
+                <span data-translate="player.real_word_headers.last_attempt"> </span>
+                  <span class="fa fa-sort"
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'count', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'count'}">
+                  </span>
+              </th>
+              <th data-ng-click="player.playerTableSort('endtime', player.wordsData)">
+                <span data-translate="player.real_word_headers.last_played"> </span>
+                  <span class="fa fa-sort"
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'endtime', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'endtime'}">
+                  </span>
               </th>
             </tr>
             </thead>
             <tbody>
-            <tr data-ng-repeat="word in player.wordsData | orderBy:player.predicate:player.reverse">
+            <tr data-ng-repeat="word in player.wordsData">
 
               <td class="player-words text-ellipsis word-text">{{ word._id}}</td>
               <td> {{word.correctAttempts}} </td>
@@ -232,20 +252,40 @@
           <table class="table table-striped table-hover borderless ">
             <thead>
             <tr>
-              <th ng-repeat="key in player.getKeysOfCollection(player.realWordsHeaders)"
-                  ng-click="player.predicate = key; player.reverse=!player.reverse;" class="table-th-class">
-                {{player.realWordsHeaders[key]}}
-                <span class="fa fa-sort columnSortIcons" ng-if="key !== player.predicate"></span>
-                <span class="fa fa-sort-down columnSortIcons"
-                      ng-if="!(player.reverse) && key === player.predicate"></span>
-                <span class="fa fa-sort-up columnSortIcons"
-                      ng-if="player.reverse && key === player.predicate"></span>
+              <th data-ng-click="player.playerTableSort('_id', player.realWordsData)">
+                <span data-translate="player.real_word_headers.real_words"> </span>
+                  <span class="fa fa-sort"
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === '_id', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === '_id'}">
+                  </span>
+              </th>
+              <th data-ng-click="player.playerTableSort('correctAttempts', player.realWordsData)">
+                <span data-translate="player.real_word_headers.correct"> </span>
+                  <span class="fa fa-sort"
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'correctAttempts', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'correctAttempts'}">
+                  </span>
+              </th>
+              <th data-ng-click="player.playerTableSort('inCorrectAttempts', player.realWordsData)">
+                <span data-translate="player.real_word_headers.incorrect"> </span>
+                  <span class="fa fa-sort"
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'inCorrectAttempts', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'inCorrectAttempts'}">
+                  </span>
+              </th>
+              <th data-ng-click="player.playerTableSort('count', player.realWordsData)">
+                <span data-translate="player.real_word_headers.last_attempt"> </span>
+                  <span class="fa fa-sort"
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'count', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'count'}">
+                  </span>
+              </th>
+              <th data-ng-click="player.playerTableSort('endtime', player.realWordsData)">
+                <span data-translate="player.real_word_headers.last_played"> </span>
+                  <span class="fa fa-sort"
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'endtime', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'endtime'}">
+                  </span>
               </th>
             </tr>
             </thead>
             <tbody>
-            <tr data-ng-repeat="word in player.realWordsData | orderBy:player.predicate:player.reverse">
-
+            <tr data-ng-repeat="word in player.realWordsData">
               <td class="player-words text-ellipsis word-text">{{ word._id}}</td>
               <td> {{word.correctAttempts}} </td>
               <td> {{word.inCorrectAttempts}} </td>
@@ -271,19 +311,28 @@
           <table class="table table-striped table-hover borderless ">
             <thead>
             <tr>
-              <th ng-repeat="key in player.getKeysOfCollection(player.nonsenseHeaders)"
-                  ng-click="player.predicate = key; player.reverse=!player.reverse;">
-                {{player.nonsenseHeaders[key]}}
-                <span class="fa fa-sort columnSortIcons" ng-if="key !== player.predicate"></span>
-                <span class="fa fa-sort-down columnSortIcons"
-                      ng-if="!(player.reverse) && key === player.predicate"></span>
-                <span class="fa fa-sort-up columnSortIcons"
-                      ng-if="player.reverse && key === player.predicate"></span>
+              <th data-ng-click="player.playerTableSort('_id', player.nonsenseWordsData)">
+                <span data-translate="player.nonsense_headers.nonsense_words"> </span>
+                  <span class="fa fa-sort"
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === '_id', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === '_id'}">
+                  </span>
+              </th>
+              <th data-ng-click="player.playerTableSort('count', player.nonsenseWordsData)">
+                <span data-translate="player.nonsense_headers.times"> </span>
+                  <span class="fa fa-sort"
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'count', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'count'}">
+                  </span>
+              </th>
+              <th data-ng-click="player.playerTableSort('endtime', player.nonsenseWordsData)">
+                <span data-translate="player.nonsense_headers.last_played"> </span>
+                  <span class="fa fa-sort"
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'endtime', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'endtime'}">
+                  </span>
               </th>
             </tr>
             </thead>
             <tbody>
-            <tr data-ng-repeat="word in player.nonsenseWordsData | orderBy:player.predicate:player.reverse">
+            <tr data-ng-repeat="word in player.nonsenseWordsData">
               <td class="player-words text-ellipsis word-text">{{ word._id}}</td>
               <td class="word-icons">{{ word.count }}</td>
               <td class="word-date" am-time-ago="word.lastAttemptedOn"></td>
@@ -295,26 +344,34 @@
           </table>
         </div>
       </div>
-      <!-- Letters Word Table -->
-      <div class="badges-container clearfix" data-ng-if="player.model.wordTypeUI==='Letters'">
 
+      <div class="badges-container clearfix" data-ng-if="player.model.wordTypeUI==='Letters'">
         <div class="table-responsive player-words-table">
           <table class="table table-striped table-hover borderless ">
             <thead>
             <tr>
-              <th ng-repeat="key in player.getKeysOfCollection(player.lettersHeaders)"
-                  ng-click="player.predicate = key; player.reverse=!player.reverse;">
-                {{player.lettersHeaders[key]}}
-                <span class="fa fa-sort columnSortIcons" ng-if="key !== player.predicate"></span>
-                <span class="fa fa-sort-down columnSortIcons"
-                      ng-if="!(player.reverse) && key === player.predicate"></span>
-                <span class="fa fa-sort-up columnSortIcons"
-                      ng-if="player.reverse && key === player.predicate"></span>
+              <th data-ng-click="player.playerTableSort('_id', player.lettersWordsData)">
+                <span data-translate="player.letter_headers.letters"> </span>
+                  <span class="fa fa-sort"
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === '_id', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === '_id'}">
+                  </span>
+              </th>
+              <th data-ng-click="player.playerTableSort('repeatedTimes', player.lettersWordsData)">
+                <span data-translate="player.letter_headers.inputs"> </span>
+                  <span class="fa fa-sort"
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'repeatedTimes', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'repeatedTimes'}">
+                  </span>
+              </th>
+              <th data-ng-click="player.playerTableSort('latestRepeatedTime', player.lettersWordsData)">
+                <span data-translate="player.letter_headers.last_played"> </span>
+                  <span class="fa fa-sort"
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'latestRepeatedTime', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'latestRepeatedTime'}">
+                  </span>
               </th>
             </tr>
             </thead>
             <tbody>
-            <tr data-ng-repeat="word in player.lettersWordsData | orderBy:player.predicate:player.reverse">
+            <tr data-ng-repeat="word in player.lettersWordsData">
               <td class="player-words text-ellipsis word-text">{{ word._id}}</td>
               <td class="word-icons">{{ word.value.repeatedTimes}}</td>
               <td class="word-date" am-time-ago="word.lastAttemptedOn"></td>

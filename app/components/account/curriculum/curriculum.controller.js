@@ -19,6 +19,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   curriculum.model.bannedWordList = [];
   curriculum.model.editCustomWrdSubmited = false;
   curriculum.sortType = {};
+
   curriculum.onEditCustomWord = function (wordItem) {
     curriculum.model.editCustomWrdSubmited = true;
     if (!wordItem.Words || wordItem.Words === "") {
@@ -49,8 +50,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
 
   };
 
-  var customWordsCsv = [];
-
   function structureFormData() {
     var data = {};
     data.wordName = curriculum.model.wordItem.wordName;
@@ -59,9 +58,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     return data;
   }
 
-  /*
-   * Save Custom word and add images array
-   * */
   curriculum.onSaveCustomWords = function () {
     var formData = structureFormData();
     var handleError = function (error, status) {
@@ -235,10 +231,11 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       curriculum.fileUploadExceedErr = true;
     }
   };
+
   curriculum.onAddImageInRow = function (wrdItm) {
     curriculum.addImgInTableRowItem = wrdItm;
   };
-  //Update the custom photo
+
   $scope.updateCustomWrdPhoto = function (inputFileObj) {
     var files = inputFileObj.files, index = curriculum.customWords.indexOf(curriculum.addImgInTableRowItem);
     if (files.length > 0) {
@@ -266,6 +263,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       }
     }
   };
+
   curriculum.onClearCustomWordDetails = function (curriculumForm) {
     clearCustomWordData(curriculumForm);
   };
@@ -538,31 +536,12 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       }
     }
     if (selectType === 'anatomy') {
-      if (totalCount === arrBooleanCount) {
-        curriculum.checkselectAll = true;
-      } else {
-        curriculum.checkselectAll = false;
-      }
+      curriculum.checkselectAll = (totalCount === arrBooleanCount) ? true : false;
     } else {
-      if (totalCount === arrBooleanCount) {
-        curriculum.selectedAll = true;
-      } else {
-        curriculum.selectedAll = false;
-      }
+      curriculum.selectedAll = (totalCount === arrBooleanCount) ? true : false;
     }
   };
 
-  curriculum.getCSVHeader = function () {
-    var arr = [];
-    arr[0] = $translate.instant("curriculum.customword_headers.word");
-    arr[1] = $translate.instant("curriculum.customword_headers.created_date");
-    return arr;
-  };
-  curriculum.getCustomWordExportData = function () {
-    return customWordsCsv;
-  };
-
-  //Create Banned Word
   curriculum.onAddBanWord = function (banWordForm) {
     var handleSuccess = function () {
       curriculum.model.banWord = "";

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', 'flashService', '$uibModal', '$translate', 'AuthenticationService', '_', 'utilsFactory', function ($timeout, $rootScope, $state, PlayerService, messagesFactory, flashService, $uibModal, $translate, authService, _, utilsFactory) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', 'flashService', '$uibModal', '$translate', 'AuthenticationService', '_', 'utilsFactory','appService', function ($timeout, $rootScope, $state, PlayerService, messagesFactory, flashService, $uibModal, $translate, authService, _, utilsFactory, appService) {
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
 
   var player = this;
@@ -33,34 +33,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.drop = 'drop feedback';
   player.gridCount = 4;
   player.chartTabType = "";
-
-  player.wordsHeaders = {
-    Words: $translate.instant("player.word_headers.words"),
-    Correct: $translate.instant("player.real_word_headers.correct"),
-    Incorrect: $translate.instant("player.real_word_headers.incorrect"),
-    LastAttempt: $translate.instant("player.real_word_headers.last_attempt"),
-    LastPlayed: $translate.instant("player.real_word_headers.last_played")
-  };
-
-  player.lettersHeaders = {
-    LettersWords: $translate.instant("player.letter_headers.letters"),
-    Inputs: $translate.instant("player.letter_headers.inputs"),
-    LastPlayed: $translate.instant("player.letter_headers.last_played")
-  };
-
-  player.nonsenseHeaders = {
-    NonsenseWords: $translate.instant("player.nonsense_headers.nonsense_words"),
-    Times: $translate.instant("player.nonsense_headers.times"),
-    LastPlayed: $translate.instant("player.nonsense_headers.last_played")
-  };
-
-  player.realWordsHeaders = {
-    Real_Words: $translate.instant("player.real_word_headers.real_words"),
-    Correct: $translate.instant("player.real_word_headers.correct"),
-    Incorrect: $translate.instant("player.real_word_headers.incorrect"),
-    LastAttempt: $translate.instant("player.real_word_headers.last_attempt"),
-    LastPlayed: $translate.instant("player.real_word_headers.last_played")
-  };
+  player.sortType = {};
 
   var wordsCsvData = [],
     daysXAxisLegArr = ["", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -72,6 +45,16 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       return [];
     }
     return Object.keys(obj);
+  };
+
+  player.playerTableSort = function(type, sourceArray){
+    if(typeof player.sortType.reverse === "undefined"){
+      player.sortType.reverse = false;
+    } else {
+      player.sortType.reverse = (player.sortType.reverse) ? false : true;
+    }
+    player.sortType.column = type;
+    sourceArray = appService.simpleSort(sourceArray, type, player.sortType.reverse);
   };
 
   (function () {
@@ -390,6 +373,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         for (var lettersIndex = 0; lettersIndex < data.length; lettersIndex++) {
           lettersObj = data[lettersIndex];
           lettersObj.lastAttemptedOn =  utilsFactory.epochLinuxDateToDate(lettersObj.value.LatestRepeatedTime);
+          lettersObj.repeatedTimes = lettersObj.value.repeatedTimes;
+          lettersObj.latestRepeatedTime = lettersObj.value.LatestRepeatedTime;
           player.lettersWordsData.push(lettersObj);
           wordsCsvData.push({
             LettersWords: lettersObj._id,
