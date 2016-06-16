@@ -10,7 +10,6 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
 
     if ($rootScope.globals && $rootScope.globals.currentUser) {
       $http.defaults.headers.common['Authorization'] = 'Bearer ' + $localStorage.token;
-      $state.go('account.dashboard');
     } else {
       $state.go('login');
     }
