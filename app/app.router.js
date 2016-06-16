@@ -10,40 +10,33 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
 
     if ($rootScope.globals && $rootScope.globals.currentUser) {
       $http.defaults.headers.common['Authorization'] = 'Bearer ' + $localStorage.token;
+      $state.go('account.dashboard');
+    } else {
+      $state.go('login');
     }
 
     $rootScope.$on('$locationChangeStart', function (event, newUrl, oldUrl) {
-      var loggedIn = $rootScope.globals && $rootScope.globals.currentUser;
-
-      if($location.path().indexOf("reset-password") > -1){
-        $rootScope.globals = {};
-        $cookieStore.remove('globals');
-        delete $localStorage.token;
-      }
-
-      if (!loggedIn && $location.path().indexOf("account") > 0) {
+      var isSessionExist = appService.checkSessionOnURLChange();
+      var currentUrl = $location.path();
+      if(isSessionExist && appService.onSessionRedirections(currentUrl)){
+          $state.go('account.dashboard');
+      } else if(!isSessionExist && (currentUrl.indexOf("account") > 0)) {
         event.preventDefault();
         $state.go('login');
-      }
-
-      var afterLoginRestrictions = ['/login', '/register', '/forgot-password'];
-      var loginRestrictions = $.inArray($location.path(), afterLoginRestrictions) !== -1;
-      if (loginRestrictions && loggedIn) {
-        $state.go('account.dashboard');
-      }
-
-      if (($location.path().indexOf("messages") === -1) && $rootScope.messages) {
+      } else if(isSessionExist && (currentUrl.indexOf("reset-password") > -1)){
+        appService.removeSession();
+      } else if((currentUrl.indexOf("messages") === -1) && $rootScope.messages){
         delete $rootScope.messages;
         $cookieStore.remove('noSesMes');
       }
 
       //disable back button for players module
-      if (($location.path().indexOf("account/players") >= 0) && $state.current.name === "account.players.details" && !$rootScope.firstPlayerId) { //players.details
+      /*if (($location.path().indexOf("account/players") >= 0) && $state.current.name === "account.players.details" && !$rootScope.firstPlayerId) { //players.details
         $rootScope.firstPlayerId = newUrl;
         $rootScope.playerModuleURL = oldUrl;
       } else if ($rootScope.firstPlayerId === oldUrl && newUrl === $rootScope.playerModuleURL) {
         event.preventDefault();
-      }
+      }*/
     });
   }
 ]).config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
@@ -52,7 +45,6 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     return 'components/' + viewFolderPath + '/' + viewPath + '.view.html';
   }
 
-  $urlRouterProvider.otherwise('/login');
   $stateProvider.state('login', {
     url: '/login',
     templateUrl: urlBuilder('user/login', 'login'),

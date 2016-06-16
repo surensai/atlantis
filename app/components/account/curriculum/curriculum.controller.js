@@ -69,7 +69,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       var word = getCustomWordObj(data);
       curriculum.customWords.push(word);
     };
-    CurriculumService.saveWordApi(formData, userID)
+    CurriculumService.saveWordApi(formData)
       .success(handleSuccess)
       .error(handleError);
   };
@@ -395,7 +395,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       }
     };
     curriculum.customWords = [];
-    CurriculumService.listWordsApi(userID)
+    CurriculumService.listWordsApi()
       .success(handleSuccess)
       .error(handleError);
   }
@@ -513,7 +513,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
 
     if (curriculum.model.banWord) {
       var banWordObj = {"word": curriculum.model.banWord};
-      CurriculumService.createBannedWordAPI(userID, banWordObj)
+      CurriculumService.createBannedWordAPI(banWordObj)
         .success(handleSuccess)
         .error(handleError);
     }
@@ -539,7 +539,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
         $scope.modalBody = $translate.instant("curriculum.messages.model_delete_word");
         $scope.delete = function () {
           $uibModalInstance.close();
-          CurriculumService.deleteBannedWordAPI(userID, banWord.id)
+          CurriculumService.deleteBannedWordAPI(banWord.id)
             .success(handleSuccess)
             .error(handleError);
         };

@@ -4,14 +4,17 @@ angular.module('app').factory('DashboardService', ['$http', '$rootScope', functi
 
   var service = {};
   var base_url = $rootScope.base_url;
-  var userID = $rootScope.globals.currentUser.id;
+
+  function getUserID() {
+    return $rootScope.globals.currentUser.id;
+  }
 
   service.getAllApi = function () {
-    return $http.get(base_url + '/newsfeeds/' + userID + '/listallnewsfeeds');
+    return $http.get(base_url + '/newsfeeds/' + getUserID() + '/listallnewsfeeds');
   };
 
   service.getByCategory = function () {
-    return $http.get(base_url + '/newsfeeds/' + userID + '/categorynewsfeeds');
+    return $http.get(base_url + '/newsfeeds/' + getUserID() + '/categorynewsfeeds');
   };
 
   return service;

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService',  function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService) {
+angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService','$cookieStore',  function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService, $cookieStore) {
   var settings = this;
   settings.model = {};
   settings.model.userData = angular.copy($rootScope.globals.currentUser);
@@ -34,9 +34,9 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
 
     var handleSuccess = function (data) {
       settings.isEditClicked = false;
-      AuthenticationService.SetCredentials(settings.model.userData);
+      $rootScope.globals.currentUser = settings.model.userData;
+      $cookieStore.put('globals', $rootScope.globals);
       messagesFactory.settingseditprofileSuccessMessages(data);
-
     };
 
     var handleError = function (error, status) {

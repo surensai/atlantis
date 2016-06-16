@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').factory('appService', [ '$rootScope','$timeout', function ( $rootScope, $timeout) {
+angular.module('app').factory('appService', [ '$rootScope','$timeout','$cookieStore','$localStorage', function ( $rootScope, $timeout, $cookieStore, $localStorage) {
   var service = {};
 
   service.handleOffline = function(uibModal, state, apiError){
@@ -29,6 +29,22 @@ angular.module('app').factory('appService', [ '$rootScope','$timeout', function 
     }
     window.addEventListener('online', updateOnlineStatus);
     window.addEventListener('offline', updateOnlineStatus);
+  };
+
+  service.checkSessionOnURLChange = function(){
+    $rootScope.globals = ($cookieStore.get('globals')) ? $cookieStore.get('globals') : {};
+    return ($rootScope.globals.currentUser) ? true : false;
+  };
+
+  service.onSessionRedirections = function(currentUrl){
+    var restrictedURLS = ['/login', '/register', '/forgot-password'];
+    return (($.inArray(currentUrl, restrictedURLS) !== -1) && service.checkSessionOnURLChange()) ? true : false;
+  };
+
+  service.removeSession = function(){
+    $cookieStore.remove('globals');
+    $rootScope.globals = {};
+    delete $localStorage.token;
   };
 
   service.isFooterFixed = function(){
