@@ -4,14 +4,17 @@ angular.module('app').factory('CurriculumService', ['$http', '$rootScope', "_", 
 
   var service = {};
   var base_url = $rootScope.base_url;
-  var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
 
-  service.listWordsApi = function (user_id) {
-    return $http.get(base_url + '/private/' + user_id + '/listuserwords');
+  function getUserID() {
+    return $rootScope.globals.currentUser.id;
+  }
+
+  service.listWordsApi = function () {
+    return $http.get(base_url + '/private/' + getUserID() + '/listuserwords');
   };
 
   service.searchWordApi = function (word) {
-    return $http.get(base_url + '/word/' + userID + '/searchWord/' + word);
+    return $http.get(base_url + '/word/' + getUserID() + '/searchWord/' + word);
   };
 
   service.uploadMultipleFileApi = function (fileArr) {
@@ -25,28 +28,28 @@ angular.module('app').factory('CurriculumService', ['$http', '$rootScope', "_", 
     });
   };
 
-  service.saveWordApi = function (wordData, user_id) {
-    return $http.post(base_url + '/private/' + user_id + '/createword', wordData);
+  service.saveWordApi = function (wordData) {
+    return $http.post(base_url + '/private/' + getUserID() + '/createword', wordData);
   };
 
   service.updateWordApi = function (wordID, word) {
-    return $http.put(base_url + '/private/' + userID + '/edituserword/' + wordID, word);
+    return $http.put(base_url + '/private/' + getUserID() + '/edituserword/' + wordID, word);
   };
 
   service.deleteWordApi = function (id) {
-    return $http.delete(base_url + '/private/' + userID + '/deleteuserword/' + id);
+    return $http.delete(base_url + '/private/' + getUserID() + '/deleteuserword/' + id);
   };
 
   service.getWordById = function (id) {
-    return $http.get(base_url + '/private/' + userID + '/getuserword/' + id);
+    return $http.get(base_url + '/private/' + getUserID() + '/getuserword/' + id);
   };
 
   service.getGroupWords = function (category) {
-    return $http.get(base_url + '/word/' + userID + '/searchCategory/' + category);
+    return $http.get(base_url + '/word/' + getUserID() + '/searchCategory/' + category);
   };
 
   service.updateGroupWordsApi = function (words) {
-    return $http.post(base_url + '/wordsettings/' + userID + '/wordsettings', words);
+    return $http.post(base_url + '/wordsettings/' + getUserID() + '/wordsettings', words);
   };
 
   service.uploadFileApi = function (file) {
@@ -68,16 +71,16 @@ angular.module('app').factory('CurriculumService', ['$http', '$rootScope', "_", 
     return obj;
   };
 
-  service.getBannedWordsAPI = function (parentId) {
-    return $http.get(base_url + '/wordsettings/' + parentId + '/listbannedwords');
+  service.getBannedWordsAPI = function () {
+    return $http.get(base_url + '/wordsettings/' + getUserID() + '/listbannedwords');
   };
 
-  service.createBannedWordAPI = function (parentId, wordObj) {
-    return $http.post(base_url + '/wordsettings/' + parentId + '/createbannedword', wordObj);
+  service.createBannedWordAPI = function (wordObj) {
+    return $http.post(base_url + '/wordsettings/' + getUserID() + '/createbannedword', wordObj);
   };
 
-  service.deleteBannedWordAPI = function (parentId, bannedWordId) {
-    return $http.delete(base_url + '/wordsettings/' + parentId + '/deletebanword/' + bannedWordId);
+  service.deleteBannedWordAPI = function (bannedWordId) {
+    return $http.delete(base_url + '/wordsettings/' + getUserID() + '/deletebanword/' + bannedWordId);
   };
 
   service.selectedWordGroupCount = function(sourceArr){

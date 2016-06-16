@@ -418,7 +418,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   }
 
   function getBigBadges(playerId) {
-    PlayerService.getBadges(userID, playerId)
+    PlayerService.getBadges(playerId)
       .success(function (data) {
         player.bigBadges = sortWordsData(data);
         splitBadgesData();

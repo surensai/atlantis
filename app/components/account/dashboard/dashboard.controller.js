@@ -2,7 +2,7 @@
 
 angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messagesFactory', '$state', '$stateParams', '$rootScope', 'AuthenticationService', function (DashboardService, messagesFactory, $state, $stateParams, $rootScope, authService) {
   var dashboard = this;
-  var welcomefeed = $rootScope.globals.currentUser.welcomefeed;
+  var welcomefeed = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.welcomefeed : {};
   dashboard.userName = $rootScope.globals.currentUser;
   dashboard.model = {};
   dashboard.data = {};
