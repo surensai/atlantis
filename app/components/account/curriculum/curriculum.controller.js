@@ -11,7 +11,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   curriculum.model.isWordPrsnt = false;
   curriculum.model.customWrdImgArr = [];
   curriculum.curriculumForm = {};
-  //image uploaded to aws url
   curriculum.model.customWrdImgURLArr = [];
   curriculum.group = {};
   curriculum.showSizeLimitError = false;
@@ -19,6 +18,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   curriculum.model.bannedWordList = [];
   curriculum.model.editCustomWrdSubmited = false;
   curriculum.sortType = {};
+  curriculum.itemsPerPage = 10;
 
   curriculum.onEditCustomWord = function (wordItem) {
     curriculum.model.editCustomWrdSubmited = true;
@@ -65,23 +65,15 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     };
     var handleSuccess = function (data) {
       messagesFactory.savewordsSuccess(data);
-      //clear all data
       clearCustomWordData(curriculum.curriculumForm);
-      //Add the Custom word object
       var word = getCustomWordObj(data);
       curriculum.customWords.push(word);
-      customWordsCsv.push({
-        Words: word.wordName,
-        dateAdded: word.formatedDate
-      });
     };
     CurriculumService.saveWordApi(formData, userID)
       .success(handleSuccess)
       .error(handleError);
   };
-  /*
-   * upload images array
-   * */
+
   curriculum.onUploadCustomWordImages = function (localImgFilesArr, isUpdateMode, wordItem) {
     //clear
     curriculum.model.customWrdImgURLArr = [];
@@ -341,10 +333,11 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
 
     modalInstance.result.then(function (word) {
       curriculum.customWords.splice(curriculum.customWords.indexOf(word), 1);
-      customWordsCsv.splice(customWordsCsv.indexOf(word), 1);
+      if(curriculum.customWords.length <= 10){
+        curriculum.currentPage = 1;
+      }
       var handleSuccess = function (data) {
         messagesFactory.deletewordSuccess(data);
-        updatePagination();
         $state.go("account.curriculum");
       };
 
@@ -401,13 +394,8 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
         angular.forEach(data, function (word) {
           var formatedWrd = getCustomWordObj(word);
           curriculum.customWords.push(formatedWrd);
-          customWordsCsv.push({
-            Words: formatedWrd.wordName,
-            dateAdded: formatedWrd.formatedDate
-          });
         });
       }
-      updatePagination();
     };
     var handleError = function (error, status) {
       if (status === 401) {
@@ -425,7 +413,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       .error(handleError);
   }
 
-  //get Custom Word object
   function getCustomWordObj(word) {
     var customWrdObj, formatedDate, date = new Date(word.createdAt), imageURLArr = [], imgObj;
     //image url validation
@@ -450,14 +437,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       formatedDate: formatedDate
     };
     return customWrdObj;
-  }
-
-  //Update pagination values
-  function updatePagination() {
-    curriculum.viewby = 10;
-    curriculum.totalItems = curriculum.customWords.length;
-    curriculum.currentPage = 1;
-    curriculum.itemsPerPage = curriculum.viewby;
   }
 
   function getWordsByCategory(carArr) {
@@ -564,7 +543,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
         .error(handleError);
     }
   };
-  //Delete Banned Word
+
   curriculum.onDeleteBanWord = function (banWord) {
     var handleSuccess = function () {
       getBannedWordsList();

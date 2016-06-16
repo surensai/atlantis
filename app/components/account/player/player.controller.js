@@ -39,14 +39,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     daysXAxisLegArr = ["", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     monthsXAxisLegArr = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-  player.getKeysOfCollection = function (obj) {
-    obj = angular.copy(obj);
-    if (!obj) {
-      return [];
-    }
-    return Object.keys(obj);
-  };
-
   player.playerTableSort = function(type, sourceArray){
     if(typeof player.sortType.reverse === "undefined"){
       player.sortType.reverse = false;
