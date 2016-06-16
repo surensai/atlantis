@@ -194,7 +194,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     var files = inputFileObj.files;
     if (curriculum.model.customWrdImgArr.length < 5) {
       if (files.length > 0) {
-        //Restricting file upload to 5MB i.e (1024*1024*5)
         var file = (files.length > 0) ? files[0] : null;
         if (file && file.size <= 5242880) {
           curriculum.showSizeLimitError = false;
@@ -275,7 +274,6 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   }
 
   curriculum.submitGroupWords = function () {
-
     var data = {};
     data.bathroom_words = data.anatomy_words = [];
     if (curriculum.group.bathroomWords.length > 0) {
@@ -285,33 +283,22 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       data.anatomy_words = groupWordsArrMan(curriculum.group.anatomyWords);
     }
 
-
     var handleSuccess = function (data) {
       messagesFactory.submitGroupwordsSuccess(data);
     };
+
     var handleError = function (error, status) {
       if (status === 401) {
         authService.generateNewToken(function () {
-          CurriculumService.updateGroupWordsApi(data)
-            .success(handleSuccess)
-            .error(handleError);
+          curriculum.submitGroupWords();
         });
-      }
-      else {
+      } else {
         messagesFactory.submitGroupwordsError(status);
       }
     };
     CurriculumService.updateGroupWordsApi(data)
       .success(handleSuccess)
       .error(handleError);
-  };
-
-  curriculum.getKeysOfCollection = function (obj) {
-    obj = angular.copy(obj);
-    if (!obj) {
-      return [];
-    }
-    return Object.keys(obj);
   };
 
   curriculum.deleteListener = function (word) {
@@ -333,8 +320,8 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
 
     modalInstance.result.then(function (word) {
       curriculum.customWords.splice(curriculum.customWords.indexOf(word), 1);
-      if(curriculum.customWords.length <= 10){
-        curriculum.currentPage = 1;
+      if(curriculum.customWords.length % curriculum.itemsPerPage === 0){
+        curriculum.currentPage = (curriculum.currentPage === 1)? 1 : curriculum.currentPage - 1;
       }
       var handleSuccess = function (data) {
         messagesFactory.deletewordSuccess(data);
@@ -362,7 +349,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       $state.go("account.curriculum");
     });
   };
-  //Remove grid image
+
   curriculum.onRemoveImage = function (index, imageURLArr) {
     $uibModal.open({
       templateUrl: 'components/account/curriculum/delete-word.html',
