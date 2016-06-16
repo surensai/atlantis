@@ -361,6 +361,17 @@ a .delete-player-back-button:hover{
         .table-th-class {
           width: 20%;
         }
+        .table tr th a{
+          text-decoration: none;
+          color: #ffffff;
+        }
+        .table tr th a :hover{
+          text-decoration: none;
+        }
+        .table tr th a :focus{
+          text-decoration: none;
+          outline: none;
+        }
       }
       .graph-container {
         background-color: #fcfcfc;
@@ -808,7 +819,6 @@ a .delete-player-back-button:hover{
 .player-export-btn {
   color: #9B9B9B;
   float: right;
-  margin-bottom: 15px;
   cursor: pointer;
   i.fa.fa-download {
     margin-right: 7px;
