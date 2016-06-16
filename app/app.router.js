@@ -4,7 +4,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
 
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
-    // You can set up the dev / prod
+    // can set up the dev / prod
     $rootScope.base_url = appService.setEnvironment('dev');
     $rootScope.globals = $cookieStore.get('globals') || {};
 
@@ -29,13 +29,12 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
         $cookieStore.remove('noSesMes');
       }
 
-      //disable back button for players module
-      /*if (($location.path().indexOf("account/players") >= 0) && $state.current.name === "account.players.details" && !$rootScope.firstPlayerId) { //players.details
-        $rootScope.firstPlayerId = newUrl;
-        $rootScope.playerModuleURL = oldUrl;
-      } else if ($rootScope.firstPlayerId === oldUrl && newUrl === $rootScope.playerModuleURL) {
-        event.preventDefault();
-      }*/
+      if (currentUrl.indexOf("account/players") >= 0 && oldUrl.indexOf("account/players") === -1) {
+        var urlSplit = oldUrl.split('#');
+        $cookieStore.put('skipURLPlayers', urlSplit[1]);
+      } else if(((currentUrl.indexOf("account/players") >= 0) && (currentUrl.indexOf("account/players/details") === -1)) && oldUrl.indexOf("account/players/details") >= 0 ){
+        $location.path($cookieStore.get('skipURLPlayers'));
+      }
     });
   }
 ]).config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
