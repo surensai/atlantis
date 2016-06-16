@@ -429,13 +429,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   function getWordsByCategory(carArr) {
     var handleSuccess = function (data) {
       if (data.anatomy && data.anatomy.length > 0) {
-        var totalAnatomyWords = [];
-        for (var anatomyIndex = 0; data.anatomy.length > anatomyIndex; anatomyIndex++) {
-          if (data.anatomy[anatomyIndex].groupedflag) {
-            totalAnatomyWords.push(data.anatomy[anatomyIndex]);
-          }
-        }
-        if (totalAnatomyWords.length === data.anatomy.length) {
+        if (CurriculumService.selectedWordGroupCount(data.anatomy) === data.anatomy.length) {
           curriculum.checkselectAll = true;
         }
         curriculum.group.anatomyWords = [];
@@ -444,13 +438,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       }
 
       if (data.bathroom && data.bathroom.length > 0) {
-        var totalBathroomWords = [];
-        for (var bathIndex = 0; data.bathroom.length > bathIndex; bathIndex++) {
-          if (data.bathroom[bathIndex].groupedflag) {
-            totalBathroomWords.push(data.bathroom[bathIndex]);
-          }
-        }
-        if (totalBathroomWords.length === data.bathroom.length) {
+        if (CurriculumService.selectedWordGroupCount(data.bathroom) === data.bathroom.length) {
           curriculum.selectedAll = true;
         }
         curriculum.group.bathroomWords = [];

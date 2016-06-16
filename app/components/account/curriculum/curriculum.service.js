@@ -80,6 +80,16 @@ angular.module('app').factory('CurriculumService', ['$http', '$rootScope', "_", 
     return $http.delete(base_url + '/wordsettings/' + parentId + '/deletebanword/' + bannedWordId);
   };
 
+  service.selectedWordGroupCount = function(sourceArr){
+    var selectedWords = [];
+    for (var ind = 0; sourceArr.length > ind; ind++) {
+      if (sourceArr[ind].groupedflag) {
+        selectedWords.push(sourceArr[ind]);
+      }
+    }
+    return selectedWords.length;
+  };
+
   return service;
 
 
