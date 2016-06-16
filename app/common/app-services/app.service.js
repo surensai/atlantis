@@ -51,6 +51,14 @@ angular.module('app').factory('appService', [ '$rootScope','$timeout', function 
     }
   };
 
+  service.getKeysOfCollection = function (obj) {
+    obj = angular.copy(obj);
+    if (!obj) {
+      return [];
+    }
+    return Object.keys(obj);
+  };
+
   service.simpleSort = function(sourceArr, property, reverse){
     sourceArr.sort(function (a, b) {
       if(typeof a[property] === "string"){

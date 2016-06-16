@@ -196,6 +196,10 @@
           color: $white-color;
           font-weight: normal;
           border-bottom: none;
+          a{
+            color: $white-color;
+            text-decoration: none;
+          }
           &:first-child, &:nth-child(2) {
             text-align: left;
             padding-left: 25px;
