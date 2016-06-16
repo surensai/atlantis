@@ -128,7 +128,7 @@ angular.module('app').factory('PlayerGraphService', [function () {
         },
         chart: {
           zoomType: 'x',
-          backgroundColor: 'rgba(255, 255, 255, 0)',
+          backgroundColor: 'rgba(255, 255, 255, 0)'
         },
         rangeSelector: {
           enabled: false
