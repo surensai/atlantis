@@ -234,10 +234,8 @@
                 <span data-translate="player.real_word_headers.last_attempt" data-ng-if="player.wordsData.length === 0"> </span>
 
               </th>
-              <th data-ng-click="player.playerTableSort('endtime', player.wordsData)">
-
+              <th>
                 <a href="javascript:;"  data-ng-click="player.playerTableSort('endtime', player.wordsData)" data-ng-if="player.wordsData.length > 0">
-
                 <span data-translate="player.real_word_headers.last_played"> </span>
                   <span class="fa fa-sort"
                         data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'endtime', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'endtime'}">
