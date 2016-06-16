@@ -3,7 +3,6 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
 
   var service = {};
 
-
   function netWorkError (){
     appService.handleOffline($uibModal, $state, true);
   };
@@ -172,7 +171,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
 
   service.deletewordSuccess = function(successObj) {
     if (successObj) {
-      flashService.showSuccess($translate.instant("curriculum.messages.delete_success"), true);
+      flashService.showSuccess($translate.instant("curriculum.messages.delete_success"), false);
     }
   };
 
@@ -300,12 +299,10 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
   };
 
   service.createPlayerError = function( ) {
-
     flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
   };
 
   service.updatePlayerSuccess = function(successObj) {
-
     if (successObj) {
       flashService.showSuccess($translate.instant("player.messages.edit_player_success"), true);
     }
