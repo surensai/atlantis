@@ -60,7 +60,8 @@
         </div>
       </div>
     </div>
-    <div class="welcome-feed" data-ng-if="!dashboard.hideWelcomeFeedOnload" >
+
+    <div class="welcome-feed" data-ng-if="!dashboard.hideWelcomeFeedOnload && (dashboard.lastPage === dashboard.currentPage)" >
       <div class="panel clearfix">
         <div class="col-md-4 nopadding">
           <div class="welcome-feed-description">
@@ -89,6 +90,7 @@
         </div>
       </div>
     </div>
+
     <div data-ng-if="dashboard.isUserFirstTimeLoggedIn || dashboard.showWelcomeNewsFeedDetails">
       <div class="welcome-feed-details">
         <p data-translate="dashboard.welcome_feed.welcome_feed_details_first">This is your destination to view the
@@ -127,7 +129,6 @@
             <div class="eb-right-content">
               <img src="assets/images/name-badge-welcome-feed.png" width="80" class="center-align"/>
             </div>
-
             <div class="eb-left-content">
               <h4 data-translate="dashboard.welcome_feed.earn_new_badge">Earn a New Badge</h4>
               <button ui-sref='account.players' class="btn btn-default welcome-feed-button"
@@ -135,13 +136,11 @@
               </button>
             </div>
           </div>
-
-
         </div>
       </div>
     </div>
-    <uib-pagination data-ng-if="dashboard.totalItems > dashboard.itemsPerPage" class="pull-right"
-                    total-items="dashboard.totalItems" direction-links="false" ng-model="dashboard.currentPage"
+    <uib-pagination data-ng-if="(dashboard.data.newsFeedsList.length > dashboard.itemsPerPage) && !dashboard.isUserFirstTimeLoggedIn" class="pull-right"
+                    total-items="dashboard.data.newsFeedsList.length" direction-links="false" ng-model="dashboard.currentPage"
                     items-per-page="dashboard.itemsPerPage"></uib-pagination>
 
   </div>

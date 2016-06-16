@@ -53,10 +53,10 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
         dashboard.data.newsFeedsList = parseNewsFeedData(data);
       }
 
-      dashboard.viewby = 10;
-      dashboard.totalItems = dashboard.data.newsFeedsList.length;
+
       dashboard.currentPage = 1;
-      dashboard.itemsPerPage = dashboard.viewby;
+      dashboard.itemsPerPage = 10;
+      dashboard.lastPage = Math.ceil(dashboard.data.newsFeedsList.length / dashboard.itemsPerPage);
 
       dashboard.hideWelcomeFeedOnload = false;
 
