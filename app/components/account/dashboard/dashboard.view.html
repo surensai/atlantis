@@ -60,8 +60,7 @@
         </div>
       </div>
     </div>
-
-    <div class="welcome-feed" data-ng-if="(!dashboard.hideWelcomeFeedOnload && (dashboard.lastPage === dashboard.currentPage)) || (!dashboard.hideWelcomeFeedOnload && dashboard.isUserFirstTimeLoggedIn)" >
+    <div class="welcome-feed" data-ng-if="(dashboard.data.newsFeedsList.length === 0 && !dashboard.hideWelcomeFeedOnload) || (!dashboard.hideWelcomeFeedOnload && (dashboard.lastPage === dashboard.currentPage)) || (!dashboard.hideWelcomeFeedOnload && dashboard.isUserFirstTimeLoggedIn)" >
       <div class="panel clearfix">
         <div class="col-md-4 nopadding">
           <div class="welcome-feed-description">
@@ -71,11 +70,10 @@
               here to take the first steps towards
               your child’s reading readiness with
               Square Panda’s Playground!</p>
-            <a href="javascript:;" data-ng-if="!dashboard.isUserFirstTimeLoggedIn"
+            <a href="javascript:;" data-ng-if="dashboard.data.newsFeedsList.length !== 0 || dashboard.isUserFirstTimeLoggedIn"
                data-ng-click="dashboard.showWelcomeMessageDetail()">
               <span data-ng-if="dashboard.showWelcomeNewsFeedDetails" data-translate="dashboard.welcome_feed.read_less"> Read less </span>
-              <span data-ng-if="!dashboard.showWelcomeNewsFeedDetails"
-                    data-translate="dashboard.welcome_feed.read_more"> Read more </span>
+              <span data-ng-if="!dashboard.showWelcomeNewsFeedDetails" data-translate="dashboard.welcome_feed.read_more"> Read more </span>
             </a>
           </div>
         </div>
@@ -91,7 +89,7 @@
       </div>
     </div>
 
-    <div data-ng-if="dashboard.isUserFirstTimeLoggedIn || dashboard.showWelcomeNewsFeedDetails">
+    <div data-ng-if="dashboard.isUserFirstTimeLoggedIn || dashboard.showWelcomeNewsFeedDetails || dashboard.data.newsFeedsList.length === 0">
       <div class="welcome-feed-details">
         <p data-translate="dashboard.welcome_feed.welcome_feed_details_first">This is your destination to view the
           footprints of your child’s newly earned badges and discover more skills that they're ready to learn.</p>
@@ -120,7 +118,6 @@
         <div class="col-md-6">
           <div class="eb-left">
             <h3 data-translate="dashboard.welcome_feed.help_child">Help your child</h3>
-
             <h3 data-translate="dashboard.welcome_feed.earn_badge">earn their 1 st badge</h3>
           </div>
         </div>
