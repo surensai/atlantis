@@ -77,7 +77,7 @@ angular.module('app').factory('appService', [ '$rootScope','$timeout','$cookieSt
 
   service.simpleSort = function(sourceArr, property, reverse){
     sourceArr.sort(function (a, b) {
-      if(typeof a[property] === "string"){
+      if(a[property] && typeof a[property] === "string"){
         if (a[property].toLowerCase() < b[property].toLowerCase()) {
           return -1;
         }
