@@ -372,6 +372,9 @@
 .badword-accordion .panel-group .panel .panel-body{
     background-color: #ffffff !important;
 }
+    .badword-accordion .panel-group{
+      margin-bottom: 0px;
+    }
     .badword-container{
       background-color: #FAFAFA;
       padding: 20px;
@@ -381,6 +384,7 @@
       padding-top: 20px;
       .fa{
         color: #EE486F;
+        cursor: pointer;
       }
       .banword{
         text-transform: capitalize;

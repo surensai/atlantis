@@ -255,6 +255,14 @@ img{
     background-color: darken(#7e49e9, 10%);
     color: #fff;
   }
+  &:active{
+    background-color: darken(#7e49e9, 10%) !important;
+    color: #fff !important;
+  }
+  &:focus{
+    background-color: darken(#7e49e9, 10%) !important;
+    color: #fff !important;
+  }
 }
 .sp-cancel-common-btn{
   min-width: 75px;
