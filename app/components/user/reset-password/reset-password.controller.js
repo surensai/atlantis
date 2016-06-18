@@ -7,7 +7,7 @@ angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', 
 
   (function () {
     if (auth.data.message !== "success") {
-      flashService.showError($translate.instant('user.validationMessages.session_expire'), true);
+      flashService.showError(auth.data.message, true);
       $state.go('messages');
     }
   })();

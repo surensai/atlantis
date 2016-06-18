@@ -11,8 +11,6 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
 
     if ($rootScope.globals && $rootScope.globals.currentUser) {
       $http.defaults.headers.common['Authorization'] = 'Bearer ' + $localStorage.token;
-    } else {
-      $state.go('login');
     }
 
     $rootScope.$on('$locationChangeStart', function (event, newUrl, oldUrl) {
@@ -20,7 +18,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
       var currentUrl = $location.path();
       if(isSessionExist && appService.onSessionRedirections(currentUrl)){
           $state.go('account.dashboard');
-      } else if(!isSessionExist && (currentUrl.indexOf("account") > 0)) {
+      } else if(!isSessionExist && ((currentUrl.indexOf("account") > 0) || !currentUrl)) {
         event.preventDefault();
         $state.go('login');
       } else if(isSessionExist && (currentUrl.indexOf("reset-password") > -1)){

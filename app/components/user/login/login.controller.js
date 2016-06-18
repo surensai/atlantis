@@ -56,7 +56,7 @@ angular.module("app").controller('loginCtrl', ['$state', 'AuthenticationService'
     var handleError = function (error, status) {
 
       if (error && status) {
-        login.showResendOption = (status === 410) ? true : false ;
+        login.showResendOption = (status === 424) ? true : false ;
         login.model.password = '';
         messagesFactory.loginErrorMessages(status);
 
