@@ -245,6 +245,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
             LastPlayed: utilsFactory.dateFormatterForCSV(allWordObj.lastAttemptedOn)
           });
         }
+        player.wordsData = appService.simpleSort(player.wordsData, 'endtime', true);
       }
     };
 
@@ -299,8 +300,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
             LastAttempts: realWordObj.lastAttempts.join(","),
             LastPlayed: utilsFactory.dateFormatterForCSV(realWordObj.lastAttemptedOn)
           });
-
         }
+        player.realWordsData = appService.simpleSort(player.realWordsData, 'endtime', true);
       }
     };
 
@@ -337,6 +338,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
             LastPlayed: utilsFactory.dateFormatterForCSV(nonsenseWordObj.lastAttemptedOn)
           });
         }
+        player.nonsenseWordsData = appService.simpleSort(player.nonsenseWordsData, 'endtime', true);
       }
     };
 
@@ -418,7 +420,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   }
 
   function getBigBadges(playerId) {
-    PlayerService.getBadges(userID, playerId)
+    PlayerService.getBadges(playerId)
       .success(function (data) {
         player.bigBadges = sortWordsData(data);
         splitBadgesData();

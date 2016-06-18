@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService',  function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService) {
+angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService','$cookieStore',  function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService, $cookieStore) {
   var settings = this;
   settings.model = {};
   settings.model.userData = angular.copy($rootScope.globals.currentUser);
@@ -34,9 +34,9 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
 
     var handleSuccess = function (data) {
       settings.isEditClicked = false;
-      AuthenticationService.SetCredentials(settings.model.userData);
+      $rootScope.globals.currentUser = settings.model.userData;
+      $cookieStore.put('globals', $rootScope.globals);
       messagesFactory.settingseditprofileSuccessMessages(data);
-
     };
 
     var handleError = function (error, status) {
@@ -205,30 +205,16 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   };
 
   settings.selectCharacter = function (rowInd, letterInd, type) {
+    var missingLtrSec2 = settings.missingLetters_row_2[rowInd][letterInd];
+    var missintLtrSec1 = settings.missingLetters[rowInd][letterInd];
+    var wLtr = settings.missingLetters[9][letterInd];
+    var mLtr = settings.missingLetters_row_2[12][letterInd];
     if(type === 1){
-      if (settings.missingLetters_row_2[rowInd][letterInd].missingCharacter) {
-        settings.missingLetters_row_2[rowInd][letterInd].missingCharacter = false;
-        if((rowInd === 12) && (settings.missingLetters_row_2[rowInd][letterInd].letter === "M")){
-          settings.missingLetters[9][letterInd].missingCharacter = false;
-        }
-      } else {
-        settings.missingLetters_row_2[rowInd][letterInd].missingCharacter = true;
-        if((rowInd === 12) && (settings.missingLetters_row_2[rowInd][letterInd].letter === "M")){
-          settings.missingLetters[9][letterInd].missingCharacter = true;
-        }
-      }
+      missingLtrSec2.missingCharacter = (missingLtrSec2.missingCharacter) ? false : true;
+      wLtr.missingCharacter = ((rowInd === 12) && (missingLtrSec2.letter === "M")) ?  missingLtrSec2.missingCharacter : wLtr.missingCharacter;
     } else {
-      if (settings.missingLetters[rowInd][letterInd].missingCharacter) {
-        settings.missingLetters[rowInd][letterInd].missingCharacter = false;
-        if((rowInd === 9) && (settings.missingLetters[rowInd][letterInd].letter === "W")){
-          settings.missingLetters_row_2[12][letterInd].missingCharacter = false;
-        }
-      } else {
-        settings.missingLetters[rowInd][letterInd].missingCharacter = true;
-        if((rowInd === 9) && (settings.missingLetters[rowInd][letterInd].letter === "W")){
-          settings.missingLetters_row_2[12][letterInd].missingCharacter = true;
-        }
-      }
+      missintLtrSec1.missingCharacter = (missintLtrSec1.missingCharacter) ? false : true;
+      mLtr.missingCharacter = ((rowInd === 9) && (missintLtrSec1.letter === "W")) ?  missintLtrSec1.missingCharacter : mLtr.missingCharacter ;
     }
   };
 

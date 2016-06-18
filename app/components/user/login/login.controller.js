@@ -1,13 +1,15 @@
 'use strict';
 
-angular.module("app").controller('loginCtrl', ['$scope', '$state', 'AuthenticationService', '$timeout', 'UserService', 'messagesFactory', function ($scope, $state, AuthenticationService, $timeout, UserService, messagesFactory) {
+angular.module("app").controller('loginCtrl', ['$state', 'AuthenticationService', '$timeout', 'UserService', 'messagesFactory','appService', function ($state, AuthenticationService, $timeout, UserService, messagesFactory, appService) {
 
   var login = this;
   login.model = {};
   login.showResendOption = false;
 
   (function () {
-    AuthenticationService.ClearCredentials();
+    if(appService.checkSessionOnURLChange()){
+      $state.go('account.dashboard');
+    }
     login.model = AuthenticationService.getRememberMe();
   })();
 

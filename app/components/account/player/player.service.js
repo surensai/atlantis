@@ -4,54 +4,57 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
 
   var service = {};
   var base_url = $rootScope.base_url;
-  var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
   var playersData = [];
 
-  service.getAllApi = function (user_id) {
-    return $http.get(base_url + '/user/' + user_id + '/child');
+  function getUserID() {
+    return $rootScope.globals.currentUser.id;
+  }
+
+  service.getAllApi = function () {
+    return $http.get(base_url + '/user/' + getUserID() + '/child');
   };
 
-  service.getWordsApi = function (childId) {
-    return $http.get(base_url + '/activity/' + userID + '/' + childId);
+  service.getWordsApi = function (playerId) {
+    return $http.get(base_url + '/activity/' + getUserID() + '/' + playerId);
   };
   //Get Letters API
-  service.getLettersWordsApi = function (childId) {
-    return $http.get(base_url + '/word/' + childId + "/singleletterwords");
+  service.getLettersWordsApi = function (playerId) {
+    return $http.get(base_url + '/word/' + playerId + "/singleletterwords");
   };
 //Get Nonsense Words API
-  service.getNonsenseWordsApi = function (childId) {
-    return $http.get(base_url + '/word/' + childId + "/nonsensewords");
+  service.getNonsenseWordsApi = function (playerId) {
+    return $http.get(base_url + '/word/' + playerId + "/nonsensewords");
   };
 //Get Real Words API
-  service.getRealWordsApi = function (childId) {
-    return $http.get(base_url + '/word/' + childId + "/realwords");
+  service.getRealWordsApi = function (playerId) {
+    return $http.get(base_url + '/word/' + playerId + "/realwords");
   };
   service.getMinibadgesApi = function (playerId) {
-    return $http.get(base_url + '/activity/' + userID + '/' + playerId + '/minibadges');
+    return $http.get(base_url + '/activity/' + getUserID() + '/' + playerId + '/minibadges');
   };
 
   service.getPlayerHighlightsApi = function (playerId) {
-    return $http.get(base_url + '/activity/' + userID + '/' + playerId + '/highlights');
+    return $http.get(base_url + '/activity/' + getUserID() + '/' + playerId + '/highlights');
   };
 
   service.searchWordApi = function (childId) {
-    return $http.get(base_url + '/activity/' + userID + '/' + childId);
+    return $http.get(base_url + '/activity/' + getUserID() + '/' + childId);
   };
 
   service.createApi = function (child) {
-    return $http.post(base_url + '/user/' + userID + '/student', child);
+    return $http.post(base_url + '/user/' + getUserID() + '/student', child);
   };
 
   service.deleteApi = function (id) {
-    return $http.delete(base_url + '/user/' + userID + '/student/' + id);
+    return $http.delete(base_url + '/user/' + getUserID() + '/student/' + id);
   };
 
   service.updateApi = function (childID, child) {
-    return $http.put(base_url + '/user/' + userID + '/student/' + childID + '/edit', child);
+    return $http.put(base_url + '/user/' + getUserID() + '/student/' + childID + '/edit', child);
   };
 
   service.saveWordApi = function (wordData) {
-    return $http.post(base_url + '/private/' + userID + '/createword', wordData);
+    return $http.post(base_url + '/private/' + getUserID() + '/createword', wordData);
   };
 
   service.uploadFileApi = function (file) {
@@ -82,19 +85,19 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
   };
 
   service.getPlayerById = function (id) {
-    return $http.get(base_url + '/user/' + userID + '/child/' + id);
+    return $http.get(base_url + '/user/' + getUserID() + '/child/' + id);
   };
 
   service.removeItem = function (data, obj) {
     data.splice(data.indexOf(obj), 1);
   };
 
-  service.getBadges = function (userID, childID) {
-    return $http.get(base_url + '/activity/' + userID + '/' + childID + '/bigbadges');
+  service.getBadges = function (childID) {
+    return $http.get(base_url + '/activity/' + getUserID() + '/' + childID + '/bigbadges');
   };
 
-  service.getAvatarsAPI = function (userID) {
-    return $http.get(base_url + '/avatar/' + userID + '/get-avatars');
+  service.getAvatarsAPI = function () {
+    return $http.get(base_url + '/avatar/' + getUserID() + '/get-avatars');
   };
 
   //Get Graph Data
