@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', 'flashService', '$uibModal', '$translate', 'AuthenticationService', '_', 'utilsFactory','appService', function ($timeout, $rootScope, $state, PlayerService, messagesFactory, flashService, $uibModal, $translate, authService, _, utilsFactory, appService) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', 'flashService', '$uibModal', '$translate', 'AuthenticationService', '_', 'utilsFactory', 'appService', 'PlayerGraphService', function ($timeout, $rootScope, $state, PlayerService, messagesFactory, flashService, $uibModal, $translate, authService, _, utilsFactory, appService, PlayerGraphService) {
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
 
   var player = this;
@@ -39,8 +39,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     daysXAxisLegArr = ["", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     monthsXAxisLegArr = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-  player.playerTableSort = function(type, sourceArray){
-    if(typeof player.sortType.reverse === "undefined"){
+  player.playerTableSort = function (type, sourceArray) {
+    if (typeof player.sortType.reverse === "undefined") {
       player.sortType.reverse = false;
     } else {
       player.sortType.reverse = (player.sortType.reverse) ? false : true;
@@ -209,24 +209,23 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   }
 
-
   function getWords(childId) {
     var handleSuccess = function (data) {
       if (data.length > 0) {
         player.wordsData = [];
         var allWordObj = {},
-            lastAttempts = [];
+          lastAttempts = [];
         for (var allWordsInd = 0; allWordsInd < data.length; allWordsInd++) {
           allWordObj = data[allWordsInd];
 
-          allWordObj.correctAttempts = _.filter(allWordObj.gameAttempts, function(item){
+          allWordObj.correctAttempts = _.filter(allWordObj.gameAttempts, function (item) {
             return item === "1";
           }).length;
-          allWordObj.inCorrectAttempts = _.filter(allWordObj.gameAttempts, function(item){
+          allWordObj.inCorrectAttempts = _.filter(allWordObj.gameAttempts, function (item) {
             return item === "0";
           }).length;
 
-          if(allWordObj.gameAttempts.length > 5){
+          if (allWordObj.gameAttempts.length > 5) {
             lastAttempts = angular.copy(allWordObj.gameAttempts);
             lastAttempts.slice(Math.max(allWordObj.gameAttempts.length - 5, 1))
           } else {
@@ -265,7 +264,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       .error(handleError);
   }
 
-
   function getRealWords(childId) {
     var handleSuccess = function (data) {
       if (data.length > 0) {
@@ -275,14 +273,14 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
         for (var realWordIndex = 0; realWordIndex < data.length; realWordIndex++) {
           realWordObj = data[realWordIndex];
-          realWordObj.correctAttempts = _.filter(realWordObj.gameAttempts, function(item){
+          realWordObj.correctAttempts = _.filter(realWordObj.gameAttempts, function (item) {
             return item === "1";
           }).length;
-          realWordObj.inCorrectAttempts = _.filter(realWordObj.gameAttempts, function(item){
+          realWordObj.inCorrectAttempts = _.filter(realWordObj.gameAttempts, function (item) {
             return item === "0";
           }).length;
 
-          if(realWordObj.gameAttempts.length > 5){
+          if (realWordObj.gameAttempts.length > 5) {
             lastAttempts = angular.copy(realWordObj.gameAttempts);
             lastAttempts.slice(Math.max(realWordObj.gameAttempts.length - 5, 1))
           } else {
@@ -321,7 +319,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       .error(handleError);
   }
 
-
   function getNonsenseWords(childId) {
     var handleSuccess = function (data) {
       if (data.length > 0) {
@@ -358,7 +355,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       .error(handleError);
   }
 
-
   function getLettersWords(childId) {
     var handleSuccess = function (data) {
       if (data.length > 0) {
@@ -366,14 +362,14 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         var lettersObj = {};
         for (var lettersIndex = 0; lettersIndex < data.length; lettersIndex++) {
           lettersObj = data[lettersIndex];
-          lettersObj.lastAttemptedOn =  utilsFactory.epochLinuxDateToDate(lettersObj.value.LatestRepeatedTime);
+          lettersObj.lastAttemptedOn = utilsFactory.epochLinuxDateToDate(lettersObj.value.LatestRepeatedTime);
           lettersObj.repeatedTimes = lettersObj.value.repeatedTimes;
           lettersObj.latestRepeatedTime = lettersObj.value.LatestRepeatedTime;
           player.lettersWordsData.push(lettersObj);
           wordsCsvData.push({
             LettersWords: lettersObj._id,
             Inputs: lettersObj.value.repeatedTimes,
-            LastPlayed:utilsFactory.dateFormatterForCSV(lettersObj.lastAttemptedOn)
+            LastPlayed: utilsFactory.dateFormatterForCSV(lettersObj.lastAttemptedOn)
           });
         }
       }
@@ -394,8 +390,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       .success(handleSuccess)
       .error(handleError);
   }
-
-
 
   function getMinibadges(playerId) {
     var handleSuccess = function (data) {
@@ -493,64 +487,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   }
 
   function getChartObj(data) {
-    var formatedChartData = parseChartData(data);
-    var chartObj = {
-      exporting: {
-        enabled: false
-      },
-      options: {
-        exporting: {
-          enabled: false
-        },
-        title: {
-          text: ''
-        },
-        legend: {
-          enabled: false
-        },
-        tooltip: {
-          valueSuffix: '%'
-        },
-        chart: {
-          type: 'line',
-          backgroundColor: 'rgba(255, 255, 255, 0)'
-        }
-      },
-      xAxis: {
-        type: 'category',
-        categories: formatedChartData.xAxisCatgryArr,
-        title: {
-          text: getXAxisLabel(),
-          margin: 10
-        },
-        labels: {
-          rotation: getXAxisLblRotation()
-        }
-      },
-      yAxis: {
-        min: 0,
-        tickInterval: 5,
-        title: {
-          text: '<b>PROGRESS</b>'
-        },
-        labels: {
-          format: "{value}" + "%"
-        }
-      },
-      series: [{
-        name: "Progress",
-        color: '#4CBC96',
-        marker: {
-          symbol: 'circle'
-        },
-        data: formatedChartData.seriesDataArr
-      }],
-      size: {
-        height: getChartHeight()
-      },
-
-      loading: false
-    };
+    var chartObj = PlayerGraphService.getChartObj(parseChartData(data), getXAxisLblRotation());
     return chartObj;
   }
 
@@ -679,22 +616,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       //Desktop View
       return 0;
     }
-  }
-
-  function getXAxisLabel() {
-    var xAxisLabel = "";
-    if (player.chartTabType) {
-      xAxisLabel = '<b>' + player.chartTabType.toUpperCase() + 'S</b>';
-    }
-    return xAxisLabel;
-  }
-
-  function getChartHeight() {
-    var chartheight = 300;
-    if (document.documentElement.clientWidth < 700) {
-      chartheight = document.documentElement.clientWidth - 50;
-    }
-    return chartheight;
   }
 
   player.getCSVHeader = function () {
