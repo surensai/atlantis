@@ -114,7 +114,7 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
  * */
 angular.module('app').factory('PlayerGraphService', [function () {
   var graphObj = {};
-  graphObj.getChartObj = function (formatedChartData, xAxisLbl, xAxisLblRotation, graphHeightVal) {
+  graphObj.getChartObj = function (formatedChartData, getXAxisLblRotation) {
     var chartObj = {
       options: {
         exporting: {
@@ -137,6 +137,13 @@ angular.module('app').factory('PlayerGraphService', [function () {
           enabled: false
         },
         navigator: {
+          xAxis: {
+            labels: {
+              formatter: function () {
+                return moment(this.value).format("MM/DD");
+              }
+            }
+          },
           enabled: true
         }
       },
@@ -152,7 +159,7 @@ angular.module('app').factory('PlayerGraphService', [function () {
       },
       xAxis: {
         title: {
-          text: 'Dates'
+          text: "<b>Dates</b>"
         },
         labels: {
           formatter: function () {
@@ -508,7 +515,7 @@ angular.module('app').factory('PlayerGraphService', [function () {
           [1465412220000, 1]]
       }],
       size: {
-        height: graphHeightVal
+        height: 320
       },
       loading: false,
       useHighStocks: true
