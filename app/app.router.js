@@ -5,7 +5,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     // You can set up the dev / prod
-    $rootScope.base_url = appService.setEnvironment('prod');
+    $rootScope.base_url = appService.setEnvironment('dev');
     $rootScope.globals = $cookieStore.get('globals') || {};
 
     if ($rootScope.globals && $rootScope.globals.currentUser) {
