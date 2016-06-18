@@ -3,6 +3,8 @@
 angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messagesFactory', 'PlayerService', '$timeout', '$translate', '$uibModal', 'AuthenticationService', function ($scope, $state, messagesFactory, PlayerService, $timeout, $translate, $uibModal, authService) {
 
   var playerAction = this;
+  var lastSelectedImage = {};
+
   playerAction.model = {};
   playerAction.data = {};
   playerAction.data.avatarsList = [];
@@ -16,7 +18,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   playerAction.fileError = true;
   playerAction.model.playerItem.gender = 'M';
   playerAction.model.playerItem.age = 5;
-  playerAction.previousSelectedFile = [];
   playerAction.fileReaderSupported = window.FileReader != null;
   playerAction.model.croppedImage = '';
 
@@ -30,7 +31,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     isDOBValid();
     if (form.$valid && playerAction.fileError && playerAction.isDOBVaid) {
       playerAction.added = true;
-      if (playerAction.previousSelectedFile.length > 0 && !playerAction.isChoosenAvatar) {
+      if (lastSelectedImage && !playerAction.isChoosenAvatar) {
         uploadProfilePic(form);
       } else {
         if (playerAction.isUpdate) {
@@ -124,8 +125,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
         authService.generateNewToken(function () {
           uploadProfilePic(form);
         });
-      }
-      else {
+      } else {
         if (playerAction.isUpdate) {
           updateAction();
         } else {
@@ -136,7 +136,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
 
     };
 
-    PlayerService.uploadFileApi(playerAction.previousSelectedFile[0])
+    PlayerService.uploadFileApi(lastSelectedImage)
       .success(handleSuccess)
       .error(handleError);
   }
@@ -171,7 +171,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   };
 
   playerAction.deleteAction = function () {
-
     var handleSuccess = function (data) {
       messagesFactory.deletePlayerSuccess(data);
       $state.go("account.players");
@@ -195,9 +194,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       .error(handleError);
   };
 
-  /*
-   Open the crop image popup to crop the selected image
-   */
   playerAction.onOpenCropImg = function (selectedImg) {
     $uibModal.open({
       templateUrl: 'components/account/player/player-image-crop-modal.html',
@@ -210,7 +206,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
           $uibModalInstance.dismiss('cancel');
         };
         $scope.onSubmit = function () {
-          playerAction.model.playerItem.profileURL = "";
+          //playerAction.model.playerItem.profileURL = "";
           playerAction.model.playerItem.imgbase64 = $scope.croppedImage;
           $uibModalInstance.dismiss('cancel');
         };
@@ -219,24 +215,20 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   };
 
   $scope.photoChanged = function (inputFileObj) {
-    var files = inputFileObj.files;
-    if (files.length > 0 || playerAction.previousSelectedFile.length > 0) {
-      //Restricting file upload to 5MB i.e (1024*1024*5)
-      var file = (files.length > 0) ? files[0] : null;
-      if (file && file.size <= 5242880) {
+    var selectedImage = inputFileObj.files[0];
+    if (selectedImage.size > 0 || lastSelectedImage) {
+      if (selectedImage && selectedImage.size <= 5242880) {
         playerAction.showSizeLimitError = false;
-        playerAction.previousSelectedFile = (files.length > 0) ? files : playerAction.previousSelectedFile;
-        file = file ? file : playerAction.previousSelectedFile[0];
-        if (playerAction.fileReaderSupported && file.type.indexOf('image') > -1) {
+        lastSelectedImage = (selectedImage) ? selectedImage : lastSelectedImage;
+        if (playerAction.fileReaderSupported && lastSelectedImage.type.indexOf('image') > -1) {
           playerAction.fileError = true;
           $timeout(function () {
             var fileReader = new FileReader();
-            fileReader.readAsDataURL(file);
+            fileReader.readAsDataURL(lastSelectedImage);
             fileReader.onload = function (e) {
               $timeout(function () {
                 playerAction.isChoosenAvatar = false;
                 playerAction.onOpenCropImg(e.target.result);
-                //clear the input file value once it is cropped & rendered(issue with selection of same file event is not triggering)
                 inputFileObj.value = null;
               });
             };
