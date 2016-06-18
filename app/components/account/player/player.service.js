@@ -100,6 +100,38 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
     return $http.get(base_url + '/avatar/' + getUserID() + '/get-avatars');
   };
 
+  function checkLetterDataAvailable(sourceData, letter){
+    var letterAvailable = false;
+    for(var ind = 0; ind < sourceData.length; ind++){
+      if(sourceData[ind]._id.toLowerCase() === letter.toLowerCase()){
+        letterAvailable = true;
+        break;
+      }
+    }
+    return letterAvailable;
+  }
+
+  service.addLetterIfNotExist = function(sourceArr){
+    var letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+
+    var resultArr = [];
+    for(var ind = 0; ind < letters.length; ind++){
+      if(!checkLetterDataAvailable(sourceArr, letters[ind])){
+        var emptyObj = {
+          _id : letters[ind],
+          repeatedTimes: 0,
+          lastAttemptedOn: 0,
+          value : {
+            LatestRepeatedTime: 0,
+            repeatedTimes: 0
+          }
+        };
+        resultArr.push(emptyObj);
+      }
+    }
+    return resultArr.concat(sourceArr);
+  };
+
   //Get Graph Data
   service.getChartDetaisService = function (badgeId, playerId, chartType) {
     return $http.get(base_url + '/sendbigbadgegraphs/' + badgeId + "/" + playerId + "/" + chartType);

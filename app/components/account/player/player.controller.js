@@ -299,6 +299,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
             LastPlayed: utilsFactory.dateFormatterForCSV(realWordObj.lastAttemptedOn)
           });
         }
+
         player.realWordsData = appService.simpleSort(player.realWordsData, 'endtime', true);
       }
     };
@@ -372,6 +373,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
             LastPlayed: utilsFactory.dateFormatterForCSV(lettersObj.lastAttemptedOn)
           });
         }
+        player.lettersWordsData = PlayerService.addLetterIfNotExist(player.lettersWordsData);
+        player.lettersWordsData = appService.simpleSort(player.lettersWordsData, '_id');
       }
     };
 
