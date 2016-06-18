@@ -90,7 +90,7 @@
                   <div class="col-md-6">
                     <button type="submit"
                             class="btn btn-primary add-custom-word-save-button submit-clear-all-padding btn-block"
-                            data-translate="curriculum.addword"  data-ng-disabled="!curriculum.model.wordItem.wordName">
+                            data-translate="curriculum.addword" data-ng-disabled="!curriculum.model.wordItem.wordName">
                       Add Word
                     </button>
                   </div>
@@ -116,18 +116,20 @@
               <thead>
               <tr>
                 <th>
-                  <a href="javascript:;" data-ng-click="curriculum.customWordListSort('Words')" data-ng-if="curriculum.customWords.length > 0">
+                  <a href="javascript:;" data-ng-click="curriculum.customWordListSort('Words')"
+                     data-ng-if="curriculum.customWords.length > 0">
                     <span data-translate="curriculum.customword_headers.word"> </span>
                     <span class="fa fa-sort columnSortIcons"
                           data-ng-class="{' fa-sort-asc': curriculum.sortType.reverse === true && curriculum.sortType.column === 'Words', 'fa-sort-desc': curriculum.sortType.reverse === false && curriculum.sortType.column === 'Words'}">
                     </span>
                   </a>
-                  <span data-translate="curriculum.customword_headers.word" data-ng-if="curriculum.customWords.length === 0"> </span>
+                  <span data-translate="curriculum.customword_headers.word"
+                        data-ng-if="curriculum.customWords.length === 0"> </span>
                 </th>
                 <th>
                   <span data-translate="curriculum.customword_headers.picture"> </span>
                 </th>
-                <th >
+                <th>
                   <span data-translate="curriculum.customword_headers.actions"> </span>
                 </th>
               </tr>
@@ -164,8 +166,9 @@
                       <i class="fa fa-exclamation-circle"></i>
                       <span data-translate="curriculum.messages.word_already_exist">Word already exist.</span>
                     </div>
-                    <div ng-show="curriculum.model.editCustomWrdSubmited && editCustomWrdFrm.editCustomWordInpt.$error.required"
-                         class="error-mesasage">
+                    <div
+                      ng-show="curriculum.model.editCustomWrdSubmited && editCustomWrdFrm.editCustomWordInpt.$error.required"
+                      class="error-mesasage">
                       <i class="fa fa-exclamation-circle"></i>
                       <span data-translate="curriculum.messages.word_name_require">Word Name is required.</span>
                     </div>
@@ -199,7 +202,8 @@
                 </td>
                 <td class="player-words" data-ng-if="word.isEditMode">
                   <button class="btn btn-primary custom-word-save-button"
-                          data-ng-click="curriculum.onEditCustomWord(word,editCustomWrdFrm, $parent)" data-ng-disabled="!word.Words">
+                          data-ng-click="curriculum.onEditCustomWord(word,editCustomWrdFrm, $parent)"
+                          data-ng-disabled="!word.Words">
                     Save
                   </button>
                 </td>
@@ -261,6 +265,11 @@
                 </div>
               </div>
             </div>
+            <div class="col-md-12 ">
+              <button class="btn btn-primary notification-submit-button center-block" type="submit"
+                      data-ng-click="curriculum.submitGroupWords()" data-translate="common.buttons.submit">SUBMIT
+              </button>
+            </div>
           </uib-accordion-group>
         </uib-accordion>
 
@@ -287,13 +296,13 @@
                 </div>
               </div>
             </div>
+            <div class="col-md-12 ">
+              <button class="btn btn-primary notification-submit-button center-block" type="submit"
+                      data-ng-click="curriculum.submitGroupWords()" data-translate="common.buttons.submit">SUBMIT
+              </button>
+            </div>
           </uib-accordion-group>
         </uib-accordion>
-        <div class="col-md-12 ">
-          <button class="btn btn-primary notification-submit-button center-block" type="submit"
-                  data-ng-click="curriculum.submitGroupWords()" data-translate="common.buttons.submit">SUBMIT
-          </button>
-        </div>
         <br/><br/><br/>
         <uib-accordion class="badword-accordion">
           <uib-accordion-group is-open="status.open">
@@ -348,7 +357,7 @@
 
                 <span class="col-md-4 col-sm-4 banword">{{banWord.word}}</span>
 
-                  <span class="col-md-4 col-sm-4" >
+                  <span class="col-md-4 col-sm-4">
                     <i class="fa fa-trash" data-ng-click="curriculum.onDeleteBanWord(banWord)"></i>
                   </span>
               </div>
