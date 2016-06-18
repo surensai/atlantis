@@ -37,7 +37,7 @@ angular.module('app').factory('appService', [ '$rootScope','$timeout','$cookieSt
   };
 
   service.onSessionRedirections = function(currentUrl){
-    var restrictedURLS = ['/login', '/register', '/forgot-password'];
+    var restrictedURLS = ['/login', '/register', '/forgot-password',''];
     return (($.inArray(currentUrl, restrictedURLS) !== -1) && service.checkSessionOnURLChange()) ? true : false;
   };
 
@@ -92,7 +92,6 @@ angular.module('app').factory('appService', [ '$rootScope','$timeout','$cookieSt
           return 1;
         }
       }
-
       return 0;
     });
 
