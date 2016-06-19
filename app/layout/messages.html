@@ -16,6 +16,9 @@
             <p data-translate="user.forgot_password.password_changed">Your password has been reset. You can now use your
               new password to login.</p>
           </div>
+          <div data-ng-if="messages && messages.type === 'resetError'">
+            <p>Password reset token is invalid or has expired.</p>
+          </div>
           <div data-ng-if="messages && messages.type === 'change_password'">
             <p data-translate="user.forgot_password.password_change_new_login">Password changed succesfully.</p>
           </div>
