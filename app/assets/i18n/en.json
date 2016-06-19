@@ -180,7 +180,7 @@
         "register_success_mes": "Thank you for creating a Square Panda account.",
         "email_require": "Please enter your (grown-up's) Email.",
         "email_activation_message": "You’re all set to jump into Square Panda's world of reading readiness.",
-        "user_verified_already": "You are already registered with us and your account is active.",
+        "user_verified_already": "Your account has already been activated. You can continue with login.",
         "email_registered": "That email has already been used to create a Square Panda account. If you've forgotten your password, you can reset it.",
         "return_login": "Return to Log In",
         "get_mail": " Soon you will get a confirmation email to verify your account.",
