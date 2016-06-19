@@ -170,7 +170,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           playerId = $state.params.id;
         }
         getPlayerHighlights(playerId);
-        getMinibadges(playerId);
         getBigBadges(playerId);
         player.data.playersList = data;
         PlayerService.getPlayerById(playerId)
@@ -345,8 +344,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         authService.generateNewToken(function () {
           getNonsenseWords(childId);
         });
-      }
-      else {
+      } else {
         messagesFactory.getPlayerwordsError(status);
       }
     };
@@ -383,8 +381,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         authService.generateNewToken(function () {
           getLettersWords(childId);
         });
-      }
-      else {
+      } else {
         messagesFactory.getPlayerwordsError(status);
       }
     };
@@ -652,6 +649,14 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   player.getWordsClickHandler = function () {
     getWords(player.playerObj.id);
+  };
+
+  player.getMiniBadgesClickHandler = function(){
+    getMinibadges(player.playerObj.id);
+  };
+
+  player.getBigBadgesClickHandler = function(){
+    getBigBadges(player.playerObj.id);
   };
 
 }]);
