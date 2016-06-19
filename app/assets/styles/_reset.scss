@@ -148,6 +148,9 @@ body {
 .btn-primary:hover {
   background-color: darken($sp-green, 10%) !important;
 }
+.text-capitalize{
+  text-transform: uppercase !important;
+}
 
 .navbar-toggle {
   border: none;
