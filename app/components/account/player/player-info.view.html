@@ -465,7 +465,7 @@
             </thead>
             <tbody>
             <tr data-ng-repeat="word in player.lettersWordsData">
-              <td class="player-words text-ellipsis word-text">{{ word._id}}</td>
+              <td class="player-words text-ellipsis word-text text-capitalize">{{ word._id}}</td>
               <td class="word-icons">{{ word.value.repeatedTimes}}</td>
               <td class="word-date">
                 <span am-time-ago="word.lastAttemptedOn" data-ng-if="word.lastAttemptedOn"></span>
