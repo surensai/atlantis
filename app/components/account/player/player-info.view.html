@@ -58,10 +58,10 @@
 
 <div class="player-tabs">
   <uib-tabset active="activeJustified">
-    <uib-tab index="0" heading="Big Badges">
+
+    <uib-tab index="0" heading="Big Badges"  data-ng-click="player.getBigBadgesClickHandler()">
       <div class="badges-container clearfix">
         <div resize></div>
-
         <div class="badges-row clearfix"
              data-ng-repeat="reptable in player.splitBadgesData"
              data-ng-init="count = $index ">
@@ -69,7 +69,6 @@
           <div class="col-md-3 col-sm-6 badge-columns"
                data-ng-repeat-start="badge in player.bigBadgesData(count)"
                data-ng-click="player.showGraph(count, $index)">
-
             <data-badge-item item-data="badge"
                              display-index="player.displayChartIndex"
                              index="$index">
@@ -133,7 +132,8 @@
         </div>
       </div>
     </uib-tab>
-    <uib-tab index="1" heading="Mini Badges">
+
+    <uib-tab index="1" heading="Mini Badges" data-ng-click="player.getMiniBadgesClickHandler()">
       <div class="mini-badges-container clearfix">
         <div class="row minibadges-row">
           <div class="col-md-3 col-sm-6" ng-repeat="minibadge in player.miniBadges">
@@ -168,8 +168,8 @@
         </div>
       </div>
     </uib-tab>
-    <uib-tab index="2" heading="Words" data-ng-click="player.getWordsClickHandler()">
 
+    <uib-tab index="2" heading="Words" data-ng-click="player.getWordsClickHandler()">
       <div class="words-options">
         <div class="player-words-tab-filterby pull-left">
           <label class="filter-label" data-translate="common.filter_by">Filter by</label>
