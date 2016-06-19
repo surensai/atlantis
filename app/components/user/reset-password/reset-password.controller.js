@@ -7,7 +7,7 @@ angular.module("app").controller('resetPasswordCtrl', ['$scope', 'UserService', 
 
   (function () {
     if (auth.data.message !== "success") {
-      flashService.showError(auth.data.message, true);
+      messagesFactory.resetpasswordErrorMessages(auth.data.message);
       $state.go('messages');
     }
   })();

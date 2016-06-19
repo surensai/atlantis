@@ -73,21 +73,27 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   };
 
   player.addPlayer = function () {
-    if (player.data.playersList.length >= player.maxPlayersLimit) {
-      $uibModal.open({
-        templateUrl: 'common/app-directives/modal/custom-modal.html',
-        controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
-          $scope.modalTitle = $translate.instant('common.error');
-          $scope.modalBody = $translate.instant('player.messages.max_players');
-          $scope.modalType = $translate.instant('common.error');
-          $scope.close = function () {
-            $uibModalInstance.dismiss('cancel');
-          };
-        }]
+    PlayerService.getAllApi(userID)
+      .success(function(data){
+        if (data.length >= player.maxPlayersLimit) {
+          $uibModal.open({
+            templateUrl: 'common/app-directives/modal/custom-modal.html',
+            controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+              $scope.modalTitle = $translate.instant('common.error');
+              $scope.modalBody = $translate.instant('player.messages.max_players');
+              $scope.modalType = $translate.instant('common.error');
+              $scope.close = function () {
+                $uibModalInstance.dismiss('cancel');
+              };
+            }]
+          });
+        } else {
+          $state.go("account.addplayer");
+        }
+      })
+      .error(function(){
+        console.log('error')
       });
-    } else {
-      $state.go("account.addplayer");
-    }
   };
 
   player.bigBadgesData = function (index) {

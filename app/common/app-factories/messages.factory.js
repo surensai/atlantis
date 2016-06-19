@@ -57,10 +57,8 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     }
   };
 
-  service.resetpasswordErrorMessages = function(status) {
-    if (status === 500) {
-      flashService.showError($translate.instant('user.validationMessages.error_reset_password '), false);
-    }
+  service.resetpasswordErrorMessages = function(message) {
+      flashService.showCustomMessage("resetError", true);
   };
 
   service.dashboardfeedsError = function(status) {
