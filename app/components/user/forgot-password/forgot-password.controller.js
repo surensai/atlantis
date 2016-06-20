@@ -1,10 +1,16 @@
 'use strict';
 
-angular.module("app").controller('forgotPasswordCtrl', ['$scope', 'UserService', 'messagesFactory', '$state', function ($scope, UserService, messagesFactory, $state) {
+angular.module("app").controller('forgotPasswordCtrl', ['$scope', 'UserService', 'messagesFactory', '$state','appService', function ($scope, UserService, messagesFactory, $state, appService) {
 
   var forgot = this;
   forgot.model = {};
   forgot.service = UserService;
+
+  (function () {
+    if(appService.checkSessionOnURLChange()){
+      $state.go('account.dashboard');
+    }
+  })();
 
   forgot.submitForm = function (form) {
     if (form.$valid) {
