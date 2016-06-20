@@ -172,28 +172,24 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       player.isNoPlayer = true;
       if (data.length > 0) {
         var playerId = data[0].id;
+        player.data.playersList = data;
         if ($state.params.id) {
           playerId = $state.params.id;
-        }
-        getPlayerHighlights(playerId);
-        getBigBadges(playerId);
-        player.data.playersList = data;
-        PlayerService.getPlayerById(playerId)
-          .success(function (data) {
+          getPlayerHighlights(playerId);
+          getBigBadges(playerId);
+          PlayerService.getPlayerById(playerId).success(function (data) {
             player.playerObj = data;
             player.getAllplayers = true;
-          })
-          .error(function (err, status) {
+          }).error(function (err, status) {
             if (status === 401) {
               authService.generateNewToken(function () {
                 getPlayers();
               });
-            }
-            else {
+            } else {
               flashService.showError($translate.instant("player.messages.error_getting_players"), false);
             }
-
           });
+        }
         $state.go('account.players.details', {id: playerId});
       }
     };

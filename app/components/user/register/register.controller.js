@@ -1,8 +1,14 @@
 'use strict';
 
-angular.module("app").controller('registerCtrl', ['AuthenticationService', 'UserService', '$timeout', 'messagesFactory', '$state', function (AuthenticationService, UserService, $timeout, messagesFactory, $state) {
+angular.module("app").controller('registerCtrl', ['AuthenticationService', 'UserService', '$timeout', 'messagesFactory', '$state','appService', function (AuthenticationService, UserService, $timeout, messagesFactory, $state, appService) {
 
   var register = this;
+
+  (function () {
+    if(appService.checkSessionOnURLChange()){
+      $state.go('account.dashboard');
+    }
+  })();
 
   register.submitForm = function (form) {
     register.submitted = true;

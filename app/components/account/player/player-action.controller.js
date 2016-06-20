@@ -21,7 +21,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
   playerAction.fileReaderSupported = window.FileReader != null;
   playerAction.model.croppedImage = '';
 
-
   (function () {
     getPlayerById();
   })();
@@ -31,14 +30,14 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     isDOBValid();
     if (form.$valid && playerAction.fileError && playerAction.isDOBVaid) {
       playerAction.added = true;
-      if (lastSelectedImage && !playerAction.isChoosenAvatar) {
-        uploadProfilePic(form);
+      if (lastSelectedImage.size && !playerAction.isChoosenAvatar) {
+        uploadProfilePic();
+        form.$setPristine();
+      }
+      if (playerAction.isUpdate) {
+        updateAction();
       } else {
-        if (playerAction.isUpdate) {
-          updateAction();
-        } else {
-          addAction();
-        }
+        addAction();
       }
     } else {
       $timeout(function () {
@@ -75,8 +74,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
         authService.generateNewToken(function () {
           addAction();
         });
-      }
-      else {
+      } else {
         messagesFactory.createPlayerError(error);
       }
     };
@@ -98,8 +96,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
         authService.generateNewToken(function () {
           updateAction();
         });
-      }
-      else {
+      } else {
         messagesFactory.updatePlayerError(status);
       }
     };
@@ -109,31 +106,19 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       .error(handleError);
   }
 
-  function uploadProfilePic(form) {
+  function uploadProfilePic() {
     var handleSuccess = function (data) {
       playerAction.model.playerItem.profileURL = data.files[0].url;
-      if (playerAction.isUpdate) {
-        updateAction();
-      } else {
-        addAction();
-      }
-      form.$setPristine();
     };
 
     var handleError = function (error, status) {
       if (status === 401) {
         authService.generateNewToken(function () {
-          uploadProfilePic(form);
+          uploadProfilePic();
         });
       } else {
-        if (playerAction.isUpdate) {
-          updateAction();
-        } else {
-          addAction();
-        }
         messagesFactory.uploadfileError(status);
       }
-
     };
 
     PlayerService.uploadFileApi(lastSelectedImage)
@@ -183,8 +168,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
             .success(handleSuccess)
             .error(handleError);
         });
-      }
-      else {
+      } else {
         messagesFactory.deletePlayerError(status);
       }
     };
@@ -203,10 +187,10 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
         $scope.croppedImageSize = '';
         playerAction.isChoosenAvatar = false;
         $scope.onCancel = function () {
+          lastSelectedImage = {};
           $uibModalInstance.dismiss('cancel');
         };
         $scope.onSubmit = function () {
-          //playerAction.model.playerItem.profileURL = "";
           playerAction.model.playerItem.imgbase64 = $scope.croppedImage;
           $uibModalInstance.dismiss('cancel');
         };
@@ -291,8 +275,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
           authService.generateNewToken(function () {
             getPlayerById();
           });
-        }
-        else {
+        } else {
           messagesFactory.getPlayerbyIDError(status);
         }
       };
@@ -318,8 +301,7 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
         authService.generateNewToken(function () {
           getAvatars();
         });
-      }
-      else {
+      } else {
         messagesFactory.getPlayerbyIDError(status);
       }
     };
@@ -344,7 +326,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
       playerAction.isDOBVaid = false;
     }
   }
-
 
 }]);
 

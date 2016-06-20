@@ -16,8 +16,6 @@
   <link rel="stylesheet" href="assets/styles/main.css">
   <!-- endbuild -->
   <!-- <base href="/"> -->
-  <script src="http://platform.twitter.com/widgets.js"></script>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
 <body>
@@ -28,7 +26,7 @@
 <div class="load-overlay" data-ng-show="$root.ajaxProgress!=0">
   <img src="assets/images/icon-load.gif" width="100">
 </div>
-<div id="wrapper" ng-class="{'content-bg': !globals.currentUser, 'wrapper-height': !isFooterFix}">
+<div id="wrapper" ng-class="{'content-bg': enableBg(), 'wrapper-height': !isFooterFix}">
   <div data-ng-include=" 'layout/header.html' "></div>
   <div id="app" class="app" ui-view=""></div>
   <div data-ng-include=" 'layout/footer.html' "></div>
@@ -106,5 +104,7 @@
 <script src="components/user/authentication.service.js"></script>
 <script src="components/user/user.service.js"></script>
 <!-- endbuild -->
+<script src="http://platform.twitter.com/widgets.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
 </html>
