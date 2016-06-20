@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messagesFactory', '$state', '$stateParams', '$rootScope', 'AuthenticationService', function (DashboardService, messagesFactory, $state, $stateParams, $rootScope, authService) {
+angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messagesFactory', '$state', '$stateParams', '$rootScope', 'AuthenticationService','appService', function (DashboardService, messagesFactory, $state, $stateParams, $rootScope, authService, appService) {
   var dashboard = this;
   var welcomefeed = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.welcomefeed : {};
   dashboard.userName = $rootScope.globals.currentUser;
@@ -18,6 +18,7 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
   })();
 
   dashboard.showWelcomeMessageDetail = function () {
+    appService.isFooterFixed();
     if (dashboard.showWelcomeNewsFeedDetails) {
       dashboard.showWelcomeNewsFeedDetails = false;
     } else {
