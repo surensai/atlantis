@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService','$cookieStore',  function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService, $cookieStore) {
+angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', 'AuthenticationService', 'messagesFactory', '$timeout', 'settingsService', '$cookieStore', function ($rootScope, UserService, AuthenticationService, messagesFactory, $timeout, settingsService, $cookieStore) {
   var settings = this;
   settings.model = {};
   settings.model.userData = angular.copy($rootScope.globals.currentUser);
@@ -40,8 +40,8 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
     };
 
     var handleError = function (error, status) {
-      if(status === 401){
-        AuthenticationService.generateNewToken(function(){
+      if (status === 401) {
+        AuthenticationService.generateNewToken(function () {
           saveProfile();
         });
       }
@@ -80,13 +80,13 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
 
   function changePassword() {
     var handleSuccess = function (data) {
-      settings.model.passwordData="";
+      settings.model.passwordData = "";
       messagesFactory.settingschangepasswordSuccessMessages(data);
     };
     var handleError = function (error, status) {
-      settings.model.passwordData="";
-      if(status === 401){
-        AuthenticationService.generateNewToken(function(){
+      settings.model.passwordData = "";
+      if (status === 401) {
+        AuthenticationService.generateNewToken(function () {
           changePassword();
         });
       }
@@ -107,8 +107,8 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       messagesFactory.settingsNotificationsSuccessMessages(data);
     };
     var handleError = function (error, status) {
-      if(status === 401){
-        AuthenticationService.generateNewToken(function(){
+      if (status === 401) {
+        AuthenticationService.generateNewToken(function () {
           settingsService.updateApi(settings.model.notificationObj)
             .success(handleSuccess)
             .error(handleError);
@@ -128,8 +128,8 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       settings.model.notificationObj = data;
     };
     var handleError = function (error, status) {
-      if(status === 401){
-        AuthenticationService.generateNewToken(function(){
+      if (status === 401) {
+        AuthenticationService.generateNewToken(function () {
           getNotificationData();
         });
       }
@@ -144,8 +144,8 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
 
   function getMissingLetters() {
     var handleSuccess = function (data) {
-      if(data.length > 0) {
-        var letterGroups = _.groupBy(data, function(item) {
+      if (data.length > 0) {
+        var letterGroups = _.groupBy(data, function (item) {
           return [item.letter].sort();
         });
 
@@ -161,12 +161,12 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
           k = keys[i];
           settings.missingLetters.push(letterGroups[k]);
         }
-        settings.missingLetters_row_2 = settings.missingLetters.splice(0,13);
+        settings.missingLetters_row_2 = settings.missingLetters.splice(0, 13);
       }
     };
     var handleError = function (error, status) {
-      if(status === 401){
-        AuthenticationService.generateNewToken(function(){
+      if (status === 401) {
+        AuthenticationService.generateNewToken(function () {
           getMissingLetters();
         });
       }
@@ -184,8 +184,8 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
       messagesFactory.updateMissingLettersSuccessMessages(data);
     };
     var handleError = function (error, status) {
-      if(status === 401){
-        AuthenticationService.generateNewToken(function(){
+      if (status === 401) {
+        AuthenticationService.generateNewToken(function () {
           settingsService.updateMissingCharactersApi({"character": settings.selectedMisLetters})
             .success(handleSuccess)
             .error(handleError);
@@ -195,7 +195,7 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
         messagesFactory.updateMissingLettersErrorMessages(status);
       }
     };
-
+    settings.selectedMisLetters = [];
     addSelectedLetterIds(settings.missingLetters_row_2, 'add');
     addSelectedLetterIds(settings.missingLetters, 'add');
 
@@ -209,17 +209,17 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
     var missintLtrSec1 = settings.missingLetters[rowInd][letterInd];
     var wLtr = settings.missingLetters[9][letterInd];
     var mLtr = settings.missingLetters_row_2[12][letterInd];
-    if(type === 1){
+    if (type === 1) {
       missingLtrSec2.missingCharacter = (missingLtrSec2.missingCharacter) ? false : true;
-      wLtr.missingCharacter = ((rowInd === 12) && (missingLtrSec2.letter === "M")) ?  missingLtrSec2.missingCharacter : wLtr.missingCharacter;
+      wLtr.missingCharacter = ((rowInd === 12) && (missingLtrSec2.letter === "M")) ? missingLtrSec2.missingCharacter : wLtr.missingCharacter;
     } else {
       missintLtrSec1.missingCharacter = (missintLtrSec1.missingCharacter) ? false : true;
-      mLtr.missingCharacter = ((rowInd === 9) && (missintLtrSec1.letter === "W")) ?  missintLtrSec1.missingCharacter : mLtr.missingCharacter ;
+      mLtr.missingCharacter = ((rowInd === 9) && (missintLtrSec1.letter === "W")) ? missintLtrSec1.missingCharacter : mLtr.missingCharacter;
     }
   };
 
   settings.isMissilingLetterSelected = function (rowInd, letterInd, type) {
-    if(type === 1){
+    if (type === 1) {
       if (settings.missingLetters_row_2[rowInd][letterInd].missingCharacter) {
         return true;
       }
@@ -231,32 +231,30 @@ angular.module("app").controller('settingsCtrl', ['$rootScope', 'UserService', '
   };
 
   settings.clearAllAlphabets = function () {
-      addSelectedLetterIds(settings.missingLetters, 'clear');
-      addSelectedLetterIds(settings.missingLetters_row_2, 'clear');
+    addSelectedLetterIds(settings.missingLetters, 'clear');
+    addSelectedLetterIds(settings.missingLetters_row_2, 'clear');
   };
 
   settings.isLetterVowel = function (char) {
     var vowels = "AEIOU";
-    if(vowels.indexOf(char) !== -1){
+    if (vowels.indexOf(char) !== -1) {
       return true;
     }
   };
 
-  function addSelectedLetterIds(arr, type){
-    for(var i=0; arr.length > i; i++){
-      for(var ii = 0; arr[i].length > ii; ii++ ) {
-        if(type === 'add'){
-          if(arr[i][ii].missingCharacter){
+  function addSelectedLetterIds(arr, type) {
+    for (var i = 0; arr.length > i; i++) {
+      for (var ii = 0; arr[i].length > ii; ii++) {
+        if (type === 'add') {
+          if (arr[i][ii].missingCharacter && settings.selectedMisLetters.indexOf(arr[i][ii].id) <= 0) {
             settings.selectedMisLetters.push(arr[i][ii].id);
           }
         } else {
           arr[i][ii].missingCharacter = false;
         }
-
       }
     }
   }
-
 
 
 }]);
