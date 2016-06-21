@@ -7,8 +7,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.maxPlayersLimit = $rootScope.globals.currentUser.playerLimit;
   player.model = {};
   player.model.wordTypeUI = "All";
-  player.chartData = {};
-  player.highchartsNG = getChartObj();
+  player.chartAllTypeData = [];
+  player.chartTabTypeIndex = -1;
   player.data = {};
   player.playerObj = {};
   player.highlights = {};
@@ -32,7 +32,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.drag = 'drag feedback';
   player.drop = 'drop feedback';
   player.gridCount = 4;
-  player.chartTabType = "";
   player.sortType = {};
 
   var wordsCsvData = [],
@@ -74,7 +73,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
 
   player.addPlayer = function () {
     PlayerService.getAllApi(userID)
-      .success(function(data){
+      .success(function (data) {
         if (data.length >= player.maxPlayersLimit) {
           $uibModal.open({
             templateUrl: 'common/app-directives/modal/custom-modal.html',
@@ -91,7 +90,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           $state.go("account.addplayer");
         }
       })
-      .error(function(){
+      .error(function () {
         console.log('error')
       });
   };
@@ -101,12 +100,17 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     return player.bigBadges.slice(currentIndex, currentIndex + player.gridCount);
   };
 
-  player.onGetChartData = function (chartType) {
-    if (player.chartTabType === chartType) {
+  player.onGetChartData = function (chartTypeIndx) {
+    if (player.chartTabTypeIndex === chartTypeIndx) {
       return false;
     }
-    player.chartTabType = chartType;
-    getChartDataAPI(player.bigbadgedetails.id, player.playerObj.id, chartType);
+
+    if (player.chartAllTypeData.length === 0) {
+      getChartDataAPI(player.bigbadgedetails.id, player.playerObj.id, "day");
+    } else {
+      player.chartTabTypeIndex = chartTypeIndx;
+      player.highchartsNG = getChartObj(player.chartAllTypeData[player.chartTabTypeIndex]);
+    }
   };
 
   player.showGraph = function (index, colIndex) {
@@ -140,23 +144,27 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         }
       }
     }
-    player.chartTabType = "";
-    player.onGetChartData('day');
+    //clear chart data for new badge selected
+    player.highchartsNG = null;
+    player.chartAllTypeData = [];
+    player.chartTabTypeIndex = -1;
+    player.onGetChartData(0);
   };
 
   /*Get Chart Data from API & render in UI*/
   function getChartDataAPI(badgeId, playerId, chartType) {
     //Get Chart Data API Call
-    PlayerService.getChartDetaisService(badgeId, playerId, chartType)
+    PlayerService.getChartDetaisService(badgeId, playerId, "day")
       .success(function (data) {
-        player.chartData = data;
+        player.chartAllTypeData = parseChartData(data);
+        player.chartTabTypeIndex = 0;
         //Update the Chart Object to render on UI
-        player.highchartsNG = getChartObj(data);
+        player.highchartsNG = getChartObj(player.chartAllTypeData[player.chartTabTypeIndex]);
       })
       .error(function (err, status) {
         if (status === 401) {
           authService.generateNewToken(function () {
-            getChartDataAPI(badgeId, playerId, chartType);
+            getChartDataAPI(badgeId, playerId, "day");
           });
         }
         else {
@@ -488,142 +496,39 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     return arr;
   }
 
-  function getChartObj(data) {
-    var chartObj = PlayerGraphService.getChartObj(parseChartData(data), getXAxisLblRotation());
+  function getChartObj(chartTypeData) {
+    var chartObj;
+    if (player.chartAllTypeData.length > 0) {
+      //set default chart filter tab - week ( 0 index)
+      chartObj = PlayerGraphService.getChartObj(chartTypeData);
+    }
     return chartObj;
   }
 
   //Parse Chart Data
   function parseChartData(data) {
-    var tempChartObj = {
-      xAxisCatgryArr: [],
-      seriesDataArr: []
-    }, xAxisArr = [], yAxisArr = [], apiData;
-    if (data && data.length) {
-      switch (player.chartTabType) {
-        case "day" || "":
-          //This Week Data
-          for (var chartCounter = 1; chartCounter <= 7; chartCounter++) {
-            //API data
-            apiData = parseXYAxisLegends(data, chartCounter);
-            if (apiData.hasOwnProperty('xAxisVal') && apiData.hasOwnProperty('yAxisVal')) {
-              xAxisArr.push(apiData.xAxisVal);
-              yAxisArr.push(apiData.yAxisVal);
-            } else {
-              //Dummy Data
-              xAxisArr.push(daysXAxisLegArr[chartCounter]);
-              yAxisArr.push(0);
-            }
-          }
-          break;
-        case "week":
-          //30 Days Data
-          var tempWeekArr = [], weekArr = [];
-          for (var weekCounter = 0; weekCounter < data.length; weekCounter++) {
-            var weekObj = data[weekCounter]["_id"];
-            weekObj.xAxisVal = Number(weekObj.weekOfMonth) + 1;
-            weekObj.yAxisVal = data[weekCounter].count;
-            tempWeekArr.push(weekObj);
-          }
-          tempWeekArr.sort(function (a, b) {
-            return a.xAxisVal == b.xAxisVal ? 0 : a.xAxisVal < b.xAxisVal ? -1 : 1;
-          });
-          for (var sortedweekCntr = 1; sortedweekCntr <= 4; sortedweekCntr++) {
-            var isWeekAPIDt = false;
-            for (var weekAPICntr = 0; weekAPICntr < tempWeekArr.length; weekAPICntr++) {
-              if (sortedweekCntr === tempWeekArr[weekAPICntr].xAxisVal) {
-                isWeekAPIDt = true;
-                xAxisArr.push("Week" + tempWeekArr[weekAPICntr].xAxisVal);
-                yAxisArr.push(tempWeekArr[weekAPICntr].yAxisVal);
-                break;
-              }
-            }
-            if (!isWeekAPIDt) {
-              xAxisArr.push("Week" + sortedweekCntr);
-              yAxisArr.push(0);
-            }
-          }
-          break;
-        case "month":
-          //1 Year Data
-          for (var monthCounter = 1; monthCounter <= 12; monthCounter++) {
-            //API data
-            apiData = parseXYAxisLegends(data, monthCounter);
-            if (apiData.hasOwnProperty('xAxisVal') && apiData.hasOwnProperty('yAxisVal')) {
-              xAxisArr.push(apiData.xAxisVal);
-              yAxisArr.push(apiData.yAxisVal);
-            } else {
-              //Dummy Data
-              xAxisArr.push(monthsXAxisLegArr[monthCounter]);
-              yAxisArr.push(0);
-            }
-          }
-          break;
-        case "year":
-          //All Time Data
-          var yearArr = [];
-          for (var yearCounter = 0; yearCounter < data.length; yearCounter++) {
-            var yearObj = data[yearCounter]["_id"];
-            yearObj.xAxisVal = yearObj.year;
-            yearObj.yAxisVal = data[yearCounter].count;
-            yearArr.push(yearObj);
-          }
-          yearArr.sort(function (a, b) {
-            return a.xAxisVal == b.xAxisVal ? 0 : a.xAxisVal < b.xAxisVal ? -1 : 1;
-          });
-          for (var sortedCntr = 0; sortedCntr < yearArr.length; sortedCntr++) {
-            xAxisArr.push(yearArr[sortedCntr].xAxisVal);
-            yAxisArr.push(yearArr[sortedCntr].yAxisVal);
-          }
-          break;
-        default:
-          break;
-      }
-      tempChartObj.xAxisCatgryArr = xAxisArr;
-      tempChartObj.seriesDataArr = yAxisArr;
-    }
+    var tempChartObj = [];
+    angular.forEach(data, function (value, key) {
+      var chartObj = {chartType: key, chartFeedData: value};
+      tempChartObj.push(chartObj);
+    });
     //Clear series data if Chart percentage is zero
     if (player.bigbadgedetails && player.bigbadgedetails.percentage === 0) {
-      tempChartObj.seriesDataArr = [];
+      tempChartObj = [];
     }
     return tempChartObj;
-  }
-
-  //Parse X Axis Legends labels (e.g Days - Monday OR Months - Jan)
-  function parseXYAxisLegends(data, chartCounter) {
-    var chartDataObj = {};
-    for (var dataCounter = 0; dataCounter < data.length; dataCounter++) {
-      var obj = data[dataCounter]['_id'];
-      //Days
-      if ((player.chartTabType === "day" || player.chartTabType === "") && chartCounter === obj.dayOfWeek) {
-        chartDataObj.xAxisVal = daysXAxisLegArr[obj.dayOfWeek];
-        chartDataObj.yAxisVal = data[dataCounter].count;
-        break;
-      } else if (player.chartTabType === "month" && chartCounter === obj.month) {
-        //Months
-        chartDataObj.xAxisVal = monthsXAxisLegArr[obj.month];
-        chartDataObj.yAxisVal = data[dataCounter].count;
-        break;
-      }
-    }
-    return chartDataObj;
-  }
-
-  //Resposive View X-Axis Label Rotation
-  function getXAxisLblRotation() {
-    //Mobile or responsive view
-    if (document.documentElement.clientWidth < 700) {
-      return -45;
-    } else {
-      //Desktop View
-      return 0;
-    }
   }
 
   player.getCSVHeader = function () {
     var wordsHeaders = [];
     switch (player.model.wordTypeUI) {
-      case "Word":
+      case "All":
+        wordsHeaders[0] = $translate.instant("player.word_headers.words");
+        wordsHeaders[1] = $translate.instant("player.word_headers.correct");
+        wordsHeaders[2] = $translate.instant("player.word_headers.incorrect");
+        wordsHeaders[3] = $translate.instant("player.word_headers.last_attempt");
+        wordsHeaders[4] = $translate.instant("player.word_headers.last_played");
+        break;
       case "Real Words":
         wordsHeaders[0] = $translate.instant("player.real_word_headers.real_words");
         wordsHeaders[1] = $translate.instant("player.real_word_headers.correct");
@@ -653,11 +558,11 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     getWords(player.playerObj.id);
   };
 
-  player.getMiniBadgesClickHandler = function(){
+  player.getMiniBadgesClickHandler = function () {
     getMinibadges(player.playerObj.id);
   };
 
-  player.getBigBadgesClickHandler = function(){
+  player.getBigBadgesClickHandler = function () {
     getBigBadges(player.playerObj.id);
   };
 

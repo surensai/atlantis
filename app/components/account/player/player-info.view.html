@@ -10,12 +10,12 @@
       <img data-ng-if="!player.playerObj.imgbase64 && player.playerObj.profileURL"
            data-ng-src="{{player.playerObj.profileURL}}"
            class="img-rectangle img-border-radius" alt="player" width="100%" height="100%">
-      <a ui-sref="account.editPlayer({ id: player.playerObj.id })">
+      <a ui-sref="account.editPlayer({ id: player.playerObj.id })" title="Edit Player">
         <i class="glyphicon glyphicon-edit"></i> <span data-translate="player.edit_player">Edit Player</span> </a>
     </div>
   </div>
   <div class="pd-right">
-    <h3 class="playername-elipsis">{{player.playerObj.firstName}} {{player.playerObj.lastName}}</h3>
+    <h3 class="playername-elipsis" title="{{player.playerObj.firstName}}">{{player.playerObj.firstName}}</h3>
 
     <p>
       <img src="assets/images/badge2.png" width="12" class="non-retina"/>
@@ -59,16 +59,15 @@
 <div class="player-tabs">
   <uib-tabset active="activeJustified">
 
-    <uib-tab index="0" heading="Big Badges"  data-ng-click="player.getBigBadgesClickHandler()">
+    <uib-tab index="0" heading="Big Badges" data-ng-click="player.getBigBadgesClickHandler()">
       <div class="badges-container clearfix">
         <div resize></div>
         <div class="badges-row clearfix"
              data-ng-repeat="reptable in player.splitBadgesData"
              data-ng-init="count = $index ">
-
-          <div class="col-md-3 col-sm-6 badge-columns"
-               data-ng-repeat-start="badge in player.bigBadgesData(count)"
-               data-ng-click="player.showGraph(count, $index)">
+        <div class="col-md-3 col-sm-6 badge-columns" data-ng-repeat-start="badge in player.bigBadgesData(count)">
+          <div
+            data-ng-click="player.showGraph(count, $index)">
             <data-badge-item item-data="badge"
                              display-index="player.displayChartIndex"
                              index="$index">
@@ -81,6 +80,7 @@
             </div>
 
           </div>
+        </div>
 
           <div class="bb-col-{{$index}}"
                ng-class="{'bb-2side': (windowWidth >= 768) && (windowWidth <= 990) && (player.showColumn === 1 || player.showColumn === 0), 'bb-4side': (windowWidth >= 768) && (windowWidth <= 990) && (player.showColumn === 3 || player.showColumn === 2)}"
@@ -99,32 +99,18 @@
                 </div>
                 <div class="bigbadge-graph-buttons ">
                   <div class="bigbadge-graph-buttons-one">
-                    <a class="btn bigbadge-graph-button-style"
-                       data-ng-class="{'active': (player.chartTabType==='day' && player.bigbadgedetails.percentage !== 0)}"
-                       data-translate="player.badges.this_week" data-ng-click="player.onGetChartData('day')">
-                      This Week
-                    </a>
-                    <a class="btn bigbadge-graph-button-style"
-                       data-ng-class="{'active': player.chartTabType==='week'}"
-                       data-translate="player.badges.30days" data-ng-click="player.onGetChartData('week')">
-                      30 Days
-                    </a>
-                  </div>
-                  <div class="bigbadge-graph-buttons-two">
-                    <a class="btn bigbadge-graph-button-style"
-                       data-ng-class="{'active': player.chartTabType==='month'}"
-                       data-translate="player.badges.1year" data-ng-click="player.onGetChartData('month')">
-                      1 Year
-                    </a>
-                    <a class="btn bigbadge-graph-button-style"
-                       data-ng-class="{'active': player.chartTabType==='year'}"
-                       data-translate="player.badges.all_time" data-ng-click="player.onGetChartData('year')">
-                      All Time
+                    <a class="btn bigbadge-graph-button-style chart-type-name-camelcase"
+                       data-ng-repeat="chartTitleObj in player.chartAllTypeData"
+                       data-ng-class="{'active': ($index===player.chartTabTypeIndex && player.bigbadgedetails.percentage !== 0)}"
+                       data-ng-click="player.onGetChartData($index)">
+                      {{chartTitleObj.chartType}}
                     </a>
                   </div>
                 </div>
-                <highchart id="chartContainer" config="player.highchartsNG">
-                </highchart>
+                <div style="height: 380px;">
+                  <highchart id="chartContainer" data-ng-if="player.highchartsNG" config="player.highchartsNG">
+                  </highchart>
+                </div>
               </div>
             </div>
           </div>
@@ -185,7 +171,7 @@
                ng-csv="player.getWordsExportData()"
                filename="{{player.model.wordTypeUI}}.csv"
                csv-header="player.getCSVHeader()"><i class="fa fa-download"></i><span
-            data-translate="common.export_csv">Export CSV</span></div>
+            data-translate="common.export_csv" title="Export CSV">Export CSV</span></div>
         </div>
       </div>
 
@@ -208,48 +194,48 @@
               <th>
                 <a href="javascript:;" data-ng-click="player.playerTableSort('correctAttempts', player.wordsData)"
                    data-ng-if="player.wordsData.length > 0">
-                  <span data-translate="player.real_word_headers.correct"> </span>
+                  <span data-translate="player.word_headers.correct"> </span>
                   <span class="fa fa-sort"
                         data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'correctAttempts', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'correctAttempts'}">
                   </span>
                 </a>
-                <span data-translate="player.real_word_headers.correct"
+                <span data-translate="player.word_headers.correct"
                       data-ng-if="player.wordsData.length === 0"> </span>
               </th>
 
               <th>
                 <a href="javascript:;" data-ng-click="player.playerTableSort('inCorrectAttempts', player.wordsData)"
                    data-ng-if="player.wordsData.length > 0">
-                  <span data-translate="player.real_word_headers.incorrect"> </span>
+                  <span data-translate="player.word_headers.incorrect"> </span>
                   <span class="fa fa-sort"
                         data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'inCorrectAttempts', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'inCorrectAttempts'}">
                   </span>
                 </a>
-                <span data-translate="player.real_word_headers.incorrect"
+                <span data-translate="player.word_headers.incorrect"
                       data-ng-if="player.wordsData.length === 0"> </span>
               </th>
 
               <th>
                 <a href="javascript:;" data-ng-click="player.playerTableSort('count', player.wordsData)"
                    data-ng-if="player.wordsData.length > 0">
-                  <span data-translate="player.real_word_headers.last_attempt"> </span>
+                  <span data-translate="player.word_headers.last_attempt"> </span>
                   <span class="fa fa-sort"
                         data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'count', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'count'}">
                   </span>
                 </a>
-                <span data-translate="player.real_word_headers.last_attempt"
+                <span data-translate="player.word_headers.last_attempt"
                       data-ng-if="player.wordsData.length === 0"> </span>
 
               </th>
               <th>
                 <a href="javascript:;" data-ng-click="player.playerTableSort('endtime', player.wordsData)"
                    data-ng-if="player.wordsData.length > 0">
-                  <span data-translate="player.real_word_headers.last_played"> </span>
+                  <span data-translate="player.word_headers.last_played"> </span>
                   <span class="fa fa-sort"
                         data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'endtime', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'endtime'}">
                   </span>
                 </a>
-                <span data-translate="player.real_word_headers.last_played"
+                <span data-translate="player.word_headers.last_played"
                       data-ng-if="player.wordsData.length === 0"> </span>
               </th>
             </tr>
