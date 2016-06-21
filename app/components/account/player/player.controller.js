@@ -522,7 +522,13 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.getCSVHeader = function () {
     var wordsHeaders = [];
     switch (player.model.wordTypeUI) {
-      case "Word":
+      case "All":
+        wordsHeaders[0] = $translate.instant("player.word_headers.words");
+        wordsHeaders[1] = $translate.instant("player.word_headers.correct");
+        wordsHeaders[2] = $translate.instant("player.word_headers.incorrect");
+        wordsHeaders[3] = $translate.instant("player.word_headers.last_attempt");
+        wordsHeaders[4] = $translate.instant("player.word_headers.last_played");
+        break;
       case "Real Words":
         wordsHeaders[0] = $translate.instant("player.real_word_headers.real_words");
         wordsHeaders[1] = $translate.instant("player.real_word_headers.correct");
