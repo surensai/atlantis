@@ -413,35 +413,43 @@
             <thead>
             <tr>
               <th>
-                <a href="javascript:;" data-ng-click="player.playerTableSort('_id', player.lettersWordsData)"
+                <a href="javascript:;" data-ng-click="player.playerTableSort('letter', player.lettersWordsData)"
                    data-ng-if="player.wordsData.length > 0">
-
                   <span data-translate="player.letter_headers.letters"> </span>
                   <span class="fa fa-sort"
-                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === '_id', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === '_id'}">
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'letter', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'letter'}">
                   </span>
                 </a>
                 <span data-translate="player.letter_headers.letters" data-ng-if="player.wordsData.length === 0"> </span>
               </th>
               <th>
-                <a href="javascript:;" data-ng-click="player.playerTableSort('repeatedTimes', player.lettersWordsData)"
+                <a href="javascript:;" data-ng-click="player.playerTableSort('count', player.lettersWordsData)"
                    data-ng-if="player.wordsData.length > 0">
-
-                  <span data-translate="player.letter_headers.inputs"> </span>
+                  <span data-translate="player.letter_headers.count"> </span>
                   <span class="fa fa-sort"
-                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'repeatedTimes', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'repeatedTimes'}">
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'count', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'count'}">
                   </span>
                 </a>
-                <span data-translate="player.letter_headers.inputs" data-ng-if="player.wordsData.length === 0"> </span>
+                <span data-translate="player.letter_headers.count" data-ng-if="player.wordsData.length === 0"> </span>
+              </th>
+              <th>
+                <a href="javascript:;" data-ng-click="player.playerTableSort('count', player.lettersWordsData)"
+                   data-ng-if="player.wordsData.length > 0">
+                  <span data-translate="player.letter_headers.last_attempt"> </span>
+                  <span class="fa fa-sort"
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'count', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'count'}">
+                  </span>
+                </a>
+                <span data-translate="player.letter_headers.last_attempt" data-ng-if="player.wordsData.length === 0"> </span>
               </th>
               <th>
                 <a href="javascript:;"
-                   data-ng-click="player.playerTableSort('latestRepeatedTime', player.lettersWordsData)"
+                   data-ng-click="player.playerTableSort('lastAttemptedOn', player.lettersWordsData)"
                    data-ng-if="player.wordsData.length > 0">
 
                   <span data-translate="player.letter_headers.last_played"> </span>
                   <span class="fa fa-sort"
-                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'latestRepeatedTime', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'latestRepeatedTime'}">
+                        data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'lastAttemptedOn', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'lastAttemptedOn'}">
                   </span>
                 </a>
                 <span data-translate="player.letter_headers.last_played"
@@ -451,11 +459,15 @@
             </thead>
             <tbody>
             <tr data-ng-repeat="word in player.lettersWordsData">
-              <td class="player-words text-ellipsis word-text text-capitalize">{{ word._id}}</td>
-              <td class="word-icons">{{ word.value.repeatedTimes}}</td>
+              <td class="player-words text-ellipsis word-text text-capitalize">{{word.letter}}</td>
+              <td>{{word.count}}</td>
+              <td><span data-ng-repeat="lastAttempts in word.lastAttempts track by $index">
+                  <img data-ng-if="lastAttempts === word.letter" src="assets/images/tick.png" width="15"/>
+                  <img data-ng-if="lastAttempts !== word.letter" src="assets/images/wrong.png" width="15"/>
+                </span></td>
               <td class="word-date">
-                <span am-time-ago="word.lastAttemptedOn" data-ng-if="word.lastAttemptedOn"></span>
-                <span am-time-ago="word.lastAttemptedOn" data-ng-if="word.lastAttemptedOn === 0">-</span>
+                <span am-time-ago="word.lastAttemptedOn" data-ng-if="word.lastAttemptedOn && word.lastAttemptedOn !== '1403366899'"></span>
+                <span data-ng-if="word.lastAttemptedOn === '1403366899'">-</span>
               </td>
             </tr>
             <tr data-ng-if="player.wordsData.length === 0">
