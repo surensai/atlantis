@@ -22,7 +22,7 @@
                 <input type="text" name="firstName" class="form-control"
                        data-ng-model="settings.model.userData.firstName"
                        placeholder="{{ 'settings.grownup_first_name' | translate }}" required
-                       ng-disabled="!settings.isEditClicked" autocomplete="off">
+                       ng-disabled="!settings.isEditClicked" autocomplete="off" title="{{settings.model.userData.firstName}}">
 
                 <div class="error-mesasage" ng-show="settingsForm.firstName.$error.required">
                   <i class="fa fa-exclamation-circle"></i>
@@ -41,7 +41,7 @@
               <div class="col-md-3">
                 <input type="text" name="lastName" class="form-control" data-ng-model="settings.model.userData.lastName"
                        placeholder="{{ 'settings.grownup_last_name' | translate }}" required
-                       ng-disabled="!settings.isEditClicked" autocomplete="off">
+                       ng-disabled="!settings.isEditClicked" autocomplete="off" title="{{settings.model.userData.lastName}}">
 
                 <div class="error-mesasage" ng-show="settingsForm.lastName.$error.required">
                   <i class="fa fa-exclamation-circle"></i>
@@ -59,7 +59,7 @@
 
               <div class="col-md-3">
                 <input type="text" name="email" class="form-control" data-ng-model="settings.model.userData.email"
-                       placeholder="{{ 'settings.grownup_email' | translate }}" disabled>
+                       placeholder="{{ 'settings.grownup_email' | translate }}" disabled title="{{settings.model.userData.email}}">
               </div>
             </div>
 

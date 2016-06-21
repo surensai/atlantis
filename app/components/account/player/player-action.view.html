@@ -23,7 +23,7 @@
             <div class="col-md-5">
               <input type="text" name="firstName" class="form-control"
                      data-ng-model="playerAction.model.playerItem.firstName"
-                     placeholder="{{ 'player.first_name' | translate }}" required autocomplete="off">
+                     placeholder="{{ 'player.first_name' | translate }}" required autocomplete="off" title="{{playerAction.model.playerItem.firstName}}">
 
               <div ng-show="playerForm.$submitted && playerForm.firstName.$error.required" class="error-mesasage">
                 <i class="fa fa-exclamation-circle"></i>
@@ -76,8 +76,7 @@
           <div class="form-group">
             <div class="col-md-3 "></div>
             <label class="col-md-1 col-sm-2 control-label add-profile-pic player-label"
-                   data-translate="player.add_picture">Add
-              Picture</label>
+                   data-translate="player.add_picture">Add Picture</label>
 
             <div class="col-md-5 col-sm-3">
 
@@ -97,7 +96,7 @@
                     <input type="file" name="file" file-model="playerAction.myFile"
                            class="img-rectangle img-border-radius " accept='image/*'
                            onchange="angular.element(this).scope().photoChanged(this)"/>
-                    <button class='btn btn-default btn-primary' data-translate="player.buttons.upload_picture">
+                    <button class='btn btn-default btn-primary' data-translate="player.buttons.upload_picture" >
                       Upload your own picture
                     </button>
                   </div>
@@ -142,7 +141,7 @@
 
               <a class="pull-right btn-primary player-delete-button"
                  data-ng-click="playerAction.deleteListener(playerAction.model.playerItem)"
-                 data-ng-if="playerAction.isUpdate">
+                 data-ng-if="playerAction.isUpdate" title="Delete Player">
                 <i class="fa fa-trash-o"></i>
               </a>
 

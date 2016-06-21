@@ -30,27 +30,27 @@
             </div>
 
 
-            <h3 class="reduce-margin text-ellipsiss">{{feedItem.title}}</h3>
+            <h3 class="reduce-margin text-ellipsiss" title="{{feedItem.title}}">{{feedItem.title}}</h3>
 
             <p class="time-ago" am-time-ago="feedItem.updatedAt"></p>
 
             <p class="feed-description"
-               ng-class="{'first-element':$index ==0,'second-element': $index == 1,'third-element':$index == 2}">
+               ng-class="{'first-element':$index ==0,'second-element': $index == 1,'third-element':$index == 2}" title="{{feedItem.description}}">
               {{feedItem.description}}</p>
           </div>
           <div class="panel-footer">
             <div class="icons-block">
               <ul>
-                <li><a href=""><i itemdata="feedItem" index="$index" data-twitter-share></i></a></li>
-                <li><a href="" style="color:#DD4F43"><i itemdata="feedItem" index="$index" data-fb-share data-lang="en"
+                <li><a href="" title="Twitter share"><i itemdata="feedItem" index="$index" data-twitter-share></i></a></li>
+                <li><a href="" style="color:#DD4F43" title="Facebook share"><i itemdata="feedItem" index="$index" data-fb-share data-lang="en"
                                                         data-count='horizontal'
                                                         data-url='http://google.com' data-via='notsosleepy'
                                                         data-size="medium"
                                                         data-text='Testing Twitter Share' style="color:#DD4F43"></i></a>
                 </li>
                 <!--<li><a href=""><img src="assets/images/blog.png"></a></li>-->
-                <li><a href=""><i itemdata="feedItem" index="$index" gplus-share></i></a></li>
-                <li><a href="" ui-sref="account.feeds({ id: feedItem.id})">
+                <li><a href="" title="googlePlus share"><i itemdata="feedItem" index="$index" gplus-share></i></a></li>
+                <li><a href="" ui-sref="account.feeds({ id: feedItem.id})" title="Read more">
                       <img src="assets/images/readmore.png" width="20px;" class="pull-right read-more-margin">
                     </a>
                 </li>
@@ -70,6 +70,7 @@
               here to take the first steps towards
               your child’s reading readiness with
               Square Panda’s Playground!</p>
+
 
             <p data-ng-if="dashboard.data.newsFeedsList.length !== 0">
               <a href="javascript:;" data-ng-if="!dashboard.isUserFirstTimeLoggedIn"

@@ -70,7 +70,7 @@
                     </div>
                     <div class="add-img" data-ng-if="curriculum.model.customWrdImgArr.length<5">
                       <input type="file" name="file" file-model="curriculum.myFile"
-                             accept='image/*' onchange="angular.element(this).scope().photoChanged(this)"/>
+                             accept='image/*' onchange="angular.element(this).scope().photoChanged(this)" title="Add Picture"/>
                       <i class="fa fa-plus" aria-hidden="true"></i>
                       <span>Add Picture</span>
                     </div>
@@ -115,7 +115,7 @@
             <table class="table table-striped table-hover">
               <thead>
               <tr>
-                <th>
+                <th  title="Custom Word">
                   <a href="javascript:;" data-ng-click="curriculum.customWordListSort('Words')"
                      data-ng-if="curriculum.customWords.length > 0">
                     <span data-translate="curriculum.customword_headers.word"> </span>
@@ -126,10 +126,10 @@
                   <span data-translate="curriculum.customword_headers.word"
                         data-ng-if="curriculum.customWords.length === 0"> </span>
                 </th>
-                <th>
+                <th title="Picture">
                   <span data-translate="curriculum.customword_headers.picture"> </span>
                 </th>
-                <th>
+                <th title="Actions">
                   <span data-translate="curriculum.customword_headers.actions"> </span>
                 </th>
               </tr>
@@ -138,17 +138,17 @@
 
               <tr id="tableRowData" data-ng-click="curriculum.onAddImageInRow(word, this);"
                   data-ng-repeat="word in curriculum.customWords.slice(((curriculum.currentPage-1)*curriculum.itemsPerPage), ((curriculum.currentPage)*curriculum.itemsPerPage))">
-                <td class="player-words " data-ng-if="!word.isEditMode">{{ word.Words}}</td>
+                <td class="player-words " data-ng-if="!word.isEditMode" title="{{ word.Words}}">{{ word.Words}}</td>
                 <td class="word-check" data-ng-if="!word.isEditMode">
                       <span data-ng-repeat="imgURLObj in word.picture">
                         <img class="custom-word-picture" width="47" height="47" data-ng-src="{{imgURLObj.image64Bit}}">
                       </span>
                 </td>
                 <td class="player-words" data-ng-if="!word.isEditMode">
-                  <button class="btn custom-word-edit-button" data-ng-click="curriculum.onEditCustomWord(word)">
+                  <button class="btn custom-word-edit-button" data-ng-click="curriculum.onEditCustomWord(word)" title="Edit Custom Word">
                     Edit
                   </button>
-                  <a href="">
+                  <a href="" title="Delete">
                         <span class="custom-word-delete-button">
                           <i data-ng-click="curriculum.deleteListener(word)"
                              class="fa fa-trash left-padding word-icon-colors"></i>
@@ -159,7 +159,7 @@
                   <form name="editCustomWrdFrm">
                     <input type="text" data-ng-model="word.Words" class="form-control edit-word-text"
                            name="editCustomWordInpt" ng-pattern="/^[A-z][A-z]*$/"
-                           ng-minlength="1" ng-maxlength="8" autocomplete="off" required>
+                           ng-minlength="1" ng-maxlength="8" autocomplete="off" required title="{{word.Words}}">
                     <!-- Validation here -->
                     <div ng-show="curriculum.model.editCustomWrdSubmited && curriculum.model.isWordPrsnt"
                          class="error-mesasage">
@@ -186,12 +186,12 @@
                 </td>
                 <td class="word-check" data-ng-if="word.isEditMode">
                   <div class="image" data-ng-repeat="imgURLObj in word.picture">
-                    <i class="fa fa-times delete"
+                    <i class="fa fa-times delete" title="Delete"
                        data-ng-click="curriculum.onRemoveImage($index, word.picture)"></i>
                     <img class="custom-word-picture" width="47" height="47" data-ng-src="{{imgURLObj.image64Bit}}">
                   </div>
                   <!--Add picture button-->
-                  <label class="addpicturelabel clearfix" data-ng-if="word.picture.length<5">
+                  <label class="addpicturelabel clearfix" data-ng-if="word.picture.length<5" title="Add Picture">
                     <input type="file" name="updateFile" file-model="curriculum.updateFile"
                            accept='image/*'
                            onchange="angular.element(this).scope().updateCustomWrdPhoto(this)"/>
@@ -259,9 +259,8 @@
               <div class="col-md-3 col-sm-3 " data-ng-repeat="words in curriculum.group.bathroomWords "
                    data-ng-init="topIndex = $index">
                 <div class="checkbox" data-ng-repeat="word in words track by $index">
-                  <label><input type="checkbox" data-ng-model="word.groupedflag"
-                                data-ng-click="curriculum.checkItemBy(topIndex, $index, curriculum.group.bathroomWords, word.groupedflag, 'bathroom')">{{word.Word
-                    | lowercase}}</label>
+                  <label title="{{word.Word | lowercase}}"><input type="checkbox" data-ng-model="word.groupedflag"
+                                data-ng-click="curriculum.checkItemBy(topIndex, $index, curriculum.group.bathroomWords, word.groupedflag, 'bathroom')" >{{word.Word | lowercase}}</label>
                 </div>
               </div>
             </div>
@@ -290,7 +289,7 @@
               <div class="col-md-3 col-sm-3 " data-ng-repeat="words in curriculum.group.anatomyWords"
                    data-ng-init="topIndex = $index">
                 <div class="checkbox" data-ng-repeat="word in words track by $index">
-                  <label><input type="checkbox" data-ng-model="word.groupedflag"
+                  <label title="{{word.Word | lowercase}}"><input type="checkbox" data-ng-model="word.groupedflag"
                                 data-ng-click="curriculum.checkItemBy(topIndex, $index, curriculum.group.anatomyWords, word.groupedflag, 'anatomy')">{{word.Word
                     | lowercase}}</label>
                 </div>
@@ -302,7 +301,7 @@
               </button>
             </div>
           </uib-accordion-group>
-        </uib-accordion>
+        </uib-accordion >
         <uib-accordion class="badword-accordion">
           <uib-accordion-group is-open="status.open">
             <uib-accordion-heading>
@@ -321,7 +320,7 @@
                         <input type="text" name="word" class="form-control" data-ng-model="curriculum.model.banWord"
                                placeholder="Add a bad word" required ng-pattern="/^[A-z][A-z]*$/"
                                ng-minlength="1" ng-maxlength="8" autocomplete="off">
-                        <button type="submit" class="btn custom-search-button custom-add-button">
+                        <button type="submit" class="btn custom-search-button custom-add-button" title="Add Bad Word">
                           <i class="fa fa-plus"></i>
                         </button>
                       </div>
@@ -357,7 +356,7 @@
                 <span class="col-md-4 col-sm-4 banword">{{banWord.word}}</span>
 
                   <span class="col-md-4 col-sm-4">
-                    <i class="fa fa-trash" data-ng-click="curriculum.onDeleteBanWord(banWord)"></i>
+                    <i class="fa fa-trash" data-ng-click="curriculum.onDeleteBanWord(banWord)" title="Delete Bad Word"></i>
                   </span>
               </div>
 
