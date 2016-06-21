@@ -16,8 +16,9 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.splitBadgesData = [];
   player.miniBadges = [];
   player.wordsData = [];
-  player.lettersWordsData = [];
+  player.realWordsData = [];
   player.nonsenseWordsData = [];
+  player.lettersWordsData = [];
   player.csvData = [];
   player.isNoPlayer = false;
   player.getAllplayers = false;
@@ -72,6 +73,10 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   };
 
   player.addPlayer = function () {
+    addPlayerHandler();
+  };
+
+  function addPlayerHandler() {
     PlayerService.getAllApi(userID)
       .success(function (data) {
         if (data.length >= player.maxPlayersLimit) {
@@ -90,10 +95,14 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
           $state.go("account.addplayer");
         }
       })
-      .error(function () {
-        console.log('error')
+      .error(function (error, status) {
+        if (status === 401) {
+          authService.generateNewToken(function () {
+            addPlayerHandler();
+          });
+        }
       });
-  };
+  }
 
   player.bigBadgesData = function (index) {
     var currentIndex = index * player.gridCount;
