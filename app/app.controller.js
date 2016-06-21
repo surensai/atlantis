@@ -17,6 +17,18 @@ angular.module("app").controller("appCtrl", ['$scope', '$rootScope', '$location'
       }
     }
     return showLogout && currentUser;
-  }
+  };
+
+  $scope.enableBg = function(){
+    var restrictedURLS = ['/login', '/register', '/forgot-password','/reset-password'];
+    var currentUrl = $location.path();
+    var showBg = false;
+    for(var ind =0; restrictedURLS.length > ind; ind++){
+      if(currentUrl.indexOf(restrictedURLS[ind]) > -1){
+        showBg = true;
+      }
+    }
+    return showBg;
+  };
 
 }]);

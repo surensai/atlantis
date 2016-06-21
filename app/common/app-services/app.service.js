@@ -48,6 +48,7 @@ angular.module('app').factory('appService', [ '$rootScope','$timeout','$cookieSt
   };
 
   service.isFooterFixed = function(){
+    $rootScope.showFooter = false;
     (function($) {
       $.fn.hasScrollBar = function() {
         return this.get(0).scrollHeight > this.height();
@@ -56,6 +57,7 @@ angular.module('app').factory('appService', [ '$rootScope','$timeout','$cookieSt
 
     $timeout(function() {
       $rootScope.isFooterFix = $('body').hasScrollBar();
+      $rootScope.showFooter = true;
     }, 200);
   };
 
