@@ -30,12 +30,12 @@
             </div>
 
 
-            <h3 class="reduce-margin text-ellipsiss">{{feedItem.title}}</h3>
+            <h3 class="reduce-margin text-ellipsiss" title="{{feedItem.title}}">{{feedItem.title}}</h3>
 
             <p class="time-ago" am-time-ago="feedItem.updatedAt"></p>
 
             <p class="feed-description"
-               ng-class="{'first-element':$index ==0,'second-element': $index == 1,'third-element':$index == 2}">
+               ng-class="{'first-element':$index ==0,'second-element': $index == 1,'third-element':$index == 2}" title="{{feedItem.description}}">
               {{feedItem.description}}</p>
           </div>
           <div class="panel-footer">
@@ -75,8 +75,8 @@
             <p data-ng-if="dashboard.data.newsFeedsList.length !== 0">
               <a href="javascript:;" data-ng-if="!dashboard.isUserFirstTimeLoggedIn"
                  data-ng-click="dashboard.showWelcomeMessageDetail()">
-                <span data-ng-if="dashboard.showWelcomeNewsFeedDetails" data-translate="dashboard.welcome_feed.read_less" title="Read less"> Read less </span>
-                <span data-ng-if="!dashboard.showWelcomeNewsFeedDetails" data-translate="dashboard.welcome_feed.read_more" title="Read more"> Read more </span>
+                <span data-ng-if="dashboard.showWelcomeNewsFeedDetails" data-translate="dashboard.welcome_feed.read_less"> Read less </span>
+                <span data-ng-if="!dashboard.showWelcomeNewsFeedDetails" data-translate="dashboard.welcome_feed.read_more"> Read more </span>
               </a>
             </p>
 

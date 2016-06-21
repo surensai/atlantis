@@ -39,7 +39,7 @@
       "terms_service": "Terms of Service"
     },
     "login": {
-      "title": "Login",
+      "title": "Log In",
       "header": "Log In"
     },
     "register": {
@@ -180,7 +180,7 @@
         "register_success_mes": "Thank you for creating a Square Panda account.",
         "email_require": "Please enter your (grown-up's) Email.",
         "email_activation_message": "You’re all set to jump into Square Panda's world of reading readiness.",
-        "user_verified_already": "Your account has already been activated. You can continue with login.",
+        "user_verified_already": "Your account has already been activated. You can continue with log In.",
         "email_registered": "That email has already been used to create a Square Panda account. If you've forgotten your password, you can reset it.",
         "return_login": "Return to Log In",
         "get_mail": " Soon you will get a confirmation email to verify your account.",
@@ -194,14 +194,14 @@
       "log_in": "Log In",
       "forgot_password": "Forgot Password?",
       "register": "New User? Create an Account.",
-      "login_page": "Go to login page"
+      "login_page": "Go to log In page"
     },
     "forgot_password": {
       "title": "Forgot Password",
-      "back_to_login": "Back to login",
+      "back_to_login": "Back to log In",
       "request_password": "Request Password",
       "reset_password": "Request received. You will receive an email shortly that will allow you to reset your password.",
-      "password_changed": "Your password has been reset. You can now use your new password to login.",
+      "password_changed": "Your password has been reset. You can now use your new password to log In.",
       "password_change_new_login": "Password changed succesfully."
     },
     "validationMessages": {
@@ -306,7 +306,7 @@
     "or": "Or, ",
     "uploadImage_selectavatar": "Please upload image or select Avatar.",
     "choose_avatar": " Choose a generic avatar",
-    "no_players": "You don't have any players added.Start adding now.",
+    "no_players": "You don't have any players added. Start adding now.",
     "no_graph_description":"Your child hasn't played any words in this badge. Check out the description above to see the words covered in this badge and start playing the words to view your child performance graph.",
     "word_headers": {
       "words": "Words",
