@@ -41,16 +41,16 @@
           <div class="panel-footer">
             <div class="icons-block">
               <ul>
-                <li><a href=""><i itemdata="feedItem" index="$index" data-twitter-share></i></a></li>
-                <li><a href="" style="color:#DD4F43"><i itemdata="feedItem" index="$index" data-fb-share data-lang="en"
+                <li><a href="" title="Twitter share"><i itemdata="feedItem" index="$index" data-twitter-share></i></a></li>
+                <li><a href="" style="color:#DD4F43" title="Facebook share"><i itemdata="feedItem" index="$index" data-fb-share data-lang="en"
                                                         data-count='horizontal'
                                                         data-url='http://google.com' data-via='notsosleepy'
                                                         data-size="medium"
                                                         data-text='Testing Twitter Share' style="color:#DD4F43"></i></a>
                 </li>
                 <!--<li><a href=""><img src="assets/images/blog.png"></a></li>-->
-                <li><a href=""><i itemdata="feedItem" index="$index" gplus-share></i></a></li>
-                <li><a href="" ui-sref="account.feeds({ id: feedItem.id})">
+                <li><a href="" title="googlePlus share"><i itemdata="feedItem" index="$index" gplus-share></i></a></li>
+                <li><a href="" ui-sref="account.feeds({ id: feedItem.id})" title="Read more">
                       <img src="assets/images/readmore.png" width="20px;" class="pull-right read-more-margin">
                     </a>
                 </li>
@@ -72,8 +72,8 @@
               Square Panda’s Playground!</p>
             <a href="javascript:;" data-ng-if="dashboard.data.newsFeedsList.length !== 0 || dashboard.isUserFirstTimeLoggedIn"
                data-ng-click="dashboard.showWelcomeMessageDetail()">
-              <span data-ng-if="dashboard.showWelcomeNewsFeedDetails" data-translate="dashboard.welcome_feed.read_less"> Read less </span>
-              <span data-ng-if="!dashboard.showWelcomeNewsFeedDetails" data-translate="dashboard.welcome_feed.read_more"> Read more </span>
+              <span data-ng-if="dashboard.showWelcomeNewsFeedDetails" data-translate="dashboard.welcome_feed.read_less" title="Read less"> Read less </span>
+              <span data-ng-if="!dashboard.showWelcomeNewsFeedDetails" data-translate="dashboard.welcome_feed.read_more" title="Read more"> Read more </span>
             </a>
           </div>
         </div>

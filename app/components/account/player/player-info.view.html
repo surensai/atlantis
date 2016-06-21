@@ -15,7 +15,7 @@
     </div>
   </div>
   <div class="pd-right">
-    <h3 class="playername-elipsis">{{player.playerObj.firstName}} {{player.playerObj.lastName}}</h3>
+    <h3 class="playername-elipsis" title="{{player.playerObj.firstName}}">{{player.playerObj.firstName}}</h3>
 
     <p>
       <img src="assets/images/badge2.png" width="12" class="non-retina"/>
@@ -65,10 +65,9 @@
         <div class="badges-row clearfix"
              data-ng-repeat="reptable in player.splitBadgesData"
              data-ng-init="count = $index ">
-
-          <div class="col-md-3 col-sm-6 badge-columns"
-               data-ng-repeat-start="badge in player.bigBadgesData(count)"
-               data-ng-click="player.showGraph(count, $index)">
+        <div class="col-md-3 col-sm-6 badge-columns" data-ng-repeat-start="badge in player.bigBadgesData(count)">
+          <div
+            data-ng-click="player.showGraph(count, $index)">
             <data-badge-item item-data="badge"
                              display-index="player.displayChartIndex"
                              index="$index">
@@ -81,6 +80,7 @@
             </div>
 
           </div>
+        </div>
 
           <div class="bb-col-{{$index}}"
                ng-class="{'bb-2side': (windowWidth >= 768) && (windowWidth <= 990) && (player.showColumn === 1 || player.showColumn === 0), 'bb-4side': (windowWidth >= 768) && (windowWidth <= 990) && (player.showColumn === 3 || player.showColumn === 2)}"

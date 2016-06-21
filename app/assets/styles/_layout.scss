@@ -323,6 +323,10 @@ body {
     background-color: lighten($primary-color, 10%);
     color: $white-color;
   }
+  &:focus {
+    background-color: lighten($primary-color, 10%);
+    color: $white-color;
+  }
 }
 
 .sp-cancel-btn {
