@@ -13,11 +13,14 @@
                ng-class="{ 'first-imgsize':$index ==0, 'second-imgsize': $index == 1}"
                image-load-complete-evt="{{feedItem}}"/>
 
-          <img data-ng-if="feedItem.category === 'Analytics'"
-               data-ng-src="{{feedItem.image_url}}" image-load-complete-evt="{{feedItem}}" height="276" />
-          <span class="feed-img-loader">
+          <!--<span class="feed-img-loader">
               <img src="assets/images/img-loader.gif"/>
-          </span>
+          </span>-->
+
+          <div class="minibadge_feed_bg" data-ng-if="feedItem.category === 'Analytics'">
+            <img data-ng-src="{{feedItem.image_url}}" width="158" height="178" />
+            <img src="assets/images/glitter.png" width="180" height="194" class="badge_gliter" />
+          </div>
         </div>
         <div class="col-md-7 nopadding">
           <div class="panel-body">
@@ -28,18 +31,17 @@
               <img data-ng-if="feedItem.player_avatar === null"
                    src="assets/images/default-avatar.png" image-load-complete-evt="{{feedItem}}" height="50" />
             </div>
-
-
             <h3 class="reduce-margin text-ellipsiss" title="{{feedItem.title}}">{{feedItem.title}}</h3>
-
             <p class="time-ago" am-time-ago="feedItem.updatedAt"></p>
-
+            <div class="share_tooltip_holder">
+                <img src="assets/images/share-icon.png" />
+            </div>
             <p class="feed-description"
                ng-class="{'first-element':$index ==0,'second-element': $index == 1,'third-element':$index == 2}" title="{{feedItem.description}}">
               {{feedItem.description}}</p>
           </div>
           <div class="panel-footer">
-            <div class="icons-block">
+            <!--<div class="icons-block">
               <ul>
                 <li><a href="" title="Twitter share"><i itemdata="feedItem" index="$index" data-twitter-share></i></a></li>
                 <li><a href="" style="color:#DD4F43" title="Facebook share"><i itemdata="feedItem" index="$index" data-fb-share data-lang="en"
@@ -48,14 +50,14 @@
                                                         data-size="medium"
                                                         data-text='Testing Twitter Share' style="color:#DD4F43"></i></a>
                 </li>
-                <!--<li><a href=""><img src="assets/images/blog.png"></a></li>-->
                 <li><a href="" title="googlePlus share"><i itemdata="feedItem" index="$index" gplus-share></i></a></li>
-                <li><a href="" ui-sref="account.feeds({ id: feedItem.id})" title="Read more">
-                      <img src="assets/images/readmore.png" width="20px;" class="pull-right read-more-margin">
-                    </a>
+                <li>
                 </li>
               </ul>
-            </div>
+            </div>-->
+            <a href="" ui-sref="account.feeds({ id: feedItem.id})" title="Read more">
+              Readmore >
+            </a>
           </div>
         </div>
       </div>
