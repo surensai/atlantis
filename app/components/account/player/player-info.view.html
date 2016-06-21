@@ -94,7 +94,7 @@
                 <span class="bigbadge-buttons " data-ng-repeat="word in player.bigbadgedetails.tabwords">{{word}}</span>
               </div>
               <div class="chart-container">
-                <div class="chart-overlay" data-ng-show="player.bigbadgedetails.percentage === 0">
+                <div class="chart-overlay" data-ng-show="!player.bigbadgedetails.percentage === 0">
                   <span data-translate="player.no_graph_description">Your child hasn't played any words in this badge, yet. Check out the descriptions above to see what kinds of words are covered in this badge.</span>
                 </div>
                 <div class="bigbadge-graph-buttons ">
@@ -329,7 +329,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr data-ng-repeat="word in player.realWordsData">
+            <tr data-ng-repeat="word in player.realWordsData" data-ng-if="player.realWordsData.length > 0">
               <td class="player-words text-ellipsis word-text">{{ word._id}}</td>
               <td> {{word.correctAttempts}}</td>
               <td> {{word.inCorrectAttempts}}</td>
@@ -341,7 +341,7 @@
               </td>
               <td class="word-date" am-time-ago="word.lastAttemptedOn"></td>
             </tr>
-            <tr data-ng-if="player.wordsData.length === 0">
+            <tr data-ng-if="player.realWordsData.length === 0">
               <td colspan="5" class="no-data" data-translate="common.nodata"> No Data</td>
             </tr>
             </tbody>
