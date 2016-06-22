@@ -8,7 +8,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.model = {};
   player.model.wordTypeUI = "All";
   player.chartAllTypeData = [];
-  player.chartTabTypeIndex = -1;
+  player.chartTabType = "";
   player.data = {};
   player.playerObj = {};
   player.highlights = {};
@@ -115,21 +115,23 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
         player.chartsData = data;
         player.chartPeriodTypes = appService.getKeysOfCollection(data);
         player.selectedChartData = player.chartsData['week'];
-        player.highchartsNG = PlayerService.getChartDataObj(player.selectedChartData, 'week');
+        player.chartTabType = 'week';
+        player.highchartsNG = PlayerService.getChartDataObj(player.selectedChartData, 'week', player.playerObj.firstName);
       }).error(function (err, status) {
-        if (status === 401) {
-          authService.generateNewToken(function () {
-            player.loadGraphData();
-          });
-        } else {
-          flashService.showError($translate.instant("player.messages.error_chart_data"), false);
-        }
-      });
+      if (status === 401) {
+        authService.generateNewToken(function () {
+          player.loadGraphData();
+        });
+      } else {
+        flashService.showError($translate.instant("player.messages.error_chart_data"), false);
+      }
+    });
   };
 
-  player.selectPeriod = function(period){
-     player.selectedChartData = player.chartsData[period];
-     player.highchartsNG = PlayerService.getChartDataObj(player.selectedChartData, period);
+  player.selectPeriod = function (period) {
+    player.selectedChartData = player.chartsData[period];
+    player.chartTabType = period;
+    player.highchartsNG = PlayerService.getChartDataObj(player.selectedChartData, period, player.playerObj.firstName);
   };
 
   player.showGraph = function (index, colIndex) {
@@ -165,7 +167,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     //clear chart data for new badge selected
     player.highchartsNG = null;
     player.chartAllTypeData = [];
-    player.chartTabTypeIndex = -1;
+    player.chartTabType = "";
     player.loadGraphData(0);
   };
 
@@ -497,10 +499,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       return a.incrementflag - b.incrementflag;
     });
     return arr;
-  }
-
-  function getChartObj(chartTypeData) {
-    return PlayerService.getChartDataObj(chartTypeData);
   }
 
   player.getCSVHeader = function () {

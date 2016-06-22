@@ -101,7 +101,7 @@
                   <div class="bigbadge-graph-buttons-one">
                     <a class="btn bigbadge-graph-button-style chart-type-name-camelcase"
                        data-ng-repeat="chartPeriod in player.chartPeriodTypes"
-                       data-ng-class="{'active': ($index===player.chartTabTypeIndex && player.bigbadgedetails.percentage !== 0)}"
+                       data-ng-class="{'active': (chartPeriod===player.chartTabType && player.bigbadgedetails.percentage !== 0)}"
                        data-ng-click="player.selectPeriod(chartPeriod)">
                       {{chartPeriod}}
                     </a>
