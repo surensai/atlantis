@@ -320,7 +320,7 @@
     "letter_headers": {
       "letters": "Letters",
       "count": "Count",
-      "orientation": "Orientation",
+      "orientations": "Orientations",
       "last_played": "Last Played",
       "last_attempt": "Last Attempt"
     },
