@@ -33,27 +33,33 @@
             <h3 class="reduce-margin text-ellipsiss" title="{{feedItem.title}}">{{feedItem.title}}</h3>
             <p class="time-ago" am-time-ago="feedItem.updatedAt"></p>
             <div class="share_tooltip_holder">
-                <img src="assets/images/share-icon.png" />
+                <!--<img src="assets/images/share-icon.png" />-->
+              <div class="icons-block">
+                <ul>
+                  <li>
+                      <i itemdata="feedItem" index="$index" title="Twitter share" data-twitter-share></i>
+                  </li>
+                  <li>
+                      <i itemdata="feedItem" index="$index" data-fb-share data-lang="en"
+                         data-count='horizontal'
+                         data-url='http://google.com' data-via='notsosleepy'
+                         data-size="medium"
+                         title="Facebook share"
+                         data-text='Testing Twitter Share' style="color:#DD4F43"></i>
+                  </li>
+                  <li>
+                      <i itemdata="feedItem" index="$index" title="googlePlus share" gplus-share></i>
+                  </li>
+                  <li>
+                  </li>
+                </ul>
+              </div>
             </div>
             <p class="feed-description"
                ng-class="{'first-element':$index ==0,'second-element': $index == 1,'third-element':$index == 2}" title="{{feedItem.description}}">
               {{feedItem.description}}</p>
           </div>
-          <div class="panel-footer">
-            <!--<div class="icons-block">
-              <ul>
-                <li><a href="" title="Twitter share"><i itemdata="feedItem" index="$index" data-twitter-share></i></a></li>
-                <li><a href="" style="color:#DD4F43" title="Facebook share"><i itemdata="feedItem" index="$index" data-fb-share data-lang="en"
-                                                        data-count='horizontal'
-                                                        data-url='http://google.com' data-via='notsosleepy'
-                                                        data-size="medium"
-                                                        data-text='Testing Twitter Share' style="color:#DD4F43"></i></a>
-                </li>
-                <li><a href="" title="googlePlus share"><i itemdata="feedItem" index="$index" gplus-share></i></a></li>
-                <li>
-                </li>
-              </ul>
-            </div>-->
+          <div class="panel-footer"  data-ng-if="feedItem.category !== 'Analytics'">
             <a href="" ui-sref="account.feeds({ id: feedItem.id})" title="Read more">
               Readmore >
             </a>

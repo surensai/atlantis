@@ -6,7 +6,7 @@ angular.module("app").directive('fbShare', ['$window', function ($window) {
       index: '=index',
       item: '=itemdata'
     },
-    template: '<a class="fa fa-facebook fa-lg" style="color:#3665A1"></a>',
+    template: '<a href="javascript:;" class="fa fa-facebook fa-sm fb-color"></a>',
     link: function (scope, element) {
       if (!$window.FB) {
         $.getScript('//connect.facebook.net/en_US/sdk.js', function () {
