@@ -509,18 +509,35 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     var chartObj;
     if (player.chartAllTypeData.length > 0) {
       //set default chart filter tab - week ( 0 index)
-      chartObj = PlayerGraphService.getChartObj(chartTypeData);
+      chartObj = PlayerGraphService.getChartObj(chartTypeData, player.playerObj.firstName, player.chartTabTypeIndex);
     }
     return chartObj;
   }
 
   //Parse Chart Data
   function parseChartData(data) {
-    var tempChartObj = [];
+    var tempChartObj = [], weekObj, monthObj, yearObj;
     angular.forEach(data, function (value, key) {
-      var chartObj = {chartType: key, chartFeedData: value};
-      tempChartObj.push(chartObj);
+      //remove minus value and add 0
+      for (var datapntCntr = 0; datapntCntr < value.length; datapntCntr++) {
+        var dpArrObj = value[datapntCntr];
+        if (dpArrObj.length > 1 && dpArrObj[1] < 0) {
+          dpArrObj[1] = 0;
+        }
+        value[datapntCntr] = dpArrObj;
+      }
+      //week chart data
+      if (key === "week") {
+        weekObj = {chartType: key, chartFeedData: value};
+      } else if (key === "month") {
+        monthObj = {chartType: key, chartFeedData: value};
+      } else if (key === "year") {
+        yearObj = {chartType: key, chartFeedData: value};
+      }
     });
+    tempChartObj.push(weekObj);
+    tempChartObj.push(monthObj);
+    tempChartObj.push(yearObj);
     //Clear series data if Chart percentage is zero
     if (player.bigbadgedetails && player.bigbadgedetails.percentage === 0) {
       tempChartObj = [];
