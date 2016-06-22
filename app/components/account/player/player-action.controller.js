@@ -31,7 +31,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     if (form.$valid && playerAction.fileError && playerAction.isDOBVaid) {
       playerAction.added = true;
       if (lastSelectedImage.size && !playerAction.isChoosenAvatar) {
-        uploadProfilePic();
         form.$setPristine();
       }
       if (playerAction.isUpdate) {
@@ -102,26 +101,6 @@ angular.module("app").controller('playerActionCtrl', ['$scope', '$state', 'messa
     };
 
     PlayerService.updateApi(playerAction.data.playerItem.id, formData)
-      .success(handleSuccess)
-      .error(handleError);
-  }
-
-  function uploadProfilePic() {
-    var handleSuccess = function (data) {
-      playerAction.model.playerItem.profileURL = data.files[0].url;
-    };
-
-    var handleError = function (error, status) {
-      if (status === 401) {
-        authService.generateNewToken(function () {
-          uploadProfilePic();
-        });
-      } else {
-        messagesFactory.uploadfileError(status);
-      }
-    };
-
-    PlayerService.uploadFileApi(lastSelectedImage)
       .success(handleSuccess)
       .error(handleError);
   }

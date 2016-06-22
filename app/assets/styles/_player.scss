@@ -459,6 +459,30 @@ a .delete-player-back-button:hover{
       .player-words {
         text-transform: lowercase;
       }
+      .letters-ori-holder{
+        width: 102px;
+        overflow: auto;
+        margin: 0 auto;
+        .letter-orientation{
+          float:left;
+          font-weight: bold;
+          margin-right: 5px;
+          width: 15px;
+          text-align: center;
+          .correct{
+            color:#6ac9a9;
+          }
+          .incorrect{
+            color:#f08f8f;
+            display: block;
+            text-transform: uppercase;
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            /*filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); Enable for IE*/
+          }
+        }
+      }
+
     }
 
     .hr-minbadge {

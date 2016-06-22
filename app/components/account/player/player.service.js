@@ -103,7 +103,7 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
   function checkLetterDataAvailable(sourceData, letter) {
     var letterAvailable = false;
     for (var ind = 0; ind < sourceData.length; ind++) {
-      if (sourceData[ind]._id.toLowerCase() === letter.toLowerCase()) {
+      if (sourceData[ind].letter.toLowerCase() === letter.toLowerCase()) {
         letterAvailable = true;
         break;
       }
@@ -118,13 +118,10 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
     for (var ind = 0; ind < letters.length; ind++) {
       if (!checkLetterDataAvailable(sourceArr, letters[ind])) {
         var emptyObj = {
-          _id: letters[ind],
-          repeatedTimes: 0,
-          lastAttemptedOn: 0,
-          value: {
-            LatestRepeatedTime: 0,
-            repeatedTimes: 0
-          }
+          letter: letters[ind],
+          arrayLetters: [],
+          count: 0,
+          lastAttemptedOn: "1403366899"
         };
         resultArr.push(emptyObj);
       }
@@ -136,6 +133,73 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
   service.getChartDetaisService = function (badgeId, playerId, chartType) {
     return $http.get(base_url + '/biggraphs/' + badgeId + "/" + playerId + "/" + chartType);
   };
+
+  service.lettersDummyData = function(){
+    return [
+      {
+        "letter":"A",
+        "arrayLetters":[
+          "A",
+          "A",
+          "A",
+          "A",
+          "A",
+          "A",
+          "A",
+          "A",
+          "A",
+          "a",
+          "a",
+          "A",
+          "A",
+          "A",
+          "a",
+          "a",
+          "A",
+          "a",
+          "a",
+          "A",
+          "A",
+          "A",
+          "A",
+          "A",
+          "A",
+          "A"
+        ],
+        "latestPlacedTime":"1465802114"
+      },
+      {
+        "letter":"B",
+        "arrayLetters":[
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B"
+        ],
+        "latestPlacedTime":"1465982797"
+      }];
+  }
+
+
   return service;
 
 

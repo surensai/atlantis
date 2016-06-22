@@ -141,7 +141,6 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
                 player.bigBadges[count].colorCode = "#BABCBE";
               }
               player.bigbadgedetails = player.bigBadges[count];
-
               break;
             } else {
               count++;
@@ -377,21 +376,30 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     var handleSuccess = function (data) {
       if (data.length > 0) {
         player.lettersWordsData = [];
-        var lettersObj = {};
+        var lettersObj = {}, lastAttempts = [];
         for (var lettersIndex = 0; lettersIndex < data.length; lettersIndex++) {
           lettersObj = data[lettersIndex];
-          lettersObj.lastAttemptedOn = utilsFactory.epochLinuxDateToDate(lettersObj.value.LatestRepeatedTime);
-          lettersObj.repeatedTimes = lettersObj.value.repeatedTimes;
-          lettersObj.latestRepeatedTime = lettersObj.value.LatestRepeatedTime;
+          lettersObj.lastAttemptedOn = utilsFactory.epochLinuxDateToDate(lettersObj.latestPlacedTime);
+          lettersObj.count = lettersObj.arrayLetters.length;
+          if (lettersObj.arrayLetters.length > 5) {
+            lastAttempts = angular.copy(lettersObj.arrayLetters);
+            lastAttempts = lastAttempts.slice(Math.max(lettersObj.arrayLetters.length - 5, 1))
+          } else {
+            lastAttempts = angular.copy(lettersObj.arrayLetters);
+          }
+          lettersObj.lastAttempts = lastAttempts;
           player.lettersWordsData.push(lettersObj);
           wordsCsvData.push({
-            LettersWords: lettersObj._id,
-            Inputs: lettersObj.value.repeatedTimes,
+            LettersWords: lettersObj.letter,
+            Count: lettersObj.count,
+            LastAttempts: lettersObj.lastAttempts.join(","),
             LastPlayed: utilsFactory.dateFormatterForCSV(lettersObj.lastAttemptedOn)
           });
         }
         player.lettersWordsData = PlayerService.addLetterIfNotExist(player.lettersWordsData);
-        player.lettersWordsData = appService.simpleSort(player.lettersWordsData, '_id');
+        player.lettersWordsData = appService.simpleSort(player.lettersWordsData, 'letter');
+      } else {
+        player.lettersWordsData = PlayerService.addLetterIfNotExist(player.lettersWordsData);
       }
     };
 
