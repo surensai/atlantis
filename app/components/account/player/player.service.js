@@ -210,7 +210,7 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
  * */
 angular.module('app').factory('PlayerGraphService', [function () {
   var graphObj = {};
-  graphObj.getChartObj = function (formatedChartData) {
+  graphObj.getChartObj = function (formatedChartData, playerName, chartIndx) {
     var chartObj = {
       options: {
         exporting: {
@@ -219,64 +219,84 @@ angular.module('app').factory('PlayerGraphService', [function () {
         legend: {
           enabled: false
         },
+        chart: {
+          type: 'line',
+          backgroundColor: 'rgba(255, 255, 255, 0)'
+        },
         title: {
           text: ''
         },
         tooltip: {
+          headerFormat: '<b>{series.name}</b><br>',
+          pointFormat: 'Progress : {point.y:.2f}',
           valueSuffix: '%'
-        },
-        chart: {
-          zoomType: 'x',
-          backgroundColor: 'rgba(255, 255, 255, 0)'
-        },
-        rangeSelector: {
-          enabled: false
-        },
-        navigator: {
-          xAxis: {
-            labels: {
-              formatter: function () {
-                return moment(this.value).format("MM/DD");
-              }
-            }
-          },
-          enabled: true
         }
+      },
+      xAxis: {
+        type: 'datetime',
+        dateTimeLabelFormats: {
+          day: '%a'
+          //    month: '%e. %b',
+          //     year: '%b'
+        },
+        /*labels: {
+         formatter: function () {
+         return moment(this.value).format("MM/DD/YYYY");
+         }
+         },*/
+        startOnTick: true,
+        endOnTick: true
       },
       yAxis: {
         min: 0,
-        tickInterval: 5,
+        tickInterval: 1,
         title: {
-          text: '<b>PROGRESS</b>'
+          text: '<b>Total Game Score</b>'
         },
         labels: {
           format: "{value}" + "%"
         }
       },
-      xAxis: {
-        title: {
-          text: "<b>Dates</b>"
-        },
-        labels: {
-          formatter: function () {
-            return moment(this.value).format("MM/DD/YYYY");
+      plotOptions: {
+        spline: {
+          marker: {
+            enabled: true
           }
         }
       },
       series: [{
-        name: "Progress",
+        name: playerName + " Progress",
         color: '#4CBC96',
         marker: {
           symbol: 'circle'
         },
-        data: formatedChartData.chartFeedData ? formatedChartData.chartFeedData : []
+        data: [
+          [Date.UTC(2016, 0, 4, 0, 0), 1],
+          [Date.UTC(2016, 0, 4, 9, 0), 1],
+          [Date.UTC(2016, 0, 4, 10, 30), 2],
+          [Date.UTC(2016, 0, 5, 13, 0), 3],
+          [Date.UTC(2016, 0, 5, 19, 0), 4],
+          [Date.UTC(2016, 0, 7, 15, 0), 3],
+          [Date.UTC(2016, 0, 7, 15, 25), 2],
+          [Date.UTC(2016, 0, 8, 0, 0), null],
+          [Date.UTC(2016, 0, 9, 0, 0), null],
+          [Date.UTC(2016, 0, 10, 0, 0), null]
+        ]
       }],
       size: {
         height: 320
-      },
-      loading: false,
-      useHighStocks: true
+      }
     };
+    //update the chart type as per selected tab
+    /*if (chartIndx === 0) {
+     //Week Chart type
+     delete chartObj.xAxis.labels;
+     } else if (chartIndx === 1) {
+     //month Chart type
+     delete chartObj.xAxis.dateTimeLabelFormats;
+     } else {
+
+     }*/
     return chartObj;
   };
   return graphObj;
