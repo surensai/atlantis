@@ -6,7 +6,7 @@ angular.module("app").directive('gplusShare', ['$window', function ($window) {
       index: '=index',
       item: '=itemdata'
     },
-    template: '<a class="fa fa-google-plus fa-lg" style="color:#DD4F43"></a>',
+    template: '<a href="javascript:;" class="fa fa-google-plus fa-sm gplus-color"></a>',
     link: function (scope, element) {
       element.bind('click', function () {
         $window.open("https://plus.google.com/share?url=" + scope.item.image_url + "&text=" + scope.item.description, "_blank");

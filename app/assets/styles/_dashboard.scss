@@ -166,6 +166,29 @@
           float: left;
           margin-top: 2px;
           margin-left: 10px;
+          .icons-block {
+            ul {
+              list-style-type: none;
+              padding: 0px;
+              margin: 0px;
+              margin-left: 10px;
+              li {
+                display: inline;
+                padding-right: 15%;
+                i {
+                  display: block;
+                  float: left;
+                  margin-right: 10px;
+                  a{
+                    text-decoration: none;
+                  }
+                }
+              }
+              li:first-child {
+                padding-left: 0px;
+              }
+            }
+          }
         }
 
         h3 {
@@ -187,25 +210,6 @@
         a{
           color: #333333;
           text-decoration: underline;
-        }
-        .icons-block {
-          ul {
-            list-style-type: none;
-            padding: 0px;
-            margin: 0px;
-            margin-left: 10px;
-
-            li {
-              display: inline;
-              padding-right: 15%;
-              a {
-                text-decoration: none;
-              }
-            }
-            li:first-child {
-              padding-left: 0px;
-            }
-          }
         }
       }
     }
