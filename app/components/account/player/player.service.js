@@ -129,89 +129,24 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
     return resultArr.concat(sourceArr);
   };
 
-  //Get Graph Data
   service.getChartDetaisService = function (badgeId, playerId, chartType) {
     return $http.get(base_url + '/biggraphs/' + badgeId + "/" + playerId + "/" + chartType);
   };
 
-  service.lettersDummyData = function(){
-    return [
-      {
-        "letter":"A",
-        "arrayLetters":[
-          "A",
-          "A",
-          "A",
-          "A",
-          "A",
-          "A",
-          "A",
-          "A",
-          "A",
-          "a",
-          "a",
-          "A",
-          "A",
-          "A",
-          "a",
-          "a",
-          "A",
-          "a",
-          "a",
-          "A",
-          "A",
-          "A",
-          "A",
-          "A",
-          "A",
-          "A"
-        ],
-        "latestPlacedTime":"1465802114"
-      },
-      {
-        "letter":"B",
-        "arrayLetters":[
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B"
-        ],
-        "latestPlacedTime":"1465982797"
-      }];
+  function selectPeriod(period){
+    var obj = {};
+    if(period === 'week'){
+      obj.day = '%a';
+    } else if(period === 'month'){
+      obj.day = '%e. %b';
+    } else {
+      obj.year = '%Y';
+    }
+    return obj;
   }
 
-
-  return service;
-
-
-}]);
-
-/*
- * Get Players Graph data points
- * */
-angular.module('app').factory('PlayerGraphService', [function () {
-  var graphObj = {};
-  graphObj.getChartObj = function (formatedChartData, playerName, chartIndx) {
-    var chartObj = {
+  service.getChartDataObj = function(data, period){
+    return {
       options: {
         exporting: {
           enabled: false
@@ -227,23 +162,15 @@ angular.module('app').factory('PlayerGraphService', [function () {
           text: ''
         },
         tooltip: {
-          headerFormat: '<b>{series.name}</b><br>',
+          headerFormat: '<b>{name}</b><br>',
           pointFormat: 'Progress : {point.y:.2f}',
           valueSuffix: '%'
         }
       },
       xAxis: {
         type: 'datetime',
-        dateTimeLabelFormats: {
-          day: '%a'
-          //    month: '%e. %b',
-          //     year: '%b'
-        },
-        /*labels: {
-         formatter: function () {
-         return moment(this.value).format("MM/DD/YYYY");
-         }
-         },*/
+        tickInterval: 24 * 3600 * 1000,
+        dateTimeLabelFormats: selectPeriod(period),
         startOnTick: true,
         endOnTick: true
       },
@@ -257,48 +184,20 @@ angular.module('app').factory('PlayerGraphService', [function () {
           format: "{value}" + "%"
         }
       },
-      plotOptions: {
-        spline: {
-          marker: {
-            enabled: true
-          }
-        }
-      },
       series: [{
-        name: playerName + " Progress",
+        name: "Carey Progress",
         color: '#4CBC96',
         marker: {
           symbol: 'circle'
         },
-        data: [
-          [Date.UTC(2016, 0, 4, 0, 0), 1],
-          [Date.UTC(2016, 0, 4, 9, 0), 1],
-          [Date.UTC(2016, 0, 4, 10, 30), 2],
-          [Date.UTC(2016, 0, 5, 13, 0), 3],
-          [Date.UTC(2016, 0, 5, 19, 0), 4],
-          [Date.UTC(2016, 0, 7, 15, 0), 3],
-          [Date.UTC(2016, 0, 7, 15, 25), 2],
-          [Date.UTC(2016, 0, 8, 0, 0), null],
-          [Date.UTC(2016, 0, 9, 0, 0), null],
-          [Date.UTC(2016, 0, 10, 0, 0), null]
-        ]
+        data: data
       }],
       size: {
         height: 320
       }
     };
-    //update the chart type as per selected tab
-    /*if (chartIndx === 0) {
-     //Week Chart type
-     delete chartObj.xAxis.labels;
-     } else if (chartIndx === 1) {
-     //month Chart type
-     delete chartObj.xAxis.dateTimeLabelFormats;
-     } else {
-
-     }*/
-    return chartObj;
   };
-  return graphObj;
-}]);
 
+  return service;
+
+}]);
