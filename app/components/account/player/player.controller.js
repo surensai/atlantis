@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', 'flashService', '$uibModal', '$translate', 'AuthenticationService', '_', 'utilsFactory', 'appService', 'PlayerGraphService', function ($timeout, $rootScope, $state, PlayerService, messagesFactory, flashService, $uibModal, $translate, authService, _, utilsFactory, appService, PlayerGraphService) {
+angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$state', 'PlayerService', 'messagesFactory', 'flashService', '$uibModal', '$translate', 'AuthenticationService', '_', 'utilsFactory', 'appService', function ($timeout, $rootScope, $state, PlayerService, messagesFactory, flashService, $uibModal, $translate, authService, _, utilsFactory, appService) {
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
 
   var player = this;
@@ -109,17 +109,27 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     return player.bigBadges.slice(currentIndex, currentIndex + player.gridCount);
   };
 
-  player.onGetChartData = function (chartTypeIndx) {
-    if (player.chartTabTypeIndex === chartTypeIndx) {
-      return false;
-    }
+  player.loadGraphData = function () {
+    PlayerService.getChartDetaisService(player.bigbadgedetails.id, player.playerObj.id, "day")
+      .success(function (data) {
+        player.chartsData = data;
+        player.chartPeriodTypes = appService.getKeysOfCollection(data);
+        player.selectedChartData = player.chartsData['week'];
+        player.highchartsNG = PlayerService.getChartDataObj(player.selectedChartData, 'week');
+      }).error(function (err, status) {
+        if (status === 401) {
+          authService.generateNewToken(function () {
+            player.loadGraphData();
+          });
+        } else {
+          flashService.showError($translate.instant("player.messages.error_chart_data"), false);
+        }
+      });
+  };
 
-    if (player.chartAllTypeData.length === 0) {
-      getChartDataAPI(player.bigbadgedetails.id, player.playerObj.id, "day");
-    } else {
-      player.chartTabTypeIndex = chartTypeIndx;
-      player.highchartsNG = getChartObj(player.chartAllTypeData[player.chartTabTypeIndex]);
-    }
+  player.selectPeriod = function(period){
+     player.selectedChartData = player.chartsData[period];
+     player.highchartsNG = PlayerService.getChartDataObj(player.selectedChartData, period);
   };
 
   player.showGraph = function (index, colIndex) {
@@ -156,32 +166,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     player.highchartsNG = null;
     player.chartAllTypeData = [];
     player.chartTabTypeIndex = -1;
-    player.onGetChartData(0);
+    player.loadGraphData(0);
   };
-
-  /*Get Chart Data from API & render in UI*/
-  function getChartDataAPI(badgeId, playerId, chartType) {
-    //Get Chart Data API Call
-    PlayerService.getChartDetaisService(badgeId, playerId, "day")
-      .success(function (data) {
-        player.chartAllTypeData = parseChartData(data);
-        player.chartTabTypeIndex = 0;
-        //Update the Chart Object to render on UI
-        player.highchartsNG = getChartObj(player.chartAllTypeData[player.chartTabTypeIndex]);
-      })
-      .error(function (err, status) {
-        if (status === 401) {
-          authService.generateNewToken(function () {
-            getChartDataAPI(badgeId, playerId, "day");
-          });
-        }
-        else {
-          flashService.showError($translate.instant("player.messages.error_chart_data"), false);
-        }
-
-      });
-    // End of API call
-  }
 
   function getPlayers() {
     var handleSuccess = function (data) {
@@ -514,43 +500,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   }
 
   function getChartObj(chartTypeData) {
-    var chartObj;
-    if (player.chartAllTypeData.length > 0) {
-      //set default chart filter tab - week ( 0 index)
-      chartObj = PlayerGraphService.getChartObj(chartTypeData, player.playerObj.firstName, player.chartTabTypeIndex);
-    }
-    return chartObj;
-  }
-
-  //Parse Chart Data
-  function parseChartData(data) {
-    var tempChartObj = [], weekObj, monthObj, yearObj;
-    angular.forEach(data, function (value, key) {
-      //remove minus value and add 0
-      for (var datapntCntr = 0; datapntCntr < value.length; datapntCntr++) {
-        var dpArrObj = value[datapntCntr];
-        if (dpArrObj.length > 1 && dpArrObj[1] < 0) {
-          dpArrObj[1] = 0;
-        }
-        value[datapntCntr] = dpArrObj;
-      }
-      //week chart data
-      if (key === "week") {
-        weekObj = {chartType: key, chartFeedData: value};
-      } else if (key === "month") {
-        monthObj = {chartType: key, chartFeedData: value};
-      } else if (key === "year") {
-        yearObj = {chartType: key, chartFeedData: value};
-      }
-    });
-    tempChartObj.push(weekObj);
-    tempChartObj.push(monthObj);
-    tempChartObj.push(yearObj);
-    //Clear series data if Chart percentage is zero
-    if (player.bigbadgedetails && player.bigbadgedetails.percentage === 0) {
-      tempChartObj = [];
-    }
-    return tempChartObj;
+    return PlayerService.getChartDataObj(chartTypeData);
   }
 
   player.getCSVHeader = function () {
