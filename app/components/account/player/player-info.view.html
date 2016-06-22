@@ -461,10 +461,13 @@
             <tr data-ng-repeat="word in player.lettersWordsData">
               <td class="text-ellipsis word-text text-capitalize">{{word.letter}}</td>
               <td>{{word.count}}</td>
-              <td><span data-ng-repeat="lastAttempts in word.lastAttempts track by $index">
-                  <img data-ng-if="lastAttempts === word.letter" src="assets/images/tick.png" width="15"/>
-                  <img data-ng-if="lastAttempts !== word.letter" src="assets/images/wrong.png" width="15"/>
-                </span></td>
+              <td>
+                <div class="letters-ori-holder" style="width: {{word.lastAttempts.length * 20}}px;">
+                  <div data-ng-repeat="lastAttempts in word.lastAttempts track by $index" class="letter-orientation">
+                    <span class="correct" data-ng-if="lastAttempts === word.letter"> {{lastAttempts}}</span>
+                    <span class="incorrect" data-ng-if="lastAttempts !== word.letter">  {{lastAttempts}}</span>
+                  </div>
+                </div></td>
               <td class="word-date">
                 <span am-time-ago="word.lastAttemptedOn" data-ng-if="word.lastAttemptedOn && word.lastAttemptedOn !== '1403366899'"></span>
                 <span data-ng-if="word.lastAttemptedOn === '1403366899'">-</span>
