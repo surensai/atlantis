@@ -114,7 +114,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       .success(function (data) {
         player.chartsData = data;
         player.chartPeriodTypes = appService.getKeysOfCollection(data);
-        player.selectedChartData = player.chartsData['week'];
+        player.selectedChartData = parseChartTypeData(player.chartsData['week']);
         player.chartTabType = 'week';
         player.highchartsNG = PlayerService.getChartDataObj(player.selectedChartData, 'week', player.playerObj.firstName);
       }).error(function (err, status) {
@@ -129,10 +129,20 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   };
 
   player.selectPeriod = function (period) {
-    player.selectedChartData = player.chartsData[period];
+    player.selectedChartData = parseChartTypeData(player.chartsData[period]);
     player.chartTabType = period;
     player.highchartsNG = PlayerService.getChartDataObj(player.selectedChartData, period, player.playerObj.firstName);
   };
+
+  function parseChartTypeData(data) {
+    for (var chrttypCntr = 0; chrttypCntr < data.length; chrttypCntr++) {
+      var chrtTypeObjArr = data[chrttypCntr];
+      if (chrtTypeObjArr && chrtTypeObjArr.length > 1) {
+        chrtTypeObjArr[1] = chrtTypeObjArr[1] < 0 ? 0 : chrtTypeObjArr[1];
+      }
+    }
+    return data
+  }
 
   player.showGraph = function (index, colIndex) {
     if (index === player.showRow && colIndex === player.showColumn && player.clicked) {

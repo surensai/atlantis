@@ -171,6 +171,7 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
         type: 'datetime',
         tickInterval: period === "year" ? 28 * 24 * 3600 * 1000 : 24 * 3600 * 1000,
         dateTimeLabelFormats: selectPeriod(period),
+        max: period === "year" ? Date.UTC(new Date().getFullYear(), 11, 31, 23, 59, 59) : null,
         title: {
           text: '<b>' + playerName + " Progress </b>"
         }
