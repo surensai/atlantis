@@ -1,0 +1,15 @@
+<div class="sp-confirm-modal">
+  <div class='modal-header' data-ng-if="modalTitle">
+    <h3 class='modal-title text-center'>{{modalTitle}}</h3>
+  </div>
+  <div class='modal-body'>
+    <iframe width="100%" height="300" frameborder="0" scrolling="yes"
+            ng-src="{{trustSrc(content_url)}}">
+
+    </iframe>
+  </div>
+  <div class='modal-footer'>
+    <button class='btn btn-default sp-cancel-common-btn' ng-click='cancel()'>Cancel</button>
+    <button class='btn btn-default sp-purple-common-btn' ng-click='ok()'>Agree</button>
+  </div>
+</div>
