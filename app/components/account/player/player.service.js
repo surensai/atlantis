@@ -140,7 +140,7 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
     } else if (period === 'month') {
       obj.day = '%e %b';
     } else {
-      obj.month = '%b';
+      obj.month = '%b %y';
     }
     return obj;
   }
@@ -171,8 +171,6 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
         type: 'datetime',
         tickInterval: period === "year" ? 28 * 24 * 3600 * 1000 : 24 * 3600 * 1000,
         dateTimeLabelFormats: selectPeriod(period),
-        startOnTick: true,
-        endOnTick: true,
         title: {
           text: '<b>' + playerName + " Progress </b>"
         }

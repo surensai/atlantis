@@ -457,7 +457,8 @@
       "error_deleting_word": "Error in deleting Word.",
       "groupword_success_msg": "Changes Saved.",
       "exit_custom_word": "Word already exists.",
-      "error_adding_word": "Error in updating word."
+      "error_adding_word": "Error in updating word.",
+      "please_select_png_or_jpg_file_type": "Please select .png or .jpg file type."
     }
   },
   "settings": {
