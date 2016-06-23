@@ -133,19 +133,19 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
     return $http.get(base_url + '/biggraphs/' + badgeId + "/" + playerId + "/" + chartType);
   };
 
-  function selectPeriod(period){
+  function selectPeriod(period) {
     var obj = {};
-    if(period === 'week'){
+    if (period === 'week') {
       obj.day = '%a';
-    } else if(period === 'month'){
-      obj.day = '%e. %b';
+    } else if (period === 'month') {
+      obj.day = '%e %b';
     } else {
-      obj.year = '%Y';
+      obj.month = '%b';
     }
     return obj;
   }
 
-  service.getChartDataObj = function(data, period){
+  service.getChartDataObj = function (data, period, playerName) {
     return {
       options: {
         exporting: {
@@ -162,17 +162,20 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
           text: ''
         },
         tooltip: {
-          headerFormat: '<b>{name}</b><br>',
+          headerFormat: '<b>{series.name}</b><br>',
           pointFormat: 'Progress : {point.y:.2f}',
           valueSuffix: '%'
         }
       },
       xAxis: {
         type: 'datetime',
-        tickInterval: 24 * 3600 * 1000,
+        tickInterval: period === "year" ? 28 * 24 * 3600 * 1000 : 24 * 3600 * 1000,
         dateTimeLabelFormats: selectPeriod(period),
         startOnTick: true,
-        endOnTick: true
+        endOnTick: true,
+        title: {
+          text: '<b>' + playerName + " Progress </b>"
+        }
       },
       yAxis: {
         min: 0,
@@ -185,7 +188,7 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
         }
       },
       series: [{
-        name: "Carey Progress",
+        name: playerName + " Progress",
         color: '#4CBC96',
         marker: {
           symbol: 'circle'
