@@ -122,6 +122,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     };
     var handleSuccess = function (data) {
       messagesFactory.updatewordSuccess(data);
+      clearCustomWordData(curriculum.curriculumForm);
     };
     //parse data.
     var formData = {};
@@ -375,10 +376,10 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
 
   function clearCustomWordData(curriculumForm) {
     curriculum.model.wordItem.wordName = "";
-    curriculumForm.$setPristine();
     curriculum.model.customWrdImgArr = [];
     curriculum.model.customWrdImgURLArr = [];
     curriculum.model.isWordPrsnt = false;
+    curriculumForm.$setPristine();
   }
 
   function getWords() {

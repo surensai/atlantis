@@ -191,6 +191,12 @@
                       <i class="fa fa-exclamation-circle"></i>
                       <span data-translate="common.messages.word_length"> Must be between 1 and 8 characters.</span>
                     </div>
+                    <div ng-show="curriculum.fileError" class="error-mesasage">
+                      <i class="fa fa-exclamation-circle"></i>
+                     <span data-translate="curriculum.messages.please_select_png_or_jpg_file_type">
+                        Please select .png or .jpg file type.
+                      </span>
+                    </div>
                   </form>
                 </td>
                 <td class="word-check" data-ng-if="word.isEditMode">
