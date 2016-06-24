@@ -7,7 +7,6 @@
     templateUrl: 'common/app-directives/dob/dob.view.html',
     controller: function ($scope) {
 
-
         $scope.days = [];
         $scope.dob = {};
         $scope.dob.year = '';
@@ -30,7 +29,7 @@
 
         $scope.getYears = function (startYear) {
           var currentYear = new Date().getFullYear(), years = [];
-          startYear = startYear || 1980;
+          startYear = startYear || currentYear - 130;
 
           while (startYear <= currentYear) {
             years.push(startYear++);
