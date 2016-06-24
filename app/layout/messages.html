@@ -4,9 +4,17 @@
     <div class=" col-md-8">
       <div class="panel panel-default messages-panel">
         <div class="panel-body">
-          <div data-ng-if="messages && messages.type === 'register'">
-            <h2 class="text-center messages-register-heading" data-translate="user.register.messages.thanks_for_registering">Thank you for registering with us.</h2>
-            <p data-translate="user.register.messages.get_mail"> Soon you will get a confirmation email to verify your account.</p>
+          <div data-ng-if="messages && messages.type === 'register' && !messages.isMailActivated">
+            <h2 class="text-center messages-register-heading"
+                data-translate="user.register.messages.thanks_for_registering">Thank you for registering with us.</h2>
+            <p data-translate="user.register.messages.get_mail"> Soon you will get a confirmation email to verify your
+              account.</p>
+          </div>
+          <div data-ng-if="messages && messages.type === 'register' && messages.isMailActivated">
+            <h2 class="text-center messages-register-heading"
+                data-translate="user.register.messages.email_already_activated">
+              The activation link is expired or your account is already activated.
+            </h2>
           </div>
           <div data-ng-if="messages && messages.type === 'forgot'">
             <p data-translate="user.forgot_password.reset_password">Request received. You will receive an email shortly
@@ -25,12 +33,14 @@
         </div>
       </div>
       <button ui-sref="login"
-              data-ng-if="!(messages && messages.type === 'register') && !(messages && messages.type === 'forgot')"
-              class="btn sp-pur-btn center-block" data-translate="common.return_login">Return to Log In
+              data-ng-if="(!(messages && messages.type === 'register') && !(messages && messages.type === 'forgot')) || messages.isMailActivated "
+              class="btn sp-pur-btn center-block" data-translate="common.return_login">
+        Return to Log In
       </button>
-      <button data-ng-if="messages && (messages.type === 'forgot' || messages.type === 'register')" class="btn sp-pur-btn center-block"
-              data-translate="common.resend_email" data-ng-click="onResendEmail()"
-        >Resend Email
+      <button class="btn sp-pur-btn center-block"
+              data-ng-if="messages && (messages.type === 'forgot' || messages.type === 'register') && !messages.isMailActivated"
+              data-translate="common.resend_email" data-ng-click="onResendEmail()">
+        Resend Email
       </button>
     </div>
     <div class="col-md-2"></div>
