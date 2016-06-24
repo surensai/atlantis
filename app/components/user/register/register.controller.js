@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('registerCtrl', ['AuthenticationService', 'UserService', '$timeout', 'messagesFactory', '$state','appService', function (AuthenticationService, UserService, $timeout, messagesFactory, $state, appService) {
+angular.module("app").controller('registerCtrl', ['AuthenticationService', 'UserService', '$timeout', 'messagesFactory', '$state','appService','$uibModal','StaticService', function (AuthenticationService, UserService, $timeout, messagesFactory, $state, appService, $uibModal, StaticService) {
 
   var register = this;
 
@@ -44,9 +44,39 @@ angular.module("app").controller('registerCtrl', ['AuthenticationService', 'User
         messagesFactory.registerErrorMessages(status);
       }
     };
+
+    /*StaticService.getTermsAPI()
+      .success(function(data){
+        showTerms(data, 'terms')
+      }).error(function(){
+
+    });*/
+
     UserService.Create(formData)
       .success(handleSuccess)
       .error(handleError);
+  }
+
+  function showTerms(data, type){
+    $uibModal.open({
+      templateUrl: 'components/user/register/terms-agree-modal.html',
+      controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance, $sce) {
+        $scope.modalTitle = 'Terms and conditions';
+        $scope.content_url = data.htmlView;
+
+        $scope.trustSrc = function(src) {
+          return $sce.trustAsResourceUrl(src);
+        };
+
+        $scope.ok = function () {
+          $uibModalInstance.close();
+        };
+
+        $scope.cancel = function () {
+          $uibModalInstance.dismiss('cancel');
+        };
+      }]
+    });
   }
 
 }]);

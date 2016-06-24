@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'CurriculumService', 'flashService', '$scope', '$state', '$uibModal', 'messagesFactory', '$translate', 'utilsFactory', 'AuthenticationService','appService', function ($timeout, $rootScope, CurriculumService, flashService, $scope, $state, $uibModal, messagesFactory, $translate, utilsFactory, authService, appService) {
+angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'CurriculumService', 'flashService', '$scope', '$state', '$uibModal', 'messagesFactory', '$translate', 'utilsFactory', 'AuthenticationService', 'appService', function ($timeout, $rootScope, CurriculumService, flashService, $scope, $state, $uibModal, messagesFactory, $translate, utilsFactory, authService, appService) {
   var userID = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.id : "";
   var curriculum = this;
   curriculum.customWords = [];
@@ -122,6 +122,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     };
     var handleSuccess = function (data) {
       messagesFactory.updatewordSuccess(data);
+      clearCustomWordData(curriculum.curriculumForm);
     };
     //parse data.
     var formData = {};
@@ -140,6 +141,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
   };
 
   curriculum.searchWord = function (word, curriculumForm) {
+    curriculum.fileError = false;
     curriculum.curriculumForm = curriculumForm;
     var handleSuccess = function (data) {
       if (!isWordPresent(data)) {
@@ -197,8 +199,9 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
         var file = (files.length > 0) ? files[0] : null;
         if (file && file.size <= 5242880) {
           curriculum.showSizeLimitError = false;
-          if (curriculum.fileReaderSupported && file && file.type.indexOf('image') > -1) {
-            curriculum.fileError = true;
+          if (curriculum.fileReaderSupported && file && file.type.indexOf('image') > -1 &&
+            (file.type.indexOf('image/jpeg') > -1 || file.type.indexOf('image/jpg') > -1 || file.type.indexOf('image/png') > -1 )) {
+            curriculum.fileError = false;
             $timeout(function () {
               var fileReader = new FileReader();
               fileReader.readAsDataURL(file);
@@ -212,7 +215,8 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
               };
             });
           } else {
-            curriculum.fileError = false;
+            curriculum.fileError = true;
+            inputFileObj.value = null;
           }
         } else {
           curriculum.showSizeLimitError = true;
@@ -233,7 +237,9 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       //Restricting file upload to 5MB i.e (1024*1024*5)
       var file = (files.length > 0) ? files[0] : null;
       if (file && file.size <= 5242880) {
-        if (curriculum.fileReaderSupported && file && file.type.indexOf('image') > -1) {
+        if (curriculum.fileReaderSupported && file && file.type.indexOf('image') > -1 &&
+          (file.type.indexOf('image/jpeg') > -1 || file.type.indexOf('image/jpg') > -1 || file.type.indexOf('image/png') > -1 )) {
+          curriculum.fileError = false;
           $timeout(function () {
             var fileReader = new FileReader();
             fileReader.readAsDataURL(file);
@@ -247,7 +253,8 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
             };
           });
         } else {
-          curriculum.fileError = false;
+          curriculum.fileError = true;
+          inputFileObj.value = null;
         }
       } else {
         curriculum.showSizeLimitError = true;
@@ -259,7 +266,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     clearCustomWordData(curriculumForm);
   };
 
-  function groupWordsArrMan(sourceArr){
+  function groupWordsArrMan(sourceArr) {
     var arr = [];
     for (var i = 0; sourceArr.length > i; i++) {
       if (sourceArr[i].length > 0) {
@@ -320,8 +327,8 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
 
     modalInstance.result.then(function (word) {
       curriculum.customWords.splice(curriculum.customWords.indexOf(word), 1);
-      if(curriculum.customWords.length % curriculum.itemsPerPage === 0){
-        curriculum.currentPage = (curriculum.currentPage === 1)? 1 : curriculum.currentPage - 1;
+      if (curriculum.customWords.length % curriculum.itemsPerPage === 0) {
+        curriculum.currentPage = (curriculum.currentPage === 1) ? 1 : curriculum.currentPage - 1;
       }
       var handleSuccess = function (data) {
         messagesFactory.deletewordSuccess(data);
@@ -369,10 +376,10 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
 
   function clearCustomWordData(curriculumForm) {
     curriculum.model.wordItem.wordName = "";
-    curriculumForm.$setPristine();
     curriculum.model.customWrdImgArr = [];
     curriculum.model.customWrdImgURLArr = [];
     curriculum.model.isWordPrsnt = false;
+    curriculumForm.$setPristine();
   }
 
   function getWords() {
@@ -503,7 +510,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       getBannedWordsList();
     };
 
-    var handleError = function(){
+    var handleError = function () {
       if (status === 401) {
         authService.generateNewToken(function () {
           curriculum.onAddBanWord(banWordForm);
@@ -524,7 +531,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       getBannedWordsList();
     };
 
-    var handleError = function(){
+    var handleError = function () {
       if (status === 401) {
         authService.generateNewToken(function () {
           curriculum.onDeleteBanWord(banWord);
@@ -550,8 +557,8 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     });
   };
 
-  curriculum.customWordListSort = function(type){
-    if(typeof curriculum.sortType.reverse === "undefined"){
+  curriculum.customWordListSort = function (type) {
+    if (typeof curriculum.sortType.reverse === "undefined") {
       curriculum.sortType.reverse = false;
     } else {
       curriculum.sortType.reverse = (curriculum.sortType.reverse) ? false : true;
@@ -565,7 +572,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       curriculum.model.bannedWordList = data;
     };
 
-    var handleError = function(){
+    var handleError = function () {
       if (status === 401) {
         authService.generateNewToken(function () {
           getBannedWordsList();

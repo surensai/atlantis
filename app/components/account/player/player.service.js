@@ -129,89 +129,24 @@ angular.module('app').factory('PlayerService', ['$http', '$rootScope', "_", func
     return resultArr.concat(sourceArr);
   };
 
-  //Get Graph Data
   service.getChartDetaisService = function (badgeId, playerId, chartType) {
     return $http.get(base_url + '/biggraphs/' + badgeId + "/" + playerId + "/" + chartType);
   };
 
-  service.lettersDummyData = function(){
-    return [
-      {
-        "letter":"A",
-        "arrayLetters":[
-          "A",
-          "A",
-          "A",
-          "A",
-          "A",
-          "A",
-          "A",
-          "A",
-          "A",
-          "a",
-          "a",
-          "A",
-          "A",
-          "A",
-          "a",
-          "a",
-          "A",
-          "a",
-          "a",
-          "A",
-          "A",
-          "A",
-          "A",
-          "A",
-          "A",
-          "A"
-        ],
-        "latestPlacedTime":"1465802114"
-      },
-      {
-        "letter":"B",
-        "arrayLetters":[
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B",
-          "B"
-        ],
-        "latestPlacedTime":"1465982797"
-      }];
+  function selectPeriod(period) {
+    var obj = {};
+    if (period === 'week') {
+      obj.day = '%a';
+    } else if (period === 'month') {
+      obj.day = '%e %b';
+    } else {
+      obj.month = '%b %y';
+    }
+    return obj;
   }
 
-
-  return service;
-
-
-}]);
-
-/*
- * Get Players Graph data points
- * */
-angular.module('app').factory('PlayerGraphService', [function () {
-  var graphObj = {};
-  graphObj.getChartObj = function (formatedChartData) {
-    var chartObj = {
+  service.getChartDataObj = function (data, period, playerName) {
+    return {
       options: {
         exporting: {
           enabled: false
@@ -219,66 +154,52 @@ angular.module('app').factory('PlayerGraphService', [function () {
         legend: {
           enabled: false
         },
+        chart: {
+          type: 'line',
+          backgroundColor: 'rgba(255, 255, 255, 0)'
+        },
         title: {
           text: ''
         },
         tooltip: {
+          headerFormat: '<b>{series.name}</b><br>',
+          pointFormat: 'Progress : {point.y:.2f}',
           valueSuffix: '%'
-        },
-        chart: {
-          zoomType: 'x',
-          backgroundColor: 'rgba(255, 255, 255, 0)'
-        },
-        rangeSelector: {
-          enabled: false
-        },
-        navigator: {
-          xAxis: {
-            labels: {
-              formatter: function () {
-                return moment(this.value).format("MM/DD");
-              }
-            }
-          },
-          enabled: true
+        }
+      },
+      xAxis: {
+        type: 'datetime',
+        tickInterval: period === "year" ? 28 * 24 * 3600 * 1000 : 24 * 3600 * 1000,
+        dateTimeLabelFormats: selectPeriod(period),
+        max: period === "year" ? Date.UTC(new Date().getFullYear(), 11, 31, 23, 59, 59) : null,
+        title: {
+          text: '<b>' + playerName + " Progress </b>"
         }
       },
       yAxis: {
         min: 0,
-        tickInterval: 5,
+        tickInterval: 1,
         title: {
-          text: '<b>PROGRESS</b>'
+          text: '<b>Total Game Score</b>'
         },
         labels: {
           format: "{value}" + "%"
         }
       },
-      xAxis: {
-        title: {
-          text: "<b>Dates</b>"
-        },
-        labels: {
-          formatter: function () {
-            return moment(this.value).format("MM/DD/YYYY");
-          }
-        }
-      },
       series: [{
-        name: "Progress",
+        name: playerName + " Progress",
         color: '#4CBC96',
         marker: {
           symbol: 'circle'
         },
-        data: formatedChartData.chartFeedData ? formatedChartData.chartFeedData : []
+        data: data
       }],
       size: {
         height: 320
-      },
-      loading: false,
-      useHighStocks: true
+      }
     };
-    return chartObj;
   };
-  return graphObj;
-}]);
 
+  return service;
+
+}]);

@@ -214,7 +214,7 @@
       "old_password_require": "Old Password is required.",
       "email_password_mismatch": "The email or password is incorrect. If you have forgotten your password, you can reset it here.",
       "email_notverified": "Looks like your account has not yet been activated.  Check your email for a message from Square Panda.",
-      "password_strength": "Please choose a password with at least 8 characters.",
+      "password_strength": "Please choose a password between 8 to 20 characters.",
       "data_updatede_success": "Data updated successfully.",
       "settings_updated": "Settings updated.",
       "curriculum_word_notExists": "The word doesn't exists.",
@@ -306,10 +306,9 @@
     "or": "Or, ",
     "uploadImage_selectavatar": "Please upload image or select Avatar.",
     "choose_avatar": " Choose a generic avatar",
-
+    "crop_profile_picture": "Crop profile picture",
     "no_players": "You don't have any players added. Start adding now.",
     "no_graph_description":"Your child hasn't played any words in this badge. Check out the description above to see the words covered in this badge and start playing the words to view your child performance graph.",
-
     "word_headers": {
       "words": "Words",
       "correct": "Correct",
@@ -457,7 +456,8 @@
       "error_deleting_word": "Error in deleting Word.",
       "groupword_success_msg": "Changes Saved.",
       "exit_custom_word": "Word already exists.",
-      "error_adding_word": "Error in updating word."
+      "error_adding_word": "Error in updating word.",
+      "please_select_png_or_jpg_file_type": "Please select .png or .jpg file type."
     }
   },
   "settings": {
@@ -495,7 +495,7 @@
       "profile_edit_success": "Your profile is successfully updated.",
       "first_name_require": "Please enter your (grown-up's) first name.",
       "last_name_require": "Please enter your (grown-up's) last name.",
-      "password_strength": "Please choose a password with at least 8 characters.",
+      "password_strength": "Please choose a password between 8 to 20 characters.",
       "no_specialchar_require": "Should not include any special characters and must start with a alphabet letter",
       "old_password_require": "Please enter your old password.",
       "new_password_require": "Please enter your new password.",
