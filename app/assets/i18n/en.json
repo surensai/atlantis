@@ -185,6 +185,7 @@
         "return_login": "Return to Log In",
         "get_mail": " Soon you will get a confirmation email to verify your account.",
         "thanks_for_registering": "Thank you for registering with us.",
+        "email_already_activated": "The activation link is expired or your account is already activated.",
         "security_message": "For security reasons, you'll be prompted to log in again with your email and password."
       }
     },

@@ -6,7 +6,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     $rootScope.$stateParams = $stateParams;
 
     // You can set up the dev / prod
-    $rootScope.base_url = appService.setEnvironment('prod');
+    $rootScope.base_url = appService.setEnvironment('dev');
     $rootScope.globals = $cookieStore.get('globals') || {};
 
     if ($rootScope.globals && $rootScope.globals.currentUser) {
@@ -16,14 +16,14 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     $rootScope.$on('$locationChangeStart', function (event, newUrl, oldUrl) {
       var isSessionExist = appService.checkSessionOnURLChange();
       var currentUrl = $location.path();
-      if(isSessionExist && appService.onSessionRedirections(currentUrl)){
-          $state.go('account.dashboard');
-      } else if(!isSessionExist && ((currentUrl.indexOf("account") > 0) || !currentUrl)) {
+      if (isSessionExist && appService.onSessionRedirections(currentUrl)) {
+        $state.go('account.dashboard');
+      } else if (!isSessionExist && ((currentUrl.indexOf("account") > 0) || !currentUrl)) {
         event.preventDefault();
         $state.go('login');
-      } else if(isSessionExist && (currentUrl.indexOf("reset-password") > -1)){
+      } else if (isSessionExist && (currentUrl.indexOf("reset-password") > -1)) {
         appService.removeSession();
-      } else if((currentUrl.indexOf("messages") === -1) && $rootScope.messages){
+      } else if ((currentUrl.indexOf("messages") === -1) && $rootScope.messages) {
         delete $rootScope.messages;
         $cookieStore.remove('noSesMes');
       }
@@ -31,7 +31,7 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
       if (currentUrl.indexOf("account/players") >= 0 && oldUrl.indexOf("account/players") === -1) {
         var urlSplit = oldUrl.split('#');
         $cookieStore.put('skipURLPlayers', urlSplit[1]);
-      } else if(((currentUrl.indexOf("account/players") >= 0) && (currentUrl.indexOf("account/players/details") === -1)) && oldUrl.indexOf("account/players/details") >= 0 ){
+      } else if (((currentUrl.indexOf("account/players") >= 0) && (currentUrl.indexOf("account/players/details") === -1)) && oldUrl.indexOf("account/players/details") >= 0) {
         $location.path($cookieStore.get('skipURLPlayers'));
       }
     });
@@ -112,6 +112,9 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
         var handleError = function (error, status) {
           if (error && status) {
             messagesFactory.forgotErrorMessages(status);
+          }
+          if ($rootScope.messages.type === 'register' && status === 405) {
+            $rootScope.messages.isMailActivated = true;
           }
         };
         //Forget Password
