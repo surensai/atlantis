@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('staticCtrl', [ '$state','StaticService','$sce','flashService','AuthenticationService', function ($state, StaticService, $sce, flashService, authService) {
+angular.module("app").controller('staticCtrl', [ '$state','StaticService','$sce','flashService','AuthenticationService','$http', function ($state, StaticService, $sce, flashService, authService, $http) {
 
   var self = this;
   self.contentFrameURL = "";
@@ -22,6 +22,11 @@ angular.module("app").controller('staticCtrl', [ '$state','StaticService','$sce'
 
     var handleSuccess = function (data) {
       self.contentFrameURL = data.htmlView;
+      $http.get(data.htmlView).success(function(response){
+        console.log(response);
+      }).error(function(status){
+        console.log(status);
+      });
     };
 
     var handleError = function () {
