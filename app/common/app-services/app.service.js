@@ -62,10 +62,12 @@ angular.module('app').factory('appService', [ '$rootScope','$timeout','$cookieSt
   };
 
   service.setEnvironment = function(type){
+    // Old Dev URL : http://ec2-52-71-125-138.compute-1.amazonaws.com
+    // Old Prod URL : http://ec2-52-203-16-188.compute-1.amazonaws.com
     if(type === 'dev'){
-      return 'http://ec2-52-71-125-138.compute-1.amazonaws.com';
+      return 'https://services-dev.squarepanda.com';
     } else if(type === "prod"){
-      return 'http://ec2-52-203-16-188.compute-1.amazonaws.com';
+      return 'https://services.squarepanda.com';
     }
   };
 
