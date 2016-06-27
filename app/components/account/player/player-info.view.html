@@ -20,11 +20,11 @@
     <p>
       <img src="assets/images/badge2.png" width="12" class="non-retina"/>
       <img src="assets/images/badge2@2x.png" width="12" class="retina-display badge-icon-retina"/>
-      <span data-ng-if="!player.highlights.totalPlayedTime || player.highlights.timePlayedInMin==0"
+      <span data-ng-if="!player.highlights.totalPlayedTime || player.highlights.timePlayedInMin===null"
             data-translate="player.badges.no_spendtime">
         0 min played this week
       </span>
-      <span data-ng-if="player.highlights.totalPlayedTime && player.highlights.timePlayedInMin!=0">
+      <span data-ng-if="player.highlights.totalPlayedTime && player.highlights.timePlayedInMin!=null">
         <strong>{{player.highlights.timePlayedInMin}}</strong>
         <span data-translate="player.badges.last_time_played">
           played this week.
@@ -65,22 +65,22 @@
         <div class="badges-row clearfix"
              data-ng-repeat="reptable in player.splitBadgesData"
              data-ng-init="count = $index ">
-        <div class="col-md-3 col-sm-6 badge-columns" data-ng-repeat-start="badge in player.bigBadgesData(count)">
-          <div
-            data-ng-click="player.showGraph(count, $index)">
-            <data-badge-item item-data="badge"
-                             display-index="player.displayChartIndex"
-                             index="$index">
-            </data-badge-item>
-            <div class="center-align">
-              <div class="bb-arrow"
-                   data-ng-if="player.clicked && (player.showRow === count) && (player.showColumn === $index)"
-                   ng-style="{'border-bottom-color': player.bigbadgedetails.colorCode}">
+          <div class="col-md-3 col-sm-6 badge-columns" data-ng-repeat-start="badge in player.bigBadgesData(count)">
+            <div
+              data-ng-click="player.showGraph(count, $index)">
+              <data-badge-item item-data="badge"
+                               display-index="player.displayChartIndex"
+                               index="$index">
+              </data-badge-item>
+              <div class="center-align">
+                <div class="bb-arrow"
+                     data-ng-if="player.clicked && (player.showRow === count) && (player.showColumn === $index)"
+                     ng-style="{'border-bottom-color': player.bigbadgedetails.colorCode}">
+                </div>
               </div>
-            </div>
 
+            </div>
           </div>
-        </div>
 
           <div class="bb-col-{{$index}}"
                ng-class="{'bb-2side': (windowWidth >= 768) && (windowWidth <= 990) && (player.showColumn === 1 || player.showColumn === 0), 'bb-4side': (windowWidth >= 768) && (windowWidth <= 990) && (player.showColumn === 3 || player.showColumn === 2)}"
@@ -440,7 +440,8 @@
                         data-ng-class="{' fa-sort-asc': player.sortType.reverse === true && player.sortType.column === 'count', 'fa-sort-desc': player.sortType.reverse === false && player.sortType.column === 'count'}">
                   </span>
                 </a>
-                <span data-translate="player.letter_headers.orientations" data-ng-if="player.wordsData.length === 0"> </span>
+                <span data-translate="player.letter_headers.orientations"
+                      data-ng-if="player.wordsData.length === 0"> </span>
               </th>
               <th>
                 <a href="javascript:;"
@@ -467,9 +468,11 @@
                     <span class="correct" data-ng-if="lastAttempts === word.letter"> {{lastAttempts}}</span>
                     <span class="incorrect" data-ng-if="lastAttempts !== word.letter">  {{lastAttempts}}</span>
                   </div>
-                </div></td>
+                </div>
+              </td>
               <td class="word-date">
-                <span am-time-ago="word.lastAttemptedOn" data-ng-if="word.lastAttemptedOn && word.lastAttemptedOn !== '1403366899'"></span>
+                <span am-time-ago="word.lastAttemptedOn"
+                      data-ng-if="word.lastAttemptedOn && word.lastAttemptedOn !== '1403366899'"></span>
                 <span data-ng-if="word.lastAttemptedOn === '1403366899'">-</span>
               </td>
             </tr>
