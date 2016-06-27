@@ -478,14 +478,17 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   //Parse Player Data
   function parsePlayerHighlitsData(data) {
     var playerHighlightObj = data;
-    var seconds = (playerHighlightObj.totalPlayedTime / 1000), minutes, hours;
-    minutes = parseInt(seconds / 60, 10);
-    hours = parseInt(minutes / 60, 10);
-    minutes = minutes % 60;
-    if (minutes || hours) {
-      playerHighlightObj.timePlayedInMin = hours + ":" + minutes;
-    } else {
-      playerHighlightObj.timePlayedInMin = "0";
+    var miliSec = playerHighlightObj.totalPlayedTime, seconds, minutes, hours;
+    var seconds = parseInt((miliSec / 1000) % 60);
+    var minutes = parseInt((miliSec / (1000 * 60)) % 60);
+    var hours = parseInt((miliSec / (1000 * 60 * 60)) % 24);
+    playerHighlightObj.timePlayedInMin = null;
+    //all
+    if (hours > 0 && minutes > 0) {
+      playerHighlightObj.timePlayedInMin = hours + " hrs " + minutes + "." + seconds;
+    }
+    if (hours <= 0 && minutes > 0) {
+      playerHighlightObj.timePlayedInMin = minutes + "." + seconds;
     }
     return playerHighlightObj;
   }
