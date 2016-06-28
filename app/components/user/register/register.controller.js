@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module("app").controller('registerCtrl', ['AuthenticationService', 'UserService', '$timeout', 'messagesFactory', '$state','appService','$uibModal','StaticService', function (AuthenticationService, UserService, $timeout, messagesFactory, $state, appService, $uibModal, StaticService) {
+angular.module("app").controller('registerCtrl', ['AuthenticationService', 'UserService', '$timeout', 'messagesFactory', '$state', 'appService', '$uibModal', 'StaticService', '$sce', '$http', function (AuthenticationService, UserService, $timeout, messagesFactory, $state, appService, $uibModal, StaticService, $sce, $http) {
 
   var register = this;
 
   (function () {
-    if(appService.checkSessionOnURLChange()){
+    if (appService.checkSessionOnURLChange()) {
       $state.go('account.dashboard');
     }
   })();
@@ -13,7 +13,7 @@ angular.module("app").controller('registerCtrl', ['AuthenticationService', 'User
   register.submitForm = function (form) {
     register.submitted = true;
     if (form.$valid && (register.model.password === register.model.confirmPassword)) {
-      save();
+      getTermsNCondtionData();
       form.$setPristine();
     } else {
       $timeout(function () {
@@ -21,6 +21,21 @@ angular.module("app").controller('registerCtrl', ['AuthenticationService', 'User
       }, 200);
     }
   };
+  function getTermsNCondtionData() {
+    StaticService.getTermsAPI()
+      .success(function (data) {
+        openTermsNCondtonPrivacyPolicyPopup(data, false);
+      }).error(function () {
+    });
+  }
+
+  function getPrivacyPolicyData() {
+    StaticService.getPrivacyAPI()
+      .success(function (data) {
+        openTermsNCondtonPrivacyPolicyPopup(data, true);
+      }).error(function () {
+    });
+  }
 
   function stuctureFormData() {
     var data = {};
@@ -45,38 +60,40 @@ angular.module("app").controller('registerCtrl', ['AuthenticationService', 'User
       }
     };
 
-    /*StaticService.getTermsAPI()
-      .success(function(data){
-        showTerms(data, 'terms')
-      }).error(function(){
-
-    });*/
-
     UserService.Create(formData)
       .success(handleSuccess)
       .error(handleError);
   }
 
-  function showTerms(data, type){
+  function openTermsNCondtonPrivacyPolicyPopup(data, isRegisterUser) {
     $uibModal.open({
       templateUrl: 'components/user/register/terms-agree-modal.html',
-      controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance, $sce) {
-        $scope.modalTitle = 'Terms and conditions';
-        $scope.content_url = data.htmlView;
-
-        $scope.trustSrc = function(src) {
-          return $sce.trustAsResourceUrl(src);
+      controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+        $scope.modalTitle = data.title;
+        $scope.OKBtnLabel = isRegisterUser ? "Submit" : "Agree";
+        $scope.isFrameDataLoaded = false;
+        $scope.fullHtmlViewURL = data.htmlView;
+        $scope.content_url = data.content_url;
+        $scope.trustSrc = function (htmlUrl) {
+          return $sce.trustAsResourceUrl(htmlUrl);
         };
-
+        $("#externalHtmlView").ready(function () {
+          $timeout(function () {
+            $scope.isFrameDataLoaded = true;
+          }, 1000);
+        });
         $scope.ok = function () {
+          if (isRegisterUser) {
+            save();
+          } else {
+            getPrivacyPolicyData();
+          }
           $uibModalInstance.close();
         };
-
         $scope.cancel = function () {
           $uibModalInstance.dismiss('cancel');
         };
       }]
     });
   }
-
 }]);
