@@ -18,8 +18,10 @@
           </span>-->
 
           <div class="minibadge_feed_bg" data-ng-if="feedItem.category === 'Analytics'">
-            <img data-ng-src="{{feedItem.image_url}}" width="158" height="178" />
+            <img src="assets/images/min-badge-news-item-bg.png" width="180" height="182" class="badge_gliter badge-background" />
+            <img data-ng-src="{{feedItem.image_url}}" width="158" height="178" class="feeditem-image"/>
             <img src="assets/images/glitter.png" width="180" height="194" class="badge_gliter" />
+
           </div>
         </div>
         <div class="col-md-7 nopadding">
@@ -33,24 +35,42 @@
             <h3 class="reduce-margin text-ellipsiss" title="{{feedItem.title}}">{{feedItem.title}}</h3>
             <p class="time-ago" am-time-ago="feedItem.updatedAt"></p>
             <div class="share_tooltip_holder">
-                <!--<img src="assets/images/share-icon.png" />-->
-              <div class="icons-block">
-                <ul>
-                  <li>
-                      <i itemdata="feedItem" index="$index" title="Twitter share" data-twitter-share></i>
-                  </li>
-                  <li>
-                      <i itemdata="feedItem" index="$index" data-fb-share data-lang="en"
-                         data-count='horizontal'
-                         data-url='http://google.com' data-via='notsosleepy'
-                         data-size="medium"
-                         title="Facebook share"
-                         data-text='Testing Twitter Share' style="color:#DD4F43"></i>
-                  </li>
-                  <li>
-                      <i itemdata="feedItem" index="$index" title="googlePlus share" gplus-share></i>
-                  </li>
-                </ul>
+                <a href="javascript:;">
+                  <img src="assets/images/share-icon.png" ng-click="isShareIconsClicked = !isShareIconsClicked" />
+                </a>
+              <div class="icons-block" ng-show="isShareIconsClicked"  data-ng-if="feedItem.player_avatar === null">
+                <div class="icon-arrow"></div>
+                <div class="icons-display">
+
+                  <i itemdata="feedItem" index="$index" data-fb-share data-lang="en"
+                     data-count='horizontal'
+                     data-url='http://google.com' data-via='notsosleepy'
+                     data-size="medium"
+                     title="Facebook share"
+                     data-text='Testing Twitter Share' style="color:#DD4F43" class="icons-margin"></i>
+
+                  <i itemdata="feedItem" index="$index" title="Twitter share" data-twitter-share class="icons-margin"></i>
+
+                  <i itemdata="feedItem" index="$index" title="googlePlus share" gplus-share></i>
+                </div>
+
+              </div>
+              <div class="icons-block" ng-show="isShareIconsClicked"  data-ng-if="feedItem.player_avatar !== null">
+                <div class="icon-arrows"></div>
+                <div class="icons-displays">
+
+                  <i itemdata="feedItem" index="$index" data-fb-share data-lang="en"
+                     data-count='horizontal'
+                     data-url='http://google.com' data-via='notsosleepy'
+                     data-size="medium"
+                     title="Facebook share"
+                     data-text='Testing Twitter Share' style="color:#DD4F43" class="icons-margin"></i>
+
+                  <i itemdata="feedItem" index="$index" title="Twitter share" data-twitter-share class="icons-margin"></i>
+
+                  <i itemdata="feedItem" index="$index" title="googlePlus share" gplus-share></i>
+                </div>
+
               </div>
             </div>
             <p class="feed-description"
