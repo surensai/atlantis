@@ -6,7 +6,7 @@ angular.module("app").directive('twitterShare', ['$window', function ($window) {
       index: '=index',
       item: '=itemdata'
     },
-    template: '<a href="javascript:;" class="fa fa-twitter fa-sm twitter-color"></a>',
+    template: '<a href="javascript:;" class="twitter-color"><img src="assets/images/twitter.png"></a>',
     link: function (scope, element) {
       element.bind('click', function () {
         $window.open("https://twitter.com/share?url=" + scope.item.image_url + "&text=" + scope.item.title, '_blank');
