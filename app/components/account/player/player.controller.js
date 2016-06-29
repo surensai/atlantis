@@ -114,8 +114,8 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
       .success(function (data) {
         player.chartsData = data;
         player.chartPeriodTypes = appService.getKeysOfCollection(data);
-        player.selectedChartData = parseChartTypeData(player.chartsData['week']);
         player.chartTabType = 'week';
+        player.selectedChartData = parseChartTypeData(player.chartsData['week']);
         player.highchartsNG = PlayerService.getChartDataObj(player.selectedChartData, 'week', player.playerObj.firstName);
       }).error(function (err, status) {
       if (status === 401) {
@@ -129,16 +129,40 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   };
 
   player.selectPeriod = function (period) {
-    player.selectedChartData = parseChartTypeData(player.chartsData[period]);
     player.chartTabType = period;
+    player.selectedChartData = parseChartTypeData(player.chartsData[period]);
     player.highchartsNG = PlayerService.getChartDataObj(player.selectedChartData, period, player.playerObj.firstName);
   };
 
+  function addDummyDataPointsInChart(dataPointCount, dateObj) {
+    var dataPointArr = [], dpMilisecond, currentDt = dateObj;
+    currentDt.setHours(0, 0, 0);
+    for (var dtCntr = 0; dtCntr < dataPointCount; dtCntr++) {
+      dpMilisecond = currentDt.getTime();
+      dataPointArr.push([dpMilisecond, null]);
+      currentDt = new Date(currentDt.getTime() + 86400000);
+    }
+    return dataPointArr;
+  }
+
   function parseChartTypeData(data) {
-    for (var chrttypCntr = 0; chrttypCntr < data.length; chrttypCntr++) {
-      var chrtTypeObjArr = data[chrttypCntr];
-      if (chrtTypeObjArr && chrtTypeObjArr.length > 1) {
-        chrtTypeObjArr[1] = chrtTypeObjArr[1] < 0 ? 0 : chrtTypeObjArr[1];
+    if (data.length > 0) {
+      for (var chrttypCntr = 0; chrttypCntr < data.length; chrttypCntr++) {
+        var chrtTypeObjArr = data[chrttypCntr];
+        if (chrtTypeObjArr && chrtTypeObjArr.length > 1) {
+          chrtTypeObjArr[1] = chrtTypeObjArr[1] < 0 ? 0 : chrtTypeObjArr[1];
+        }
+      }
+    } else {
+      var today = new Date(), totalDays, startDate;
+      if (player.chartTabType === "week") {
+        startDate = new Date(today.setDate(today.getDate() - today.getDay()));
+        totalDays = 8;
+        data = addDummyDataPointsInChart(totalDays, startDate);
+      } else if (player.chartTabType === "month") {
+        startDate = new Date(today.setDate(1));
+        totalDays = (new Date(today.getFullYear(), today.getMonth(), 0).getDate()) - 1;
+        data = addDummyDataPointsInChart(totalDays, startDate);
       }
     }
     return data
@@ -478,17 +502,17 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   //Parse Player Data
   function parsePlayerHighlitsData(data) {
     var playerHighlightObj = data;
-    var miliSec = playerHighlightObj.totalPlayedTime, seconds, minutes, hours;
-    var seconds = parseInt((miliSec / 1000) % 60);
-    var minutes = parseInt((miliSec / (1000 * 60)) % 60);
-    var hours = parseInt((miliSec / (1000 * 60 * 60)) % 24);
+    var miliSec = playerHighlightObj.totalPlayedTime, seconds, minutes, hours, secondsStr;
+    seconds = parseInt((miliSec / 1000) % 60);
+    minutes = parseInt((miliSec / (1000 * 60)) % 60);
+    hours = parseInt((miliSec / (1000 * 60 * 60)) % 24);
+    secondsStr = seconds > 0 ? "." + seconds : "";
     playerHighlightObj.timePlayedInMin = null;
-    //all
     if (hours > 0 && minutes > 0) {
-      playerHighlightObj.timePlayedInMin = hours + " hrs " + minutes + "." + seconds;
+      playerHighlightObj.timePlayedInMin = hours + " hrs " + minutes + secondsStr;
     }
     if (hours <= 0 && minutes > 0) {
-      playerHighlightObj.timePlayedInMin = minutes + "." + seconds;
+      playerHighlightObj.timePlayedInMin = minutes + secondsStr;
     }
     return playerHighlightObj;
   }

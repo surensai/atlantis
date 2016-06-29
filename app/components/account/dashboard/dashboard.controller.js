@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messagesFactory', '$state', '$stateParams', '$rootScope', 'AuthenticationService','appService', function (DashboardService, messagesFactory, $state, $stateParams, $rootScope, authService, appService) {
+angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messagesFactory', '$state', '$stateParams', '$rootScope', 'AuthenticationService', 'appService', '$uibModal', 'StaticService', 'UserService', function (DashboardService, messagesFactory, $state, $stateParams, $rootScope, authService, appService, $uibModal, StaticService, UserService) {
   var dashboard = this;
   var welcomefeed = ($rootScope.globals.currentUser) ? $rootScope.globals.currentUser.welcomefeed : {};
   dashboard.userName = $rootScope.globals.currentUser;
@@ -8,13 +8,78 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
   dashboard.data = {};
   dashboard.data.newsFeedsList = {};
   dashboard.data.newsFeeds = {};
-
+  dashboard.data.termsCondtnPrcyPolcy = {terms: 'terms', privacy: 'privacy'};
   dashboard.isUserFirstTimeLoggedIn = false;
   dashboard.showWelcomeNewsFeedDetails = false;
   dashboard.hideWelcomeFeedOnload = true;
 
+  function getTermsNCondtionData() {
+    StaticService.getTermsAPI()
+      .success(function (data) {
+        openTermsNCondtonPrivacyPolicyPopup(data, false);
+      }).error(function () {
+    });
+  }
+
+  function getPrivacyPolicyData() {
+    StaticService.getPrivacyAPI()
+      .success(function (data) {
+        openTermsNCondtonPrivacyPolicyPopup(data, true);
+      }).error(function () {
+    });
+  }
+
+  function updateTermsConditionPrivacyPolicy(type, version) {
+    var bodyVer = {version: version};
+    UserService.updateTermsConditionPrivacyPolicy($rootScope.globals.currentUser.id, type, bodyVer)
+      .success(function (data) {
+        if (type === dashboard.data.termsCondtnPrcyPolcy.terms) {
+          $rootScope.globals.currentUser.terms = false;
+          appService.updateCookieStore();
+        } else {
+          $rootScope.globals.currentUser.privacy = false;
+          appService.updateCookieStore();
+        }
+      }).error(function (error, status) {
+      messagesFactory.dashboardTermsConditionPrivacyPolicyError(status);
+    });
+
+  }
+
+  function openTermsNCondtonPrivacyPolicyPopup(data, isPrivacyPolicy) {
+    $uibModal.open({
+      templateUrl: 'components/user/register/terms-agree-modal.html',
+      controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+        $scope.modalTitle = data.title;
+        $scope.OKBtnLabel = isPrivacyPolicy ? "Submit" : "Agree";
+        $scope.isExternalHtmlDataLoaded = false;
+        $scope.fullHtmlViewURL = data.htmlView;
+        $scope.ok = function () {
+          if ($rootScope.globals.currentUser.privacy && !isPrivacyPolicy) {
+            updateTermsConditionPrivacyPolicy(dashboard.data.termsCondtnPrcyPolcy.terms, data.version);
+            getPrivacyPolicyData();
+          } else {
+            updateTermsConditionPrivacyPolicy(dashboard.data.termsCondtnPrcyPolcy.privacy, data.version);
+          }
+          $uibModalInstance.close();
+        };
+        $scope.cancel = function () {
+          appService.removeSession();
+          $state.go('login');
+          $uibModalInstance.dismiss('cancel');
+        };
+      }]
+    });
+  }
+
   (function () {
     loadFeedData();
+    //load terms & condition or privacy policy popup
+    if ($rootScope.globals.currentUser.terms) {
+      getTermsNCondtionData();
+    } else if ($rootScope.globals.currentUser.privacy) {
+      getPrivacyPolicyData();
+    }
   })();
 
   dashboard.showWelcomeMessageDetail = function () {
