@@ -71,17 +71,8 @@ angular.module("app").controller('registerCtrl', ['AuthenticationService', 'User
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
         $scope.modalTitle = data.title;
         $scope.OKBtnLabel = isRegisterUser ? "Submit" : "Agree";
-        $scope.isFrameDataLoaded = false;
+        $scope.isExternalHtmlDataLoaded = false;
         $scope.fullHtmlViewURL = data.htmlView;
-        $scope.content_url = data.content_url;
-        $scope.trustSrc = function (htmlUrl) {
-          return $sce.trustAsResourceUrl(htmlUrl);
-        };
-        $("#externalHtmlView").ready(function () {
-          $timeout(function () {
-            $scope.isFrameDataLoaded = true;
-          }, 1000);
-        });
         $scope.ok = function () {
           if (isRegisterUser) {
             save();

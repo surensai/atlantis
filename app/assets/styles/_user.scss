@@ -18,24 +18,28 @@
   height: 100%;
 }
 
-.register-error-message{
+.register-error-message {
   color: #E07C72;
   text-align: center;
   width: 100%;
 }
-.login-error-message{
+
+.login-error-message {
   color: #E07C72;
   text-align: center;
   width: 100%;
   padding: 0px 10px;
 }
-.register-form-heading{
+
+.register-form-heading {
   color: $white-color;
 }
-.login-form-heading{
+
+.login-form-heading {
   color: $white-color;
   margin-top: 40px;
 }
+
 .user-form-container {
   position: relative;
   h2 {
@@ -67,11 +71,11 @@
     color: rgba(0, 0, 0, 0.6);
   }
 
-  input:-moz-placeholder{
+  input:-moz-placeholder {
     color: rgba(0, 0, 0, 0.6);
   }
 
-  input::-moz-placeholder{
+  input::-moz-placeholder {
     color: rgba(0, 0, 0, 0.6);
   }
 
@@ -79,20 +83,19 @@
     color: rgba(0, 0, 0, 0.6);
   }
 
-
   label {
     color: #fff;
   }
-  .signin-button{
+  .signin-button {
     margin-bottom: 18px;
   }
   .login-button {
-   padding: 5px 60px;
+    padding: 5px 60px;
     margin-left: auto;
     margin-right: auto;
     opacity: 1;
   }
-  .forgotpassword-button{
+  .forgotpassword-button {
     padding: 5px 30px;
     margin-left: auto;
     margin-right: auto;
@@ -100,25 +103,25 @@
   }
   input[type="email"],
   input[type="password"],
-  input[type="text"],.btn-primary {
+  input[type="text"], .btn-primary {
     height: 40px;
   }
 }
-.reset-password-container{
-  input{
-    color:black;
+
+.reset-password-container {
+  input {
+    color: black;
   }
 }
 
-
-.remember-me{
+.remember-me {
   margin-top: -17px;
   margin-bottom: 20px !important;
-  input[type="checkbox"]{
+  input[type="checkbox"] {
     margin-top: 4px;
     float: left;
   }
-  span{
+  span {
     font-weight: normal;
     margin-left: 7px;
     display: block;
@@ -130,11 +133,11 @@
   margin-bottom: 17px;
 }
 
-.user-links-col1{
+.user-links-col1 {
   top: -70px;
 }
 
-.user-links-col2{
+.user-links-col2 {
   top: -102px;
 }
 
@@ -144,8 +147,8 @@
   padding-bottom: 20px;
   position: absolute;
   width: 100%;
-  .pull-right, .pull-left{
-    float: none!important;
+  .pull-right, .pull-left {
+    float: none !important;
   }
 
   a {
@@ -169,14 +172,24 @@
   margin-bottom: 200px;
   padding: 0 5%;
 }
+
 .forgot-form-margin {
   margin-top: 30px;
   margin-bottom: 280px;
   padding: 0 5%;
 }
 
-.signup-btn{
+.signup-btn {
   margin-top: 30px;
+}
+
+.terms-condition-privacy-policy-style {
+  width: 100%;
+  height: 400px !important;;
+  overflow: scroll;
+  overflow-x: hidden;
+  padding: 5px 10px;
+  font-family: AvertaStd-Regular !important;
 }
 
 @-moz-document url-prefix() {
@@ -187,24 +200,24 @@
 
 @media(min-width: 768px) {
   .user-links {
-    a{
-      display: inline!important;
+    a {
+      display: inline !important;
       text-align: left;
       line-height: normal;
-      &:nth-child(1){
+      &:nth-child(1) {
         float: left;
       }
-      &:nth-child(2){
+      &:nth-child(2) {
         float: right;
       }
     }
   }
 
-  .user-links-col1{
-    top: -60px!important;
+  .user-links-col1 {
+    top: -60px !important;
   }
 
-  .user-links-col2{
-    top: -59px!important;
+  .user-links-col2 {
+    top: -59px !important;
   }
 }
