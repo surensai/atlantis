@@ -179,7 +179,10 @@
 
         .share_tooltip_holder {
           margin-top: 4px;
+          position: relative;
+          float: left;
           .icons-block {
+            position: absolute;
             ul {
               list-style-type: none;
               padding: 0px;
@@ -203,18 +206,8 @@
             }
           }
           .icons-display {
-            width: 14%;
-            margin-left: 76px;
-            position: absolute;
-            margin-top: 0px;
-            background-color: #ececec;
-            padding: 5px 11px;
-            border-radius: 4px;
-            box-shadow: 2px 2px 4px #888888;
-          }
-          .icons-displays {
-            width: 14%;
-            margin-left: 28px;
+            width: 98px;
+            margin-left: -44px;
             position: absolute;
             margin-top: 0px;
             background-color: #ececec;
@@ -229,18 +222,7 @@
             border-width: 0 8px 8px 8px;
             border-left-color: transparent;
             border-right-color: transparent;
-            margin-left: 18%;
-            border-bottom-color: #ececec;
-            margin-top: 4px;
-            position: relative;
-          }
-          .icon-arrows {
-            width: 0;
-            border-style: solid;
-            border-width: 0 8px 8px 8px;
-            border-left-color: transparent;
-            border-right-color: transparent;
-            margin-left: 11% !important;
+            margin-left: 0px;
             border-bottom-color: #ececec;
             margin-top: 4px;
             position: relative;

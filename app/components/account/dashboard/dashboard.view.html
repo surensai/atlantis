@@ -38,7 +38,7 @@
                 <a href="javascript:;">
                   <img src="assets/images/share-icon.png" ng-click="isShareIconsClicked = !isShareIconsClicked" />
                 </a>
-              <div class="icons-block" ng-show="isShareIconsClicked"  data-ng-if="feedItem.player_avatar === null">
+              <div class="icons-block" ng-show="isShareIconsClicked">
                 <div class="icon-arrow"></div>
                 <div class="icons-display">
 
@@ -47,7 +47,7 @@
                      data-url='http://google.com' data-via='notsosleepy'
                      data-size="medium"
                      title="Facebook share"
-                     data-text='Testing Twitter Share' style="color:#DD4F43" class="icons-margin"></i>
+                     data-text='Testing Twitter Share' class="icons-margin"></i>
 
                   <i itemdata="feedItem" index="$index" title="Twitter share" data-twitter-share class="icons-margin"></i>
 
@@ -55,23 +55,7 @@
                 </div>
 
               </div>
-              <div class="icons-block" ng-show="isShareIconsClicked"  data-ng-if="feedItem.player_avatar !== null">
-                <div class="icon-arrows"></div>
-                <div class="icons-displays">
 
-                  <i itemdata="feedItem" index="$index" data-fb-share data-lang="en"
-                     data-count='horizontal'
-                     data-url='http://google.com' data-via='notsosleepy'
-                     data-size="medium"
-                     title="Facebook share"
-                     data-text='Testing Twitter Share' style="color:#DD4F43" class="icons-margin"></i>
-
-                  <i itemdata="feedItem" index="$index" title="Twitter share" data-twitter-share class="icons-margin"></i>
-
-                  <i itemdata="feedItem" index="$index" title="googlePlus share" gplus-share></i>
-                </div>
-
-              </div>
             </div>
             <p class="feed-description"
                ng-class="{'first-element':$index ==0,'second-element': $index == 1,'third-element':$index == 2}" title="{{feedItem.description}}">
