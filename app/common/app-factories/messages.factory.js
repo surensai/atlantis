@@ -1,13 +1,13 @@
 'use strict';
-angular.module('app').factory('messagesFactory', ['$translate', 'flashService','appService','$uibModal','$state', function ($translate, flashService, appService, $uibModal, $state) {
+angular.module('app').factory('messagesFactory', ['$translate', 'flashService', 'appService', '$uibModal', '$state', function ($translate, flashService, appService, $uibModal, $state) {
 
   var service = {};
 
-  function netWorkError (){
+  function netWorkError() {
     appService.handleOffline($uibModal, $state, true);
   };
 
-  service.loginErrorMessages = function(status) {
+  service.loginErrorMessages = function (status) {
     var message;
     if (status === 424) {
       message = $translate.instant('user.validationMessages.email_notverified');
@@ -17,13 +17,13 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError(message, false);
   };
 
-  service.registerSuccessMessages = function(successObj) {
+  service.registerSuccessMessages = function (successObj) {
     if (successObj) {
       flashService.showCustomMessage("register", true);
     }
   };
 
-  service.registerErrorMessages = function(status) {
+  service.registerErrorMessages = function (status) {
     var message;
     if (status === 412) {
       message = $translate.instant('user.register.messages.email_registered');
@@ -31,19 +31,19 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     if (status === 400) {
       message = $translate.instant('user.validationMessages.email_valid');
     }
-     if (status === 500) {
+    if (status === 500) {
       message = $translate.instant('user.validationMessages.password_strength ');
     }
     flashService.showError(message, false);
   };
 
-  service.forgotSuccessMessages = function(successObj) {
+  service.forgotSuccessMessages = function (successObj) {
     if (successObj) {
       flashService.showCustomMessage('forgot', true);
     }
   };
 
-  service.forgotErrorMessages = function(status) {
+  service.forgotErrorMessages = function (status) {
     var message;
     if (status === 500) {
       message = $translate.instant('user.validationMessages.email_valid ');
@@ -51,31 +51,38 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError(message, false);
   };
 
-  service.resetpasswordSuccessMessages = function(successObj) {
+  service.resetpasswordSuccessMessages = function (successObj) {
     if (successObj) {
       flashService.showCustomMessage("reset", true);
     }
   };
 
-  service.resetpasswordErrorMessages = function(message) {
-      flashService.showCustomMessage("resetError", true);
+  service.resetpasswordErrorMessages = function (message) {
+    flashService.showCustomMessage("resetError", true);
   };
 
-  service.dashboardfeedsError = function(status) {
+  service.dashboardfeedsError = function (status) {
     if (status === -1) {
       netWorkError();
-    }else{
+    } else {
       flashService.showError($translate.instant("dashboard.messages.error_get_feeds"), false);
     }
   };
-
-  service.settingseditprofileSuccessMessages = function(successObj) {
-    if (successObj) {
-      flashService.showSuccess( $translate.instant('settings.messages.profile_edit_success '), true);
+  service.dashboardTermsConditionPrivacyPolicyError = function (status) {
+    if (status === -1) {
+      netWorkError();
+    } else {
+      flashService.showError($translate.instant("dashboard.messages.error_get_termscondition_privacypolicy"), false);
     }
   };
 
-  service.settingseditprofileErrorMessages = function(status,error) {
+  service.settingseditprofileSuccessMessages = function (successObj) {
+    if (successObj) {
+      flashService.showSuccess($translate.instant('settings.messages.profile_edit_success '), true);
+    }
+  };
+
+  service.settingseditprofileErrorMessages = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -83,29 +90,29 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant('settings.messages.profile_edit_error '), false);
   };
 
-  service.settingschangepasswordSuccessMessages = function(successObj) {
+  service.settingschangepasswordSuccessMessages = function (successObj) {
     if (successObj) {
       flashService.showSuccess($translate.instant('settings.messages.password_change_new_login'), false);
     }
   };
 
-  service.settingschangepasswordErrorMessages = function(status) {
+  service.settingschangepasswordErrorMessages = function (status) {
     var message;
-      if (status === 500) {
-        message = $translate.instant('settings.messages.old_passwpord_wrong');
+    if (status === 500) {
+      message = $translate.instant('settings.messages.old_passwpord_wrong');
     } else {
-        message = $translate.instant('user.validationMessages.old_passwpord_require');
+      message = $translate.instant('user.validationMessages.old_passwpord_require');
     }
     flashService.showError(message, false);
   };
 
-  service.settingsNotificationsSuccessMessages = function(successObj) {
+  service.settingsNotificationsSuccessMessages = function (successObj) {
     if (successObj) {
       flashService.showSuccess($translate.instant('settings.messages.nofifications_success_msg'), true);
     }
   };
 
-  service.settingsNotificationsErrorMessages = function(status,error) {
+  service.settingsNotificationsErrorMessages = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -114,7 +121,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant('settings.messages.nofifications_error_msg'), false);
   };
 
-  service.settingsgetNotifictaionsErrorMessages = function(status,error){
+  service.settingsgetNotifictaionsErrorMessages = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -122,7 +129,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant('settings.messages.nofifications_error_msg'), false);
   };
 
-  service.updateMissingLettersErrorMessages = function(status,error) {
+  service.updateMissingLettersErrorMessages = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -130,14 +137,14 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant('settings.messages.missing_letters_error'), false);
   };
 
-  service.updateMissingLettersSuccessMessages = function(successObj){
+  service.updateMissingLettersSuccessMessages = function (successObj) {
     if (successObj) {
       flashService.showSuccess($translate.instant('settings.messages.missing_letters_updated'), false);
 
     }
   };
 
-  service.selectmissinglettesErrorMessages = function(status,error) {
+  service.selectmissinglettesErrorMessages = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -145,7 +152,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant('settings.messages.missing_letters_error'), false);
   };
 
-  service.customisesearchwordError = function(status,error) {
+  service.customisesearchwordError = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -153,13 +160,13 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant("curriculum.messages.error_getting_custom_words"), false);
   };
 
-  service.submitGroupwordsSuccess = function(successObj) {
+  service.submitGroupwordsSuccess = function (successObj) {
     if (successObj) {
       flashService.showSuccess($translate.instant('curriculum.messages.groupword_success_msg'), false);
     }
   };
 
-  service.submitGroupwordsError = function(status,error) {
+  service.submitGroupwordsError = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -167,13 +174,13 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant("curriculum.messages.error_group_words"), false);
   };
 
-  service.deletewordSuccess = function(successObj) {
+  service.deletewordSuccess = function (successObj) {
     if (successObj) {
       flashService.showSuccess($translate.instant("curriculum.messages.delete_success"), false);
     }
   };
 
-  service.deletewordError = function(status,error) {
+  service.deletewordError = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -181,7 +188,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant("curriculum.messages.error_deleting_word"), false);
   };
 
-  service.listwordsError = function(status,error) {
+  service.listwordsError = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -189,7 +196,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant("curriculum.messages.error_getting_words"), false);
   };
 
-  service.getGroupwordsError = function(status,error) {
+  service.getGroupwordsError = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -197,7 +204,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant("curriculum.messages.error_getting_words"), false);
   };
 
-  service.searchwordsError = function(status,error) {
+  service.searchwordsError = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -205,7 +212,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant("curriculum.messages.error_getting_words"), false);
   };
 
-  service.getwordsError = function(status,error) {
+  service.getwordsError = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -213,13 +220,13 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant("curriculum.messages.error_getting_players"), false);
   };
 
-  service.savewordsSuccess = function(successObj) {
+  service.savewordsSuccess = function (successObj) {
     if (successObj) {
       flashService.showSuccess($translate.instant('curriculum.messages.word_success_msg'), false);
     }
   };
 
-  service.savewordsError = function(status,error) {
+  service.savewordsError = function (status, error) {
     var message;
     if (status !== "" && error) {
       message = error.error;
@@ -227,22 +234,22 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant("curriculum.messages.word_already_exist"), false);
   };
 
-  service.updatewordSuccess = function(successObj) {
+  service.updatewordSuccess = function (successObj) {
     if (successObj) {
       flashService.showSuccess($translate.instant('curriculum.messages.word_update_msg'), false);
     }
   };
 
-  service.updatewordsError = function(status) {
+  service.updatewordsError = function (status) {
     if (status === 500) {
-   flashService.showError($translate.instant('curriculum.messages.exit_custom_word'), false);
+      flashService.showError($translate.instant('curriculum.messages.exit_custom_word'), false);
     }
-    else{
+    else {
       flashService.showError($translate.instant("curriculum.messages.error_adding_word"), false);
     }
   };
 
-  service.uploadfileError = function(status,error) {
+  service.uploadfileError = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -251,8 +258,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
   };
 
 
-
-  service.firmwarecreateError = function(status,error) {
+  service.firmwarecreateError = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -260,7 +266,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant("admin.messages.invalid_firmware"), false);
   };
 
-  service.firmwareuploadError = function(status,error) {
+  service.firmwareuploadError = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -268,13 +274,13 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant("admin.messages.firmware_upload_error"), false);
   };
 
-  service.firmwarecreateSuccess = function(successObj) {
+  service.firmwarecreateSuccess = function (successObj) {
     if (successObj) {
       flashService.showSuccess($translate.instant('admin.messages.firmware_success'), true);
     }
   };
 
-  service.getPlayersError = function(status,error) {
+  service.getPlayersError = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -282,7 +288,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant("player.messages.error_getting_players"), false);
   };
 
-  service.getPlayerwordsError = function(status,error) {
+  service.getPlayerwordsError = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -290,23 +296,23 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant("player.messages.error_getting_words"), false);
   };
 
-  service.createPlayerSuccess = function(successObj) {
+  service.createPlayerSuccess = function (successObj) {
     if (successObj) {
       flashService.showSuccess($translate.instant("player.messages.add_success"), true);
     }
   };
 
-  service.createPlayerError = function( ) {
+  service.createPlayerError = function () {
     flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
   };
 
-  service.updatePlayerSuccess = function(successObj) {
+  service.updatePlayerSuccess = function (successObj) {
     if (successObj) {
       flashService.showSuccess($translate.instant("player.messages.edit_player_success"), true);
     }
   };
 
-  service.updatePlayerError = function(status,error) {
+  service.updatePlayerError = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -314,13 +320,13 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant("player.messages.invalid_credentials"), false);
   };
 
-  service.deletePlayerSuccess = function(successObj) {
+  service.deletePlayerSuccess = function (successObj) {
     if (successObj) {
       flashService.showSuccess($translate.instant("player.messages.delete_success"), true);
     }
   };
 
-  service.deletePlayerError = function(status,error) {
+  service.deletePlayerError = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -328,7 +334,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant("player.messages.error_deleting_players"), false);
   };
 
-  service.getPlayerbyIDError = function(status,error) {
+  service.getPlayerbyIDError = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;
@@ -336,7 +342,7 @@ angular.module('app').factory('messagesFactory', ['$translate', 'flashService','
     flashService.showError($translate.instant("player.messages.error_getting_players"), false);
   };
 
-  service.getminibadgessError = function(status,error) {
+  service.getminibadgessError = function (status, error) {
     var message;
     if (status !== "") {
       message = error.error;

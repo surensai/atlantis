@@ -30,8 +30,11 @@ angular.module('app').factory('UserService', ['$http', '$rootScope', function ($
   service.resetPasswordAPI = function (user, token) {
     return $http.post(base_url + '/user/reset-password?token=' + token, user);
   };
-  service.confirmRegistrationAPI = function(tokenID){
-    return $http.get(base_url + '/user/confirmation/'+ tokenID);
+  service.confirmRegistrationAPI = function (tokenID) {
+    return $http.get(base_url + '/user/confirmation/' + tokenID);
+  };
+  service.updateTermsConditionPrivacyPolicy = function (parentId, type, body) {
+    return $http.put(base_url + '/user/' + parentId + '/cms/' + type, body);
   };
 
   return service;

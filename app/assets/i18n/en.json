@@ -255,7 +255,8 @@
       "spelled_myname": " 'I spelled my name' "
     },
     "messages": {
-      "error_get_feeds": "Error in getting feeds."
+      "error_get_feeds": "Error in getting feeds.",
+      "error_get_termscondition_privacypolicy": "Error while update the terms & condition."
     }
   },
   "admin": {
@@ -309,7 +310,7 @@
     "choose_avatar": " Choose a generic avatar",
     "crop_profile_picture": "Crop profile picture",
     "no_players": "You don't have any players added. Start adding now.",
-    "no_graph_description":"Your child hasn't played any words in this badge. Check out the description above to see the words covered in this badge and start playing the words to view your child performance graph.",
+    "no_graph_description": "Your child hasn't played any words in this badge. Check out the description above to see the words covered in this badge and start playing the words to view your child performance graph.",
     "word_headers": {
       "words": "Words",
       "correct": "Correct",
