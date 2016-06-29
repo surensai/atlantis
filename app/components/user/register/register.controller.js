@@ -14,6 +14,7 @@ angular.module("app").controller('registerCtrl', ['AuthenticationService', 'User
     register.submitted = true;
     if (form.$valid && (register.model.password === register.model.confirmPassword)) {
       getTermsNCondtionData();
+      //save();
       form.$setPristine();
     } else {
       $timeout(function () {
@@ -67,6 +68,8 @@ angular.module("app").controller('registerCtrl', ['AuthenticationService', 'User
 
   function openTermsNCondtonPrivacyPolicyPopup(data, isRegisterUser) {
     $uibModal.open({
+      backdrop: 'static',
+      keyboard: false,
       templateUrl: 'components/user/register/terms-agree-modal.html',
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
         $scope.modalTitle = data.title;
