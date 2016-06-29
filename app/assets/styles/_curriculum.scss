@@ -252,6 +252,10 @@
         color: #ffffff;
         padding: 5px 21px;
         margin-right: 10px;
+        vertical-align: middle;
+      }
+      .custom-word-delete-button{
+        vertical-align: middle;
       }
       .custom-word-edit-button:hover {
         background-color: darken(#7E7E7E, 10%) !important;
@@ -372,23 +376,33 @@
     }
 .badword-accordion .panel-group .panel .panel-body{
     background-color: #ffffff !important;
+    padding: 0px !important;
 }
     .badword-accordion .panel-group{
       margin-bottom: 0px;
     }
+    .horizontal-line{
+      margin-top: 25px;
+      margin-bottom: 25px
+    }
+    .noword-display{
+      color: #B0B0B0;
+      padding-bottom: 22px
+    }
     .badword-container{
       background-color: #FAFAFA;
-      padding: 20px;
+      padding: 25px;
+      padding-bottom: 4px;
     }
     .badword-list{
       background-color: #FAFAFA;
-      padding-top: 20px;
       .fa{
-        color: #EE486F;
+        color: #7e7e7e;
         cursor: pointer;
       }
       .banword{
         text-transform: capitalize;
+        text-align: left;
       }
     }
   }
