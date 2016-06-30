@@ -48,10 +48,12 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
 
   function openTermsNCondtonPrivacyPolicyPopup(data, isPrivacyPolicy) {
     $uibModal.open({
+      backdrop: 'static',
+      keyboard: false,
       templateUrl: 'components/user/register/terms-agree-modal.html',
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
         $scope.modalTitle = data.title;
-        $scope.OKBtnLabel = isPrivacyPolicy ? "Submit" : "Agree";
+        $scope.OKBtnLabel = "Agree";
         $scope.isExternalHtmlDataLoaded = false;
         $scope.fullHtmlViewURL = data.htmlView;
         $scope.ok = function () {
@@ -118,8 +120,6 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
         //filter the news feed based on status param
         dashboard.data.newsFeedsList = parseNewsFeedData(data);
       }
-
-
       dashboard.currentPage = 1;
       dashboard.itemsPerPage = 10;
       dashboard.lastPage = Math.ceil(dashboard.data.newsFeedsList.length / dashboard.itemsPerPage);

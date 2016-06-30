@@ -36,7 +36,9 @@ angular.module('app').factory('UserService', ['$http', '$rootScope', function ($
   service.updateTermsConditionPrivacyPolicy = function (parentId, type, body) {
     return $http.put(base_url + '/user/' + parentId + '/cms/' + type, body);
   };
-
+  service.validateEmailIdAPI = function (emailBody) {
+    return $http.post(base_url + '/user/validate/email', emailBody);
+  };
   return service;
 
 }]);

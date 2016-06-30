@@ -5,14 +5,19 @@
   <div class='modal-body' style="padding: 10px;">
     <div id="extrnalHtmlViewId" external-html-page-loader-dir html-page-url="fullHtmlViewURL"
          is-external-html-data-loaded="isExternalHtmlDataLoaded"
-         class="terms-condition-privacy-policy-style">
+         class="terms-condition-privacy-policy-model-popup-style">
+
       <span style="padding: 40% 45%; display: block;">
         <img src="assets/images/img-loader.gif"/>
       </span>
     </div>
+
   </div>
   <div class='modal-footer'>
     <button class='btn btn-default sp-cancel-common-btn' ng-click='cancel()'>Cancel</button>
-    <button class='btn btn-default sp-purple-common-btn' ng-click='ok()'>{{OKBtnLabel}}</button>
+    <button class='btn btn-default sp-purple-common-btn' data-ng-disabled="!isExternalHtmlDataLoaded"
+            ng-click='ok()'>
+      {{OKBtnLabel}}
+    </button>
   </div>
 </div>

@@ -139,7 +139,13 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       .success(handleSuccess)
       .error(handleError);
   };
-
+  curriculum.onChangeCustomWord = function (wordItem) {
+    if (wordItem) {
+      wordItem.isFileTypeError = false;
+    } else {
+      curriculum.fileError = false;
+    }
+  };
   curriculum.searchWord = function (word, curriculumForm) {
     curriculum.fileError = false;
     curriculum.curriculumForm = curriculumForm;
@@ -239,7 +245,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       if (file && file.size <= 5242880) {
         if (curriculum.fileReaderSupported && file && file.type.indexOf('image') > -1 &&
           (file.type.indexOf('image/jpeg') > -1 || file.type.indexOf('image/jpg') > -1 || file.type.indexOf('image/png') > -1 )) {
-          curriculum.fileError = false;
+          curriculum.addImgInTableRowItem.isFileTypeError = true;
           $timeout(function () {
             var fileReader = new FileReader();
             fileReader.readAsDataURL(file);
@@ -253,7 +259,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
             };
           });
         } else {
-          curriculum.fileError = true;
+          curriculum.addImgInTableRowItem.isFileTypeError = true;
           inputFileObj.value = null;
         }
       } else {
@@ -428,6 +434,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       dateAdded: word.createdAt,
       picture: imageURLArr,
       isEditMode: false,
+      isFileTypeError: false,
       formatedDate: formatedDate
     };
     return customWrdObj;
