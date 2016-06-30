@@ -390,14 +390,13 @@ a .delete-player-back-button:hover{
           padding: 12px;
         }
         .badge-item {
-          img {
+          .disabled-big-badge {
             cursor: pointer;
             border-radius: 22px;
           -webkit-box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
           -moz-box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
           }
-        ;
           .active-big-badge {
             position: absolute;
             left: 50%;
@@ -412,8 +411,8 @@ a .delete-player-back-button:hover{
           }
           .bb-active-star {
             position: absolute;
-            bottom: 32px;
-            left: 44%;
+            bottom: 22px;
+            left: 43%;
           }
           span, h3 {
             display: block;

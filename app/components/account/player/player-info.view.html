@@ -94,7 +94,7 @@
                 <span class="bigbadge-buttons " data-ng-repeat="word in player.bigbadgedetails.tabwords">{{word}}</span>
               </div>
               <div class="chart-container">
-                <div class="chart-overlay" data-ng-show="!player.bigbadgedetails.percentage === 0">
+                <div class="chart-overlay" data-ng-show="player.bigbadgedetails.percentage === 0">
                   <span data-translate="player.no_graph_description">Your child hasn't played any words in this badge, yet. Check out the descriptions above to see what kinds of words are covered in this badge.</span>
                 </div>
                 <div class="bigbadge-graph-buttons ">
@@ -241,7 +241,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr data-ng-repeat="word in player.wordsData" data-ng-if="player.wordsData.length > 0">
+            <tr data-ng-repeat="word in player.wordsData.slice(((player.currentPage-1)*player.itemsPerPage), ((player.currentPage)*player.itemsPerPage))" data-ng-if="player.wordsData.length > 0">
               <td class="text-ellipsis word-text">{{ word._id}}</td>
               <td> {{word.correctAttempts}}</td>
               <td> {{word.inCorrectAttempts}}</td>
@@ -260,6 +260,12 @@
             </tbody>
           </table>
         </div>
+        <uib-pagination data-ng-if="player.wordsData.length > player.itemsPerPage"
+                        class="pull-right pagination-styles" total-items="player.wordsData.length"
+                        direction-links="false" ng-model="player.currentPage"
+                        items-per-page="player.itemsPerPage">
+        </uib-pagination>
+
       </div>
 
       <div class="badges-container clearfix" data-ng-if="player.model.wordTypeUI==='Real Words'">

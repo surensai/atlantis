@@ -1,6 +1,6 @@
 'use strict';
-angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', '$cookieStore', '$http', '$localStorage', 'appService',
-  function ($rootScope, $state, $stateParams, $location, $cookieStore, $http, $localStorage, appService) {
+angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', '$cookieStore', '$http', '$localStorage', 'appService', '$timeout',
+  function ($rootScope, $state, $stateParams, $location, $cookieStore, $http, $localStorage, appService, $timeout) {
 
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
@@ -16,6 +16,15 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     $rootScope.$on('$locationChangeStart', function (event, newUrl, oldUrl) {
       var isSessionExist = appService.checkSessionOnURLChange();
       var currentUrl = $location.path();
+      // force user to be on Dashborad if terms & condition flag is true
+      if ((currentUrl.indexOf("dashboard") < 0 && currentUrl.indexOf("account") >= 0 && $rootScope.globals.currentUser) && ($rootScope.globals.currentUser.terms || $rootScope.globals.currentUser.privacy)) {
+        $timeout(function () {
+          $state.go('account.dashboard');
+        }, 10);
+        event.preventDefault();
+        return;
+      }
+
       if (isSessionExist && appService.onSessionRedirections(currentUrl)) {
         $state.go('account.dashboard');
       } else if (!isSessionExist && ((currentUrl.indexOf("account") > 0) || !currentUrl)) {

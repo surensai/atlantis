@@ -331,11 +331,14 @@
   .welcome-feed-description {
     padding-top: 40px !important;
   }
+  .home-conatiner{
+    width: 1020px !important;
+  }
 }
 
 @media(min-width: 995px) {
   .dashboard-container .feed-row .panel .feed-img {
-    height: 276px;
+    height: 227px;
     width: 508px;
     border-radius: 10px 0px 0px 10px;
   }
