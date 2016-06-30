@@ -13,8 +13,7 @@ angular.module("app").controller('registerCtrl', ['AuthenticationService', 'User
   register.submitForm = function (form) {
     register.submitted = true;
     if (form.$valid && (register.model.password === register.model.confirmPassword)) {
-      getTermsNCondtionData();
-      //save();
+      getValidateEmailID(register.model.email);
       form.$setPristine();
     } else {
       $timeout(function () {
@@ -46,6 +45,20 @@ angular.module("app").controller('registerCtrl', ['AuthenticationService', 'User
     data.password = register.model.password;
     data.role = "PARENT";
     return data;
+  }
+
+  function getValidateEmailID(emailId) {
+    var emailObj = {"email": emailId};
+    UserService.validateEmailIdAPI(emailObj)
+      .success(function (data) {
+        if (data.message === "Email not available") {
+          getTermsNCondtionData();
+        }
+      }).error(function (err) {
+      if (err.error === "Email not available") {
+        getTermsNCondtionData();
+      }
+    });
   }
 
   function save() {

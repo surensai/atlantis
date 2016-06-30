@@ -53,13 +53,13 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
       templateUrl: 'components/user/register/terms-agree-modal.html',
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
         $scope.modalTitle = data.title;
-        $scope.OKBtnLabel = isPrivacyPolicy ? "Submit" : "Agree";
+        $scope.OKBtnLabel = "Agree";
         $scope.isExternalHtmlDataLoaded = false;
         $scope.fullHtmlViewURL = data.htmlView;
         $scope.ok = function () {
           if ($rootScope.globals.currentUser.privacy && !isPrivacyPolicy) {
             updateTermsConditionPrivacyPolicy(dashboard.data.termsCondtnPrcyPolcy.terms, data.version);
-            getPrivacyPolicyData();
+            getPrivacyPolicyData(); 
           } else {
             updateTermsConditionPrivacyPolicy(dashboard.data.termsCondtnPrcyPolcy.privacy, data.version);
           }
