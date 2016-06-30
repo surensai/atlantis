@@ -48,6 +48,8 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
 
   function openTermsNCondtonPrivacyPolicyPopup(data, isPrivacyPolicy) {
     $uibModal.open({
+      backdrop: 'static',
+      keyboard: false,
       templateUrl: 'components/user/register/terms-agree-modal.html',
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
         $scope.modalTitle = data.title;
