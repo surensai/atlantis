@@ -157,8 +157,8 @@
                           title="Edit Custom Word">
                     Edit
                   </button>
-                  <a href="" title="Delete">
-                        <span class="custom-word-delete-button">
+                  <a href="" title="Delete" class="custom-word-delete-button">
+                        <span >
                           <i data-ng-click="curriculum.deleteListener(word)"
                              class="fa fa-trash left-padding word-icon-colors"></i>
                         </span>
@@ -326,7 +326,7 @@
               <!--<button class="export-btn" style="margin-top:-10px;" data-ng-show="status.open" data-ng-click="curriculum.exportAnatomyCSV()">Export CSV</button>-->
               <span>Custom</span>
             </uib-accordion-heading>
-            <div class=" center-align badword-container">
+            <div class=" center-align badword-container clearfix">
               <form name="banWordForm" ng-submit="curriculum.onAddBanWord(banWordForm)" novalidate>
                 <div class="form-horizontal">
                   <div class="form-group nomargin">
@@ -362,12 +362,10 @@
                   </div>
                 </div>
               </form>
-            </div>
-            <br/>
+              <hr class="horizontal-line"/>
 
-            <div class="badword-list clearfix" data-ng-if="curriculum.model.bannedWordList.length>0">
-              <!--Banned Word list data--->
-              <div class="col-md-3 col-sm-3 banword-width" data-ng-repeat="banWord in curriculum.model.bannedWordList">
+
+              <div class="col-md-3 col-sm-3 banword-width badword-list " data-ng-repeat="banWord in curriculum.model.bannedWordList">
 
                 <span class="col-md-4 col-sm-4 banword">{{banWord.word}}</span>
 
@@ -377,7 +375,17 @@
                   </span>
               </div>
 
+              <div class="center-align clearfix noword-display" data-ng-if="curriculum.model.bannedWordList.length === 0">
+                No data to display
+              </div>
             </div>
+            <br/>
+
+            <!--<div class="badword-list clearfix" data-ng-if="curriculum.model.bannedWordList.length>0">-->
+              <!--&lt;!&ndash;Banned Word list data-&ndash;&gt;-->
+
+
+            <!--</div>-->
 
           </uib-accordion-group>
         </uib-accordion>

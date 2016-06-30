@@ -39,6 +39,14 @@
         border-bottom-right-radius: 10px;
       }
     }
+
+    .welcomename-elipsis{
+      text-transform: capitalize;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+    }
   }
   .welcome-feed-details {
     padding: 0px 25px 5px 25px;

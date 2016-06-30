@@ -59,7 +59,12 @@
   .player-delete-button {
     padding: 5px 10px;
     border-radius: 4px;
+    background-color: #a5a5a5 ;
+    &:hover{
+      background-color: #8c8c8c !important;
+    }
   }
+
   .player-delete-icon {
     background-color: $sp-green;
     border-radius: 5px;
@@ -356,6 +361,9 @@ a .delete-player-back-button:hover{
       padding-top: 25px;
       margin-left: 25px;
       margin-right: 25px;
+      .nonsenseword-table-width{
+       width: 33% !important;;
+      }
       .player-words-table {
         clear: both;
         .table-th-class {
