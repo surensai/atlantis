@@ -23,6 +23,7 @@ angular.module('app').directive('externalHtmlPageLoaderDir', ['$parse', function
           if (statusTxt == "success") {
             //Success - "External content loaded successfully!"
             $scope.isExternalHtmlDataLoaded = true;
+            $scope.$apply();
             // once the html data is loaded then remove the preloader(span element)
             element.parent().find("span").remove();
           }
