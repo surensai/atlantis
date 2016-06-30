@@ -59,7 +59,7 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
         $scope.ok = function () {
           if ($rootScope.globals.currentUser.privacy && !isPrivacyPolicy) {
             updateTermsConditionPrivacyPolicy(dashboard.data.termsCondtnPrcyPolcy.terms, data.version);
-            getPrivacyPolicyData(); 
+            getPrivacyPolicyData();
           } else {
             updateTermsConditionPrivacyPolicy(dashboard.data.termsCondtnPrcyPolcy.privacy, data.version);
           }
@@ -120,8 +120,6 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
         //filter the news feed based on status param
         dashboard.data.newsFeedsList = parseNewsFeedData(data);
       }
-
-
       dashboard.currentPage = 1;
       dashboard.itemsPerPage = 10;
       dashboard.lastPage = Math.ceil(dashboard.data.newsFeedsList.length / dashboard.itemsPerPage);
