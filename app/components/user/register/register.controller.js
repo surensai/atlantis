@@ -3,6 +3,7 @@
 angular.module("app").controller('registerCtrl', ['AuthenticationService', 'UserService', '$timeout', 'messagesFactory', '$state', 'appService', '$uibModal', 'StaticService', '$sce', '$http', function (AuthenticationService, UserService, $timeout, messagesFactory, $state, appService, $uibModal, StaticService, $sce, $http) {
 
   var register = this;
+  register.isEmailAlreadyExit = false;
 
   (function () {
     if (appService.checkSessionOnURLChange()) {
@@ -48,15 +49,21 @@ angular.module("app").controller('registerCtrl', ['AuthenticationService', 'User
   }
 
   function getValidateEmailID(emailId) {
+    register.isEmailAlreadyExit = false;
     var emailObj = {"email": emailId};
     UserService.validateEmailIdAPI(emailObj)
       .success(function (data) {
         if (data.message === "Email not available") {
           getTermsNCondtionData();
+        } else {
+          register.isEmailAlreadyExit = true;
         }
       }).error(function (err) {
       if (err.error === "Email not available") {
+        register.isEmailAlreadyExit = true;
         getTermsNCondtionData();
+      } else {
+        register.isEmailAlreadyExit = true;
       }
     });
   }
