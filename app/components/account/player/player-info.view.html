@@ -354,7 +354,7 @@
           </table>
         </div>
         <uib-pagination data-ng-if="player.realWordsData.length > player.itemsPerPage"
-                        class="pull-right pagination-styles margin-top-bootom-20" total-items="player.wordsData.length"
+                        class="pull-right pagination-styles margin-top-bootom-20" total-items="player.realWordsData.length"
                         direction-links="false" ng-model="player.currentPage"
                         items-per-page="player.itemsPerPage">
         </uib-pagination>
@@ -417,7 +417,7 @@
           </table>
         </div>
         <uib-pagination data-ng-if="player.nonsenseWordsData.length > player.itemsPerPage"
-                        class="pull-right pagination-styles margin-top-bootom-20" total-items="player.wordsData.length"
+                        class="pull-right pagination-styles margin-top-bootom-20" total-items="player.nonsenseWordsData.length"
                         direction-links="false" ng-model="player.currentPage"
                         items-per-page="player.itemsPerPage">
         </uib-pagination>
@@ -475,7 +475,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr data-ng-repeat="word in player.lettersWordsData.slice(((player.currentPage-1)*player.itemsPerPage), ((player.currentPage)*player.itemsPerPage))">
+            <tr data-ng-repeat="word in player.lettersWordsData">
               <td class="text-ellipsis word-text text-capitalize">{{word.letter}}</td>
               <td>{{word.count}}</td>
               <td>
@@ -498,11 +498,7 @@
             </tbody>
           </table>
         </div>
-        <uib-pagination data-ng-if="player.lettersWordsData.length > player.itemsPerPage"
-                        class="pull-right pagination-styles margin-top-bootom-20" total-items="player.wordsData.length"
-                        direction-links="false" ng-model="player.currentPage"
-                        items-per-page="player.itemsPerPage">
-        </uib-pagination>
+
       </div>
 
 

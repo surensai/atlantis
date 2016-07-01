@@ -32,7 +32,7 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
   player.gridCount = 4;
   player.sortType = {};
   player.currentPage = 1;
-  player.itemsPerPage = 10;
+  player.itemsPerPage = 50;
 
   var wordsCsvData = [],
     daysXAxisLegArr = ["", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -57,12 +57,15 @@ angular.module("app").controller('playerCtrl', ['$timeout', '$rootScope', '$stat
     wordsCsvData = [];
     switch (player.model.wordTypeUI) {
       case "All":
+        player.currentPage = 1;
         getWords(player.playerObj.id);
         break;
       case "Real Words":
+        player.currentPage = 1;
         getRealWords(player.playerObj.id);
         break;
       case "Nonsense Words":
+        player.currentPage = 1;
         getNonsenseWords(player.playerObj.id);
         break;
       case "Letters":
