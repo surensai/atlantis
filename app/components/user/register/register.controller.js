@@ -60,7 +60,6 @@ angular.module("app").controller('registerCtrl', ['AuthenticationService', 'User
         }
       }).error(function (err) {
       if (err.error === "Email not available") {
-        register.isEmailAlreadyExit = true;
         getTermsNCondtionData();
       } else {
         register.isEmailAlreadyExit = true;
