@@ -188,8 +188,10 @@
   height: 400px !important;
   overflow: scroll;
   overflow-x: hidden;
-  padding: 5px 10px;
+  padding: 5px 15px;
   font-family: AvertaStd-Regular !important;
+  background-color: #f4f4f4;
+  border-radius: 25px;
 }
 
 @-moz-document url-prefix() {
