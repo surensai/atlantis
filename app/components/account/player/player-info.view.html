@@ -261,7 +261,7 @@
           </table>
         </div>
         <uib-pagination data-ng-if="player.wordsData.length > player.itemsPerPage"
-                        class="pull-right pagination-styles" total-items="player.wordsData.length"
+                        class="pull-right pagination-styles margin-top-bootom-20" total-items="player.wordsData.length"
                         direction-links="false" ng-model="player.currentPage"
                         items-per-page="player.itemsPerPage">
         </uib-pagination>
@@ -335,7 +335,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr data-ng-repeat="word in player.realWordsData" data-ng-if="player.realWordsData.length > 0">
+            <tr data-ng-repeat="word in player.realWordsData.slice(((player.currentPage-1)*player.itemsPerPage), ((player.currentPage)*player.itemsPerPage))" data-ng-if="player.realWordsData.length > 0">
               <td class="text-ellipsis word-text">{{ word._id}}</td>
               <td> {{word.correctAttempts}}</td>
               <td> {{word.inCorrectAttempts}}</td>
@@ -353,6 +353,11 @@
             </tbody>
           </table>
         </div>
+        <uib-pagination data-ng-if="player.realWordsData.length > player.itemsPerPage"
+                        class="pull-right pagination-styles margin-top-bootom-20" total-items="player.wordsData.length"
+                        direction-links="false" ng-model="player.currentPage"
+                        items-per-page="player.itemsPerPage">
+        </uib-pagination>
       </div>
 
       <div class="badges-container clearfix" data-ng-if="player.model.wordTypeUI==='Nonsense Words'">
@@ -400,7 +405,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr data-ng-repeat="word in player.nonsenseWordsData">
+            <tr data-ng-repeat="word in player.nonsenseWordsData.slice(((player.currentPage-1)*player.itemsPerPage), ((player.currentPage)*player.itemsPerPage))">
               <td class="text-ellipsis word-text">{{ word._id}}</td>
               <td class="word-icons">{{ word.count }}</td>
               <td class="word-date" am-time-ago="word.lastAttemptedOn"></td>
@@ -411,6 +416,11 @@
             </tbody>
           </table>
         </div>
+        <uib-pagination data-ng-if="player.nonsenseWordsData.length > player.itemsPerPage"
+                        class="pull-right pagination-styles margin-top-bootom-20" total-items="player.wordsData.length"
+                        direction-links="false" ng-model="player.currentPage"
+                        items-per-page="player.itemsPerPage">
+        </uib-pagination>
       </div>
 
       <div class="badges-container clearfix" data-ng-if="player.model.wordTypeUI==='Letters'">
@@ -465,7 +475,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr data-ng-repeat="word in player.lettersWordsData">
+            <tr data-ng-repeat="word in player.lettersWordsData.slice(((player.currentPage-1)*player.itemsPerPage), ((player.currentPage)*player.itemsPerPage))">
               <td class="text-ellipsis word-text text-capitalize">{{word.letter}}</td>
               <td>{{word.count}}</td>
               <td>
@@ -488,6 +498,11 @@
             </tbody>
           </table>
         </div>
+        <uib-pagination data-ng-if="player.lettersWordsData.length > player.itemsPerPage"
+                        class="pull-right pagination-styles margin-top-bootom-20" total-items="player.wordsData.length"
+                        direction-links="false" ng-model="player.currentPage"
+                        items-per-page="player.itemsPerPage">
+        </uib-pagination>
       </div>
 
 
