@@ -92,7 +92,7 @@ angular.module("app").controller('registerCtrl', ['AuthenticationService', 'User
       templateUrl: 'components/user/register/terms-agree-modal.html',
       controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
         $scope.modalTitle = data.title;
-        $scope.OKBtnLabel = isRegisterUser ? "Submit" : "Agree";
+        $scope.OKBtnLabel = isRegisterUser ? "Submit" : "I Agree";
         $scope.isExternalHtmlDataLoaded = false;
         $scope.fullHtmlViewURL = data.htmlView;
         $scope.ok = function () {
