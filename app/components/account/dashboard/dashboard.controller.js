@@ -58,11 +58,10 @@ angular.module("app").controller('dashboardCtrl', ['DashboardService', 'messages
         $scope.fullHtmlViewURL = data.htmlView;
         $scope.ok = function () {
           if ($rootScope.globals.currentUser.privacy && !isPrivacyPolicy) {
-            updateTermsConditionPrivacyPolicy(dashboard.data.termsCondtnPrcyPolcy.terms, data.version);
             getPrivacyPolicyData();
-          } else {
-            updateTermsConditionPrivacyPolicy(dashboard.data.termsCondtnPrcyPolcy.privacy, data.version);
           }
+          var terms_privacy = $rootScope.globals.currentUser.terms ? dashboard.data.termsCondtnPrcyPolcy.terms : dashboard.data.termsCondtnPrcyPolcy.privacy;
+          updateTermsConditionPrivacyPolicy(terms_privacy, data.version);
           $uibModalInstance.close();
         };
         $scope.cancel = function () {
