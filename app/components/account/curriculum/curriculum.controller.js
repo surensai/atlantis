@@ -42,6 +42,8 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
         curriculum.model.customWrdImgURLArr = [];
         curriculum.onUpdateCustomWords(wordItem);
       }
+      //remove error labels
+      wordItem.isFileTypeError = false;
     } else {
       curriculum.model.previousWrdItm = wordItem.Words;
       curriculum.model.editCustomWrdSubmited = false;
@@ -245,7 +247,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
       if (file && file.size <= 5242880) {
         if (curriculum.fileReaderSupported && file && file.type.indexOf('image') > -1 &&
           (file.type.indexOf('image/jpeg') > -1 || file.type.indexOf('image/jpg') > -1 || file.type.indexOf('image/png') > -1 )) {
-          curriculum.addImgInTableRowItem.isFileTypeError = true;
+          curriculum.addImgInTableRowItem.isFileTypeError = false;
           $timeout(function () {
             var fileReader = new FileReader();
             fileReader.readAsDataURL(file);
@@ -385,7 +387,7 @@ angular.module("app").controller('curriculumCtrl', ['$timeout', '$rootScope', 'C
     curriculum.model.customWrdImgArr = [];
     curriculum.model.customWrdImgURLArr = [];
     curriculum.model.isWordPrsnt = false;
-    curriculumForm.$setPristine();
+    curriculumForm && curriculumForm.$setPristine();
   }
 
   function getWords() {
