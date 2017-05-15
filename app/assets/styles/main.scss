@@ -5,16 +5,8 @@ $fa-font-path: "../libs/font-awesome/fonts";
 @import "../libs/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 @import "../libs/font-awesome/scss/font-awesome.scss";
 // endbower
-@import "toaster.scss";
-@import "ng-img-crop.scss";
+
 @import "_base.scss";
 @import "_reset.scss";
-@import "_account-nav.scss";
 @import "_layout.scss";
-@import "_user.scss";
-@import "_dashboard.scss";
-@import "_static.scss";
-@import "_angular-busy.scss";
-@import "_curriculum.scss";
-@import "_settings.scss";
-@import "_player.scss";
+@import "_home.scss";

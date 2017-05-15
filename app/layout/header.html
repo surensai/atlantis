@@ -1,87 +1,31 @@
-<div class="header clearfix" data-ng-if="!globals.currentUser">
-  <div class="pull-left width70-per header-bg header-left">
-    <div class="navbar navbar-default" role="navigation">
-      <div class="navbar-header main-logo-header">
-          <a class="navbar-brand" ng-if="!globals.currentUser" ui-sref="login">
-            <img src="assets/images/header_logo.png" class="non-retina" width="310"  />
-            <img src="assets/images/header_logo@2x.png" class="retina-display" width="310" />
-          </a>
-          <a class="navbar-brand" ui-sref="account.dashboard" ng-if="globals.currentUser">
-            <img src="assets/images/header_logo.png" class="non-retina" width="310" />
-            <img src="assets/images/header_logo@2x.png" class="retina-display" width="310" />
-          </a>
-          <a class="navbar-brand-responsive" ng-if="!globals.currentUser" ui-sref="login">
-            <img src="assets/images/logo-responsive.png" class="non-retina" width="219" />
-            <img src="assets/images/logo-responsive@2x.png" class="retina-display" width="219" />
-          </a>
-          <a class="navbar-brand-responsive" ui-sref="account.dashboard" ng-if="globals.currentUser">
-            <img src="assets/images/logo-responsive.png" class="non-retina" width="219" />
-            <img src="assets/images/logo-responsive@2x.png" class="retina-display" width="219" />
-          </a>
-      </div>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><img src="assets/images/logo.png" /></a>
     </div>
-  </div>
-  <div class="pull-right width30-per header-right">
-  </div>
-</div>
-</div>
-</div>
-
-<div class="account-header clearfix " data-ng-if="globals.currentUser">
-  <div class="header-left"></div>
-  <div class="header-right"></div>
-  <div class="panda-iamge-class"></div>
-  <div class="container">
-    <button data-ng-if="globals.currentUser" type="button" class="navbar-toggle collapsed pull-left" side-bar>
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <div class="navbar navbar-default pull-left" role="navigation">
-      <div class="navbar-header responsive-logo-header">
-        <a class="navbar-brand" ng-if="!globals.currentUser" ui-sref="login">
-          <img src="assets/images/header_logo.png" class="non-retina" width="310"  />
-          <img src="assets/images/header_logo@2x.png" class="retina-display" width="310" />
-        </a>
-        <a class="navbar-brand" ui-sref="account.dashboard" ng-if="globals.currentUser">
-          <img src="assets/images/header_logo.png" class="non-retina" width="310" />
-          <img src="assets/images/header_logo@2x.png" class="retina-display" width="310" />
-        </a>
-        <a class="navbar-brand-responsive" ng-if="!globals.currentUser" ui-sref="login">
-          <img src="assets/images/logo-responsive.png" class="non-retina" width="219" />
-          <img src="assets/images/logo-responsive@2x.png" class="retina-display" width="219" />
-        </a>
-        <a class="navbar-brand-responsive" ui-sref="account.dashboard" ng-if="globals.currentUser">
-          <img src="assets/images/logo-responsive.png" class="non-retina" width="219" />
-          <img src="assets/images/logo-responsive@2x.png" class="retina-display" width="219" />
-        </a>
-      </div>
+    <div class="col-md-3 location-selection">
+        <select class="form-control">
+            <option>Vijayawada</option>
+        </select>
     </div>
-    <div class="pull-right">
-      <button data-ng-if="globals.currentUser" type="button" class="navbar-toggle collapsed pull-right" side-bar>
-
-      </button>
-      <div class="top-nav pull-right">
-        <div class="top-header">
-          <div class="dropdown" data-ng-if="showLogoutBtn()">
-            <a href="" class="dropdown-toggle  user-name" type="button" data-toggle="dropdown" width="50%">
-              <span class="caret custom-caret"></span>
-              <div class="text-ellipsis username" title="{{globals.currentUser.firstName}} {{globals.currentUser.lastName}}">{{globals.currentUser.firstName}}
-              {{globals.currentUser.lastName}}</div>
-
-            </a>
-            <ul class="dropdown-menu dropdown-menu-logout">
-              <li data-ng-if="globals.currentUser.email === 'admin@squarepanda.com'"><a ui-sref="admin.firmware-update"
-                                                                                        data-translate="nav.firmware_update.title">Firmware
-                Update</a></li>
-              <li><a href="javascript:;" data-ng-click="logout()" data-translate="nav.header.logout">Logout</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+    <div class="col-md-4 time">
+        02:55 PM IST  FRI 28 NOV 2016
     </div>
-  </div>
-</div>
-</div>
-</div>
+    <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+        <li><a href="javascript:;"><i class="fa fa-bell notification" aria-hidden="true"></i>
+            <i class="count">5</i></a>
+        </li>
+        <li><a href="javascript:;"><i class="fa fa-cog settings" aria-hidden="true"></i></a></li>
+        <li><a href="javascript:;"><i class="fa fa-question-circle questions" aria-hidden="true"></i></a></li>
+        <li><a href="javascript:;" class="user-img"><img src='assets/images/user.png'></a></li>
+        </ul>
+    </div><!--/.nav-collapse -->
+    </div>
+</nav>

@@ -11,11 +11,5 @@ var app = angular.module('app', [
   'pascalprecht.translate',
   'underscore',
   'ui.bootstrap',
-  'base64',
-  'angularMoment',
-  'highcharts-ng',
-  'toaster',
-  'ngAudio',
-  'ngImgCrop',
-  'ngCsv'
+  'angularMoment'
 ]);

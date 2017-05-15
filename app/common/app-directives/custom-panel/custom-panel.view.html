@@ -1,0 +1,44 @@
+<div class="panel mypanel {{themeClass}}">
+                    <div class="panel-heading">
+                        <div class="panel-left-subheading">
+                          <img ng-if="headerIcon" ng-src="assets/images/{{headerIcon}}" />
+                          {{heading}}</div>
+                        <div class="panel-right-subheading pull-right">{{totalPercentage}}%</div>
+                        </div>
+                    <div class="panel-body">
+                        <h4 class="sub-heading">Connectivity</h4>
+                        <div class="statistics-blocks clearfix">
+                            <div class="s-block col-md-4">
+                                <h2>{{totalCount}}</h2>
+                                <span>{{totalText}}</span>
+                            </div>
+                            <div class="s-block col-md-4">
+                                <h2 class="green">{{activeCount}}</h2>
+                                <span>ACTIVE LIGHTS</span>
+                            </div>
+                            <div class="s-block col-md-4">
+                                <h2 class="red">{{outofService}}</h2>
+                                <span>OUT OF SERVICE</span>
+                            </div>
+                        </div>
+
+                        <h4 class="sub-heading">Service Requests</h4>
+                        <div class="statistics-blocks clearfix">
+                            <div class="s-block col-md-4">
+                                <h2>{{total}}</h2>
+                                <span>Total</span>
+                            </div>
+                            <div class="s-block col-md-4">
+                                <h2 class="green">{{closed}}</h2>
+                                <span>ClOSED</span>
+                            </div>
+                            <div class="s-block col-md-4">
+                                <h2 class="red">{{open}}</h2>
+                                <span>OPEN</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div ng-click='refresh()'>Last Updated: TUE 02 May 2017 03:25 PM IST <i class="fa fa-refresh" aria-hidden="true"></i></div>
+                    </div>
+                </div>
